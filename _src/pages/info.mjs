@@ -85,6 +85,8 @@ ${pageHero({ crumbs, eyebrow: "تواصل معنا", title: "يسعدنا سما
       <a class="ctile" data-reveal href="tel:${site.phoneIntl}"><span class="ico">${ic("phone")}</span><div><b>اتصال هاتفي</b><span class="ltr">${site.phoneDisplay}</span></div></a>
       <a class="ctile" data-reveal href="mailto:${site.email}"><span class="ico ico--orange">${ic("mail")}</span><div><b>البريد الإلكتروني</b><span>${site.email}</span></div></a>
       <div class="ctile" data-reveal><span class="ico">${ic("pin")}</span><div><b>الموقع</b><span>${site.addressLine || `${site.city}، ${site.country}`}</span></div></div>
+      ${site.socials.instagram ? `<a class="ctile" data-reveal href="${site.socials.instagram}" target="_blank" rel="noopener me"><span class="ico" style="background:#FCE7F3;color:#C13584">${ic("instagram")}</span><div><b>إنستغرام</b><span class="ltr">@oya_tourism01</span></div></a>` : ""}
+      ${site.socials.facebook ? `<a class="ctile" data-reveal href="${site.socials.facebook}" target="_blank" rel="noopener me"><span class="ico" style="background:#E7F0FD;color:#1877F2">${ic("facebook")}</span><div><b>فيسبوك</b><span>أويا للسياحة</span></div></a>` : ""}
     </div>
   </div>
 </section>

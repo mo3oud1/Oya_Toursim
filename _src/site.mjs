@@ -16,7 +16,7 @@ export const site = {
   tursab: "", // رقم رخصة TÜRSAB
   addressLine: "", // العنوان التفصيلي للمكتب
   mapsUrl: "",
-  socials: { instagram: "", facebook: "", tiktok: "", youtube: "", snap: "" },
+  socials: { instagram: "https://www.instagram.com/oya_tourism01", facebook: "https://www.facebook.com/share/1FyNG91QkB/", tiktok: "", youtube: "", snap: "" },
   ga4: "", // Google Analytics 4 ID e.g. G-XXXXXXX
   gscVerification: "", // Google Search Console meta verification token
 };
