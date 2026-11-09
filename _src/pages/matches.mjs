@@ -84,6 +84,63 @@ const tiers = (ctx = "كأس السوبر الإسباني 2027") => `
 </div>
 <p class="center muted mt-2" style="font-size:.9rem">${ic("info")} الأسعار تختلف حسب الفئة والتوفر وتاريخ الحجز، ونرسلها لك مكتوبة قبل أي دفع.</p>`;
 
+// ---- 3D stadium & seating categories (illustrative) ----
+const SEATS = {
+  vip: { label: "VIP / الضيافة", color: "#F4B740", desc: "وسط الجهة الرئيسية: أفضل زاوية رؤية ومقاعد مريحة وخدمات ضيافة حسب ما يوفره المنظمون." },
+  cat1: { label: "الفئة الأولى", color: "#ED5404", desc: "الجوانب الطولية قرب منتصف الملعب: رؤية جانبية كاملة لكل اللعب، الخيار الأنسب لمتابعة المباراة." },
+  cat2: { label: "الفئة الثانية", color: "#4F8BC9", desc: "أطراف الجوانب والزوايا والمدرج العلوي الجانبي: رؤية جيدة وسعر أقل." },
+  cat3: { label: "الفئة الثالثة", color: "#2A9D8F", desc: "خلف المرمى: أجواء الجماهير الأكثر حماساً وبأقل سعر، والرؤية من طرف الملعب." },
+};
+const VENUE_MODEL = {
+  sf1: { capacity: "حوالي 47 ألف مقعد", model: { upperRows: 18, closedCorners: true, singleTierEnd: null } },
+  sf2: { capacity: "حوالي 42 ألف مقعد", model: { upperRows: 16, closedCorners: true, singleTierEnd: "W" } },
+  final: { capacity: "حوالي 52 ألف مقعد", model: { upperRows: 20, closedCorners: true, singleTierEnd: null } },
+};
+const priceText = (m, k) => (typeof m.prices?.[k] === "number" ? `${Number(m.prices[k]).toLocaleString("en-US")} ${CURRENCY.symbol}` : "عند الطلب");
+function stadiumSection() {
+  const cfg = {
+    wa: "905399334331", currency: CURRENCY.symbol, categories: SEATS,
+    matches: scMatches.map((m) => ({ stage: m.stage, teams: `${teams[m.home].name} × ${teams[m.away].name}`, venue: m.venueAr, capacity: VENUE_MODEL[m.id].capacity, prices: m.prices, venueModel: VENUE_MODEL[m.id].model })),
+  };
+  const m0 = scMatches[0];
+  return `
+<section class="section stadium-sec" id="stadium" data-stadium>
+  <div class="container">
+    ${sectionHead({ eyebrow: `${ic("stadium")} مجسم الملعب`, title: "شاهد الملعب… واختر مقعدك قبل أن تصل", lead: "مجسم ثلاثي الأبعاد يوضح توزيع فئات المقاعد. اسحب لتدوير الملعب، واضغط على أي مدرج لترى فئته وسعره وزاوية الرؤية منه.", center: true })}
+    <div class="stadium">
+      <div class="stadium-bar">
+        <div class="stadium-tabs" role="tablist" aria-label="المباراة والملعب">${scMatches.map((m, i) => `<button type="button" role="tab" class="stadium-tab" aria-selected="${i === 0}">${m.stage}<small>${m.venueAr.split(" — ")[0]}</small></button>`).join("")}</div>
+        <div class="stadium-views" role="group" aria-label="زاوية الرؤية"><button type="button" data-view="main">${ic("users")}من المنصة الرئيسية</button><button type="button" data-view="goal">${ic("ball")}من خلف المرمى</button><button type="button" data-view="top">${ic("compass")}من الأعلى</button></div>
+      </div>
+      <div class="stadium-body">
+        <div class="stadium-stage">
+          <div class="stadium-poster" aria-hidden="true"></div>
+          <button type="button" class="stadium-start btn">${ic("stadium")}<span>عرض الملعب ثلاثي الأبعاد</span></button>
+          <span class="stadium-loading" aria-hidden="true">جارٍ تحميل المجسم…</span>
+          <div class="stadium-tip" role="status"></div>
+          <p class="stadium-venue">${m0.venueAr} • ${VENUE_MODEL[m0.id].capacity}</p>
+          <p class="stadium-hint">${ic("refresh")} اسحب للتدوير • اضغط على مدرج</p>
+        </div>
+        <aside class="stadium-side">
+          <div class="stadium-legend" role="group" aria-label="فئات المقاعد">
+            ${Object.entries(SEATS).map(([k, c]) => `<button type="button" data-cat="${k}" aria-pressed="false"><span class="dot" style="background:${c.color}"></span><span class="lg-name">${c.label}</span><span class="lg-price">${priceText(m0, k)}</span></button>`).join("")}
+          </div>
+          <div class="stadium-info" aria-live="polite">
+            <p class="si-head"><span class="si-dot"></span><b class="si-cat">اختر مدرجاً</b></p>
+            <p class="si-where">اضغط على أي جزء من المدرجات أو على فئة من القائمة.</p>
+            <p class="si-desc"></p>
+            <p class="si-price-row">السعر: <b class="si-price">—</b></p>
+            <a class="btn btn--wa btn--block si-wa" href="#book" target="_blank" rel="noopener">${ic("whatsapp")}<span>احجز هذه الفئة</span></a>
+          </div>
+          <p class="stadium-note">${ic("info")} تمثيل توضيحي لتوزيع الفئات؛ المخطط النهائي للمقاعد تحدده الجهة المنظمة لكل ملعب.</p>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" class="stadium-data">${JSON.stringify(cfg).replace(/</g, "\\u003c")}</script>
+</section>`;
+}
+
 // ---- Fan stay packages: we sell the stay (legal & profitable); tickets are bought officially in the fan's name ----
 const STAYS = [
   { id: "sf1", title: "باقة نصف النهائي الأول", sub: "برشلونة × أتلتيكو مدريد • كاديكوي", nights: 3, dates: "1 – 4 فبراير 2027", area: "فندق في كاديكوي أو أوسكودار قرب ملعب المباراة (الجانب الآسيوي)", price: null },
@@ -264,6 +321,8 @@ ${pageHero({ crumbs, eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبرا
     ${hasPrices() ? `<h3 class="h-l mt-3" id="prices">أسعار التذاكر حسب الفئة</h3>${priceTable()}` : ""}
   </div>
 </section>
+
+${stadiumSection()}
 
 <section class="section section--white">
   <div class="container split">

@@ -863,3 +863,57 @@ body.no-scroll{overflow:hidden}
 
 .tier--pop .price b{color:#fff}.tier--pop .price small{color:#B9CCE0}
 .tier .price{margin-top:auto}
+
+/* =========================================================
+   3D stadium & seating categories
+   ========================================================= */
+.stadium-sec{background:linear-gradient(180deg,#061428,#0A1F3A);color:#DCE7F3}
+.stadium-sec h2{color:#fff}.stadium-sec .lead{color:#B9CCE0}.stadium-sec .eyebrow{color:var(--orange-300)}
+.stadium{display:grid;gap:14px}
+.stadium-bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+.stadium-tabs,.stadium-views{display:flex;flex-wrap:wrap;gap:6px;padding:5px;border-radius:16px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.stadium-tab{border:0;background:none;color:#B9CCE0;padding:.5em 1em;border-radius:12px;font-weight:600;min-height:44px;display:flex;flex-direction:column;align-items:flex-start;line-height:1.3;text-align:start}
+.stadium-tab small{font-weight:400;font-size:.75rem;opacity:.8}
+.stadium-tab[aria-selected="true"]{background:#fff;color:var(--navy)}
+.stadium-views button{border:0;background:none;color:#DCE7F3;padding:.5em .9em;border-radius:12px;font-size:.88rem;min-height:44px;display:inline-flex;align-items:center;gap:.4em}
+.stadium-views button:hover{background:rgba(255,255,255,.1)}
+.stadium-body{display:grid;gap:14px}
+@media(min-width:1024px){.stadium-body{grid-template-columns:minmax(0,1fr) 340px}}
+.stadium-stage{position:relative;aspect-ratio:16/10;min-height:340px;border-radius:var(--r-l);overflow:hidden;isolation:isolate;
+  background:radial-gradient(60% 50% at 50% 40%,rgba(255,236,200,.18),transparent 70%),radial-gradient(120% 90% at 50% 100%,#0F2C52,#050E1C 75%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),var(--sh-3)}
+.stadium-canvas{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none;opacity:0;transition:opacity .6s var(--ease)}
+.stadium-canvas:active{cursor:grabbing}
+.is-ready .stadium-canvas{opacity:1}
+.stadium-poster{position:absolute;inset:0;z-index:-1;background:
+  repeating-linear-gradient(90deg,rgba(47,125,58,.9) 0 6%,rgba(42,113,52,.9) 6% 12%);
+  clip-path:polygon(22% 38%,78% 38%,92% 78%,8% 78%);opacity:.55;filter:blur(.3px)}
+.is-ready .stadium-poster{display:none}
+.stadium-start{position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:2}
+.is-loading .stadium-start,.is-ready .stadium-start{display:none}
+@media (pointer:fine){.stadium-start{display:none}}
+.stadium-loading{position:absolute;left:50%;top:50%;translate:-50% -50%;display:none;color:#B9CCE0;font-size:.95rem}
+.is-loading .stadium-loading{display:block}
+.is-failed .stadium-loading::after{content:" — تعذّر تشغيل العرض ثلاثي الأبعاد على هذا الجهاز"}
+.stadium-tip{position:absolute;left:0;top:0;z-index:3;pointer-events:none;translate:-50% -100%;padding:.35em .8em;border-radius:10px;background:rgba(6,20,40,.92);color:#fff;font-size:.82rem;white-space:nowrap;opacity:0;transition:opacity .15s}
+.stadium-tip.is-on{opacity:1}
+.stadium-venue{position:absolute;inset-inline-start:14px;top:12px;margin:0;padding:.3em .8em;border-radius:999px;background:rgba(6,20,40,.7);font-size:.82rem;color:#DCE7F3;z-index:2}
+.stadium-hint{position:absolute;left:50%;bottom:10px;translate:-50% 0;margin:0;display:flex;align-items:center;gap:.4em;padding:.3em .9em;border-radius:999px;background:rgba(6,20,40,.6);font-size:.78rem;color:#B9CCE0;z-index:2;pointer-events:none}
+.stadium-side{display:grid;gap:12px;align-content:start}
+.stadium-legend{display:grid;gap:6px}
+.stadium-legend button{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;width:100%;min-height:48px;padding:.6em .9em;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#E3ECF6;text-align:start;transition:background-color .2s,border-color .2s}
+.stadium-legend button:hover{border-color:rgba(255,255,255,.35)}
+.stadium-legend button[aria-pressed="true"]{background:rgba(255,255,255,.12);border-color:#fff}
+.stadium-legend .dot{width:14px;height:14px;border-radius:4px;box-shadow:0 0 0 3px rgba(255,255,255,.08)}
+.stadium-legend .lg-price{font-family:var(--ff-display);font-weight:700;color:#fff;font-size:.92rem}
+.stadium-info{padding:18px;border-radius:var(--r);background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.stadium-info p{margin:0 0 8px;font-size:.92rem;line-height:1.75;color:#C4D4E6}
+.stadium-info .si-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.stadium-info .si-dot{width:12px;height:12px;border-radius:3px;background:#8EC1F0}
+.stadium-info .si-cat{font-family:var(--ff-display);font-size:1.15rem;color:#fff}
+.stadium-info .si-where{color:#fff;font-weight:600}
+.stadium-info .si-price{font-family:var(--ff-display);font-size:1.25rem;color:var(--orange-300)}
+.stadium-info .si-wa{margin-top:6px}
+.stadium-info:not(.is-on) .si-wa,.stadium-info:not(.is-on) .si-price-row{display:none}
+.stadium-note{display:flex;gap:.5em;align-items:flex-start;margin:0;font-size:.8rem;color:#9FB6CF;line-height:1.7}
+@media(max-width:640px){.stadium-stage{aspect-ratio:4/5;min-height:0}.stadium-views{width:100%;justify-content:space-between}.stadium-views button{font-size:.8rem;padding:.45em .6em}}
+@media(max-width:640px){.stadium-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;width:100%}.stadium-tabs::-webkit-scrollbar{display:none}.stadium-tab{flex:0 0 auto}.stadium-views{flex-wrap:nowrap;overflow-x:auto}.stadium-views button{flex:0 0 auto}}

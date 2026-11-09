@@ -209,6 +209,7 @@ ${vendorScripts(page)}<script src="{{root}}assets/js/main.js?v=${assetsVer}" def
 <script src="{{root}}assets/js/motion.js?v=${assetsVer}" defer></script>
 ${/data-finder/.test(page.body) ? `<script src="{{root}}assets/js/finder.js?v=${assetsVer}" defer></script>` : ""}
 ${/data-globe/.test(page.body) ? `<script type="module" src="{{root}}assets/js/globe.js?v=${assetsVer}"></script>` : ""}
+${/data-stadium/.test(page.body) ? `<script type="module" src="{{root}}assets/js/stadium.js?v=${assetsVer}"></script>` : ""}
 </body>
 </html>`;
 }
