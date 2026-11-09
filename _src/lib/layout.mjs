@@ -19,6 +19,7 @@ function megaTurkey(data) {
     <b>برامج سياحية متكاملة</b>
     <span>برامج يوم بيوم لإسطنبول، طرابزون، بورصة وكابادوكيا مع سائق يتحدث العربية.</span>
     <a href="{{root}}packages/">تصفّح البرامج</a>
+    ${(data.extras || []).filter((x) => x.kind !== "offer").length ? `<span style="position:relative;display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">${(data.extras || []).filter((x) => x.kind !== "offer").map((x) => `<a href="{{root}}${x.path}" style="font-size:.85rem;padding:.3em .7em">${esc(x.h1.split(":")[0].split(" في ")[0])}</a>`).join("")}</span>` : ""}
   </div>
 </div>`;
 }
@@ -78,6 +79,7 @@ function drawer(page, data) {
           <li><a href="{{root}}gcc-visas/"><b>تأشيرات الخليج</b></a></li>${g("gcc").map((v) => `<li><a href="{{root}}gcc-visas/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
           <li><a href="{{root}}visas/"><b>تأشيرات دولية</b></a></li>${g("intl").map((v) => `<li><a href="{{root}}visas/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
         </ul></details></li>
+        ${(data.extras || []).length ? `<li><details><summary>خدمات وعروض ${ic("chevron")}</summary><ul>${data.extras.map((x) => `<li><a href="{{root}}${x.path}">${esc(x.h1.split(":")[0])}</a></li>`).join("")}<li><a href="{{root}}offers/">كل العروض الموسمية</a></li></ul></details></li>` : ""}
         ${link("matches/", 'تذاكر المباريات <span class="tag-new">جديد</span>', "matches")}
         ${link("blog/", "المدونة", "blog")}
         ${link("about/", "من نحن", "about")}
@@ -110,7 +112,7 @@ function footer(data, page) {
         </div>
       </div>
       <div><h3>خدماتنا</h3><ul>
-        <li><a href="{{root}}flights/">تذاكر طيران</a></li><li><a href="{{root}}hotels/">فنادق ومنتجعات</a></li><li><a href="{{root}}turkey-tours/">السياحة في تركيا</a></li><li><a href="{{root}}world-tours/">السياحة خارج تركيا</a></li><li><a href="{{root}}packages/">البرامج السياحية</a></li><li><a href="{{root}}matches/">تذاكر المباريات</a></li>
+        <li><a href="{{root}}flights/">تذاكر طيران</a></li><li><a href="{{root}}hotels/">فنادق ومنتجعات</a></li><li><a href="{{root}}turkey-tours/">السياحة في تركيا</a></li><li><a href="{{root}}world-tours/">السياحة خارج تركيا</a></li><li><a href="{{root}}packages/">البرامج السياحية</a></li><li><a href="{{root}}matches/">تذاكر المباريات</a></li>${(data.extras || []).map((x) => `<li><a href="{{root}}${x.path}">${esc(x.h1.split(":")[0])}</a></li>`).join("")}
       </ul></div>
       <div><h3>وجهات تركيا</h3><ul>${ds.map((d) => `<li><a href="{{root}}turkey-tours/${d.slug}/">${esc(d.name)}</a></li>`).join("")}</ul></div>
       <div><h3>التأشيرات</h3><ul>

@@ -64,7 +64,7 @@ export function homePage(data) {
     <div class="bento" data-stagger>
       ${services.map((s) => `
       <div class="svc ${s.cls}" data-reveal>
-        ${s.art ? ic(s.art, "svc__art") : ""}
+
         ${s.badge ? `<span class="badge" style="position:static;align-self:flex-start">${s.badge}</span>` : ""}
         <span class="ico${s.cls.includes("dark") ? " ico--glass" : ""}">${ic(s.icon)}</span>
         <h3><a class="cover" href="{{root}}${s.href}">${s.title}</a></h3>
@@ -127,7 +127,7 @@ ${globeSection(data)}
     <div class="grid grid-3" data-stagger>
       ${[
         { g: "saudi", hub: "saudi-visa/", title: "تأشيرات السعودية", icon: "mosque", text: "سياحية إلكترونية، عمرة، زيارة عائلية وشخصية، أعمال، ترانزيت، وتأشيرة المقيمين في الخليج.", tone: "" },
-        { g: "gcc", hub: "gcc-visas/", title: "تأشيرات دول الخليج", icon: "burj", text: "فيزا دبي والإمارات، قطر، عُمان، البحرين والكويت، ومتابعة مستجدات التأشيرة الخليجية الموحدة.", tone: "svc--dark" },
+        { g: "gcc", hub: "gcc-visas/", title: "تأشيرات دول الخليج", icon: "burj", text: "تأشيرة الإمارات (دبي)، قطر، عُمان، البحرين والكويت، ومتابعة مستجدات التأشيرة الخليجية الموحدة.", tone: "svc--dark" },
         { g: "intl", hub: "visas/", title: "تأشيرات دولية", icon: "globe", text: "شنغن، بريطانيا، أمريكا وكندا من تركيا: تعبئة الطلب، الحجوزات، التأمين ومراجعة الملف.", tone: "" },
       ].map((c) => `
       <div class="svc ${c.tone}" data-reveal>

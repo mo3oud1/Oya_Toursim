@@ -1,6 +1,6 @@
 // Detail page templates fed by _src/content/*.mjs
 import { site } from "../site.mjs";
-import { esc, strip, ic, ar, media, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
+import { esc, strip, ic, ar, media, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
 import { tourForm, visaForm } from "./forms.mjs";
 import * as S from "./schema.mjs";
 
@@ -10,6 +10,40 @@ export const tagLabel = (t) => TAGS[t] || t;
 const base = (page, extra = []) => [S.orgNode(), S.websiteNode(), S.webPageNode(page), S.breadcrumbNode(page), ...extra].filter(Boolean);
 
 /* ---------------- Destination ---------------- */
+/* ---------------- Topic map: which guides support which money pages ---------------- */
+const POST_MAP = {
+  istanbul: ["istanbul-itinerary-5-days", "day-trips-from-istanbul", "cost-of-travel-to-turkey"],
+  bursa: ["day-trips-from-istanbul", "best-time-to-visit-turkey", "turkey-family-itinerary-10-days"],
+  sapanca: ["day-trips-from-istanbul", "best-time-to-visit-turkey", "turkey-family-itinerary-10-days"],
+  trabzon: ["trabzon-uzungol-travel-guide", "turkey-family-itinerary-10-days", "best-time-to-visit-turkey"],
+  uzungol: ["trabzon-uzungol-travel-guide", "turkey-family-itinerary-10-days", "best-time-to-visit-turkey"],
+  antalya: ["honeymoon-in-turkey", "best-time-to-visit-turkey", "cost-of-travel-to-turkey"],
+  bodrum: ["honeymoon-in-turkey", "best-time-to-visit-turkey", "cost-of-travel-to-turkey"],
+  cappadocia: ["honeymoon-in-turkey", "best-time-to-visit-turkey", "cost-of-travel-to-turkey"],
+  honeymoon: ["honeymoon-in-turkey", "best-time-to-visit-turkey", "cost-of-travel-to-turkey"],
+  family: ["turkey-family-itinerary-10-days", "cost-of-travel-to-turkey", "best-time-to-visit-turkey"],
+  world: ["cost-of-travel-to-turkey", "schengen-visa-from-turkey", "best-time-to-visit-turkey"],
+  saudi: ["saudi-tourist-visa-for-turkey-residents", "schengen-visa-from-turkey"],
+  gcc: ["saudi-tourist-visa-for-turkey-residents", "schengen-visa-from-turkey"],
+  intl: ["schengen-visa-from-turkey", "saudi-tourist-visa-for-turkey-residents"],
+  matches: ["spanish-super-cup-2027-istanbul-guide", "istanbul-itinerary-5-days", "day-trips-from-istanbul"],
+};
+export function relatedPosts(keys, data, exclude = "") {
+  const slugs = [...new Set(keys.flatMap((k) => POST_MAP[k] || []))].filter((s) => s !== exclude);
+  return slugs.map((s) => data.posts.find((p) => p.slug === s)).filter(Boolean).slice(0, 3);
+}
+export function readFirst(keys, data, page, title = "اقرأ قبل السفر") {
+  const posts = relatedPosts(keys, data);
+  if (!posts.length) return "";
+  return `
+<section class="section section--tight">
+  <div class="container">
+    ${sectionHead({ eyebrow: "من دليل أويا", title, row: true, after: `<a class="btn btn--ghost" href="{{root}}blog/">كل المقالات ${ic("arrow", "i-flip")}</a>` })}
+    <div class="grid grid-3" data-stagger>${posts.map((p) => postCard(p, page)).join("")}</div>
+  </div>
+</section>`;
+}
+
 export function destinationPage(d, data) {
   const path = `turkey-tours/${d.slug}/`;
   const crumbs = [{ name: "الرئيسية", path: "" }, { name: "السياحة في تركيا", path: "turkey-tours/" }, { name: d.name, path }];
@@ -29,7 +63,7 @@ ${pageHero({ crumbs, eyebrow: `دليل الوجهة • <span class="ltr">${esc
       ${d.overview.map((p) => `<p>${p}</p>`).join("")}
     </div>
     <div data-reveal="right">
-      ${media({ img: d.img, prompt: d.imgPrompt, alt: `${d.name} — ${d.nameEn}`, icon: d.icon, ratio: "ratio-4x3", cls: "", page: path }).replace('class="media', 'style="border-radius:var(--r-l);box-shadow:var(--sh-2)" class="media')}
+      ${media({ img: d.img, prompt: d.imgPrompt, alt: `${d.name} — ${d.nameEn}`, icon: d.icon, ratio: "ratio-4x3", label: d.name, en: d.nameEn, tone: toneFor(d.slug), cls: "", page: path }).replace('class="media', 'style="border-radius:var(--r-l);box-shadow:var(--sh-2)" class="media')}
       <dl class="kv mt-2">${(d.facts || []).map((f) => `<div><dt>${ic("sparkles")}${esc(f.k)}</dt><dd>${f.v}</dd></div>`).join("")}</dl>
     </div>
   </div>
@@ -63,7 +97,7 @@ ${d.tips && d.tips.length ? `
 <section class="section">
   <div class="container">
     ${sectionHead({ eyebrow: "نصائح أويا", title: `نصائح قبل السفر إلى ${esc(d.name)}` })}
-    <div class="features" data-stagger>${d.tips.map((t, i) => featureItem({ icon: ["sparkles", "car", "sun", "wallet", "shield", "heart"][i % 6], title: `نصيحة ${ar(i + 1)}`, text: t })).join("")}</div>
+    <ul class="docs" data-stagger>${d.tips.map((t) => `<li data-reveal>${ic("check-circle")}<span>${t}</span></li>`).join("")}</ul>
   </div>
 </section>` : ""}
 
@@ -78,6 +112,7 @@ ${d.tips && d.tips.length ? `
 </section>
 
 ${faqBlock(d.faq, { title: `أسئلة شائعة عن السياحة في ${esc(d.name)}` })}
+${readFirst([d.slug], data, path)}
 
 <section class="section section--tight">
   <div class="container" data-rail>
@@ -156,6 +191,7 @@ ${pageHero({ crumbs, eyebrow: `${ar(p.days)} أيام • ${ar(p.nights)} ليا
 </section>
 
 ${faqBlock(p.faq, { title: `أسئلة عن ${esc(p.title)}` })}
+${readFirst([...(p.tags || []).filter((t) => t === "honeymoon" || t === "family"), ...(p.region === "world" ? ["world"] : (p.dest || []))], data, path)}
 
 ${related.length ? `
 <section class="section section--white">
@@ -240,6 +276,7 @@ ${v.types && v.types.length ? `
 </section>
 
 ${faqBlock(v.faq, { title: `أسئلة شائعة عن ${esc(v.name)}` })}
+${readFirst([v.group], data, path, "أدلة مفيدة قبل التقديم")}
 
 ${siblings.length ? `
 <section class="section section--white">
@@ -259,7 +296,10 @@ export function postPage(p, data) {
   const crumbs = [{ name: "الرئيسية", path: "" }, { name: "المدونة", path: "blog/" }, { name: p.title, path }];
   const page = { path, nav: "blog", title: p.seo.title, description: p.seo.description, crumbs, ogType: "article", primaryImage: S.imageUrl(p.img) };
   const toc = [...p.body.matchAll(/<h2 id="([^"]+)"[^>]*>(.*?)<\/h2>/g)].map((m) => ({ id: m[1], t: strip(m[2]) }));
-  const others = data.posts.filter((x) => x.slug !== p.slug).slice(0, 3);
+  // related by topic first (same category, then topic map), never the same fixed three
+  const sameCat = data.posts.filter((x) => x.slug !== p.slug && x.category === p.category);
+  const byTopic = relatedPosts(Object.keys(POST_MAP).filter((k) => (POST_MAP[k] || []).includes(p.slug)), data, p.slug);
+  const others = [...new Map([...sameCat, ...byTopic, ...data.posts.filter((x) => x.slug !== p.slug)].map((x) => [x.slug, x])).values()].slice(0, 3);
   const date = new Date(p.date).toLocaleDateString("ar-EG-u-nu-latn", { year: "numeric", month: "long", day: "numeric" });
   page.body = `
 ${pageHero({ crumbs, eyebrow: esc(p.category || "دليل السفر"), title: p.h1 || p.title, lead: p.excerpt, icon: p.icon || "doc", img: p.img, prompt: p.imgPrompt, page: path,

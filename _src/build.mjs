@@ -13,6 +13,7 @@ import { flightsPage, hotelsPage } from "./pages/services.mjs";
 import { turkeyHub, worldHub, packagesHub, visaHub, blogHub } from "./pages/hubs.mjs";
 import { matchesHub, superCupPage } from "./pages/matches.mjs";
 import { aboutPage, contactPage, faqPage, privacyPage, termsPage, notFoundPage } from "./pages/info.mjs";
+import { hotelCityPage, extraPage, offersHub } from "./lib/templates2.mjs";
 
 const load = async (f) => {
   const p = path.join(ROOT_DIR, "_src/content", f);
@@ -25,6 +26,8 @@ const data = {
   packages: [...(await load("packages-turkey.mjs")), ...(await load("packages-world.mjs"))],
   visas: [...(await load("visas-saudi.mjs")), ...(await load("visas-gcc-intl.mjs"))],
   posts: (await load("posts.mjs")).sort((a, b) => (a.date < b.date ? 1 : -1)),
+  hotels: await load("hotels.mjs"),
+  extras: await load("services-extra.mjs"),
 };
 
 // path -> title (for related links)
@@ -34,6 +37,8 @@ data.packages.forEach((p) => (data.titles[`packages/${p.slug}/`] = p.title));
 const hubOf = { saudi: "saudi-visa/", gcc: "gcc-visas/", intl: "visas/" };
 data.visas.forEach((v) => (data.titles[`${hubOf[v.group]}${v.slug}/`] = v.name));
 data.posts.forEach((p) => (data.titles[`blog/${p.slug}/`] = p.title));
+data.hotels.forEach((h) => (data.titles[`hotels/${h.slug}/`] = h.slug === "family-friendly" ? "فنادق محافظة وعائلية" : `فنادق ${h.city}`));
+data.extras.forEach((x) => (data.titles[x.path] = x.h1.split(":")[0]));
 Object.assign(data.titles, { "flights/": "تذاكر طيران", "hotels/": "فنادق ومنتجعات", "turkey-tours/": "السياحة في تركيا", "world-tours/": "رحلات خارج تركيا", "packages/": "البرامج السياحية", "saudi-visa/": "تأشيرات السعودية", "gcc-visas/": "تأشيرات الخليج", "visas/": "التأشيرات الدولية", "matches/": "تذاكر المباريات", "matches/spanish-super-cup-2027/": "تذاكر كأس السوبر الإسباني 2027" });
 
 const pages = [
@@ -51,6 +56,9 @@ const pages = [
   superCupPage(data),
   blogHub(data),
   ...data.posts.map((p) => postPage(p, data)),
+  ...data.hotels.map((h) => hotelCityPage(h, data)),
+  ...data.extras.map((x) => extraPage(x, data)),
+  ...(data.extras.length ? [offersHub(data)] : []),
   aboutPage(data), contactPage(data), faqPage(data), privacyPage(), termsPage(),
   notFoundPage(),
 ];

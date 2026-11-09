@@ -1,5 +1,5 @@
 import { site } from "../site.mjs";
-import { ic, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, featureItem, destCard } from "../lib/ui.mjs";
+import { ic, esc, media, toneFor, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, featureItem, destCard } from "../lib/ui.mjs";
 import { flightForm, hotelForm, cityList } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
 
@@ -132,7 +132,7 @@ ${pageHero({ crumbs, eyebrow: `${ic("star")} الخدمة الأكثر طلبا�
   <div class="container">
     ${sectionHead({ eyebrow: "أنواع الإقامة", title: "إقامة تناسب حكايتك", lead: "سواء كانت رحلة عائلية طويلة أو شهر عسل أو رحلة عمل — لدينا الخيار المناسب." })}
     <div class="bento" data-stagger>
-      ${types.map((t) => `<div class="svc ${t.cls || ""} ${t.tone || ""}" data-reveal>${t.cls === "b-hero" ? ic("hotel", "svc__art") : ""}<span class="ico${t.tone ? " ico--glass" : ""}">${ic(t.icon)}</span><h3>${t.t}</h3><p>${t.d}</p><a class="link-arrow" href="${waUrl(`مرحباً أويا، أرغب بعروض: ${t.t}.`)}" target="_blank" rel="noopener" style="position:relative;z-index:3">اطلب عروضاً ${ic("arrow")}</a></div>`).join("")}
+      ${types.map((t) => `<div class="svc ${t.cls || ""} ${t.tone || ""}" data-reveal><span class="ico${t.tone ? " ico--glass" : ""}">${ic(t.icon)}</span><h3>${t.t}</h3><p>${t.d}</p><a class="link-arrow" href="${waUrl(`مرحباً أويا، أرغب بعروض: ${t.t}.`)}" target="_blank" rel="noopener" style="position:relative;z-index:3">اطلب عروضاً ${ic("arrow")}</a></div>`).join("")}
     </div>
   </div>
 </section>
@@ -150,7 +150,7 @@ ${pageHero({ crumbs, eyebrow: `${ic("star")} الخدمة الأكثر طلبا�
 <section class="section">
   <div class="container" data-rail>
     ${sectionHead({ eyebrow: "حسب الوجهة", title: "فنادق في أجمل مدن تركيا", row: true, after: `<div class="rail-ctrl"><button type="button" data-rail-prev aria-label="السابق">${ic("chev-right")}</button><button type="button" data-rail-next aria-label="التالي">${ic("chev-left")}</button></div>` })}
-    <div class="rail">${data.destinations.map((d) => destCard(d, path)).join("")}</div>
+    <div class="rail">${(data.hotels && data.hotels.length ? data.hotels : []).map((h) => `<a class="dest" href="{{root}}hotels/${h.slug}/" data-reveal>${media({ img: h.img, prompt: h.imgPrompt, alt: h.h1, ratio: "", page: path, tone: h.destination ? toneFor(h.destination) : "gulf" })}<div class="dest__body"><h3>${h.slug === "family-friendly" ? "فنادق محافظة" : "فنادق " + esc(h.city)}</h3><span class="en">${esc(h.cityEn)}</span><p>${esc(h.intro)}</p></div></a>`).join("") || data.destinations.map((d) => destCard(d, path)).join("")}</div>
   </div>
 </section>
 

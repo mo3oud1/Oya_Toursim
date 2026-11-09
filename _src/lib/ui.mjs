@@ -36,14 +36,23 @@ export function registerImage(key, prompt, usedOn) {
   imageRegistry.set(key, r);
 }
 /** media block: photo if present, otherwise branded illustration placeholder */
-export function media({ img, prompt, alt = "", icon = "compass", ratio = "ratio-4x3", cls = "", eager = false, page = "" }) {
+/* Region tones for intentional, typographic placeholders (until real photos arrive) */
+const TONES = {
+  istanbul: "istanbul", bursa: "marmara", sapanca: "marmara", trabzon: "blacksea", uzungol: "blacksea",
+  antalya: "med", bodrum: "med", cappadocia: "anatolia", world: "world", saudi: "gulf", gcc: "gulf",
+};
+export const toneFor = (key) => TONES[key] || "istanbul";
+const ROUTE = `<svg class="ph-route" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><path d="M-10 250 C 90 230 150 170 220 140 S 340 60 420 30"/><circle cx="220" cy="140" r="4"/></svg>`;
+
+export function media({ img, prompt, alt = "", icon = "compass", ratio = "ratio-4x3", cls = "", eager = false, page = "", label = "", en = "", tone = "" }) {
   registerImage(img, prompt, page);
   const file = img && photoExists(img);
-  const ph = PH[hash(img || alt) % PH.length];
-  const pic = file
-    ? `<img src="{{root}}assets/img/photos/${file}" alt="${esc(alt)}" width="1536" height="1024" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`
-    : "";
-  return `<div class="media ${ratio} ${cls}" style="--ph:${ph}">${file ? "" : ic(icon, "media__art")}${pic}</div>`;
+  if (file) {
+    const pic = `<img src="{{root}}assets/img/photos/${file}" alt="${esc(alt)}" width="1536" height="1024" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
+    return `<div class="media ${ratio} ${cls}">${pic}</div>`;
+  }
+  const t = tone || "istanbul";
+  return `<div class="media media--ph tone-${t} ${ratio} ${cls}" role="img" aria-label="${esc(alt)}">${ROUTE}${label ? `<span class="ph-text"><span class="ph-name">${esc(label)}</span>${en ? `<span class="ph-en">${esc(en)}</span>` : ""}</span>` : ""}</div>`;
 }
 
 /* ---------- Meteors (Aceternity-style) ---------- */
@@ -126,7 +135,7 @@ export function packageCard(p, page) {
   return `
 <article class="card" data-reveal data-tags="${esc([p.region, ...(p.tags || [])].join(" "))}">
   ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ""}
-  ${media({ img: p.img, prompt: p.imgPrompt, alt: p.title, icon: p.icon, ratio: "ratio-4x3", page })}
+  ${media({ img: p.img, prompt: p.imgPrompt, alt: p.title, icon: p.icon, ratio: "ratio-4x3", page, label: p.region === "world" ? p.country : p.cities.slice(0, 2).join(" + "), tone: p.region === "world" ? "world" : toneFor((p.dest || []).slice(-1)[0]) })}
   <div class="card__body">
     <div class="card__meta"><span>${ic("calendar")}${ar(p.days)} أيام / ${ar(p.nights)} ليالٍ</span><span>${ic("pin")}${esc(p.cities.join(" • "))}</span></div>
     <h3 class="card__title"><a href="${href}">${esc(p.title)}</a></h3>
@@ -138,7 +147,7 @@ export function packageCard(p, page) {
 export function destCard(d, page, { count } = {}) {
   return `
 <a class="dest" href="{{root}}turkey-tours/${d.slug}/" data-reveal>
-  ${media({ img: d.img, prompt: d.imgPrompt, alt: d.name, icon: d.icon, ratio: "", page })}
+  ${media({ img: d.img, prompt: d.imgPrompt, alt: d.name, icon: d.icon, ratio: "", page, tone: toneFor(d.slug) })}
   ${count ? `<span class="chip chip--dark dest__count">${ic("route")}${ar(count)} برامج</span>` : ""}
   <div class="dest__body"><h3>${esc(d.name)}</h3><span class="en">${esc(d.nameEn)}</span><p>${d.tagline || ""}</p></div>
 </a>`;
@@ -155,7 +164,7 @@ export function visaCard(v, base, page) {
 export function postCard(p, page) {
   return `
 <article class="card post-card" data-reveal>
-  ${media({ img: p.img, prompt: p.imgPrompt, alt: p.title, icon: p.icon || "doc", ratio: "ratio-16x9", page })}
+  ${media({ img: p.img, prompt: p.imgPrompt, alt: p.title, icon: p.icon || "doc", ratio: "ratio-16x9", page, label: p.category || "دليل السفر", tone: "istanbul" })}
   <div class="card__body">
     <div class="post-meta"><span>${esc(p.category || "دليل السفر")}</span><span>${ar(p.readMins || 6)} دقائق قراءة</span></div>
     <h3 class="card__title"><a href="{{root}}blog/${p.slug}/">${esc(p.title)}</a></h3>

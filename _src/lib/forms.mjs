@@ -137,6 +137,67 @@ export function matchForm({ compact = false, match = "" } = {}) {
 </form>`;
 }
 
+export function transferForm() {
+  return `
+<form novalidate data-wa data-intro="مرحباً أويا للسياحة، أرغب بحجز استقبال/توصيل من المطار:">
+  <div class="form-grid">
+    ${seg({ label: "نوع الخدمة", name: "dir", options: ["استقبال من المطار", "توصيل إلى المطار", "ذهاب وعودة"] })}
+    ${field({ label: "المطار", name: "airport", type: "select", required: true, placeholder: "اختر المطار", options: ["إسطنبول (IST)", "صبيحة (SAW)", "طرابزون (TZX)", "أنطاليا (AYT)", "كابادوكيا (NAV / ASR)", "بودروم (BJV)", "بورصة (YEI)", "مطار آخر"] })}
+    ${field({ label: "تاريخ الوصول/المغادرة", name: "date", type: "date", required: true })}
+    ${field({ label: "الوقت", name: "time", type: "time", optional: true })}
+    ${field({ label: "رقم الرحلة", name: "flight", placeholder: "مثال: TK 145", optional: true })}
+    ${field({ label: "الوجهة / الفندق", name: "to", placeholder: "اسم الفندق أو المنطقة", required: true })}
+    ${field({ label: "الركاب والحقائب", name: "pax", type: "select", options: ["1–3 ركاب (سيدان)", "4–7 ركاب (فيتو VIP)", "8–14 راكباً (ميني باص)", "مجموعة أكبر"], value: "4–7 ركاب (فيتو VIP)" })}
+    ${field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: نحتاج كرسي أطفال، 6 حقائب كبيرة" })}
+  </div>
+  ${actions("احجز النقل عبر واتساب")}
+</form>`;
+}
+
+export function driverForm() {
+  return `
+<form novalidate data-wa data-date-pair data-intro="مرحباً أويا للسياحة، أرغب بحجز سائق خاص:">
+  <div class="form-grid">
+    ${field({ label: "المدينة", name: "city", type: "select", required: true, placeholder: "اختر المدينة", options: ["إسطنبول", "طرابزون", "بورصة", "سبانجا", "أنطاليا", "كابادوكيا", "مدينة أخرى"] })}
+    ${field({ label: "من تاريخ", name: "from", type: "date", required: true, attrs: "data-date-start" })}
+    ${field({ label: "إلى تاريخ", name: "to", type: "date", optional: true, attrs: "data-date-end" })}
+    ${field({ label: "عدد الساعات يومياً", name: "hours", type: "select", options: ["نصف يوم (حوالي 5 ساعات)", "يوم كامل (حوالي 10 ساعات)", "حسب البرنامج"], value: "يوم كامل (حوالي 10 ساعات)" })}
+    ${field({ label: "عدد الركاب", name: "pax", type: "select", options: ["1–3", "4–7", "8–14", "أكثر"], value: "4–7" })}
+    ${field({ label: "ماذا تريد أن تزور؟", name: "notes", type: "textarea", wide: true, placeholder: "مثال: يوم في سبانجا ومعشوقية، ويوم تسوق في إسطنبول" })}
+  </div>
+  ${actions("احجز السائق عبر واتساب")}
+</form>`;
+}
+
+export function dayTripForm(items = []) {
+  return `
+<form novalidate data-wa data-intro="مرحباً أويا للسياحة، أرغب بحجز جولة يومية:">
+  <div class="form-grid">
+    ${field({ label: "الجولة", name: "trip", type: "select", required: true, placeholder: "اختر الجولة", fid: "trip-select", options: [...new Set(items.map((i) => i.from))].map((g) => ({ group: `من ${g}`, items: items.filter((i) => i.from === g).map((i) => i.name) })) })}
+    ${field({ label: "التاريخ", name: "date", type: "date", required: true })}
+    ${field({ label: "المشاركون", name: "pax", type: "select", options: ["شخصان", "عائلة (3–5)", "6–7 أشخاص", "مجموعة أكبر"], value: "شخصان" })}
+    ${field({ label: "مكان الإقامة", name: "hotel", placeholder: "اسم الفندق أو المنطقة", optional: true })}
+    ${field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: معنا أطفال صغار، نفضّل الانطلاق 9 صباحاً" })}
+  </div>
+  ${actions("احجز الجولة عبر واتساب")}
+</form>`;
+}
+
+export function umrahForm() {
+  return `
+<form novalidate data-wa data-intro="مرحباً أويا للسياحة، أرغب بالتسجيل في عمرة رمضان 2027:">
+  <div class="form-grid">
+    ${field({ label: "الفترة المفضلة", name: "period", type: "select", required: true, placeholder: "اختر الفترة", options: ["العشر الأوائل من رمضان", "العشر الأواسط من رمضان", "العشر الأواخر من رمضان", "رمضان كاملاً", "مرن"] })}
+    ${field({ label: "عدد المعتمرين", name: "pax", type: "select", options: ["1", "2", "3–4", "5–8", "مجموعة أكبر"], value: "2" })}
+    ${field({ label: "الجنسية", name: "nationality", placeholder: "مثال: تركي، سوري، عراقي…", required: true })}
+    ${field({ label: "مدينة الانطلاق", name: "from", placeholder: "مثال: إسطنبول", optional: true })}
+    ${field({ label: "مستوى الفندق", name: "level", type: "select", options: ["قريب جداً من الحرم", "متوسط المسافة — أفضل قيمة", "اقتصادي"], value: "متوسط المسافة — أفضل قيمة" })}
+    ${field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: نرغب بـ 4 ليالٍ في مكة و3 في المدينة، ومعنا كبار سن" })}
+  </div>
+  ${actions("سجّل اهتمامك عبر واتساب")}
+</form>`;
+}
+
 export function contactForm() {
   return `
 <form novalidate data-wa data-intro="مرحباً أويا للسياحة،">

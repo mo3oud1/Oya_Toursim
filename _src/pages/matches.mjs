@@ -1,5 +1,6 @@
 import { site } from "../site.mjs";
 import { ic, esc, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, packageCard } from "../lib/ui.mjs";
+import { readFirst } from "../lib/templates.mjs";
 import { matchForm } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
 
@@ -83,6 +84,35 @@ const tiers = (ctx = "كأس السوبر الإسباني 2027") => `
 </div>
 <p class="center muted mt-2" style="font-size:.9rem">${ic("info")} الأسعار تختلف حسب الفئة والتوفر وتاريخ الحجز، ونرسلها لك مكتوبة قبل أي دفع.</p>`;
 
+// ---- Fan stay packages: we sell the stay (legal & profitable); tickets are bought officially in the fan's name ----
+const STAYS = [
+  { id: "sf1", title: "باقة نصف النهائي الأول", sub: "برشلونة × أتلتيكو مدريد • كاديكوي", nights: 3, dates: "1 – 4 فبراير 2027", area: "فندق في كاديكوي أو أوسكودار قرب ملعب المباراة (الجانب الآسيوي)", price: null },
+  { id: "sf2", title: "باقة نصف النهائي الثاني", sub: "ريال سوسيداد × ريال مدريد • بشكتاش", nights: 3, dates: "2 – 5 فبراير 2027", area: "فندق في بشكتاش أو تقسيم على بُعد دقائق من الملعب", price: null },
+  { id: "final", title: "باقة النهائي", sub: "المباراة النهائية • رامز بارك", nights: 3, dates: "5 – 8 فبراير 2027", area: "فندق في شيشلي أو مسلك قريب من طريق الملعب", price: null },
+  { id: "all", title: "باقة البطولة كاملة", sub: "3 مباريات في 6 ليالٍ", nights: 6, dates: "1 – 7 فبراير 2027", area: "فندق مركزي في شيشلي أو بشكتاش يناسب الملاعب الثلاثة", price: null, pop: true },
+];
+const STAY_INCLUDES = ["استقبال وتوديع من المطار بسيارة خاصة", "نقل خاص إلى الملعب والعودة بعد مباراة الساعة 22:00", "جولة نصف يوم في إسطنبول مع سائق يتحدث العربية", "مساعدة في حجز التذكرة الرسمية باسمك (السعر الرسمي + رسوم خدمة معلنة)", "شريحة اتصال تركية ومتابعة على واتساب"];
+function stayPackages() {
+  return `
+<div class="tiers" data-stagger>
+  ${STAYS.map((s) => `
+  <div class="tier${s.pop ? " tier--pop" : ""}" data-reveal>
+    ${s.pop ? `<span class="badge">التجربة الكاملة</span>` : ""}
+    <span class="ico${s.pop ? " ico--glass" : ""}">${ic(s.pop ? "trophy" : "hotel")}</span>
+    <h3>${s.title}</h3>
+    <p class="${s.pop ? "" : "muted"}" style="margin:0;${s.pop ? "color:#B9CCE0" : ""}">${s.sub}<br><small>${s.nights} ليالٍ • ${s.dates} (قابلة للتعديل)</small></p>
+    <ul><li>${ic("bed")}${s.area}</li>${STAY_INCLUDES.map((x) => `<li>${ic("check")}${x}</li>`).join("")}</ul>
+    <div class="price"><small>${s.price ? "يبدأ من / للشخص (دون التذكرة)" : "السعر"}</small><b${s.price ? "" : ' style="font-size:1.05rem"'}>${s.price ? fmt(s.price) : "يُعلن قريباً — سجّل اهتمامك"}</b></div>
+    <a class="btn${s.pop ? "" : " btn--navy"} btn--block" href="${waUrl(`مرحباً أويا، أرغب بـ${s.title} (كأس السوبر الإسباني 2027 في إسطنبول).`)}" target="_blank" rel="noopener">${ic("whatsapp")}احجز مكانك</a>
+  </div>`).join("")}
+</div>
+<div class="incl mt-2" data-reveal style="grid-template-columns:1fr 1fr">
+  <div class="yes"><h3>${ic("sparkles")} إضافات اختيارية</h3><ul class="yes">${["رحلة ثلوج إلى أولوداغ في بورصة (فبراير موسم الثلج)", "تذاكر الطيران من مدينتك", "ليلة إضافية قبل المباراة أو بعدها", "جولة البوسفور بالقارب"].map((x) => `<li>${ic("plus")}<span>${x}</span></li>`).join("")}</ul></div>
+  <div class="yes"><h3>${ic("ticket")} خدمة التذكرة بشكل نظامي</h3><ul class="yes">${["نحجز التذكرة عبر القناة الرسمية المعتمدة وباسم المشجع", "تدفع السعر الرسمي للتذكرة + رسوم خدمة واضحة", "لا نبيع تذاكر من السوق السوداء أو بأسعار مضاعفة", "إن فضّلت الشراء بنفسك نرشدك خطوة بخطوة مجاناً مع الباقة"].map((x) => `<li>${ic("check")}<span>${x}</span></li>`).join("")}</ul></div>
+</div>
+<p class="center muted mt-2" style="font-size:.9rem">${ic("info")} تنتهي البطولة قبل بداية شهر رمضان المبارك المتوقعة (حوالي 8–9 فبراير 2027)، فهي فرصة لرحلة مميزة قبل الشهر الكريم.</p>`;
+}
+
 const countdown = () => `
 <div class="countdown" data-countdown="${KICKOFF}" aria-label="العد التنازلي لانطلاق البطولة">
   <div><b data-d>—</b><span>يوم</span></div><div><b data-h>—</b><span>ساعة</span></div><div><b data-m>—</b><span>دقيقة</span></div><div><b data-s>—</b><span>ثانية</span></div>
@@ -101,7 +131,7 @@ export const superCup = {
     <div>
       <p class="eyebrow">${ic("trophy")} حدث استثنائي في إسطنبول</p>
       <h2 class="h-xl">كأس السوبر الإسباني 2027 <span class="accent" style="color:var(--orange-300)">في إسطنبول</span></h2>
-      <p class="lead">برشلونة، ريال مدريد، أتلتيكو مدريد وريال سوسيداد على أرض إسطنبول من 2 إلى 6 فبراير 2027. احجز تذكرتك أو باقة المشجع الكاملة مع الفندق والتنقلات من الآن.</p>
+      <p class="lead">برشلونة، ريال مدريد، أتلتيكو مدريد وريال سوسيداد على أرض إسطنبول من 2 إلى 6 فبراير 2027. احجز باقة المشجع مع الفندق والتنقلات، ونساعدك في تذكرتك الرسمية باسمك.</p>
       <div class="btn-row mt-2"><a class="btn" href="{{root}}matches/spanish-super-cup-2027/">${ic("ticket")}<span>تفاصيل التذاكر والباقات</span></a>${waBtn("مرحباً أويا، أرغب بحجز تذاكر كأس السوبر الإسباني 2027 في إسطنبول.", "احجز عبر واتساب", "btn btn--glass")}</div>
     </div>
     <div>${countdown()}<p style="margin:.8em 0 0;font-size:.85rem;color:#9FB6CF">حتى انطلاق البطولة (حسب المواعيد المعلنة)</p></div>
@@ -219,8 +249,8 @@ export function superCupPage(data) {
     { q: "هل أحتاج تأشيرة لدخول تركيا لحضور المباراة؟", a: "يعتمد ذلك على جنسيتك؛ مواطنو كثير من الدول العربية — ومنها دول الخليج — يدخلون تركيا دون تأشيرة لمدة محددة، بينما تحتاج جنسيات أخرى تأشيرة إلكترونية أو من السفارة. أرسل لنا جنسيتك ونخبرك بالمطلوب." },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبراير 2027`, title: "تذاكر كأس السوبر الإسباني 2027 في إسطنبول", lead: "الكلاسيكو المحتمل في النهائي، ونجوم الليغا على أرض إسطنبول. احجز تذكرتك أو باقة المشجع الكاملة مع أويا للسياحة — من قلب المدينة المستضيفة.", icon: "trophy", page: path,
-    actions: `<a class="btn" href="#book">${ic("ticket")}<span>احجز تذكرتك الآن</span></a>${waBtn("مرحباً أويا، أرغب بحجز تذاكر كأس السوبر الإسباني 2027 في إسطنبول.", "واتساب", "btn btn--glass")}`,
+${pageHero({ crumbs, eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبراير 2027`, title: "تذاكر كأس السوبر الإسباني 2027 في إسطنبول", lead: "الكلاسيكو المحتمل في النهائي، ونجوم الليغا على أرض إسطنبول. احجز باقة إقامة المشجع مع أويا للسياحة واحصل على تذكرتك الرسمية باسمك — من قلب المدينة المستضيفة.", icon: "trophy", page: path,
+    actions: `<a class="btn" href="#book">${ic("ticket")}<span>احجز باقتك الآن</span></a>${waBtn("مرحباً أويا، أرغب بحجز تذاكر كأس السوبر الإسباني 2027 في إسطنبول.", "واتساب", "btn btn--glass")}`,
     extra: `<div class="mt-2" style="max-width:560px">${countdown()}</div>` })}
 
 <section class="section">
@@ -254,8 +284,8 @@ ${pageHero({ crumbs, eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبرا
 
 <section class="section">
   <div class="container">
-    ${sectionHead({ eyebrow: "الباقات", title: "باقات كأس السوبر الإسباني 2027", center: true, lead: "كل الباقات قابلة للتخصيص: عدد الليالي، فئة الفندق، وإضافة الطيران أو برنامج سياحي." })}
-    ${tiers("كأس السوبر الإسباني 2027 في إسطنبول")}
+    ${sectionHead({ eyebrow: "باقات إقامة المشجع", title: "باقات كأس السوبر الإسباني 2027", center: true, lead: "فندق قريب من ملعب مباراتك، تنقلات خاصة بعد مباريات الساعة 22:00، ومساعدة في التذكرة الرسمية باسمك. كل الباقات قابلة للتعديل." })}
+    ${stayPackages()}
   </div>
 </section>
 
@@ -293,6 +323,7 @@ ${ist.length ? `
   </div>
 </section>
 ${faqBlock(faq, { title: "أسئلة شائعة عن السوبر الإسباني 2027" })}
+${readFirst(["matches"], data, path, "دليل المشجع")}
 ${ctaBand({ title: "شاهد الكلاسيكو المحتمل… من إسطنبول", lead: "مقعدك، فندقك وتنقلاتك — جاهزة قبل أن تصل.", wa: "مرحباً أويا، أرغب بباقة كأس السوبر الإسباني 2027 في إسطنبول." })}`;
   page.schemaGraph = [S.orgNode(), S.websiteNode(), S.webPageNode(page), S.breadcrumbNode(page), ...scMatches.map((m) => S.eventNode(page, evt(m))), S.faqNode(page, faq)].filter(Boolean);
   return page;
