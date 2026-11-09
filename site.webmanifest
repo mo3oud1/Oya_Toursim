@@ -1,0 +1,29 @@
+{
+  "name": "أويا للسياحة | OYA Tourism",
+  "short_name": "أويا",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F7F4EE",
+  "theme_color": "#0A1F3A",
+  "icons": [
+    {
+      "src": "assets/img/brand/oya-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/brand/oya-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/brand/oya-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_src/
+
+Sitemap: https://mo3oud1.github.io/Oya_Toursim/sitemap.xml
