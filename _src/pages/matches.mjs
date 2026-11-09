@@ -11,12 +11,30 @@ const teams = {
   rso: { name: "ريال سوسيداد", en: "Real Sociedad", short: "RSO", c1: "#0067B1", c2: "#FFFFFF" },
   tbd: { name: "الفائز من نصف النهائي", en: "TBD", short: "?", c1: "#19487E", c2: "#ED5404" },
 };
+// Ticket prices per category — fill the numbers from the owner's price list (null = «اطلب السعر»).
+const CURRENCY = { symbol: "$", code: "USD" };
+const CATS = [["cat3", "الفئة الثالثة"], ["cat2", "الفئة الثانية"], ["cat1", "الفئة الأولى"], ["vip", "VIP / ضيافة"]];
 export const scMatches = [
-  { id: "sf1", stage: "نصف النهائي الأول", date: "2027-02-02", dateAr: "الثلاثاء 2 فبراير 2027", home: "fcb", away: "atm", start: "2027-02-02", form: "نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)" },
-  { id: "sf2", stage: "نصف النهائي الثاني", date: "2027-02-03", dateAr: "الأربعاء 3 فبراير 2027", home: "rma", away: "rso", start: "2027-02-03", form: "نصف النهائي: ريال مدريد × ريال سوسيداد (3 فبراير)" },
-  { id: "final", stage: "المباراة النهائية", date: "2027-02-06", dateAr: "السبت 6 فبراير 2027*", home: "tbd", away: "tbd", start: "2027-02-06", form: "النهائي (6 فبراير)" },
+  { id: "sf1", stage: "نصف النهائي الأول", date: "2027-02-02", dateAr: "الثلاثاء 2 فبراير 2027", home: "fcb", away: "atm", start: "2027-02-02", form: "نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)",
+    prices: { cat3: null, cat2: null, cat1: null, vip: null } },
+  { id: "sf2", stage: "نصف النهائي الثاني", date: "2027-02-03", dateAr: "الأربعاء 3 فبراير 2027", home: "rma", away: "rso", start: "2027-02-03", form: "نصف النهائي: ريال مدريد × ريال سوسيداد (3 فبراير)",
+    prices: { cat3: null, cat2: null, cat1: null, vip: null } },
+  { id: "final", stage: "المباراة النهائية", date: "2027-02-06", dateAr: "السبت 6 فبراير 2027*", home: "tbd", away: "tbd", start: "2027-02-06", form: "النهائي (6 فبراير)",
+    prices: { cat3: null, cat2: null, cat1: null, vip: null } },
 ];
 const KICKOFF = "2027-02-02T00:00:00+03:00";
+const minPrice = (m) => { const v = Object.values(m.prices || {}).filter((x) => typeof x === "number"); return v.length ? Math.min(...v) : null; };
+const fmt = (n) => `${Number(n).toLocaleString("en-US")}<span class="cur">${CURRENCY.symbol}</span>`;
+const hasPrices = () => scMatches.some((m) => minPrice(m) !== null);
+function priceTable() {
+  if (!hasPrices()) return "";
+  return `
+<div class="table-wrap mt-2" data-reveal><table class="table price-table">
+  <thead><tr><th>المباراة</th>${CATS.map(([, l]) => `<th>${l}</th>`).join("")}</tr></thead>
+  <tbody>${scMatches.map((m) => `<tr><td><strong>${m.stage}</strong><br><small class="muted">${teams[m.home].name} × ${teams[m.away].name}</small></td>${CATS.map(([k]) => `<td>${typeof m.prices?.[k] === "number" ? `<b class="pt">${fmt(m.prices[k])}</b>` : `<span class="muted">عند الطلب</span>`}</td>`).join("")}</tr>`).join("")}</tbody>
+</table></div>
+<p class="muted mt-1" style="font-size:.85rem">الأسعار للتذكرة الواحدة وتخضع للتوفر وقت التأكيد، وتُرسل لك مكتوبة قبل الدفع.</p>`;
+}
 
 const crest = (t) => `<span class="team__crest" style="--c1:${t.c1};--c2:${t.c2};${t.dark ? "color:#1b1b1b;" : ""}">${t.short}</span>`;
 function matchCard(m, { compact = false } = {}) {
@@ -35,7 +53,7 @@ function matchCard(m, { compact = false } = {}) {
     <span>${ic("stadium")}إسطنبول — الملعب حسب الإعلان الرسمي</span>
   </div>
   <div class="match__foot">
-    <div class="price"><small>الفئات</small><b style="font-size:1rem">الأولى • الثانية • الثالثة • VIP</b></div>
+    ${minPrice(m) !== null ? `<div class="price"><small>يبدأ من / للتذكرة</small><b>${fmt(minPrice(m))}</b></div>` : `<div class="price"><small>الفئات</small><b style="font-size:1rem">الأولى • الثانية • الثالثة • VIP</b></div>`}
     <a class="btn btn--sm" href="${waUrl(msg)}" target="_blank" rel="noopener">${ic("ticket")}<span>احجز</span></a>
   </div>
 </article>`;
@@ -181,6 +199,7 @@ function evt(m) {
     home: m.home === "tbd" ? null : h.en,
     away: m.home === "tbd" ? null : a.en,
     description: `كأس السوبر الإسباني 2027 في إسطنبول — ${m.stage}${m.home === "tbd" ? "" : `: ${h.name} × ${a.name}`}.`,
+    price: minPrice(m), currency: CURRENCY.code,
   };
 }
 
@@ -212,6 +231,7 @@ ${pageHero({ crumbs, eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبرا
       ${scMatches.map((m) => `<tr><td><strong>${m.stage}</strong></td><td>${teams[m.home].name} × ${teams[m.away].name}</td><td>${m.dateAr}</td><td>إسطنبول</td></tr>`).join("")}
     </tbody></table></div>
     <p class="muted mt-1" style="font-size:.85rem">* أعلن الاتحاد الإسباني 6 فبراير موعداً للنهائي، وذكرت بعض المصادر 7 فبراير. صافرة البداية والملاعب تُحدَّث هنا فور الإعلان الرسمي.</p>
+    ${hasPrices() ? `<h3 class="h-l mt-3" id="prices">أسعار التذاكر حسب الفئة</h3>${priceTable()}` : ""}
   </div>
 </section>
 
