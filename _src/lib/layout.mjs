@@ -143,7 +143,7 @@ function footer(data, page) {
 
 function vendorScripts(page) {
   const st = /class="itinerary/.test(page.body); // GSAP only where motion serves a decision
-  const flip = /data-filter-group/.test(page.body);
+  const flip = false; // filters use a cheap CSS transition (INP budget)
   if (!st && !flip) return "";
   return `<script src="{{root}}assets/js/vendor/gsap.min.js?v=3.15.1" defer></script>\n` +
     (st ? `<script src="{{root}}assets/js/vendor/ScrollTrigger.min.js?v=3.15.1" defer></script>\n` : "") +
@@ -190,7 +190,7 @@ ${site.gscVerification ? `<meta name="google-site-verification" content="${esc(s
 <link rel="preload" href="{{root}}assets/fonts/alexandria-arabic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{root}}assets/fonts/readex-arabic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{root}}assets/css/main.css?v=${assetsVer}">
-<script>document.documentElement.classList.add("js");</script>
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__oyaReady)document.documentElement.classList.add("reveal-all")},2500);</script>
 <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c")}</script>
 ${site.ga4 ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${site.ga4}"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${site.ga4}");</script>` : ""}
 </head>

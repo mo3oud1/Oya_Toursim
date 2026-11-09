@@ -91,7 +91,7 @@ ${globeSection(data)}
 
 <section class="section section--white">
   <div class="container">
-    ${sectionHead({ eyebrow: "البرامج الأكثر طلباً", title: "برامج سياحية جاهزة… ومرنة بالكامل", lead: "برامج يوماً بيوم صممناها بعد دراسة ما يطلبه المسافر العربي فعلاً، ويمكنك تعديل أي تفصيل فيها.", row: true, after: `<a class="btn btn--ghost" href="{{root}}packages/">كل البرامج ${ic("arrow", "i-flip")}</a>` })}
+    ${sectionHead({ eyebrow: "برامج مختارة", title: "برامج سياحية جاهزة… ومرنة بالكامل", lead: "برامج يوماً بيوم صممناها بعد دراسة ما يطلبه المسافر العربي فعلاً، ويمكنك تعديل أي تفصيل فيها.", row: true, after: `<a class="btn btn--ghost" href="{{root}}packages/">كل البرامج ${ic("arrow", "i-flip")}</a>` })}
     <div class="grid grid-3 home-featured" data-stagger>${featured.map((p) => packageCard(p, path)).join("")}</div>
   </div>
 </section>

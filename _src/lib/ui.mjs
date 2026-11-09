@@ -148,7 +148,7 @@ export function visaCard(v, base, page) {
 <article class="vcard" data-reveal>
   <div style="display:flex;align-items:center;gap:14px"><span class="stamp${v.group === "saudi" ? "" : " stamp--orange"}">${esc(v.stamp)}</span><h3><a class="cover" href="{{root}}${base}${v.slug}/">${esc(v.name)}</a></h3></div>
   <p>${v.intro}</p>
-  <div class="facts">${(v.facts || []).slice(0, 2).map((f) => `<span class="chip">${esc(f.k)}: ${esc(strip(f.v)).slice(0, 38)}</span>`).join("")}</div>
+  <div class="facts">${(v.facts || []).slice(0, 2).map((f) => `<span class="chip">${esc(f.k)}: ${esc(strip(f.v).split(/[(،؛.]| - | — /)[0].trim())}</span>`).join("")}</div>
   <span class="link-arrow">التفاصيل والمتطلبات ${ic("arrow")}</span>
 </article>`;
 }

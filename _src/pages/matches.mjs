@@ -5,24 +5,24 @@ import * as S from "../lib/schema.mjs";
 
 // ---- Event data (edit here when official kick-off times / venues / prices are announced) ----
 const teams = {
-  fcb: { name: "برشلونة", en: "FC Barcelona", short: "FCB", c1: "#A50044", c2: "#004D98" },
-  atm: { name: "أتلتيكو مدريد", en: "Atlético de Madrid", short: "ATM", c1: "#CB3524", c2: "#272E61" },
-  rma: { name: "ريال مدريد", en: "Real Madrid", short: "RMA", c1: "#F5F5F5", c2: "#FEBE10", dark: true },
-  rso: { name: "ريال سوسيداد", en: "Real Sociedad", short: "RSO", c1: "#0067B1", c2: "#FFFFFF" },
+  fcb: { name: "برشلونة", en: "FC Barcelona", short: "FCB", c1: "#19487E", c2: "rgba(255,255,255,.22)" },
+  atm: { name: "أتلتيكو مدريد", en: "Atlético de Madrid", short: "ATM", c1: "#143A68", c2: "rgba(255,255,255,.22)" },
+  rma: { name: "ريال مدريد", en: "Real Madrid", short: "RMA", c1: "#2B6BAB", c2: "rgba(255,255,255,.22)" },
+  rso: { name: "ريال سوسيداد", en: "Real Sociedad", short: "RSO", c1: "#0F2C52", c2: "rgba(255,255,255,.22)" },
   tbd: { name: "الفائز من نصف النهائي", en: "TBD", short: "?", c1: "#19487E", c2: "#ED5404" },
 };
 // Ticket prices per category — fill the numbers from the owner's price list (null = «اطلب السعر»).
 const CURRENCY = { symbol: "$", code: "USD" };
 const CATS = [["cat3", "الفئة الثالثة"], ["cat2", "الفئة الثانية"], ["cat1", "الفئة الأولى"], ["vip", "VIP / ضيافة"]];
 export const scMatches = [
-  { id: "sf1", stage: "نصف النهائي الأول", date: "2027-02-02", dateAr: "الثلاثاء 2 فبراير 2027", home: "fcb", away: "atm", start: "2027-02-02", form: "نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)",
+  { id: "sf1", stage: "نصف النهائي الأول", date: "2027-02-02", dateAr: "الثلاثاء 2 فبراير 2027 • 22:00", home: "fcb", away: "atm", start: "2027-02-02T22:00:00+03:00", venue: "Chobani Stadyumu (Fenerbahçe Şükrü Saracoğlu), Kadıköy", venueAr: "ملعب شكري سراج أوغلو (Chobani) — كاديكوي", form: "نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)",
     prices: { cat3: null, cat2: null, cat1: null, vip: null } },
-  { id: "sf2", stage: "نصف النهائي الثاني", date: "2027-02-03", dateAr: "الأربعاء 3 فبراير 2027", home: "rma", away: "rso", start: "2027-02-03", form: "نصف النهائي: ريال مدريد × ريال سوسيداد (3 فبراير)",
+  { id: "sf2", stage: "نصف النهائي الثاني", date: "2027-02-03", dateAr: "الأربعاء 3 فبراير 2027 • 22:00", home: "rso", away: "rma", start: "2027-02-03T22:00:00+03:00", venue: "Tüpraş Stadium, Beşiktaş", venueAr: "ملعب توبراش (Tüpraş) — بشكتاش", form: "نصف النهائي: ريال مدريد × ريال سوسيداد (3 فبراير)",
     prices: { cat3: null, cat2: null, cat1: null, vip: null } },
-  { id: "final", stage: "المباراة النهائية", date: "2027-02-06", dateAr: "السبت 6 فبراير 2027*", home: "tbd", away: "tbd", start: "2027-02-06", form: "النهائي (6 فبراير)",
+  { id: "final", stage: "المباراة النهائية", date: "2027-02-06", dateAr: "السبت 6 فبراير 2027 • 22:00", home: "tbd", away: "tbd", start: "2027-02-06T22:00:00+03:00", venue: "RAMS Park (Ali Sami Yen Sports Complex), Sarıyer", venueAr: "ملعب رامز بارك (RAMS Park) — سارير", form: "النهائي (6 فبراير)",
     prices: { cat3: null, cat2: null, cat1: null, vip: null } },
 ];
-const KICKOFF = "2027-02-02T00:00:00+03:00";
+const KICKOFF = "2027-02-02T22:00:00+03:00";
 const minPrice = (m) => { const v = Object.values(m.prices || {}).filter((x) => typeof x === "number"); return v.length ? Math.min(...v) : null; };
 const fmt = (n) => `${Number(n).toLocaleString("en-US")}<span class="cur">${CURRENCY.symbol}</span>`;
 const hasPrices = () => scMatches.some((m) => minPrice(m) !== null);
@@ -39,10 +39,10 @@ function priceTable() {
 const crest = (t) => `<span class="team__crest" style="--c1:${t.c1};--c2:${t.c2};${t.dark ? "color:#1b1b1b;" : ""}">${t.short}</span>`;
 function matchCard(m, { compact = false } = {}) {
   const h = teams[m.home], a = teams[m.away];
-  const msg = `مرحباً أويا للسياحة، أرغب بحجز تذاكر كأس السوبر الإسباني 2027: ${m.stage} — ${h.name} × ${a.name} (${m.dateAr.replace("*", "")}).`;
+  const msg = `مرحباً أويا للسياحة، أرغب بحجز تذاكر كأس السوبر الإسباني 2027: ${m.stage} — ${h.name} × ${a.name} (${m.dateAr}).`;
   return `
 <article class="match" data-reveal>
-  <div class="match__top"><span>${ic("trophy")} كأس السوبر الإسباني 2027 • ${m.stage}</span><span class="status">الحجز المسبق متاح</span></div>
+  <div class="match__top"><span>${ic("trophy")} كأس السوبر الإسباني 2027 • ${m.stage}</span><span class="status">حجز رسمي باسمك</span></div>
   <div class="match__teams">
     <div class="team">${crest(h)}<b>${h.name}</b></div>
     <span class="vs">VS</span>
@@ -50,7 +50,7 @@ function matchCard(m, { compact = false } = {}) {
   </div>
   <div class="match__info">
     <span>${ic("calendar")}${m.dateAr}</span>
-    <span>${ic("stadium")}إسطنبول — الملعب حسب الإعلان الرسمي</span>
+    <span>${ic("stadium")}${m.venueAr}</span><span>${ic("clock")}صافرة البداية 22:00 بتوقيت إسطنبول</span>
   </div>
   <div class="match__foot">
     ${minPrice(m) !== null ? `<div class="price"><small>يبدأ من / للتذكرة</small><b>${fmt(minPrice(m))}</b></div>` : `<div class="price"><small>الفئات</small><b style="font-size:1rem">الأولى • الثانية • الثالثة • VIP</b></div>`}
@@ -63,21 +63,21 @@ const tiers = (ctx = "كأس السوبر الإسباني 2027") => `
 <div class="tiers" data-stagger>
   <div class="tier" data-reveal>
     <span class="ico">${ic("ticket")}</span><h3>تذكرة المباراة</h3>
-    <p class="muted" style="margin:0">لمن رتّب إقامته بنفسه ويريد مقعده فقط.</p>
-    <ul>${["اختيار الفئة حسب التوفر", "مقاعد متجاورة للمجموعات قدر الإمكان", "إرشادات الدخول للملعب بالعربية"].map((x) => `<li>${ic("check")}${x}</li>`).join("")}</ul>
+    <p class="muted" style="margin:0">لمن رتّب إقامته بنفسه ويريد مساعدتنا في الحصول على مقعده.</p>
+    <ul>${["حجز التذكرة الرسمية باسمك وبسعرها الرسمي", "رسوم خدمة واضحة ومعلنة مسبقاً", "إرشادات الدخول للملعب بالعربية"].map((x) => `<li>${ic("check")}${x}</li>`).join("")}</ul>
     <a class="btn btn--ghost btn--block" href="${waUrl(`مرحباً أويا، أرغب بتذاكر فقط — ${ctx}.`)}" target="_blank" rel="noopener">اطلب السعر</a>
   </div>
   <div class="tier tier--pop" data-reveal>
-    <span class="badge">الأكثر طلباً</span>
+    <span class="badge">الخيار المتكامل</span>
     <span class="ico ico--glass">${ic("star")}</span><h3>باقة المشجع</h3>
     <p style="margin:0;color:#B9CCE0">تذكرة + فندق + تنقلات — تصل وتستمتع فقط.</p>
-    <ul>${["تذكرة المباراة بالفئة التي تختارها", "فندق مختار بموقع مناسب (3 ليالٍ أو أكثر)", "استقبال من المطار ونقل ذهاب وعودة للملعب", "جولة في إسطنبول مع سائق يتحدث العربية"].map((x) => `<li>${ic("check")}${x}</li>`).join("")}</ul>
+    <ul>${["حجز التذكرة الرسمية باسمك بالفئة التي تختارها", "فندق قريب من ملعب مباراتك (3 ليالٍ أو أكثر)", "استقبال من المطار ونقل خاص للملعب والعودة بعد المباراة (22:00)", "جولة في إسطنبول مع سائق يتحدث العربية"].map((x) => `<li>${ic("check")}${x}</li>`).join("")}</ul>
     <a class="btn btn--block" href="${waUrl(`مرحباً أويا، أرغب بباقة المشجع — ${ctx}.`)}" target="_blank" rel="noopener">${ic("whatsapp")}احجز الباقة</a>
   </div>
   <div class="tier" data-reveal>
     <span class="ico ico--orange">${ic("crown")}</span><h3>باقة VIP</h3>
     <p class="muted" style="margin:0">تجربة فاخرة متكاملة للعائلات ورجال الأعمال.</p>
-    <ul>${["مقاعد VIP / ضيافة حسب التوفر", "فندق 5 نجوم بإطلالة على البوسفور", "سيارة خاصة طوال الإقامة", "برنامج سياحي وتسوق مخصص"].map((x) => `<li>${ic("check")}${x}</li>`).join("")}</ul>
+    <ul>${["حجز مقاعد الضيافة الرسمية باسمك حسب التوفر", "فندق 5 نجوم بإطلالة على البوسفور", "سيارة خاصة طوال الإقامة", "برنامج سياحي وتسوق مخصص"].map((x) => `<li>${ic("check")}${x}</li>`).join("")}</ul>
     <a class="btn btn--navy btn--block" href="${waUrl(`مرحباً أويا، أرغب بباقة VIP — ${ctx}.`)}" target="_blank" rel="noopener">اطلب عرض VIP</a>
   </div>
 </div>
@@ -88,7 +88,7 @@ const countdown = () => `
   <div><b data-d>—</b><span>يوم</span></div><div><b data-h>—</b><span>ساعة</span></div><div><b data-m>—</b><span>دقيقة</span></div><div><b data-s>—</b><span>ثانية</span></div>
 </div>`;
 
-const disclaimer = `<div class="note">${ic("info")}<span>أويا للسياحة وكالة سفر مستقلة، وغير تابعة للاتحاد الإسباني لكرة القدم أو الأندية أو الجهات المنظمة. نوفّر التذاكر والباقات وفق التوفر من القنوات المتاحة، والمواعيد والملاعب تخضع للإعلان الرسمي النهائي.</span></div>`;
+const disclaimer = `<div class="note">${ic("info")}<span>أويا للسياحة وكالة سفر مستقلة، وغير تابعة للاتحاد الإسباني لكرة القدم أو الأندية أو الجهات المنظمة. نساعدك في شراء التذاكر عبر القنوات الرسمية المعتمدة فقط، باسمك وبسعرها الرسمي مع رسوم خدمة معلنة، ونرتّب لك الإقامة والتنقلات. لا نبيع تذاكر من السوق السوداء أو بأسعار مضاعفة.</span></div>`;
 
 const pitch = `<svg class="promo__pitch" viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="20" y="20" width="560" height="340" rx="6"/><line x1="300" y1="20" x2="300" y2="360"/><circle cx="300" cy="190" r="52"/><rect x="20" y="110" width="80" height="160"/><rect x="500" y="110" width="80" height="160"/><rect x="20" y="150" width="30" height="80"/><rect x="550" y="150" width="30" height="80"/></g></svg>`;
 
@@ -142,7 +142,7 @@ ${pageHero({ crumbs, eyebrow: "تذاكر المباريات • جديد في �
   <div class="container">
     ${sectionHead({ eyebrow: "جدول البطولة", title: "مباريات كأس السوبر الإسباني 2027", lead: "الجدول وفق المواعيد المعلنة من الاتحاد الإسباني لكرة القدم، والمواعيد النهائية لانطلاق المباريات تُعلن رسمياً لاحقاً.", row: true, after: `<a class="btn btn--ghost" href="{{root}}matches/spanish-super-cup-2027/">الدليل الكامل ${ic("arrow", "i-flip")}</a>` })}
     <div class="grid grid-3" data-stagger>${scMatches.map((m) => matchCard(m)).join("")}</div>
-    <p class="muted mt-1" style="font-size:.85rem">* أعلن الاتحاد الإسباني 6 فبراير موعداً للنهائي، وتشير بعض المصادر إلى 7 فبراير؛ نحدّث الصفحة فور التأكيد الرسمي.</p>
+    <p class="muted mt-1" style="font-size:.85rem">المواعيد والملاعب وفق ما أعلنه الاتحاد الإسباني لكرة القدم: صافرة البداية 22:00 بتوقيت إسطنبول (20:00 بتوقيت إسبانيا).</p>
   </div>
 </section>
 
@@ -185,7 +185,7 @@ ${pageHero({ crumbs, eyebrow: "تذاكر المباريات • جديد في �
 </section>
 ${faqBlock(faq, { title: "أسئلة شائعة عن تذاكر المباريات" })}
 ${ctaBand({ title: "المباراة الكبيرة تستحق رحلة كاملة", lead: "أضف إلى تذكرتك فندقاً مميزاً وجولة في إسطنبول أو برنامجاً في الشمال التركي.", wa: "مرحباً أويا، أرغب بباقة مباراة مع برنامج سياحي." })}`;
-  page.schemaGraph = [S.orgNode(), S.websiteNode(), S.webPageNode(page, "CollectionPage"), S.breadcrumbNode(page), ...scMatches.map((m) => S.eventNode(page, evt(m))), S.faqNode(page, faq)].filter(Boolean);
+  page.schemaGraph = [S.orgNode(), S.websiteNode(), S.webPageNode(page, "CollectionPage"), S.breadcrumbNode(page), S.faqNode(page, faq)].filter(Boolean);
   return page;
 }
 
@@ -195,7 +195,7 @@ function evt(m) {
     id: m.id,
     name: m.home === "tbd" ? "Supercopa de España 2027 — Final (Istanbul)" : `Supercopa de España 2027 — ${m.id === "sf1" ? "Semi-final 1" : "Semi-final 2"}: ${h.en} vs ${a.en}`,
     start: m.start,
-    venue: "Istanbul",
+    venue: m.venue || "Istanbul",
     home: m.home === "tbd" ? null : h.en,
     away: m.home === "tbd" ? null : a.en,
     description: `كأس السوبر الإسباني 2027 في إسطنبول — ${m.stage}${m.home === "tbd" ? "" : `: ${h.name} × ${a.name}`}.`,
@@ -211,11 +211,11 @@ export function superCupPage(data) {
     description: "تذاكر وباقات السوبر الإسباني 2027 في إسطنبول: برشلونة وأتلتيكو، ريال مدريد وسوسيداد، والنهائي. فندق ونقل وجولات. احجز مبكراً عبر واتساب." };
   const ist = data.packages.filter((p) => ["istanbul-5-days", "istanbul-bursa-7-days", "istanbul-sapanca-bursa-8-days"].includes(p.slug));
   const faq = [
-    { q: "أين ومتى تقام كأس السوبر الإسباني 2027؟", a: "أعلن الاتحاد الإسباني لكرة القدم إقامة النسخة 2027 في إسطنبول بتركيا: نصف النهائي الأول الثلاثاء 2 فبراير 2027، والثاني الأربعاء 3 فبراير، والنهائي السبت 6 فبراير (وتشير بعض المصادر إلى 7 فبراير). مواعيد صافرة البداية والملاعب النهائية تخضع للإعلان الرسمي." },
+    { q: "أين ومتى تقام كأس السوبر الإسباني 2027؟", a: "وفق ما أعلنه الاتحاد الإسباني لكرة القدم: نصف النهائي الأول (برشلونة × أتلتيكو مدريد) الثلاثاء 2 فبراير 2027 على ملعب شكري سراج أوغلو (Chobani) في كاديكوي، ونصف النهائي الثاني (ريال سوسيداد × ريال مدريد) الأربعاء 3 فبراير على ملعب توبراش في بشكتاش، والنهائي السبت 6 فبراير على ملعب رامز بارك. جميع المباريات الساعة 22:00 بتوقيت إسطنبول." },
     { q: "لماذا تُقام البطولة في إسطنبول وليس في السعودية؟", a: "بحسب ما أُعلن، تتزامن مواعيد البطولة المعتادة مع استضافة السعودية لكأس آسيا 2027، لذلك انتقلت نسخة 2027 إلى إسطنبول، مع الإعلان عن عودتها إلى السعودية لاحقاً." },
     { q: "من هي الفرق المشاركة؟", a: "برشلونة وريال مدريد وأتلتيكو مدريد وريال سوسيداد. وأسفرت القرعة عن مواجهة برشلونة وأتلتيكو مدريد في نصف النهائي الأول، وريال مدريد وريال سوسيداد في نصف النهائي الثاني." },
     { q: "متى أحجز التذاكر؟", a: "كلما كان أبكر كان أفضل؛ مباريات برشلونة وريال مدريد تشهد طلباً عالياً جداً. سجّل طلبك الآن عبر واتساب لنبلغك بالتوفر والأسعار فور فتح الحجز ونحجز لك الفئة المطلوبة." },
-    { q: "أين أسكن في إسطنبول خلال البطولة؟", a: "ننصح عادةً بمنطقة تقسيم وشيشلي وبشكتاش في الجانب الأوروبي لسهولة التنقل والمطاعم والتسوق، أو بفنادق قريبة من الملعب الذي ستحضر فيه المباراة بعد إعلان الملاعب رسمياً. نقترح لك الأنسب ضمن الباقة." },
+    { q: "أين أسكن في إسطنبول خلال البطولة؟", a: "حسب مباراتك: لنصف النهائي الأول (كاديكوي) تناسبك فنادق الجانب الآسيوي في كاديكوي وأوسكودار، ولنصف النهائي الثاني (بشكتاش) فنادق بشكتاش وتقسيم وشيشلي، وللنهائي (رامز بارك في سارير) فنادق شيشلي ومسلك وماسلاك. ولأن المباريات تنتهي قرابة منتصف الليل ننصح بنقل خاص مرتب مسبقاً." },
     { q: "هل أحتاج تأشيرة لدخول تركيا لحضور المباراة؟", a: "يعتمد ذلك على جنسيتك؛ مواطنو كثير من الدول العربية — ومنها دول الخليج — يدخلون تركيا دون تأشيرة لمدة محددة، بينما تحتاج جنسيات أخرى تأشيرة إلكترونية أو من السفارة. أرسل لنا جنسيتك ونخبرك بالمطلوب." },
   ];
   page.body = `
@@ -230,7 +230,7 @@ ${pageHero({ crumbs, eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبرا
     <div class="table-wrap mt-2" data-reveal><table class="table"><thead><tr><th>المرحلة</th><th>المواجهة</th><th>التاريخ</th><th>المدينة</th></tr></thead><tbody>
       ${scMatches.map((m) => `<tr><td><strong>${m.stage}</strong></td><td>${teams[m.home].name} × ${teams[m.away].name}</td><td>${m.dateAr}</td><td>إسطنبول</td></tr>`).join("")}
     </tbody></table></div>
-    <p class="muted mt-1" style="font-size:.85rem">* أعلن الاتحاد الإسباني 6 فبراير موعداً للنهائي، وذكرت بعض المصادر 7 فبراير. صافرة البداية والملاعب تُحدَّث هنا فور الإعلان الرسمي.</p>
+    <p class="muted mt-1" style="font-size:.85rem">المواعيد والملاعب وفق ما أعلنه الاتحاد الإسباني لكرة القدم: صافرة البداية 22:00 بتوقيت إسطنبول (20:00 بتوقيت إسبانيا).</p>
     ${hasPrices() ? `<h3 class="h-l mt-3" id="prices">أسعار التذاكر حسب الفئة</h3>${priceTable()}` : ""}
   </div>
 </section>

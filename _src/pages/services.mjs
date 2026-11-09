@@ -36,7 +36,7 @@ ${pageHero({ crumbs, eyebrow: "تذاكر طيران", title: "حجز تذاكر
 
 <section class="section">
   <div class="container">
-    ${sectionHead({ eyebrow: "الوجهات الأكثر طلباً", title: "رحلات من إسطنبول إلى أهم الوجهات", lead: "اضغط على الوجهة لإرسال طلب سريع عبر واتساب. المدد الزمنية تقريبية للرحلات المباشرة." })}
+    ${sectionHead({ eyebrow: "وجهات رئيسية", title: "رحلات من إسطنبول إلى أهم الوجهات", lead: "اضغط على الوجهة لإرسال طلب سريع عبر واتساب. المدد الزمنية تقريبية للرحلات المباشرة." })}
     <div class="grid grid-4" data-stagger>
       ${routes.map(([a, b, t]) => `<a class="ctile" data-reveal href="${waUrl(`مرحباً أويا، أرغب بحجز طيران من ${a} إلى ${b}.`)}" target="_blank" rel="noopener"><span class="ico">${ic("plane")}</span><div><b>${a} ← ${b}</b><span>${t}</span></div></a>`).join("")}
     </div>

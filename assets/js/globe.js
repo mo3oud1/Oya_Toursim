@@ -42,16 +42,17 @@ if (section) {
     let createGlobe;
     try { ({ default: createGlobe } = await import("./vendor/cobe.esm.js")); } catch (e) { return; }
     const canvas = section.querySelector(".globe-canvas");
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const size = 600;
+    const mobile = matchMedia("(max-width: 700px)").matches;
+    const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
+    const size = Math.round(Math.min(560, canvas.clientWidth || 560)); // draw at the displayed size, not larger
     const IST = [41.0082, 28.9784];
     const base = (selected) => places.map((p) => ({ location: p.loc, size: p.id === selected ? 0.09 : p.id === "istanbul" ? 0.07 : 0.04, color: p.id === selected ? [1, 0.55, 0.25] : undefined }));
-    let phi = 4.4, theta = 0.35, dragX = null, dragPhi = 0, velocity = 0, visible = true, raf = 0, selected = places[0].id;
+    let touched = false, phi = 4.4, theta = 0.35, dragX = null, dragPhi = 0, velocity = 0, visible = true, raf = 0, selected = places[0].id;
     let globe;
     try {
       globe = createGlobe(canvas, {
         devicePixelRatio: dpr, width: size, height: size, phi, theta, dark: 1, diffuse: 1.2, scale: 1,
-        mapSamples: 16000, mapBrightness: 5.5, mapBaseBrightness: 0.02,
+        mapSamples: mobile ? 8000 : 12000, mapBrightness: 5.5, mapBaseBrightness: 0.02,
         baseColor: [0.22, 0.42, 0.66], markerColor: [0.93, 0.33, 0.02], glowColor: [0.17, 0.42, 0.67],
         markers: base(selected),
         arcs: places.filter((p) => p.g !== "tr").map((p) => ({ from: IST, to: p.loc })),
@@ -72,7 +73,7 @@ if (section) {
           phi += dp * 0.08; theta += (focus[1] * 0.85 - theta) * 0.08;
           if (Math.abs(dp) < 0.002 && Math.abs(focus[1] * 0.85 - theta) < 0.002) focus = null; else moving = true;
         } else if (Math.abs(velocity) > 0.0005) { phi += velocity; velocity *= 0.94; moving = true; }
-        else if (!reduce) { phi += 0.0025; moving = true; }
+        else if (!reduce && !touched) { phi += 0.0025; moving = true; }
       } else moving = true;
       globe.update({ phi, theta });
       if (moving) raf = requestAnimationFrame(frame);
@@ -80,7 +81,7 @@ if (section) {
     function kick() { if (!raf && visible) raf = requestAnimationFrame(frame); }
     new IntersectionObserver((en) => { visible = en[0].isIntersecting; kick(); }, { threshold: 0.05 }).observe(canvas);
 
-    canvas.addEventListener("pointerdown", (e) => { dragX = e.clientX; dragPhi = phi; velocity = 0; focus = null; canvas.setPointerCapture(e.pointerId); canvas.classList.add("is-drag"); kick(); });
+    canvas.addEventListener("pointerdown", (e) => { touched = true; dragX = e.clientX; dragPhi = phi; velocity = 0; focus = null; canvas.setPointerCapture(e.pointerId); canvas.classList.add("is-drag"); kick(); });
     canvas.addEventListener("pointermove", (e) => { if (dragX === null) return; const np = dragPhi + (e.clientX - dragX) / 160; velocity = np - phi; phi = np; });
     const end = () => { dragX = null; canvas.classList.remove("is-drag"); kick(); };
     canvas.addEventListener("pointerup", end); canvas.addEventListener("pointercancel", end);

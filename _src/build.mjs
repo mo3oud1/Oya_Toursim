@@ -62,7 +62,7 @@ const written = [];
 const titles = new Map();
 for (const page of pages) {
   const depth = page.path.endsWith(".html") ? 0 : page.path.split("/").filter(Boolean).length;
-  const root = page.absoluteRoot ? site.url + "/" : depth ? "../".repeat(depth) : "./";
+  const root = page.absoluteRoot ? new URL(site.url + "/").pathname : depth ? "../".repeat(depth) : "./";
   let html = renderPage(page, data, ver).replaceAll("{{root}}", root);
   html = html.replace(/\n\s*\n+/g, "\n");
   // motion budget: reveal whole sections/cards only, never individual list rows
@@ -115,7 +115,8 @@ for (const { out } of written) {
   for (const m of html.matchAll(/(?:href|src)="([^"#?]+)[^"]*"/g)) {
     const u = m[1];
     if (/^(https?:|mailto:|tel:|data:)/.test(u) || u.startsWith(site.url)) continue;
-    let target = path.resolve(path.dirname(out), u);
+    const basePath = new URL(site.url + "/").pathname; // e.g. /Oya_Toursim/
+    let target = u.startsWith(basePath) ? path.join(ROOT_DIR, u.slice(basePath.length)) : path.resolve(path.dirname(out), u);
     if (u.endsWith("/") || u === "./" || u === "." || u === "..") target = path.join(target, "index.html");
     if (!fs.existsSync(target)) { broken++; if (broken < 40) console.warn(`! broken link in ${path.relative(ROOT_DIR, out)} -> ${u}`); }
   }

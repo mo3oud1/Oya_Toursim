@@ -2,6 +2,7 @@
 (function () {
   "use strict";
   var d = document, w = window;
+  w.__oyaReady = true;
   var root = d.documentElement;
   var reduce = w.matchMedia && w.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var WA = root.getAttribute("data-wa") || "905399334331";
@@ -52,14 +53,23 @@
     li.addEventListener("mouseenter", function () { clearTimeout(t); t = setTimeout(open, 90); }); // hover intent
     li.addEventListener("mouseleave", close);
     btn.addEventListener("click", function (e) { e.preventDefault(); li.classList.contains("is-open") ? (li.classList.remove("is-open"), btn.setAttribute("aria-expanded", "false")) : open(); });
+    // keyboard: close when focus leaves the menu (WCAG 1.4.13)
+    li.addEventListener("focusout", function (e) { if (!li.contains(e.relatedTarget)) { li.classList.remove("is-open"); btn.setAttribute("aria-expanded", "false"); } });
   });
-  d.addEventListener("keydown", function (e) { if (e.key === "Escape") { $$(".has-mega.is-open").forEach(function (o) { o.classList.remove("is-open"); }); closeDrawer(); } });
-  d.addEventListener("click", function (e) { if (!e.target.closest(".has-mega")) $$(".has-mega.is-open").forEach(function (o) { o.classList.remove("is-open"); }); });
+  function closeMegas(returnFocus) {
+    $$(".has-mega.is-open").forEach(function (o) {
+      var b = $(".nav-trigger", o); o.classList.remove("is-open"); b.setAttribute("aria-expanded", "false");
+      if (returnFocus && o.contains(d.activeElement)) b.focus();
+    });
+  }
+  d.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeMegas(true); closeDrawer(); } });
+  d.addEventListener("click", function (e) { if (!e.target.closest(".has-mega")) closeMegas(false); });
 
-  /* ---------- Mobile drawer ---------- */
+  /* ---------- Mobile drawer (focus contained with `inert` on the page behind) ---------- */
   var drawer = $(".drawer"), menuBtn = $(".menu-btn");
-  function openDrawer() { if (!drawer) return; drawer.classList.add("is-open"); d.body.classList.add("no-scroll"); menuBtn && menuBtn.setAttribute("aria-expanded", "true"); var c = $(".drawer__close", drawer); c && c.focus(); }
-  function closeDrawer() { if (!drawer || !drawer.classList.contains("is-open")) return; drawer.classList.remove("is-open"); d.body.classList.remove("no-scroll"); menuBtn && (menuBtn.setAttribute("aria-expanded", "false"), menuBtn.focus()); }
+  var behind = function () { return $$("body > header, body > main, body > footer, body > .mbar, body > .fab-wa, body > .to-top, body > .skip"); };
+  function openDrawer() { if (!drawer) return; drawer.classList.add("is-open"); d.body.classList.add("no-scroll"); behind().forEach(function (el) { el.inert = true; }); menuBtn && menuBtn.setAttribute("aria-expanded", "true"); var c = $(".drawer__close", drawer); c && c.focus(); }
+  function closeDrawer() { if (!drawer || !drawer.classList.contains("is-open")) return; drawer.classList.remove("is-open"); d.body.classList.remove("no-scroll"); behind().forEach(function (el) { el.inert = false; }); menuBtn && (menuBtn.setAttribute("aria-expanded", "false"), menuBtn.focus()); }
   menuBtn && menuBtn.addEventListener("click", openDrawer);
   $$("[data-close-drawer]").forEach(function (b) { b.addEventListener("click", closeDrawer); });
 
@@ -193,9 +203,9 @@
       if (!validate(form)) return;
       lastMsg = message(form);
       var url = "https://wa.me/" + WA + "?text=" + encodeURIComponent(lastMsg);
-      var win = w.open(url, "_blank", "noopener");
-      if (!win && !/Android|iPhone|iPad/i.test(navigator.userAgent)) { /* popup blocked on desktop */ }
-      if (!win && /Android|iPhone|iPad/i.test(navigator.userAgent)) w.location.href = url;
+      // NB: passing "noopener" makes window.open return null, so open plainly and detach the opener ourselves
+      var win = w.open(url, "_blank");
+      if (win) { try { win.opener = null; } catch (err) {} } else { w.location.href = url; }
       if (done) done.classList.add("is-on");
       if (w.gtag) w.gtag("event", "generate_lead", { method: "whatsapp", form: form.getAttribute("data-intro") });
     });

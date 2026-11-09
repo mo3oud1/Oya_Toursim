@@ -24,7 +24,7 @@ export default [
     img: "pkg-istanbul-5-days",
     imgPrompt: "Photorealistic travel photography of the Blue Mosque (Sultan Ahmed Mosque) in Istanbul with its six minarets and cascading grey domes, seen across Sultanahmet Park with fountains in the foreground, a family seen from behind at a distance, golden-hour light, natural colors, cinematic composition, no text, no logos, no watermarks, landscape 3:2",
     icon: "mosque",
-    badge: "الأكثر طلباً",
+    badge: "مثالي لأول زيارة",
     featured: true,
     summary: "خمسة أيام متوازنة في إسطنبول: المدينة القديمة، البوسفور بين قارتين، ورحلة يوم إلى بحيرة سبانجا ومعشوقية، مع فندق مختار وسائق يتحدث العربية.",
     intro: [
@@ -374,7 +374,7 @@ export default [
     img: "pkg-trabzon-uzungol-7-days",
     imgPrompt: "Photorealistic travel photography of Uzungöl lake near Trabzon, Turkey, in early morning, the lakeside mosque and wooden chalets on the shore, steep green forested mountains with low clouds drifting over the peaks, mirror-like reflections on the water, a family seen from behind walking on the lakeside path at a distance, soft daylight, natural colors, cinematic composition, no text, no logos, no watermarks, landscape 3:2",
     icon: "lake",
-    badge: "الأكثر طلباً",
+    badge: "لعشاق الطبيعة",
     featured: true,
     summary: "أسبوع في الشمال التركي: ليلتان على بحيرة أوزنجول، وليلة في أيدر وسط الجبال، ودير سوميلا ومدينة طرابزون، مع سائق يتحدث العربية.",
     intro: [
@@ -630,7 +630,7 @@ export default [
     img: "pkg-istanbul-trabzon-10-days",
     imgPrompt: "Photorealistic travel photography of Sümela Monastery clinging to a sheer cliff face high above the dense green forests of the Altındere valley near Trabzon, Turkey, wisps of mist below the cliff, soft morning daylight, natural colors, cinematic composition, no text, no logos, no watermarks, landscape 3:2",
     icon: "plane",
-    badge: "الأكثر طلباً",
+    badge: "مختار للعائلات",
     featured: true,
     summary: "يجمع أكثر وجهتين يقصدهما الزوار العرب في تركيا: معالم إسطنبول والبوسفور، ثم طرابزون وبحيرة أوزنجول وأيدر ودير سوميلا، مع الطيران الداخلي.",
     intro: [
