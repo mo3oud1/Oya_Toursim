@@ -30,7 +30,7 @@ export function flightsPage() {
 ${pageHero({ crumbs, eyebrow: "تذاكر طيران", title: "حجز تذاكر طيران من إسطنبول وإليها", lead: "رحلات دولية وداخلية على أغلب شركات الطيران: إلى السعودية والخليج والعراق والشام ومصر والمغرب العربي وأوروبا وآسيا — مع مقارنة الخيارات ودعم بالعربية حتى الإقلاع.", icon: "takeoff", page: path,
     chips: [{ icon: "search", text: "مقارنة بين شركات الطيران" }, { icon: "suitcase", text: "توضيح الأمتعة والشروط" }, { icon: "refresh", text: "مساعدة في التعديل والتغيير" }] })}
 
-<section class="section section--tight" style="margin-top:-56px;position:relative;z-index:3">
+<section class="section section--tight" id="book" style="margin-top:-56px;position:relative;z-index:3">
   <div class="container"><div class="form-card" data-reveal="zoom"><div class="form-head"><span class="ico ico--orange">${ic("takeoff")}</span><div><h2 class="h-l mb-0" style="font-size:1.4rem">ابحث عن رحلتك</h2><p class="muted mb-0" style="font-size:.95rem">املأ التفاصيل ويصلك أفضل خيار متاح عبر واتساب.</p></div></div>${flightForm()}${cityList()}</div></div>
 </section>
 
@@ -124,7 +124,7 @@ export function hotelsPage(data) {
 ${pageHero({ crumbs, eyebrow: `${ic("star")} الخدمة الأكثر طلباً`, title: "حجز فنادق ومنتجعات في تركيا للعائلات والأزواج", lead: "من فنادق البوسفور الفاخرة إلى فلل سبانجا بمسابحها الخاصة وأكواخ أوزنجول — نختار لك الإقامة المناسبة ونتحقق من كل تفصيل قبل أن تصل.", icon: "hotel", page: path,
     chips: [{ icon: "check-circle", text: "تأكيد حجز مكتوب" }, { icon: "headset", text: "متابعة مع الفندق بالعربية" }, { icon: "heart", text: "خيارات لشهر العسل والعائلات" }] })}
 
-<section class="section section--tight" style="margin-top:-56px;position:relative;z-index:3">
+<section class="section section--tight" id="book" style="margin-top:-56px;position:relative;z-index:3">
   <div class="container"><div class="form-card" data-reveal="zoom"><div class="form-head"><span class="ico ico--orange">${ic("bed")}</span><div><h2 class="h-l mb-0" style="font-size:1.4rem">احصل على عروض الفنادق</h2><p class="muted mb-0" style="font-size:.95rem">أرسل الوجهة والتواريخ ونرسل لك خيارات مختارة بالصور والأسعار.</p></div></div>${hotelForm()}</div></div>
 </section>
 

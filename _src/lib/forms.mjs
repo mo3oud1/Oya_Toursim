@@ -71,6 +71,7 @@ export function hotelForm({ compact = false, city = "" } = {}) {
     ${field({ label: "الوجهة / المدينة", name: "city", placeholder: "إسطنبول، طرابزون، أنطاليا…", required: true, value: city })}
     ${field({ label: "تاريخ الوصول", name: "checkin", type: "date", required: true, attrs: "data-date-start" })}
     ${field({ label: "تاريخ المغادرة", name: "checkout", type: "date", required: true, attrs: "data-date-end" })}
+    ${field({ label: "الأطفال وأعمارهم", name: "kids", placeholder: "مثال: طفلان 4 و9 سنوات", optional: true })}
     ${field({ label: "الغرف والضيوف", name: "rooms", type: "select", options: ["غرفة – شخصان", "غرفة – شخص واحد", "غرفة – عائلة مع أطفال", "غرفتان", "3 غرف أو أكثر", "شقة فندقية / فيلا"], value: "غرفة – شخصان" })}
     ${field({ label: "الفئة المفضّلة", name: "stars", type: "select", options: ["4 نجوم", "5 نجوم", "منتجع / إطلالة بحرية", "فيلا خاصة مع مسبح", "اقتصادي 3 نجوم", "لا مانع — الأفضل قيمة"], value: "5 نجوم" })}
     ${compact ? "" : field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: إطلالة على البوسفور وقريب من تقسيم، مع إفطار" })}
@@ -150,8 +151,8 @@ export function contactForm() {
 
 export function booker() {
   const tabs = [
-    { key: "flights", label: "طيران", icon: "takeoff", body: flightForm({ compact: true }) },
     { key: "hotels", label: "فنادق", icon: "bed", body: hotelForm({ compact: true }) },
+    { key: "flights", label: "طيران", icon: "takeoff", body: flightForm({ compact: true }) },
     { key: "tours", label: "برامج سياحية", icon: "map", body: tourForm({ compact: true }) },
     { key: "visas", label: "تأشيرات", icon: "passport", body: visaForm({ compact: true }) },
     { key: "matches", label: "مباريات", icon: "ball", body: matchForm({ compact: true }) },

@@ -45,9 +45,10 @@ export function homePage(data) {
       <p class="eyebrow fade-in" style="--d:.05s">${ic("pin")} وكالة سياحة وسفر في إسطنبول</p>
       <h1 class="h-display"><span class="split-line"><span>رحلتك إلى تركيا والعالم</span></span><span class="split-line"><span>تبدأ من <span class="accent">إسطنبول</span></span></span></h1>
       <p class="lead fade-in" style="--d:.45s">فنادق ومنتجعات مختارة، برامج سياحية يوماً بيوم، تذاكر طيران، تأشيرات السعودية والخليج والعالم، وتذاكر المباريات الكبرى — كلها في مكان واحد، وبخدمة عربية من أول رسالة. <strong style="color:#fff">${site.tagline}</strong></p>
+      <div class="btn-row fade-in" style="--d:.5s;margin-bottom:6px"><a class="btn" href="#book">${ic("sparkles")}<span>ابدأ الحجز</span></a><a class="btn btn--glass" href="#finder">${ic("compass")}<span>ساعدني أختار وجهتي</span></a></div>
       <div class="hero__chips fade-in" style="--d:.55s">
         <span class="chip chip--dark">${ic("headset")}فريق يتحدث العربية</span>
-        <span class="chip chip--dark">${ic("car")}سائقون عرب وسيارات خاصة</span>
+        <span class="chip chip--dark">${ic("car")}سائق يتحدث العربية وسيارة خاصة</span>
         <span class="chip chip--dark">${ic("shield")}عروض مكتوبة وواضحة قبل الدفع</span>
       </div>
     </div>

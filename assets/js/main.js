@@ -174,6 +174,13 @@
       el.setAttribute("aria-invalid", bad ? "true" : "false");
       if (bad && !first) first = el;
     });
+    var a = $("[data-date-start]", form), b = $("[data-date-end]", form);
+    if (a && b && a.value && b.value && b.value < a.value) {
+      var fb = b.closest(".field");
+      if (fb) { fb.classList.add("is-invalid"); var er = $(".err", fb); if (!er) { er = d.createElement("span"); er.className = "err"; fb.appendChild(er); } er.textContent = "يجب أن يكون هذا التاريخ بعد تاريخ البداية"; }
+      b.setAttribute("aria-invalid", "true");
+      if (!first) first = b;
+    }
     if (first) { first.focus({ preventScroll: true }); first.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" }); }
     return !first;
   }

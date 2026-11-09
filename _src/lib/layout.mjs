@@ -137,7 +137,7 @@ function footer(data, page) {
 <nav class="mbar" aria-label="تواصل سريع">
   <a href="tel:${site.phoneIntl}">${ic("phone")}اتصال</a>
   <a class="wa" href="${waUrl("مرحباً أويا للسياحة، أرغب بالاستفسار.")}" target="_blank" rel="noopener">${ic("whatsapp")}واتساب</a>
-  ${page.mbar ? `<a class="go" href="${waUrl(page.mbar.msg)}" target="_blank" rel="noopener">${ic(page.mbar.icon || "sparkles")}${page.mbar.label}</a>` : `<a class="go" href="${page.path === "" ? "#book" : "{{root}}#book"}">${ic("sparkles")}احجز رحلتك</a>`}
+  ${page.mbar ? `<a class="go" href="${waUrl(page.mbar.msg)}" target="_blank" rel="noopener">${ic(page.mbar.icon || "sparkles")}${page.mbar.label}</a>` : `<a class="go" href="${/id="book"/.test(page.body) ? "#book" : "{{root}}#book"}">${ic("sparkles")}${/id="book"/.test(page.body) ? "احجز الآن" : "احجز رحلتك"}</a>`}
 </nav>`;
 }
 

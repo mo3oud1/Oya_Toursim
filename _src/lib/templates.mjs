@@ -97,7 +97,7 @@ export function packagePage(p, data) {
   const related = data.packages.filter((x) => x.slug !== p.slug && x.region === p.region).sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)).slice(0, 3);
   const page = { path, nav: p.region === "turkey" ? "turkey" : "world", title: p.seo.title, description: p.seo.description, crumbs, primaryImage: S.imageUrl(p.img) };
   const waText = `مرحباً أويا للسياحة، أرغب بحجز برنامج: ${p.title} (${p.days} أيام).`;
-  page.mbar = { label: "احجز البرنامج", icon: "whatsapp", msg: waText };
+  page.mbar = null; // sticky bar points to the on-page form (#book)
   page.body = `
 ${pageHero({ crumbs, eyebrow: `${ar(p.days)} أيام • ${ar(p.nights)} ليالٍ • ${esc(p.country)}`, title: p.h1, lead: p.summary, icon: p.icon, img: p.img, prompt: p.imgPrompt, page: path,
     chips: [{ icon: "pin", text: p.cities.join(" ← ") }, ...(p.tags || []).slice(0, 3).map((t) => ({ icon: "tag", text: tagLabel(t) }))],
@@ -138,12 +138,20 @@ ${pageHero({ crumbs, eyebrow: `${ar(p.days)} أيام • ${ar(p.nights)} ليا
           <div><dt>${ic("refresh")}المرونة</dt><dd>قابل للتعديل بالكامل</dd></div>
         </dl>
         <div class="btn-col">
-          ${waBtn(waText, "احجز عبر واتساب", "btn btn--wa btn--block")}
-          <a class="btn btn--ghost btn--block" href="${waUrl(`مرحباً أويا، أرغب بتعديل برنامج ${p.title} حسب رغبتي.`)}" target="_blank" rel="noopener">${ic("sparkles")}<span>عدّل البرنامج حسب رغبتك</span></a>
+          <a class="btn btn--block" href="#book">${ic("calendar")}<span>احجز الآن — حدّد تاريخك</span></a>
+          ${waBtn(waText, "اسأل عبر واتساب", "btn btn--wa btn--block")}
+          <a class="btn btn--ghost btn--block" href="${waUrl(`مرحباً أويا، أرغب بتعديل ${p.title} حسب رغبتي.`)}" target="_blank" rel="noopener">${ic("sparkles")}<span>عدّل البرنامج حسب رغبتك</span></a>
           <a class="btn btn--ghost btn--block" href="tel:${site.phoneIntl}">${ic("phone")}<span class="ltr">${site.phoneDisplay}</span></a>
         </div>
       </div>
     </aside>
+  </div>
+</section>
+
+<section class="section section--white" id="book">
+  <div class="container split">
+    <div data-reveal>${sectionHead({ eyebrow: "احجز هذا البرنامج", title: `احجز ${esc(p.title)}`, lead: "أضف تاريخ الوصول وعدد المسافرين ومستوى الفنادق، ويصلك عرض مكتوب بالسعر النهائي عبر واتساب." })}</div>
+    <div class="form-card" data-reveal="zoom">${tourForm({ program: p.title })}</div>
   </div>
 </section>
 
