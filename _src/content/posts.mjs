@@ -16,7 +16,7 @@ export default [
     category: "مباريات",
     icon: "trophy",
     img: "blog-spanish-super-cup-2027-istanbul-guide",
-    imgPrompt: "Photorealistic travel photography of football fans seen from behind and at a distance walking toward a large modern football stadium in Istanbul at blue hour in winter, wet pavement reflecting the glow of stadium floodlights, distant city lights and a mosque silhouette with slender minarets on the horizon, scarves and winter jackets, no team colours, no club crests, no text, no logos, no watermarks, natural colors, cinematic composition, landscape 3:2",
+    imgPrompt: "Photorealistic travel photography: Istanbul in early February on a bright, crisp winter day, the Galata Bridge and Eminönü waterfront lightly dusted with snow, fishermen's rods lined along the bridge railing, the New Mosque (Yeni Cami) with its domes and two minarets, a white passenger ferry and seagulls over the Golden Horn, a few visitors in winter coats and plain scarves small on the left. Main subject in the left half; keep the right 40% calm for the RTL headline; any people small and in the left half; photorealistic, natural colours, no text, no logos, no watermarks, no flags, landscape 3:2.",
     body: `<p>للمرة الأولى تتجه أنظار عشاق الكرة الإسبانية إلى تركيا، إذ تستضيف إسطنبول <strong>كأس السوبر الإسباني 2027</strong> حسب ما أُعلن، بمشاركة برشلونة وأتلتيكو مدريد وريال مدريد وريال سوسيداد. وإذا كنت تخطط لحضور البطولة، فهذا الدليل يجمع لك ما تحتاجه: المواعيد المعلنة، واختيار منطقة السكن، والتنقل يوم المباراة، وكيف تحوّل رحلة كرة القدم إلى عطلة شتوية كاملة.</p>
 <p>ننبّه منذ البداية إلى أن تفاصيل البطولة تصدر عن الجهة المنظمة، وقد تتغير المواعيد أو الملاعب أو ساعات انطلاق المباريات. لذلك نراجع المستجدات باستمرار ونؤكدها لك عند الحجز.</p>
 
@@ -131,7 +131,7 @@ export default [
     category: "دليل السفر",
     icon: "route",
     img: "blog-day-trips-from-istanbul",
-    imgPrompt: "Photorealistic travel photography of Sapanca Lake in Turkey on a calm autumn morning, a simple wooden pier stretching into still water, golden and green trees along the shore, soft mist over the lake and the forested Kartepe mountains in the background, a family seen from behind at a distance walking on the lakeside path, soft daylight, natural colors, cinematic composition, no text, no logos, no watermarks, landscape 3:2",
+    imgPrompt: "Photorealistic travel photography: Show Masukiye near Sapanca (the blog's first day trip): a riverside garden restaurant with wooden tables beside a small waterfall and a clear stream under green plane trees, an Arab family seen from behind at a distance — the mother in a long loose dress or abaya with a headscarf, the father in long trousers, children modestly dressed (no shorts), dappled daylight; waterfall and tables in the left half, soft shaded greenery on the right. Main subject in the left half; keep the right 40% calm (sky/water/soft background) for the RTL headline; any people small and in the left half; photorealistic, natural colours, no text, no logos, no watermarks, 3:2.",
     body: `<p>إسطنبول مدينة لا تنتهي معالمها، لكن كثيراً من زوارها العرب يقولون إن أجمل أيام رحلتهم كانت خارجها: بين بحيرة وغابة وجبل مكسو بالثلج. في هذا الدليل نعرض لك أشهر <strong>الرحلات اليومية من اسطنبول</strong>، وعلى رأسها سبانجا وبورصة، مع المسافات التقريبية وأفضل المواسم، ونساعدك في اختيار ما يناسب عائلتك أو رفاق رحلتك.</p>
 <p>المسافات والأوقات المذكورة تقريبية، وتتأثر كثيراً بزحام الطرق في إسطنبول، خصوصاً صباح أيام العمل وعطلات نهاية الأسبوع.</p>
 
@@ -247,7 +247,7 @@ export default [
     category: "تأشيرات",
     icon: "passport",
     img: "blog-saudi-tourist-visa-for-turkey-residents",
-    imgPrompt: "Photorealistic travel photography of Qasr al-Farid, the large solitary Nabataean rock-cut tomb at Hegra near AlUla in Saudi Arabia, standing alone in golden desert sand at golden hour, long soft shadows, clear sky, a couple in modest clothing seen from behind at a respectful distance, natural colors, cinematic composition, no text, no logos, no watermarks, landscape 3:2",
+    imgPrompt: "Photorealistic travel photography: Use a different Saudi icon: the Edge of the World (Jebel Fihrayn) escarpment near Riyadh at sunset, sheer cliffs dropping to the desert plain, a Saudi couple in modest dress small on the cliff edge in the left half, open sky and plain on the right. Main subject in the left half; keep the right 40% calm (sky/water/soft background) for the RTL headline; any people small and in the left half; photorealistic, natural colours, no text, no logos, no watermarks, 3:2.",
     body: `<p>من أكثر الأسئلة التي تصلنا من العرب المقيمين في تركيا: هل أستطيع الحصول على <strong>التأشيرة السياحية السعودية</strong> لأنني أحمل إقامة تركية؟ والجواب المختصر أن الإقامة وحدها لا تكفي في الغالب، لأن الأهلية للتأشيرة الإلكترونية تُحدد حسب جنسية جواز السفر. في هذا الدليل نشرح لك الصورة كاملة، والمسارات الممكنة لكل حالة.</p>
 <blockquote>تنبيه مهم: المعلومات هنا مبنية على آخر ما هو معلن من الجهات السعودية الرسمية وقت كتابة المقال، والشروط والرسوم قد تتغير دون إشعار. قرار منح التأشيرة يعود حصرياً إلى السلطات السعودية، ولا يستطيع أي مكتب سفر ضمان الموافقة.</blockquote>
 
@@ -352,7 +352,7 @@ export default [
     category: "تأشيرات",
     icon: "doc",
     img: "blog-schengen-visa-from-turkey",
-    imgPrompt: "Photorealistic travel photography of the Eiffel Tower in Paris seen from the Trocadéro gardens in soft early-morning light, fountains and stone terraces in the foreground, light haze over the city, a couple in modest clothing seen from behind at a distance, natural colors, cinematic composition, no text, no logos, no watermarks, landscape 3:2",
+    imgPrompt: "Photorealistic travel photography: Use another Schengen icon popular with Gulf travellers: Lucerne, Switzerland - the wooden Chapel Bridge with flower boxes and the stone Water Tower over the clear Reuss river, Mount Pilatus behind, bright summer morning, a couple in modest clothing small at a distance on the left. Main subject in the left half; keep the right 40% calm (sky/water/soft background) for the RTL headline; any people small and in the left half; photorealistic, natural colours, no text, no logos, no watermarks, 3:2.",
     body: `<p>تزداد كل عام طلبات <strong>فيزا شنغن من تركيا</strong>، سواء من المواطنين الأتراك أو من العرب المقيمين بشكل قانوني في إسطنبول وغيرها. وفي المقابل تزداد صعوبة الحصول على المواعيد في المواسم المزدحمة. في هذا الدليل نشرح لك من يحق له التقديم من تركيا، وأين يقدّم، وما الأوراق المطلوبة، وكيف تتجنب الأخطاء الشائعة.</p>
 <blockquote>تنبيه: المعلومات هنا مبنية على آخر ما هو معلن من المفوضية الأوروبية والقنصليات وقت كتابة المقال، وقد تختلف المتطلبات من قنصلية لأخرى وتتغير دون إشعار. قرار منح التأشيرة يعود للقنصلية وحدها.</blockquote>
 
@@ -469,7 +469,7 @@ export default [
     category: "شهر العسل",
     icon: "heart",
     img: "blog-honeymoon-in-turkey",
-    imgPrompt: "Photorealistic travel photography of a newlywed couple in modest elegant clothing seen from behind, sitting together on the open deck of a small private yacht on the Bosphorus in Istanbul at sunset, the Ortaköy Mosque and the Bosphorus Bridge glowing in warm golden light ahead, calm water reflections, natural colors, cinematic composition, no faces visible, no text, no logos, no watermarks, landscape 3:2",
+    imgPrompt: "Photorealistic travel photography of a married couple in modest, elegant everyday clothing — she in a long loose dress and a headscarf, he in smart casual trousers and shirt — seen from behind, small in the lower-left part of the frame, sitting side by side with a little space between them on the open deck of a small private yacht on the Bosphorus at sunset, no embrace; the Ortaköy Mosque and the Bosphorus Bridge glowing in warm golden light ahead are the main subject, calm water reflections. The Bosphorus Bridge is a white-grey steel suspension bridge with grey towers (not red). Main subject in the left half; keep the right 40% calm (sky/water/soft background) for the RTL headline; any people small and in the left half; photorealistic, natural colours, no text, no logos, no watermarks, no flags, landscape 3:2.",
     body: `<p>يبحث كثير من العرسان العرب عن وجهة تجمع الرومانسية والطبيعة والراحة، دون رحلات طيران طويلة أو تعقيدات كثيرة. ولهذا يبقى <strong>شهر العسل في تركيا</strong> خياراً مفضلاً: مدينة ساحرة على ضفتي البوسفور، وبحيرات وجبال خضراء في الشمال، ووديان خيالية في كابادوكيا، وشواطئ دافئة في الجنوب. في هذا الدليل نساعدكما على اختيار الوجهة المناسبة لموسم زفافكما وذوقكما، ونقترح برنامجاً متوازناً يمكن تعديله بسهولة.</p>
 
 <h2 id="why-turkey">لماذا تركيا لشهر العسل؟</h2>
@@ -725,7 +725,7 @@ export default [
     category: "دليل السفر",
     icon: "lake",
     img: "blog-trabzon-uzungol-travel-guide",
-    imgPrompt: "Photorealistic travel photography of Uzungöl lake in Trabzon province, Turkey, the lakeside mosque and wooden chalets reflected in calm water, steep green forested mountains rising on both sides with low mist drifting across the slopes, soft morning daylight, a family seen from behind at a distance on the lakeside path, natural colors, cinematic composition, no text, no logos, no watermarks, landscape 3:2",
+    imgPrompt: "Photorealistic travel photography: Show the wider Trabzon highlands instead: the Hidirnebi plateau above Trabzon at sunrise, wooden highland houses on a green ridge above a sea of clouds, travellers small at a wooden viewpoint in the left half, open cloud sea and sky on the right. Main subject in the left half; keep the right 40% calm (sky/water/soft background) for the RTL headline; any people small and in the left half; photorealistic, natural colours, no text, no logos, no watermarks, 3:2.",
     body: `<p>إذا سألت مسافراً خليجياً عن أجمل ما رآه في تركيا، فالأرجح أن يذكر <strong>السياحة في طرابزون وأوزنجول</strong>: جبال خضراء تغطيها الغابات، وبحيرات هادئة، وضباب يمر بين البيوت الخشبية، وهواء بارد منعش في عز الصيف. في هذا الدليل نجمع لك ما تحتاجه لتخطيط رحلتك إلى الشمال التركي: كيف تصل، ومتى تذهب، وأين تسكن، وما الأماكن التي تستحق وقتك، مع برنامج مقترح لسبعة أيام.</p>
 <p>ستجد طرابزون مكتوبة أحياناً «طربزون» أو «ترابزون»، وأوزنجول «اوزنجول» أو «أوزونغول»، وكلها تشير إلى المكان نفسه.</p>
 
@@ -974,7 +974,7 @@ export default [
     category: "دليل السفر",
     icon: "wallet",
     img: "blog-cost-of-travel-to-turkey",
-    imgPrompt: "Photorealistic travel photography of a café table on a terrace overlooking the Bosphorus in Istanbul, two Turkish tea glasses on small saucers, a folded paper map, a passport and a small notebook with a pen, simit bread on a plate, the Bosphorus Bridge and passing ferries softly blurred in the background, soft morning daylight, natural colors, cinematic composition, no readable text, no logos, no watermarks, landscape 3:2",
+    imgPrompt: "Photorealistic travel photography inside the Spice Bazaar (Mısır Çarşısı) in Istanbul: colourful pyramids of spices, Turkish delight and dried fruit on wooden stalls under the vaulted stone arcade, warm light, an Arab family in modest clothing small at a distance on the left. The camera stays inside the enclosed market hall. Keep the camera inside the enclosed L-shaped vaulted hall. Shoot along the aisle, with stalls of spice pyramids, lokum and dried fruit on the left and the arcade continuing, out of focus, on the right: stone vaults, arched bays and warm hanging lamps. Make the calm right-hand area the soft-focus receding interior and vault ceiling, not an opening. State explicitly: no outdoor view, no sea, no sky, no water. Keep the family small on the left, with no legible signs or price tags. Absolutely no outdoor view, no sea, no sky, no water. Main subject in the left half; keep the right side calm and softly out of focus inside the hall; any people small and in the left half; photorealistic, natural colours, no text, no logos, no legible signs or price tags, no watermarks, landscape 3:2.",
     body: `<p>«كم تكلفة السفر إلى تركيا؟» من أكثر الأسئلة التي تصلنا يومياً، والإجابة الصادقة: تعتمد على رحلتك أنت. فأسبوع لزوجين في فندق متوسط بإسطنبول يختلف تماماً عن عشرة أيام لعائلة من ستة أشخاص بين إسطنبول وطرابزون مع فيلا وسائق خاص. لذلك لن نعطيك رقماً واحداً قد يضللك، بل سنشرح لك <strong>مكونات تكلفة السفر إلى تركيا</strong>، وما الذي يرفعها ويخفضها، وكيف تحسب ميزانيتك بنفسك بدقة معقولة.</p>
 <p>ملاحظة مهمة: الأسعار في تركيا تتغير بسرعة مع تغيرات سعر صرف الليرة والتضخم، ولذلك فإن أي رقم تقرؤه في مقال قديم قد لا يكون صالحاً اليوم. اعتمد دائماً على عرض سعر حديث بتاريخ رحلتك.</p>
 

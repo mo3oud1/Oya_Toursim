@@ -389,10 +389,10 @@ body.no-scroll{overflow:hidden}
 /* Destination card (overlay) */
 .dest{position:relative;border-radius:var(--r-l);overflow:hidden;color:#fff;display:block;isolation:isolate;box-shadow:var(--sh-1);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
 .dest .media{position:absolute;inset:0}
-.dest::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(6,20,40,.9) 0%,rgba(6,20,40,.25) 55%,transparent 75%);transition:opacity .5s}
+.dest::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(6,20,40,.94) 0%,rgba(6,20,40,.66) 30%,rgba(6,20,40,.16) 58%,transparent 74%);transition:opacity .5s}
 .dest__body{position:absolute;inset:auto 0 0 0;z-index:2;padding:22px}
 .dest__body h3{color:#fff;font-size:1.55rem;margin:0 0 2px}
-.dest__body .en{font-size:.82rem;color:#A9C4E2;letter-spacing:.12em;text-transform:uppercase;direction:ltr;display:block;text-align:right}
+.dest__body .en{font-size:.82rem;color:#D2DFEE;text-shadow:0 1px 8px rgba(6,20,40,.6);letter-spacing:.12em;text-transform:uppercase;direction:ltr;display:block;text-align:right}
 .dest__body p{margin:8px 0 0;font-size:.92rem;color:#D2DFEE;line-height:1.7;max-height:0;opacity:0;overflow:hidden;transition:max-height .6s var(--ease),opacity .5s}
 .dest:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
 .dest:hover .media img{transform:scale(1.07)}
@@ -943,3 +943,57 @@ body.no-scroll{overflow:hidden}
   .page-hero.has-photo::before{background:linear-gradient(180deg,rgba(6,20,40,.6) 0,rgba(6,20,40,0) calc(var(--header-h) + 6vw),rgba(6,20,40,0) calc(var(--band) - 140px),rgba(6,20,40,.88) calc(var(--band) - 40px),var(--navy-900) var(--band))}
 }
 @media (prefers-reduced-motion:reduce){.page-hero.has-photo .page-hero__bg img{animation:none}}
+
+/* Photo strip (real photos, e.g. the Two Holy Mosques) */
+.strip2{display:grid;gap:clamp(14px,2vw,24px);grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.strip2 figure{margin:0}
+.strip2 .media{border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-2)}
+.strip2 .media img{width:100%;height:100%;object-fit:cover}
+.strip2 figcaption{margin-top:10px;font-family:var(--ff-display);font-weight:600;color:var(--ink);display:flex;align-items:center;gap:.5em}
+.strip2 figcaption::before{content:"";width:18px;height:2px;background:var(--orange);border-radius:2px}
+/* Shifted hero photo: anchored to the text side and enlarged, so a centred subject moves
+   to the open side (left in RTL, right in LTR) instead of sitting under the headline */
+@media (min-width:901px){
+  .page-hero.is-shifted .page-hero__bg img{position:absolute;top:0;inset-inline-start:0;width:calc(100% * var(--zoom,1.25));max-width:none;height:100%}
+}
+@media (min-width:901px){.page-hero.is-shifted .page-hero__meta,.page-hero.is-shifted .lead{max-width:600px}}
+
+/* =========================================================
+   Home — cinematic photo hero (crossfade + slow drift, user can pause)
+   ========================================================= */
+.hero--photo{background:var(--navy-950);padding-bottom:clamp(220px,20vw,300px)}
+.hero__slides{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.hero__slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s var(--ease-io)}
+.hero__slide.is-on{opacity:1}
+.hero__slide img{width:100%;height:100%;object-fit:cover;object-position:var(--fx,30% 50%);transform-origin:var(--fx,30% 50%);transform:scale(1.04)}
+.hero__slide.is-on img{animation:heroDrift 9s linear both}
+@keyframes heroDrift{from{transform:scale(1.11)}to{transform:scale(1.01)}}
+.hero--photo::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+  linear-gradient(var(--scrim-dir),rgba(6,20,40,.9) 0%,rgba(6,20,40,.66) 32%,rgba(6,20,40,.14) 64%,rgba(6,20,40,0) 82%),
+  linear-gradient(180deg,rgba(6,20,40,.62) 0%,rgba(6,20,40,0) 22%),
+  linear-gradient(0deg,rgba(6,20,40,.9) 0%,rgba(6,20,40,0) 38%)}
+.hero--photo .hero__flight{z-index:0}
+.hero__ctrl{position:absolute;inset-inline:0;bottom:clamp(140px,12vw,180px);z-index:3;display:flex;align-items:center;justify-content:flex-end;gap:12px}
+.hero__loc{margin:0;white-space:nowrap;display:inline-flex;align-items:center;gap:.4em;font-size:.9rem;color:#fff;padding:.4em .95em;border-radius:999px;background:rgba(6,20,40,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.hero__loc .i{color:var(--orange-300);width:1.05em;height:1.05em}
+.hero__loc span{display:inline-block;animation:locIn .5s var(--ease) both}
+@keyframes locIn{from{opacity:0;transform:translateY(6px)}}
+.hero__dots{display:flex;gap:4px}
+.hero__dot{width:34px;height:44px;border:0;padding:0;background:none;display:grid;place-items:center;cursor:pointer}
+.hero__dot i{display:block;width:100%;height:3px;border-radius:3px;background:rgba(255,255,255,.32);overflow:hidden;position:relative}
+.hero__dot i::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:right}
+[dir="ltr"] .hero__dot i::after{transform-origin:left}
+.hero__dot[aria-current="true"] i::after{animation:dotFill 7s linear forwards}
+.hero__dot:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:6px}
+.is-paused .hero__dot[aria-current="true"] i::after{animation:none;transform:scaleX(1)}
+@keyframes dotFill{to{transform:scaleX(1)}}
+.hero__pause{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(6,20,40,.45);color:#fff;display:grid;place-items:center;cursor:pointer}
+.hero__pause .i{width:15px;height:15px;fill:currentColor;stroke:none}
+.hero__pause .i:last-child,.is-paused .hero__pause .i:first-child{display:none}
+.is-paused .hero__pause .i:last-child{display:block}
+@media (max-width:760px){
+  .hero--photo::before{background:linear-gradient(180deg,rgba(6,20,40,.7) 0%,rgba(6,20,40,.55) 40%,rgba(6,20,40,.35) 62%,rgba(6,20,40,.92) 100%)}
+  .hero__ctrl{justify-content:center;bottom:clamp(120px,30vw,150px)}
+  .hero__loc{font-size:.82rem}
+}
+@media (prefers-reduced-motion:reduce){.hero__slide.is-on img{animation:none}.hero__slide{transition:none}}

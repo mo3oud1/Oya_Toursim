@@ -39,6 +39,14 @@ export function photoImg(key, { alt = "", sizes = "100vw", eager = false, cls = 
   const load = eager ? ' fetchpriority="high"' : ' loading="lazy"';
   return `<img${cls ? ` class="${cls}"` : ""} src="{{root}}assets/img/photos/${file}"${srcset} alt="${esc(alt)}" width="1536" height="1024"${load} decoding="async">`;
 }
+// src + srcset for deferred loading (e.g. hero slides swapped in after the page has loaded)
+export function photoSources(key) {
+  const file = photoExists(key);
+  if (!file) return null;
+  const base = file.replace(/\.\w+$/, "");
+  const set = [["-640", 640], ["-1024", 1024]].filter(([s]) => fs.existsSync(path.join(PHOTO_DIR, `${base}${s}.webp`))).map(([s, w]) => `{{root}}assets/img/photos/${base}${s}.webp ${w}w`);
+  return { src: `{{root}}assets/img/photos/${file}`, srcset: [...set, `{{root}}assets/img/photos/${file} 1536w`].join(", ") };
+}
 export function registerImage(key, prompt, usedOn) {
   if (!key) return;
   const r = imageRegistry.get(key) || { prompt: "", usedOn: new Set() };
@@ -85,7 +93,7 @@ export function crumbs(items) {
     .join("")}</ol></nav>`;
 }
 
-export function pageHero({ crumbs: cr, eyebrow, title, lead, icon = "compass", img, prompt, chips = [], actions = "", page = "", extra = "", focus = "" }) {
+export function pageHero({ crumbs: cr, eyebrow, title, lead, icon = "compass", img, prompt, chips = [], actions = "", page = "", extra = "", focus = "", zoom = "" }) {
   registerImage(img, prompt, page);
   const file = img && photoExists(img);
   // Photo hero: full-bleed photo + direction-aware scrim (works for RTL now, LTR later)
@@ -96,7 +104,7 @@ export function pageHero({ crumbs: cr, eyebrow, title, lead, icon = "compass", i
     ${ic(icon, "big-ico")}
   </div>`;
   return `
-<section class="page-hero${file ? " has-photo" : ""}"${focus ? ` style="--focus:${focus}"` : ""}>
+<section class="page-hero${file ? " has-photo" : ""}${zoom ? " is-shifted" : ""}"${focus || zoom ? ` style="${focus ? `--focus:${focus};` : ""}${zoom ? `--zoom:${zoom}` : ""}"` : ""}>
   ${bg}
   <div class="container">
     ${cr ? crumbs(cr) : ""}
@@ -187,3 +195,15 @@ export function postCard(p, page) {
 }
 export const featureItem = ({ icon, title, text, tone = "" }) =>
   `<div class="feature" data-reveal><span class="ico ${tone}">${ic(icon)}</span><div><h3>${title}</h3><p>${text}</p></div></div>`;
+
+/* ---------- Photo strip (e.g. the Two Holy Mosques on Umrah pages) ---------- */
+export function photoStrip(g, { eyebrow = "", title = "", page = "" } = {}) {
+  if (!g || !g.length) return "";
+  return `
+<section class="section section--tight">
+  <div class="container">
+    ${title ? sectionHead({ eyebrow, title }) : ""}
+    <div class="strip2" data-stagger>${g.map((x) => `<figure data-reveal>${media({ img: x.img, prompt: x.prompt || "صورة حقيقية من صاحب الموقع", alt: x.alt, ratio: "ratio-16x9", page })}<figcaption>${x.caption}</figcaption></figure>`).join("")}</div>
+  </div>
+</section>`;
+}

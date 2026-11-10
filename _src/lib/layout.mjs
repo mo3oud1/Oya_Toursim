@@ -1,6 +1,16 @@
 // Page shell: <head>, header (mega menus), drawer, footer, floating actions
 import { site, nav } from "../site.mjs";
-import { esc, ic, waUrl } from "./ui.mjs";
+import fs from "node:fs";
+import path from "node:path";
+import { esc, ic, waUrl, ROOT_DIR } from "./ui.mjs";
+
+// Share image (WhatsApp/Facebook/X previews): explicit page.ogImage, else the page's hero photo crop, else default
+function ogFor(page) {
+  if (page.ogImage) return page.ogImage;
+  const m = /class="page-hero__bg"><img[^>]*?src="\{\{root\}\}assets\/img\/photos\/([\w-]+)\.webp"/.exec(page.body || "");
+  if (m && fs.existsSync(path.join(ROOT_DIR, "assets/img/og", `${m[1]}.jpg`))) return `assets/img/og/${m[1]}.jpg`;
+  return "assets/img/og/og-default.jpg";
+}
 
 const abs = (p) => `${site.url}/${p}`;
 
@@ -154,7 +164,7 @@ function vendorScripts(page) {
 
 export function renderPage(page, data, assetsVer) {
   const url = abs(page.path);
-  const ogImg = abs(page.ogImage || "assets/img/og/og-default.jpg");
+  const ogImg = abs(ogFor(page));
   const title = page.title;
   const graph = page.schemaGraph || [];
   const L = site.locales.find((l) => l.code === (page.lang || "ar")) || site.locales[0];

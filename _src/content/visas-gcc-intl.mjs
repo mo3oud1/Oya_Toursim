@@ -13,7 +13,7 @@ const visas = [
     icon: "burj",
     img: "visa-uae",
     imgPrompt:
-      "Photorealistic travel photography of the Dubai skyline with the Burj Khalifa rising above Downtown Dubai, seen across the Burj Lake with the fountain promenade in the foreground, golden-hour light, warm natural colors, clear sky, cinematic composition, a family seen from behind at a distance on the promenade, no text, no logos, no watermarks, landscape 3:2",
+      "Photorealistic travel photography of the Dubai skyline with the Burj Khalifa rising above Downtown Dubai, seen across the Burj Lake with the fountain promenade at golden hour, a family seen from behind standing side by side at the railing with no embrace — the mother in a long abaya and headscarf, the father in a white thobe or long trousers, two children modestly dressed — small in the lower-left of the frame. Main subject in the left half; keep the right 40% calm (sky/water/soft background) for the RTL headline; any people small and in the left half; photorealistic, natural colours, no text, no logos, no watermarks, no flags, landscape 3:2.",
     seo: {
       title: "فيزا الإمارات (دبي) من تركيا: الأنواع والشروط | أويا",
       description:
@@ -112,7 +112,7 @@ const visas = [
     icon: "towers",
     img: "visa-qatar",
     imgPrompt:
-      "Photorealistic travel photography of the Doha West Bay skyline in Qatar seen across the bay from the Corniche, traditional wooden dhow boats moored on calm water in the foreground, soft sunset light, natural colors, cinematic composition, no text, no logos, no watermarks, landscape 3:2",
+      "Photorealistic travel photography of the Doha West Bay skyline in Qatar seen across the bay from the Corniche, traditional wooden dhow boats moored on calm water in the foreground, soft sunset light, natural colors, cinematic composition, no text, no logos, no watermarks, landscape 3:2 Composition: main subject in the left-center of the frame with calmer space on the right. There are absolutely no flags on boats, poles or buildings. Main subject in the left half; keep the right 40% calm (sky/water/soft background) for the RTL headline; any people small and in the left half; photorealistic, natural colours, no text, no logos, no watermarks, no flags, landscape 3:2.",
     seo: {
       title: "فيزا قطر من تركيا: الإعفاء ومنصة هيا | أويا",
       description:
