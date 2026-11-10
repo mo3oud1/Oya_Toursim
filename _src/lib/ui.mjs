@@ -119,7 +119,7 @@ export function crumbs(items) {
     .join("")}</ol></nav>`;
 }
 
-export function pageHero({ crumbs: cr, eyebrow, title, lead, icon = "compass", img, prompt, chips = [], actions = "", page = "", extra = "", focus = "", zoom = "", alt = "" }) {
+export function pageHero({ crumbs: cr, eyebrow, title, lead, icon = "compass", img, prompt, chips = [], actions = "", page = "", extra = "", focus = "", zoom = "", alt = "", cls = "" }) {
   registerImage(img, prompt, page);
   const file = img && photoExists(img);
   // Photo hero: full-bleed photo + direction-aware scrim (works for RTL now, LTR later)
@@ -130,7 +130,7 @@ export function pageHero({ crumbs: cr, eyebrow, title, lead, icon = "compass", i
     ${ic(icon, "big-ico")}
   </div>`;
   return `
-<section class="page-hero${file ? " has-photo" : ""}${zoom ? " is-shifted" : ""}"${focus || zoom ? ` style="${focus ? `--focus:${focus};` : ""}${zoom ? `--zoom:${zoom}` : ""}"` : ""}>
+<section class="page-hero${file ? " has-photo" : ""}${zoom ? " is-shifted" : ""}${cls ? " " + cls : ""}"${focus || zoom ? ` style="${focus ? `--focus:${focus};` : ""}${zoom ? `--zoom:${zoom}` : ""}"` : ""}>
   ${bg}
   <div class="container">
     ${cr ? crumbs(cr) : ""}
@@ -199,10 +199,16 @@ export function destCard(d, page, { count } = {}) {
   <div class="dest__body"><h3>${esc(d.name)}</h3><span class="en">${esc(d.nameEn)}</span><p>${d.tagline || ""}</p></div>
 </a>`;
 }
+// The circle says what the card is about: the visa TYPE for Saudi visas (all share one country),
+// the country code for country visas.
+const VISA_TYPE_ICON = { tourist: "camera", umrah: "mosque", "family-visit": "family", "personal-visit": "users", business: "suitcase", transit: "takeoff", "gcc-residents": "passport" };
 export function visaCard(v, base, page) {
+  const mark = v.group === "saudi"
+    ? `<span class="stamp stamp--ico">${ic(VISA_TYPE_ICON[v.slug] || v.icon || "passport")}</span>`
+    : `<span class="stamp stamp--orange">${esc(v.stamp)}</span>`;
   return `
 <article class="vcard" data-reveal>
-  <div style="display:flex;align-items:center;gap:14px"><span class="stamp${v.group === "saudi" ? "" : " stamp--orange"}">${esc(v.stamp)}</span><h3><a class="cover" href="{{root}}${base}${v.slug}/">${esc(v.name)}</a></h3></div>
+  <div style="display:flex;align-items:center;gap:14px">${mark}<h3><a class="cover" href="{{root}}${base}${v.slug}/">${esc(v.name)}</a></h3></div>
   <p>${v.intro}</p>
   <div class="facts">${(v.facts || []).slice(0, 2).map((f) => `<span class="chip">${esc(f.k)}: ${esc(strip(f.v).split(/[(،؛.]| - | — /)[0].trim())}</span>`).join("")}</div>
   <span class="link-arrow">التفاصيل والمتطلبات ${ic("arrow")}</span>

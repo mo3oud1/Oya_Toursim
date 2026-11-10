@@ -1251,3 +1251,16 @@ h3,h4{line-height:1.42}
   .ctile{min-width:0}
   .ctile>div{min-width:0}
 }
+
+/* ---------- visa cards: the circle shows the visa type ---------- */
+.stamp--ico{transform:none;border:0;background:var(--sky-100);color:var(--blue);width:58px;height:58px}
+.stamp--ico .i{width:28px;height:28px}
+.vcard:hover .stamp--ico{background:var(--blue);color:#fff}
+.stamp--ico{transition:background .35s var(--ease),color .35s var(--ease)}
+
+/* ---------- article pages: a long title reads as a headline, with air above it ---------- */
+.page-hero .eyebrow{margin-bottom:1.15rem}
+.page-hero--article h1{font-size:clamp(1.7rem,1.1rem + 2.1vw,2.75rem);line-height:1.45;max-width:26ch;font-weight:700}
+.page-hero--article .eyebrow{margin-bottom:1.3rem}
+.page-hero--article .crumbs li:last-child{display:none}
+.page-hero--article .lead{max-width:56ch}
