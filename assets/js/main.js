@@ -6,7 +6,7 @@
   var root = d.documentElement;
   var reduce = w.matchMedia && w.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var WA = root.getAttribute("data-wa") || "905399334331";
-  var EMAIL = root.getAttribute("data-email") || "oya.tourism01@gmail.com";
+  var EMAIL = root.getAttribute("data-email") || "info@oyatourism.com";
   var $ = function (s, c) { return (c || d).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
 

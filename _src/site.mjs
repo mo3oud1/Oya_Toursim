@@ -8,7 +8,7 @@ export const site = {
   locales: [{ code: "ar", dir: "rtl", og: "ar_AR", prefix: "" }],
   // Absolute base URL (no trailing slash). Change when a custom domain is connected.
   url: "https://oyatourism.com",
-  email: "oya.tourism01@gmail.com",
+  email: "info@oyatourism.com",
   phoneDisplay: "+90 539 933 43 31",
   phoneIntl: "+905399334331",
   whatsapp: "905399334331",

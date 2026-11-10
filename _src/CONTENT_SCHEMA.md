@@ -11,7 +11,7 @@ All site content lives in `_src/content/*.mjs` as ES modules with a **default ex
 2. **Brand:** "أويا للسياحة" (OYA Tourism), Istanbul-based. Tagline «كل رحلة… حكاية». Services: flight tickets,
    hotels & resorts (most requested), tours inside and outside Turkey, international visas, GCC visas,
    all Saudi visa types, football match tickets. Contact is via WhatsApp (+90 539 933 43 31) and
-   e-mail oya.tourism01@gmail.com.
+   e-mail info@oyatourism.com.
 3. **Honesty — mandatory:**
    - Never invent prices, discounts, customer counts, years of experience, awards, licence numbers or reviews.
      Package `priceFrom` stays `null` unless the owner provides a price.
