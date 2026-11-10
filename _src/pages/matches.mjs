@@ -72,7 +72,7 @@ const tiers = (ctx = "كأس السوبر الإسباني 2027") => `
   <div class="tier tier--pop" data-reveal>
     <span class="badge">الخيار المتكامل</span>
     <span class="ico ico--glass">${ic("star")}</span><h3>باقة المشجع</h3>
-    <p style="margin:0;color:#B9CCE0">تذكرة + فندق + تنقلات — تصل وتستمتع فقط.</p>
+    <p style="margin:0;color:#B9CCE0">فندق + تنقلات + مساعدة في تذكرتك الرسمية — تصل وتستمتع فقط.</p>
     <ul>${["مساعدتك في شراء التذكرة الرسمية باسمك من القناة الرسمية", "فندق قريب من ملعب مباراتك (3 ليالٍ أو أكثر)", "استقبال من المطار ونقل خاص للملعب والعودة بعد المباراة (22:00)", "جولة في إسطنبول مع سائق يتحدث العربية"].map((x) => `<li>${ic("check")}${x}</li>`).join("")}</ul>
     <a class="btn btn--block" href="${waUrl(`مرحباً أويا، أرغب بباقة المشجع — ${ctx}.`)}" target="_blank" rel="noopener">${ic("whatsapp")}احجز الباقة</a>
   </div>

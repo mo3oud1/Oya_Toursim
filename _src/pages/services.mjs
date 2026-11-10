@@ -1,6 +1,6 @@
 import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
-import { ic, esc, media, toneFor, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, featureItem, destCard } from "../lib/ui.mjs";
+import { ic, esc, media, photoImg, toneFor, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, featureItem, destCard } from "../lib/ui.mjs";
 import { flightForm, hotelForm, cityList } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
 
@@ -94,14 +94,14 @@ export function hotelsPage(data) {
     title: "حجز فنادق ومنتجعات في تركيا للعائلات والأزواج | أويا",
     description: "فنادق إسطنبول وطرابزون وأوزنجول وسبانجا وأنطاليا: منتجعات، شقق فندقية، شاليهات وفلل بمسبح خاص للعائلات وشهر العسل. أرسل تواريخك واحصل على عرضك." };
   const types = [
-    { icon: "star", t: "فنادق 4 و5 نجوم", d: "في أفضل المواقع: تقسيم، نيشانتاشي، البوسفور والسلطان أحمد — مع إطلالات مميزة.", tone: "svc--dark", cls: "b-hero" },
-    { icon: "sun", t: "منتجعات شاملة كل شيء", d: "منتجعات أنطاليا وبودروم للعائلات مع مسابح وأنشطة للأطفال.", cls: "b-3" },
-    { icon: "users", t: "شقق فندقية للعائلات", d: "مساحات واسعة ومطابخ وغرف متعددة — مثالية للإقامات الطويلة.", cls: "b-3" },
-    { icon: "heart", t: "فلل بمسبح خاص", d: "خصوصية تامة في سبانجا وطرابزون وبورصة للعائلات وشهر العسل.", cls: "b-3" },
-    { icon: "mountain", t: "شاليهات وبنغلات الطبيعة", d: "أكواخ خشبية بين الغابات والبحيرات في سبانجا وأوزنجول ومعشوقية.", cls: "b-3" },
-    { icon: "balloon", t: "فنادق الكهوف", d: "تجربة فريدة في كابادوكيا مع إطلالة على المناطيد عند الشروق.", cls: "b-4" },
-    { icon: "shield", t: "فنادق محافظة", d: "خيارات تراعي خصوصية العائلات، مع مسابح أو أقسام منفصلة حسب الطلب.", cls: "b-4" },
-    { icon: "plane", t: "فنادق قرب المطار", d: "لرحلات الترانزيت والوصول المتأخر أو المغادرة المبكرة.", cls: "b-4" },
+    { icon: "star", t: "فنادق 4 و5 نجوم", img: "hotels-istanbul", d: "في أفضل المواقع: تقسيم، نيشانتاشي، البوسفور والسلطان أحمد — مع إطلالات مميزة.", tone: "svc--dark", cls: "b-hero" },
+    { icon: "sun", t: "منتجعات شاملة كل شيء", img: "hotels-antalya", d: "منتجعات أنطاليا وبودروم للعائلات مع مسابح وأنشطة للأطفال.", cls: "b-3" },
+    { icon: "users", t: "شقق فندقية للعائلات", img: "hero-hotels", d: "مساحات واسعة ومطابخ وغرف متعددة — مثالية للإقامات الطويلة.", cls: "b-3" },
+    { icon: "heart", t: "فلل بمسبح خاص", img: "hotels-trabzon", d: "خصوصية تامة في سبانجا وطرابزون وبورصة للعائلات وشهر العسل.", cls: "b-3" },
+    { icon: "mountain", t: "شاليهات وبنغلات الطبيعة", img: "hotels-sapanca", d: "أكواخ خشبية بين الغابات والبحيرات في سبانجا وأوزنجول ومعشوقية.", cls: "b-3" },
+    { icon: "balloon", t: "فنادق الكهوف", img: "hero-turkey", d: "تجربة فريدة في كابادوكيا مع إطلالة على المناطيد عند الشروق.", cls: "b-4" },
+    { icon: "shield", t: "فنادق محافظة", img: "hotels-family-friendly", d: "خيارات تراعي خصوصية العائلات، مع مسابح أو أقسام منفصلة حسب الطلب.", cls: "b-4" },
+    { icon: "plane", t: "فنادق قرب المطار", img: "svc-airport-transfer", d: "لرحلات الترانزيت والوصول المتأخر أو المغادرة المبكرة.", cls: "b-4" },
   ];
   const areas = [
     ["إسطنبول", "تقسيم وشيشلي ونيشانتاشي", "التسوق والمطاعم والحياة الليلية الهادئة وسهولة المواصلات — الأكثر طلباً للعائلات."],
@@ -133,7 +133,7 @@ ${pageHero({ crumbs, ...heroPhoto("hero-hotels"), eyebrow: `${ic("star")} الخ
   <div class="container">
     ${sectionHead({ eyebrow: "أنواع الإقامة", title: "إقامة تناسب حكايتك", lead: "سواء كانت رحلة عائلية طويلة أو شهر عسل أو رحلة عمل — لدينا الخيار المناسب." })}
     <div class="bento" data-stagger>
-      ${types.map((t) => `<div class="svc ${t.cls || ""} ${t.tone || ""}" data-reveal><span class="ico${t.tone ? " ico--glass" : ""}">${ic(t.icon)}</span><h3>${t.t}</h3><p>${t.d}</p><a class="link-arrow" href="${waUrl(`مرحباً أويا، أرغب بعروض: ${t.t}.`)}" target="_blank" rel="noopener" style="position:relative;z-index:3">اطلب عروضاً ${ic("arrow")}</a></div>`).join("")}
+      ${types.map((t) => `<div class="svc svc--photo ${t.cls || ""}" data-reveal><div class="svc__bg" aria-hidden="true">${photoImg(t.img, { alt: "", sizes: (t.cls || "").includes("b-hero") ? "(max-width: 1040px) 92vw, 620px" : "(max-width: 1040px) 46vw, 320px", max: 1024 })}</div><span class="ico">${ic(t.icon)}</span><h3>${t.t}</h3><p>${t.d}</p><a class="link-arrow" href="${waUrl(`مرحباً أويا، أرغب بعروض: ${t.t}.`)}" target="_blank" rel="noopener" style="position:relative;z-index:3">اطلب عروضاً ${ic("arrow")}</a></div>`).join("")}
     </div>
   </div>
 </section>

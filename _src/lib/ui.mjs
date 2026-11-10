@@ -47,14 +47,16 @@ export function photoExists(key) {
 }
 // Responsive <img>: uses <key>-640/-1024 WebP variants when present (made at import time)
 const PHOTO_DIR = path.join(ROOT_DIR, "assets/img/photos");
-export function photoImg(key, { alt = "", sizes = "100vw", eager = false, cls = "" } = {}) {
+export function photoImg(key, { alt = "", sizes = "100vw", eager = false, cls = "", max = 1536 } = {}) {
   const file = photoExists(key);
   if (!file) return "";
   const base = file.replace(/\.\w+$/, "");
   const set = [["-640", 640], ["-1024", 1024]].filter(([s]) => fs.existsSync(path.join(PHOTO_DIR, `${base}${s}.webp`))).map(([s, w]) => `{{root}}assets/img/photos/${base}${s}.webp ${w}w`);
-  const srcset = set.length ? ` srcset="${set.join(", ")}, {{root}}assets/img/photos/${file} 1536w" sizes="${sizes}"` : "";
+  const capped = max <= 1024 && set.length === 2; // card-sized use: stop at the 1024px file
+  const src = capped ? `{{root}}assets/img/photos/${base}-1024.webp` : `{{root}}assets/img/photos/${file}`;
+  const srcset = set.length ? ` srcset="${set.join(", ")}${capped ? "" : `, {{root}}assets/img/photos/${file} 1536w`}" sizes="${sizes}"` : "";
   const load = eager ? ' fetchpriority="high"' : ' loading="lazy"';
-  return `<img${cls ? ` class="${cls}"` : ""} src="{{root}}assets/img/photos/${file}"${srcset} alt="${esc(alt)}" width="1536" height="1024"${load} decoding="async">`;
+  return `<img${cls ? ` class="${cls}"` : ""} src="${src}"${srcset} alt="${esc(alt)}" width="1536" height="1024"${load} decoding="async">`;
 }
 // src + srcset for deferred loading (e.g. hero slides swapped in after the page has loaded)
 export function photoSources(key) {
@@ -85,7 +87,7 @@ export function media({ img, prompt, alt = "", icon = "compass", ratio = "ratio-
   const file = img && photoExists(img);
   if (file) {
     const sizes = cls.includes("media--wide") ? "(max-width: 1024px) 100vw, 1240px" : "(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 420px";
-    return `<div class="media ${ratio} ${cls}">${photoImg(img, { alt, sizes, eager })}</div>`;
+    return `<div class="media ${ratio} ${cls}">${photoImg(img, { alt, sizes, eager, max: cls.includes("media--wide") ? 1536 : 1024 })}</div>`;
   }
   const t = tone || "istanbul";
   return `<div class="media media--ph tone-${t} ${ratio} ${cls}" role="img" aria-label="${esc(alt)}">${ROUTE}${label ? `<span class="ph-text"><span class="ph-name">${esc(label)}</span>${en ? `<span class="ph-en">${esc(en)}</span>` : ""}</span>` : ""}</div>`;

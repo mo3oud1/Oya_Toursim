@@ -352,8 +352,10 @@
     schedule();
   }
   btn.addEventListener("click", function () { setPaused(!paused); });
-  if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; schedule(); }, { threshold: 0.2 }).observe(h);
-  document.addEventListener("visibilitychange", function () { visible = !document.hidden; schedule(); });
+  var onScreen = true;
+  function sync() { visible = onScreen && !document.hidden; schedule(); }
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { onScreen = e[0].isIntersecting; sync(); }, { threshold: 0.2 }).observe(h);
+  document.addEventListener("visibilitychange", sync);
   var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 1200); };
   window.addEventListener("load", function () { idle(loadAll); });
   setPaused(paused);

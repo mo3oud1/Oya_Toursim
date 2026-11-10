@@ -81,7 +81,7 @@ export function homePage(data) {
     <div class="bento" data-stagger>
       ${services.map((s) => `
       <div class="svc svc--photo ${s.cls}" data-reveal>
-        <div class="svc__bg" aria-hidden="true">${photoImg(s.img, { alt: "", sizes: s.cls.includes("b-hero") ? "(max-width: 1040px) 92vw, 620px" : "(max-width: 1040px) 92vw, 320px" })}</div>
+        <div class="svc__bg" aria-hidden="true">${photoImg(s.img, { alt: "", sizes: s.cls.includes("b-hero") ? "(max-width: 1040px) 92vw, 620px" : "(max-width: 1040px) 46vw, 320px", max: 1024 })}</div>
 
         ${s.badge ? `<span class="badge" style="position:static;align-self:flex-start">${s.badge}</span>` : ""}
         <span class="ico${s.cls.includes("dark") ? " ico--glass" : ""}">${ic(s.icon)}</span>

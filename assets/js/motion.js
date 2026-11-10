@@ -10,7 +10,7 @@
 
   /* 1) SELECT — spotlight affordance on clickable cards only (rAF-throttled) */
   if (fine && !reduce) {
-    $$(".card, .dest, .vcard, .tier, .match, a.ctile").concat($$(".svc").filter(function (el) { return el.querySelector("a.cover"); })).forEach(function (el) {
+    $$(".card, .vcard, .tier, .match, a.ctile").concat($$(".svc").filter(function (el) { return el.querySelector("a.cover"); })).forEach(function (el) {
       el.classList.add("spot");
       var raf = 0, x = 0, y = 0;
       el.addEventListener("pointermove", function (e) {

@@ -206,8 +206,10 @@ if (section) {
       if (moving) raf = requestAnimationFrame(frame);
     }
     function kick() { if (!raf && visible) { last = performance.now(); raf = requestAnimationFrame(frame); } }
-    new IntersectionObserver((en) => { visible = en[0].isIntersecting; kick(); }, { threshold: 0.05 }).observe(canvas);
-    document.addEventListener("visibilitychange", () => { visible = !document.hidden; kick(); });
+    let onScreen = true;
+    const sync = () => { visible = onScreen && !document.hidden; kick(); };
+    new IntersectionObserver((en) => { onScreen = en[0].isIntersecting; sync(); }, { threshold: 0.05 }).observe(canvas);
+    document.addEventListener("visibilitychange", sync);
 
     section.classList.add("globe-ready");
     select(selected, false);
