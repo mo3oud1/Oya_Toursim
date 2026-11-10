@@ -17,6 +17,7 @@ export const site = {
   hours: "يومياً من 9 صباحاً حتى 11 مساءً (بتوقيت إسطنبول)",
   // Fill these when available (leave empty to hide)
   tursab: "", // رقم رخصة TÜRSAB
+  legalName: "", // الاسم القانوني للشركة (يظهر في سياسة الخصوصية عند تعبئته)
   addressLine: "", // العنوان التفصيلي للمكتب
   mapsUrl: "",
   socials: { instagram: "https://www.instagram.com/oya_tourism01", facebook: "https://www.facebook.com/share/1FyNG91QkB/", tiktok: "", youtube: "", snap: "" },

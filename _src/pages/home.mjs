@@ -15,7 +15,7 @@ export function homePage(data) {
   };
   const featured = data.packages.filter((p) => p.featured).slice(0, 6);
   const visasBy = (g) => data.visas.filter((v) => v.group === g);
-  const counts = { tr: data.packages.filter((p) => p.region === "turkey").length, world: data.packages.filter((p) => p.region === "world").length, visas: data.visas.length, dest: data.destinations.length };
+  const counts = { tr: data.packages.filter((p) => p.region === "turkey").length, world: data.packages.filter((p) => p.region === "world").length, visas: data.visas.filter((v) => v.status !== "not-launched").length, dest: data.destinations.length };
   const faq = [
     { q: "هل فريقكم يتحدث العربية؟", a: "نعم، فريق أويا للسياحة يتواصل معك بالعربية من أول رسالة حتى عودتك، ونوفّر في البرامج السياحية سائقين يتحدثون العربية لتكون رحلتك مريحة دون أي حاجز لغوي." },
     { q: "كيف أحجز معكم؟", a: "أرسل لنا وجهتك وتواريخك وعدد المسافرين عبر واتساب أو من نموذج الحجز في الموقع، فنرسل لك عرضاً مكتوباً واضحاً بالتفاصيل. بعد موافقتك نؤكد الحجوزات ونوضح لك طرق الدفع المتاحة وسياسة الإلغاء قبل أي دفع." },
@@ -122,7 +122,7 @@ ${globeSection(data)}
       <div class="stats" data-stagger>
         <div class="stat" data-reveal><b><span data-count="${counts.dest}">${ar(counts.dest)}</span></b><span>وجهات داخل تركيا</span></div>
         <div class="stat" data-reveal><b><span data-count="${counts.tr + counts.world}">${ar(counts.tr + counts.world)}</span><span class="plus">+</span></b><span>برنامجاً سياحياً جاهزاً</span></div>
-        <div class="stat" data-reveal><b><span data-count="${counts.visas}">${ar(counts.visas)}</span></b><span>نوع تأشيرة نخدمك فيها</span></div>
+        <div class="stat" data-reveal><b><span data-count="${counts.visas}">${ar(counts.visas)}</span></b><span>نوعاً من التأشيرات نساعدك فيها</span></div>
         <div class="stat" data-reveal><b><span data-count="${counts.world}">${ar(counts.world)}</span></b><span>دول خارج تركيا</span></div>
       </div>
     </div>

@@ -140,6 +140,7 @@ export function eventNode(page, e) {
     name: e.name,
     sport: "Football",
     startDate: e.start,
+    ...(e.end ? { endDate: e.end } : {}),
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: { "@type": "Place", name: e.venue || "Istanbul", address: { "@type": "PostalAddress", addressLocality: "Istanbul", addressCountry: "TR" } },
@@ -147,6 +148,5 @@ export function eventNode(page, e) {
     description: e.description,
     image: abs("assets/img/og/og-matches.jpg"),
     organizer: { "@type": "Organization", name: "Real Federación Española de Fútbol (RFEF)", url: "https://rfef.es" },
-    offers: { "@type": "Offer", url: abs(page.path), availability: "https://schema.org/InStock", validFrom: "2026-11-01T00:00:00+03:00", seller: { "@id": ORG }, ...(e.price ? { price: e.price, priceCurrency: e.currency || "USD" } : {}) },
   };
 }

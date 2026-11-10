@@ -1,6 +1,6 @@
 // WhatsApp-powered inquiry forms (no backend needed)
 import { ic, esc } from "./ui.mjs";
-import { cities } from "../site.mjs";
+import { cities, site } from "../site.mjs";
 
 let uid = 0;
 const id = (p) => `${p}-${++uid}`;
@@ -41,9 +41,9 @@ const actions = (label = "أرسل الطلب عبر واتساب") => `
 <ul class="assure">
   <li>${ic("check-circle")}عرض مجاني دون أي التزام</li>
   <li>${ic("check-circle")}لا دفع قبل موافقتك على العرض المكتوب</li>
-  <li>${ic("lock")}بياناتك تُستخدم لطلبك فقط</li>
+  <li>${ic("lock")}<span>بياناتك تُستخدم لطلبك فقط — <a href="{{root}}privacy/">سياسة الخصوصية</a></span></li>
 </ul>
-<div class="form-done" role="status" aria-live="polite">${ic("check-circle")}<div><b>تم تجهيز رسالتك في واتساب.</b> أرسلها من التطبيق وسنرد عليك بعرض مكتوب. لم يفتح واتساب؟ <button type="button" data-copy>انسخ الرسالة</button> أو اتصل على <a class="ltr" href="tel:+905399334331">+90 539 933 43 31</a></div></div>`;
+<div class="form-done" role="status" aria-live="polite">${ic("check-circle")}<div><b>تم تجهيز رسالتك في واتساب.</b> أرسلها من التطبيق وسنرد عليك بعرض مكتوب — نرد ${esc(site.hours)}. لم يفتح واتساب؟ <button type="button" data-copy>انسخ الرسالة</button> أو اتصل على <a class="ltr" href="tel:+905399334331">+90 539 933 43 31</a></div></div>`;
 
 export const cityList = () => `<datalist id="cities">${cities.map((c) => `<option value="${esc(c)}">`).join("")}</datalist>`;
 
@@ -103,7 +103,7 @@ export function tourForm({ compact = false, program = "", options } = {}) {
 export function visaForm({ compact = false, visa = "", options } = {}) {
   const opts = options || [
     { group: "تأشيرات السعودية", items: ["التأشيرة السياحية السعودية", "تأشيرة العمرة", "تأشيرة الزيارة العائلية", "تأشيرة الزيارة الشخصية", "تأشيرة زيارة الأعمال", "تأشيرة العبور (ترانزيت)", "تأشيرة المقيمين في الخليج"] },
-    { group: "تأشيرات الخليج", items: ["تأشيرة الإمارات", "تأشيرة قطر", "تأشيرة عُمان", "تأشيرة البحرين", "تأشيرة الكويت", "التأشيرة الخليجية الموحدة"] },
+    { group: "تأشيرات الخليج", items: ["تأشيرة الإمارات", "تأشيرة قطر", "تأشيرة عُمان", "تأشيرة البحرين", "تأشيرة الكويت", "التأشيرة الخليجية الموحدة (تسجيل اهتمام)"] },
     { group: "تأشيرات دولية", items: ["تأشيرة شنغن", "تأشيرة بريطانيا", "تأشيرة أمريكا", "تأشيرة كندا", "تأشيرة أخرى"] },
   ];
   return `
@@ -122,18 +122,18 @@ export function visaForm({ compact = false, visa = "", options } = {}) {
 
 export function matchForm({ compact = false, match = "" } = {}) {
   return `
-<form novalidate data-wa data-intro="مرحباً أويا للسياحة، أرغب بحجز تذاكر مباراة:">
+<form novalidate data-wa data-intro="مرحباً أويا للسياحة، أرغب بباقة حضور مباراة:">
   <div class="form-grid">
     ${field({ label: "المباراة", name: "match", type: "select", required: true, placeholder: "اختر المباراة", value: match, fid: "match-select", options: [
-      { group: "كأس السوبر الإسباني 2027 — إسطنبول", items: ["نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)", "نصف النهائي: ريال مدريد × ريال سوسيداد (3 فبراير)", "النهائي (6 فبراير)", "باقة البطولة كاملة (3 مباريات)"] },
+      { group: "كأس السوبر الإسباني 2027 — إسطنبول", items: ["نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)", "نصف النهائي: ريال سوسيداد × ريال مدريد (3 فبراير)", "النهائي (6 فبراير)", "باقة البطولة كاملة (3 مباريات)"] },
       { group: "مباريات أخرى", items: ["ديربي إسطنبول في الدوري التركي", "مباريات الأندية التركية في البطولات الأوروبية", "مباراة أخرى (سأذكرها في الملاحظات)"] },
     ] })}
     ${field({ label: "الفئة", name: "category", type: "select", options: ["الفئة الأولى", "الفئة الثانية", "الفئة الثالثة", "VIP / ضيافة", "أفضل المتاح"], value: "الفئة الأولى" })}
-    ${field({ label: "عدد التذاكر", name: "qty", type: "select", options: ["1", "2", "3", "4", "5", "6", "أكثر من 6"], value: "2" })}
-    ${field({ label: "الباقة", name: "pack", type: "select", options: ["تذاكر فقط", "تذاكر + فندق", "تذاكر + فندق + نقل VIP", "باقة كاملة مع الطيران"], value: "تذاكر + فندق" })}
+    ${field({ label: "عدد المشجعين", name: "qty", type: "select", options: ["1", "2", "3", "4", "5", "6", "أكثر من 6"], value: "2" })}
+    ${field({ label: "الباقة", name: "pack", type: "select", options: ["باقة المشجع: فندق + تنقلات + مساعدة في التذكرة الرسمية", "باقة VIP", "باقة كاملة مع الطيران", "لديّ تذكرتي — أحتاج الفندق والتنقلات فقط"], value: "باقة المشجع: فندق + تنقلات + مساعدة في التذكرة الرسمية" })}
     ${compact ? "" : field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: نريد مقاعد متجاورة، ووصول قبل المباراة بيومين" })}
   </div>
-  ${actions("احجز مقعدك عبر واتساب")}
+  ${actions("اطلب باقتك عبر واتساب")}
 </form>`;
 }
 

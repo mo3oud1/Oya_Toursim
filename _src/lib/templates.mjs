@@ -217,21 +217,54 @@ export const visaSteps = [
   { icon: "send", t: "التقديم والمتابعة", d: "نتولى تعبئة الطلب وتقديمه عبر القناة الرسمية المعتمدة ونتابع حالته أولاً بأول." },
   { icon: "passport", t: "استلام التأشيرة", d: "نبلغك فور صدور القرار ونرسل التأشيرة الإلكترونية، ونساعدك في إكمال باقي ترتيبات السفر." },
 ];
+// sticker visas: the applicant attends biometrics / the interview and collects the passport
+export const visaStepsConsular = [
+  visaSteps[0],
+  visaSteps[1],
+  { icon: "calendar", t: "الموعد والتقديم", d: "نساعدك في تعبئة النموذج ونحجز موعدك حسب المتاح، وتحضر البصمة أو المقابلة بنفسك في المركز أو السفارة." },
+  { icon: "passport", t: "القرار واستلام الجواز", d: "نتابع حالة طلبك ونخبرك بطريقة الاستلام، ونساعدك في إكمال باقي ترتيبات السفر." },
+];
 export function visaPage(v, data) {
   const G = VISA_GROUPS[v.group];
   const path = `${G.hub}${v.slug}/`;
   const crumbs = [{ name: "الرئيسية", path: "" }, { name: G.hubName, path: G.hub }, { name: v.name, path }];
   const siblings = data.visas.filter((x) => x.group === v.group && x.slug !== v.slug);
-  const page = { path, nav: "visas", title: v.seo.title, description: v.seo.description, crumbs, mbar: { label: "ابدأ الطلب", icon: "passport", msg: `مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.` } };
+  const pending = v.status === "not-launched"; // announced but not open yet: register interest only, no application wording
+  const steps = v.consular ? visaStepsConsular : visaSteps;
+  const page = { path, nav: "visas", title: v.seo.title, description: v.seo.description, crumbs, mbar: { label: pending ? "سجّل اهتمامك" : "ابدأ الطلب", icon: "passport", msg: `مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.` } };
+  const pendingBook = `
+<section class="section section--white" id="book">
+  <div class="container narrow center" data-reveal>
+    ${sectionHead({ eyebrow: "سجّل اهتمامك", title: `نبلغك فور إطلاق ${esc(v.name)}`, lead: "تسجيل الاهتمام مجاني ولا يعني حجزاً أو أولوية، ولا نطلب أي دفعة قبل الإعلان الرسمي.", center: true })}
+    <div class="btn-row" style="justify-content:center">${waBtn(`مرحباً أويا للسياحة، أرغب بتسجيل اهتمامي بـ${v.name} لتبلغوني عند إطلاقها.`, "سجّل اهتمامك عبر واتساب")}</div>
+  </div>
+</section>
+`;
+  const applySections = `
+<section class="section section--white">
+  <div class="container">
+    ${sectionHead({ eyebrow: "كيف نعمل", title: "خطوات الحصول على التأشيرة مع أويا", center: true })}
+    <div class="steps" data-stagger>${steps.map((s) => `<div class="step" data-reveal><span class="ico">${ic(s.icon)}</span><h3>${s.t}</h3><p>${s.d}</p></div>`).join("")}</div>
+    <p class="center muted mt-2" style="font-size:.92rem">${ic("info")} أويا للسياحة جهة خدمات سفر تساعدك في تجهيز الطلب ومتابعته، وقرار منح التأشيرة يعود للجهات الرسمية المختصة وحدها.</p>
+  </div>
+</section>
+
+<section class="section" id="book">
+  <div class="container split">
+    <div data-reveal>${sectionHead({ eyebrow: "ابدأ الآن", title: `اطلب ${esc(v.name)}`, lead: "أرسل بياناتك الأساسية عبر النموذج، ويتواصل معك مختص التأشيرات خلال وقت قصير لتأكيد الأهلية والمتطلبات." })}</div>
+    <div class="form-card" data-reveal="zoom">${visaForm({ visa: v.formName || v.name })}</div>
+  </div>
+</section>
+`;
   page.body = `
 ${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابعة`, title: v.h1, lead: v.intro, icon: v.icon || "passport", img: v.img, prompt: v.imgPrompt, zoom: v.heroZoom, page: path,
     chips: (v.facts || []).slice(0, 3).map((f) => ({ icon: "check-circle", text: `${f.k}: ${strip(f.v)}` })),
-    actions: `${waBtn(`مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.`, "ابدأ طلبك عبر واتساب")}<a class="btn btn--glass" href="#docs">${ic("doc")}<span>الأوراق المطلوبة</span></a>` })}
+    actions: `${waBtn(pending ? `مرحباً أويا للسياحة، أرغب بتسجيل اهتمامي بـ${v.name} لتبلغوني عند إطلاقها.` : `مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.`, pending ? "سجّل اهتمامك عبر واتساب" : "ابدأ طلبك عبر واتساب")}<a class="btn btn--glass" href="#docs">${ic("doc")}<span>الأوراق المطلوبة</span></a>` })}
 
 <section class="section section--tight">
   <div class="container"><dl class="kv" data-stagger>${(v.facts || []).map((f) => `<div data-reveal><dt>${ic(factIcon(f.k))}${esc(f.k)}</dt><dd>${f.v}</dd></div>`).join("")}</dl></div>
 </section>
-${visaValue({ name: v.name })}
+${pending ? "" : visaValue({ name: v.name, mode: v.consular ? "consular" : "evisa" })}
 
 <section class="section" style="padding-top:0">
   <div class="container split">
@@ -256,26 +289,13 @@ ${v.types && v.types.length ? `
 
 <section class="section" id="docs">
   <div class="container">
-    ${sectionHead({ eyebrow: "قائمة التحقق", title: "الأوراق والمستندات المطلوبة", lead: "القائمة العامة أدناه، وقد تختلف المتطلبات حسب الجنسية وبلد الإقامة — نؤكدها لك قبل التقديم." })}
+    ${sectionHead(pending ? { eyebrow: "تسجيل الاهتمام", title: "ما نحتاجه لتسجيل اهتمامك", lead: "لا مستندات رسمية معلنة بعد؛ يكفي ما يلي لنبلغك عند الإطلاق." } : { eyebrow: "قائمة التحقق", title: "الأوراق والمستندات المطلوبة", lead: "القائمة العامة أدناه، وقد تختلف المتطلبات حسب الجنسية وبلد الإقامة — نؤكدها لك قبل التقديم." })}
     <ul class="docs" data-stagger>${v.docs.map((x) => `<li data-reveal>${ic("check-circle")}<span>${x}</span></li>`).join("")}</ul>
     ${v.notes && v.notes.length ? `<div class="stack mt-2">${v.notes.map((n) => `<div class="note note--warn" data-reveal>${ic("alert")}<span>${n}</span></div>`).join("")}</div>` : ""}
   </div>
 </section>
 
-<section class="section section--white">
-  <div class="container">
-    ${sectionHead({ eyebrow: "كيف نعمل", title: "خطوات الحصول على التأشيرة مع أويا", center: true })}
-    <div class="steps" data-stagger>${visaSteps.map((s) => `<div class="step" data-reveal><span class="ico">${ic(s.icon)}</span><h3>${s.t}</h3><p>${s.d}</p></div>`).join("")}</div>
-    <p class="center muted mt-2" style="font-size:.92rem">${ic("info")} أويا للسياحة جهة خدمات سفر تساعدك في تجهيز الطلب ومتابعته، وقرار منح التأشيرة يعود للجهات الرسمية المختصة وحدها.</p>
-  </div>
-</section>
-
-<section class="section" id="book">
-  <div class="container split">
-    <div data-reveal>${sectionHead({ eyebrow: "ابدأ الآن", title: `اطلب ${esc(v.name)}`, lead: "أرسل بياناتك الأساسية عبر النموذج، ويتواصل معك مختص التأشيرات خلال وقت قصير لتأكيد الأهلية والمتطلبات." })}</div>
-    <div class="form-card" data-reveal="zoom">${visaForm({ visa: v.formName || v.name })}</div>
-  </div>
-</section>
+${pending ? pendingBook : applySections}
 
 ${faqBlock(v.faq, { title: `أسئلة شائعة عن ${esc(v.name)}` })}
 ${readFirst([v.group], data, path, "أدلة مفيدة قبل التقديم")}

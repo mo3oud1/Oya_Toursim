@@ -14,7 +14,7 @@ export const ic = (name, cls = "") => `<svg class="i ${cls}" aria-hidden="true" 
 
 /* Fact labels get an icon that says what the fact is about (distance → route, time → clock, …) */
 const FACT_ICONS = [
-  [/التقديم معنا/, "shield"],
+  [/التقديم معنا|التجهيز معنا/, "shield"],
   [/تبعد|المسافة|نقاط الانطلاق|التنقل/, "route"],
   [/مطار|الطيران/, "takeoff"],
   [/أفضل وقت|أفضل موسم|موعد|بداية رمضان|العشر الأواخر|العيد|الطقس/, "calendar"],
@@ -225,26 +225,37 @@ export function photoStrip(g, { eyebrow = "", title = "", page = "" } = {}) {
 </section>`;
 }
 
-/* ---------- Visa service value: why apply through OYA (no prices; small service fee explained before starting) ---------- */
-export function visaValue({ name = "التأشيرة", wa = "" } = {}) {
-  const pts = [
+/* ---------- Visa service value: why apply through OYA (no prices; small service fee explained before starting) ----------
+   mode "evisa": online visas where we fill in and submit the application for the customer.
+   mode "consular": sticker visas with in-person biometrics/interview — we prepare, the applicant attends and signs. */
+export function visaValue({ name = "التأشيرة", wa = "", mode = "evisa" } = {}) {
+  const consular = mode === "consular";
+  const pts = consular ? [
+    ["doc", "نساعدك في تعبئة النموذج", "ونراجع كل حرف ورقم مع جوازك قبل أن تعتمده."],
+    ["check-circle", "نرتّب ملفك بشكل صحيح", "مستندات متّسقة ومترجمة وحجوزات مناسبة لخطة رحلتك."],
+    ["calendar", "نحجز موعدك", "في مركز التأشيرات أو السفارة حسب المتاح، وتحضر البصمة أو المقابلة بنفسك."],
+    ["whatsapp", "نتابع طلبك حتى القرار", "ونخبرك بطريقة استلام جوازك أو تأشيرتك."],
+  ] : [
     ["doc", "نعبّئ الطلب عنك", "ونطابق كل حرف ورقم مع جوازك قبل الإرسال."],
     ["camera", "نراجع الصور والمستندات", "حسب المواصفات الرسمية، حتى لا يُرفض الملف لسبب شكلي."],
     ["check-circle", "نرتّب ملفك بشكل صحيح", "ونكمّل الحجوزات والأوراق المطلوبة لنوع تأشيرتك."],
-    ["whatsapp", "نتابع طلبك حتى القرار", "ونرسل لك التأشيرة فور صدورها على واتساب."],
+    ["whatsapp", "نتابع طلبك حتى القرار", "ونرسل لك التأشيرة الإلكترونية فور صدورها على واتساب."],
   ];
+  const head = consular
+    ? { h: "ملف ناقص أو غير متّسق… هو أكثر ما يُضعف طلب التأشيرة", p: `في هذا النوع من التأشيرات يُدرس ملفك كاملاً: نموذج دقيق، ومستندات متّسقة، وحجوزات تطابق خطة رحلتك. لذلك نجهّز معك ملف ${esc(name)} من البداية بشكل صحيح، ونحجز موعدك، وتحضر البصمة أو المقابلة بنفسك.`, cta: "جهّز ملفك معنا", msg: `مرحباً أويا للسياحة، أرغب بتجهيز ملف ${name} معكم.` }
+    : { h: "خطأ واحد في حرف أو رقم… قد يكلّفك رسوم التأشيرة كاملة", p: `قد يُرفض الطلب أو تضيع رسومه بسبب خطأ بسيط: حرف في الاسم لا يطابق الجواز، رقم ناقص، تاريخ مقلوب، أو صورة بمقاس غير صحيح. والرسوم الحكومية لا تُسترد عادةً. لذلك نقدّم طلب ${esc(name)} عنك، ونرتّب ملفك بشكل صحيح من البداية.`, cta: "قدّم طلبك عن طريقنا", msg: `مرحباً أويا للسياحة، أرغب بتقديم طلب ${name} عن طريقكم.` };
   return `
 <section class="section section--tight">
   <div class="container">
     <div class="vvalue" data-reveal>
       <div class="vvalue__head">
         <p class="eyebrow">${ic("shield")} لماذا تقدّم عن طريق أويا؟</p>
-        <h2 class="h-l">خطأ واحد في حرف أو رقم… قد يكلّفك رسوم التأشيرة كاملة</h2>
-        <p>كثير من الطلبات تُرفض أو تضيع رسومها بسبب خطأ بسيط: حرف في الاسم لا يطابق الجواز، رقم ناقص، تاريخ مقلوب، أو صورة بمقاس غير صحيح. والرسوم الحكومية لا تُسترد عادةً. لذلك نقدّم ${esc(name)} عنك، ونرتّب ملفك بشكل صحيح من البداية.</p>
-        <div class="btn-row">${waBtn(wa || `مرحباً أويا للسياحة، أرغب بتقديم طلب ${name} عن طريقكم.`, "قدّم طلبك عن طريقنا")}</div>
+        <h2 class="h-l">${head.h}</h2>
+        <p>${head.p}</p>
+        <div class="btn-row">${waBtn(wa || head.msg, head.cta)}</div>
       </div>
       <ul class="vvalue__list">${pts.map(([i, t, d]) => `<li>${ic(i)}<div><strong>${t}</strong><span>${d}</span></div></li>`).join("")}</ul>
-      <p class="vvalue__note">${ic("info")}<span>رسوم خدمتنا بسيطة ونوضحها لك قبل البدء، والرسوم الرسمية تدفعها للجهة المختصة. القرار النهائي للجهة المختصة وحدها.</span></p>
+      <p class="vvalue__note">${ic("info")}<span>أويا للسياحة وكالة سفر خاصة وليست جهة حكومية. رسوم خدمتنا بسيطة ونوضحها لك منفصلةً عن الرسوم الرسمية قبل البدء، والقرار النهائي للجهة المختصة وحدها.</span></p>
     </div>
   </div>
 </section>`;

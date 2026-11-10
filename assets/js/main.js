@@ -214,6 +214,7 @@
       var win = w.open(url, "_blank");
       if (win) { try { win.opener = null; } catch (err) {} } else { w.location.href = url; }
       if (done) done.classList.add("is-on");
+      store(function (ls) { ls.removeItem(key); }); // the request was sent: do not keep personal details in the browser
       if (w.gtag) w.gtag("event", "generate_lead", { method: "whatsapp", form: form.getAttribute("data-intro") });
     });
     var copy = $("[data-copy]", form);

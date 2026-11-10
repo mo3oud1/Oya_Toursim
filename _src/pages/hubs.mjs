@@ -2,7 +2,7 @@ import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
 import { ic, ar, esc, strip, sectionHead, faqBlock, ctaBand, pageHero, photoStrip, visaValue, waBtn, waUrl, packageCard, destCard, visaCard, postCard, featureItem } from "../lib/ui.mjs";
 import { tourForm, visaForm } from "../lib/forms.mjs";
-import { visaSteps } from "../lib/templates.mjs";
+import { visaSteps, visaStepsConsular } from "../lib/templates.mjs";
 import * as S from "../lib/schema.mjs";
 import { finderSection } from "../lib/interactive.mjs";
 
@@ -228,10 +228,10 @@ export function visaHub(group, data) {
   </div>
 </section>`;
   page.body = `
-${pageHero({ crumbs, ...heroPhoto(H.hero), eyebrow: "مركز التأشيرات في أويا", title: H.h1, lead: H.lead, icon: H.icon, page: H.path,
+${pageHero({ crumbs, ...heroPhoto(H.hero), eyebrow: "خدمات التأشيرات في أويا", title: H.h1, lead: H.lead, icon: H.icon, page: H.path,
     chips: [{ icon: "passport", text: `${ar(list.length)} أنواع تأشيرات` }, { icon: "doc", text: "تجهيز ومراجعة الملف" }, { icon: "whatsapp", text: "متابعة حتى الصدور" }],
     actions: `${waBtn(`مرحباً أويا، أرغب بالاستفسار عن ${H.name}.`, "استشارة مجانية عبر واتساب")}<a class="btn btn--glass" href="#book">${ic("send")}<span>ابدأ طلبك</span></a>` })}
-${visaValue({ name: H.name })}
+${visaValue({ name: H.name, mode: group === "intl" ? "consular" : "evisa" })}
 ${photoStrip(H.gallery, { eyebrow: "صور حقيقية", title: "مدن المملكة", page: H.path })}
 <section class="section">
   <div class="container">
@@ -243,7 +243,7 @@ ${comparison}
 <section class="section">
   <div class="container">
     ${sectionHead({ eyebrow: "كيف نعمل", title: "4 خطوات واضحة", center: true })}
-    <div class="steps" data-stagger>${visaSteps.map((s) => `<div class="step" data-reveal><span class="ico">${ic(s.icon)}</span><h3>${s.t}</h3><p>${s.d}</p></div>`).join("")}</div>
+    <div class="steps" data-stagger>${(group === "intl" ? visaStepsConsular : visaSteps).map((s) => `<div class="step" data-reveal><span class="ico">${ic(s.icon)}</span><h3>${s.t}</h3><p>${s.d}</p></div>`).join("")}</div>
     <div class="note mt-2">${ic("info")}<span>أويا للسياحة جهة خدمات سفر مستقلة تساعدك في تجهيز الطلبات ومتابعتها، وليست جهة حكومية أو مركز تأشيرات رسمياً. قرار منح التأشيرة يعود للسلطات المختصة، والرسوم والشروط قابلة للتغيير ونؤكدها لك عند الطلب.</span></div>
   </div>
 </section>
