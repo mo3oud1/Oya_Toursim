@@ -27,7 +27,7 @@ function megaTurkey(data) {
   </div>
   <div class="mega-feature">
     <b>برامج سياحية متكاملة</b>
-    <span>برامج يوم بيوم لإسطنبول، طرابزون، بورصة وكابادوكيا مع سائق يتحدث العربية.</span>
+    <span>برامج يوماً بيوم لإسطنبول، طرابزون، بورصة وكابادوكيا مع سائق يتحدث العربية.</span>
     <a href="{{root}}packages/">تصفّح البرامج</a>
     ${(data.extras || []).filter((x) => x.kind !== "offer").length ? `<span style="position:relative;display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">${(data.extras || []).filter((x) => x.kind !== "offer").map((x) => `<a href="{{root}}${x.path}" style="font-size:.85rem;padding:.3em .7em">${esc(x.navLabel || x.h1.split(":")[0])}</a>`).join("")}</span>` : ""}
     ${(data.hotels || []).length ? `<span style="position:relative;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">${data.hotels.filter((h) => h.slug !== "family-friendly").map((h) => `<a href="{{root}}hotels/${h.slug}/" style="font-size:.85rem;padding:.3em .7em">فنادق ${esc(h.city)}</a>`).join("")}</span>` : ""}
@@ -143,7 +143,7 @@ function footer(data, page) {
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> ${site.name} — OYA Tourism. جميع الحقوق محفوظة.</span>
       <span><a href="{{root}}privacy/">سياسة الخصوصية</a> · <a href="{{root}}terms/">الشروط والأحكام</a> · <a href="{{root}}sitemap.xml">خريطة الموقع</a></span>
-    </div>
+    <span class="footer-note">الصور في الموقع توضيحية، ومعلومات التأشيرات عامة ونؤكدها لك وقت التقديم.</span></div>
   </div>
 </footer>
 <a class="fab-wa" href="${waUrl("مرحباً أويا للسياحة، أرغب بالاستفسار.")}" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">${ic("whatsapp")}</a>

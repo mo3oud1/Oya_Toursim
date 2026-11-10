@@ -16,6 +16,7 @@ export const site = {
   country: "تركيا",
   hours: "يومياً من 9 صباحاً حتى 11 مساءً (بتوقيت إسطنبول)",
   // Fill these when available (leave empty to hide)
+  visasReviewed: "2026-11-10", // آخر مراجعة لمعلومات صفحات التأشيرات (تظهر في الصفحات وفي بيانات جوجل)
   tursab: "", // رقم رخصة TÜRSAB
   legalName: "", // الاسم القانوني للشركة (يظهر في سياسة الخصوصية عند تعبئته)
   addressLine: "", // العنوان التفصيلي للمكتب

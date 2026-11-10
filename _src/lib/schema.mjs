@@ -41,6 +41,7 @@ export function webPageNode(page, type = "WebPage") {
     isPartOf: { "@id": WEB },
     about: { "@id": ORG },
     ...(page.crumbs ? { breadcrumb: { "@id": abs(page.path) + "#breadcrumb" } } : {}),
+    ...(page.modified ? { dateModified: page.modified } : {}),
     ...(page.primaryImage ? { primaryImageOfPage: { "@type": "ImageObject", url: page.primaryImage } } : {}),
   };
 }

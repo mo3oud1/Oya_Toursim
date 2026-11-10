@@ -1,5 +1,5 @@
 // Interactive, decision-focused components: Destination Globe + Trip Finder
-import { ic, esc, sectionHead, waUrl } from "./ui.mjs";
+import { ic, esc, sectionHead, waUrl, daysAr, programsAr } from "./ui.mjs";
 
 const COORDS = {
   istanbul: [41.0082, 28.9784], trabzon: [41.0027, 39.7168], uzungol: [40.6195, 40.2869], bursa: [40.1885, 29.061],
@@ -11,7 +11,7 @@ const COORDS = {
 
 export function globePlaces(data) {
   const tr = data.destinations.map((d) => ({ id: d.slug, g: "tr", name: d.name, en: d.nameEn, text: d.tagline || "", url: `turkey-tours/${d.slug}/`, cta: "دليل الوجهة والبرامج", loc: COORDS[d.slug] })).filter((x) => x.loc);
-  const world = data.packages.filter((p) => p.region === "world").map((p) => ({ id: p.slug, g: "world", name: p.country, en: p.cities.join(" • "), text: p.summary, url: `packages/${p.slug}/`, cta: `البرنامج ${p.days} أيام`, loc: COORDS[p.slug] })).filter((x) => x.loc);
+  const world = data.packages.filter((p) => p.region === "world").map((p) => ({ id: p.slug, g: "world", name: p.country, en: p.cities.join(" • "), text: p.summary, url: `packages/${p.slug}/`, cta: `البرنامج ${daysAr(p.days)}`, loc: COORDS[p.slug] })).filter((x) => x.loc);
   const visas = [
     { id: "makkah", g: "visa", name: "السعودية — مكة والمدينة", en: "Saudi Arabia", text: "تأشيرة سياحية أو عمرة أو زيارة، مع حجز الطيران وفنادق مكة والمدينة.", url: "saudi-visa/", cta: "تأشيرات السعودية", loc: [21.4225, 39.8262] },
     { id: "dubai", g: "visa", name: "الإمارات — دبي", en: "UAE", text: "فيزا دبي والإمارات لمختلف الجنسيات مع الفندق والطيران.", url: "gcc-visas/uae/", cta: "تأشيرة الإمارات", loc: [25.2048, 55.2708] },
@@ -60,7 +60,7 @@ export function globeSection(data) {
 }
 
 export function finderSection(data, { compact = false } = {}) {
-  const pk = data.packages.map((p) => ({ s: p.slug, t: p.title, r: p.region, d: p.days, n: p.nights, c: p.cities.join(" • "), tags: p.tags || [], sum: p.summary, f: !!p.featured }));
+  const pk = data.packages.map((p) => ({ s: p.slug, t: p.title, r: p.region, d: p.days, dl: daysAr(p.days), n: p.nights, c: p.cities.join(" • "), tags: p.tags || [], sum: p.summary, f: !!p.featured }));
   const steps = [
     { k: "who", q: "مع من ستسافر؟", opts: [["family", "family", "عائلة مع أطفال"], ["honeymoon", "ring", "زوجان / شهر عسل"], ["friends", "users", "أصدقاء"], ["any", "user", "بمفردي / رحلة عمل"]] },
     { k: "vibe", q: "ماذا تحب في رحلتك؟", opts: [["nature", "mountain", "طبيعة وبحيرات وجبال"], ["city", "mosque", "مدن ومعالم وتسوق"], ["beach", "sun", "بحر وشواطئ ومنتجعات"], ["winter", "snow", "ثلوج وأجواء شتوية"]] },
@@ -74,7 +74,7 @@ export function finderSection(data, { compact = false } = {}) {
       <div class="finder__intro">
         <p class="eyebrow">${ic("sparkles")} مكتشف الرحلات</p>
         <h2 class="h-xl">لست متأكداً أين تذهب؟</h2>
-        <p class="lead">أجب عن 4 أسئلة سريعة ونقترح لك البرامج الأنسب من بين ${pk.length} برنامجاً — خلال 20 ثانية.</p>
+        <p class="lead">أجب عن 4 أسئلة سريعة ونقترح لك البرامج الأنسب من بين ${programsAr(pk.length)} — خلال 20 ثانية.</p>
         <div class="finder__progress" aria-hidden="true"><span></span></div>
       </div>
       <div class="finder__body">

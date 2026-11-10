@@ -14,11 +14,11 @@ export function field({ label, name, type = "text", placeholder = "", required =
   if (type === "select") {
     const flat = options.flatMap((o) => (typeof o === "string" ? [o] : o.items));
     const extra = value && !flat.includes(value) ? `<option selected>${esc(value)}</option>` : "";
-    control = `<select id="${fid}" name="${name}" ${dl}${req} ${attrs}>${placeholder ? `<option value="">${esc(placeholder)}</option>` : ""}${extra}${options
+    control = `<select id="${fid}" name="${name}" ${dl}${req}${required ? ` aria-describedby="${fid}-err"` : ""} ${attrs}>${placeholder ? `<option value="">${esc(placeholder)}</option>` : ""}${extra}${options
       .map((o) => (typeof o === "string" ? `<option${o === value ? " selected" : ""}>${esc(o)}</option>` : `<optgroup label="${esc(o.group)}">${o.items.map((x) => `<option${x === value ? " selected" : ""}>${esc(x)}</option>`).join("")}</optgroup>`))
       .join("")}</select>`;
   } else if (type === "textarea") {
-    control = `<textarea id="${fid}" name="${name}" ${dl} placeholder="${esc(placeholder)}"${req} ${attrs}></textarea>`;
+    control = `<textarea id="${fid}" name="${name}" ${dl} placeholder="${esc(placeholder)}"${req}${required ? ` aria-describedby="${fid}-err"` : ""} ${attrs}></textarea>`;
   } else {
     control = `<input id="${fid}" name="${name}" type="${type}" ${dl} placeholder="${esc(placeholder)}"${list ? ` list="${list}"` : ""}${req}${value ? ` value="${esc(value)}"` : ""}${auto ? ` autocomplete="${auto}"` : list ? ' autocomplete="off"' : ""}${required ? ` aria-describedby="${fid}-err"` : ""} ${attrs}>`;
   }
@@ -43,6 +43,7 @@ const actions = (label = "أرسل الطلب عبر واتساب") => `
   <li>${ic("check-circle")}لا دفع قبل موافقتك على العرض المكتوب</li>
   <li>${ic("lock")}<span>بياناتك تُستخدم لطلبك فقط — <a href="{{root}}privacy/">سياسة الخصوصية</a></span></li>
 </ul>
+<noscript><p class="note note--warn">هذا النموذج يحتاج إلى تفعيل JavaScript. يمكنك مراسلتنا مباشرة على <a href="https://wa.me/${site.whatsapp}">واتساب</a> أو على <a href="mailto:${site.email}">البريد الإلكتروني</a>.</p></noscript>
 <div class="form-done" role="status" aria-live="polite">${ic("check-circle")}<div><b>تم تجهيز رسالتك في واتساب.</b> أرسلها من التطبيق وسنرد عليك بعرض مكتوب — نرد ${esc(site.hours)}. لم يفتح واتساب؟ <button type="button" data-copy>انسخ الرسالة</button> أو اتصل على <a class="ltr" href="tel:+905399334331">+90 539 933 43 31</a></div></div>`;
 
 export const cityList = () => `<datalist id="cities">${cities.map((c) => `<option value="${esc(c)}">`).join("")}</datalist>`;
@@ -56,7 +57,7 @@ export function flightForm({ compact = false } = {}) {
     ${field({ label: "إلى", name: "to", placeholder: "مدينة أو مطار الوصول", list: "cities", required: true })}
     ${field({ label: "تاريخ الذهاب", name: "depart", type: "date", required: true, attrs: "data-date-start" })}
     ${field({ label: "تاريخ العودة", name: "return", type: "date", optional: true, attrs: "data-date-end data-return" })}
-    ${field({ label: "المسافرون", name: "pax", type: "select", options: ["1 بالغ", "2 بالغين", "3 بالغين", "4 بالغين", "5 بالغين", "عائلة (سأذكر التفاصيل)", "مجموعة +6"], value: "1 بالغ" })}
+    ${field({ label: "المسافرون", name: "pax", type: "select", options: ["1 بالغ", "2 بالغين", "3 بالغين", "4 بالغين", "5 بالغين", "عائلة (سأذكر التفاصيل)", "مجموعة (6+)"], value: "1 بالغ" })}
     ${field({ label: "الدرجة", name: "cabin", type: "select", options: ["السياحية", "السياحية الممتازة", "رجال الأعمال", "الأولى"], value: "السياحية" })}
     ${compact ? "" : field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: طفلان عمر 4 و7 سنوات، نفضل الخطوط التركية" })}
   </div>
@@ -76,7 +77,7 @@ export function hotelForm({ compact = false, city = "" } = {}) {
     ${field({ label: "الفئة المفضّلة", name: "stars", type: "select", options: ["4 نجوم", "5 نجوم", "منتجع / إطلالة بحرية", "فيلا خاصة مع مسبح", "اقتصادي 3 نجوم", "لا مانع — الأفضل قيمة"], value: "5 نجوم" })}
     ${compact ? "" : field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: إطلالة على البوسفور وقريب من تقسيم، مع إفطار" })}
   </div>
-  ${actions("احصل على عروض الفنادق")}
+  ${actions("احصل على عروض الفنادق عبر واتساب")}
 </form>`;
 }
 
@@ -85,7 +86,7 @@ const dayRange = (d) => (!d ? "" : DAY_RANGES[d <= 4 ? 0 : d <= 6 ? 1 : d <= 8 ?
 export function tourForm({ compact = false, program = "", options, days = 0 } = {}) {
   const opts = options || [
     { group: "داخل تركيا", items: ["إسطنبول", "إسطنبول + بورصة", "إسطنبول + سبانجا + بورصة", "طرابزون + أوزنجول", "جولة البحر الأسود", "إسطنبول + طرابزون", "برنامج عائلي شامل", "شهر العسل في تركيا", "كابادوكيا", "أنطاليا", "بودروم"] },
-    { group: "خارج تركيا", items: ["جورجيا", "أذربيجان", "البوسنة", "ماليزيا", "بالي – إندونيسيا", "تايلاند", "المالديف", "مصر", "أوزبكستان"] },
+    { group: "خارج تركيا", items: ["جورجيا", "أذربيجان", "البوسنة", "ماليزيا", "بالي – إندونيسيا", "تايلند", "المالديف", "مصر", "أوزبكستان"] },
     { group: "أخرى", items: ["برنامج مخصص حسب طلبي"] },
   ];
   return `
@@ -118,7 +119,8 @@ export function visaForm({ compact = false, visa = "", options } = {}) {
     ${field({ label: "عدد المتقدمين", name: "pax", type: "select", options: ["1", "2", "3", "4", "5", "أكثر من 5"], value: "1" })}
     ${compact ? "" : field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: لدي تأشيرة شنغن سارية، أحتاج حجز فندق وتأمين" })}
   </div>
-  ${actions("ابدأ طلب التأشيرة")}
+  ${compact ? "" : `<p class="form-hint">${ic("lock")}<span>أرسل صور وثائقك إلى رقمنا الرسمي فقط: <span class="ltr">${site.phoneDisplay}</span>، ونستخدمها لطلبك وحده.</span></p>`}
+  ${actions("ابدأ طلب التأشيرة عبر واتساب")}
 </form>`;
 }
 

@@ -27,7 +27,7 @@ export function homePage(data) {
   const services = [
     { cls: "b-hero svc--dark", img: "hero-hotels", icon: "hotel", title: "فنادق ومنتجعات", text: "فنادق 5 نجوم، منتجعات شاملة كل شيء، شقق فندقية وفلل بمسبح خاص في إسطنبول وطرابزون وسبانجا وأنطاليا — مختارة لتناسب العائلات والأزواج.", href: "hotels/", badge: "الأكثر طلباً", art: "bed" },
     { cls: "b-3", img: "hero-flights", icon: "takeoff", title: "تذاكر طيران", text: "رحلات من وإلى إسطنبول والعالم بأفضل الخيارات المتاحة.", href: "flights/" },
-    { cls: "b-3", img: "hero-turkey", icon: "map", title: "السياحة في تركيا", text: "برامج يوماً بيوم مع سائق عربي ومرشدين.", href: "turkey-tours/" },
+    { cls: "b-3", img: "hero-turkey", icon: "map", title: "السياحة في تركيا", text: "برامج يوماً بيوم مع سائق يتحدث العربية، ومرشد عند الطلب.", href: "turkey-tours/" },
     { cls: "b-3", img: "hero-world", icon: "globe", title: "خارج تركيا", text: "جورجيا، أذربيجان، البوسنة، ماليزيا وغيرها.", href: "world-tours/" },
     { cls: "b-3 svc--orange", img: "hero-matches", icon: "ball", title: "تذاكر المباريات", text: "السوبر الإسباني 2027 في إسطنبول ومباريات كبرى.", href: "matches/" },
     { cls: "b-4", img: "hero-saudi", icon: "mosque", title: "تأشيرات السعودية", text: "سياحية، عمرة، زيارة عائلية وشخصية، أعمال وترانزيت.", href: "saudi-visa/" },
@@ -54,10 +54,10 @@ export function homePage(data) {
   ${flightSvg()}
   <div class="container hero__inner">
     <div class="hero__copy">
-      <p class="eyebrow fade-in" style="--d:.05s">${ic("pin")} وكالة سياحة وسفر في إسطنبول</p>
+      <p class="eyebrow fade-in" style="--d:.05s">${ic("pin")} شركة سياحة وسفر في إسطنبول</p>
       <h1 class="h-display"><span class="split-line"><span>رحلتك إلى تركيا والعالم</span></span><span class="split-line"><span>تبدأ من <span class="accent">إسطنبول</span></span></span></h1>
       <p class="lead fade-in" style="--d:.45s">فنادق ومنتجعات مختارة، برامج سياحية يوماً بيوم، تذاكر طيران، تأشيرات السعودية والخليج والعالم، وتذاكر المباريات الكبرى — كلها في مكان واحد، وبخدمة عربية من أول رسالة. <strong style="color:#fff">${site.tagline}</strong></p>
-      <div class="btn-row fade-in" style="--d:.5s;margin-bottom:6px"><a class="btn" href="#book">${ic("sparkles")}<span>ابدأ الحجز</span></a><a class="btn btn--glass" href="#finder">${ic("compass")}<span>ساعدني أختار وجهتي</span></a></div>
+      <div class="btn-row fade-in" style="--d:.5s;margin-bottom:6px"><a class="btn" href="#book">${ic("sparkles")}<span>ابدأ الحجز</span></a><a class="btn btn--glass" href="#finder">${ic("compass")}<span>ساعدني في اختيار وجهتي</span></a></div>
       <div class="hero__chips fade-in" style="--d:.55s">
         <span class="chip chip--dark">${ic("headset")}فريق يتحدث العربية</span>
         <span class="chip chip--dark">${ic("car")}سائق يتحدث العربية وسيارة خاصة</span>

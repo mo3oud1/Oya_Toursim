@@ -1,6 +1,6 @@
 import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
-import { ic, esc, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, packageCard } from "../lib/ui.mjs";
+import { ic, esc, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, packageCard, nightsAr } from "../lib/ui.mjs";
 import { readFirst } from "../lib/templates.mjs";
 import { matchForm } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
@@ -172,10 +172,10 @@ function stayPackages() {
     ${s.pop ? `<span class="badge">التجربة الكاملة</span>` : ""}
     <span class="ico${s.pop ? " ico--glass" : ""}">${ic(s.pop ? "trophy" : "hotel")}</span>
     <h3>${s.title}</h3>
-    <p class="${s.pop ? "" : "muted"}" style="margin:0;${s.pop ? "color:#B9CCE0" : ""}">${s.sub}<br><small>${s.nights} ليالٍ • ${s.dates} (قابلة للتعديل)</small></p>
+    <p class="${s.pop ? "" : "muted"}" style="margin:0;${s.pop ? "color:#B9CCE0" : ""}">${s.sub}<br><small>${nightsAr(s.nights)} • ${s.dates} (قابلة للتعديل)</small></p>
     <ul><li>${ic("bed")}${s.area}</li>${STAY_INCLUDES.map((x) => `<li>${ic("check")}${x}</li>`).join("")}</ul>
     <div class="price"><small>${s.price ? "يبدأ من / للشخص (دون التذكرة)" : "السعر"}</small><b${s.price ? "" : ' style="font-size:1.05rem"'}>${s.price ? fmt(s.price) : "يُعلن قريباً — سجّل اهتمامك"}</b></div>
-    <a class="btn${s.pop ? "" : " btn--navy"} btn--block" href="${waUrl(`مرحباً أويا، أرغب بـ${s.title} (كأس السوبر الإسباني 2027 في إسطنبول).`)}" target="_blank" rel="noopener">${ic("whatsapp")}احجز مكانك</a>
+    <a class="btn${s.pop ? "" : " btn--navy"} btn--block" href="${waUrl(`مرحباً أويا، أرغب بـ${s.title} (كأس السوبر الإسباني 2027 في إسطنبول).`)}" target="_blank" rel="noopener">${ic("whatsapp")}سجّل اهتمامك</a>
   </div>`).join("")}
 </div>
 <div class="incl mt-2" data-reveal>
@@ -323,7 +323,7 @@ export function superCupPage(data) {
   ];
   page.body = `
 ${pageHero({ crumbs, ...heroPhoto("hero-super-cup"), eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبراير 2027`, title: "تذاكر كأس السوبر الإسباني 2027 في إسطنبول", lead: "الكلاسيكو المحتمل في النهائي، ونجوم الليغا على أرض إسطنبول. احجز باقة إقامة المشجع مع أويا للسياحة، ونساعدك في الحصول على تذكرتك الرسمية باسمك عند فتح البيع وحسب التوفر — من قلب المدينة المستضيفة.", icon: "trophy", page: path,
-    actions: `<a class="btn" href="#book">${ic("ticket")}<span>احجز باقتك الآن</span></a>${waBtn("مرحباً أويا، أرغب بباقة حضور كأس السوبر الإسباني 2027 في إسطنبول.", "واتساب", "btn btn--glass")}`,
+    actions: `<a class="btn" href="#book">${ic("ticket")}<span>سجّل اهتمامك بالباقة</span></a>${waBtn("مرحباً أويا، أرغب بباقة حضور كأس السوبر الإسباني 2027 في إسطنبول.", "واتساب", "btn btn--glass")}`,
     extra: `<div class="mt-2" style="max-width:560px">${countdown()}</div>` })}
 
 <section class="section">

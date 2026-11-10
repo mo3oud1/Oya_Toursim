@@ -1189,12 +1189,12 @@ h3,h4{line-height:1.42}
 /* phones: long hubs become scannable (half the scroll) */
 @media(max-width:640px){
   /* destinations two-up */
-  .grid-4{grid-template-columns:1fr 1fr;gap:12px}
-  .grid-4 .dest__body{padding:14px}
-  .grid-4 .dest__body h3{font-size:1.12rem}
-  .grid-4 .dest__body p{display:none}
-  .grid-4 .dest__body .en{font-size:.7rem}
-  .grid-4 .dest__count{top:10px;inset-inline-start:10px;font-size:.74rem}
+  .grid-4--dest{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+  .grid-4--dest .dest__body{padding:14px}
+  .grid-4--dest .dest__body h3{font-size:1.12rem}
+  .grid-4--dest .dest__body p{display:none}
+  .grid-4--dest .dest__body .en{font-size:.7rem}
+  .grid-4--dest .dest__count{top:10px;inset-inline-start:10px;font-size:.74rem}
   /* programme / article cards as compact rows */
   .grid>.card{flex-direction:row;align-items:stretch}
   .grid>.card>.media{flex:0 0 36%;aspect-ratio:auto;min-height:138px}
@@ -1224,4 +1224,30 @@ h3,h4{line-height:1.42}
   .page-hero h1,.hero h1,.page-hero .lead,.hero .lead,.page-hero .eyebrow{color:#000!important;text-shadow:none!important}
   details>*{display:block!important}
   a[href^="http"]::after{content:""}
+}
+
+/* ---------- Council fixes: official sources box on visa pages ---------- */
+.srcbox{padding:18px 20px;border-radius:var(--r);background:#fff;box-shadow:var(--sh-1);border-inline-start:4px solid var(--blue)}
+.srcbox p{margin:0 0 8px;font-size:.95rem;line-height:1.8}
+.srcbox__date{display:flex;align-items:flex-start;gap:.5em;color:var(--ink-2)}
+.srcbox__date .i{flex:none;margin-top:.35em}
+.srcbox__date time{white-space:nowrap}
+.srcbox__date .i{color:var(--blue)}
+.srcbox__t{font-family:var(--ff-display);font-weight:700;color:var(--navy)}
+.srcbox ul{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:4px}
+.srcbox a{display:inline-flex;align-items:center;gap:.4em;min-height:40px;color:var(--blue);font-weight:600}
+.srcbox a:hover{color:var(--orange-btn)}
+.srcbox a .i{width:1em;height:1em;transform:scaleX(-1)}
+.srcbox__n{color:var(--muted);font-size:.88rem!important;margin:0!important}
+
+.form-hint{display:flex;gap:.5em;align-items:flex-start;margin:12px 0 0;font-size:.88rem;color:var(--muted);line-height:1.7}
+.form-hint .i{color:var(--blue);flex:none;margin-top:.25em;width:1em;height:1em}
+.footer-note{flex-basis:100%;font-size:.82rem;color:#7F97B3}
+
+/* ---------- phones: nothing may widen the page ---------- */
+.split>*,.grid>*{min-width:0}
+@media(max-width:520px){
+  .form-actions .btn{white-space:normal;max-width:100%;text-align:center}
+  .ctile{min-width:0}
+  .ctile>div{min-width:0}
 }

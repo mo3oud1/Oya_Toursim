@@ -21,7 +21,7 @@ export function hotelCityPage(h, data) {
   const others = data.hotels.filter((x) => x.slug !== h.slug);
   const page = { path, nav: "hotels", crumbs, title: h.seo.title, description: h.seo.description, primaryImage: S.imageUrl(h.img) };
   page.body = `
-${pageHero({ crumbs, eyebrow: `فنادق ومنتجعات • <span class="ltr">${esc(h.cityEn)}</span>`, title: h.h1, lead: h.intro, icon: h.icon || "hotel", img: h.img, prompt: h.imgPrompt, page: path,
+${pageHero({ crumbs, eyebrow: `فنادق ومنتجعات • <span class="ltr">${esc(h.cityEn)}</span>`, title: h.h1, lead: h.intro, icon: h.icon || "hotel", img: h.img, prompt: h.imgPrompt, alt: h.slug === "family-friendly" ? "فنادق وفلل تراعي خصوصية العائلات في تركيا" : `فنادق ${h.city}`, page: path,
     chips: (h.facts || []).slice(0, 3).map((f) => ({ icon: "check-circle", text: `${f.k}: ${strip(f.v).split(/[،(]/)[0]}` })),
     actions: `<a class="btn" href="#book">${ic("bed")}<span>اطلب عروض الفنادق</span></a>${waBtn(`مرحباً أويا، أرغب بحجز ${short}.`, "واتساب", "btn btn--glass")}` })}
 
@@ -88,7 +88,7 @@ export function extraPage(s, data) {
   const page = { path, nav: isOffer ? "offers" : "turkey", crumbs, title: s.seo.title, description: s.seo.description, primaryImage: S.imageUrl(s.img) };
   const suggested = (s.suggested || []).map((x) => data.packages.find((p) => p.slug === x)).filter(Boolean);
   page.body = `
-${pageHero({ crumbs, eyebrow: s.eyebrow || (isOffer ? "عرض موسمي" : "خدمة"), title: s.h1, lead: s.intro, icon: s.icon || "car", img: s.img, prompt: s.imgPrompt, page: path,
+${pageHero({ crumbs, eyebrow: s.eyebrow || (isOffer ? "عرض موسمي" : "خدمة"), title: s.h1, lead: s.intro, icon: s.icon || "car", img: s.img, prompt: s.imgPrompt, alt: s.navLabel || s.h1, page: path,
     chips: (s.facts || []).slice(0, 3).map((f) => ({ icon: "check-circle", text: `${f.k}: ${strip(f.v).split(/[،(]/)[0]}` })),
     actions: `<a class="btn" href="#book">${ic(isOffer ? "calendar" : "send")}<span>${s.slug === "ramadan-umrah-2027" ? "سجّل اهتمامك" : "احجز الآن"}</span></a>${waBtn(`مرحباً أويا، أرغب بالاستفسار عن: ${s.h1.split(":")[0]}.`, "واتساب", "btn btn--glass")}` })}
 <section class="section section--tight"><div class="container">${kv(s.facts)}</div></section>

@@ -116,7 +116,8 @@ const urls = written.filter((w) => !w.page.noindex).map((w) => {
 fs.writeFileSync(path.join(ROOT_DIR, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join("\n")}\n</urlset>\n`);
 
 // robots.txt
-fs.writeFileSync(path.join(ROOT_DIR, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /_src/\n\nSitemap: ${site.url}/sitemap.xml\n`);
+const basePath = new URL(site.url + "/").pathname; // "/" on a custom domain, "/Repo/" on github.io
+fs.writeFileSync(path.join(ROOT_DIR, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: ${basePath}_src/\nDisallow: ${basePath}README.md\n\nSitemap: ${site.url}/sitemap.xml\n`);
 
 // web manifest
 fs.writeFileSync(path.join(ROOT_DIR, "site.webmanifest"), JSON.stringify({
@@ -138,7 +139,7 @@ md += `| # | المفتاح (اسم الملف) | الحالة | تُستخدم 
 rows.forEach(([k, r], i) => {
   md += `| ${i + 1} | \`${k}\` | ${photoExists(k) ? "✅" : "⏳"} | ${[...r.usedOn].slice(0, 2).map((u) => `/${u}`).join("<br>")} | ${(r.prompt || "").replace(/\|/g, "/").replace(/\n/g, " ")} |\n`;
 });
-fs.writeFileSync(path.join(ROOT_DIR, "IMAGES.md"), md);
+fs.writeFileSync(path.join(ROOT_DIR, "_src", "IMAGES.md"), md);
 
 // internal link check
 let broken = 0;

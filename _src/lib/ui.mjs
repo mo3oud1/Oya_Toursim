@@ -9,6 +9,13 @@ export const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&am
 export const strip = (s) => String(s ?? "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 export const join = (arr, fn, sep = "") => (arr || []).map(fn).join(sep);
 export const ar = (n) => Number(n).toLocaleString("en-US");
+// Arabic counted nouns: 1 → singular, 2 → dual, 3–10 → plural, 11+ → singular accusative
+const counted = (one, two, few, many) => (n) => (n === 1 ? one : n === 2 ? two : n <= 10 ? `${ar(n)} ${few}` : `${ar(n)} ${many}`);
+export const daysAr = counted("يوم واحد", "يومان", "أيام", "يوماً");
+export const nightsAr = counted("ليلة واحدة", "ليلتان", "ليالٍ", "ليلة");
+export const programsAr = counted("برنامج واحد", "برنامجان", "برامج", "برنامجاً");
+export const destsAr = counted("وجهة واحدة", "وجهتان", "وجهات", "وجهة");
+export const typesAr = counted("نوع واحد", "نوعان", "أنواع", "نوعاً");
 
 export const ic = (name, cls = "") => `<svg class="i ${cls}" aria-hidden="true" focusable="false"><use href="{{root}}assets/img/icons.svg#${name}"/></svg>`;
 
@@ -112,11 +119,11 @@ export function crumbs(items) {
     .join("")}</ol></nav>`;
 }
 
-export function pageHero({ crumbs: cr, eyebrow, title, lead, icon = "compass", img, prompt, chips = [], actions = "", page = "", extra = "", focus = "", zoom = "" }) {
+export function pageHero({ crumbs: cr, eyebrow, title, lead, icon = "compass", img, prompt, chips = [], actions = "", page = "", extra = "", focus = "", zoom = "", alt = "" }) {
   registerImage(img, prompt, page);
   const file = img && photoExists(img);
   // Photo hero: full-bleed photo + direction-aware scrim (works for RTL now, LTR later)
-  const bg = file ? `<div class="page-hero__bg">${photoImg(img, { alt: "", sizes: "100vw", eager: true })}</div>` : `
+  const bg = file ? `<div class="page-hero__bg">${photoImg(img, { alt, sizes: "100vw", eager: true })}</div>` : `
   <div class="page-hero__art" aria-hidden="true">
     <span class="orb orb--1"></span><span class="orb orb--2"></span>
     <svg class="route" viewBox="0 0 800 600" preserveAspectRatio="none"><path d="M-20 520 C 160 420, 260 560, 420 380 S 640 160, 820 120"/><path d="M-20 300 C 140 260, 300 340, 460 220 S 700 60, 820 40"/></svg>
@@ -177,7 +184,7 @@ export function packageCard(p, page) {
   ${p.badge ? `<span class="badge">${esc(p.badge)}</span>` : ""}
   ${media({ img: p.img, prompt: p.imgPrompt, alt: p.title, icon: p.icon, ratio: "ratio-4x3", page, label: p.region === "world" ? p.country : p.cities.slice(0, 2).join(" + "), tone: p.region === "world" ? "world" : toneFor((p.dest || []).slice(-1)[0]) })}
   <div class="card__body">
-    <div class="card__meta"><span>${ic("calendar")}${ar(p.days)} أيام / ${ar(p.nights)} ليالٍ</span><span>${ic("pin")}${esc(p.cities.join(" • "))}</span></div>
+    <div class="card__meta"><span>${ic("calendar")}${daysAr(p.days)} / ${nightsAr(p.nights)}</span><span>${ic("pin")}${esc(p.cities.join(" • "))}</span></div>
     <h3 class="card__title"><a href="${href}">${esc(p.title)}</a></h3>
     <p class="card__text">${p.summary}</p>
     <div class="card__foot">${priceTag(p)}<span class="card__go" aria-hidden="true">${ic("arrow")}</span></div>
@@ -188,7 +195,7 @@ export function destCard(d, page, { count } = {}) {
   return `
 <a class="dest" href="{{root}}turkey-tours/${d.slug}/" data-reveal>
   ${media({ img: d.img, prompt: d.imgPrompt, alt: d.name, icon: d.icon, ratio: "", page, tone: toneFor(d.slug) })}
-  ${count ? `<span class="chip chip--dark dest__count">${ic("route")}${ar(count)} برامج</span>` : ""}
+  ${count ? `<span class="chip chip--dark dest__count">${ic("route")}${programsAr(count)}</span>` : ""}
   <div class="dest__body"><h3>${esc(d.name)}</h3><span class="en">${esc(d.nameEn)}</span><p>${d.tagline || ""}</p></div>
 </a>`;
 }

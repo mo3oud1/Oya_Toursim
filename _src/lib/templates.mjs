@@ -1,6 +1,6 @@
 // Detail page templates fed by _src/content/*.mjs
 import { site } from "../site.mjs";
-import { factIcon, visaValue, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
+import { factIcon, visaValue, daysAr, nightsAr, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
 import { tourForm, visaForm } from "./forms.mjs";
 import * as S from "./schema.mjs";
 
@@ -51,7 +51,7 @@ export function destinationPage(d, data) {
   const others = data.destinations.filter((x) => x.slug !== d.slug);
   const page = { path, nav: "turkey", title: d.seo.title, description: d.seo.description, crumbs, primaryImage: S.imageUrl(d.img), mbar: { label: "اطلب برنامجاً", icon: "route", msg: `مرحباً أويا للسياحة، أرغب ببرنامج سياحي إلى ${d.name}.` } };
   page.body = `
-${pageHero({ crumbs, eyebrow: `دليل الوجهة • <span class="ltr">${esc(d.nameEn)}</span>`, title: d.h1, lead: d.intro, icon: d.icon, img: d.img, prompt: d.imgPrompt, page: path,
+${pageHero({ crumbs, eyebrow: `دليل الوجهة • <span class="ltr">${esc(d.nameEn)}</span>`, title: d.h1, lead: d.intro, icon: d.icon, img: d.img, prompt: d.imgPrompt, alt: `${d.name}${d.tagline ? " — " + d.tagline : ""}`, page: path,
     chips: (d.facts || []).slice(0, 3).map((f) => ({ icon: "check-circle", text: `${f.k}: ${strip(f.v)}` })),
     actions: `${waBtn(`مرحباً أويا للسياحة، أرغب ببرنامج سياحي إلى ${d.name}.`, `اطلب برنامجاً إلى ${d.name}`)}<a class="btn btn--glass" href="#programs">${ic("route")}<span>البرامج المقترحة</span></a>` })}
 
@@ -89,7 +89,7 @@ ${pkgs.length ? `
 <section class="section section--sky">
   <div class="container grid grid-2">
     ${d.dayTours && d.dayTours.length ? `<div data-reveal><p class="eyebrow">جولات يومية</p><h2 class="h-l">جولات ورحلات يومية من ${esc(d.name)}</h2><div class="incl" style="grid-template-columns:1fr"><div><ul class="yes">${d.dayTours.map((t) => `<li>${ic("route")}<span><strong>${t.name}:</strong> ${t.text}</span></li>`).join("")}</ul></div></div></div>` : ""}
-    ${d.stayAreas && d.stayAreas.length ? `<div data-reveal><p class="eyebrow">أين تقيم؟</p><h2 class="h-l">أفضل مناطق السكن في ${esc(d.name)}</h2><div class="incl" style="grid-template-columns:1fr"><div><ul class="yes">${d.stayAreas.map((t) => `<li>${ic("bed")}<span><strong>${t.name}:</strong> ${t.text}</span></li>`).join("")}</ul></div></div><p class="mt-1"><a class="link-arrow" href="{{root}}hotels/">احجز فندقك مع أويا ${ic("arrow")}</a></p></div>` : ""}
+    ${d.stayAreas && d.stayAreas.length ? `<div data-reveal><p class="eyebrow">أين تقيم؟</p><h2 class="h-l">أفضل مناطق السكن في ${esc(d.name)}</h2><div class="incl" style="grid-template-columns:1fr"><div><ul class="yes">${d.stayAreas.map((t) => `<li>${ic("bed")}<span><strong>${t.name}:</strong> ${t.text}</span></li>`).join("")}</ul></div></div><p class="mt-1">${(data.hotels || []).some((h) => h.slug === d.slug) ? `<a class="link-arrow" href="{{root}}hotels/${d.slug}/">فنادق ${esc(d.name)}: المناطق والخيارات ${ic("arrow")}</a>` : `<a class="link-arrow" href="{{root}}hotels/">احجز فندقك مع أويا ${ic("arrow")}</a>`}</p><p class="muted" style="font-size:.93rem">ونرتّب لك أيضاً <a href="{{root}}transfers/">الاستقبال من المطار</a> و<a href="{{root}}private-driver/">سائقاً خاصاً يتحدث العربية</a>.</p></div>` : ""}
   </div>
 </section>
 
@@ -131,10 +131,10 @@ export function packagePage(p, data) {
   const crumbs = [{ name: "الرئيسية", path: "" }, { name: p.region === "turkey" ? "البرامج السياحية" : "رحلات خارج تركيا", path: p.region === "turkey" ? "packages/" : "world-tours/" }, { name: p.title, path }];
   const related = data.packages.filter((x) => x.slug !== p.slug && x.region === p.region).sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)).slice(0, 3);
   const page = { path, nav: p.region === "turkey" ? "turkey" : "world", title: p.seo.title, description: p.seo.description, crumbs, primaryImage: S.imageUrl(p.img) };
-  const waText = `مرحباً أويا للسياحة، أرغب بحجز برنامج: ${p.title} (${p.days} أيام).`;
+  const waText = `مرحباً أويا للسياحة، أرغب بحجز برنامج: ${p.title} (${daysAr(p.days)}).`;
   page.mbar = null; // sticky bar points to the on-page form (#book)
   page.body = `
-${pageHero({ crumbs, eyebrow: `${ar(p.days)} أيام • ${ar(p.nights)} ليالٍ • ${esc(p.country)}`, title: p.h1, lead: p.summary, icon: p.icon, img: p.img, prompt: p.imgPrompt, page: path,
+${pageHero({ crumbs, eyebrow: `${daysAr(p.days)} • ${nightsAr(p.nights)} • ${esc(p.country)}`, title: p.h1, lead: p.summary, icon: p.icon, img: p.img, prompt: p.imgPrompt, alt: `${p.title} — ${p.cities.join("، ")}`, page: path,
     chips: [{ icon: "pin", text: p.cities.join(" ← ") }, ...(p.tags || []).slice(0, 3).map((t) => ({ icon: "tag", text: tagLabel(t) }))],
     actions: `${waBtn(waText, "احجز هذا البرنامج")}<a class="btn btn--glass" href="#itinerary">${ic("route")}<span>البرنامج يوماً بيوم</span></a>` })}
 
@@ -166,10 +166,10 @@ ${pageHero({ crumbs, eyebrow: `${ar(p.days)} أيام • ${ar(p.nights)} ليا
       <div class="summary" data-reveal="right">
         <div class="summary__top">${p.priceFrom ? `<div class="price"><small>يبدأ من / للشخص</small><b>${ar(p.priceFrom)}<span class="cur">$</span></b></div>` : `<div class="price"><small>السعر</small><b style="font-size:1.35rem">حسب الموسم والفندق</b></div>`}<p style="margin:.4em 0 0;color:#B9CCE0;font-size:.9rem">${p.priceNote || "اطلب عرض سعر مخصص لعدد المسافرين وتواريخك."}</p></div>
         <dl>
-          <div><dt>${ic("calendar")}المدة</dt><dd>${ar(p.days)} أيام / ${ar(p.nights)} ليالٍ</dd></div>
-          <div><dt>${ic("pin")}المدن</dt><dd>${esc(p.cities.join("، "))}</dd></div>
+          <div><dt>${ic("calendar")}المدة</dt><dd>${daysAr(p.days)} / ${nightsAr(p.nights)}</dd></div>
+          <div><dt>${ic("pin")}المدن</dt><dd>${esc(p.cities.join("، "))}</dd></div>${(p.dest || []).length ? `<div><dt>${ic("map")}أدلة الوجهات</dt><dd>${(p.dest || []).map((sl) => { const dd = data.destinations.find((x) => x.slug === sl); return dd ? `<a href="{{root}}turkey-tours/${sl}/">${esc(dd.name)}</a>` : ""; }).filter(Boolean).join("، ")}</dd></div>` : ""}
           <div><dt>${ic("users")}مناسب لـ</dt><dd>${(p.tags || []).slice(0, 3).map(tagLabel).join("، ") || "الجميع"}</dd></div>
-          <div><dt>${ic("car")}التنقل</dt><dd>سيارة خاصة مع سائق</dd></div>
+          <div><dt>${ic("car")}التنقل</dt><dd><a href="{{root}}private-driver/">سيارة خاصة مع سائق</a></dd></div>
           <div><dt>${ic("refresh")}المرونة</dt><dd>قابل للتعديل بالكامل</dd></div>
         </dl>
         <div class="btn-col">
@@ -224,6 +224,26 @@ export const visaStepsConsular = [
   { icon: "calendar", t: "الموعد والتقديم", d: "نساعدك في تعبئة النموذج ونحجز موعدك حسب المتاح، وتحضر البصمة أو المقابلة بنفسك في المركز أو السفارة." },
   { icon: "passport", t: "القرار واستلام الجواز", d: "نتابع حالة طلبك ونخبرك بطريقة الاستلام، ونساعدك في إكمال باقي ترتيبات السفر." },
 ];
+
+// Official portals per visa (shown as "official sources": we are a private agency, the decision is theirs)
+const SRC = {
+  saudi: [["منصة التأشيرات السعودية (KSA Visa)", "https://ksavisa.sa"], ["وزارة الخارجية السعودية", "https://www.mofa.gov.sa"]],
+  umrah: [["منصة نسك", "https://www.nusuk.sa"], ["منصة التأشيرات السعودية (KSA Visa)", "https://ksavisa.sa"]],
+  tourist: [["Visit Saudi", "https://www.visitsaudi.com"], ["منصة التأشيرات السعودية (KSA Visa)", "https://ksavisa.sa"]],
+  uae: [["الهيئة الاتحادية للهوية والجنسية (ICP)", "https://icp.gov.ae"], ["إقامة دبي (GDRFA)", "https://gdrfad.gov.ae"]],
+  qatar: [["منصة هيّا", "https://hayya.qa"], ["Visit Qatar", "https://visitqatar.com"]],
+  oman: [["التأشيرة الإلكترونية — شرطة عُمان السلطانية", "https://evisa.rop.gov.om"]],
+  bahrain: [["التأشيرة الإلكترونية — مملكة البحرين", "https://www.evisa.gov.bh"]],
+  kuwait: [["بوابة تأشيرات الكويت", "https://kuwaitvisa.moi.gov.kw"]],
+  "gcc-unified": [["الأمانة العامة لمجلس التعاون لدول الخليج العربية", "https://www.gcc-sg.org"]],
+  schengen: [["المفوضية الأوروبية — الهجرة والشؤون الداخلية", "https://home-affairs.ec.europa.eu"]],
+  uk: [["GOV.UK — تأشيرة الزائر القياسية", "https://www.gov.uk/standard-visitor"]],
+  usa: [["وزارة الخارجية الأمريكية — التأشيرات", "https://travel.state.gov"]],
+  canada: [["الهجرة واللاجئون والمواطنة الكندية (IRCC)", "https://www.canada.ca/en/immigration-refugees-citizenship.html"]],
+};
+const visaSources = (v) => SRC[v.slug] || (v.group === "saudi" ? SRC.saudi : []);
+const AR_MONTHS = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+const arDate = (iso) => { const [y, m, d] = iso.split("-").map(Number); return `${d} ${AR_MONTHS[m - 1]} ${y}`; };
 export function visaPage(v, data) {
   const G = VISA_GROUPS[v.group];
   const path = `${G.hub}${v.slug}/`;
@@ -231,7 +251,7 @@ export function visaPage(v, data) {
   const siblings = data.visas.filter((x) => x.group === v.group && x.slug !== v.slug);
   const pending = v.status === "not-launched"; // announced but not open yet: register interest only, no application wording
   const steps = v.consular ? visaStepsConsular : visaSteps;
-  const page = { path, nav: "visas", title: v.seo.title, description: v.seo.description, crumbs, mbar: { label: pending ? "سجّل اهتمامك" : "ابدأ الطلب", icon: "passport", msg: `مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.` } };
+  const page = { path, nav: "visas", title: v.seo.title, description: v.seo.description, crumbs, modified: site.visasReviewed || undefined, mbar: { label: pending ? "سجّل اهتمامك" : "ابدأ الطلب", icon: "passport", msg: `مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.` } };
   const pendingBook = `
 <section class="section section--white" id="book">
   <div class="container narrow center" data-reveal>
@@ -257,7 +277,7 @@ export function visaPage(v, data) {
 </section>
 `;
   page.body = `
-${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابعة`, title: v.h1, lead: v.intro, icon: v.icon || "passport", img: v.img, prompt: v.imgPrompt, zoom: v.heroZoom, page: path,
+${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابعة`, title: v.h1, lead: v.intro, icon: v.icon || "passport", img: v.img, prompt: v.imgPrompt, alt: v.heroAlt || v.name, zoom: v.heroZoom, page: path,
     chips: (v.facts || []).slice(0, 3).map((f) => ({ icon: "check-circle", text: `${f.k}: ${strip(f.v)}` })),
     actions: `${waBtn(pending ? `مرحباً أويا للسياحة، أرغب بتسجيل اهتمامي بـ${v.name} لتبلغوني عند إطلاقها.` : `مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.`, pending ? "سجّل اهتمامك عبر واتساب" : "ابدأ طلبك عبر واتساب")}<a class="btn btn--glass" href="#docs">${ic("doc")}<span>الأوراق المطلوبة</span></a>` })}
 
@@ -297,6 +317,15 @@ ${v.types && v.types.length ? `
 
 ${pending ? pendingBook : applySections}
 
+<section class="section section--tight">
+  <div class="container narrow">
+    <div class="srcbox" data-reveal>
+      ${site.visasReviewed ? `<p class="srcbox__date">${ic("calendar")}<span>آخر مراجعة لمعلومات هذه الصفحة: <time datetime="${site.visasReviewed}">${arDate(site.visasReviewed)}</time></span></p>` : ""}
+      ${visaSources(v).length ? `<p class="srcbox__t">المصادر الرسمية — تحقّق منها دائماً قبل السفر:</p><ul>${visaSources(v).map(([t, u]) => `<li><a href="${u}" target="_blank" rel="noopener external">${t} ${ic("arrow")}</a></li>`).join("")}</ul>` : ""}
+      <p class="srcbox__n">أويا للسياحة وكالة سفر خاصة ولا تتبع أياً من هذه الجهات. الأنظمة تتغير، ونؤكد لك المتطلبات السارية وقت تقديم طلبك.</p>
+    </div>
+  </div>
+</section>
 ${faqBlock(v.faq, { title: `أسئلة شائعة عن ${esc(v.name)}` })}
 ${readFirst([v.group], data, path, "أدلة مفيدة قبل التقديم")}
 
@@ -324,7 +353,7 @@ export function postPage(p, data) {
   const others = [...new Map([...sameCat, ...byTopic, ...data.posts.filter((x) => x.slug !== p.slug)].map((x) => [x.slug, x])).values()].slice(0, 3);
   const date = new Date(p.date).toLocaleDateString("ar-EG-u-nu-latn", { year: "numeric", month: "long", day: "numeric" });
   page.body = `
-${pageHero({ crumbs, eyebrow: esc(p.category || "دليل السفر"), title: p.h1 || p.title, lead: p.excerpt, icon: p.icon || "doc", img: p.img, prompt: p.imgPrompt, page: path,
+${pageHero({ crumbs, eyebrow: esc(p.category || "دليل السفر"), title: p.h1 || p.title, lead: p.excerpt, icon: p.icon || "doc", img: p.img, prompt: p.imgPrompt, alt: p.title, page: path,
     chips: [{ icon: "calendar", text: `<time datetime="${p.date}">${date}</time>` }, { icon: "clock", text: `${ar(p.readMins || 6)} دقائق قراءة` }, { icon: "user", text: "فريق أويا للسياحة" }] })}
 <section class="section">
   <article class="narrow">

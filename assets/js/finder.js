@@ -38,7 +38,7 @@
       var p = x.p;
       return '<a class="finder__card" href="' + root + "packages/" + p.s + '/">' +
         (i === 0 ? '<span class="badge" style="position:static;align-self:flex-start">الأنسب لك</span>' : "") +
-        "<b>" + p.t + "</b><small>" + p.d + " أيام • " + p.c + "</small><span>" + p.sum + "</span></a>";
+        "<b>" + p.t + "</b><small>" + (p.dl || p.d + " أيام") + " • " + p.c + "</small><span>" + p.sum + "</span></a>";
     }).join("");
     var msg = "مرحباً أويا، استخدمت مكتشف الرحلات وهذه اختياراتي:\n" +
       Object.keys(labels).map(function (k) { return "• " + labels[k]; }).join("\n") +
