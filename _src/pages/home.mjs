@@ -1,7 +1,7 @@
 import { site } from "../site.mjs";
-import { ic, ar, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, featureItem } from "../lib/ui.mjs";
+import { ic, ar, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, featureItem, photoSources, registerImage } from "../lib/ui.mjs";
 import { booker, cityList } from "../lib/forms.mjs";
-import { skylineNear, skylineFar, flightSvg } from "../lib/art.mjs";
+import { flightSvg } from "../lib/art.mjs";
 import * as S from "../lib/schema.mjs";
 import { superCup } from "./matches.mjs";
 import { globeSection, finderSection } from "../lib/interactive.mjs";
@@ -35,11 +35,23 @@ export function homePage(data) {
     { cls: "b-4", icon: "globe", title: "تأشيرات دولية", text: "شنغن، بريطانيا، أمريكا وكندا — تجهيز ملف كامل.", href: "visas/" },
   ];
 
+  // Cinematic hero: real-looking destination photos crossfading with a slow drift (decorative; first slide is the LCP image)
+  const SLIDES = [
+    { img: "hero-about", loc: "إسطنبول، تركيا", fx: "32% 50%" },
+    { img: "hero-turkey", loc: "كابادوكيا، تركيا", fx: "30% 40%" },
+    { img: "dest-uzungol", loc: "أوزنجول، طرابزون", fx: "35% 50%" },
+    { img: "hero-world", loc: "جزر المالديف", fx: "25% 50%" },
+    { img: "hero-saudi", loc: "العُلا، السعودية", fx: "28% 60%" },
+  ];
   page.body = `
-<section class="hero">
-  <div class="hero__sky" aria-hidden="true"><div class="hero__stars"></div><div class="hero__moon"></div></div>
+<section class="hero hero--photo" data-hero-slides>
+  <div class="hero__slides" aria-hidden="true">
+    ${SLIDES.map((sl, i) => { const src = photoSources(sl.img); if (!src) return ""; registerImage(sl.img, "", "");
+      return `<div class="hero__slide${i === 0 ? " is-on" : ""}" data-loc="${sl.loc}" style="--fx:${sl.fx}">${i === 0
+        ? `<img src="${src.src}" srcset="${src.srcset}" sizes="100vw" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">`
+        : `<img data-src="${src.src}" data-srcset="${src.srcset}" sizes="100vw" alt="" width="1536" height="1024" decoding="async">`}</div>`; }).join("")}
+  </div>
   ${flightSvg()}
-  <div class="hero__skyline" aria-hidden="true"><div class="skyline-far">${skylineFar()}</div><div class="skyline-near">${skylineNear()}</div><div class="hero__sea"></div></div>
   <div class="container hero__inner">
     <div class="hero__copy">
       <p class="eyebrow fade-in" style="--d:.05s">${ic("pin")} وكالة سياحة وسفر في إسطنبول</p>
@@ -52,6 +64,11 @@ export function homePage(data) {
         <span class="chip chip--dark">${ic("shield")}عروض مكتوبة وواضحة قبل الدفع</span>
       </div>
     </div>
+  </div>
+  <div class="hero__ctrl container" aria-label="صور الوجهات">
+    <p class="hero__loc">${ic("pin")}<span>${SLIDES[0].loc}</span></p>
+    <div class="hero__dots">${SLIDES.map((sl, i) => `<button type="button" class="hero__dot" aria-label="عرض صورة ${sl.loc}"${i === 0 ? ' aria-current="true"' : ""}><i></i></button>`).join("")}</div>
+    <button type="button" class="hero__pause" aria-label="إيقاف عرض الصور" aria-pressed="false">${ic("pause")}${ic("play")}</button>
   </div>
 </section>
 <section class="booker-wrap"><div class="container">${booker()}${cityList()}</div></section>

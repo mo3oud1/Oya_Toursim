@@ -308,3 +308,48 @@
   /* ---------- Year ---------- */
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
+
+/* Home hero: cinematic destination photos. Decorative crossfade; extra slides load after the page,
+   auto-advance pauses off-screen / in background tabs / for reduced motion, and a pause button is always available. */
+(function () {
+  var h = document.querySelector("[data-hero-slides]");
+  if (!h) return;
+  var slides = [].slice.call(h.querySelectorAll(".hero__slide"));
+  var dots = [].slice.call(h.querySelectorAll(".hero__dot"));
+  var loc = h.querySelector(".hero__loc span"), btn = h.querySelector(".hero__pause");
+  if (slides.length < 2) return;
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var i = 0, timer = 0, paused = reduce, visible = true, loaded = false, D = 7000;
+  function loadAll() {
+    if (loaded) return; loaded = true;
+    slides.forEach(function (s) { var im = s.querySelector("img[data-src]"); if (im) { im.srcset = im.getAttribute("data-srcset"); im.src = im.getAttribute("data-src"); im.removeAttribute("data-src"); } });
+  }
+  function schedule() { clearTimeout(timer); if (!paused && visible) timer = setTimeout(function () { show(i + 1); }, D); }
+  function show(n) {
+    loadAll();
+    n = (n + slides.length) % slides.length;
+    var prev = i; i = n;
+    var s = slides[n], im = s.querySelector("img"), done = false;
+    var go = function () {
+      if (done) return; done = true;
+      slides[prev].classList.remove("is-on"); dots[prev].removeAttribute("aria-current");
+      s.classList.add("is-on"); dots[n].setAttribute("aria-current", "true");
+      var span = document.createElement("span"); span.textContent = s.getAttribute("data-loc"); loc.replaceWith(span); loc = span;
+      schedule();
+    };
+    if (im && !im.complete) { im.addEventListener("load", go, { once: true }); setTimeout(go, 1500); } else go();
+  }
+  dots.forEach(function (d, n) { d.addEventListener("click", function () { if (n !== i) show(n); else schedule(); }); });
+  function setPaused(p) {
+    paused = p; h.classList.toggle("is-paused", p);
+    btn.setAttribute("aria-pressed", p ? "true" : "false");
+    btn.setAttribute("aria-label", p ? "تشغيل عرض الصور" : "إيقاف عرض الصور");
+    schedule();
+  }
+  btn.addEventListener("click", function () { setPaused(!paused); });
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; schedule(); }, { threshold: 0.2 }).observe(h);
+  document.addEventListener("visibilitychange", function () { visible = !document.hidden; schedule(); });
+  var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 1200); };
+  window.addEventListener("load", function () { idle(loadAll); });
+  setPaused(paused);
+})();

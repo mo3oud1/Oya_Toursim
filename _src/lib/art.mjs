@@ -73,8 +73,9 @@ export function skylineFar() {
 
 // Flight path echoing the logo contrail (two parallel trails + plane)
 export function flightSvg() {
-  const p = "M-60 560 C 260 540 520 470 760 330 S 1180 90 1520 30";
-  const p2 = "M-60 574 C 262 552 524 482 766 342 S 1186 102 1526 42";
+  // stays on the photo side (left in RTL) so the trail never crosses the headline
+  const p = "M-60 650 C 120 620 250 560 320 470 S 420 300 500 225";
+  const p2 = "M-60 664 C 124 632 256 572 328 482 S 428 312 508 237";
   return `<svg class="hero__flight" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
   <path class="flight-guide" d="${p}"/>
   <path class="flight-trail" pathLength="1" d="${p}"/>

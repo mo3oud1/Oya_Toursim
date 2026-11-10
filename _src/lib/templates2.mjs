@@ -1,7 +1,7 @@
 // Templates: hotel city pages, quick service pages, seasonal offers (+ offers hub)
 import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
-import { esc, strip, ic, ar, media, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, waBtn, waUrl } from "./ui.mjs";
+import { esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, waBtn, waUrl } from "./ui.mjs";
 import { hotelForm, tourForm, transferForm, driverForm, dayTripForm, umrahForm } from "./forms.mjs";
 import { readFirst } from "./templates.mjs";
 import * as S from "./schema.mjs";
@@ -98,6 +98,7 @@ ${pageHero({ crumbs, eyebrow: s.eyebrow || (isOffer ? "عرض موسمي" : "خ�
     <div data-reveal="right">${s.includes && s.includes.length ? `<div class="incl" style="grid-template-columns:1fr"><div class="yes"><h3>${ic("check-circle")} ما تشمله الخدمة</h3><ul class="yes">${s.includes.map((x) => `<li>${ic("check")}<span>${x}</span></li>`).join("")}</ul></div></div>` : ""}</div>
   </div>
 </section>
+${photoStrip(s.gallery, { eyebrow: "الحرمان الشريفان", title: "مكة المكرمة والمدينة المنورة", page: path })}
 ${s.options && s.options.length ? `<section class="section section--white"><div class="container">${sectionHead({ eyebrow: "الخيارات", title: isOffer ? "ماذا نرتّب لك؟" : "اختر ما يناسبك" })}<div class="grid grid-3" data-stagger>${s.options.map((o) => `<div class="svc" data-reveal><span class="ico">${ic(o.icon || "sparkles")}</span><h3>${o.name}</h3><p>${o.text}</p></div>`).join("")}</div></div></section>` : ""}
 ${s.items && s.items.length ? `<section class="section"><div class="container">${sectionHead({ eyebrow: "الجولات", title: "اختر جولتك اليومية", lead: "مدد الجولات تقريبية وتشمل التنقل بسيارة خاصة مع سائق يتحدث العربية." })}<div class="grid grid-3" data-stagger>${s.items.map((t) => `<article class="vcard" data-reveal><span class="chip" style="align-self:flex-start">${ic("pin")}من ${esc(t.from)} • ${esc(t.duration)}</span><h3>${esc(t.name)}</h3><p>${t.text}</p><div class="facts">${(t.stops || []).slice(0, 5).map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div><a class="link-arrow" href="#book" data-prefill="trip-select|${esc(t.name)}">احجز هذه الجولة ${ic("arrow")}</a></article>`).join("")}</div></div></section>` : ""}
 ${suggested.length ? `<section class="section"><div class="container">${sectionHead({ eyebrow: "برامج مقترحة", title: "برامج تناسب هذا الموسم" })}<div class="grid grid-3" data-stagger>${suggested.map((p) => packageCard(p, path)).join("")}</div></div></section>` : ""}

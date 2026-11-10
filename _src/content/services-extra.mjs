@@ -529,12 +529,16 @@ export default [
   // ───────────────────────────── 5. Ramadan Umrah 2027 (registration of interest) ─────────────────────────────
   {
     slug: "ramadan-umrah-2027",
+    gallery: [
+      { img: "gallery-makkah-aerial", alt: "المسجد الحرام في مكة المكرمة من الأعلى مع جموع المصلين حول الكعبة", caption: "المسجد الحرام — مكة المكرمة" },
+      { img: "gallery-madinah-sunset", alt: "المسجد النبوي في المدينة المنورة عند الغروب بمآذنه المضاءة", caption: "المسجد النبوي — المدينة المنورة" },
+    ],
     path: "offers/ramadan-umrah-2027/",
     kind: "offer",
     interest: true,
     icon: "mosque",
     img: "svc-ramadan-umrah-2027",
-    imgPrompt: `The Masjid al-Haram in Makkah at twilight seen from a respectful distance, illuminated white minarets and arched marble colonnades glowing warmly against a deep blue evening sky, vast courtyard with pilgrims in white visible only as tiny distant figures, serene and reverent atmosphere, no close-up faces, no clock tower, no signage, ${IMG_STYLE}`,
+    imgPrompt: "صورة حقيقية من صاحب الموقع: المسجد النبوي الشريف ليلاً (images/1.jpg). لا تُستبدل بصورة مولّدة.",
     seo: {
       title: "عمرة رمضان 2027 من تركيا: سجّل اهتمامك | أويا",
       description:

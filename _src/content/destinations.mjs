@@ -1043,7 +1043,7 @@ export default [
     icon: "balloon",
     img: "dest-cappadocia",
     imgPrompt:
-      "Photorealistic travel photography of Cappadocia, Turkey at sunrise: dozens of colorful hot-air balloons floating above Göreme's fairy chimneys and soft pink-and-cream eroded valleys, warm golden light, a modestly dressed couple seen from behind at a distance on a cave-hotel rooftop terrace, natural colors, cinematic composition, no text, no logos, no watermarks, landscape 3:2",
+      "Photorealistic travel photography: Change the angle and time: Goreme valley at blue hour just before sunrise, several balloons being inflated and glowing from their burner flames on the valley floor among fairy chimneys, more balloons lifting off, softly lit cave hotels on the left hillside; glowing balloons in the left half, calm pre-dawn sky on the right; no terrace, no cushions, no couple. Main subject in the left half; keep the right 40% calm (sky/water/soft background) for the RTL headline; any people small and in the left half; photorealistic, natural colours, no text, no logos, no watermarks, 3:2.",
     seo: {
       title: "السياحة في كابادوكيا ورحلة المنطاد | أويا للسياحة",
       description:

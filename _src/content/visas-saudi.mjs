@@ -104,13 +104,18 @@ export default [
   // ───────────────────────────── 2. Umrah visa ─────────────────────────────
   {
     slug: "umrah",
+    heroZoom: "1.34", // keeps the Kaaba clear of the headline (subject moves away from the text side)
+    gallery: [
+      { img: "gallery-makkah-aerial", alt: "المسجد الحرام في مكة المكرمة من الأعلى مع جموع المصلين حول الكعبة", caption: "المسجد الحرام — مكة المكرمة" },
+      { img: "gallery-madinah-sunset", alt: "المسجد النبوي في المدينة المنورة عند الغروب بمآذنه المضاءة", caption: "المسجد النبوي — المدينة المنورة" },
+    ],
     group: "saudi",
     name: "تأشيرة العمرة",
     short: "عمرة",
     stamp: "SA",
     icon: "mosque",
     img: "visa-saudi-umrah",
-    imgPrompt: `The Prophet's Mosque (Masjid an-Nabawi) in Madinah, Saudi Arabia, seen from its vast white marble outer courtyard, with rows of giant white tensile umbrella canopies opened in a geometric grid, tall slender minarets and the green dome visible in the distance, soft early-morning light, a few worshippers in white walking far away seen only from behind as small figures, serene and respectful atmosphere, no close-up faces, ${IMG_STYLE}`,
+    imgPrompt: "صورة حقيقية من صاحب الموقع: المسجد الحرام والكعبة المشرفة (images/2.webp). لا تُستبدل بصورة مولّدة.",
     seo: {
       title: "تأشيرة عمرة من تركيا: الشروط والمدة | أويا",
       description:

@@ -1,6 +1,6 @@
 // Detail page templates fed by _src/content/*.mjs
 import { site } from "../site.mjs";
-import { esc, strip, ic, ar, media, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
+import { esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
 import { tourForm, visaForm } from "./forms.mjs";
 import * as S from "./schema.mjs";
 
@@ -224,7 +224,7 @@ export function visaPage(v, data) {
   const siblings = data.visas.filter((x) => x.group === v.group && x.slug !== v.slug);
   const page = { path, nav: "visas", title: v.seo.title, description: v.seo.description, crumbs, mbar: { label: "ابدأ الطلب", icon: "passport", msg: `مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.` } };
   page.body = `
-${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابعة`, title: v.h1, lead: v.intro, icon: v.icon || "passport", img: v.img, prompt: v.imgPrompt, page: path,
+${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابعة`, title: v.h1, lead: v.intro, icon: v.icon || "passport", img: v.img, prompt: v.imgPrompt, zoom: v.heroZoom, page: path,
     chips: (v.facts || []).slice(0, 3).map((f) => ({ icon: "check-circle", text: `${f.k}: ${strip(f.v)}` })),
     actions: `${waBtn(`مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.`, "ابدأ طلبك عبر واتساب")}<a class="btn btn--glass" href="#docs">${ic("doc")}<span>الأوراق المطلوبة</span></a>` })}
 
@@ -244,6 +244,7 @@ ${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابع
   </div>
 </section>
 
+${photoStrip(v.gallery, { eyebrow: "الحرمان الشريفان", title: "مكة المكرمة والمدينة المنورة", page: path })}
 ${v.types && v.types.length ? `
 <section class="section section--white">
   <div class="container">

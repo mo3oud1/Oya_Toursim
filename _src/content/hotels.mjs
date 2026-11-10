@@ -299,7 +299,7 @@ export default [
     destination: "uzungol",
     img: "hotels-uzungol",
     imgPrompt:
-      "Photorealistic travel photography of Uzungöl lake in northeastern Turkey in early morning: wooden chalet-style hotels and small timber bungalows on the green slopes around the lake, the stone mosque with its slender minaret on the lakeshore, steep forested mountains with low drifting clouds, mirror-calm water, soft natural light, natural colors, cinematic composition, no people in close-up, no text, no logos, no watermarks, landscape 3:2",
+      "Photorealistic travel photography: Make it hotel-specific: a wooden chalet hotel balcony in Uzungol in early morning with a breakfast tray and blanket on a bench in the left foreground, the lake, mosque and forested slopes small and soft in the background, misty mountains calm on the right; no people. Main subject in the left half; keep the right 40% calm (sky/water/soft background) for the RTL headline; any people small and in the left half; photorealistic, natural colours, no text, no logos, no watermarks, 3:2.",
     seo: {
       title: "فنادق وأكواخ أوزنجول بإطلالة على البحيرة | أويا",
       description:
