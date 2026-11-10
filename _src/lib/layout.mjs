@@ -167,6 +167,15 @@ export function renderPage(page, data, assetsVer) {
   const ogImg = abs(ogFor(page));
   const title = page.title;
   const graph = page.schemaGraph || [];
+  // Photos for search engines: the page's hero photo becomes primaryImageOfPage, and Service nodes get an image
+  const heroKey = (/class="page-hero__bg"><img[^>]*?src="\{\{root\}\}assets\/img\/photos\/([\w-]+)\.webp"/.exec(page.body || "") || [])[1];
+  if (heroKey) {
+    const img = abs(`assets/img/photos/${heroKey}.webp`);
+    graph.forEach((n) => {
+      if (/WebPage|CollectionPage|AboutPage|ContactPage|FAQPage/.test(n["@type"]) && !n.primaryImageOfPage) n.primaryImageOfPage = { "@type": "ImageObject", url: img, width: 1536, height: 1024 };
+      if (n["@type"] === "Service" && !n.image) n.image = img;
+    });
+  }
   const L = site.locales.find((l) => l.code === (page.lang || "ar")) || site.locales[0];
   // hreflang: one entry per language this page exists in (page.alternates = { en: url, ... } later)
   const alts = { [L.code]: url, ...(page.alternates || {}) };
@@ -202,7 +211,10 @@ ${site.gscVerification ? `<meta name="google-site-verification" content="${esc(s
 <link rel="icon" href="{{root}}favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="{{root}}apple-touch-icon.png">
 <link rel="manifest" href="{{root}}site.webmanifest">
-<link rel="preload" href="{{root}}assets/fonts/alexandria-arabic.woff2" as="font" type="font/woff2" crossorigin>
+${(() => { // preload the LCP photo (page hero, or the home hero's first slide) so it starts downloading with the CSS
+    const m = /<img[^>]*?src="(\{\{root\}\}assets\/img\/photos\/[\w-]+\.webp)"[^>]*?srcset="([^"]+)"[^>]*?fetchpriority="high"/.exec(page.body || "");
+    return m ? `<link rel="preload" as="image" href="${m[1]}" imagesrcset="${m[2]}" imagesizes="100vw" fetchpriority="high">\n` : "";
+  })()}<link rel="preload" href="{{root}}assets/fonts/alexandria-arabic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{root}}assets/fonts/readex-arabic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{root}}assets/css/main.css?v=${assetsVer}">
 <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__oyaReady)document.documentElement.classList.add("reveal-all")},2500);</script>

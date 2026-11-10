@@ -64,7 +64,10 @@ const pages = [
 ];
 
 // cache-busting version from asset contents
-const ver = crypto.createHash("md5").update(fs.readFileSync(path.join(ROOT_DIR, "assets/css/main.css"))).update(fs.readFileSync(path.join(ROOT_DIR, "assets/js/main.js"))).update(fs.readFileSync(path.join(ROOT_DIR, "assets/img/icons.svg"))).digest("hex").slice(0, 8);
+// cache-busting version: covers the stylesheet, the icon sprite and every first-party script
+const verHash = crypto.createHash("md5");
+for (const f of ["assets/css/main.css", "assets/img/icons.svg", ...fs.readdirSync(path.join(ROOT_DIR, "assets/js")).filter((f) => f.endsWith(".js")).sort().map((f) => `assets/js/${f}`)]) verHash.update(fs.readFileSync(path.join(ROOT_DIR, f)));
+const ver = verHash.digest("hex").slice(0, 8);
 
 const written = [];
 const titles = new Map();
@@ -88,8 +91,13 @@ for (const page of pages) {
 // sitemap.xml
 const today = new Date().toISOString().slice(0, 10);
 const prio = (p) => (p === "" ? "1.0" : /^(hotels|flights|turkey-tours|saudi-visa|gcc-visas|visas|packages|matches|world-tours)\/$/.test(p) ? "0.9" : /^(turkey-tours|packages|saudi-visa|gcc-visas|visas|matches)\//.test(p) ? "0.8" : p.startsWith("blog/") ? "0.7" : "0.5");
-const urls = written.filter((w) => !w.page.noindex).map((w) => `  <url><loc>${site.url}/${w.page.path}</loc><lastmod>${today}</lastmod><priority>${prio(w.page.path)}</priority></url>`);
-fs.writeFileSync(path.join(ROOT_DIR, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`);
+// image sitemap entries: the main (1536w) photo files used on each page, hero first
+const pagePhotos = (body) => [...new Set([...String(body || "").matchAll(/assets\/img\/photos\/([\w-]+?)(?:-640|-1024)?\.webp/g)].map((m) => m[1]))].slice(0, 12);
+const urls = written.filter((w) => !w.page.noindex).map((w) => {
+  const imgs = pagePhotos(w.page.body).map((k) => `<image:image><image:loc>${site.url}/assets/img/photos/${k}.webp</image:loc></image:image>`).join("");
+  return `  <url><loc>${site.url}/${w.page.path}</loc><lastmod>${today}</lastmod><priority>${prio(w.page.path)}</priority>${imgs}</url>`;
+});
+fs.writeFileSync(path.join(ROOT_DIR, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join("\n")}\n</urlset>\n`);
 
 // robots.txt
 fs.writeFileSync(path.join(ROOT_DIR, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /_src/\n\nSitemap: ${site.url}/sitemap.xml\n`);

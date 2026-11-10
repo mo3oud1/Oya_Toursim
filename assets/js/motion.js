@@ -59,7 +59,9 @@
   if (w.ScrollTrigger) {
     gsap.registerPlugin(w.ScrollTrigger);
     $$(".itinerary").forEach(function (list) {
-      var line = d.createElement("span");
+      // a decorative <li> (lists may only contain <li>), hidden from assistive tech
+      var line = d.createElement("li");
+      line.setAttribute("aria-hidden", "true"); line.setAttribute("role", "presentation");
       line.className = "itinerary__progress";
       list.appendChild(line);
       gsap.fromTo(line, { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: list, start: "top 65%", end: "bottom 55%", scrub: 0.3 } });
