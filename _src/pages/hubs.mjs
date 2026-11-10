@@ -1,6 +1,6 @@
 import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
-import { ic, ar, esc, strip, sectionHead, faqBlock, ctaBand, pageHero, photoStrip, waBtn, waUrl, packageCard, destCard, visaCard, postCard, featureItem } from "../lib/ui.mjs";
+import { ic, ar, esc, strip, sectionHead, faqBlock, ctaBand, pageHero, photoStrip, visaValue, waBtn, waUrl, packageCard, destCard, visaCard, postCard, featureItem } from "../lib/ui.mjs";
 import { tourForm, visaForm } from "../lib/forms.mjs";
 import { visaSteps } from "../lib/templates.mjs";
 import * as S from "../lib/schema.mjs";
@@ -231,6 +231,7 @@ export function visaHub(group, data) {
 ${pageHero({ crumbs, ...heroPhoto(H.hero), eyebrow: "مركز التأشيرات في أويا", title: H.h1, lead: H.lead, icon: H.icon, page: H.path,
     chips: [{ icon: "passport", text: `${ar(list.length)} أنواع تأشيرات` }, { icon: "doc", text: "تجهيز ومراجعة الملف" }, { icon: "whatsapp", text: "متابعة حتى الصدور" }],
     actions: `${waBtn(`مرحباً أويا، أرغب بالاستفسار عن ${H.name}.`, "استشارة مجانية عبر واتساب")}<a class="btn btn--glass" href="#book">${ic("send")}<span>ابدأ طلبك</span></a>` })}
+${visaValue({ name: H.name })}
 ${photoStrip(H.gallery, { eyebrow: "صور حقيقية", title: "مدن المملكة", page: H.path })}
 <section class="section">
   <div class="container">

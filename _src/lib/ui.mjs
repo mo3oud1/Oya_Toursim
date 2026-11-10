@@ -14,6 +14,7 @@ export const ic = (name, cls = "") => `<svg class="i ${cls}" aria-hidden="true" 
 
 /* Fact labels get an icon that says what the fact is about (distance → route, time → clock, …) */
 const FACT_ICONS = [
+  [/التقديم معنا/, "shield"],
   [/تبعد|المسافة|نقاط الانطلاق|التنقل/, "route"],
   [/مطار|الطيران/, "takeoff"],
   [/أفضل وقت|أفضل موسم|موعد|بداية رمضان|العشر الأواخر|العيد|الطقس/, "calendar"],
@@ -220,6 +221,31 @@ export function photoStrip(g, { eyebrow = "", title = "", page = "" } = {}) {
   <div class="container">
     ${title ? sectionHead({ eyebrow, title }) : ""}
     <div class="strip2" data-stagger>${g.map((x) => `<figure data-reveal>${media({ img: x.img, prompt: x.prompt || "صورة حقيقية من صاحب الموقع", alt: x.alt, ratio: "ratio-16x9", page })}<figcaption>${x.caption}</figcaption></figure>`).join("")}</div>
+  </div>
+</section>`;
+}
+
+/* ---------- Visa service value: why apply through OYA (no prices; small service fee explained before starting) ---------- */
+export function visaValue({ name = "التأشيرة", wa = "" } = {}) {
+  const pts = [
+    ["doc", "نعبّئ الطلب عنك", "ونطابق كل حرف ورقم مع جوازك قبل الإرسال."],
+    ["camera", "نراجع الصور والمستندات", "حسب المواصفات الرسمية، حتى لا يُرفض الملف لسبب شكلي."],
+    ["check-circle", "نرتّب ملفك بشكل صحيح", "ونكمّل الحجوزات والأوراق المطلوبة لنوع تأشيرتك."],
+    ["whatsapp", "نتابع طلبك حتى القرار", "ونرسل لك التأشيرة فور صدورها على واتساب."],
+  ];
+  return `
+<section class="section section--tight">
+  <div class="container">
+    <div class="vvalue" data-reveal>
+      <div class="vvalue__head">
+        <p class="eyebrow">${ic("shield")} لماذا تقدّم عن طريق أويا؟</p>
+        <h2 class="h-l">خطأ واحد في حرف أو رقم… قد يكلّفك رسوم التأشيرة كاملة</h2>
+        <p>كثير من الطلبات تُرفض أو تضيع رسومها بسبب خطأ بسيط: حرف في الاسم لا يطابق الجواز، رقم ناقص، تاريخ مقلوب، أو صورة بمقاس غير صحيح. والرسوم الحكومية لا تُسترد عادةً. لذلك نقدّم ${esc(name)} عنك، ونرتّب ملفك بشكل صحيح من البداية.</p>
+        <div class="btn-row">${waBtn(wa || `مرحباً أويا للسياحة، أرغب بتقديم طلب ${name} عن طريقكم.`, "قدّم طلبك عن طريقنا")}</div>
+      </div>
+      <ul class="vvalue__list">${pts.map(([i, t, d]) => `<li>${ic(i)}<div><strong>${t}</strong><span>${d}</span></div></li>`).join("")}</ul>
+      <p class="vvalue__note">${ic("info")}<span>رسوم خدمتنا بسيطة ونوضحها لك قبل البدء، والرسوم الرسمية تدفعها للجهة المختصة. القرار النهائي للجهة المختصة وحدها.</span></p>
+    </div>
   </div>
 </section>`;
 }

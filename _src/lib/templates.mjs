@@ -1,6 +1,6 @@
 // Detail page templates fed by _src/content/*.mjs
 import { site } from "../site.mjs";
-import { factIcon, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
+import { factIcon, visaValue, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
 import { tourForm, visaForm } from "./forms.mjs";
 import * as S from "./schema.mjs";
 
@@ -231,6 +231,7 @@ ${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابع
 <section class="section section--tight">
   <div class="container"><dl class="kv" data-stagger>${(v.facts || []).map((f) => `<div data-reveal><dt>${ic(factIcon(f.k))}${esc(f.k)}</dt><dd>${f.v}</dd></div>`).join("")}</dl></div>
 </section>
+${visaValue({ name: v.name })}
 
 <section class="section" style="padding-top:0">
   <div class="container split">
