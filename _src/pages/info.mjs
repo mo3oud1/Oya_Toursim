@@ -190,6 +190,7 @@ export function notFoundPage() {
   <h1 class="h-l">يبدو أن هذه الرحلة غيّرت مسارها!</h1>
   <p class="lead" style="margin-inline:auto">الصفحة التي تبحث عنها غير موجودة أو نُقلت. لكن لا تقلق، حكايتك القادمة ما زالت بانتظارك.</p>
   <div class="btn-row" style="justify-content:center"><a class="btn" href="{{root}}">${ic("compass")}<span>العودة للرئيسية</span></a>${waBtn("مرحباً أويا، أبحث عن صفحة لم أجدها.", "اسألنا عبر واتساب")}</div>
+  <p class="nf__langs" translate="no">${[["en/", "en", "Page not found — go to the home page"], ["ru/", "ru", "Страница не найдена — на главную"], ["tr/", "tr", "Sayfa bulunamadı — ana sayfaya dön"], ["pt/", "pt", "Página não encontrada — ir para o início"]].map(([href, code, t]) => `<a href="{{root}}${href}" lang="${code}" dir="ltr">${t}</a>`).join("")}</p>
 </div></section>`;
   page.schemaGraph = [S.orgNode()];
   return page;

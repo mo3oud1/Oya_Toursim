@@ -1354,3 +1354,5 @@ h3,h4{line-height:1.42}
   [dir="ltr"] .page-hero.has-photo>.container{padding-inline-start:max(0px,calc(100% - 660px))}
 }
 [dir="ltr"] .page-hero.is-composed .page-hero__bg img{inset-inline-end:auto;left:0}
+.nf__langs{display:flex;flex-direction:column;gap:6px;margin-top:28px;font-size:.92rem}
+.nf__langs a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
