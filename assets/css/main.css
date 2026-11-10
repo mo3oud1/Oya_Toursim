@@ -389,10 +389,10 @@ body.no-scroll{overflow:hidden}
 /* Destination card (overlay) */
 .dest{position:relative;border-radius:var(--r-l);overflow:hidden;color:#fff;display:block;isolation:isolate;box-shadow:var(--sh-1);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
 .dest .media{position:absolute;inset:0}
-.dest::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(6,20,40,.9) 0%,rgba(6,20,40,.25) 55%,transparent 75%);transition:opacity .5s}
+.dest::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(6,20,40,.94) 0%,rgba(6,20,40,.66) 30%,rgba(6,20,40,.16) 58%,transparent 74%);transition:opacity .5s}
 .dest__body{position:absolute;inset:auto 0 0 0;z-index:2;padding:22px}
 .dest__body h3{color:#fff;font-size:1.55rem;margin:0 0 2px}
-.dest__body .en{font-size:.82rem;color:#A9C4E2;letter-spacing:.12em;text-transform:uppercase;direction:ltr;display:block;text-align:right}
+.dest__body .en{font-size:.82rem;color:#D2DFEE;text-shadow:0 1px 8px rgba(6,20,40,.6);letter-spacing:.12em;text-transform:uppercase;direction:ltr;display:block;text-align:right}
 .dest__body p{margin:8px 0 0;font-size:.92rem;color:#D2DFEE;line-height:1.7;max-height:0;opacity:0;overflow:hidden;transition:max-height .6s var(--ease),opacity .5s}
 .dest:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
 .dest:hover .media img{transform:scale(1.07)}
