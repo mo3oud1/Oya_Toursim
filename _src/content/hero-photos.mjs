@@ -19,6 +19,7 @@ export const HERO_PHOTOS = {
   "hero-contact": "Photorealistic travel photography, a café table on a rooftop terrace in Galata, Istanbul at golden hour: two glasses of Turkish tea on small saucers and a smartphone lying face-up showing a blurred generic chat screen with no logos and no legible text, the Galata Tower softly blurred in the background, all in the left half of the frame, warm friendly light, shallow depth of field. Wide cinematic composition with the main subject in the left half of the frame and calmer, uncluttered space on the right half for headline text. Natural colors, high dynamic range, no text, no logos, no watermarks, landscape 3:2.",
   "hero-faq": "Photorealistic travel photography, the Maiden's Tower (Kız Kulesi) on its small islet in the Bosphorus at blue hour, its lantern glowing warmly, calm water with reflections, the illuminated Istanbul shoreline and mosques in the distance, the tower in the left half of the frame, soft deep blue sky, no people. Wide cinematic composition with the main subject in the left half of the frame and calmer, uncluttered space on the right half for headline text. Natural colors, high dynamic range, no text, no logos, no watermarks, landscape 3:2.",
   "hero-super-cup": "Photorealistic travel photography, football fans in winter jackets and plain scarves with no team colours seen from behind and at a distance walking toward a large modern football stadium in Istanbul at blue hour, the glowing stadium and its floodlights in the left half of the frame, wet pavement reflecting the lights, distant city lights and a mosque silhouette with slender minarets on the horizon, no club crests, no logos, no legible text. Wide cinematic composition with the main subject in the left half of the frame and calmer, uncluttered space on the right half for headline text. Natural colors, high dynamic range, no text, no logos, no watermarks, landscape 3:2.",
+  "hero-turkey-visa": "Photorealistic travel photography: inside a bright modern airport terminal at golden hour, a traveller's hand holding one closed passport with a plain dark burgundy cover (no emblem, no lettering) together with a blank white boarding pass without any printing, in sharp focus in the left third of the frame; behind it, softly out of focus through floor-to-ceiling windows, a white passenger jet with no airline name or logo parked at the gate and a warm sunset sky. The right 45% of the frame is calm: blurred windows and sky, no objects. Natural colours, shallow depth of field, no people's faces, no text, no logos, no watermarks, wide 3:2 composition.",
 };
 export const HERO_ALTS = {
   "hero-flights": "طائرة ركاب تقلع فوق إسطنبول عند الغروب",
@@ -35,6 +36,7 @@ export const HERO_ALTS = {
   "hero-about": "جامع السليمانية والعبّارات في القرن الذهبي عند الغروب",
   "hero-contact": "كوبا شاي تركي وهاتف على طاولة مع برج غلطة في الخلفية",
   "hero-faq": "برج الفتاة وسط البوسفور عند الغسق",
-  "hero-super-cup": "مشجعون يتجهون إلى ملعب في إسطنبول مساءً"
+  "hero-super-cup": "مشجعون يتجهون إلى ملعب في إسطنبول مساءً",
+  "hero-turkey-visa": "يد مسافر تحمل جواز سفر وبطاقة صعود أمام نافذة المطار وطائرة عند الغروب"
 };
 export const heroPhoto = (key) => ({ img: key, prompt: HERO_PHOTOS[key] || "", alt: HERO_ALTS[key] || "" });

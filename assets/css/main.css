@@ -1270,3 +1270,25 @@ h3,h4{line-height:1.42}
 @media (max-width:900px){
   .page-hero.is-composed .page-hero__bg img{position:absolute;top:0;inset-inline-end:0;width:calc(100% * var(--mzoom,1.72));max-width:none;height:100%;object-position:0% 26%}
 }
+
+/* ---------- Türkiye visa guide: nationality tables ---------- */
+.tvgroup{margin-top:clamp(28px,4vw,44px)}
+.tvgroup__t{display:flex;flex-wrap:wrap;align-items:center;gap:.6em;font-size:clamp(1.15rem,1rem + .6vw,1.4rem);margin:0 0 14px;color:var(--navy)}
+.tvbadge{display:inline-flex;align-items:center;gap:.4em;padding:.3em .8em;border-radius:999px;font-family:var(--ff-body);font-size:.86rem;font-weight:700;white-space:nowrap}
+.tvbadge .i{width:1.05em;height:1.05em}
+.tvbadge--ok{background:#E3F4EA;color:#0F6B3A}
+.tvbadge--age{background:#FFF1DC;color:#8A4B00}
+.tvbadge--visa{background:var(--sky-100);color:var(--navy)}
+.tvgroup .table{min-width:0}
+.tvgroup .table td:first-child{white-space:nowrap;width:1%;padding-inline-end:28px}
+.tvnote{display:flex;gap:.6em;align-items:flex-start;margin:12px 0 0;font-size:.92rem;color:var(--ink-2);line-height:1.8}
+.tvnote .i{flex:none;margin-top:.4em;color:var(--blue)}
+@media(max-width:640px){.tvgroup .table--stack td:first-child{white-space:normal;width:auto;padding-inline-end:16px}}
+
+.tvcards{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr))}
+.tvcard{background:#fff;border-radius:var(--r);box-shadow:var(--sh-1);padding:14px 16px;border-inline-start:4px solid var(--blue)}
+.tvcards--ok .tvcard{border-inline-start-color:#1E9E5A}
+.tvcard b{display:block;font-family:var(--ff-display);font-size:1.06rem;color:var(--navy);margin-bottom:2px}
+.tvcard span{display:block;font-size:.92rem;color:var(--ink-2);line-height:1.75}
+@media(min-width:760px){.tvcard--wide{grid-column:span 2}}
+@media(max-width:640px){.tvcards--ok{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tvcards--ok .tvcard{padding:12px 12px}.tvcards--ok .tvcard span{font-size:.86rem;line-height:1.65}}

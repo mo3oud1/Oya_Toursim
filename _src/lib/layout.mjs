@@ -23,6 +23,7 @@ function megaTurkey(data) {
     <ul class="cols-2" style="display:grid">
       ${ds.map((d) => `<li><a href="{{root}}turkey-tours/${d.slug}/">${esc(d.name)}<small>${esc(d.tagline || "")}</small></a></li>`).join("")}
       <li><a href="{{root}}turkey-tours/"><b>كل وجهات تركيا ←</b></a></li>
+      <li><a href="{{root}}turkey-visa/"><b>تأشيرة تركيا للعرب ←</b></a></li>
     </ul>
   </div>
   <div class="mega-feature">
@@ -81,7 +82,7 @@ function drawer(page, data) {
     <div class="drawer__body">
       <ul>
         ${link("", "الرئيسية", "home")}
-        <li><details><summary>رحلات تركيا ${ic("chevron")}</summary><ul>${ds.map((d) => `<li><a href="{{root}}turkey-tours/${d.slug}/">${esc(d.name)}</a></li>`).join("")}<li><a href="{{root}}turkey-tours/">كل وجهات تركيا</a></li><li><a href="{{root}}packages/">البرامج السياحية</a></li></ul></details></li>
+        <li><details><summary>رحلات تركيا ${ic("chevron")}</summary><ul>${ds.map((d) => `<li><a href="{{root}}turkey-tours/${d.slug}/">${esc(d.name)}</a></li>`).join("")}<li><a href="{{root}}turkey-tours/">كل وجهات تركيا</a></li><li><a href="{{root}}packages/">البرامج السياحية</a></li><li><a href="{{root}}packages/turkey-7-days/">برنامج تركيا 7 أيام</a></li><li><a href="{{root}}turkey-visa/">تأشيرة تركيا للعرب</a></li></ul></details></li>
         ${link("world-tours/", "رحلات خارج تركيا", "world")}
         ${link("flights/", "تذاكر طيران", "flights")}
         ${(data.hotels || []).length ? `<li><details${page.nav === "hotels" ? " open" : ""}><summary>فنادق ومنتجعات ${ic("chevron")}</summary><ul><li><a href="{{root}}hotels/"><b>كل الفنادق والمنتجعات</b></a></li>${data.hotels.map((h) => `<li><a href="{{root}}hotels/${h.slug}/">${h.slug === "family-friendly" ? "فنادق محافظة للعائلات" : "فنادق " + esc(h.city)}</a></li>`).join("")}</ul></details></li>` : link("hotels/", "فنادق ومنتجعات", "hotels")}
@@ -128,7 +129,7 @@ function footer(data, page) {
       </ul></div>
       <div><h3>وجهات تركيا</h3><ul>${ds.map((d) => `<li><a href="{{root}}turkey-tours/${d.slug}/">${esc(d.name)}</a></li>`).join("")}</ul></div>
       <div><h3>التأشيرات</h3><ul>
-        <li><a href="{{root}}saudi-visa/">تأشيرات السعودية</a></li><li><a href="{{root}}saudi-visa/umrah/">تأشيرة العمرة</a></li><li><a href="{{root}}saudi-visa/tourist/">التأشيرة السياحية السعودية</a></li><li><a href="{{root}}gcc-visas/">تأشيرات الخليج</a></li><li><a href="{{root}}gcc-visas/uae/">تأشيرة الإمارات</a></li><li><a href="{{root}}visas/schengen/">تأشيرة شنغن</a></li><li><a href="{{root}}visas/">التأشيرات الدولية</a></li>
+        <li><a href="{{root}}saudi-visa/">تأشيرات السعودية</a></li><li><a href="{{root}}saudi-visa/umrah/">تأشيرة العمرة</a></li><li><a href="{{root}}saudi-visa/tourist/">التأشيرة السياحية السعودية</a></li><li><a href="{{root}}gcc-visas/">تأشيرات الخليج</a></li><li><a href="{{root}}gcc-visas/uae/">تأشيرة الإمارات</a></li><li><a href="{{root}}visas/schengen/">تأشيرة شنغن</a></li><li><a href="{{root}}visas/">التأشيرات الدولية</a></li><li><a href="{{root}}turkey-visa/">تأشيرة تركيا للعرب</a></li>
       </ul></div>
       <div><h3>تواصل معنا</h3><ul class="footer-contact">
         <li>${ic("whatsapp")}<a href="${waUrl("")}" target="_blank" rel="noopener"><span class="ltr">${site.phoneDisplay}</span></a></li>

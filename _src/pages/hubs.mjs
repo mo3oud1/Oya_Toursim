@@ -53,6 +53,7 @@ ${pageHero({ crumbs, ...heroPhoto("hero-turkey"), eyebrow: "السياحة في 
       <p><strong>إسطنبول</strong> هي البداية الطبيعية لمعظم الرحلات: معالم تاريخية، تسوق، رحلات في البوسفور ومطاعم لكل الأذواق. ومنها يسهل الوصول برّاً إلى <a href="{{root}}turkey-tours/sapanca/">سبانجا</a> و<a href="{{root}}turkey-tours/bursa/">بورصة</a> في يوم أو يومين.</p>
       <p>إن كنت تبحث عن الطبيعة والأجواء الباردة صيفاً فاتجه إلى <strong>الشمال التركي</strong>: <a href="{{root}}turkey-tours/trabzon/">طرابزون</a> و<a href="{{root}}turkey-tours/uzungol/">أوزنجول</a> وهضاب ريزه — والطيران الداخلي من إسطنبول لا يتجاوز ساعتين تقريباً.</p>
       <p>ولعشاق البحر والمنتجعات <a href="{{root}}turkey-tours/antalya/">أنطاليا</a> و<a href="{{root}}turkey-tours/bodrum/">بودروم</a>، أما تجربة المناطيد الشهيرة فمكانها <a href="{{root}}turkey-tours/cappadocia/">كابادوكيا</a>.</p>
+      <p>لديك أسبوع واحد فقط؟ ابدأ من <a href="{{root}}packages/turkey-7-days/">برنامج تركيا 7 أيام</a> بفندق واحد في إسطنبول. وقبل الحجز تأكد من متطلبات الدخول لجنسيتك في <a href="{{root}}turkey-visa/">دليل تأشيرة تركيا للعرب</a>.</p>
     </div>
     <div class="features" style="grid-template-columns:1fr" data-stagger>
       ${[

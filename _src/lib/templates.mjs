@@ -129,7 +129,8 @@ ${ctaBand({ wa: `مرحباً أويا للسياحة، أرغب بعرض لرح
 export function packagePage(p, data) {
   const path = `packages/${p.slug}/`;
   const crumbs = [{ name: "الرئيسية", path: "" }, { name: p.region === "turkey" ? "البرامج السياحية" : "رحلات خارج تركيا", path: p.region === "turkey" ? "packages/" : "world-tours/" }, { name: p.title, path }];
-  const related = data.packages.filter((x) => x.slug !== p.slug && x.region === p.region).sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)).slice(0, 3);
+  const alts = (p.alternatives || []).map((sl) => data.packages.find((x) => x.slug === sl)).filter(Boolean);
+  const related = data.packages.filter((x) => x.slug !== p.slug && x.region === p.region && !(p.alternatives || []).includes(x.slug)).sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)).slice(0, 3);
   const page = { path, nav: p.region === "turkey" ? "turkey" : "world", title: p.seo.title, description: p.seo.description, crumbs, primaryImage: S.imageUrl(p.img) };
   const waText = `مرحباً أويا للسياحة، أرغب بحجز برنامج: ${p.title} (${daysAr(p.days)}).`;
   page.mbar = null; // sticky bar points to the on-page form (#book)
@@ -154,7 +155,7 @@ ${pageHero({ crumbs, eyebrow: `${daysAr(p.days)} • ${nightsAr(p.nights)} • $
 
       <div class="incl mt-3" data-stagger>
         <div class="yes" data-reveal><h3>${ic("check-circle")} يشمل البرنامج</h3><ul class="yes">${p.includes.map((x) => `<li>${ic("check")}<span>${x}</span></li>`).join("")}</ul></div>
-        <div class="no" data-reveal><h3>${ic("x-circle")} لا يشمل</h3><ul class="no">${p.excludes.map((x) => `<li>${ic("x")}<span>${x}</span></li>`).join("")}</ul></div>
+        <div class="no" data-reveal><h3>${ic("x-circle")} لا يشمل</h3><ul class="no">${p.excludes.map((x) => `<li>${ic("x")}<span>${p.region === "turkey" && x.startsWith("تأشيرة دخول تركيا") ? `${x} — <a href="{{root}}turkey-visa/">هل تحتاج تأشيرة؟</a>` : x}</span></li>`).join("")}</ul></div>
       </div>
 
       ${p.hotels && p.hotels.length ? `<div class="mt-3" data-reveal><h2 class="h-l">الإقامة المقترحة</h2><div class="table-wrap"><table class="table"><thead><tr><th>المدينة</th><th>الليالي</th><th>المقترح</th></tr></thead><tbody>${p.hotels.map((h) => `<tr><td><strong>${h.city}</strong></td><td>${h.nights ? ar(h.nights) : "—"}</td><td>${h.text}</td></tr>`).join("")}</tbody></table></div></div>` : ""}
@@ -169,7 +170,8 @@ ${pageHero({ crumbs, eyebrow: `${daysAr(p.days)} • ${nightsAr(p.nights)} • $
           <div><dt>${ic("calendar")}المدة</dt><dd>${daysAr(p.days)} / ${nightsAr(p.nights)}</dd></div>
           <div><dt>${ic("pin")}المدن</dt><dd>${esc(p.cities.join("، "))}</dd></div>${(p.dest || []).length ? `<div><dt>${ic("map")}أدلة الوجهات</dt><dd>${(p.dest || []).map((sl) => { const dd = data.destinations.find((x) => x.slug === sl); return dd ? `<a href="{{root}}turkey-tours/${sl}/">${esc(dd.name)}</a>` : ""; }).filter(Boolean).join("، ")}</dd></div>` : ""}
           <div><dt>${ic("users")}مناسب لـ</dt><dd>${(p.tags || []).slice(0, 3).map(tagLabel).join("، ") || "الجميع"}</dd></div>
-          <div><dt>${ic("car")}التنقل</dt><dd><a href="{{root}}private-driver/">سيارة خاصة مع سائق</a></dd></div>
+          <div><dt>${ic("car")}التنقل</dt><dd><a href="{{root}}private-driver/">سيارة خاصة مع سائق</a></dd></div>${p.region === "turkey" ? `
+          <div><dt>${ic("passport")}دخول تركيا</dt><dd><a href="{{root}}turkey-visa/">هل تحتاج تأشيرة؟</a></dd></div>` : ""}
           <div><dt>${ic("refresh")}المرونة</dt><dd>قابل للتعديل بالكامل</dd></div>
         </dl>
         <div class="btn-col">
@@ -182,6 +184,14 @@ ${pageHero({ crumbs, eyebrow: `${daysAr(p.days)} • ${nightsAr(p.nights)} • $
     </aside>
   </div>
 </section>
+
+${alts.length ? `
+<section class="section section--tight" id="alternatives">
+  <div class="container">
+    ${sectionHead({ eyebrow: "المدة نفسها، طابع آخر", title: "طرق أخرى لقضاء أسبوع في تركيا", lead: "إن كانت الطبيعة أو البحر أو المبيت خارج إسطنبول أقرب لذوقك، فهذه برامج بالمدة نفسها." })}
+    <div class="grid grid-3" data-stagger>${alts.map((r) => packageCard(r, path)).join("")}</div>
+  </div>
+</section>` : ""}
 
 <section class="section section--white" id="book">
   <div class="container split">

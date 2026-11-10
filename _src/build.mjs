@@ -14,6 +14,7 @@ import { turkeyHub, worldHub, packagesHub, visaHub, blogHub } from "./pages/hubs
 import { matchesHub, superCupPage } from "./pages/matches.mjs";
 import { aboutPage, contactPage, faqPage, privacyPage, termsPage, notFoundPage } from "./pages/info.mjs";
 import { hotelCityPage, extraPage, offersHub } from "./lib/templates2.mjs";
+import { turkeyVisaPage } from "./pages/turkey-visa.mjs";
 
 const load = async (f) => {
   const p = path.join(ROOT_DIR, "_src/content", f);
@@ -39,7 +40,7 @@ data.visas.forEach((v) => (data.titles[`${hubOf[v.group]}${v.slug}/`] = v.name))
 data.posts.forEach((p) => (data.titles[`blog/${p.slug}/`] = p.title));
 data.hotels.forEach((h) => (data.titles[`hotels/${h.slug}/`] = h.slug === "family-friendly" ? "فنادق محافظة وعائلية" : `فنادق ${h.city}`));
 data.extras.forEach((x) => (data.titles[x.path] = x.h1.split(":")[0]));
-Object.assign(data.titles, { "flights/": "تذاكر طيران", "hotels/": "فنادق ومنتجعات", "turkey-tours/": "السياحة في تركيا", "world-tours/": "رحلات خارج تركيا", "packages/": "البرامج السياحية", "saudi-visa/": "تأشيرات السعودية", "gcc-visas/": "تأشيرات الخليج", "visas/": "التأشيرات الدولية", "matches/": "تذاكر المباريات", "matches/spanish-super-cup-2027/": "تذاكر كأس السوبر الإسباني 2027" });
+Object.assign(data.titles, { "flights/": "تذاكر طيران", "hotels/": "فنادق ومنتجعات", "turkey-tours/": "السياحة في تركيا", "world-tours/": "رحلات خارج تركيا", "packages/": "البرامج السياحية", "saudi-visa/": "تأشيرات السعودية", "gcc-visas/": "تأشيرات الخليج", "visas/": "التأشيرات الدولية", "matches/": "تذاكر المباريات", "matches/spanish-super-cup-2027/": "تذاكر كأس السوبر الإسباني 2027", "turkey-visa/": "تأشيرة تركيا للعرب" });
 
 const pages = [
   homePage(data),
@@ -59,6 +60,7 @@ const pages = [
   ...data.hotels.map((h) => hotelCityPage(h, data)),
   ...data.extras.map((x) => extraPage(x, data)),
   ...(data.extras.length ? [offersHub(data)] : []),
+  turkeyVisaPage(data),
   aboutPage(data), contactPage(data), faqPage(data), privacyPage(), termsPage(),
   notFoundPage(),
 ];
@@ -106,7 +108,7 @@ for (const page of pages) {
 
 // sitemap.xml
 const today = new Date().toISOString().slice(0, 10);
-const prio = (p) => (p === "" ? "1.0" : /^(hotels|flights|turkey-tours|saudi-visa|gcc-visas|visas|packages|matches|world-tours)\/$/.test(p) ? "0.9" : /^(turkey-tours|packages|saudi-visa|gcc-visas|visas|matches)\//.test(p) ? "0.8" : p.startsWith("blog/") ? "0.7" : "0.5");
+const prio = (p) => (p === "" ? "1.0" : /^(hotels|flights|turkey-tours|saudi-visa|gcc-visas|visas|packages|matches|world-tours)\/$/.test(p) ? "0.9" : /^(turkey-tours|packages|saudi-visa|gcc-visas|visas|matches|turkey-visa)\//.test(p) ? "0.8" : p.startsWith("blog/") ? "0.7" : "0.5");
 // image sitemap entries: the main (1536w) photo files used on each page, hero first
 const pagePhotos = (body) => [...new Set([...String(body || "").matchAll(/assets\/img\/photos\/([\w-]+?)(?:-640|-1024)?\.webp/g)].map((m) => m[1]))].slice(0, 12);
 const urls = written.filter((w) => !w.page.noindex).map((w) => {

@@ -17,6 +17,7 @@ export const site = {
   hours: "يومياً من 9 صباحاً حتى 11 مساءً (بتوقيت إسطنبول)",
   // Fill these when available (leave empty to hide)
   visasReviewed: "2026-11-10", // آخر مراجعة لمعلومات صفحات التأشيرات (تظهر في الصفحات وفي بيانات جوجل)
+  turkeyVisaReviewed: "2026-11-10", // date the Türkiye entry rules were last read on mfa.gov.tr
   tursab: "", // رقم رخصة TÜRSAB
   legalName: "", // الاسم القانوني للشركة (يظهر في سياسة الخصوصية عند تعبئته)
   addressLine: "", // العنوان التفصيلي للمكتب
