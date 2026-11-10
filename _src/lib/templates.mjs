@@ -277,7 +277,7 @@ export function visaPage(v, data) {
 </section>
 `;
   page.body = `
-${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابعة`, title: v.h1, lead: v.intro, icon: v.icon || "passport", img: v.img, prompt: v.imgPrompt, alt: v.heroAlt || v.name, zoom: v.heroZoom, page: path,
+${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابعة`, title: v.h1, lead: v.intro, icon: v.icon || "passport", img: v.img, prompt: v.imgPrompt, alt: v.heroAlt || v.name, zoom: v.heroZoom, cls: v.heroCls, focus: v.heroFocus, page: path,
     chips: (v.facts || []).slice(0, 3).map((f) => ({ icon: "check-circle", text: `${f.k}: ${strip(f.v)}` })),
     actions: `${waBtn(pending ? `مرحباً أويا للسياحة، أرغب بتسجيل اهتمامي بـ${v.name} لتبلغوني عند إطلاقها.` : `مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.`, pending ? "سجّل اهتمامك عبر واتساب" : "ابدأ طلبك عبر واتساب")}<a class="btn btn--glass" href="#docs">${ic("doc")}<span>الأوراق المطلوبة</span></a>` })}
 

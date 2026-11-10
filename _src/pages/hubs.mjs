@@ -163,7 +163,7 @@ const HUBS = {
     path: "saudi-visa/", hero: "hero-saudi",
     gallery: [
       { img: "gallery-riyadh-dusk", alt: "برج المملكة وطريق الملك فهد في الرياض عند الغروب", caption: "الرياض — برج المملكة" },
-      { img: "gallery-makkah-aerial", alt: "المسجد الحرام في مكة المكرمة من الأعلى", caption: "مكة المكرمة — المسجد الحرام" },
+      { img: "gallery-makkah-aerial", alt: "صحن المسجد الحرام في مكة المكرمة والمصلّون حول الكعبة المشرفة", caption: "مكة المكرمة — المسجد الحرام" },
       { img: "gallery-madinah-sunset", alt: "المسجد النبوي في المدينة المنورة عند الغروب", caption: "المدينة المنورة — المسجد النبوي" },
     ],
     name: "تأشيرات السعودية", icon: "mosque",

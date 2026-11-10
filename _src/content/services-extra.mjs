@@ -535,7 +535,8 @@ export default [
     slug: "ramadan-umrah-2027",
     navLabel: "عمرة رمضان 2027",
     gallery: [
-      { img: "gallery-makkah-aerial", alt: "المسجد الحرام في مكة المكرمة من الأعلى مع جموع المصلين حول الكعبة", caption: "المسجد الحرام — مكة المكرمة" },
+      { img: "gallery-makkah-aerial", alt: "صحن المسجد الحرام في مكة المكرمة والمصلّون حول الكعبة المشرفة", caption: "المسجد الحرام — مكة المكرمة" },
+      { img: "gallery-kaaba-tawaf", alt: "الطائفون حول الكعبة المشرفة في صحن المسجد الحرام نهاراً", caption: "الطواف حول الكعبة المشرفة" },
       { img: "gallery-madinah-sunset", alt: "المسجد النبوي في المدينة المنورة عند الغروب بمآذنه المضاءة", caption: "المسجد النبوي — المدينة المنورة" },
     ],
     path: "offers/ramadan-umrah-2027/",

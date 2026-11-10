@@ -1264,3 +1264,9 @@ h3,h4{line-height:1.42}
 .page-hero--article .eyebrow{margin-bottom:1.3rem}
 .page-hero--article .crumbs li:last-child{display:none}
 .page-hero--article .lead{max-width:56ch}
+
+/* ---------- Composed hero photo (subject baked on the open side, text side already navy) ----------
+   Phones show the photo as a top band: enlarge it from the open side so only the photo part is seen. */
+@media (max-width:900px){
+  .page-hero.is-composed .page-hero__bg img{position:absolute;top:0;inset-inline-end:0;width:calc(100% * var(--mzoom,1.72));max-width:none;height:100%;object-position:0% 26%}
+}

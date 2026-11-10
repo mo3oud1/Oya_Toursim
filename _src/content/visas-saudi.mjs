@@ -104,9 +104,11 @@ export default [
   // ───────────────────────────── 2. Umrah visa ─────────────────────────────
   {
     slug: "umrah",
-    heroZoom: "1.34", // keeps the Kaaba clear of the headline (subject moves away from the text side)
+    // owner photo composed with the Kaaba on the open side (text side fades to navy): sharp, no CSS zoom
+    heroCls: "is-composed", heroFocus: "32% 30%", heroAlt: "الكعبة المشرفة والطائفون حولها في المسجد الحرام",
     gallery: [
-      { img: "gallery-makkah-aerial", alt: "المسجد الحرام في مكة المكرمة من الأعلى مع جموع المصلين حول الكعبة", caption: "المسجد الحرام — مكة المكرمة" },
+      { img: "gallery-makkah-aerial", alt: "صحن المسجد الحرام في مكة المكرمة والمصلّون حول الكعبة المشرفة", caption: "المسجد الحرام — مكة المكرمة" },
+      { img: "gallery-kaaba-tawaf", alt: "الطائفون حول الكعبة المشرفة في صحن المسجد الحرام نهاراً", caption: "الطواف حول الكعبة المشرفة" },
       { img: "gallery-madinah-sunset", alt: "المسجد النبوي في المدينة المنورة عند الغروب بمآذنه المضاءة", caption: "المسجد النبوي — المدينة المنورة" },
     ],
     group: "saudi",
@@ -115,7 +117,7 @@ export default [
     stamp: "SA",
     icon: "mosque",
     img: "visa-saudi-umrah",
-    imgPrompt: "صورة حقيقية من صاحب الموقع: المسجد الحرام والكعبة المشرفة (images/2.webp). لا تُستبدل بصورة مولّدة.",
+    imgPrompt: "صورة حقيقية من صاحب الموقع: الكعبة المشرفة من خلف قباب المسجد الحرام. لا تُستبدل بصورة مولّدة.",
     seo: {
       title: "تأشيرة عمرة من تركيا: الشروط والمدة | أويا",
       description:
