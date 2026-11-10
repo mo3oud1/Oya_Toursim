@@ -120,7 +120,8 @@ ul,ol{margin:0;padding:0}
 .prose a{color:var(--blue);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 .prose a:hover{color:var(--orange-btn)}
 .prose strong{color:var(--ink)}
-.prose table{display:block;overflow-x:auto;width:100%;border-collapse:collapse;margin:0 0 1.4em;font-size:.98rem;background:#fff;border-radius:var(--r-s);overflow:hidden;box-shadow:var(--sh-1)}
+.prose .table-wrap{margin:0 0 1.4em}
+.prose table{width:100%;border-collapse:collapse;font-size:.98rem;background:#fff}
 .prose th,.prose td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top}
 .prose th{background:var(--navy);color:#fff;font-weight:600}
 .prose blockquote{margin:1.4em 0;padding:18px 22px;border-inline-start:4px solid var(--orange);background:#fff;border-radius:var(--r-s);color:var(--ink)}
@@ -1070,7 +1071,97 @@ body.no-scroll{overflow:hidden}
 }
 @media(max-width:699px){.footer-bottom a{display:inline-flex;align-items:center;min-height:36px}}
 /* tables inside articles scroll sideways on small screens instead of overflowing */
-.prose table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
-@media(max-width:640px){.prose table{font-size:.9rem}.prose th,.prose td{min-width:110px}}
+@media(max-width:640px){.prose table{font-size:.92rem}}
 /* stadium view buttons: wrap to two lines on narrow phones */
 @media(max-width:420px){.stadium-views{flex-wrap:wrap;justify-content:center}.stadium-views button{flex:1 1 auto;justify-content:center;font-size:.78rem;padding:.4em .5em}}
+
+/* ---------- Council fixes: forms on phones ---------- */
+.form-grid>*{min-width:0}
+.field input,.field select,.field textarea{min-width:0;max-width:100%}
+.field input[type="date"]{width:100%;-webkit-appearance:none;appearance:none}
+.booker__tab .t-short{display:none}
+@media(max-width:640px){
+  /* 16px controls: iOS does not zoom the page when a field is focused */
+  .booker .field input,.booker .field select{font-size:16px}
+  .booker .assure{display:flex;flex-direction:column;gap:4px;margin-top:10px}
+  .booker .assure li:nth-child(n+2){display:none}
+  /* all five tabs visible: icon over a short label */
+  .booker__tabs{overflow:visible}
+  .booker__tab{flex:1 1 0;min-width:0;flex-direction:column;gap:3px;padding:.55em .15em;font-size:.74rem;white-space:normal;line-height:1.3}
+  .booker__tab .t-long{display:none}.booker__tab .t-short{display:inline}
+}
+@media(max-width:420px){
+  /* date fields need a full row on narrow phones */
+  .booker .field--date{grid-column:1/-1}
+}
+@media(max-width:420px){
+  /* no lonely half-width fields: first and last fields take the full row */
+  .booker .form-grid>.field:first-child,.booker__panel:not(#panel-flights) .form-grid>.field:last-child{grid-column:1/-1}
+}
+
+/* ---------- Council fixes: tables ---------- */
+.table-wrap{-webkit-overflow-scrolling:touch;background:#fff}
+.table-wrap:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+@media(max-width:640px){
+  .table{min-width:0}
+  .table th,.table td{padding:11px 12px;font-size:.92rem}
+  /* 4+ columns: each row becomes a small card with its labels */
+  .table--stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .table--stack,.table--stack tbody{display:block}
+  .table--stack tr{display:block;padding:12px 14px;border-bottom:1px solid var(--line)}
+  .table--stack tr:last-child{border-bottom:0}
+  .table--stack td{display:flex;justify-content:space-between;gap:14px;padding:5px 0;border:0;text-align:start}
+  .table--stack td::before{content:attr(data-label);flex:0 0 38%;color:var(--muted);font-size:.86rem}
+  .table--stack td[data-label=""]::before{display:none}
+  .table--stack td:first-child{display:block;font-family:var(--ff-display);font-weight:700;font-size:1.02rem;color:var(--navy);padding-bottom:6px}
+  .table--stack td:first-child::before{display:none}
+  .table--stack td:not(:first-child)>*{text-align:start}
+}
+
+/* ---------- Council fixes: navigation ---------- */
+.mega{grid-template-columns:minmax(0,1.15fr) minmax(280px,1fr)}
+.mega .mega-feature a{white-space:normal}
+.mega .mega-feature>span:not([style]){white-space:normal}
+.ground{margin-top:18px;padding:16px 18px;border-radius:var(--r-l);background:#fff;box-shadow:var(--sh-1);display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.ground__t{margin:0;font-family:var(--ff-display);font-weight:700;color:var(--navy);display:flex;align-items:center;gap:.5em}
+.ground__t .i{color:var(--orange-btn)}
+.ground__links{display:flex;flex-wrap:wrap;gap:8px}
+.ground__links a{display:inline-flex;align-items:center;gap:.45em;min-height:44px;padding:.4em 1em;border-radius:999px;background:var(--sky-50);color:var(--navy);font-weight:600;font-size:.93rem;box-shadow:inset 0 0 0 1px var(--line-2);transition:background-color .2s,color .2s}
+.ground__links a:hover{background:var(--navy);color:#fff}
+.ground__links .i{width:1.1em;height:1.1em;color:var(--orange-btn)}
+.ground__links a:hover .i{color:#fff}
+.mega:not(.mega--sm){width:min(920px,94vw)}
+.mega .cols-2 a{white-space:normal;display:block}
+.mega .cols-2 a small{display:block}
+
+/* ---------- Council fixes: stadium ---------- */
+.stadium-canvas{touch-action:pan-y}
+.is-seat .stadium-canvas{touch-action:none}
+.stadium-fx,.stadium-hint{visibility:hidden}
+.is-ready .stadium-fx,.is-ready .stadium-hint{visibility:visible}
+.stadium-fx button[data-zoom]{padding:0}
+.stadium-nogl{display:none;position:absolute;inset:auto 16px 50% 16px;translate:0 50%;margin:0;text-align:center;color:#DCE7F3;font-size:.95rem;line-height:1.8}
+.no-3d .stadium-nogl{display:block}
+.no-3d .stadium-loading,.no-3d .stadium-start,.no-3d .stadium-fx,.no-3d .stadium-hint,.no-3d .stadium-views,.no-3d .si-seat{display:none!important}
+.is-failed .stadium-loading::after{content:none}
+.stadium-poster{clip-path:none;opacity:1;filter:none;background:linear-gradient(180deg,rgba(6,20,40,.35),rgba(6,20,40,.6)),url("../img/stadium-poster.webp") center/cover no-repeat}
+.stadium-sheet{position:absolute;inset:auto 10px 10px 10px;z-index:4;display:none;gap:8px;padding:10px 12px;border-radius:16px;background:rgba(6,20,40,.92);color:#fff;box-shadow:var(--sh-3)}
+.stadium-sheet p{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:.4em;font-size:.86rem;line-height:1.5}
+.stadium-sheet .ss-dot{width:12px;height:12px;border-radius:3px;flex:none}
+.stadium-sheet .ss-cat{font-family:var(--ff-display);font-size:1rem}
+.stadium-sheet .ss-where{color:#B9CCE0;flex-basis:100%}
+.stadium-sheet .ss-actions{display:flex;gap:8px;align-items:center}
+.stadium-sheet .ss-actions .btn{flex:1;min-height:44px;justify-content:center}
+.stadium-sheet .ss-seat{background:#fff;color:var(--navy)}
+.stadium-sheet .ss-close{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:none;color:#fff;display:grid;place-items:center}
+@media(max-width:1023px){
+  .stadium-sheet.is-on{display:grid}
+  .is-seat .stadium-sheet{display:none}
+  .stadium-sheet.is-on~.stadium-hint{display:none}
+}
+@media(max-width:640px){
+  .stadium-venue{inset-inline-start:10px;top:58px;max-width:calc(100% - 20px);font-size:.74rem;white-space:normal;line-height:1.5;border-radius:12px}
+  .stadium-hint .hint-more{display:none}
+  .stadium-fx{inset-inline-end:10px;top:10px}
+  .stadium-fx button{min-height:40px;min-width:40px;padding:0 .6em;font-size:.8rem}
+}

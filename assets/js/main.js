@@ -126,7 +126,11 @@
     });
     var hash = w.location.hash.replace("#", "");
     var pre = hash && $("[role=tab][data-key='" + hash + "']", wrap);
-    if (pre) select(pre);
+    if (pre) {
+      select(pre);
+      // the widget sits below the hero: bring it (and the chosen tab) into view
+      w.addEventListener("load", function () { wrap.scrollIntoView({ block: "start" }); if (pre.scrollIntoView) pre.scrollIntoView({ block: "nearest", inline: "center" }); });
+    }
   });
 
   /* ---------- Dates: no past dates; return >= depart ---------- */

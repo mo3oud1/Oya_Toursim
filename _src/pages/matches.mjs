@@ -107,7 +107,7 @@ function stadiumSection() {
   return `
 <section class="section stadium-sec" id="stadium" data-stadium>
   <div class="container">
-    ${sectionHead({ eyebrow: `${ic("stadium")} مجسم الملعب`, title: "اجلس في مقعدك… قبل أن تصل إلى الملعب", lead: "ملعب ثلاثي الأبعاد مليء بالجماهير: اضغط على أي مدرج لترى فئته وسعره، ثم «شوف الملعب من مقعدك» لتجلس مكانك وتشاهد الملعب كما ستراه يوم المباراة — وجرّب الموجة وصوت المدرجات.", center: true })}
+    ${sectionHead({ eyebrow: `${ic("stadium")} مجسم الملعب`, title: "اجلس في مقعدك… قبل أن تصل إلى الملعب", lead: "ملعب ثلاثي الأبعاد مليء بالجماهير: اضغط على أي مدرج لترى فئته وسعره، ثم «شاهد الملعب من مقعدك» لتجلس مكانك وتشاهد الملعب كما ستراه يوم المباراة — وجرّب الموجة وصوت المدرجات.", center: true })}
     <div class="stadium">
       <div class="stadium-bar">
         <div class="stadium-tabs" role="tablist" aria-label="المباراة والملعب">${scMatches.map((m, i) => `<button type="button" role="tab" class="stadium-tab" aria-selected="${i === 0}">${m.stage}<small>${m.venueAr.split(" — ")[0]}</small></button>`).join("")}</div>
@@ -118,10 +118,17 @@ function stadiumSection() {
           <div class="stadium-poster" aria-hidden="true"></div>
           <button type="button" class="stadium-start btn">${ic("stadium")}<span>عرض الملعب ثلاثي الأبعاد</span></button>
           <span class="stadium-loading" aria-hidden="true">جارٍ تحميل المجسم…</span>
+          <p class="stadium-nogl">تعذّر تشغيل العرض ثلاثي الأبعاد على هذا الجهاز — يمكنك اختيار الفئة من القائمة.</p>
           <div class="stadium-tip" role="status"></div>
           <p class="stadium-venue">${m0.venueAr} • ${VENUE_MODEL[m0.id].capacity}</p>
-          <p class="stadium-hint">${ic("refresh")} اسحب للتدوير • اضغط على مدرج ثم «شوف من مقعدك»</p>
+          <p class="stadium-hint">${ic("refresh")}<span>اسحب للتدوير</span><span class="hint-more"> • اضغط على مدرج ثم «شاهد من مقعدك»</span></p>
+          <div class="stadium-sheet" aria-live="polite">
+            <p><span class="ss-dot"></span><b class="ss-cat"></b><span class="ss-where"></span></p>
+            <div class="ss-actions"><button type="button" class="btn btn--sm ss-seat">${ic("eye")}<span>شاهد من مقعدك</span></button><a class="btn btn--wa btn--sm ss-wa" href="#book" target="_blank" rel="noopener">${ic("whatsapp")}<span>احجز</span></a><button type="button" class="ss-close" aria-label="إغلاق">${ic("x")}</button></div>
+          </div>
           <div class="stadium-fx">
+            <button type="button" data-zoom="in" aria-label="تكبير">${ic("plus")}</button>
+            <button type="button" data-zoom="out" aria-label="تصغير">${ic("minus")}</button>
             <button type="button" data-wave>${ic("waves")}<span>الموجة</span></button>
             <button type="button" data-sound aria-pressed="false" aria-label="تشغيل صوت المدرجات">${ic("volume-x")}${ic("volume")}</button>
           </div>
@@ -137,7 +144,7 @@ function stadiumSection() {
             <p class="si-where">اضغط على أي جزء من المدرجات أو على فئة من القائمة، ثم شاهد المباراة من مكانك.</p>
             <p class="si-desc"></p>
             <p class="si-price-row">السعر: <b class="si-price">—</b></p>
-            <button type="button" class="btn btn--block si-seat">${ic("eye")}<span>شوف الملعب من مقعدك</span></button>
+            <button type="button" class="btn btn--block si-seat">${ic("eye")}<span>شاهد الملعب من مقعدك</span></button>
             <a class="btn btn--wa btn--block si-wa" href="#book" target="_blank" rel="noopener">${ic("whatsapp")}<span>احجز هذه الفئة</span></a>
           </div>
           <p class="stadium-note">${ic("info")} تمثيل توضيحي لتوزيع الفئات؛ المخطط النهائي للمقاعد تحدده الجهة المنظمة لكل ملعب.</p>
@@ -171,7 +178,7 @@ function stayPackages() {
     <a class="btn${s.pop ? "" : " btn--navy"} btn--block" href="${waUrl(`مرحباً أويا، أرغب بـ${s.title} (كأس السوبر الإسباني 2027 في إسطنبول).`)}" target="_blank" rel="noopener">${ic("whatsapp")}احجز مكانك</a>
   </div>`).join("")}
 </div>
-<div class="incl mt-2" data-reveal style="grid-template-columns:1fr 1fr">
+<div class="incl mt-2" data-reveal>
   <div class="yes"><h3>${ic("sparkles")} إضافات اختيارية</h3><ul class="yes">${["رحلة ثلوج إلى أولوداغ في بورصة (فبراير موسم الثلج)", "تذاكر الطيران من مدينتك", "ليلة إضافية قبل المباراة أو بعدها", "جولة البوسفور بالقارب"].map((x) => `<li>${ic("plus")}<span>${x}</span></li>`).join("")}</ul></div>
   <div class="yes"><h3>${ic("ticket")} خدمة التذكرة بشكل نظامي</h3><ul class="yes">${["نحجز التذكرة عبر القناة الرسمية المعتمدة وباسم المشجع", "تدفع السعر الرسمي للتذكرة + رسوم خدمة واضحة", "لا نبيع تذاكر من السوق السوداء أو بأسعار مضاعفة", "إن فضّلت الشراء بنفسك نرشدك خطوة بخطوة مجاناً مع الباقة"].map((x) => `<li>${ic("check")}<span>${x}</span></li>`).join("")}</ul></div>
 </div>

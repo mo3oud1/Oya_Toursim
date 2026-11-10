@@ -10,7 +10,12 @@ if (root) {
   const coarse = matchMedia("(pointer: coarse)").matches;
   const startBtn = root.querySelector(".stadium-start");
   let started = false;
-  const start = () => { if (started) return; started = true; root.classList.add("is-loading"); init().catch(() => root.classList.add("is-failed")); };
+  const hasGL = () => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch (e) { return false; } };
+  const start = () => {
+    if (started) return; started = true;
+    if (!hasGL()) { root.classList.add("is-failed", "no-3d"); return; }
+    root.classList.add("is-loading"); init().catch(() => { root.classList.remove("is-loading"); root.classList.add("is-failed", "no-3d"); });
+  };
   if (startBtn) startBtn.addEventListener("click", start);
   if (!coarse) {
     const io = new IntersectionObserver((e) => { if (e[0].isIntersecting) { io.disconnect(); start(); } }, { rootMargin: "200px" });
@@ -81,6 +86,7 @@ if (root) {
     const CLOTH = [0x1d2a44, 0xe8ecf2, 0x15181d, 0xb8322a, 0x2d5fa8, 0xe0b23a, 0x6b7280, 0x6d2233, 0x2f6b45, 0xd9682a, 0xf4f4f4, 0x23314d].map((c) => new THREE.Color(c));
     const SKIN = [0xe2b48f, 0xc98e66, 0x9a6544, 0xf0c9a5, 0x7a4b30].map((c) => new THREE.Color(c));
 
+    const sharedMats = new Set([...Object.values(mats), concrete, roofMat, trussMat, lightMat, bodyMat, headMat]);
     let stadium = new THREE.Group(); scene.add(stadium);
     let pickables = [], crowd = null, flashes = null, boards = [], screens = [], seatsWorld = [];
     let radiusMax = 300;
@@ -158,7 +164,12 @@ if (root) {
 
     function build(v, match) {
       scene.remove(stadium);
-      stadium.traverse((o) => { if (o.geometry && o.geometry !== bodyGeo && o.geometry !== headGeo) o.geometry.dispose(); if (o.material && o.material.map && o.material.map !== pitchTex && o.material.map !== glowTex) o.material.map.dispose(); });
+      stadium.traverse((o) => {
+        if (o.geometry && o.geometry !== bodyGeo && o.geometry !== headGeo) o.geometry.dispose();
+        if (o.material && !sharedMats.has(o.material)) { if (o.material.map && o.material.map !== pitchTex && o.material.map !== glowTex) o.material.map.dispose(); o.material.dispose(); }
+        if (o.isInstancedMesh) o.dispose();
+      });
+      selected = null;
       stadium = new THREE.Group(); pickables = []; boards = []; screens = []; C = { pos: [], rot: [], col: [], skin: [] };
       const off = 8;
       const lower = profileShape(20, 0.85, 0.42, 1.4);
@@ -298,6 +309,7 @@ if (root) {
     const seatBtn = root.querySelector(".si-seat");
     const exitBtn = root.querySelector(".stadium-exit");
     const seatLabel = root.querySelector(".stadium-seatlabel");
+    const sheet = root.querySelector(".stadium-sheet");
     const waveBtn = root.querySelector("[data-wave]");
     const soundBtn = root.querySelector("[data-sound]");
     let hovered = null, selected = null, matchIdx = 0;
@@ -318,6 +330,15 @@ if (root) {
       panel.querySelector(".si-price").textContent = priceOf(k);
       panel.querySelector(".si-wa").href = `https://wa.me/${cfg.wa}?text=${encodeURIComponent(`مرحباً أويا، أرغب بـ${c.label} (${m.userData.info}) — ${match.stage}: ${match.teams}، كأس السوبر الإسباني 2027.`)}`;
       panel.classList.add("is-on");
+      if (sheet) {
+        sheet.querySelector(".ss-dot").style.background = c.color;
+        sheet.querySelector(".ss-cat").textContent = c.label;
+        sheet.querySelector(".ss-where").textContent = m.userData.info;
+        sheet.querySelector(".ss-wa").href = panel.querySelector(".si-wa").href;
+        sheet.classList.add("is-on");
+        // phones: make sure the stage (and this sheet) is not hidden below the sticky bar
+        if (matchMedia("(max-width: 1023px)").matches) { const sr = stage.getBoundingClientRect(); if (sr.bottom > innerHeight - 76 || sr.top < 56) stage.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" }); }
+      }
       root.querySelectorAll(".stadium-legend button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.cat === k ? "true" : "false"));
     }
     function select(m) {
@@ -331,6 +352,8 @@ if (root) {
       yaw = 0; pitchA = seat.basePitch;
       if (selected) selected.material = mats[selected.userData.cat]; // natural colours from the seat
       mode = "flying"; auto = false; root.classList.add("is-seat");
+      const sr = stage.getBoundingClientRect();
+      if (sr.top < 60 || sr.bottom > innerHeight) stage.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
       seatLabel.textContent = `منظرك من: ${CAT[m.userData.cat].label} — ${m.userData.info}`;
       flyTo(seat.pos, seat.look, coarse ? 68 : 60, () => { mode = "seat"; exitBtn.focus({ preventScroll: true }); });
       wave(1.4); if (audio) audio.roar();
@@ -349,13 +372,15 @@ if (root) {
       pickables.filter((p) => p.userData.cat === k).forEach((p) => { p.material = mats[k].clone(); p.material.emissiveIntensity = 0.75; });
       if (m) { selected = m; showInfo(m); }
     }));
-    if (seatBtn) seatBtn.addEventListener("click", () => enterSeat(selected || pickables.find((p) => p.userData.cat === "vip")));
+    const sit = () => enterSeat(selected || pickables.find((p) => p.userData.cat === "vip"));
+    if (seatBtn) seatBtn.addEventListener("click", sit);
+    if (sheet) { sheet.querySelector(".ss-seat").addEventListener("click", sit); sheet.querySelector(".ss-close").addEventListener("click", () => { sheet.classList.remove("is-on"); select(null); panel.classList.remove("is-on"); }); }
     if (exitBtn) exitBtn.addEventListener("click", exitSeat);
     if (waveBtn) waveBtn.addEventListener("click", () => wave(0));
     const tabs = [...root.querySelectorAll(".stadium-tab")];
     tabs.forEach((t, i) => t.addEventListener("click", () => {
       tabs.forEach((x) => x.setAttribute("aria-selected", x === t ? "true" : "false"));
-      matchIdx = i; selected = null; panel.classList.remove("is-on");
+      matchIdx = i; selected = null; panel.classList.remove("is-on"); if (sheet) sheet.classList.remove("is-on");
       if (mode !== "orbit") { mode = "orbit"; root.classList.remove("is-seat"); camera.fov = 42; camera.updateProjectionMatrix(); }
       build(cfg.matches[i].venueModel, cfg.matches[i]);
       root.querySelector(".stadium-venue").textContent = `${cfg.matches[i].venue} • ${cfg.matches[i].capacity}`;
@@ -376,7 +401,7 @@ if (root) {
         } else if (mode === "seat") {
           yaw = Math.max(-1.6, Math.min(1.6, yaw - (e.clientX - prev.clientX) * 0.004));
           pitchA = Math.max(-0.75, Math.min(0.35, pitchA + (e.clientY - prev.clientY) * 0.003));
-        } else if (mode === "orbit") { az -= (e.clientX - prev.clientX) * 0.006; pol = Math.min(1.32, Math.max(0.42, pol - (e.clientY - prev.clientY) * 0.004)); }
+        } else if (mode === "orbit") { az -= (e.clientX - prev.clientX) * 0.006; if (e.pointerType !== "touch") pol = Math.min(1.32, Math.max(0.42, pol - (e.clientY - prev.clientY) * 0.004)); }
         moved += Math.abs(e.clientX - prev.clientX) + Math.abs(e.clientY - prev.clientY); updateCam();
       } else if (!coarse && mode === "orbit") {
         const m = pick(e.clientX, e.clientY);
@@ -386,11 +411,13 @@ if (root) {
     });
     const up = (e) => { pts.delete(e.pointerId); if (moved < 6 && e.type === "pointerup" && mode === "orbit") { const m = pick(e.clientX, e.clientY); select(m); } };
     canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
-    canvas.addEventListener("wheel", (e) => {
-      e.preventDefault(); auto = false;
-      if (mode === "seat") { camera.fov = Math.min(75, Math.max(28, camera.fov * (1 + Math.sign(e.deltaY) * 0.06))); camera.updateProjectionMatrix(); }
-      else if (mode === "orbit") { rad = Math.min(radiusMax, Math.max(60, rad * (1 + Math.sign(e.deltaY) * 0.08))); updateCam(); }
-    }, { passive: false });
+    const zoom = (dir) => {
+      auto = false;
+      if (mode === "seat") { camera.fov = Math.min(75, Math.max(28, camera.fov * (1 + dir * 0.08))); camera.updateProjectionMatrix(); }
+      else if (mode === "orbit") { rad = Math.min(radiusMax, Math.max(60, rad * (1 + dir * 0.1))); updateCam(); }
+    };
+    canvas.addEventListener("wheel", (e) => { if (!(e.ctrlKey || e.metaKey)) return; e.preventDefault(); zoom(Math.sign(e.deltaY)); }, { passive: false });
+    root.querySelectorAll("[data-zoom]").forEach((b) => b.addEventListener("click", () => zoom(b.dataset.zoom === "in" ? -1 : 1)));
     root.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => {
       const v = b.dataset.view; auto = false;
       if (mode !== "orbit") { root.classList.remove("is-seat"); }
@@ -410,9 +437,11 @@ if (root) {
     });
 
     // ---------- render loop (only while visible) ----------
-    let visible = true, raf = 0, last = performance.now(), skip = false;
-    new IntersectionObserver((e) => { visible = e[0].isIntersecting; if (!visible && audio && soundBtn.getAttribute("aria-pressed") === "true") audio.off(true); else if (visible && audio && soundBtn.getAttribute("aria-pressed") === "true") audio.on(); kick(); }, { threshold: 0.05 }).observe(stage);
-    document.addEventListener("visibilitychange", () => { visible = !document.hidden; kick(); });
+    let onScreen = true, visible = true, raf = 0, last = performance.now(), skip = false;
+    const soundOn = () => audio && soundBtn.getAttribute("aria-pressed") === "true";
+    const sync = () => { visible = onScreen && !document.hidden; if (soundOn()) { visible ? audio.on() : audio.off(true); } kick(); };
+    new IntersectionObserver((e) => { onScreen = e[0].isIntersecting; sync(); }, { threshold: 0.05 }).observe(stage);
+    document.addEventListener("visibilitychange", sync);
     function frame(now) {
       raf = 0; if (!visible) return;
       raf = requestAnimationFrame(frame);
@@ -435,7 +464,6 @@ if (root) {
     build(cfg.matches[0].venueModel, cfg.matches[0]);
     resize(); updateCam(); kick();
     canvas.tabIndex = -1;
-    if (!document.activeElement || document.activeElement === document.body || document.activeElement === startBtn) canvas.focus({ preventScroll: true });
     root.classList.remove("is-loading"); root.classList.add("is-ready");
     if (!reduce) setTimeout(() => wave(0), 1800);
     window.__oyaStadium = { enterSeat: (cat) => enterSeat(pickables.find((p) => p.userData.cat === cat && p.userData.info.includes("الوسط")) || pickables.find((p) => p.userData.cat === cat)), wave }; // used by tests

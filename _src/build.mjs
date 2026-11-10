@@ -69,6 +69,21 @@ const verHash = crypto.createHash("md5");
 for (const f of ["assets/css/main.css", "assets/img/icons.svg", ...fs.readdirSync(path.join(ROOT_DIR, "assets/js")).filter((f) => f.endsWith(".js")).sort().map((f) => `assets/js/${f}`)]) verHash.update(fs.readFileSync(path.join(ROOT_DIR, f)));
 const ver = verHash.digest("hex").slice(0, 8);
 
+// Tables: every table sits in a keyboard-scrollable wrapper; tables with 4+ columns get per-cell labels
+// so phones can show each row as a small card instead of a cut-off grid.
+const stripTags = (x) => x.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+function enhanceTables(html) {
+  return html.replace(/(<div class="table-wrap"[^>]*>\s*)?<table([^>]*)>([\s\S]*?)<\/table>(\s*<\/div>)?/g, (m, open, attrs, inner, close) => {
+    const heads = [...(inner.match(/<thead[\s\S]*?<\/thead>/) || [""])[0].matchAll(/<th(?=[\s>])[^>]*>([\s\S]*?)<\/th>/g)].map((h) => stripTags(h[1]));
+    const wide = heads.length > 3;
+    let body = inner.replace(/<th(?=[\s>])(?![^>]*scope=)/g, '<th scope="col"');
+    if (wide) body = body.replace(/<tbody>([\s\S]*?)<\/tbody>/, (tb, rows) => "<tbody>" + rows.replace(/<tr>([\s\S]*?)<\/tr>/g, (tr, cells) => { let i = 0; return "<tr>" + cells.replace(/<td(?=[\s>])(?![^>]*data-label)/g, () => `<td data-label="${(heads[i++] || "").replace(/"/g, "&quot;")}"`) + "</tr>"; }) + "</tbody>");
+    const cls = /class="/.test(attrs) ? attrs.replace(/class="([^"]*)"/, (c, v) => `class="${/\btable\b/.test(v) ? v : v + " table"}${wide ? " table--stack" : ""}"`) : `${attrs} class="table${wide ? " table--stack" : ""}"`;
+    const label = heads.filter(Boolean).slice(0, 3).join("، ") || "جدول";
+    return `<div class="table-wrap" tabindex="0" role="region" aria-label="جدول: ${label.replace(/"/g, "&quot;")}"><table${cls}>${body}</table></div>`;
+  });
+}
+
 const written = [];
 const titles = new Map();
 for (const page of pages) {
@@ -78,6 +93,7 @@ for (const page of pages) {
   html = html.replace(/\n\s*\n+/g, "\n");
   // motion budget: reveal whole sections/cards only, never individual list rows
   html = html.replace(/<(details|li)([^>]*?) data-reveal(="[a-z]+")?/g, "<$1$2");
+  html = enhanceTables(html);
   const out = page.path.endsWith(".html") ? path.join(ROOT_DIR, page.path) : path.join(ROOT_DIR, page.path, "index.html");
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, html);

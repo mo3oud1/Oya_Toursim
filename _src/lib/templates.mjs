@@ -186,7 +186,7 @@ ${pageHero({ crumbs, eyebrow: `${ar(p.days)} أيام • ${ar(p.nights)} ليا
 <section class="section section--white" id="book">
   <div class="container split">
     <div data-reveal>${sectionHead({ eyebrow: "احجز هذا البرنامج", title: `احجز ${esc(p.title)}`, lead: "أضف تاريخ الوصول وعدد المسافرين ومستوى الفنادق، ويصلك عرض مكتوب بالسعر النهائي عبر واتساب." })}</div>
-    <div class="form-card" data-reveal="zoom">${tourForm({ program: p.title })}</div>
+    <div class="form-card" data-reveal="zoom">${tourForm({ program: p.title, days: p.days })}</div>
   </div>
 </section>
 

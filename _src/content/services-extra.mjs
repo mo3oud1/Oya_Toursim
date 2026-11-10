@@ -14,6 +14,7 @@ export default [
   // ───────────────────────────── 1. Airport transfer ─────────────────────────────
   {
     slug: "airport-transfer",
+    navLabel: "استقبال المطار",
     path: "transfers/",
     kind: "service",
     icon: "car",
@@ -113,6 +114,7 @@ export default [
   // ───────────────────────────── 2. Private driver ─────────────────────────────
   {
     slug: "private-driver",
+    navLabel: "سائق خاص",
     path: "private-driver/",
     kind: "service",
     icon: "user",
@@ -219,6 +221,7 @@ export default [
   // ───────────────────────────── 3. Day trips ─────────────────────────────
   {
     slug: "day-trips",
+    navLabel: "جولات يومية",
     path: "day-trips/",
     kind: "service",
     icon: "compass",
@@ -404,6 +407,7 @@ export default [
   // ───────────────────────────── 4. Eid al-Fitr 2027 offers ─────────────────────────────
   {
     slug: "eid-al-fitr-2027",
+    navLabel: "عروض عيد الفطر 2027",
     path: "offers/eid-al-fitr-2027/",
     kind: "offer",
     icon: "sparkles",
@@ -529,6 +533,7 @@ export default [
   // ───────────────────────────── 5. Ramadan Umrah 2027 (registration of interest) ─────────────────────────────
   {
     slug: "ramadan-umrah-2027",
+    navLabel: "عمرة رمضان 2027",
     gallery: [
       { img: "gallery-makkah-aerial", alt: "المسجد الحرام في مكة المكرمة من الأعلى مع جموع المصلين حول الكعبة", caption: "المسجد الحرام — مكة المكرمة" },
       { img: "gallery-madinah-sunset", alt: "المسجد النبوي في المدينة المنورة عند الغروب بمآذنه المضاءة", caption: "المسجد النبوي — المدينة المنورة" },

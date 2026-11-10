@@ -24,7 +24,7 @@ export function field({ label, name, type = "text", placeholder = "", required =
   }
   const mark = required ? `<span class="req" aria-hidden="true">*</span>` : (type === "textarea" || optional ? `<span class="opt">(اختياري)</span>` : "");
   const err = required ? `<span class="err" id="${fid}-err">${ERR[type] || `يرجى تعبئة حقل «${esc(label)}»`}</span>` : "";
-  return `<div class="field${wide ? " field--wide" : ""}"><label for="${fid}">${label}${mark}</label>${control}${err}</div>`;
+  return `<div class="field${wide ? " field--wide" : ""}${type === "date" ? " field--date" : ""}"><label for="${fid}">${label}${mark}</label>${control}${err}</div>`;
 }
 
 export function seg({ label, name, options, checked = 0, attrs = "" }) {
@@ -80,7 +80,9 @@ export function hotelForm({ compact = false, city = "" } = {}) {
 </form>`;
 }
 
-export function tourForm({ compact = false, program = "", options } = {}) {
+const DAY_RANGES = ["3–4 أيام", "5–6 أيام", "7–8 أيام", "9–10 أيام", "11–14 يوماً", "أكثر من أسبوعين"];
+const dayRange = (d) => (!d ? "" : DAY_RANGES[d <= 4 ? 0 : d <= 6 ? 1 : d <= 8 ? 2 : d <= 10 ? 3 : d <= 14 ? 4 : 5]);
+export function tourForm({ compact = false, program = "", options, days = 0 } = {}) {
   const opts = options || [
     { group: "داخل تركيا", items: ["إسطنبول", "إسطنبول + بورصة", "إسطنبول + سبانجا + بورصة", "طرابزون + أوزنجول", "جولة البحر الأسود", "إسطنبول + طرابزون", "برنامج عائلي شامل", "شهر العسل في تركيا", "كابادوكيا", "أنطاليا", "بودروم"] },
     { group: "خارج تركيا", items: ["جورجيا", "أذربيجان", "البوسنة", "ماليزيا", "بالي – إندونيسيا", "تايلاند", "المالديف", "مصر", "أوزبكستان"] },
@@ -91,8 +93,8 @@ export function tourForm({ compact = false, program = "", options } = {}) {
   <div class="form-grid">
     ${field({ label: "البرنامج / الوجهة", name: "program", type: "select", options: opts, placeholder: "اختر البرنامج", required: true, value: program })}
     ${field({ label: "تاريخ الوصول التقريبي", name: "date", type: "date", optional: true, attrs: "data-date-start" })}
-    ${field({ label: "عدد الأيام", name: "days", type: "select", options: ["3–4 أيام", "5–6 أيام", "7–8 أيام", "9–10 أيام", "11–14 يوماً", "أكثر من أسبوعين"], value: "7–8 أيام" })}
-    ${field({ label: "المسافرون", name: "pax", type: "select", options: ["شخصان", "عائلة صغيرة (3–4)", "عائلة كبيرة (5+)", "شخص واحد", "مجموعة أصدقاء", "مجموعة كبيرة / شركة"], value: "شخصان" })}
+    ${field({ label: "عدد الأيام", name: "days", type: "select", options: DAY_RANGES, placeholder: "اختر المدة", value: dayRange(days) })}
+    ${field({ label: "المسافرون", name: "pax", type: "select", options: ["شخصان", "عائلة صغيرة (3–4)", "عائلة كبيرة (5+)", "شخص واحد", "مجموعة أصدقاء", "مجموعة كبيرة / شركة"], placeholder: "اختر عدد المسافرين" })}
     ${field({ label: "مستوى الرحلة", name: "level", type: "select", options: ["متوسط — أفضل قيمة", "فاخر", "اقتصادي"], value: "متوسط — أفضل قيمة" })}
     ${compact ? "" : field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: شهر عسل، نفضل فلل مع مسبح خاص في طرابزون" })}
   </div>
@@ -214,14 +216,14 @@ export function booker() {
   const tabs = [
     { key: "hotels", label: "فنادق", icon: "bed", body: hotelForm({ compact: true }) },
     { key: "flights", label: "طيران", icon: "takeoff", body: flightForm({ compact: true }) },
-    { key: "tours", label: "برامج سياحية", icon: "map", body: tourForm({ compact: true }) },
+    { key: "tours", label: "برامج سياحية", short: "برامج", icon: "map", body: tourForm({ compact: true }) },
     { key: "visas", label: "تأشيرات", icon: "passport", body: visaForm({ compact: true }) },
     { key: "matches", label: "مباريات", icon: "ball", body: matchForm({ compact: true }) },
   ];
   return `
 <div class="booker fade-in" style="--d:.6s" data-tabs id="book">
   <div class="booker__tabs" role="tablist" aria-label="نوع الحجز">
-    ${tabs.map((t, i) => `<button class="booker__tab" role="tab" type="button" id="tab-${t.key}" data-key="${t.key}" aria-controls="panel-${t.key}" aria-selected="${i === 0}"${i ? ' tabindex="-1"' : ""}>${ic(t.icon)}${t.label}</button>`).join("")}
+    ${tabs.map((t, i) => `<button class="booker__tab" role="tab" type="button" id="tab-${t.key}" data-key="${t.key}" aria-controls="panel-${t.key}" aria-selected="${i === 0}"${i ? ' tabindex="-1"' : ""}>${ic(t.icon)}${t.short ? `<span class="t-long">${t.label}</span><span class="t-short">${t.short}</span>` : `<span>${t.label}</span>`}</button>`).join("")}
   </div>
   ${tabs.map((t, i) => `<div class="booker__panel" role="tabpanel" id="panel-${t.key}" aria-labelledby="tab-${t.key}"${i ? " hidden" : ""}>${t.body}</div>`).join("")}
 </div>`;

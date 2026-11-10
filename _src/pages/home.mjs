@@ -90,6 +90,13 @@ export function homePage(data) {
         <span class="link-arrow">اكتشف المزيد ${ic("arrow")}</span>
       </div>`).join("")}
     </div>
+    <div class="ground" data-reveal>
+      <p class="ground__t">${ic("car")} خدمات على الأرض وعروض الموسم</p>
+      <div class="ground__links">
+        ${(data.extras || []).map((x) => `<a href="{{root}}${x.path}">${ic(x.icon || "car")}<span>${x.navLabel}</span></a>`).join("")}
+        <a href="{{root}}offers/">${ic("calendar")}<span>كل العروض الموسمية</span></a>
+      </div>
+    </div>
   </div>
 </section>
 
