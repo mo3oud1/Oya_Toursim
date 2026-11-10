@@ -1,6 +1,6 @@
 // Detail page templates fed by _src/content/*.mjs
 import { site } from "../site.mjs";
-import { esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
+import { factIcon, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
 import { tourForm, visaForm } from "./forms.mjs";
 import * as S from "./schema.mjs";
 
@@ -64,7 +64,7 @@ ${pageHero({ crumbs, eyebrow: `دليل الوجهة • <span class="ltr">${esc
     </div>
     <div data-reveal="right">
       ${media({ img: d.img, prompt: d.imgPrompt, alt: `${d.name} — ${d.nameEn}`, icon: d.icon, ratio: "ratio-4x3", label: d.name, en: d.nameEn, tone: toneFor(d.slug), cls: "", page: path }).replace('class="media', 'style="border-radius:var(--r-l);box-shadow:var(--sh-2)" class="media')}
-      <dl class="kv mt-2">${(d.facts || []).map((f) => `<div><dt>${ic("sparkles")}${esc(f.k)}</dt><dd>${f.v}</dd></div>`).join("")}</dl>
+      <dl class="kv mt-2">${(d.facts || []).map((f) => `<div><dt>${ic(factIcon(f.k))}${esc(f.k)}</dt><dd>${f.v}</dd></div>`).join("")}</dl>
     </div>
   </div>
 </section>
@@ -229,7 +229,7 @@ ${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابع
     actions: `${waBtn(`مرحباً أويا للسياحة، أرغب بالاستفسار عن ${v.name}.`, "ابدأ طلبك عبر واتساب")}<a class="btn btn--glass" href="#docs">${ic("doc")}<span>الأوراق المطلوبة</span></a>` })}
 
 <section class="section section--tight">
-  <div class="container"><dl class="kv" data-stagger>${(v.facts || []).map((f) => `<div data-reveal><dt>${ic("sparkles")}${esc(f.k)}</dt><dd>${f.v}</dd></div>`).join("")}</dl></div>
+  <div class="container"><dl class="kv" data-stagger>${(v.facts || []).map((f) => `<div data-reveal><dt>${ic(factIcon(f.k))}${esc(f.k)}</dt><dd>${f.v}</dd></div>`).join("")}</dl></div>
 </section>
 
 <section class="section" style="padding-top:0">

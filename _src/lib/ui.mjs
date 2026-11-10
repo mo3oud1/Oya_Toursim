@@ -12,6 +12,22 @@ export const ar = (n) => Number(n).toLocaleString("en-US");
 
 export const ic = (name, cls = "") => `<svg class="i ${cls}" aria-hidden="true" focusable="false"><use href="{{root}}assets/img/icons.svg#${name}"/></svg>`;
 
+/* Fact labels get an icon that says what the fact is about (distance → route, time → clock, …) */
+const FACT_ICONS = [
+  [/تبعد|المسافة|نقاط الانطلاق|التنقل/, "route"],
+  [/مطار|الطيران/, "takeoff"],
+  [/أفضل وقت|أفضل موسم|موعد|بداية رمضان|العشر الأواخر|العيد|الطقس/, "calendar"],
+  [/المدة|مدة|اليوم الكامل|فترة الانتظار|الصلاحية|آخر إصدار|آخر تصريح/, "clock"],
+  [/الرسوم|رسوم/, "wallet"],
+  [/نوع الدخول|نوع التأشيرة|الإعفاء|الدخول بدون|صلاحية الجواز|شرط الإقامة|الدول المشمولة/, "passport"],
+  [/المنصة|طريقة الحجز|للحجز نحتاج|الحالة|طبيعة الصفحة|ما الذي تسأل/, "doc"],
+  [/المقابلة|البصمة/, "user"],
+  [/السيارات|السائق|الاستلام/, "car"],
+  [/السكن|الإقامة|أين تكثر/, "hotel"],
+  [/الموقع|المدن/, "pin"],
+];
+export const factIcon = (k) => (FACT_ICONS.find(([re]) => re.test(k)) || [, "check-circle"])[1];
+
 export const waUrl = (text) => `https://wa.me/${site.whatsapp}${text ? "?text=" + encodeURIComponent(text) : ""}`;
 export const waBtn = (text, label = "احجز عبر واتساب", cls = "btn btn--wa") =>
   `<a class="${cls}" href="${waUrl(text)}" target="_blank" rel="noopener">${ic("whatsapp")}<span>${label}</span></a>`;

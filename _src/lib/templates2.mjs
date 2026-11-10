@@ -1,14 +1,14 @@
 // Templates: hotel city pages, quick service pages, seasonal offers (+ offers hub)
 import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
-import { esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, waBtn, waUrl } from "./ui.mjs";
+import { factIcon, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, waBtn, waUrl } from "./ui.mjs";
 import { hotelForm, tourForm, transferForm, driverForm, dayTripForm, umrahForm } from "./forms.mjs";
 import { readFirst } from "./templates.mjs";
 import * as S from "./schema.mjs";
 
 const TAG = { family: "عائلات", luxury: "فاخر", budget: "اقتصادي", view: "إطلالة", nature: "طبيعة", shopping: "تسوق", quiet: "هدوء", beach: "شاطئ", city: "مدن", friends: "أصدقاء", honeymoon: "شهر عسل", winter: "شتوي" };
 const graph = (page, extra, type = "WebPage") => [S.orgNode(), S.websiteNode(), S.webPageNode(page, type), S.breadcrumbNode(page), ...extra].filter(Boolean);
-const kv = (facts) => `<dl class="kv" data-stagger>${(facts || []).map((f) => `<div data-reveal><dt>${ic("sparkles")}${esc(f.k)}</dt><dd>${f.v}</dd></div>`).join("")}</dl>`;
+const kv = (facts) => `<dl class="kv" data-stagger>${(facts || []).map((f) => `<div data-reveal><dt>${ic(factIcon(f.k))}${esc(f.k)}</dt><dd>${f.v}</dd></div>`).join("")}</dl>`;
 const steps = (list) => `<div class="steps" data-stagger>${list.map((s, i) => `<div class="step" data-reveal><span class="ico">${ic(["send", "doc", "check-circle", "plane"][i % 4])}</span><h3>${s.t}</h3><p>${s.d}</p></div>`).join("")}</div>`;
 
 /* ---------------- Hotel city pages ---------------- */
