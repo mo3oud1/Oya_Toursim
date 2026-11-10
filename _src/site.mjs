@@ -7,7 +7,7 @@ export const site = {
   // add it here (e.g. { code: "en", dir: "ltr", og: "en_US", prefix: "en/" }) and translate the content files.
   locales: [{ code: "ar", dir: "rtl", og: "ar_AR", prefix: "" }],
   // Absolute base URL (no trailing slash). Change when a custom domain is connected.
-  url: "https://mo3oud1.github.io/Oya_Toursim",
+  url: "https://oyatourism.com",
   email: "oya.tourism01@gmail.com",
   phoneDisplay: "+90 539 933 43 31",
   phoneIntl: "+905399334331",

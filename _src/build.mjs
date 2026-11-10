@@ -128,6 +128,11 @@ fs.writeFileSync(path.join(ROOT_DIR, "site.webmanifest"), JSON.stringify({
   icons: [{ src: "assets/img/brand/oya-icon-192.png", sizes: "192x192", type: "image/png" }, { src: "assets/img/brand/oya-icon-512.png", sizes: "512x512", type: "image/png" }, { src: "assets/img/brand/oya-icon-maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" }],
 }, null, 2));
 fs.writeFileSync(path.join(ROOT_DIR, ".nojekyll"), "");
+// GitHub Pages custom domain: the CNAME file follows site.url (removed again on a github.io address)
+const host = new URL(site.url).hostname;
+const cnameFile = path.join(ROOT_DIR, "CNAME");
+if (host.endsWith("github.io")) fs.rmSync(cnameFile, { force: true });
+else fs.writeFileSync(cnameFile, host + "\n");
 
 // IMAGES.md — list of every photo slot + AI prompt
 const rows = [...imageRegistry.entries()].sort(([a], [b]) => a.localeCompare(b));

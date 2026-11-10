@@ -28,7 +28,7 @@
 
 1. Settings ← Pages
 2. Source: **Deploy from a branch** ← Branch: **main** ← Folder: **/ (root)** ← Save
-3. بعد دقيقة يصبح الموقع على: `https://mo3oud1.github.io/Oya_Toursim/`
+3. بعد دقيقة يصبح الموقع على: `https://oyatourism.com/` (الدومين المربوط عبر ملف `CNAME`؛ العنوان الاحتياطي: `https://mo3oud1.github.io/Oya_Toursim/`)
 
 > ملاحظة: GitHub Pages المجاني يتطلب أن يكون المستودع **Public**.
 > عند ربط دومين خاص (مثل oyatourism.com) غيّر `url` في `_src/site.mjs` ثم أعد البناء، وأضف ملف `CNAME`.

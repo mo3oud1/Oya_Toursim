@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /Oya_Toursim/_src/
-Disallow: /Oya_Toursim/README.md
+Disallow: /_src/
+Disallow: /README.md
 
-Sitemap: https://mo3oud1.github.io/Oya_Toursim/sitemap.xml
+Sitemap: https://oyatourism.com/sitemap.xml
