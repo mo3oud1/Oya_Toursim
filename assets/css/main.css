@@ -917,3 +917,29 @@ body.no-scroll{overflow:hidden}
 .stadium-note{display:flex;gap:.5em;align-items:flex-start;margin:0;font-size:.8rem;color:#9FB6CF;line-height:1.7}
 @media(max-width:640px){.stadium-stage{aspect-ratio:4/5;min-height:0}.stadium-views{width:100%;justify-content:space-between}.stadium-views button{font-size:.8rem;padding:.45em .6em}}
 @media(max-width:640px){.stadium-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;width:100%}.stadium-tabs::-webkit-scrollbar{display:none}.stadium-tab{flex:0 0 auto}.stadium-views{flex-wrap:nowrap;overflow-x:auto}.stadium-views button{flex:0 0 auto}}
+
+/* =========================================================
+   Photo heroes — one strong photo per section
+   Direction-aware scrim: text side is dark in RTL (right) and LTR (left)
+   ========================================================= */
+:root{--scrim-dir:270deg}
+[dir="ltr"]{--scrim-dir:90deg}
+.page-hero.has-photo{min-height:clamp(560px,82svh,800px);display:flex;align-items:center;padding-bottom:clamp(72px,8vw,120px)}
+.page-hero.has-photo>.container{flex:0 0 auto}
+.page-hero.has-photo .page-hero__bg{overflow:hidden;background:var(--navy-900)}
+.page-hero.has-photo .page-hero__bg img{object-position:var(--focus,32% 50%);animation:heroZoom 2.2s var(--ease) both}
+@keyframes heroZoom{from{transform:scale(1.07)}to{transform:none}}
+.page-hero.has-photo::before{background:
+  linear-gradient(var(--scrim-dir),rgba(6,20,40,.9) 0%,rgba(6,20,40,.74) 30%,rgba(6,20,40,.28) 60%,rgba(6,20,40,0) 80%),
+  linear-gradient(180deg,rgba(6,20,40,.62) 0%,rgba(6,20,40,0) 26%),
+  linear-gradient(0deg,rgba(6,20,40,.6) 0%,rgba(6,20,40,0) 36%)}
+.page-hero.has-photo h1{text-shadow:0 2px 28px rgba(6,20,40,.45)}
+.page-hero.has-photo .lead{color:#E3ECF6;max-width:52ch}
+.page-hero.has-photo .chip--dark{background:rgba(6,20,40,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+/* phones & small tablets: photo shown clearly as a top band, text below it */
+@media (max-width:900px){
+  .page-hero.has-photo{--band:calc(var(--header-h) + 62vw);min-height:0;display:block;padding-top:calc(var(--band) - 52px);padding-bottom:40px}
+  .page-hero.has-photo .page-hero__bg{bottom:auto;height:var(--band)}
+  .page-hero.has-photo::before{background:linear-gradient(180deg,rgba(6,20,40,.6) 0,rgba(6,20,40,0) calc(var(--header-h) + 6vw),rgba(6,20,40,0) calc(var(--band) - 140px),rgba(6,20,40,.88) calc(var(--band) - 40px),var(--navy-900) var(--band))}
+}
+@media (prefers-reduced-motion:reduce){.page-hero.has-photo .page-hero__bg img{animation:none}}

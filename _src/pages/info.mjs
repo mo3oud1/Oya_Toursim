@@ -1,4 +1,5 @@
 import { site } from "../site.mjs";
+import { heroPhoto } from "../content/hero-photos.mjs";
 import { ic, esc, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, featureItem } from "../lib/ui.mjs";
 import { contactForm } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
@@ -19,7 +20,7 @@ export function aboutPage() {
     { q: "كيف أتحقق من أي شركة سياحة في تركيا؟", a: "اطلب دائماً رقم ترخيص TÜRSAB للشركة وتحقق منه عبر الموقع الرسمي للاتحاد، واطلب عرضاً مكتوباً بالخدمات وسياسة الإلغاء قبل الدفع، وتجنب الدفع لأفراد مجهولين على مواقع التواصل." },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: "من نحن", title: "أويا للسياحة… لأن كل رحلة حكاية", lead: "وكالة سياحة وسفر من إسطنبول، نصنع للمسافر العربي رحلات مرتبة بعناية: من التذكرة والتأشيرة إلى الفندق والسائق والبرنامج — بلغته، وبالاهتمام الذي يستحقه.", icon: "compass", page: path })}
+${pageHero({ crumbs, ...heroPhoto("hero-about"), eyebrow: "من نحن", title: "أويا للسياحة… لأن كل رحلة حكاية", lead: "وكالة سياحة وسفر من إسطنبول، نصنع للمسافر العربي رحلات مرتبة بعناية: من التذكرة والتأشيرة إلى الفندق والسائق والبرنامج — بلغته، وبالاهتمام الذي يستحقه.", icon: "compass", page: path })}
 <section class="section">
   <div class="container split">
     <div class="prose" data-reveal>
@@ -77,7 +78,7 @@ export function contactPage() {
     { q: "هل يوجد رقم للتواصل أثناء الرحلة؟", a: `نعم، رقم واتساب نفسه <span class="ltr">${site.phoneDisplay}</span> هو خط تواصلك معنا طوال الرحلة لأي طلب أو تعديل.` },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: "تواصل معنا", title: "يسعدنا سماع حكايتك القادمة", lead: "اختر الطريقة الأنسب لك — والأسرع دائماً واتساب. نرد بالعربية على كل استفساراتك عن الطيران والفنادق والبرامج والتأشيرات وتذاكر المباريات.", icon: "headset", page: path })}
+${pageHero({ crumbs, ...heroPhoto("hero-contact"), eyebrow: "تواصل معنا", title: "يسعدنا سماع حكايتك القادمة", lead: "اختر الطريقة الأنسب لك — والأسرع دائماً واتساب. نرد بالعربية على كل استفساراتك عن الطيران والفنادق والبرامج والتأشيرات وتذاكر المباريات.", icon: "headset", page: path })}
 <section class="section">
   <div class="container">
     <div class="contact-tiles" data-stagger>
@@ -140,7 +141,7 @@ export function faqPage() {
   ];
   const all = groups.flatMap((x) => x.items);
   page.body = `
-${pageHero({ crumbs, eyebrow: "مركز المساعدة", title: "الأسئلة الشائعة", lead: "جمعنا لك إجابات أكثر الأسئلة تكراراً عن الحجز والسفر والتأشيرات. لم تجد إجابتك؟ نحن على بُعد رسالة.", icon: "info", page: path,
+${pageHero({ crumbs, ...heroPhoto("hero-faq"), eyebrow: "مركز المساعدة", title: "الأسئلة الشائعة", lead: "جمعنا لك إجابات أكثر الأسئلة تكراراً عن الحجز والسفر والتأشيرات. لم تجد إجابتك؟ نحن على بُعد رسالة.", icon: "info", page: path,
     actions: waBtn("مرحباً أويا، لدي سؤال.", "اسألنا عبر واتساب") })}
 ${groups.map((gr, i) => `<section class="section${i % 2 ? " section--white" : ""}" style="padding-block:clamp(40px,6vw,72px)"><div class="narrow"><h2 class="h-l" data-reveal>${gr.t}</h2><div class="faq" data-stagger>${gr.items.map((f) => `<details data-reveal><summary>${f.q}<span class="pm">${ic("plus")}</span></summary><div class="ans"><p>${f.a}</p></div></details>`).join("")}</div></div></section>`).join("")}
 ${ctaBand({ title: "لديك سؤال آخر؟", lead: "فريقنا يرد عليك بالعربية عبر واتساب.", wa: "مرحباً أويا، لدي سؤال." })}`;

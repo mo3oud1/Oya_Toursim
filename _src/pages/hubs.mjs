@@ -1,4 +1,5 @@
 import { site } from "../site.mjs";
+import { heroPhoto } from "../content/hero-photos.mjs";
 import { ic, ar, esc, strip, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, packageCard, destCard, visaCard, postCard, featureItem } from "../lib/ui.mjs";
 import { tourForm, visaForm } from "../lib/forms.mjs";
 import { visaSteps } from "../lib/templates.mjs";
@@ -25,7 +26,7 @@ export function turkeyHub(data) {
     { q: "كم تكلفة السفر إلى تركيا لمدة أسبوع؟", a: "تختلف التكلفة حسب الموسم وفئة الفندق وعدد المسافرين ونوع السيارة، لذلك نرسل لك عرض سعر مفصلاً حسب تفاصيل رحلتك بدلاً من رقم عام قد لا يناسبك." },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: "السياحة في تركيا", title: "السياحة في تركيا مع أويا: اختر وجهتك", lead: "ثماني وجهات مختارة، وبرامج يوماً بيوم، وسائقون يتحدثون العربية، وفنادق تناسب العائلات والأزواج — من إسطنبول إلى الشمال التركي والمتوسط وكابادوكيا.", icon: "mosque", page: path,
+${pageHero({ crumbs, ...heroPhoto("hero-turkey"), eyebrow: "السياحة في تركيا", title: "السياحة في تركيا مع أويا: اختر وجهتك", lead: "ثماني وجهات مختارة، وبرامج يوماً بيوم، وسائقون يتحدثون العربية، وفنادق تناسب العائلات والأزواج — من إسطنبول إلى الشمال التركي والمتوسط وكابادوكيا.", icon: "mosque", page: path,
     chips: [{ icon: "pin", text: `${ar(data.destinations.length)} وجهات` }, { icon: "route", text: `${ar(tr.length)} برنامجاً جاهزاً` }, { icon: "car", text: "سائق يتحدث العربية" }],
     actions: `${waBtn("مرحباً أويا، أرغب ببرنامج سياحي في تركيا.", "صمّم رحلتي")}<a class="btn btn--glass" href="#programs">${ic("route")}<span>البرامج الجاهزة</span></a>` })}
 
@@ -92,7 +93,7 @@ export function worldHub(data) {
     { q: "هل يمكن السفر برّاً من طرابزون إلى باتومي؟", a: "نعم، باتومي في جورجيا قريبة من الحدود التركية شرق طرابزون، ويمكن ترتيب الرحلة برّاً ضمن برنامج يجمع الشمال التركي وجورجيا، بشرط استيفاء متطلبات دخول جورجيا حسب جنسيتك." },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: "السياحة خارج تركيا", title: "رحلات من إسطنبول إلى أجمل وجهات العالم", lead: "جورجيا وأذربيجان والبوسنة القريبة، وماليزيا وبالي وتايلاند والمالديف البعيدة، ومصر وأوزبكستان — برامج متكاملة مع الفنادق والجولات والمساعدة في التأشيرة.", icon: "globe", page: path,
+${pageHero({ crumbs, ...heroPhoto("hero-world"), eyebrow: "السياحة خارج تركيا", title: "رحلات من إسطنبول إلى أجمل وجهات العالم", lead: "جورجيا وأذربيجان والبوسنة القريبة، وماليزيا وبالي وتايلاند والمالديف البعيدة، ومصر وأوزبكستان — برامج متكاملة مع الفنادق والجولات والمساعدة في التأشيرة.", icon: "globe", page: path,
     chips: [{ icon: "globe", text: `${ar(w.length)} وجهات` }, { icon: "passport", text: "مساعدة في التأشيرات" }, { icon: "takeoff", text: "الطيران عند الطلب" }] })}
 <section class="section">
   <div class="container">
@@ -133,7 +134,7 @@ export function packagesHub(data) {
     { q: "متى يجب أن أحجز لموسم الصيف والأعياد؟", a: "يُنصح بالحجز قبل أسابيع كافية، خصوصاً للفلل والشاليهات في سبانجا وطرابزون وأوزنجول، لأن الطلب عليها يرتفع كثيراً في الصيف والأعياد." },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: "البرامج السياحية", title: "عروض وبرامج سياحية يوماً بيوم", lead: "برامج مدروسة داخل تركيا وخارجها لكل الأذواق: عائلية، شهر عسل، طبيعة، مدن، شتوية وفاخرة — وكلها قابلة للتعديل.", icon: "route", page: path,
+${pageHero({ crumbs, ...heroPhoto("hero-packages"), eyebrow: "البرامج السياحية", title: "عروض وبرامج سياحية يوماً بيوم", lead: "برامج مدروسة داخل تركيا وخارجها لكل الأذواق: عائلية، شهر عسل، طبيعة، مدن، شتوية وفاخرة — وكلها قابلة للتعديل.", icon: "route", page: path,
     chips: [{ icon: "route", text: `${ar(all.length)} برنامجاً` }, { icon: "refresh", text: "تعديل كامل حسب رغبتك" }, { icon: "car", text: "سائق يتحدث العربية" }],
     actions: `<a class="btn" href="#finder">${ic("sparkles")}<span>ساعدني في الاختيار</span></a>` })}
 ${finderSection(data, { compact: true })}
@@ -158,7 +159,7 @@ ${ctaBand({})}`;
 /* =================== VISA HUBS =================== */
 const HUBS = {
   saudi: {
-    path: "saudi-visa/", name: "تأشيرات السعودية", icon: "mosque",
+    path: "saudi-visa/", hero: "hero-saudi", name: "تأشيرات السعودية", icon: "mosque",
     title: "تأشيرة السعودية من تركيا: سياحية وعمرة وزيارة | أويا",
     description: "نساعدك في تأشيرة السعودية من تركيا: السياحية، العمرة، الزيارة العائلية والشخصية، الأعمال، الترانزيت وتأشيرة المقيمين في الخليج. استشرنا عبر واتساب.",
     h1: "تأشيرات السعودية بجميع أنواعها من تركيا",
@@ -172,7 +173,7 @@ const HUBS = {
     ],
   },
   gcc: {
-    path: "gcc-visas/", name: "تأشيرات دول الخليج", icon: "burj",
+    path: "gcc-visas/", hero: "hero-gcc", name: "تأشيرات دول الخليج", icon: "burj",
     title: "فيزا دبي وتأشيرات دول الخليج من تركيا | أويا",
     description: "تأشيرات الإمارات (دبي) وقطر وعُمان والبحرين والكويت من إسطنبول لمختلف الجنسيات، مع متابعة التأشيرة الخليجية الموحدة. أرسل جوازك عبر واتساب لمعرفة أهليتك.",
     h1: "تأشيرات دول مجلس التعاون الخليجي",
@@ -186,7 +187,7 @@ const HUBS = {
     ],
   },
   intl: {
-    path: "visas/", name: "التأشيرات الدولية", icon: "globe",
+    path: "visas/", hero: "hero-visas", name: "التأشيرات الدولية", icon: "globe",
     title: "فيزا شنغن وبريطانيا وأمريكا وكندا من تركيا | أويا",
     description: "نجهز ملف تأشيرتك لشنغن وبريطانيا وأمريكا وكندا من إسطنبول: تعبئة الطلب، الحجوزات، التأمين ومراجعة الأوراق. استشر خبيرنا عبر واتساب الآن.",
     h1: "التأشيرات الدولية: شنغن وبريطانيا وأمريكا وكندا",
@@ -221,7 +222,7 @@ export function visaHub(group, data) {
   </div>
 </section>`;
   page.body = `
-${pageHero({ crumbs, eyebrow: "مركز التأشيرات في أويا", title: H.h1, lead: H.lead, icon: H.icon, page: H.path,
+${pageHero({ crumbs, ...heroPhoto(H.hero), eyebrow: "مركز التأشيرات في أويا", title: H.h1, lead: H.lead, icon: H.icon, page: H.path,
     chips: [{ icon: "passport", text: `${ar(list.length)} أنواع تأشيرات` }, { icon: "doc", text: "تجهيز ومراجعة الملف" }, { icon: "whatsapp", text: "متابعة حتى الصدور" }],
     actions: `${waBtn(`مرحباً أويا، أرغب بالاستفسار عن ${H.name}.`, "استشارة مجانية عبر واتساب")}<a class="btn btn--glass" href="#book">${ic("send")}<span>ابدأ طلبك</span></a>` })}
 <section class="section">
@@ -258,7 +259,7 @@ export function blogHub(data) {
     title: "دليل السفر إلى تركيا ونصائح السياحة | مدونة أويا",
     description: "مقالات عملية عن السياحة في تركيا والعالم: البرامج، التكاليف، أفضل الأوقات، الفنادق والتأشيرات وتذاكر المباريات. اقرأ وخطط لرحلتك القادمة." };
   page.body = `
-${pageHero({ crumbs, eyebrow: "المدونة", title: "مدونة أويا للسفر والسياحة", lead: "أدلة عملية مكتوبة بخبرة محلية من إسطنبول: متى تسافر، كم تكلف الرحلة، ماذا تزور، وكيف تجهز تأشيرتك.", icon: "doc", page: path })}
+${pageHero({ crumbs, ...heroPhoto("hero-blog"), eyebrow: "المدونة", title: "مدونة أويا للسفر والسياحة", lead: "أدلة عملية مكتوبة بخبرة محلية من إسطنبول: متى تسافر، كم تكلف الرحلة، ماذا تزور، وكيف تجهز تأشيرتك.", icon: "doc", page: path })}
 <section class="section"><div class="container"><div class="grid grid-3" data-stagger>${data.posts.map((p) => postCard(p, path)).join("")}</div></div></section>
 ${ctaBand({})}`;
   page.schemaGraph = g(page, [S.itemListNode(page, data.posts.map((p) => ({ path: `blog/${p.slug}/`, name: p.title })))]);

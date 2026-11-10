@@ -1,4 +1,5 @@
 import { site } from "../site.mjs";
+import { heroPhoto } from "../content/hero-photos.mjs";
 import { ic, esc, media, toneFor, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, featureItem, destCard } from "../lib/ui.mjs";
 import { flightForm, hotelForm, cityList } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
@@ -27,7 +28,7 @@ export function flightsPage() {
     { q: "كم مدة الطيران من إسطنبول إلى طرابزون؟", a: "حوالي ساعة و45 دقيقة على الرحلات المباشرة، وتسيّر عدة شركات تركية رحلات يومية بين إسطنبول وطرابزون، مما يجعلها الطريقة الأسرع للوصول إلى الشمال التركي." },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: "تذاكر طيران", title: "حجز تذاكر طيران من إسطنبول وإليها", lead: "رحلات دولية وداخلية على أغلب شركات الطيران: إلى السعودية والخليج والعراق والشام ومصر والمغرب العربي وأوروبا وآسيا — مع مقارنة الخيارات ودعم بالعربية حتى الإقلاع.", icon: "takeoff", page: path,
+${pageHero({ crumbs, ...heroPhoto("hero-flights"), eyebrow: "تذاكر طيران", title: "حجز تذاكر طيران من إسطنبول وإليها", lead: "رحلات دولية وداخلية على أغلب شركات الطيران: إلى السعودية والخليج والعراق والشام ومصر والمغرب العربي وأوروبا وآسيا — مع مقارنة الخيارات ودعم بالعربية حتى الإقلاع.", icon: "takeoff", page: path,
     chips: [{ icon: "search", text: "مقارنة بين شركات الطيران" }, { icon: "suitcase", text: "توضيح الأمتعة والشروط" }, { icon: "refresh", text: "مساعدة في التعديل والتغيير" }] })}
 
 <section class="section section--tight" id="book" style="margin-top:-56px;position:relative;z-index:3">
@@ -121,7 +122,7 @@ export function hotelsPage(data) {
     { q: "هل تحجزون فنادق خارج تركيا؟", a: "نعم، نحجز فنادق في مكة المكرمة والمدينة المنورة، دبي، جورجيا، أذربيجان، ماليزيا وغيرها، ونربطها بتذاكر الطيران والتأشيرة عند الحاجة." },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: `${ic("star")} الخدمة الأكثر طلباً`, title: "حجز فنادق ومنتجعات في تركيا للعائلات والأزواج", lead: "من فنادق البوسفور الفاخرة إلى فلل سبانجا بمسابحها الخاصة وأكواخ أوزنجول — نختار لك الإقامة المناسبة ونتحقق من كل تفصيل قبل أن تصل.", icon: "hotel", page: path,
+${pageHero({ crumbs, ...heroPhoto("hero-hotels"), eyebrow: `${ic("star")} الخدمة الأكثر طلباً`, title: "حجز فنادق ومنتجعات في تركيا للعائلات والأزواج", lead: "من فنادق البوسفور الفاخرة إلى فلل سبانجا بمسابحها الخاصة وأكواخ أوزنجول — نختار لك الإقامة المناسبة ونتحقق من كل تفصيل قبل أن تصل.", icon: "hotel", page: path,
     chips: [{ icon: "check-circle", text: "تأكيد حجز مكتوب" }, { icon: "headset", text: "متابعة مع الفندق بالعربية" }, { icon: "heart", text: "خيارات لشهر العسل والعائلات" }] })}
 
 <section class="section section--tight" id="book" style="margin-top:-56px;position:relative;z-index:3">

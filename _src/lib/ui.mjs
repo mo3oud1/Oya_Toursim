@@ -28,6 +28,17 @@ const hash = (s) => [...String(s)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >
 export function photoExists(key) {
   return ["webp", "jpg", "jpeg", "png", "avif"].map((e) => `${key}.${e}`).find((f) => fs.existsSync(path.join(ROOT_DIR, "assets/img/photos", f)));
 }
+// Responsive <img>: uses <key>-640/-1024 WebP variants when present (made at import time)
+const PHOTO_DIR = path.join(ROOT_DIR, "assets/img/photos");
+export function photoImg(key, { alt = "", sizes = "100vw", eager = false, cls = "" } = {}) {
+  const file = photoExists(key);
+  if (!file) return "";
+  const base = file.replace(/\.\w+$/, "");
+  const set = [["-640", 640], ["-1024", 1024]].filter(([s]) => fs.existsSync(path.join(PHOTO_DIR, `${base}${s}.webp`))).map(([s, w]) => `{{root}}assets/img/photos/${base}${s}.webp ${w}w`);
+  const srcset = set.length ? ` srcset="${set.join(", ")}, {{root}}assets/img/photos/${file} 1536w" sizes="${sizes}"` : "";
+  const load = eager ? ' fetchpriority="high"' : ' loading="lazy"';
+  return `<img${cls ? ` class="${cls}"` : ""} src="{{root}}assets/img/photos/${file}"${srcset} alt="${esc(alt)}" width="1536" height="1024"${load} decoding="async">`;
+}
 export function registerImage(key, prompt, usedOn) {
   if (!key) return;
   const r = imageRegistry.get(key) || { prompt: "", usedOn: new Set() };
@@ -48,8 +59,8 @@ export function media({ img, prompt, alt = "", icon = "compass", ratio = "ratio-
   registerImage(img, prompt, page);
   const file = img && photoExists(img);
   if (file) {
-    const pic = `<img src="{{root}}assets/img/photos/${file}" alt="${esc(alt)}" width="1536" height="1024" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
-    return `<div class="media ${ratio} ${cls}">${pic}</div>`;
+    const sizes = cls.includes("media--wide") ? "(max-width: 1024px) 100vw, 1240px" : "(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 420px";
+    return `<div class="media ${ratio} ${cls}">${photoImg(img, { alt, sizes, eager })}</div>`;
   }
   const t = tone || "istanbul";
   return `<div class="media media--ph tone-${t} ${ratio} ${cls}" role="img" aria-label="${esc(alt)}">${ROUTE}${label ? `<span class="ph-text"><span class="ph-name">${esc(label)}</span>${en ? `<span class="ph-en">${esc(en)}</span>` : ""}</span>` : ""}</div>`;
@@ -74,17 +85,19 @@ export function crumbs(items) {
     .join("")}</ol></nav>`;
 }
 
-export function pageHero({ crumbs: cr, eyebrow, title, lead, icon = "compass", img, prompt, chips = [], actions = "", page = "", extra = "" }) {
+export function pageHero({ crumbs: cr, eyebrow, title, lead, icon = "compass", img, prompt, chips = [], actions = "", page = "", extra = "", focus = "" }) {
   registerImage(img, prompt, page);
   const file = img && photoExists(img);
-  return `
-<section class="page-hero${file ? " has-photo" : ""}">
-  ${file ? `<div class="page-hero__bg"><img src="{{root}}assets/img/photos/${file}" alt="" width="1536" height="1024" fetchpriority="high"></div>` : ""}
+  // Photo hero: full-bleed photo + direction-aware scrim (works for RTL now, LTR later)
+  const bg = file ? `<div class="page-hero__bg">${photoImg(img, { alt: "", sizes: "100vw", eager: true })}</div>` : `
   <div class="page-hero__art" aria-hidden="true">
     <span class="orb orb--1"></span><span class="orb orb--2"></span>
     <svg class="route" viewBox="0 0 800 600" preserveAspectRatio="none"><path d="M-20 520 C 160 420, 260 560, 420 380 S 640 160, 820 120"/><path d="M-20 300 C 140 260, 300 340, 460 220 S 700 60, 820 40"/></svg>
     ${ic(icon, "big-ico")}
-  </div>
+  </div>`;
+  return `
+<section class="page-hero${file ? " has-photo" : ""}"${focus ? ` style="--focus:${focus}"` : ""}>
+  ${bg}
   <div class="container">
     ${cr ? crumbs(cr) : ""}
     ${eyebrow ? `<p class="eyebrow fade-in" style="--d:.05s">${eyebrow}</p>` : ""}

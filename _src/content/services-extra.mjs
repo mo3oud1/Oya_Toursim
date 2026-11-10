@@ -18,7 +18,7 @@ export default [
     kind: "service",
     icon: "car",
     img: "svc-airport-transfer",
-    imgPrompt: `A sleek black unbranded passenger van and a dark sedan waiting at the departures curb of a large modern airport terminal in Istanbul at blue hour, glass facade glowing with warm interior light, a driver in a dark suit seen from behind lifting a suitcase into the open rear of the van, a family with children standing at a distance seen from behind, wet pavement reflections, no visible license plates, badges, signs or lettering, ${IMG_STYLE}`,
+    imgPrompt: "Photorealistic travel photography, a premium black passenger van with tinted windows and no brand logos or badges waiting at the curbside of a modern international airport terminal at dusk, a chauffeur in a dark suit placing suitcases into the open trunk, the van in the left half of the frame, glass terminal facade glowing with warm light, wet pavement reflections, the chauffeur seen from the side, no readable signs. Wide cinematic composition with the main subject in the left half of the frame and calmer, uncluttered space on the right half for headline text. Natural colors, high dynamic range, no text, no logos, no watermarks, landscape 3:2.",
     seo: {
       title: "استقبال وتوصيل المطارات في إسطنبول وتركيا | أويا",
       description:
@@ -117,7 +117,7 @@ export default [
     kind: "service",
     icon: "user",
     img: "svc-private-driver",
-    imgPrompt: `A black unbranded premium minivan driving along the Bosphorus shore road in Istanbul at golden hour, Rumeli Fortress stone towers and the Fatih Sultan Mehmet suspension bridge in the background, calm blue water with a small ferry, green wooded hills on the Asian side, no visible license plate, badges or lettering, no people in close-up, ${IMG_STYLE}`,
+    imgPrompt: "Photorealistic travel photography, a premium black passenger van with no brand logos or badges driving along the Bosphorus coastal road in Istanbul at golden hour, the Bosphorus Bridge and the calm strait in the background, the van in the left half of the frame, Ottoman waterfront mansions and trees along the road, warm evening light, motion feel. Wide cinematic composition with the main subject in the left half of the frame and calmer, uncluttered space on the right half for headline text. Natural colors, high dynamic range, no text, no logos, no watermarks, landscape 3:2.",
     seo: {
       title: "سائق خاص يتحدث العربية في إسطنبول وتركيا | أويا",
       description:
@@ -223,7 +223,7 @@ export default [
     kind: "service",
     icon: "compass",
     img: "svc-day-trips",
-    imgPrompt: `Uzungöl lake in the Black Sea mountains of northeastern Turkey on a clear late-spring morning, still water reflecting steep forested green slopes, the small stone lakeside mosque with a single slender minaret, wooden chalets scattered on the hillside, thin mist on the peaks, a family seen from behind at a distance walking on the lakeside path, ${IMG_STYLE}`,
+    imgPrompt: "Photorealistic travel photography, the ferry pier of Büyükada on the Princes' Islands near Istanbul on a sunny spring morning, a white passenger ferry arriving at the old pier on the left half of the frame, historic wooden Ottoman mansions with bay windows and pine-covered hills behind, clear blue Marmara Sea, a few visitors in modest clothing at a distance. Wide cinematic composition with the main subject in the left half of the frame and calmer, uncluttered space on the right half for headline text. Natural colors, high dynamic range, no text, no logos, no watermarks, landscape 3:2.",
     seo: {
       title: "جولات يومية من إسطنبول وطرابزون بسائق خاص | أويا",
       description:

@@ -157,8 +157,11 @@ export function renderPage(page, data, assetsVer) {
   const ogImg = abs(page.ogImage || "assets/img/og/og-default.jpg");
   const title = page.title;
   const graph = page.schemaGraph || [];
+  const L = site.locales.find((l) => l.code === (page.lang || "ar")) || site.locales[0];
+  // hreflang: one entry per language this page exists in (page.alternates = { en: url, ... } later)
+  const alts = { [L.code]: url, ...(page.alternates || {}) };
   return `<!doctype html>
-<html lang="ar" dir="rtl" data-wa="${site.whatsapp}" data-email="${site.email}">
+<html lang="${L.code}" dir="${L.dir}" data-wa="${site.whatsapp}" data-email="${site.email}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -166,13 +169,13 @@ export function renderPage(page, data, assetsVer) {
 <meta name="description" content="${esc(page.description)}">
 <link rel="canonical" href="${url}">
 <meta name="robots" content="${page.noindex ? "noindex,follow" : "index,follow,max-image-preview:large,max-snippet:-1"}">
-<link rel="alternate" hreflang="ar" href="${url}">
-<link rel="alternate" hreflang="x-default" href="${url}">
+${Object.entries(alts).map(([code, href]) => `<link rel="alternate" hreflang="${code}" href="${href}">`).join("\n")}
+<link rel="alternate" hreflang="x-default" href="${alts[site.locales[0].code] || url}">
 <meta name="theme-color" content="#0A1F3A">
 <meta name="format-detection" content="telephone=no">
 <meta property="og:type" content="${page.ogType || "website"}">
 <meta property="og:site_name" content="${site.name} | ${site.nameEn}">
-<meta property="og:locale" content="ar_AR">
+<meta property="og:locale" content="${L.og}">
 <meta property="og:title" content="${esc(page.ogTitle || title)}">
 <meta property="og:description" content="${esc(page.description)}">
 <meta property="og:url" content="${url}">

@@ -3,6 +3,9 @@ export const site = {
   name: "أويا للسياحة",
   nameEn: "OYA Tourism",
   tagline: "كل رحلة… حكاية",
+  // Languages — Arabic is the default (served at the site root). To add a language later,
+  // add it here (e.g. { code: "en", dir: "ltr", og: "en_US", prefix: "en/" }) and translate the content files.
+  locales: [{ code: "ar", dir: "rtl", og: "ar_AR", prefix: "" }],
   // Absolute base URL (no trailing slash). Change when a custom domain is connected.
   url: "https://mo3oud1.github.io/Oya_Toursim",
   email: "oya.tourism01@gmail.com",

@@ -1,5 +1,6 @@
 // Templates: hotel city pages, quick service pages, seasonal offers (+ offers hub)
 import { site } from "../site.mjs";
+import { heroPhoto } from "../content/hero-photos.mjs";
 import { esc, strip, ic, ar, media, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, waBtn, waUrl } from "./ui.mjs";
 import { hotelForm, tourForm, transferForm, driverForm, dayTripForm, umrahForm } from "./forms.mjs";
 import { readFirst } from "./templates.mjs";
@@ -125,7 +126,7 @@ export function offersHub(data) {
   const offers = data.extras.filter((x) => x.kind === "offer").map((x) => ({ href: x.path, title: x.h1.split(":")[0], text: x.intro, icon: x.icon || "calendar" }));
   offers.unshift({ href: "matches/spanish-super-cup-2027/", title: "باقات كأس السوبر الإسباني 2027", text: "فندق قرب الملعب وتنقلات ومساعدة في التذكرة الرسمية — 2 إلى 6 فبراير 2027 في إسطنبول.", icon: "trophy" });
   page.body = `
-${pageHero({ crumbs, eyebrow: "العروض الموسمية", title: "عروض الموسم: احجز مبكراً واضمن الأفضل", lead: "مواسم الطلب العالي تنفد فيها الفنادق والفلل سريعاً. اختر موسمك وسجّل طلبك مبكراً.", icon: "calendar", page: path })}
+${pageHero({ crumbs, ...heroPhoto("hero-offers"), eyebrow: "العروض الموسمية", title: "عروض الموسم: احجز مبكراً واضمن الأفضل", lead: "مواسم الطلب العالي تنفد فيها الفنادق والفلل سريعاً. اختر موسمك وسجّل طلبك مبكراً.", icon: "calendar", page: path })}
 <section class="section"><div class="container"><div class="grid grid-3" data-stagger>${offers.map((o) => `<article class="vcard" data-reveal><span class="ico ico--orange">${ic(o.icon)}</span><h3><a class="cover" href="{{root}}${o.href}">${esc(o.title)}</a></h3><p>${o.text}</p><span class="link-arrow">التفاصيل ${ic("arrow")}</span></article>`).join("")}</div></div></section>
 ${ctaBand({})}`;
   page.schemaGraph = graph(page, [S.itemListNode(page, offers.map((o) => ({ path: o.href, name: o.title })))], "CollectionPage");

@@ -1,4 +1,5 @@
 import { site } from "../site.mjs";
+import { heroPhoto } from "../content/hero-photos.mjs";
 import { ic, esc, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, packageCard } from "../lib/ui.mjs";
 import { readFirst } from "../lib/templates.mjs";
 import { matchForm } from "../lib/forms.mjs";
@@ -217,7 +218,7 @@ export function matchesHub(data) {
     { icon: "globe", title: "مباريات حول العالم", text: "نساعدك في تذاكر مباريات كبرى في أوروبا والخليج مع الطيران والفندق.", tag: "حسب الطلب" },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: "تذاكر المباريات • جديد في أويا", title: "تذاكر المباريات… احضر المباراة وعِش الحكاية", lead: "من كأس السوبر الإسباني 2027 في إسطنبول إلى ديربيات الدوري التركي والليالي الأوروبية — نؤمّن لك المقعد والفندق والتنقلات في باقة واحدة.", icon: "ball", page: path,
+${pageHero({ crumbs, ...heroPhoto("hero-matches"), eyebrow: "تذاكر المباريات • جديد في أويا", title: "تذاكر المباريات… احضر المباراة وعِش الحكاية", lead: "من كأس السوبر الإسباني 2027 في إسطنبول إلى ديربيات الدوري التركي والليالي الأوروبية — نؤمّن لك المقعد والفندق والتنقلات في باقة واحدة.", icon: "ball", page: path,
     chips: [{ icon: "ticket", text: "تذاكر بفئات متعددة" }, { icon: "hotel", text: "باقات مع الفندق" }, { icon: "car", text: "نقل من وإلى الملعب" }],
     actions: `<a class="btn" href="#book">${ic("ticket")}<span>احجز تذكرتك</span></a>${waBtn("مرحباً أويا، أرغب بالاستفسار عن تذاكر المباريات.", "اسأل عبر واتساب", "btn btn--glass")}` })}
 
@@ -306,7 +307,7 @@ export function superCupPage(data) {
     { q: "هل أحتاج تأشيرة لدخول تركيا لحضور المباراة؟", a: "يعتمد ذلك على جنسيتك؛ مواطنو كثير من الدول العربية — ومنها دول الخليج — يدخلون تركيا دون تأشيرة لمدة محددة، بينما تحتاج جنسيات أخرى تأشيرة إلكترونية أو من السفارة. أرسل لنا جنسيتك ونخبرك بالمطلوب." },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبراير 2027`, title: "تذاكر كأس السوبر الإسباني 2027 في إسطنبول", lead: "الكلاسيكو المحتمل في النهائي، ونجوم الليغا على أرض إسطنبول. احجز باقة إقامة المشجع مع أويا للسياحة واحصل على تذكرتك الرسمية باسمك — من قلب المدينة المستضيفة.", icon: "trophy", page: path,
+${pageHero({ crumbs, ...heroPhoto("hero-super-cup"), eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبراير 2027`, title: "تذاكر كأس السوبر الإسباني 2027 في إسطنبول", lead: "الكلاسيكو المحتمل في النهائي، ونجوم الليغا على أرض إسطنبول. احجز باقة إقامة المشجع مع أويا للسياحة واحصل على تذكرتك الرسمية باسمك — من قلب المدينة المستضيفة.", icon: "trophy", page: path,
     actions: `<a class="btn" href="#book">${ic("ticket")}<span>احجز باقتك الآن</span></a>${waBtn("مرحباً أويا، أرغب بحجز تذاكر كأس السوبر الإسباني 2027 في إسطنبول.", "واتساب", "btn btn--glass")}`,
     extra: `<div class="mt-2" style="max-width:560px">${countdown()}</div>` })}
 
