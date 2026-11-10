@@ -1,5 +1,5 @@
 import { site } from "../site.mjs";
-import { ic, ar, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, featureItem, photoSources, registerImage } from "../lib/ui.mjs";
+import { ic, ar, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, featureItem, photoSources, photoImg, registerImage } from "../lib/ui.mjs";
 import { booker, cityList } from "../lib/forms.mjs";
 import { flightSvg } from "../lib/art.mjs";
 import * as S from "../lib/schema.mjs";
@@ -25,14 +25,14 @@ export function homePage(data) {
     { q: "هل تساعدون في التأشيرات حتى لو لم أحجز رحلة معكم؟", a: "نعم، خدمة التأشيرات مستقلة: نساعدك في تأشيرات السعودية بجميع أنواعها، تأشيرات دول الخليج، وتأشيرات شنغن وبريطانيا وأمريكا وكندا، مع العلم أن قرار المنح يعود للجهات الرسمية." },
   ];
   const services = [
-    { cls: "b-hero svc--dark", icon: "hotel", title: "فنادق ومنتجعات", text: "فنادق 5 نجوم، منتجعات شاملة كل شيء، شقق فندقية وفلل بمسبح خاص في إسطنبول وطرابزون وسبانجا وأنطاليا — مختارة لتناسب العائلات والأزواج.", href: "hotels/", badge: "الأكثر طلباً", art: "bed" },
-    { cls: "b-3", icon: "takeoff", title: "تذاكر طيران", text: "رحلات من وإلى إسطنبول والعالم بأفضل الخيارات المتاحة.", href: "flights/" },
-    { cls: "b-3", icon: "map", title: "السياحة في تركيا", text: "برامج يوماً بيوم مع سائق عربي ومرشدين.", href: "turkey-tours/" },
-    { cls: "b-3", icon: "globe", title: "خارج تركيا", text: "جورجيا، أذربيجان، البوسنة، ماليزيا وغيرها.", href: "world-tours/" },
-    { cls: "b-3 svc--orange", icon: "ball", title: "تذاكر المباريات", text: "السوبر الإسباني 2027 في إسطنبول ومباريات كبرى.", href: "matches/" },
-    { cls: "b-4", icon: "mosque", title: "تأشيرات السعودية", text: "سياحية، عمرة، زيارة عائلية وشخصية، أعمال وترانزيت.", href: "saudi-visa/" },
-    { cls: "b-4", icon: "passport", title: "تأشيرات الخليج", text: "الإمارات، قطر، عُمان، البحرين والكويت.", href: "gcc-visas/" },
-    { cls: "b-4", icon: "globe", title: "تأشيرات دولية", text: "شنغن، بريطانيا، أمريكا وكندا — تجهيز ملف كامل.", href: "visas/" },
+    { cls: "b-hero svc--dark", img: "hero-hotels", icon: "hotel", title: "فنادق ومنتجعات", text: "فنادق 5 نجوم، منتجعات شاملة كل شيء، شقق فندقية وفلل بمسبح خاص في إسطنبول وطرابزون وسبانجا وأنطاليا — مختارة لتناسب العائلات والأزواج.", href: "hotels/", badge: "الأكثر طلباً", art: "bed" },
+    { cls: "b-3", img: "hero-flights", icon: "takeoff", title: "تذاكر طيران", text: "رحلات من وإلى إسطنبول والعالم بأفضل الخيارات المتاحة.", href: "flights/" },
+    { cls: "b-3", img: "hero-turkey", icon: "map", title: "السياحة في تركيا", text: "برامج يوماً بيوم مع سائق عربي ومرشدين.", href: "turkey-tours/" },
+    { cls: "b-3", img: "hero-world", icon: "globe", title: "خارج تركيا", text: "جورجيا، أذربيجان، البوسنة، ماليزيا وغيرها.", href: "world-tours/" },
+    { cls: "b-3 svc--orange", img: "hero-matches", icon: "ball", title: "تذاكر المباريات", text: "السوبر الإسباني 2027 في إسطنبول ومباريات كبرى.", href: "matches/" },
+    { cls: "b-4", img: "hero-saudi", icon: "mosque", title: "تأشيرات السعودية", text: "سياحية، عمرة، زيارة عائلية وشخصية، أعمال وترانزيت.", href: "saudi-visa/" },
+    { cls: "b-4", img: "hero-gcc", icon: "passport", title: "تأشيرات الخليج", text: "الإمارات، قطر، عُمان، البحرين والكويت.", href: "gcc-visas/" },
+    { cls: "b-4", img: "visa-schengen", icon: "globe", title: "تأشيرات دولية", text: "شنغن، بريطانيا، أمريكا وكندا — تجهيز ملف كامل.", href: "visas/" },
   ];
 
   // Cinematic hero: real-looking destination photos crossfading with a slow drift (decorative; first slide is the LCP image)
@@ -80,7 +80,8 @@ export function homePage(data) {
     ${sectionHead({ eyebrow: "خدماتنا", title: `كل ما تحتاجه لرحلتك… <span class="hl">في مكان واحد</span>`, lead: "من حجز الفندق والتذكرة إلى التأشيرة والبرنامج السياحي والسائق — نرتّب لك التفاصيل لتستمتع أنت بالحكاية." })}
     <div class="bento" data-stagger>
       ${services.map((s) => `
-      <div class="svc ${s.cls}" data-reveal>
+      <div class="svc svc--photo ${s.cls}" data-reveal>
+        <div class="svc__bg" aria-hidden="true">${photoImg(s.img, { alt: "", sizes: s.cls.includes("b-hero") ? "(max-width: 1040px) 92vw, 620px" : "(max-width: 1040px) 92vw, 320px" })}</div>
 
         ${s.badge ? `<span class="badge" style="position:static;align-self:flex-start">${s.badge}</span>` : ""}
         <span class="ico${s.cls.includes("dark") ? " ico--glass" : ""}">${ic(s.icon)}</span>
