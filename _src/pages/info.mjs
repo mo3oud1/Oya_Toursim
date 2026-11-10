@@ -183,7 +183,7 @@ export const termsPage = () => legal("terms/", "الشروط والأحكام", 
 
 /* =================== 404 =================== */
 export function notFoundPage() {
-  const page = { path: "404.html", nav: "x", title: "الصفحة غير موجودة | أويا للسياحة", description: "الصفحة المطلوبة غير موجودة.", noindex: true, lightHeader: true, absoluteRoot: true };
+  const page = { path: "404.html", nav: "x", title: "الصفحة غير موجودة | أويا للسياحة", description: "الصفحة المطلوبة غير موجودة.", noindex: true, noLocale: true, lightHeader: true, absoluteRoot: true };
   page.body = `
 <section class="nf"><div class="narrow center">
   <b>404</b>

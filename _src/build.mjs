@@ -15,6 +15,7 @@ import { matchesHub, superCupPage } from "./pages/matches.mjs";
 import { aboutPage, contactPage, faqPage, privacyPage, termsPage, notFoundPage } from "./pages/info.mjs";
 import { hotelCityPage, extraPage, offersHub } from "./lib/templates2.mjs";
 import { turkeyVisaPage } from "./pages/turkey-visa.mjs";
+import { Translator, hasAr } from "./lib/i18n.mjs";
 
 const load = async (f) => {
   const p = path.join(ROOT_DIR, "_src/content", f);
@@ -86,36 +87,83 @@ function enhanceTables(html) {
   });
 }
 
+// ---------- languages ----------
+// Arabic is rendered first; every other language is the same page translated unit by unit (_src/lib/i18n.mjs).
+const I18N_DIR = path.join(ROOT_DIR, "_src/i18n");
+const readJson = (f, d) => (fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : d);
+const AR = site.locales[0];
+const OTHERS = site.locales.slice(1);
+const catalogue = new Map(); // every Arabic unit, for translators (_src/i18n/source.json)
+const collector = new Translator("ar", {}, { collect: catalogue });
+// structured data: page URLs move under the language folder, site-level ids (#org, #website) and files stay
+const ldHook = (L) => (obj) => {
+  const walk = (v, k) => {
+    if (k === "inLanguage") return L.code;
+    if (typeof v === "string" && v.startsWith(site.url + "/")) {
+      const rest = v.slice(site.url.length + 1);
+      return /^(#org|#website|assets\/)/.test(rest) ? v : `${site.url}/${L.prefix}${rest}`;
+    }
+    if (Array.isArray(v)) return v.map((x) => walk(x));
+    if (v && typeof v === "object") { for (const key of Object.keys(v)) v[key] = walk(v[key], key); return v; }
+    return v;
+  };
+  walk(obj);
+};
+const translators = Object.fromEntries(OTHERS.map((L) => [L.code, new Translator(L.code, readJson(path.join(I18N_DIR, `${L.code}.json`), {}), { ldHook: ldHook(L) })]));
+
+// shared HTML clean-up (before translation, so generated labels such as table captions are translated too)
+const post = (html) => enhanceTables(html.replace(/\n\s*\n+/g, "\n").replace(/<(details|li)([^>]*?) data-reveal(="[a-z]+")?/g, "<$1$2"));
+// {{root}} = this language's home, {{site}} = the site root (shared files: assets, icons, sitemap)
+const fixRoots = (html, siteRoot, pageRoot) => html
+  .replace(/\{\{root\}\}(assets\/|favicon|apple-touch-icon|site\.webmanifest|sitemap\.xml)/g, siteRoot + "$1")
+  .replaceAll("{{site}}", siteRoot).replaceAll("{{root}}", pageRoot);
+const outFile = (p) => (p.endsWith(".html") ? path.join(ROOT_DIR, p) : path.join(ROOT_DIR, p, "index.html"));
+const write = (p, html) => { const f = outFile(p); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, html); return f; };
+// remove language folders from a previous build (pages that no longer exist must not linger)
+for (const L of OTHERS) fs.rmSync(path.join(ROOT_DIR, L.prefix), { recursive: true, force: true });
+
 const written = [];
 const titles = new Map();
 for (const page of pages) {
   const depth = page.path.endsWith(".html") ? 0 : page.path.split("/").filter(Boolean).length;
   const root = page.absoluteRoot ? new URL(site.url + "/").pathname : depth ? "../".repeat(depth) : "./";
-  let html = renderPage(page, data, ver).replaceAll("{{root}}", root);
-  html = html.replace(/\n\s*\n+/g, "\n");
-  // motion budget: reveal whole sections/cards only, never individual list rows
-  html = html.replace(/<(details|li)([^>]*?) data-reveal(="[a-z]+")?/g, "<$1$2");
-  html = enhanceTables(html);
-  const out = page.path.endsWith(".html") ? path.join(ROOT_DIR, page.path) : path.join(ROOT_DIR, page.path, "index.html");
-  fs.mkdirSync(path.dirname(out), { recursive: true });
-  fs.writeFileSync(out, html);
-  written.push({ page, out });
+  const arHtml = post(renderPage(page, data, ver, AR.code));
+  collector.page = page.path;
+  collector.html(arHtml);
+  written.push({ page, lang: AR, path: page.path, out: write(page.path, fixRoots(arHtml, root, root)) });
   if (titles.has(page.title)) console.warn(`! duplicate title: ${page.title} (${page.path} & ${titles.get(page.title)})`);
   titles.set(page.title, page.path);
   if (page.title.length > 70) console.warn(`! long title (${page.title.length}): ${page.path}`);
   if (page.description.length > 165) console.warn(`! long description (${page.description.length}): ${page.path}`);
+  if (page.noLocale || page.absoluteRoot) continue;
+  for (const L of OTHERS) {
+    const t = translators[L.code];
+    t.page = page.path;
+    const p = L.prefix + page.path;
+    const d = p.split("/").filter(Boolean).length;
+    const html = t.html(post(renderPage(page, data, ver, L.code)));
+    written.push({ page, lang: L, path: p, out: write(p, fixRoots(html, "../".repeat(d), d > 1 ? "../".repeat(d - 1) : "./")) });
+  }
 }
 
-// sitemap.xml
+// translation report + catalogue for translators
+fs.mkdirSync(I18N_DIR, { recursive: true });
+const source = [...catalogue.entries()].map(([id, e]) => ({ id, kind: e.kind, ar: e.ar, pages: [...e.pages].slice(0, 4), n: e.n }));
+fs.writeFileSync(path.join(I18N_DIR, "source.json"), JSON.stringify(source, null, 1));
+const i18nReport = OTHERS.map((L) => { const t = translators[L.code]; return `${L.code}: ${t.missing.size} missing${t.bad.size ? `, ${t.bad.size} with broken placeholders` : ""}`; });
+fs.writeFileSync(path.join(I18N_DIR, "_missing.json"), JSON.stringify(Object.fromEntries(OTHERS.map((L) => [L.code, [...translators[L.code].missing.keys(), ...translators[L.code].bad.keys()]])), null, 1));
+
+// sitemap.xml — every language version, each listing its alternates
 const today = new Date().toISOString().slice(0, 10);
 const prio = (p) => (p === "" ? "1.0" : /^(hotels|flights|turkey-tours|saudi-visa|gcc-visas|visas|packages|matches|world-tours)\/$/.test(p) ? "0.9" : /^(turkey-tours|packages|saudi-visa|gcc-visas|visas|matches|turkey-visa)\//.test(p) ? "0.8" : p.startsWith("blog/") ? "0.7" : "0.5");
 // image sitemap entries: the main (1536w) photo files used on each page, hero first
 const pagePhotos = (body) => [...new Set([...String(body || "").matchAll(/assets\/img\/photos\/([\w-]+?)(?:-640|-1024)?\.webp/g)].map((m) => m[1]))].slice(0, 12);
 const urls = written.filter((w) => !w.page.noindex).map((w) => {
   const imgs = pagePhotos(w.page.body).map((k) => `<image:image><image:loc>${site.url}/assets/img/photos/${k}.webp</image:loc></image:image>`).join("");
-  return `  <url><loc>${site.url}/${w.page.path}</loc><lastmod>${today}</lastmod><priority>${prio(w.page.path)}</priority>${imgs}</url>`;
+  const alts = w.page.noLocale ? "" : site.locales.map((l) => `<xhtml:link rel="alternate" hreflang="${l.code}" href="${site.url}/${l.prefix}${w.page.path}"/>`).join("") + `<xhtml:link rel="alternate" hreflang="x-default" href="${site.url}/${w.page.path}"/>`;
+  return `  <url><loc>${site.url}/${w.path}</loc><lastmod>${today}</lastmod><priority>${prio(w.page.path)}</priority>${alts}${imgs}</url>`;
 });
-fs.writeFileSync(path.join(ROOT_DIR, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join("\n")}\n</urlset>\n`);
+fs.writeFileSync(path.join(ROOT_DIR, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join("\n")}\n</urlset>\n`);
 
 // robots.txt
 const basePath = new URL(site.url + "/").pathname; // "/" on a custom domain, "/Repo/" on github.io
@@ -161,4 +209,4 @@ for (const { out } of written) {
     if (!fs.existsSync(target)) { broken++; if (broken < 40) console.warn(`! broken link in ${path.relative(ROOT_DIR, out)} -> ${u}`); }
   }
 }
-console.log(`✓ ${written.length} pages, ${urls.length} in sitemap, ${rows.length} image slots (${done} ready), ${broken} broken links, assets v=${ver}`);
+console.log(`✓ ${written.length} pages (${site.locales.length} languages), ${urls.length} in sitemap, i18n: ${i18nReport.join(" | ")}, ${rows.length} image slots (${done} ready), ${broken} broken links, assets v=${ver}`);

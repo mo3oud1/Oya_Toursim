@@ -27,7 +27,7 @@ if (root) {
     const stage = root.querySelector(".stadium-stage");
     const canvas = document.createElement("canvas");
     canvas.className = "stadium-canvas";
-    canvas.setAttribute("aria-label", "مجسم ثلاثي الأبعاد للملعب يوضح فئات المقاعد ويعرض المنظر من المقعد");
+    canvas.setAttribute("aria-label", T("مجسم ثلاثي الأبعاد للملعب يوضح فئات المقاعد ويعرض المنظر من المقعد"));
     canvas.setAttribute("role", "img");
     stage.appendChild(canvas);
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: !coarse, alpha: true, powerPreference: "high-performance" });
@@ -175,28 +175,29 @@ if (root) {
       const lower = profileShape(20, 0.85, 0.42, 1.4);
       const upper = profileShape(v.upperRows, 0.85, 0.6, 3.2);
       const upOff = off + lower.depth + 1.2, upBase = lower.top + 2.2;
-      const add = (prof, len, cat, side, offset, along, y, info) => {
+      const add = (prof, len, cat, side, offset, along, y, info, flags = {}) => {
         const m = standMesh(prof, len, mats[cat]); place(m, side, offset, along); m.position.y += y;
-        m.userData = { ...m.userData, cat, info }; stadium.add(m); pickables.push(m); seatCrowd(m, cat); return m;
+        m.userData = { ...m.userData, cat, info, ...flags }; stadium.add(m); pickables.push(m); seatCrowd(m, cat); return m;
       };
-      const sideName = { S: "الجهة الرئيسية", N: "الجهة المقابلة", E: "خلف المرمى الشرقي", W: "خلف المرمى الغربي" };
+      const sideName = { S: T("الجهة الرئيسية"), N: T("الجهة المقابلة"), E: T("خلف المرمى الشرقي"), W: T("خلف المرمى الغربي") };
+      const LOW = T("المدرج السفلي"), UP = T("المدرج العلوي"), MID = T("الوسط"), EDGE = T("الطرف"), CORNER = T("الزاوية");
       for (const side of ["S", "N"]) {
         const main = side === "S";
         [[-37.5, 30, "wing"], [0, 45, "center"], [37.5, 30, "wing"]].forEach(([al, len, part]) => {
           const lc = part === "center" ? (main ? "vip" : "cat1") : main ? "cat1" : "cat2";
           const uc = part === "center" ? "cat1" : "cat2";
-          add(lower, len - 0.6, lc, side, off, al, 0, `${sideName[side]} • المدرج السفلي • ${part === "center" ? "الوسط" : "الطرف"}`);
-          add(upper, len - 0.6, uc, side, upOff, al, upBase, `${sideName[side]} • المدرج العلوي • ${part === "center" ? "الوسط" : "الطرف"}`);
+          add(lower, len - 0.6, lc, side, off, al, 0, `${sideName[side]} • ${LOW} • ${part === "center" ? MID : EDGE}`, { center: part === "center" });
+          add(upper, len - 0.6, uc, side, upOff, al, upBase, `${sideName[side]} • ${UP} • ${part === "center" ? MID : EDGE}`, { upper: true, center: part === "center" });
         });
       }
       for (const side of ["E", "W"]) {
         const single = v.singleTierEnd === side;
         [[-17, 33], [17, 33]].forEach(([al, len]) => {
-          add(lower, len - 0.6, "cat3", side, off + 2, al, 0, `${sideName[side]} • المدرج السفلي`);
-          if (!single) add(upper, len - 0.6, "cat3", side, upOff + 2, al, upBase, `${sideName[side]} • المدرج العلوي`);
+          add(lower, len - 0.6, "cat3", side, off + 2, al, 0, `${sideName[side]} • ${LOW}`);
+          if (!single) add(upper, len - 0.6, "cat3", side, upOff + 2, al, upBase, `${sideName[side]} • ${UP}`, { upper: true });
         });
       }
-      const fan = (prof, radius, y, cat, info, quad, slices = 12) => {
+      const fan = (prof, radius, y, cat, info, quad, slices = 12, flags = {}) => {
         const [sx, sz] = { NE: [1, -1], NW: [-1, -1], SE: [1, 1], SW: [-1, 1] }[quad];
         const da = Math.PI / 2 / slices;
         for (let i = 0; i < slices; i++) {
@@ -204,13 +205,13 @@ if (root) {
           const m = standMesh(prof, (radius + prof.depth) * da * 1.1, mats[cat]);
           m.rotation.y = Math.atan2(-dz, dx);
           m.position.set(sx * 52.5 + dx * radius, y, sz * 34 + dz * radius);
-          m.userData = { ...m.userData, cat, info, slice: i, slices }; stadium.add(m); pickables.push(m); seatCrowd(m, cat);
+          m.userData = { ...m.userData, cat, info, slice: i, slices, ...flags }; stadium.add(m); pickables.push(m); seatCrowd(m, cat);
         }
       };
       if (v.closedCorners) {
         for (const q of ["NE", "NW", "SE", "SW"]) {
-          fan(lower, off + 1, 0, "cat2", "الزاوية • المدرج السفلي", q);
-          if (!(v.singleTierEnd && q.includes(v.singleTierEnd))) fan(upper, upOff + 1, upBase, "cat3", "الزاوية • المدرج العلوي", q);
+          fan(lower, off + 1, 0, "cat2", `${CORNER} • ${LOW}`, q);
+          if (!(v.singleTierEnd && q.includes(v.singleTierEnd))) fan(upper, upOff + 1, upBase, "cat3", `${CORNER} • ${UP}`, q, 12, { upper: true });
         }
       }
       // fascia between tiers + pitch-side LED ribbons (scrolling)
@@ -286,7 +287,7 @@ if (root) {
     }
     function seatFor(m) {
       const { prof, len, slice, slices } = m.userData; m.updateMatrixWorld();
-      const r = Math.round(prof.rows * (m.userData.info.includes("العلوي") ? 0.4 : 0.42));
+      const r = Math.round(prof.rows * (m.userData.upper ? 0.4 : 0.42));
       const local = new THREE.Vector3((r + 0.5) * prof.tread, prof.h0 + r * prof.riser + 1.32, 0);
       const pos = local.clone().applyMatrix4(m.matrixWorld);
       const look = new THREE.Vector3(pos.x * 0.12, 0.5, pos.z * 0.12);
@@ -320,7 +321,7 @@ if (root) {
       const hit = ray.intersectObjects(pickables, false)[0];
       return hit ? hit.object : null;
     }
-    const priceOf = (k) => { const p = cfg.matches[matchIdx].prices || {}; return typeof p[k] === "number" ? `${p[k].toLocaleString("en-US")} ${cfg.currency}` : "عند الطلب"; };
+    const priceOf = (k) => { const p = cfg.matches[matchIdx].prices || {}; return typeof p[k] === "number" ? `${p[k].toLocaleString("en-US")} ${cfg.currency}` : T("عند الطلب"); };
     function showInfo(m) {
       const k = m.userData.cat, c = CAT[k], match = cfg.matches[matchIdx];
       panel.querySelector(".si-dot").style.background = c.color;
@@ -328,7 +329,7 @@ if (root) {
       panel.querySelector(".si-where").textContent = m.userData.info;
       panel.querySelector(".si-desc").textContent = c.desc;
       panel.querySelector(".si-price").textContent = priceOf(k);
-      panel.querySelector(".si-wa").href = `https://wa.me/${cfg.wa}?text=${encodeURIComponent(`مرحباً أويا، أرغب بـ${c.label} (${m.userData.info}) — ${match.stage}: ${match.teams}، كأس السوبر الإسباني 2027.`)}`;
+      panel.querySelector(".si-wa").href = `https://wa.me/${cfg.wa}?text=${encodeURIComponent(T("مرحباً أويا، أرغب بـ{0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027.", [c.label, m.userData.info, match.stage, match.teams]))}`;
       panel.classList.add("is-on");
       if (sheet) {
         sheet.querySelector(".ss-dot").style.background = c.color;
@@ -354,7 +355,7 @@ if (root) {
       mode = "flying"; auto = false; root.classList.add("is-seat");
       const sr = stage.getBoundingClientRect();
       if (sr.top < 60 || sr.bottom > innerHeight) stage.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
-      seatLabel.textContent = `منظرك من: ${CAT[m.userData.cat].label} — ${m.userData.info}`;
+      seatLabel.textContent = T("منظرك من: {0} — {1}", [CAT[m.userData.cat].label, m.userData.info]);
       flyTo(seat.pos, seat.look, coarse ? 68 : 60, () => { mode = "seat"; exitBtn.focus({ preventScroll: true }); });
       wave(1.4); if (audio) audio.roar();
     }
@@ -367,7 +368,7 @@ if (root) {
     function wave(delay = 0) { if (reduce) return; setTimeout(() => { waveUntil = performance.now() + 9000; if (audio) audio.roar(); }, delay * 1000); }
 
     root.querySelectorAll(".stadium-legend button").forEach((b) => b.addEventListener("click", () => {
-      const k = b.dataset.cat; const m = pickables.find((p) => p.userData.cat === k && (p.userData.info.includes("الوسط") || k === "cat3" || k === "cat2")) || pickables.find((p) => p.userData.cat === k);
+      const k = b.dataset.cat; const m = pickables.find((p) => p.userData.cat === k && (p.userData.center || k === "cat3" || k === "cat2")) || pickables.find((p) => p.userData.cat === k);
       pickables.forEach((p) => { p.material = mats[p.userData.cat]; });
       pickables.filter((p) => p.userData.cat === k).forEach((p) => { p.material = mats[k].clone(); p.material.emissiveIntensity = 0.75; });
       if (m) { selected = m; showInfo(m); }
@@ -432,7 +433,7 @@ if (root) {
       if (!audio) audio = crowdAudio();
       const on = soundBtn.getAttribute("aria-pressed") !== "true";
       soundBtn.setAttribute("aria-pressed", on ? "true" : "false");
-      soundBtn.setAttribute("aria-label", on ? "إيقاف صوت المدرجات" : "تشغيل صوت المدرجات");
+      soundBtn.setAttribute("aria-label", on ? T("إيقاف صوت المدرجات") : T("تشغيل صوت المدرجات"));
       on ? audio.on() : audio.off();
     });
 
@@ -466,7 +467,7 @@ if (root) {
     canvas.tabIndex = -1;
     root.classList.remove("is-loading"); root.classList.add("is-ready");
     if (!reduce) setTimeout(() => wave(0), 1800);
-    window.__oyaStadium = { enterSeat: (cat) => enterSeat(pickables.find((p) => p.userData.cat === cat && p.userData.info.includes("الوسط")) || pickables.find((p) => p.userData.cat === cat)), wave }; // used by tests
+    window.__oyaStadium = { enterSeat: (cat) => enterSeat(pickables.find((p) => p.userData.cat === cat && p.userData.center) || pickables.find((p) => p.userData.cat === cat)), wave }; // used by tests
   }
 }
 
@@ -512,13 +513,15 @@ function radialTexture(THREE) {
   g.fillStyle = r; g.fillRect(0, 0, 128, 128);
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
 }
+const TT = (() => { try { return JSON.parse(document.getElementById("oya-t")?.textContent || "{}"); } catch { return {}; } })();
+const T = (s, a) => { const r = TT[s] || s; return a ? r.replace(/\{(\d+)\}/g, (m, i) => a[i]) : r; };
 function ledTexture(THREE) {
   const c = document.createElement("canvas"); c.width = 1024; c.height = 48;
   const g = c.getContext("2d");
   const bg = g.createLinearGradient(0, 0, 0, 48); bg.addColorStop(0, "#0b1d36"); bg.addColorStop(1, "#06111f");
   g.fillStyle = bg; g.fillRect(0, 0, 1024, 48);
   g.font = "700 26px 'Readex Pro', 'Segoe UI', Tahoma, sans-serif"; g.textBaseline = "middle"; g.direction = "rtl";
-  const parts = [["OYA TOURISM", "#ED5404"], ["كل رحلة… حكاية", "#ffffff"], ["ISTANBUL 2027", "#FF8A4C"], ["أويا للسياحة", "#ffffff"]];
+  const parts = [["OYA TOURISM", "#ED5404"], [T("كل رحلة… حكاية"), "#ffffff"], ["ISTANBUL 2027", "#FF8A4C"], [T("أويا للسياحة"), "#ffffff"]];
   let x = 1000;
   for (const [txt, col] of parts) { g.fillStyle = col; g.textAlign = "right"; g.fillText(txt, x, 25); x -= g.measureText(txt).width + 36; g.fillStyle = "#4F8BC9"; g.fillText("•", x + 18, 25); }
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = THREE.RepeatWrapping; return t;
@@ -530,9 +533,9 @@ function screenTexture(THREE, match) {
   g.fillStyle = bg; g.fillRect(0, 0, 768, 288);
   g.fillStyle = "#ED5404"; g.fillRect(0, 0, 768, 10);
   g.direction = "rtl"; g.textAlign = "center"; g.textBaseline = "middle";
-  g.fillStyle = "#FF8A4C"; g.font = "700 30px 'Readex Pro', Tahoma, sans-serif"; g.fillText(match ? match.stage : "كأس السوبر الإسباني 2027", 384, 62);
+  g.fillStyle = "#FF8A4C"; g.font = "700 30px 'Readex Pro', Tahoma, sans-serif"; g.fillText(match ? match.stage : T("كأس السوبر الإسباني 2027"), 384, 62);
   g.fillStyle = "#ffffff"; g.font = "800 56px 'Alexandria', 'Readex Pro', Tahoma, sans-serif"; g.fillText(match ? match.teams : "", 384, 150);
-  g.fillStyle = "#B9CCE0"; g.font = "500 26px 'Readex Pro', Tahoma, sans-serif"; g.fillText("إسطنبول • فبراير 2027 • أويا للسياحة", 384, 232);
+  g.fillStyle = "#B9CCE0"; g.font = "500 26px 'Readex Pro', Tahoma, sans-serif"; g.fillText(T("إسطنبول • فبراير 2027 • أويا للسياحة"), 384, 232);
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
 }
 // Synthesized stadium ambience: low crowd murmur + slow swells + rhythmic claps; roar() for big moments

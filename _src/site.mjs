@@ -3,9 +3,15 @@ export const site = {
   name: "أويا للسياحة",
   nameEn: "OYA Tourism",
   tagline: "كل رحلة… حكاية",
-  // Languages — Arabic is the default (served at the site root). To add a language later,
-  // add it here (e.g. { code: "en", dir: "ltr", og: "en_US", prefix: "en/" }) and translate the content files.
-  locales: [{ code: "ar", dir: "rtl", og: "ar_AR", prefix: "" }],
+  // Languages — Arabic is the source (site root). Every other language is rendered from the Arabic pages and
+  // translated with _src/i18n/<code>.json (see _src/lib/i18n.mjs). name = shown in the language menu (own language).
+  locales: [
+    { code: "ar", dir: "rtl", og: "ar_AR", prefix: "", name: "العربية", short: "ع" },
+    { code: "en", dir: "ltr", og: "en_US", prefix: "en/", name: "English", short: "EN" },
+    { code: "ru", dir: "ltr", og: "ru_RU", prefix: "ru/", name: "Русский", short: "RU" },
+    { code: "tr", dir: "ltr", og: "tr_TR", prefix: "tr/", name: "Türkçe", short: "TR" },
+    { code: "pt", dir: "ltr", og: "pt_BR", prefix: "pt/", name: "Português", short: "PT" },
+  ],
   // Absolute base URL (no trailing slash). Change when a custom domain is connected.
   url: "https://oyatourism.com",
   email: "info@oyatourism.com",

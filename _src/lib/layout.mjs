@@ -46,7 +46,17 @@ function megaVisas(data) {
 </div>`;
 }
 
-function header(page, data) {
+// Language menu: links to the same page in every language. Names are in their own language (translate="no").
+function langMenu(page, L) {
+  if (page.noLocale) return "";
+  return `
+    <div class="lang" data-lang>
+      <button class="lang__btn" type="button" aria-expanded="false" aria-haspopup="true" aria-label="اللغة">${ic("globe")}<span translate="no">${L.short}</span>${ic("chevron")}</button>
+      <ul class="lang__menu">${site.locales.map((l) => `<li><a href="{{site}}${l.prefix}${page.path}" hreflang="${l.code}" lang="${l.code}" translate="no"${l.code === L.code ? ' aria-current="true"' : ""}>${l.name}</a></li>`).join("")}</ul>
+    </div>`;
+}
+
+function header(page, data, L) {
   const items = nav.map((n) => {
     const active = page.nav === n.key;
     if (n.mega) {
@@ -62,6 +72,7 @@ function header(page, data) {
       <img class="logo-dark" src="{{root}}assets/img/brand/oya-lockup.svg" alt="" width="208" height="46" aria-hidden="true">
     </a>
     <nav class="nav" aria-label="القائمة الرئيسية"><ul>${items}</ul></nav>
+    ${langMenu(page, L)}
     <div class="header-cta">
       <a class="btn btn--wa btn--sm" href="${waUrl("مرحباً أويا للسياحة، أرغب بالاستفسار.")}" target="_blank" rel="noopener">${ic("whatsapp")}<span>واتساب</span></a>
     </div>
@@ -70,7 +81,7 @@ function header(page, data) {
 </header>`;
 }
 
-function drawer(page, data) {
+function drawer(page, data, L) {
   const ds = data.destinations || [];
   const g = (k) => (data.visas || []).filter((v) => v.group === k);
   const link = (href, label, key) => `<li><a href="{{root}}${href}"${page.nav === key ? ' aria-current="page"' : ""}>${label}</a></li>`;
@@ -100,6 +111,7 @@ function drawer(page, data) {
       </ul>
     </div>
     <div class="drawer__foot">
+      ${page.noLocale ? "" : `<nav class="drawer__langs" aria-label="اللغة">${ic("globe")}${site.locales.map((l) => `<a href="{{site}}${l.prefix}${page.path}" hreflang="${l.code}" lang="${l.code}" translate="no"${l.code === L.code ? ' aria-current="true"' : ""}>${l.name}</a>`).join("")}</nav>`}
       <a class="btn btn--wa btn--block" href="${waUrl("مرحباً أويا للسياحة، أرغب بالاستفسار.")}" target="_blank" rel="noopener">${ic("whatsapp")}<span>تواصل عبر واتساب</span></a>
       <a class="btn btn--ghost btn--block" href="tel:${site.phoneIntl}">${ic("phone")}<span class="ltr">${site.phoneDisplay}</span></a>
     </div>
@@ -165,8 +177,21 @@ function vendorScripts(page) {
     (flip ? `<script src="{{root}}assets/js/vendor/Flip.min.js?v=3.15.1" defer></script>\n` : "");
 }
 
-export function renderPage(page, data, assetsVer) {
-  const url = abs(page.path);
+// Strings the scripts show (T("…") in assets/js/*.js), shipped per page as a small table the build translates
+const JS_T = {};
+for (const f of ["main", "finder", "globe", "stadium"]) {
+  const src = fs.readFileSync(path.join(ROOT_DIR, "assets/js", `${f}.js`), "utf8");
+  JS_T[f] = [...new Set([...src.matchAll(/\bT\("((?:[^"\\]|\\.)*)"/g)].map((m) => JSON.parse(`"${m[1]}"`)))];
+}
+function jsStrings(page) {
+  const used = ["main", /data-finder/.test(page.body) && "finder", /data-globe/.test(page.body) && "globe", /data-stadium/.test(page.body) && "stadium"].filter(Boolean);
+  const table = Object.fromEntries(used.flatMap((f) => JS_T[f]).map((s) => [s, s]));
+  return `<script type="application/json" id="oya-t">${JSON.stringify(table).replace(/</g, "\\u003c")}</script>`;
+}
+
+export function renderPage(page, data, assetsVer, lang = "ar") {
+  const L = site.locales.find((l) => l.code === lang) || site.locales[0];
+  const url = abs(L.prefix + page.path);
   const ogImg = abs(ogFor(page));
   const title = page.title;
   const graph = page.schemaGraph || [];
@@ -179,9 +204,9 @@ export function renderPage(page, data, assetsVer) {
       if (n["@type"] === "Service" && !n.image) n.image = img;
     });
   }
-  const L = site.locales.find((l) => l.code === (page.lang || "ar")) || site.locales[0];
-  // hreflang: one entry per language this page exists in (page.alternates = { en: url, ... } later)
-  const alts = { [L.code]: url, ...(page.alternates || {}) };
+  // hreflang: the same page in every language (pages marked noLocale exist in Arabic only)
+  const alts = Object.fromEntries((page.noLocale ? [site.locales[0]] : site.locales).map((l) => [l.code, abs(l.prefix + page.path)]));
+  const fonts = L.code === "ar" ? ["alexandria-arabic", "readex-arabic"] : L.code === "ru" ? ["readex-latin", "manrope-cyrillic"] : ["alexandria-latin", "readex-latin"];
   return `<!doctype html>
 <html lang="${L.code}" dir="${L.dir}" data-wa="${site.whatsapp}" data-email="${site.email}">
 <head>
@@ -196,8 +221,9 @@ ${Object.entries(alts).map(([code, href]) => `<link rel="alternate" hreflang="${
 <meta name="theme-color" content="#0A1F3A">
 <meta name="format-detection" content="telephone=no">
 <meta property="og:type" content="${page.ogType || "website"}">
-<meta property="og:site_name" content="${site.name} | ${site.nameEn}">
+<meta property="og:site_name" content="${L.code === "ar" ? `${site.name} | ${site.nameEn}` : site.nameEn}">
 <meta property="og:locale" content="${L.og}">
+${page.noLocale ? "" : site.locales.filter((l) => l.code !== L.code).map((l) => `<meta property="og:locale:alternate" content="${l.og}">`).join("\n")}
 <meta property="og:title" content="${esc(page.ogTitle || title)}">
 <meta property="og:description" content="${esc(page.description)}">
 <meta property="og:url" content="${url}">
@@ -217,22 +243,22 @@ ${site.gscVerification ? `<meta name="google-site-verification" content="${esc(s
 ${(() => { // preload the LCP photo (page hero, or the home hero's first slide) so it starts downloading with the CSS
     const m = /<img[^>]*?src="(\{\{root\}\}assets\/img\/photos\/[\w-]+\.webp)"[^>]*?srcset="([^"]+)"[^>]*?fetchpriority="high"/.exec(page.body || "");
     return m ? `<link rel="preload" as="image" href="${m[1]}" imagesrcset="${m[2]}" imagesizes="100vw" fetchpriority="high">\n` : "";
-  })()}<link rel="preload" href="{{root}}assets/fonts/alexandria-arabic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{root}}assets/fonts/readex-arabic.woff2" as="font" type="font/woff2" crossorigin>
+  })()}${fonts.map((f) => `<link rel="preload" href="{{root}}assets/fonts/${f}.woff2" as="font" type="font/woff2" crossorigin>`).join("\n")}
 <link rel="stylesheet" href="{{root}}assets/css/main.css?v=${assetsVer}">
 <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__oyaReady)document.documentElement.classList.add("reveal-all")},2500);</script>
 <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c")}</script>
 ${site.ga4 ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${site.ga4}"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${site.ga4}");</script>` : ""}
 </head>
-<body class="page-${page.nav || "x"}">
+<body class="page-${page.nav || "x"} lang-${L.code}">
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
 <div class="progress" aria-hidden="true"></div>
-${header(page, data)}
-${drawer(page, data)}
+${header(page, data, L)}
+${drawer(page, data, L)}
 <main id="main">
 ${page.body}
 </main>
 ${footer(data, page)}
+${jsStrings(page)}
 ${vendorScripts(page)}<script src="{{root}}assets/js/main.js?v=${assetsVer}" defer></script>
 <script src="{{root}}assets/js/motion.js?v=${assetsVer}" defer></script>
 ${/data-finder/.test(page.body) ? `<script src="{{root}}assets/js/finder.js?v=${assetsVer}" defer></script>` : ""}

@@ -2,6 +2,8 @@
    Day side, city lights on the night side, sun glint on the oceans, clouds, atmosphere,
    and animated flight routes from Istanbul. Lazy: loads only near the viewport, renders only while
    visible and moving, smaller textures on phones, no auto-spin for reduced-motion users. */
+const TT = (() => { try { return JSON.parse(document.getElementById("oya-t")?.textContent || "{}"); } catch { return {}; } })();
+const T = (s, a) => { const r = TT[s] || s; return a ? r.replace(/\{(\d+)\}/g, (m, i) => a[i]) : r; };
 const section = document.querySelector("[data-globe]");
 if (section) {
   const root = section.getAttribute("data-root") || "./";
@@ -22,7 +24,7 @@ if (section) {
     card.querySelector(".globe-card__text").innerHTML = p.text;
     const go = card.querySelector(".globe-card__go");
     go.href = root + p.url; go.querySelector("span").textContent = p.cta;
-    card.querySelector(".globe-card__wa").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent("مرحباً أويا، أرغب برحلة إلى " + p.name + ".");
+    card.querySelector(".globe-card__wa").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(T("مرحباً أويا، أرغب برحلة إلى {0}.", [p.name]));
     if (fromUser && !reduce) { card.classList.remove("is-swap"); void card.offsetWidth; card.classList.add("is-swap"); }
     if (api) api.focus(id);
   }
@@ -42,7 +44,7 @@ if (section) {
     try { THREE = await import("./vendor/three.module.min.js"); } catch (e) { return; }
     const canvas = section.querySelector(".globe-canvas");
     const mobile = matchMedia("(max-width: 700px)").matches;
-    const tex = (n) => `${root}assets/img/earth/${n}`;
+    const tex = (n) => `${section.getAttribute("data-assets") || root + "assets/"}img/earth/${n}`;
     let renderer;
     try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" }); } catch (e) { return; }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2));

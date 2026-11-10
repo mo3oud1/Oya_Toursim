@@ -27,7 +27,7 @@ export function globeSection(data) {
   const groups = [["tr", "داخل تركيا"], ["world", "خارج تركيا"], ["visa", "تأشيرات"]];
   const first = places[0];
   return `
-<section class="section globe-sec" data-globe data-root="{{root}}">
+<section class="section globe-sec" data-globe data-root="{{root}}" data-assets="{{site}}assets/">
   <div class="container">
     ${sectionHead({ eyebrow: `${ic("globe")} من إسطنبول إلى العالم`, title: "اختر وجهتك… ونرسم لك الطريق", lead: "اسحب الكرة الأرضية أو اختر وجهة من القائمة، لترى أين نأخذك وما البرامج والخدمات المتاحة لها.", center: true })}
     <div class="globe-wrap">

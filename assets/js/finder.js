@@ -6,6 +6,9 @@
   var root = sec.getAttribute("data-root") || "./";
   var WA = document.documentElement.getAttribute("data-wa") || "905399334331";
   var data = JSON.parse(sec.querySelector(".finder-data").textContent);
+  var TT = (function () { try { return JSON.parse((document.getElementById("oya-t") || {}).textContent || "{}"); } catch (e) { return {}; } })();
+  var T = function (s, a) { var r = TT[s] || s; return a ? r.replace(/\{(\d+)\}/g, function (m, i) { return a[i]; }) : r; };
+  var SEP = document.documentElement.getAttribute("dir") === "rtl" ? "، " : ", ";
   var steps = [].slice.call(sec.querySelectorAll(".finder__step"));
   var result = sec.querySelector(".finder__result");
   var bar = sec.querySelector(".finder__progress span");
@@ -37,12 +40,12 @@
     sec.querySelector(".finder__cards").innerHTML = list.map(function (x, i) {
       var p = x.p;
       return '<a class="finder__card" href="' + root + "packages/" + p.s + '/">' +
-        (i === 0 ? '<span class="badge" style="position:static;align-self:flex-start">الأنسب لك</span>' : "") +
-        "<b>" + p.t + "</b><small>" + (p.dl || p.d + " أيام") + " • " + p.c + "</small><span>" + p.sum + "</span></a>";
+        (i === 0 ? '<span class="badge" style="position:static;align-self:flex-start">' + T("الأنسب لك") + "</span>" : "") +
+        "<b>" + p.t + "</b><small>" + (p.dl || T("{0} أيام", [p.d])) + " • " + p.c + "</small><span>" + p.sum + "</span></a>";
     }).join("");
-    var msg = "مرحباً أويا، استخدمت مكتشف الرحلات وهذه اختياراتي:\n" +
+    var msg = T("مرحباً أويا، استخدمت مكتشف الرحلات وهذه اختياراتي:") + "\n" +
       Object.keys(labels).map(function (k) { return "• " + labels[k]; }).join("\n") +
-      "\nالبرامج المقترحة: " + list.map(function (x) { return x.p.t; }).join("، ");
+      "\n" + T("البرامج المقترحة: {0}", [list.map(function (x) { return x.p.t; }).join(SEP)]);
     sec.querySelector(".finder__wa").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
   }
   sec.addEventListener("click", function (e) {

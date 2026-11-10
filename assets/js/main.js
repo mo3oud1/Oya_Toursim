@@ -7,6 +7,10 @@
   var reduce = w.matchMedia && w.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var WA = root.getAttribute("data-wa") || "905399334331";
   var EMAIL = root.getAttribute("data-email") || "info@oyatourism.com";
+  // UI strings: T(arabic, [args]) gives this page's language (table #oya-t, translated at build time)
+  var TT = (function () { try { return JSON.parse((d.getElementById("oya-t") || {}).textContent || "{}"); } catch (e) { return {}; } })();
+  var T = function (s, a) { var r = TT[s] || s; return a ? r.replace(/\{(\d+)\}/g, function (m, i) { return a[i]; }) : r; };
+  var SEP = root.getAttribute("dir") === "rtl" ? "، " : ", ";
   var $ = function (s, c) { return (c || d).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
 
@@ -68,6 +72,15 @@
   /* ---------- Mobile drawer (focus contained with `inert` on the page behind) ---------- */
   var drawer = $(".drawer"), menuBtn = $(".menu-btn");
   var behind = function () { return $$("body > header, body > main, body > footer, body > .mbar, body > .fab-wa, body > .to-top, body > .skip"); };
+  // language menu
+  $$("[data-lang]").forEach(function (box) {
+    var b = $(".lang__btn", box);
+    function set(on) { box.classList.toggle("is-open", on); b.setAttribute("aria-expanded", on ? "true" : "false"); }
+    b.addEventListener("click", function (e) { e.stopPropagation(); set(!box.classList.contains("is-open")); });
+    d.addEventListener("click", function (e) { if (!box.contains(e.target)) set(false); });
+    box.addEventListener("keydown", function (e) { if (e.key === "Escape") { set(false); b.focus(); } });
+    box.addEventListener("focusout", function (e) { if (e.relatedTarget && !box.contains(e.relatedTarget)) set(false); });
+  });
   function openDrawer() { if (!drawer) return; drawer.classList.add("is-open"); d.body.classList.add("no-scroll"); behind().forEach(function (el) { el.inert = true; }); menuBtn && menuBtn.setAttribute("aria-expanded", "true"); var c = $(".drawer__close", drawer); c && c.focus(); }
   function closeDrawer() { if (!drawer || !drawer.classList.contains("is-open")) return; drawer.classList.remove("is-open"); d.body.classList.remove("no-scroll"); behind().forEach(function (el) { el.inert = false; }); menuBtn && (menuBtn.setAttribute("aria-expanded", "false"), menuBtn.focus()); }
   menuBtn && menuBtn.addEventListener("click", openDrawer);
@@ -144,7 +157,7 @@
   $$("[data-oneway]").forEach(function (r) {
     r.addEventListener("change", function () {
       var form = r.closest("form"), ret = form && $("[data-return]", form);
-      if (ret) { var one = r.value === "ذهاب فقط"; ret.closest(".field").style.display = one ? "none" : ""; if (one) ret.value = ""; }
+      if (ret) { var one = r.value === T("ذهاب فقط"); ret.closest(".field").style.display = one ? "none" : ""; if (one) ret.value = ""; }
     });
   });
 
@@ -157,17 +170,17 @@
       var v = (el.value || "").trim();
       if (!v) return;
       var label = el.getAttribute("data-label") || el.name;
-      if (el.type === "checkbox") { seen[label] = (seen[label] ? seen[label] + "، " : "") + v; return; }
+      if (el.type === "checkbox") { seen[label] = (seen[label] ? seen[label] + SEP : "") + v; return; }
       lines.push("• " + label + ": " + v);
     });
     Object.keys(seen).forEach(function (k) { lines.push("• " + k + ": " + seen[k]); });
     return lines;
   }
   function message(form) {
-    var intro = form.getAttribute("data-intro") || "مرحباً أويا للسياحة، أرغب بالاستفسار:";
+    var intro = form.getAttribute("data-intro") || T("مرحباً أويا للسياحة، أرغب بالاستفسار:");
     var lines = collect(form);
     var page = d.title.split("|")[0].trim();
-    return intro + "\n" + lines.join("\n") + "\n\n(من صفحة: " + page + ")";
+    return intro + "\n" + lines.join("\n") + "\n\n" + T("(من صفحة: {0})", [page]);
   }
   /* Inline validation in Arabic (Baymard: specific, adjacent error messages; never clear user input) */
   function validate(form) {
@@ -181,7 +194,7 @@
     var a = $("[data-date-start]", form), b = $("[data-date-end]", form);
     if (a && b && a.value && b.value && b.value < a.value) {
       var fb = b.closest(".field");
-      if (fb) { fb.classList.add("is-invalid"); var er = $(".err", fb); if (!er) { er = d.createElement("span"); er.className = "err"; fb.appendChild(er); } er.textContent = "يجب أن يكون هذا التاريخ بعد تاريخ البداية"; }
+      if (fb) { fb.classList.add("is-invalid"); var er = $(".err", fb); if (!er) { er = d.createElement("span"); er.className = "err"; fb.appendChild(er); } er.textContent = T("يجب أن يكون هذا التاريخ بعد تاريخ البداية"); }
       b.setAttribute("aria-invalid", "true");
       if (!first) first = b;
     }
@@ -224,13 +237,13 @@
     var copy = $("[data-copy]", form);
     copy && copy.addEventListener("click", function () {
       var t = lastMsg || message(form);
-      if (navigator.clipboard) navigator.clipboard.writeText(t).then(function () { copy.textContent = "تم النسخ ✓"; });
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(function () { copy.textContent = T("تم النسخ ✓"); });
     });
     var mail = $("[data-mail]", form);
     mail && mail.addEventListener("click", function () {
       if (!validate(form)) return;
-      var subj = form.getAttribute("data-intro") || "استفسار من الموقع";
-      w.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subj.replace(/[:،]+$/, "")) + "&body=" + encodeURIComponent(message(form));
+      var subj = form.getAttribute("data-intro") || T("استفسار من الموقع");
+      w.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subj.replace(/[:،]+\s*$/, "")) + "&body=" + encodeURIComponent(message(form));
     });
   });
 
@@ -249,7 +262,7 @@
     var items = $$("[data-tags]", target);
     var id = group.getAttribute("data-filter-group");
     var countEl = d.querySelector("[data-count-for='" + id + "']"), empty = d.querySelector("[data-empty-for='" + id + "']");
-    function count(n) { if (countEl) countEl.textContent = "عرض " + n.toLocaleString("en-US") + " من " + items.length.toLocaleString("en-US") + " برنامجاً"; if (empty) empty.classList.toggle("is-on", n === 0); }
+    function count(n) { if (countEl) countEl.textContent = T("عرض {0} من {1} برنامجاً", [n.toLocaleString("en-US"), items.length.toLocaleString("en-US")]); if (empty) empty.classList.toggle("is-on", n === 0); }
     count(items.length);
     $$(".filter", group).forEach(function (b) {
       b.addEventListener("click", function () {
@@ -348,7 +361,7 @@
   function setPaused(p) {
     paused = p; h.classList.toggle("is-paused", p);
     btn.setAttribute("aria-pressed", p ? "true" : "false");
-    btn.setAttribute("aria-label", p ? "تشغيل عرض الصور" : "إيقاف عرض الصور");
+    btn.setAttribute("aria-label", p ? T("تشغيل عرض الصور") : T("إيقاف عرض الصور"));
     schedule();
   }
   btn.addEventListener("click", function () { setPaused(!paused); });
