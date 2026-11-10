@@ -247,11 +247,12 @@
     });
   });
 
-  /* Prefill selects from links: data-prefill="select-id|value" */
+  /* Prefill selects from links: data-prefill="select-id" data-prefill-value="option value"
+     (the value is its own attribute, so it is translated exactly like the option it selects) */
   $$("[data-prefill]").forEach(function (a) {
     a.addEventListener("click", function () {
       var parts = a.getAttribute("data-prefill").split("|"), sel = d.getElementById(parts[0]);
-      if (sel) { sel.value = parts[1]; sel.dispatchEvent(new Event("change")); }
+      if (sel) { sel.value = a.getAttribute("data-prefill-value") || parts[1]; sel.dispatchEvent(new Event("change")); }
     });
   });
 
@@ -332,6 +333,8 @@
 (function () {
   var h = document.querySelector("[data-hero-slides]");
   if (!h) return;
+  var TT = (function () { try { return JSON.parse((document.getElementById("oya-t") || {}).textContent || "{}"); } catch (e) { return {}; } })();
+  var T = function (s) { return TT[s] || s; };
   var slides = [].slice.call(h.querySelectorAll(".hero__slide"));
   var dots = [].slice.call(h.querySelectorAll(".hero__dot"));
   var loc = h.querySelector(".hero__loc span"), btn = h.querySelector(".hero__pause");

@@ -1367,3 +1367,24 @@ h3,h4{line-height:1.42}
   [dir="ltr"] .menu-btn{display:grid}
   [dir="ltr"] .site-header .lang{margin-inline-start:auto}
 }
+/* bottom bar on phones: long labels (Russian, Portuguese) shrink or wrap instead of widening the page */
+.mbar{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.3fr)}
+.mbar a{min-width:0;padding-inline:6px;text-align:center;line-height:1.2}
+.mbar a .i{flex:none}
+[dir="ltr"] .mbar a{font-size:.88rem}
+@media(max-width:380px){[dir="ltr"] .mbar a{font-size:.82rem;gap:.35em}}
+/* phones: longer translated labels wrap instead of widening the page */
+@media(max-width:560px){
+  .btn{white-space:normal;text-align:center;max-width:100%}
+  .vvalue>*,.stadium-bar>*{min-width:0;max-width:100%}
+  .globe-tabs{flex-wrap:wrap}
+  .globe-tab{min-width:0}
+  .stadium-views button{white-space:normal;min-width:0;text-align:center}
+}
+@media(max-width:400px){[dir="ltr"] .mbar a .i{display:none}}
+/* long words (Russian, Turkish, Portuguese) in big headings break instead of widening the page */
+[dir="ltr"] h1,[dir="ltr"] h2,[dir="ltr"] h3{overflow-wrap:break-word;hyphens:auto}
+@media(max-width:480px){[lang="ru"] .h-xl{font-size:clamp(1.55rem,6.4vw,1.9rem)}}
+.stadium>*{min-width:0}
+.stadium-body>*{min-width:0}
+.stadium-info .btn,.si-seat{white-space:normal;text-align:center}
