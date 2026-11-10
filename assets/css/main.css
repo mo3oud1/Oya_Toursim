@@ -1043,3 +1043,34 @@ body.no-scroll{overflow:hidden}
 .si-seat{background:#fff;color:var(--navy);margin-bottom:8px}
 .si-seat:hover{background:var(--sky-100)}
 .stadium-info:not(.is-on) .si-seat{background:rgba(255,255,255,.92)}
+
+/* ---------- Mobile polish (home) ---------- */
+.features--2{grid-template-columns:1fr}
+@media(min-width:640px){.features--2{grid-template-columns:1fr 1fr}}
+.hero__pause{flex:none}
+@media(max-width:699px){
+  /* odd number of half-width service tiles → last one spans the row */
+  .bento>.svc:last-child{grid-column:span 12}
+  .bento>.svc:last-child .link-arrow{display:inline-flex}
+  /* footer: link lists in two columns, comfortable tap targets */
+  .footer-grid{gap:28px}
+  .site-footer ul:not(.footer-contact){grid-template-columns:1fr 1fr;gap:0 16px}
+  .site-footer ul a{display:inline-flex;align-items:center;min-height:40px}
+  .footer-contact li{min-height:36px;align-items:center}
+}
+/* small phones (≤ 420px): keep everything inside the screen */
+.globe-wrap>*,.promo__grid>*{min-width:0}
+@media(max-width:560px){.globe-tabs{width:100%}.globe-tab{flex:1;padding:.6em .4em;font-size:.92rem}}
+@media(max-width:420px){
+  .hero__ctrl{gap:6px}
+  .hero__dot{width:24px}
+  .hero__loc{font-size:.76rem;padding:.35em .7em}
+  .promo{padding:24px 18px}
+  .promo .h-xl{font-size:clamp(1.6rem,7.4vw,2.1rem)}
+}
+@media(max-width:699px){.footer-bottom a{display:inline-flex;align-items:center;min-height:36px}}
+/* tables inside articles scroll sideways on small screens instead of overflowing */
+.prose table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:640px){.prose table{font-size:.9rem}.prose th,.prose td{min-width:110px}}
+/* stadium view buttons: wrap to two lines on narrow phones */
+@media(max-width:420px){.stadium-views{flex-wrap:wrap;justify-content:center}.stadium-views button{flex:1 1 auto;justify-content:center;font-size:.78rem;padding:.4em .5em}}

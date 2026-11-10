@@ -126,7 +126,7 @@ ${globeSection(data)}
         <div class="stat" data-reveal><b><span data-count="${counts.world}">${ar(counts.world)}</span></b><span>دول خارج تركيا</span></div>
       </div>
     </div>
-    <div class="features" style="grid-template-columns:1fr 1fr" data-stagger>
+    <div class="features features--2" data-stagger>
       ${[
         { icon: "headset", title: "خدمة عربية شخصية", text: "مستشار واحد يتابع طلبك بالعربية من أول رسالة حتى العودة." },
         { icon: "doc", title: "عرض مكتوب وواضح", text: "تفاصيل الفندق والبرنامج والسعر وسياسة الإلغاء قبل الدفع." },
