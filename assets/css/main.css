@@ -945,7 +945,7 @@ body.no-scroll{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.page-hero.has-photo .page-hero__bg img{animation:none}}
 
 /* Photo strip (real photos, e.g. the Two Holy Mosques) */
-.strip2{display:grid;gap:clamp(14px,2vw,24px);grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.strip2{display:grid;gap:clamp(14px,2vw,24px);grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
 .strip2 figure{margin:0}
 .strip2 .media{border-radius:var(--r-l);overflow:hidden;box-shadow:var(--sh-2)}
 .strip2 .media img{width:100%;height:100%;object-fit:cover}

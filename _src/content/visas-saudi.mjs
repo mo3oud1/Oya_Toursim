@@ -364,6 +364,11 @@ export default [
   // ───────────────────────────── 5. Business visit ─────────────────────────────
   {
     slug: "business",
+    galleryEyebrow: "عاصمة الأعمال", galleryTitle: "الرياض",
+    gallery: [
+      { img: "gallery-riyadh-night", alt: "الرياض ليلاً وبرج المملكة من الأعلى", caption: "الرياض ليلاً" },
+      { img: "gallery-riyadh-dusk", alt: "برج المملكة وطريق الملك فهد في الرياض عند الغروب", caption: "برج المملكة وطريق الملك فهد" },
+    ],
     group: "saudi",
     name: "تأشيرة زيارة الأعمال",
     short: "أعمال",

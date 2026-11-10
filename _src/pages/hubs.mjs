@@ -1,6 +1,6 @@
 import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
-import { ic, ar, esc, strip, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, packageCard, destCard, visaCard, postCard, featureItem } from "../lib/ui.mjs";
+import { ic, ar, esc, strip, sectionHead, faqBlock, ctaBand, pageHero, photoStrip, waBtn, waUrl, packageCard, destCard, visaCard, postCard, featureItem } from "../lib/ui.mjs";
 import { tourForm, visaForm } from "../lib/forms.mjs";
 import { visaSteps } from "../lib/templates.mjs";
 import * as S from "../lib/schema.mjs";
@@ -159,7 +159,13 @@ ${ctaBand({})}`;
 /* =================== VISA HUBS =================== */
 const HUBS = {
   saudi: {
-    path: "saudi-visa/", hero: "hero-saudi", name: "تأشيرات السعودية", icon: "mosque",
+    path: "saudi-visa/", hero: "hero-saudi",
+    gallery: [
+      { img: "gallery-riyadh-dusk", alt: "برج المملكة وطريق الملك فهد في الرياض عند الغروب", caption: "الرياض — برج المملكة" },
+      { img: "gallery-makkah-aerial", alt: "المسجد الحرام في مكة المكرمة من الأعلى", caption: "مكة المكرمة — المسجد الحرام" },
+      { img: "gallery-madinah-sunset", alt: "المسجد النبوي في المدينة المنورة عند الغروب", caption: "المدينة المنورة — المسجد النبوي" },
+    ],
+    name: "تأشيرات السعودية", icon: "mosque",
     title: "تأشيرة السعودية من تركيا: سياحية وعمرة وزيارة | أويا",
     description: "نساعدك في تأشيرة السعودية من تركيا: السياحية، العمرة، الزيارة العائلية والشخصية، الأعمال، الترانزيت وتأشيرة المقيمين في الخليج. استشرنا عبر واتساب.",
     h1: "تأشيرات السعودية بجميع أنواعها من تركيا",
@@ -225,6 +231,7 @@ export function visaHub(group, data) {
 ${pageHero({ crumbs, ...heroPhoto(H.hero), eyebrow: "مركز التأشيرات في أويا", title: H.h1, lead: H.lead, icon: H.icon, page: H.path,
     chips: [{ icon: "passport", text: `${ar(list.length)} أنواع تأشيرات` }, { icon: "doc", text: "تجهيز ومراجعة الملف" }, { icon: "whatsapp", text: "متابعة حتى الصدور" }],
     actions: `${waBtn(`مرحباً أويا، أرغب بالاستفسار عن ${H.name}.`, "استشارة مجانية عبر واتساب")}<a class="btn btn--glass" href="#book">${ic("send")}<span>ابدأ طلبك</span></a>` })}
+${photoStrip(H.gallery, { eyebrow: "صور حقيقية", title: "مدن المملكة", page: H.path })}
 <section class="section">
   <div class="container">
     ${sectionHead({ eyebrow: "اختر تأشيرتك", title: H.name, lead: "اختر نوع التأشيرة لمعرفة الشروط والمستندات والمدة، أو أرسل لنا هدف زيارتك ونحدد لك الأنسب." })}

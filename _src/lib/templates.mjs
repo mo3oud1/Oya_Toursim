@@ -244,7 +244,7 @@ ${pageHero({ crumbs, eyebrow: `${G.hubName} • خدمة تجهيز ومتابع
   </div>
 </section>
 
-${photoStrip(v.gallery, { eyebrow: "الحرمان الشريفان", title: "مكة المكرمة والمدينة المنورة", page: path })}
+${photoStrip(v.gallery, { eyebrow: v.galleryEyebrow || "الحرمان الشريفان", title: v.galleryTitle || "مكة المكرمة والمدينة المنورة", page: path })}
 ${v.types && v.types.length ? `
 <section class="section section--white">
   <div class="container">
