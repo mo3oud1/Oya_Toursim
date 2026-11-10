@@ -107,7 +107,7 @@ function stadiumSection() {
   return `
 <section class="section stadium-sec" id="stadium" data-stadium>
   <div class="container">
-    ${sectionHead({ eyebrow: `${ic("stadium")} مجسم الملعب`, title: "شاهد الملعب… واختر مقعدك قبل أن تصل", lead: "مجسم ثلاثي الأبعاد يوضح توزيع فئات المقاعد. اسحب لتدوير الملعب، واضغط على أي مدرج لترى فئته وسعره وزاوية الرؤية منه.", center: true })}
+    ${sectionHead({ eyebrow: `${ic("stadium")} مجسم الملعب`, title: "اجلس في مقعدك… قبل أن تصل إلى الملعب", lead: "ملعب ثلاثي الأبعاد مليء بالجماهير: اضغط على أي مدرج لترى فئته وسعره، ثم «شوف الملعب من مقعدك» لتجلس مكانك وتشاهد الملعب كما ستراه يوم المباراة — وجرّب الموجة وصوت المدرجات.", center: true })}
     <div class="stadium">
       <div class="stadium-bar">
         <div class="stadium-tabs" role="tablist" aria-label="المباراة والملعب">${scMatches.map((m, i) => `<button type="button" role="tab" class="stadium-tab" aria-selected="${i === 0}">${m.stage}<small>${m.venueAr.split(" — ")[0]}</small></button>`).join("")}</div>
@@ -120,7 +120,13 @@ function stadiumSection() {
           <span class="stadium-loading" aria-hidden="true">جارٍ تحميل المجسم…</span>
           <div class="stadium-tip" role="status"></div>
           <p class="stadium-venue">${m0.venueAr} • ${VENUE_MODEL[m0.id].capacity}</p>
-          <p class="stadium-hint">${ic("refresh")} اسحب للتدوير • اضغط على مدرج</p>
+          <p class="stadium-hint">${ic("refresh")} اسحب للتدوير • اضغط على مدرج ثم «شوف من مقعدك»</p>
+          <div class="stadium-fx">
+            <button type="button" data-wave>${ic("waves")}<span>الموجة</span></button>
+            <button type="button" data-sound aria-pressed="false" aria-label="تشغيل صوت المدرجات">${ic("volume-x")}${ic("volume")}</button>
+          </div>
+          <p class="stadium-seatlabel" aria-live="polite"></p>
+          <button type="button" class="stadium-exit">${ic("refresh")}<span>عودة للمنظر العام</span></button>
         </div>
         <aside class="stadium-side">
           <div class="stadium-legend" role="group" aria-label="فئات المقاعد">
@@ -128,9 +134,10 @@ function stadiumSection() {
           </div>
           <div class="stadium-info" aria-live="polite">
             <p class="si-head"><span class="si-dot"></span><b class="si-cat">اختر مدرجاً</b></p>
-            <p class="si-where">اضغط على أي جزء من المدرجات أو على فئة من القائمة.</p>
+            <p class="si-where">اضغط على أي جزء من المدرجات أو على فئة من القائمة، ثم شاهد المباراة من مكانك.</p>
             <p class="si-desc"></p>
             <p class="si-price-row">السعر: <b class="si-price">—</b></p>
+            <button type="button" class="btn btn--block si-seat">${ic("eye")}<span>شوف الملعب من مقعدك</span></button>
             <a class="btn btn--wa btn--block si-wa" href="#book" target="_blank" rel="noopener">${ic("whatsapp")}<span>احجز هذه الفئة</span></a>
           </div>
           <p class="stadium-note">${ic("info")} تمثيل توضيحي لتوزيع الفئات؛ المخطط النهائي للمقاعد تحدده الجهة المنظمة لكل ملعب.</p>

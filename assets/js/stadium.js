@@ -1,6 +1,8 @@
-/* OYA — interactive 3D stadium & seating categories (three.js, MIT)
-   Illustrative model: two-tier stands, roof, floodlit pitch; stands coloured by ticket category.
-   Lazy: desktop loads when the section is near; touch devices load on tap. Renders only while visible. */
+/* OYA — immersive 3D stadium & seating categories (three.js, MIT)
+   Illustrative model: two-tier bowl, roof, floodlit pitch, a seated crowd tinted by ticket category,
+   "see it from your seat" camera, Mexican wave, camera flashes, scrolling LED boards, big screens and an
+   optional synthesized crowd ambience. Lazy: desktop loads near the viewport, touch devices on tap.
+   Renders only while visible; lighter crowd on phones; calm, static version for reduced-motion users. */
 const root = document.querySelector("[data-stadium]");
 if (root) {
   const cfg = JSON.parse(root.querySelector(".stadium-data").textContent);
@@ -20,44 +22,68 @@ if (root) {
     const stage = root.querySelector(".stadium-stage");
     const canvas = document.createElement("canvas");
     canvas.className = "stadium-canvas";
-    canvas.setAttribute("aria-label", "مجسم ثلاثي الأبعاد للملعب يوضح فئات المقاعد");
+    canvas.setAttribute("aria-label", "مجسم ثلاثي الأبعاد للملعب يوضح فئات المقاعد ويعرض المنظر من المقعد");
     canvas.setAttribute("role", "img");
     stage.appendChild(canvas);
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: !coarse, alpha: true, powerPreference: "high-performance" });
     renderer.setPixelRatio(Math.min(devicePixelRatio || 1, coarse ? 1.5 : 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.05;
+    renderer.toneMappingExposure = 1.08;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x071426, 260, 520);
-    const camera = new THREE.PerspectiveCamera(42, 1, 1, 1200);
+    scene.fog = new THREE.Fog(0x071426, 260, 560);
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.3, 1400);
+    const U = { time: { value: 0 }, wave: { value: 0 }, idle: { value: reduce ? 0 : 1 } };
 
     // ---------- lights: night match under floodlights ----------
-    scene.add(new THREE.HemisphereLight(0x9fb8e0, 0x0b1220, 0.75));
-    const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(-80, 160, 120); scene.add(key);
-    const fill = new THREE.DirectionalLight(0xffd7b0, 0.55); fill.position.set(120, 90, -140); scene.add(fill);
+    scene.add(new THREE.HemisphereLight(0xa9c2ea, 0x0b1220, 0.8));
+    const key = new THREE.DirectionalLight(0xffffff, 1.7); key.position.set(-80, 170, 120); scene.add(key);
+    const fill = new THREE.DirectionalLight(0xffd7b0, 0.6); fill.position.set(120, 100, -140); scene.add(fill);
+    const pitchLight = new THREE.PointLight(0xf4f8ff, 1.4, 260, 1.2); pitchLight.position.set(0, 70, 0); scene.add(pitchLight);
 
     // ---------- ground & pitch ----------
-    const ground = new THREE.Mesh(new THREE.PlaneGeometry(900, 900), new THREE.MeshStandardMaterial({ color: 0x0a1626, roughness: 1 }));
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(1000, 1000), new THREE.MeshStandardMaterial({ color: 0x0a1626, roughness: 1 }));
     ground.rotation.x = -Math.PI / 2; ground.position.y = -0.05; scene.add(ground);
     const pitchTex = makePitchTexture(THREE);
-    const pitch = new THREE.Mesh(new THREE.PlaneGeometry(122, 84), new THREE.MeshStandardMaterial({ map: pitchTex, roughness: 0.9, emissive: 0xffffff, emissiveMap: pitchTex, emissiveIntensity: 0.22 }));
+    const pitch = new THREE.Mesh(new THREE.PlaneGeometry(122, 84), new THREE.MeshStandardMaterial({ map: pitchTex, roughness: 0.85, emissive: 0xffffff, emissiveMap: pitchTex, emissiveIntensity: 0.26 }));
     pitch.rotation.x = -Math.PI / 2; scene.add(pitch);
     addGoals(THREE, scene);
 
-    // ---------- materials per category ----------
-    const CAT = cfg.categories; // {vip:{color,label}, cat1..}
+    // ---------- materials ----------
+    const CAT = cfg.categories;
     const mats = {};
     Object.keys(CAT).forEach((k) => { mats[k] = new THREE.MeshStandardMaterial({ color: new THREE.Color(CAT[k].color), roughness: 0.75, metalness: 0.05, emissive: new THREE.Color(CAT[k].color), emissiveIntensity: 0.08 }); });
     const concrete = new THREE.MeshStandardMaterial({ color: 0x2a3443, roughness: 0.95 });
     const roofMat = new THREE.MeshStandardMaterial({ color: 0xdfe7f2, roughness: 0.35, metalness: 0.3, transparent: true, opacity: 0.22, depthWrite: false, side: THREE.DoubleSide });
     const trussMat = new THREE.MeshStandardMaterial({ color: 0xaab6c6, roughness: 0.5, metalness: 0.4 });
     const lightMat = new THREE.MeshBasicMaterial({ color: 0xfff6e0 });
-    const boardMat = new THREE.MeshBasicMaterial({ color: 0xed5404 });
+    const glowTex = radialTexture(THREE);
+    const ledTex = ledTexture(THREE);
+
+    // crowd materials: Lambert + per-instance colour + a vertex hook for the wave and idle movement
+    const crowdHook = (sh) => {
+      sh.uniforms.uTime = U.time; sh.uniforms.uWave = U.wave; sh.uniforms.uIdle = U.idle;
+      sh.vertexShader = "attribute float aAng;\nattribute float aPh;\nuniform float uTime;\nuniform float uWave;\nuniform float uIdle;\nvarying float vWave;\n" +
+        sh.vertexShader.replace("#include <begin_vertex>", `#include <begin_vertex>
+          float wc = pow(max(sin(aAng - uTime * 2.1), 0.0), 7.0);
+          vWave = wc * uWave;
+          transformed.y += wc * 1.15 * uWave + sin(uTime * 2.6 + aPh * 6.2831) * 0.035 * uIdle;
+          transformed.xz *= 1.0 + wc * 0.15 * uWave;`);
+      // fans in the crest light up (scarves / phone lights), so the wave reads from far away
+      sh.fragmentShader = "varying float vWave;\n" + sh.fragmentShader.replace("#include <color_fragment>", `#include <color_fragment>
+          diffuseColor.rgb = mix(diffuseColor.rgb, vec3(1.0, 0.97, 0.9), clamp(vWave * 0.7, 0.0, 0.7));`);
+    };
+    const bodyMat = new THREE.MeshLambertMaterial(); bodyMat.onBeforeCompile = crowdHook;
+    const headMat = new THREE.MeshLambertMaterial(); headMat.onBeforeCompile = crowdHook;
+    const bodyGeo = new THREE.BoxGeometry(0.5, 0.82, 0.36).translate(0, 0.41, 0);
+    const headGeo = new THREE.SphereGeometry(0.155, coarse ? 6 : 8, coarse ? 4 : 6).translate(0, 1.0, 0);
+    const CLOTH = [0x1d2a44, 0xe8ecf2, 0x15181d, 0xb8322a, 0x2d5fa8, 0xe0b23a, 0x6b7280, 0x6d2233, 0x2f6b45, 0xd9682a, 0xf4f4f4, 0x23314d].map((c) => new THREE.Color(c));
+    const SKIN = [0xe2b48f, 0xc98e66, 0x9a6544, 0xf0c9a5, 0x7a4b30].map((c) => new THREE.Color(c));
 
     let stadium = new THREE.Group(); scene.add(stadium);
-    let pickables = [];
+    let pickables = [], crowd = null, flashes = null, boards = [], screens = [], seatsWorld = [];
+    let radiusMax = 300;
 
     function profileShape(rows, tread, riser, h0, back = 2) {
       const s = new THREE.Shape();
@@ -65,14 +91,13 @@ if (root) {
       let x = 0, y = h0;
       for (let i = 0; i < rows; i++) { x += tread; s.lineTo(x, y); y += riser; s.lineTo(x, y); }
       x += back; s.lineTo(x, y); s.lineTo(x, 0); s.lineTo(0, 0);
-      return { shape: s, depth: x, top: y };
+      return { shape: s, depth: x, top: y, rows, tread, riser, h0 };
     }
     function standMesh(prof, length, mat) {
       const g = new THREE.ExtrudeGeometry(prof.shape, { depth: length, bevelEnabled: false });
       g.translate(0, 0, -length / 2);
-      return new THREE.Mesh(g, mat);
+      const m = new THREE.Mesh(g, mat); m.userData.prof = prof; m.userData.len = length; return m;
     }
-    // place a mesh so its "depth" axis points away from the pitch
     function place(mesh, side, offset, along) {
       const A = { N: Math.PI / 2, S: -Math.PI / 2, E: 0, W: Math.PI };
       mesh.rotation.y = A[side];
@@ -81,26 +106,69 @@ if (root) {
       if (side === "E") mesh.position.set(52.5 + offset, 0, -along);
       if (side === "W") mesh.position.set(-(52.5 + offset), 0, along);
     }
-    function corner(mesh, quad, d) {
-      const A = { NE: Math.PI / 4, NW: (3 * Math.PI) / 4, SW: (-3 * Math.PI) / 4, SE: -Math.PI / 4 };
-      const sx = quad.includes("E") ? 1 : -1, sz = quad.includes("N") ? -1 : 1;
-      mesh.rotation.y = A[quad];
-      mesh.position.set(sx * (52.5 + d), 0, sz * (34 + d));
+
+    // seated spectators on every tread of a stand (sampled; empty seats left at random)
+    const density = coarse ? { sp: 1.5, rowStep: 2, empty: 0.2 } : { sp: 0.95, rowStep: 1, empty: 0.14 };
+    let C = null; // crowd accumulator during a build
+    function seatCrowd(m, cat) {
+      const { prof, len } = m.userData; m.updateMatrix();
+      const v = new THREE.Vector3(), cc = new THREE.Color(CAT[cat].color);
+      for (let r = 0; r < prof.rows; r += density.rowStep) {
+        for (let z = -len / 2 + 0.6; z <= len / 2 - 0.6; z += density.sp) {
+          if (Math.random() < density.empty) continue;
+          v.set((r + 0.5) * prof.tread, prof.h0 + r * prof.riser, z + (Math.random() - 0.5) * 0.18).applyMatrix4(m.matrix);
+          C.pos.push(v.x, v.y, v.z); C.rot.push(m.rotation.y);
+          const cl = CLOTH[(Math.random() * CLOTH.length) | 0].clone().lerp(cc, 0.42);
+          C.col.push(cl.r, cl.g, cl.b);
+          const sk = SKIN[(Math.random() * SKIN.length) | 0]; C.skin.push(sk.r, sk.g, sk.b);
+        }
+      }
+    }
+    function makeCrowd() {
+      const n = C.pos.length / 3;
+      const body = new THREE.InstancedMesh(bodyGeo, bodyMat, n), head = new THREE.InstancedMesh(headGeo, headMat, n);
+      const o = new THREE.Object3D(), ang = new Float32Array(n), ph = new Float32Array(n), col = new THREE.Color();
+      for (let i = 0; i < n; i++) {
+        o.position.set(C.pos[i * 3], C.pos[i * 3 + 1], C.pos[i * 3 + 2]); o.rotation.set(0, C.rot[i], 0); o.scale.setScalar(0.92 + Math.random() * 0.16); o.updateMatrix();
+        body.setMatrixAt(i, o.matrix); head.setMatrixAt(i, o.matrix);
+        body.setColorAt(i, col.setRGB(C.col[i * 3], C.col[i * 3 + 1], C.col[i * 3 + 2]));
+        head.setColorAt(i, col.setRGB(C.skin[i * 3], C.skin[i * 3 + 1], C.skin[i * 3 + 2]));
+        ang[i] = Math.atan2(C.pos[i * 3 + 2], C.pos[i * 3]); ph[i] = Math.random();
+      }
+      for (const im of [body, head]) {
+        im.geometry = im.geometry.clone();
+        im.geometry.setAttribute("aAng", new THREE.InstancedBufferAttribute(ang, 1));
+        im.geometry.setAttribute("aPh", new THREE.InstancedBufferAttribute(ph, 1));
+        im.frustumCulled = false; stadium.add(im);
+      }
+      // camera flashes: a few hundred points twinkling in the crowd
+      const fN = Math.min(coarse ? 160 : 420, n), fp = new Float32Array(fN * 3), fa = new Float32Array(fN);
+      for (let i = 0; i < fN; i++) { const j = (Math.random() * n) | 0; fp[i * 3] = C.pos[j * 3]; fp[i * 3 + 1] = C.pos[j * 3 + 1] + 1.35; fp[i * 3 + 2] = C.pos[j * 3 + 2]; fa[i] = Math.random(); }
+      const fg = new THREE.BufferGeometry(); fg.setAttribute("position", new THREE.BufferAttribute(fp, 3)); fg.setAttribute("aPh", new THREE.BufferAttribute(fa, 1));
+      const fm = new THREE.ShaderMaterial({
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, uniforms: { uTime: U.time, uOn: { value: reduce ? 0 : 1 } },
+        vertexShader: `attribute float aPh; uniform float uTime; uniform float uOn; varying float vA;
+          void main(){ float k = floor(uTime * 6.0 + aPh * 97.0); float r = fract(sin(k * 12.9898 + aPh * 78.233) * 43758.5453);
+            vA = step(0.965, r) * uOn; vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_PointSize = vA * clamp(900.0 / -mv.z, 2.0, 14.0); gl_Position = projectionMatrix * mv; }`,
+        fragmentShader: `varying float vA; void main(){ vec2 d = gl_PointCoord - 0.5; float a = smoothstep(0.5, 0.0, length(d)); gl_FragColor = vec4(0.92, 0.96, 1.0, a * vA); }`,
+      });
+      flashes = new THREE.Points(fg, fm); flashes.frustumCulled = false; stadium.add(flashes);
+      crowd = { body, head, n, pos: Float32Array.from(C.pos) };
     }
 
-    function build(v) {
-      scene.remove(stadium); stadium.traverse((o) => o.geometry && o.geometry.dispose());
-      stadium = new THREE.Group(); pickables = [];
-      const off = 8;                       // distance stands → pitch lines
+    function build(v, match) {
+      scene.remove(stadium);
+      stadium.traverse((o) => { if (o.geometry && o.geometry !== bodyGeo && o.geometry !== headGeo) o.geometry.dispose(); if (o.material && o.material.map && o.material.map !== pitchTex && o.material.map !== glowTex) o.material.map.dispose(); });
+      stadium = new THREE.Group(); pickables = []; boards = []; screens = []; C = { pos: [], rot: [], col: [], skin: [] };
+      const off = 8;
       const lower = profileShape(20, 0.85, 0.42, 1.4);
       const upper = profileShape(v.upperRows, 0.85, 0.6, 3.2);
       const upOff = off + lower.depth + 1.2, upBase = lower.top + 2.2;
       const add = (prof, len, cat, side, offset, along, y, info) => {
         const m = standMesh(prof, len, mats[cat]); place(m, side, offset, along); m.position.y += y;
-        m.userData = { cat, info }; stadium.add(m); pickables.push(m); return m;
+        m.userData = { ...m.userData, cat, info }; stadium.add(m); pickables.push(m); seatCrowd(m, cat); return m;
       };
       const sideName = { S: "الجهة الرئيسية", N: "الجهة المقابلة", E: "خلف المرمى الشرقي", W: "خلف المرمى الغربي" };
-      // long sides: wing / centre / wing  ×  lower / upper
       for (const side of ["S", "N"]) {
         const main = side === "S";
         [[-37.5, 30, "wing"], [0, 45, "center"], [37.5, 30, "wing"]].forEach(([al, len, part]) => {
@@ -110,7 +178,6 @@ if (root) {
           add(upper, len - 0.6, uc, side, upOff, al, upBase, `${sideName[side]} • المدرج العلوي • ${part === "center" ? "الوسط" : "الطرف"}`);
         });
       }
-      // ends (behind the goals)
       for (const side of ["E", "W"]) {
         const single = v.singleTierEnd === side;
         [[-17, 33], [17, 33]].forEach(([al, len]) => {
@@ -118,7 +185,6 @@ if (root) {
           if (!single) add(upper, len - 0.6, "cat3", side, upOff + 2, al, upBase, `${sideName[side]} • المدرج العلوي`);
         });
       }
-      // corners: curved bowl made of fan slices pivoting on each pitch corner
       const fan = (prof, radius, y, cat, info, quad, slices = 12) => {
         const [sx, sz] = { NE: [1, -1], NW: [-1, -1], SE: [1, 1], SW: [-1, 1] }[quad];
         const da = Math.PI / 2 / slices;
@@ -127,7 +193,7 @@ if (root) {
           const m = standMesh(prof, (radius + prof.depth) * da * 1.1, mats[cat]);
           m.rotation.y = Math.atan2(-dz, dx);
           m.position.set(sx * 52.5 + dx * radius, y, sz * 34 + dz * radius);
-          m.userData = { cat, info }; stadium.add(m); pickables.push(m);
+          m.userData = { ...m.userData, cat, info, slice: i, slices }; stadium.add(m); pickables.push(m); seatCrowd(m, cat);
         }
       };
       if (v.closedCorners) {
@@ -136,17 +202,20 @@ if (root) {
           if (!(v.singleTierEnd && q.includes(v.singleTierEnd))) fan(upper, upOff + 1, upBase, "cat3", "الزاوية • المدرج العلوي", q);
         }
       }
-      // fascia between tiers (VIP boxes band) + LED boards
+      // fascia between tiers + pitch-side LED ribbons (scrolling)
       for (const side of ["S", "N", "E", "W"]) {
         const len = side === "S" || side === "N" ? 104 : 66;
         const band = new THREE.Mesh(new THREE.BoxGeometry(1, 2.2, len), side === "S" ? new THREE.MeshStandardMaterial({ color: 0x0f2c52, emissive: 0x2b6bab, emissiveIntensity: 0.35 }) : concrete);
         place(band, side, off + lower.depth + 0.6, 0); band.position.y = lower.top + 1.1; stadium.add(band);
-        const led = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.9, len), boardMat);
-        place(led, side, 4.5, 0); led.position.y = 0.45; stadium.add(led);
+        const t = ledTex.clone(); t.needsUpdate = true; t.repeat.set(len / 26, 1);
+        const led = new THREE.Mesh(new THREE.PlaneGeometry(len, 0.95), new THREE.MeshBasicMaterial({ map: t, toneMapped: false }));
+        place(led, side, 4.4, 0); led.position.y = 0.5; led.rotation.y += -Math.PI / 2; stadium.add(led);
+        boards.push(t);
       }
-      // roof canopies + floodlight strips
+      // roof canopies, floodlight strips with glow, back walls
       const roofH = upBase + upper.top + 5;
       const roofDepth = upper.depth + 10;
+      const glowMat = new THREE.SpriteMaterial({ map: glowTex, color: 0xfff3dc, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, opacity: 0.85 });
       for (const side of ["S", "N", "E", "W"]) {
         const len = side === "S" || side === "N" ? 118 : 82;
         if (v.singleTierEnd === side) continue;
@@ -158,35 +227,80 @@ if (root) {
         place(strip, side, upOff - 6.2, 0); strip.position.y = roofH - 0.6; stadium.add(strip);
         const back = new THREE.Mesh(new THREE.BoxGeometry(1.2, roofH, len), concrete);
         place(back, side, upOff + upper.depth + 0.6, 0); back.position.y = roofH / 2; stadium.add(back);
+        const step = coarse ? 11 : 7;
+        for (let a = -len / 2 + 4; a <= len / 2 - 4; a += step) {
+          const s = new THREE.Sprite(glowMat); place(s, side, upOff - 6.4, a); s.rotation.set(0, 0, 0); s.position.y = roofH - 1; s.scale.setScalar(7.5); stadium.add(s);
+        }
       }
-      // corner pylons
       for (const [sx, sz] of [[1, 1], [1, -1], [-1, 1], [-1, -1]]) {
         const p = new THREE.Mesh(new THREE.CylinderGeometry(1.4, 1.8, roofH + 6, 12), concrete);
         p.position.set(sx * (52.5 + upOff + upper.depth * 0.7), (roofH + 6) / 2, sz * (34 + upOff + upper.depth * 0.7)); stadium.add(p);
       }
+      // giant screens above both ends
+      for (const side of ["E", "W"]) {
+        const sc = screenTexture(THREE, match);
+        const scr = new THREE.Mesh(new THREE.PlaneGeometry(20, 7.5), new THREE.MeshBasicMaterial({ map: sc, toneMapped: false }));
+        place(scr, side, upOff + upper.depth * 0.55, 0); scr.position.y = (v.singleTierEnd === side ? upBase + 6 : roofH - 5); scr.rotation.y += -Math.PI / 2;
+        const frame = new THREE.Mesh(new THREE.BoxGeometry(0.6, 8.5, 21), concrete); place(frame, side, upOff + upper.depth * 0.55 + 0.4, 0); frame.position.y = scr.position.y;
+        stadium.add(frame, scr); screens.push(sc);
+      }
+      makeCrowd();
       scene.add(stadium);
-      radiusMax = 52.5 + upOff + upper.depth + 140;
+      radiusMax = 52.5 + upOff + upper.depth + 150;
     }
 
-    // ---------- orbit camera (lightweight, no extra library) ----------
+    // ---------- camera: orbit + "from your seat" ----------
     const target = new THREE.Vector3(0, 6, 0);
-    let az = -0.65, pol = 0.86, rad = 215, radiusMax = 300, auto = !reduce, dirty = true;
+    let az = -0.65, pol = 0.86, rad = 215, auto = !reduce;
+    let mode = "orbit", seat = null, yaw = 0, pitchA = -0.18, fly = null;
+    const orbitPos = () => new THREE.Vector3(target.x + rad * Math.sin(pol) * Math.sin(az), target.y + rad * Math.cos(pol), target.z + rad * Math.sin(pol) * Math.cos(az));
     function updateCam() {
-      camera.position.set(target.x + rad * Math.sin(pol) * Math.sin(az), target.y + rad * Math.cos(pol), target.z + rad * Math.sin(pol) * Math.cos(az));
-      camera.lookAt(target); dirty = true;
+      if (mode === "orbit") { camera.position.copy(orbitPos()); camera.lookAt(target); }
+      else if (mode === "seat" && seat) {
+        camera.position.copy(seat.pos);
+        const dir = new THREE.Vector3(Math.sin(seat.baseYaw + yaw) * Math.cos(pitchA), Math.sin(pitchA), Math.cos(seat.baseYaw + yaw) * Math.cos(pitchA));
+        camera.lookAt(seat.pos.clone().add(dir));
+      }
     }
     function resize() {
       const w = stage.clientWidth, h = stage.clientHeight;
-      renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); dirty = true;
+      renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
     }
     new ResizeObserver(resize).observe(stage);
+
+    const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    function flyTo(toPos, toLook, toFov, done) {
+      const fromPos = camera.position.clone(), fromLook = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion).multiplyScalar(60).add(fromPos);
+      fly = { t0: performance.now(), dur: reduce ? 1 : 1900, fromPos, toPos, fromLook, toLook, fromFov: camera.fov, toFov, done };
+    }
+    function seatFor(m) {
+      const { prof, len, slice, slices } = m.userData; m.updateMatrixWorld();
+      const r = Math.round(prof.rows * (m.userData.info.includes("العلوي") ? 0.4 : 0.42));
+      const local = new THREE.Vector3((r + 0.5) * prof.tread, prof.h0 + r * prof.riser + 1.32, 0);
+      const pos = local.clone().applyMatrix4(m.matrixWorld);
+      const look = new THREE.Vector3(pos.x * 0.12, 0.5, pos.z * 0.12);
+      return { pos, look, baseYaw: Math.atan2(look.x - pos.x, look.z - pos.z), basePitch: Math.atan2(look.y - pos.y, Math.hypot(look.x - pos.x, look.z - pos.z)) };
+    }
+    function emptySeat(p) { // free the chosen seat (and the one next to it) so the view isn't blocked
+      if (!crowd) return;
+      const m4 = new THREE.Matrix4().makeScale(0, 0, 0);
+      for (let i = 0; i < crowd.n; i++) {
+        const dx = crowd.pos[i * 3] - p.x, dy = crowd.pos[i * 3 + 1] - (p.y - 1.32), dz = crowd.pos[i * 3 + 2] - p.z;
+        if (dx * dx + dz * dz < 3.2 && dy < 0.3 && dy > -1.0) { crowd.body.setMatrixAt(i, m4); crowd.head.setMatrixAt(i, m4); }
+      }
+      crowd.body.instanceMatrix.needsUpdate = true; crowd.head.instanceMatrix.needsUpdate = true;
+    }
 
     // ---------- picking & UI ----------
     const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
     const panel = root.querySelector(".stadium-info");
     const tip = root.querySelector(".stadium-tip");
+    const seatBtn = root.querySelector(".si-seat");
+    const exitBtn = root.querySelector(".stadium-exit");
+    const seatLabel = root.querySelector(".stadium-seatlabel");
+    const waveBtn = root.querySelector("[data-wave]");
+    const soundBtn = root.querySelector("[data-sound]");
     let hovered = null, selected = null, matchIdx = 0;
-    const setGlow = (m, v) => { if (m) { m.material = m.material.clone(); m.material.emissiveIntensity = v; } };
     function pick(x, y) {
       const r = canvas.getBoundingClientRect();
       ndc.set(((x - r.left) / r.width) * 2 - 1, -((y - r.top) / r.height) * 2 + 1);
@@ -194,94 +308,149 @@ if (root) {
       const hit = ray.intersectObjects(pickables, false)[0];
       return hit ? hit.object : null;
     }
+    const priceOf = (k) => { const p = cfg.matches[matchIdx].prices || {}; return typeof p[k] === "number" ? `${p[k].toLocaleString("en-US")} ${cfg.currency}` : "عند الطلب"; };
     function showInfo(m) {
       const k = m.userData.cat, c = CAT[k], match = cfg.matches[matchIdx];
-      const price = match.prices && typeof match.prices[k] === "number" ? `${match.prices[k].toLocaleString("en-US")} ${cfg.currency}` : "عند الطلب";
       panel.querySelector(".si-dot").style.background = c.color;
       panel.querySelector(".si-cat").textContent = c.label;
       panel.querySelector(".si-where").textContent = m.userData.info;
       panel.querySelector(".si-desc").textContent = c.desc;
-      panel.querySelector(".si-price").textContent = price;
+      panel.querySelector(".si-price").textContent = priceOf(k);
       panel.querySelector(".si-wa").href = `https://wa.me/${cfg.wa}?text=${encodeURIComponent(`مرحباً أويا، أرغب بـ${c.label} (${m.userData.info}) — ${match.stage}: ${match.teams}، كأس السوبر الإسباني 2027.`)}`;
       panel.classList.add("is-on");
       root.querySelectorAll(".stadium-legend button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.cat === k ? "true" : "false"));
     }
     function select(m) {
-      if (selected) { selected.material = mats[selected.userData.cat]; }
+      if (selected) selected.material = mats[selected.userData.cat];
       selected = m;
       if (m) { m.material = mats[m.userData.cat].clone(); m.material.emissiveIntensity = 0.9; showInfo(m); auto = false; }
-      dirty = true;
     }
-    // legend → highlight a whole category
+    function enterSeat(m) {
+      if (!m) return;
+      select(m); seat = seatFor(m); emptySeat(seat.pos);
+      yaw = 0; pitchA = seat.basePitch;
+      if (selected) selected.material = mats[selected.userData.cat]; // natural colours from the seat
+      mode = "flying"; auto = false; root.classList.add("is-seat");
+      seatLabel.textContent = `منظرك من: ${CAT[m.userData.cat].label} — ${m.userData.info}`;
+      flyTo(seat.pos, seat.look, coarse ? 68 : 60, () => { mode = "seat"; exitBtn.focus({ preventScroll: true }); });
+      wave(1.4); if (audio) audio.roar();
+    }
+    function exitSeat() {
+      mode = "flying"; root.classList.remove("is-seat");
+      az = -0.65; pol = 0.86; rad = 215;
+      flyTo(orbitPos(), target.clone(), 42, () => { mode = "orbit"; if (selected) { selected.material = mats[selected.userData.cat].clone(); selected.material.emissiveIntensity = 0.9; } });
+    }
+    let waveUntil = 0;
+    function wave(delay = 0) { if (reduce) return; setTimeout(() => { waveUntil = performance.now() + 9000; if (audio) audio.roar(); }, delay * 1000); }
+
     root.querySelectorAll(".stadium-legend button").forEach((b) => b.addEventListener("click", () => {
-      const k = b.dataset.cat; const m = pickables.find((p) => p.userData.cat === k);
+      const k = b.dataset.cat; const m = pickables.find((p) => p.userData.cat === k && (p.userData.info.includes("الوسط") || k === "cat3" || k === "cat2")) || pickables.find((p) => p.userData.cat === k);
       pickables.forEach((p) => { p.material = mats[p.userData.cat]; });
       pickables.filter((p) => p.userData.cat === k).forEach((p) => { p.material = mats[k].clone(); p.material.emissiveIntensity = 0.75; });
-      if (m) { selected = null; showInfo(m); }
-      dirty = true;
+      if (m) { selected = m; showInfo(m); }
     }));
-    // venue tabs
+    if (seatBtn) seatBtn.addEventListener("click", () => enterSeat(selected || pickables.find((p) => p.userData.cat === "vip")));
+    if (exitBtn) exitBtn.addEventListener("click", exitSeat);
+    if (waveBtn) waveBtn.addEventListener("click", () => wave(0));
     const tabs = [...root.querySelectorAll(".stadium-tab")];
     tabs.forEach((t, i) => t.addEventListener("click", () => {
       tabs.forEach((x) => x.setAttribute("aria-selected", x === t ? "true" : "false"));
       matchIdx = i; selected = null; panel.classList.remove("is-on");
-      build(cfg.matches[i].venueModel);
+      if (mode !== "orbit") { mode = "orbit"; root.classList.remove("is-seat"); camera.fov = 42; camera.updateProjectionMatrix(); }
+      build(cfg.matches[i].venueModel, cfg.matches[i]);
       root.querySelector(".stadium-venue").textContent = `${cfg.matches[i].venue} • ${cfg.matches[i].capacity}`;
-      root.querySelectorAll(".stadium-legend button").forEach((b) => { const p = cfg.matches[i].prices || {}; b.querySelector(".lg-price").textContent = typeof p[b.dataset.cat] === "number" ? `${p[b.dataset.cat].toLocaleString("en-US")} ${cfg.currency}` : "عند الطلب"; });
-      dirty = true;
+      root.querySelectorAll(".stadium-legend button").forEach((b) => { b.querySelector(".lg-price").textContent = priceOf(b.dataset.cat); });
+      updateCam();
     }));
 
-    // pointer: drag to orbit, tap to pick, wheel/pinch to zoom
-    const pts = new Map(); let downX = 0, downY = 0, moved = 0, pinch0 = 0, rad0 = rad;
-    canvas.addEventListener("pointerdown", (e) => { canvas.setPointerCapture(e.pointerId); pts.set(e.pointerId, e); downX = e.clientX; downY = e.clientY; moved = 0; auto = false; if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch0 = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); rad0 = rad; } });
+    // pointer: orbit (or look around from the seat), tap to pick, wheel/pinch to zoom
+    const pts = new Map(); let moved = 0, pinch0 = 0, rad0 = rad, fov0 = 60;
+    canvas.addEventListener("pointerdown", (e) => { canvas.setPointerCapture(e.pointerId); pts.set(e.pointerId, e); moved = 0; auto = false; if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch0 = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); rad0 = rad; fov0 = camera.fov; } });
     canvas.addEventListener("pointermove", (e) => {
       if (pts.has(e.pointerId)) {
         const prev = pts.get(e.pointerId); pts.set(e.pointerId, e);
-        if (pts.size === 2) { const [a, b] = [...pts.values()]; const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); rad = Math.min(radiusMax, Math.max(60, rad0 * (pinch0 / d))); }
-        else { az -= (e.clientX - prev.clientX) * 0.006; pol = Math.min(1.32, Math.max(0.42, pol - (e.clientY - prev.clientY) * 0.004)); }
-        moved += Math.abs(e.clientX - prev.clientX) + Math.abs(e.clientY - prev.clientY); updateCam(); kick();
-      } else if (!coarse) {
+        if (pts.size === 2) {
+          const [a, b] = [...pts.values()]; const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+          if (mode === "seat") { camera.fov = Math.min(75, Math.max(28, fov0 * (pinch0 / d))); camera.updateProjectionMatrix(); }
+          else rad = Math.min(radiusMax, Math.max(60, rad0 * (pinch0 / d)));
+        } else if (mode === "seat") {
+          yaw = Math.max(-1.6, Math.min(1.6, yaw - (e.clientX - prev.clientX) * 0.004));
+          pitchA = Math.max(-0.75, Math.min(0.35, pitchA + (e.clientY - prev.clientY) * 0.003));
+        } else if (mode === "orbit") { az -= (e.clientX - prev.clientX) * 0.006; pol = Math.min(1.32, Math.max(0.42, pol - (e.clientY - prev.clientY) * 0.004)); }
+        moved += Math.abs(e.clientX - prev.clientX) + Math.abs(e.clientY - prev.clientY); updateCam();
+      } else if (!coarse && mode === "orbit") {
         const m = pick(e.clientX, e.clientY);
         if (m !== hovered) { hovered = m; canvas.style.cursor = m ? "pointer" : "grab"; if (m) { tip.textContent = `${CAT[m.userData.cat].label} — ${m.userData.info}`; tip.classList.add("is-on"); } else tip.classList.remove("is-on"); }
         if (m) { const r = stage.getBoundingClientRect(); tip.style.transform = `translate(${e.clientX - r.left}px, ${e.clientY - r.top - 14}px)`; }
       }
     });
-    const up = (e) => { pts.delete(e.pointerId); if (moved < 6 && e.type === "pointerup") { const m = pick(e.clientX, e.clientY); select(m); } };
+    const up = (e) => { pts.delete(e.pointerId); if (moved < 6 && e.type === "pointerup" && mode === "orbit") { const m = pick(e.clientX, e.clientY); select(m); } };
     canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
-    canvas.addEventListener("wheel", (e) => { e.preventDefault(); rad = Math.min(radiusMax, Math.max(60, rad * (1 + Math.sign(e.deltaY) * 0.08))); auto = false; updateCam(); kick(); }, { passive: false });
+    canvas.addEventListener("wheel", (e) => {
+      e.preventDefault(); auto = false;
+      if (mode === "seat") { camera.fov = Math.min(75, Math.max(28, camera.fov * (1 + Math.sign(e.deltaY) * 0.06))); camera.updateProjectionMatrix(); }
+      else if (mode === "orbit") { rad = Math.min(radiusMax, Math.max(60, rad * (1 + Math.sign(e.deltaY) * 0.08))); updateCam(); }
+    }, { passive: false });
     root.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => {
       const v = b.dataset.view; auto = false;
+      if (mode !== "orbit") { root.classList.remove("is-seat"); }
       if (v === "main") { az = 0.0; pol = 1.28; rad = 80; } else if (v === "goal") { az = Math.PI / 2; pol = 1.24; rad = 92; } else { az = -0.65; pol = 0.5; rad = 230; }
-      updateCam(); kick();
+      mode = "flying"; flyTo(orbitPos(), target.clone(), 42, () => { mode = "orbit"; updateCam(); });
     }));
+    canvas.addEventListener("keydown", (e) => { if (e.key === "Escape" && mode === "seat") exitSeat(); });
+
+    // ---------- optional crowd ambience (Web Audio, synthesized: no file to download) ----------
+    let audio = null;
+    if (soundBtn) soundBtn.addEventListener("click", () => {
+      if (!audio) audio = crowdAudio();
+      const on = soundBtn.getAttribute("aria-pressed") !== "true";
+      soundBtn.setAttribute("aria-pressed", on ? "true" : "false");
+      soundBtn.setAttribute("aria-label", on ? "إيقاف صوت المدرجات" : "تشغيل صوت المدرجات");
+      on ? audio.on() : audio.off();
+    });
 
     // ---------- render loop (only while visible) ----------
-    let visible = true, raf = 0;
-    new IntersectionObserver((e) => { visible = e[0].isIntersecting; kick(); }, { threshold: 0.05 }).observe(stage);
-    function frame() {
+    let visible = true, raf = 0, last = performance.now(), skip = false;
+    new IntersectionObserver((e) => { visible = e[0].isIntersecting; if (!visible && audio && soundBtn.getAttribute("aria-pressed") === "true") audio.off(true); else if (visible && audio && soundBtn.getAttribute("aria-pressed") === "true") audio.on(); kick(); }, { threshold: 0.05 }).observe(stage);
+    document.addEventListener("visibilitychange", () => { visible = !document.hidden; kick(); });
+    function frame(now) {
       raf = 0; if (!visible) return;
-      if (auto) { az += 0.0018; updateCam(); }
-      if (dirty) { renderer.render(scene, camera); dirty = false; }
-      if (auto) raf = requestAnimationFrame(frame);
+      raf = requestAnimationFrame(frame);
+      if (coarse && (skip = !skip)) return; // ~30 fps on phones
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      U.time.value += dt;
+      U.wave.value += ((now < waveUntil ? 1 : 0) - U.wave.value) * Math.min(1, dt * 2.5);
+      if (!reduce) boards.forEach((t) => { t.offset.x = (t.offset.x + dt * 0.035) % 1; });
+      if (fly) {
+        const t = Math.min(1, (now - fly.t0) / fly.dur), k = ease(t);
+        const p = fly.fromPos.clone().lerp(fly.toPos, k); p.y += Math.sin(Math.PI * k) * (mode === "flying" ? 22 : 0);
+        camera.position.copy(p); camera.lookAt(fly.fromLook.clone().lerp(fly.toLook, k));
+        camera.fov = fly.fromFov + (fly.toFov - fly.fromFov) * k; camera.updateProjectionMatrix();
+        if (t >= 1) { const d = fly.done; fly = null; d && d(); updateCam(); }
+      } else if (auto && mode === "orbit") { az += dt * 0.11; updateCam(); }
+      renderer.render(scene, camera);
     }
-    function kick() { dirty = true; if (!raf) raf = requestAnimationFrame(frame); }
+    function kick() { if (!raf && visible) { last = performance.now(); raf = requestAnimationFrame(frame); } }
 
-    build(cfg.matches[0].venueModel);
+    build(cfg.matches[0].venueModel, cfg.matches[0]);
     resize(); updateCam(); kick();
     canvas.tabIndex = -1;
     if (!document.activeElement || document.activeElement === document.body || document.activeElement === startBtn) canvas.focus({ preventScroll: true });
     root.classList.remove("is-loading"); root.classList.add("is-ready");
+    if (!reduce) setTimeout(() => wave(0), 1800);
+    window.__oyaStadium = { enterSeat: (cat) => enterSeat(pickables.find((p) => p.userData.cat === cat && p.userData.info.includes("الوسط")) || pickables.find((p) => p.userData.cat === cat)), wave }; // used by tests
   }
 }
 
 /* ---------- helpers ---------- */
 function makePitchTexture(THREE) {
-  const W = 1220, H = 840, s = 10; // 10 px per metre, 122×84 m incl. run-off
+  const W = 1220, H = 840, s = 10;
   const c = document.createElement("canvas"); c.width = W; c.height = H;
   const g = c.getContext("2d");
   for (let i = 0; i < 18; i++) { g.fillStyle = i % 2 ? "#2f7d3a" : "#2a7134"; g.fillRect(i * (W / 18), 0, W / 18 + 1, H); }
+  for (let i = 0; i < 9000; i++) { g.fillStyle = `rgba(${Math.random() < 0.5 ? "255,255,255" : "0,0,0"},${Math.random() * 0.04})`; g.fillRect(Math.random() * W, Math.random() * H, 2, 2); }
   g.strokeStyle = "rgba(255,255,255,.92)"; g.lineWidth = 2.4;
-  const ox = (122 - 105) / 2 * s, oy = (84 - 68) / 2 * s, L = 105 * s, Wd = 68 * s;
+  const ox = ((122 - 105) / 2) * s, oy = ((84 - 68) / 2) * s, L = 105 * s, Wd = 68 * s;
   g.strokeRect(ox, oy, L, Wd);
   g.beginPath(); g.moveTo(ox + L / 2, oy); g.lineTo(ox + L / 2, oy + Wd); g.stroke();
   g.beginPath(); g.arc(ox + L / 2, oy + Wd / 2, 9.15 * s, 0, Math.PI * 2); g.stroke();
@@ -293,15 +462,76 @@ function makePitchTexture(THREE) {
     g.beginPath(); g.arc(x0 + sgn * 11 * s, oy + Wd / 2, 2.5, 0, Math.PI * 2); g.fill();
     g.beginPath(); g.arc(x0 + sgn * 11 * s, oy + Wd / 2, 9.15 * s, dir ? Math.PI - 0.93 : -0.93, dir ? Math.PI + 0.93 : 0.93); g.stroke();
   }
+  for (const [cx, cy] of [[ox, oy], [ox + L, oy], [ox, oy + Wd], [ox + L, oy + Wd]]) { g.beginPath(); g.arc(cx, cy, 1 * s, 0, Math.PI * 2); g.stroke(); }
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
   return t;
 }
 function addGoals(THREE, scene) {
   const m = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.4 });
+  const netM = new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: 0.22, wireframe: true });
   for (const sx of [-1, 1]) {
     const x = sx * 52.5;
     for (const z of [-3.66, 3.66]) { const p = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 2.44, 8), m); p.position.set(x, 1.22, z); scene.add(p); }
     const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 7.32, 8), m); bar.rotation.x = Math.PI / 2; bar.position.set(x, 2.44, 0); scene.add(bar);
-    const net = new THREE.Mesh(new THREE.BoxGeometry(2, 2.44, 7.32), new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: 0.18 })); net.position.set(x + sx * 1, 1.22, 0); scene.add(net);
+    const net = new THREE.Mesh(new THREE.BoxGeometry(2, 2.44, 7.32, 6, 8, 18), netM); net.position.set(x + sx * 1, 1.22, 0); scene.add(net);
+    for (const z of [-34, 34]) { const f = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.5, 6), m); f.position.set(x, 0.75, z); scene.add(f); const fl = new THREE.Mesh(new THREE.PlaneGeometry(0.5, 0.35), new THREE.MeshBasicMaterial({ color: 0xed5404, side: THREE.DoubleSide })); fl.position.set(x + 0.25 * -sx, 1.35, z); scene.add(fl); }
   }
+}
+function radialTexture(THREE) {
+  const c = document.createElement("canvas"); c.width = c.height = 128;
+  const g = c.getContext("2d"), r = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  r.addColorStop(0, "rgba(255,255,255,1)"); r.addColorStop(0.18, "rgba(255,246,224,.85)"); r.addColorStop(0.45, "rgba(255,236,200,.22)"); r.addColorStop(1, "rgba(255,236,200,0)");
+  g.fillStyle = r; g.fillRect(0, 0, 128, 128);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+function ledTexture(THREE) {
+  const c = document.createElement("canvas"); c.width = 1024; c.height = 48;
+  const g = c.getContext("2d");
+  const bg = g.createLinearGradient(0, 0, 0, 48); bg.addColorStop(0, "#0b1d36"); bg.addColorStop(1, "#06111f");
+  g.fillStyle = bg; g.fillRect(0, 0, 1024, 48);
+  g.font = "700 26px 'Readex Pro', 'Segoe UI', Tahoma, sans-serif"; g.textBaseline = "middle"; g.direction = "rtl";
+  const parts = [["OYA TOURISM", "#ED5404"], ["كل رحلة… حكاية", "#ffffff"], ["ISTANBUL 2027", "#FF8A4C"], ["أويا للسياحة", "#ffffff"]];
+  let x = 1000;
+  for (const [txt, col] of parts) { g.fillStyle = col; g.textAlign = "right"; g.fillText(txt, x, 25); x -= g.measureText(txt).width + 36; g.fillStyle = "#4F8BC9"; g.fillText("•", x + 18, 25); }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = THREE.RepeatWrapping; return t;
+}
+function screenTexture(THREE, match) {
+  const c = document.createElement("canvas"); c.width = 768; c.height = 288;
+  const g = c.getContext("2d");
+  const bg = g.createLinearGradient(0, 0, 768, 288); bg.addColorStop(0, "#0a1f3a"); bg.addColorStop(1, "#19487e");
+  g.fillStyle = bg; g.fillRect(0, 0, 768, 288);
+  g.fillStyle = "#ED5404"; g.fillRect(0, 0, 768, 10);
+  g.direction = "rtl"; g.textAlign = "center"; g.textBaseline = "middle";
+  g.fillStyle = "#FF8A4C"; g.font = "700 30px 'Readex Pro', Tahoma, sans-serif"; g.fillText(match ? match.stage : "كأس السوبر الإسباني 2027", 384, 62);
+  g.fillStyle = "#ffffff"; g.font = "800 56px 'Alexandria', 'Readex Pro', Tahoma, sans-serif"; g.fillText(match ? match.teams : "", 384, 150);
+  g.fillStyle = "#B9CCE0"; g.font = "500 26px 'Readex Pro', Tahoma, sans-serif"; g.fillText("إسطنبول • فبراير 2027 • أويا للسياحة", 384, 232);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+// Synthesized stadium ambience: low crowd murmur + slow swells + rhythmic claps; roar() for big moments
+function crowdAudio() {
+  const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return { on() {}, off() {}, roar() {} };
+  const ac = new AC(), master = ac.createGain(); master.gain.value = 0; master.connect(ac.destination);
+  const len = ac.sampleRate * 4, buf = ac.createBuffer(2, len, ac.sampleRate);
+  for (let ch = 0; ch < 2; ch++) { const d = buf.getChannelData(ch); let b = 0; for (let i = 0; i < len; i++) { const w = Math.random() * 2 - 1; b = (b + 0.035 * w) / 1.035; d[i] = b * 3.2 + w * 0.06; } }
+  const src = ac.createBufferSource(); src.buffer = buf; src.loop = true;
+  const bp = ac.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 650; bp.Q.value = 0.55;
+  const body = ac.createGain(); body.gain.value = 0.55;
+  const lfo = ac.createOscillator(), lfoG = ac.createGain(); lfo.frequency.value = 0.11; lfoG.gain.value = 0.16; lfo.connect(lfoG).connect(body.gain);
+  src.connect(bp).connect(body).connect(master); src.start(); lfo.start();
+  let clapT = 0;
+  function claps() { // "clap — clap — clap" bursts every few seconds
+    const now = ac.currentTime; if (now < clapT) return; clapT = now + 6 + Math.random() * 6;
+    for (let i = 0; i < 6; i++) {
+      const s = ac.createBufferSource(); s.buffer = buf; const hp = ac.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 1400;
+      const g = ac.createGain(); const t = now + 0.2 + i * 0.52; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.5, t + 0.01); g.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+      s.connect(hp).connect(g).connect(master); s.start(t, Math.random() * 3, 0.15);
+    }
+  }
+  const timer = setInterval(() => { if (master.gain.value > 0.01) claps(); }, 1000);
+  return {
+    on() { ac.resume(); master.gain.cancelScheduledValues(ac.currentTime); master.gain.linearRampToValueAtTime(0.5, ac.currentTime + 0.8); },
+    off(soft) { master.gain.cancelScheduledValues(ac.currentTime); master.gain.linearRampToValueAtTime(0, ac.currentTime + (soft ? 0.3 : 0.6)); setTimeout(() => { if (master.gain.value < 0.02) ac.suspend(); }, 900); },
+    roar() { const t = ac.currentTime; bp.frequency.cancelScheduledValues(t); bp.frequency.linearRampToValueAtTime(1150, t + 0.6); bp.frequency.linearRampToValueAtTime(650, t + 3.5); body.gain.cancelScheduledValues(t); body.gain.linearRampToValueAtTime(1.1, t + 0.6); body.gain.linearRampToValueAtTime(0.55, t + 3.8); },
+    destroy() { clearInterval(timer); ac.close(); },
+  };
 }

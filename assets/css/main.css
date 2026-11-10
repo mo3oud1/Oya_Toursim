@@ -1026,3 +1026,20 @@ body.no-scroll{overflow:hidden}
 .svc--photo .badge{align-self:flex-start}
 .svc--photo.b-hero{min-height:420px}
 .svc--photo.b-hero .svc__bg::after{background:linear-gradient(0deg,rgba(6,20,40,.95) 0%,rgba(6,20,40,.78) 38%,rgba(6,20,40,.35) 70%,rgba(6,20,40,.25) 100%)}
+
+/* Stadium: immersive controls */
+.stadium-fx{position:absolute;top:12px;inset-inline-end:12px;z-index:3;display:flex;gap:6px}
+.stadium-fx button{min-height:40px;min-width:40px;display:inline-flex;align-items:center;justify-content:center;gap:.4em;padding:0 .8em;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(6,20,40,.6);color:#fff;font-size:.85rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.stadium-fx button:hover{background:rgba(6,20,40,.8)}
+.stadium-fx .i{width:18px;height:18px}
+.stadium-fx [data-sound] .i:last-child,.stadium-fx [data-sound][aria-pressed="true"] .i:first-child{display:none}
+.stadium-fx [data-sound][aria-pressed="true"] .i:last-child{display:block}
+.stadium-fx [data-sound][aria-pressed="true"]{background:var(--orange-btn);border-color:var(--orange-btn)}
+.stadium-seatlabel{position:absolute;top:60px;left:50%;translate:-50% 0;z-index:3;margin:0;padding:.4em 1em;border-radius:999px;background:rgba(6,20,40,.72);color:#fff;font-size:.86rem;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis;opacity:0;transition:opacity .4s;pointer-events:none}
+.stadium-exit{position:absolute;bottom:14px;left:50%;translate:-50% 0;z-index:3;display:none;white-space:nowrap;align-items:center;gap:.45em;min-height:44px;padding:0 1.1em;border-radius:999px;border:0;background:#fff;color:var(--navy);font-weight:700;box-shadow:var(--sh-2)}
+.is-seat .stadium-exit{display:inline-flex}
+.is-seat .stadium-seatlabel{opacity:1}
+.is-seat .stadium-hint,.is-seat .stadium-venue{opacity:0}
+.si-seat{background:#fff;color:var(--navy);margin-bottom:8px}
+.si-seat:hover{background:var(--sky-100)}
+.stadium-info:not(.is-on) .si-seat{background:rgba(255,255,255,.92)}
