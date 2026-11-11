@@ -1,6 +1,6 @@
 // Detail page templates fed by _src/content/*.mjs
 import { site } from "../site.mjs";
-import { factIcon, visaValue, daysAr, nightsAr, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
+import { factIcon, visaValue, daysAr, nightsAr, esc, strip, ic, ar, readAr, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, waUrl, featureItem } from "./ui.mjs";
 import { tourForm, visaForm } from "./forms.mjs";
 import * as S from "./schema.mjs";
 
@@ -364,7 +364,7 @@ export function postPage(p, data) {
   const date = new Date(p.date).toLocaleDateString("ar-EG-u-nu-latn", { year: "numeric", month: "long", day: "numeric" });
   page.body = `
 ${pageHero({ crumbs, eyebrow: esc(p.category || "دليل السفر"), title: p.h1 || p.title, lead: p.excerpt, icon: p.icon || "doc", img: p.img, prompt: p.imgPrompt, alt: p.title, page: path, cls: "page-hero--article",
-    chips: [{ icon: "calendar", text: `<time datetime="${p.date}">${date}</time>` }, { icon: "clock", text: `${ar(p.readMins || 6)} دقائق قراءة` }, { icon: "user", text: "فريق أويا للسياحة" }] })}
+    chips: [{ icon: "calendar", text: `<time datetime="${p.date}">${date}</time>` }, { icon: "clock", text: readAr(p.readMins || 6) }, { icon: "user", text: "فريق أويا للسياحة" }] })}
 <section class="section">
   <article class="narrow">
     ${toc.length > 2 ? `<nav class="toc" aria-label="محتويات المقال" data-reveal><b>محتويات المقال</b><ol>${toc.map((h) => `<li><a href="#${h.id}">${h.t}</a></li>`).join("")}</ol></nav>` : ""}

@@ -9,6 +9,8 @@ export const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&am
 export const strip = (s) => String(s ?? "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 export const join = (arr, fn, sep = "") => (arr || []).map(fn).join(sep);
 export const ar = (n) => Number(n).toLocaleString("en-US");
+// reading time with the right Arabic noun form (3–10 دقائق, otherwise دقيقة)
+export const readAr = (n) => `${ar(n)} ${n >= 3 && n <= 10 ? "دقائق" : "دقيقة"} قراءة`;
 // Arabic counted nouns: 1 → singular, 2 → dual, 3–10 → plural, 11+ → singular accusative
 const counted = (one, two, few, many) => (n) => (n === 1 ? one : n === 2 ? two : n <= 10 ? `${ar(n)} ${few}` : `${ar(n)} ${many}`);
 export const daysAr = counted("يوم واحد", "يومان", "أيام", "يوماً");
@@ -219,7 +221,7 @@ export function postCard(p, page) {
 <article class="card post-card" data-reveal>
   ${media({ img: p.img, prompt: p.imgPrompt, alt: p.title, icon: p.icon || "doc", ratio: "ratio-16x9", page, label: p.category || "دليل السفر", tone: "istanbul" })}
   <div class="card__body">
-    <div class="post-meta"><span>${esc(p.category || "دليل السفر")}</span><span>${ar(p.readMins || 6)} دقائق قراءة</span></div>
+    <div class="post-meta"><span>${esc(p.category || "دليل السفر")}</span><span>${readAr(p.readMins || 6)}</span></div>
     <h3 class="card__title"><a href="{{root}}blog/${p.slug}/">${esc(p.title)}</a></h3>
     <p class="card__text">${p.excerpt}</p>
   </div>
