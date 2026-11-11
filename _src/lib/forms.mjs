@@ -53,8 +53,8 @@ export function flightForm({ compact = false } = {}) {
 <form novalidate data-wa data-date-pair data-intro="مرحباً أويا للسياحة، أرغب بحجز تذكرة طيران:">
   <div class="form-grid">
     ${seg({ label: "نوع الرحلة", name: "trip", options: ["ذهاب وعودة", "ذهاب فقط", "وجهات متعددة"], attrs: "data-oneway" })}
-    ${field({ label: "من", name: "from", placeholder: "مدينة أو مطار المغادرة", list: "cities", required: true })}
-    ${field({ label: "إلى", name: "to", placeholder: "مدينة أو مطار الوصول", list: "cities", required: true })}
+    ${field({ label: "من", name: "from", placeholder: "مدينة أو مطار", list: "cities", required: true })}
+    ${field({ label: "إلى", name: "to", placeholder: "مدينة أو مطار", list: "cities", required: true })}
     ${field({ label: "تاريخ الذهاب", name: "depart", type: "date", required: true, attrs: "data-date-start" })}
     ${field({ label: "تاريخ العودة", name: "return", type: "date", optional: true, attrs: "data-date-end data-return" })}
     ${field({ label: "المسافرون", name: "pax", type: "select", options: ["1 بالغ", "2 بالغين", "3 بالغين", "4 بالغين", "5 بالغين", "عائلة (سأذكر التفاصيل)", "مجموعة (6+)"], value: "1 بالغ" })}
@@ -69,10 +69,10 @@ export function hotelForm({ compact = false, city = "" } = {}) {
   return `
 <form novalidate data-wa data-date-pair data-intro="مرحباً أويا للسياحة، أرغب بحجز فندق:">
   <div class="form-grid">
-    ${field({ label: "الوجهة / المدينة", name: "city", placeholder: "إسطنبول، طرابزون، أنطاليا…", required: true, value: city })}
+    ${field({ label: "الوجهة / المدينة", name: "city", placeholder: "مثال: إسطنبول", required: true, value: city })}
     ${field({ label: "تاريخ الوصول", name: "checkin", type: "date", required: true, attrs: "data-date-start" })}
     ${field({ label: "تاريخ المغادرة", name: "checkout", type: "date", required: true, attrs: "data-date-end" })}
-    ${field({ label: "الأطفال وأعمارهم", name: "kids", placeholder: "مثال: طفلان 4 و9 سنوات", optional: true })}
+    ${field({ label: "الأطفال وأعمارهم", name: "kids", placeholder: "مثال: 4 و9 سنوات", optional: true })}
     ${field({ label: "الغرف والضيوف", name: "rooms", type: "select", options: ["غرفة – شخصان", "غرفة – شخص واحد", "غرفة – عائلة مع أطفال", "غرفتان", "3 غرف أو أكثر", "شقة فندقية / فيلا"], value: "غرفة – شخصان" })}
     ${field({ label: "الفئة المفضّلة", name: "stars", type: "select", options: ["4 نجوم", "5 نجوم", "منتجع / إطلالة بحرية", "فيلا خاصة مع مسبح", "اقتصادي 3 نجوم", "لا مانع — الأفضل قيمة"], value: "5 نجوم" })}
     ${compact ? "" : field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: إطلالة على البوسفور وقريب من تقسيم، مع إفطار" })}

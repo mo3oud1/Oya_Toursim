@@ -314,6 +314,7 @@ body.no-scroll{overflow:hidden}
 .field textarea{min-height:110px;resize:vertical}
 .field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px rgba(43,107,171,.16)}
 .field input[type="date"]{direction:rtl}
+.field input,.field select{text-overflow:ellipsis}
 .seg{display:flex;flex-wrap:wrap;gap:8px}
 .seg label{position:relative;cursor:pointer}
 .seg input{position:absolute;opacity:0;pointer-events:none}
@@ -1114,6 +1115,9 @@ body.no-scroll{overflow:hidden}
 @media(max-width:640px){
   .table{min-width:0}
   .table th,.table td{padding:11px 12px;font-size:.92rem}
+  /* long words (Russian, Portuguese) break inside narrow cells instead of pushing the table off-screen */
+  .table:not(.table--stack) th,.table:not(.table--stack) td{padding:10px 9px;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+  .table:not(.table--stack) tr>:first-child{hyphens:manual;-webkit-hyphens:manual}
   /* 4+ columns: each row becomes a small card with its labels */
   .table--stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
   .table--stack,.table--stack tbody{display:block}
@@ -1215,7 +1219,7 @@ h3,h4{line-height:1.42}
   .grid>.card .card__foot{padding-top:6px;border-top:0}
   .grid>.card .card__go{display:none}
   .grid>.card .price b.price__ask{font-size:.86rem}
-  .grid>.card>.badge{top:8px;inset-inline-start:8px;font-size:.68rem;padding:.2em .6em;max-width:calc(36% - 16px);line-height:1.35;border-radius:10px}
+  .grid>.card>.badge{top:8px;inset-inline-start:8px;font-size:.68rem;padding:.2em .6em;max-width:calc(36% - 16px);line-height:1.35;border-radius:10px;text-wrap:balance}
   .grid>.card .media--ph .ph-name{font-size:1rem}
   .grid>.card .media--ph .ph-en{display:none}
   /* icon cards (attractions, options): icon beside the title */
@@ -1351,7 +1355,9 @@ h3,h4{line-height:1.42}
 [dir="ltr"] .page-hero__art .big-ico{left:auto;right:clamp(-40px,4vw,80px)}
 [dir="ltr"] .page-hero__art .route{left:auto;right:0;transform:scaleX(-1)}
 [dir="ltr"] .cta__plane{left:auto;right:6%}
-[dir="ltr"] .marquee__track{animation-direction:reverse}
+[dir="ltr"] .marquee__track{animation-name:marquee-ltr}
+@keyframes marquee-ltr{to{transform:translateX(-50%)}}
+[dir="ltr"] .rail-ctrl .i{transform:scaleX(-1)}
 @media(max-width:640px){[dir="ltr"] .booker .field select{padding-left:.95em;padding-right:34px;background-position:right 10px center}}
 
 /* photo heroes: the photos keep the subject on the left, so the text column stays on the calm right side
@@ -1395,3 +1401,28 @@ h3,h4{line-height:1.42}
 .stadium>*{min-width:0}
 .stadium-body>*{min-width:0}
 .stadium-info .btn,.si-seat{white-space:normal;text-align:center}
+
+/* ---------- Grid balance: no lone card on the last row ---------- */
+@media (min-width:1100px){
+  /* 3-column grids (not the filterable ones): orphans are centred on a 6-track grid */
+  .grid-3:not([id]){grid-template-columns:repeat(6,minmax(0,1fr))}
+  .grid-3:not([id])>*{grid-column:span 2}
+  .grid-3:not([id])>:last-child:nth-child(3n+1){grid-column:3/span 2}
+  .grid-3:not([id])>:nth-last-child(2):nth-child(3n+1){grid-column:2/span 2}
+  /* exactly four cards: one row of four */
+  .grid-3:not([id]):has(>:nth-child(4):last-child){grid-template-columns:repeat(4,minmax(0,1fr))}
+  .grid-3:not([id]):has(>:nth-child(4):last-child)>*{grid-column:auto}
+  /* five contact tiles: one row of five */
+  .contact-tiles:has(>:nth-child(5):last-child){grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+@media (min-width:480px){
+  .finder__opts:has(>:nth-child(4):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* ---------- Breadcrumb: one line; a long current-page title ends with … (the full title is the heading below) ---------- */
+.crumbs ol{flex-wrap:nowrap;min-width:0}
+.crumbs li{min-width:0;flex:0 1 auto}
+.crumbs li:first-child{flex-shrink:0}
+.crumbs li:last-child{flex-shrink:6}
+.crumbs li>a,.crumbs li>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crumbs li+li::before{flex:none}

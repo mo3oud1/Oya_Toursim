@@ -287,8 +287,9 @@
     var step = function () { var c = rail.firstElementChild; return c ? c.getBoundingClientRect().width + 18 : 300; };
     var prev = $("[data-rail-prev]", wrap), next = $("[data-rail-next]", wrap);
     // RTL: scrollLeft is negative going "forward" (to the left)
-    next && next.addEventListener("click", function () { rail.scrollBy({ left: -step(), behavior: reduce ? "auto" : "smooth" }); });
-    prev && prev.addEventListener("click", function () { rail.scrollBy({ left: step(), behavior: reduce ? "auto" : "smooth" }); });
+    var fwd = getComputedStyle(rail).direction === "rtl" ? -1 : 1; // "next" moves toward the end of the reading direction
+    next && next.addEventListener("click", function () { rail.scrollBy({ left: fwd * step(), behavior: reduce ? "auto" : "smooth" }); });
+    prev && prev.addEventListener("click", function () { rail.scrollBy({ left: -fwd * step(), behavior: reduce ? "auto" : "smooth" }); });
   });
 
   /* ---------- Countdown ---------- */

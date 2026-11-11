@@ -1501,16 +1501,16 @@
   "n": 8
  },
  {
-  "id": "b60e3af4e9",
+  "id": "1a018d1eba",
   "kind": "attr",
-  "ar": "إسطنبول، طرابزون، أنطاليا…",
+  "ar": "مثال: إسطنبول",
   "pages": [
    "",
    "hotels/",
    "hotels/istanbul/",
    "hotels/trabzon/"
   ],
-  "n": 8
+  "n": 9
  },
  {
   "id": "0819318fbc",
@@ -1609,9 +1609,9 @@
   "n": 8
  },
  {
-  "id": "c8d5b53be1",
+  "id": "4dbc381ebc",
   "kind": "attr",
-  "ar": "مثال: طفلان 4 و9 سنوات",
+  "ar": "مثال: 4 و9 سنوات",
   "pages": [
    "",
    "hotels/",
@@ -1971,14 +1971,14 @@
   "n": 2
  },
  {
-  "id": "efec063f22",
+  "id": "1ab7a30a0a",
   "kind": "attr",
-  "ar": "مدينة أو مطار المغادرة",
+  "ar": "مدينة أو مطار",
   "pages": [
    "",
    "flights/"
   ],
-  "n": 2
+  "n": 4
  },
  {
   "id": "62e47a6329",
@@ -2004,16 +2004,6 @@
   "id": "8ab80326e0",
   "kind": "attr",
   "ar": "إلى",
-  "pages": [
-   "",
-   "flights/"
-  ],
-  "n": 2
- },
- {
-  "id": "943360724c",
-  "kind": "attr",
-  "ar": "مدينة أو مطار الوصول",
   "pages": [
    "",
    "flights/"
@@ -8186,16 +8176,15 @@
   "n": 1
  },
  {
-  "id": "6f0705ca97",
+  "id": "4356b42186",
   "kind": "text",
-  "ar": "مناسب لـ",
+  "ar": "يناسب",
   "pages": [
    "flights/",
-   "packages/istanbul-5-days/",
-   "packages/turkey-7-days/",
-   "packages/istanbul-bursa-7-days/"
+   "blog/cost-of-travel-to-turkey/",
+   "blog/trabzon-uzungol-travel-guide/"
   ],
-  "n": 23
+  "n": 6
  },
  {
   "id": "a2dd90c325",
@@ -17796,6 +17785,18 @@
    "packages/istanbul-5-days/"
   ],
   "n": 1
+ },
+ {
+  "id": "6f0705ca97",
+  "kind": "text",
+  "ar": "مناسب لـ",
+  "pages": [
+   "packages/istanbul-5-days/",
+   "packages/turkey-7-days/",
+   "packages/istanbul-bursa-7-days/",
+   "packages/istanbul-sapanca-bursa-8-days/"
+  ],
+  "n": 22
  },
  {
   "id": "dbeec9f65f",
@@ -48938,16 +48939,6 @@
   "n": 4
  },
  {
-  "id": "4356b42186",
-  "kind": "text",
-  "ar": "يناسب",
-  "pages": [
-   "blog/cost-of-travel-to-turkey/",
-   "blog/trabzon-uzungol-travel-guide/"
-  ],
-  "n": 5
- },
- {
   "id": "23fc79b02a",
   "kind": "text",
   "ar": "فندق بسيط أو شقة في منطقة جيدة المواصلات",
@@ -63740,15 +63731,6 @@
   "id": "ef8669dffb",
   "kind": "attr",
   "ar": "مدينة الانطلاق",
-  "pages": [
-   "offers/ramadan-umrah-2027/"
-  ],
-  "n": 1
- },
- {
-  "id": "1a018d1eba",
-  "kind": "attr",
-  "ar": "مثال: إسطنبول",
   "pages": [
    "offers/ramadan-umrah-2027/"
   ],

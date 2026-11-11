@@ -75,7 +75,7 @@ ${pageHero({ crumbs, ...heroPhoto("hero-flights"), eyebrow: "تذاكر طيرا
       <tbody>
         <tr><td><strong>الموقع</strong></td><td>الجانب الأوروبي (شمال المدينة)</td><td>الجانب الآسيوي (جنوب شرق المدينة)</td></tr>
         <tr><td><strong>الشركات</strong></td><td>الخطوط التركية ومعظم الشركات الدولية</td><td>بيغاسوس وAJet وشركات اقتصادية</td></tr>
-        <tr><td><strong>مناسب لـ</strong></td><td>تقسيم، شيشلي، السلطان أحمد، البوسفور</td><td>الجانب الآسيوي، سبانجا، بورصة برّاً</td></tr>
+        <tr><td><strong>يناسب</strong></td><td>تقسيم، شيشلي، السلطان أحمد، البوسفور</td><td>الجانب الآسيوي، سبانجا، بورصة برّاً</td></tr>
       </tbody></table></div>
   </div>
 </section>
