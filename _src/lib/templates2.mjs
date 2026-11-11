@@ -4,6 +4,7 @@ import { heroPhoto } from "../content/hero-photos.mjs";
 import { factIcon, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, waBtn, waUrl } from "./ui.mjs";
 import { hotelForm, tourForm, transferForm, driverForm, dayTripForm, umrahForm } from "./forms.mjs";
 import { readFirst } from "./templates.mjs";
+import { cabinsSection } from "../pages/cabins.mjs";
 import * as S from "./schema.mjs";
 
 const TAG = { family: "عائلات", luxury: "فاخر", budget: "اقتصادي", view: "إطلالة", nature: "طبيعة", shopping: "تسوق", quiet: "هدوء", beach: "شاطئ", city: "مدن", friends: "أصدقاء", honeymoon: "شهر عسل", winter: "شتوي" };
@@ -50,6 +51,7 @@ ${pageHero({ crumbs, eyebrow: `فنادق ومنتجعات • <span class="ltr"
   </div>
 </section>
 
+${h.slug === "sapanca" ? cabinsSection("sapanca") : ["trabzon", "uzungol"].includes(h.slug) ? cabinsSection("trabzon") : ""}
 <section class="section section--sky">
   <div class="container grid grid-2">
     <div data-reveal><p class="eyebrow">قبل أن تحجز</p><h2 class="h-l">تأكّد من هذه التفاصيل</h2><ul class="docs" style="grid-template-columns:1fr">${h.checklist.map((x) => `<li>${ic("check-circle")}<span>${x}</span></li>`).join("")}</ul></div>

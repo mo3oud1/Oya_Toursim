@@ -31,7 +31,7 @@ function megaTurkey(data) {
     <span>برامج يوماً بيوم لإسطنبول، طرابزون، بورصة وكابادوكيا مع سائق يتحدث العربية.</span>
     <a href="{{root}}packages/">تصفّح البرامج</a>
     ${(data.extras || []).filter((x) => x.kind !== "offer").length ? `<span style="position:relative;display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">${(data.extras || []).filter((x) => x.kind !== "offer").map((x) => `<a href="{{root}}${x.path}" style="font-size:.85rem;padding:.3em .7em">${esc(x.navLabel || x.h1.split(":")[0])}</a>`).join("")}</span>` : ""}
-    ${(data.hotels || []).length ? `<span style="position:relative;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">${data.hotels.filter((h) => h.slug !== "family-friendly").map((h) => `<a href="{{root}}hotels/${h.slug}/" style="font-size:.85rem;padding:.3em .7em">فنادق ${esc(h.city)}</a>`).join("")}</span>` : ""}
+    ${(data.hotels || []).length ? `<span style="position:relative;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">${data.hotels.filter((h) => h.slug !== "family-friendly").map((h) => `<a href="{{root}}hotels/${h.slug}/" style="font-size:.85rem;padding:.3em .7em">فنادق ${esc(h.city)}</a>`).join("")}<a href="{{root}}cabins/" style="font-size:.85rem;padding:.3em .7em">أكواخ وبنغلات</a></span>` : ""}
   </div>
 </div>`;
 }
@@ -96,7 +96,7 @@ function drawer(page, data, L) {
         <li><details><summary>رحلات تركيا ${ic("chevron")}</summary><ul>${ds.map((d) => `<li><a href="{{root}}turkey-tours/${d.slug}/">${esc(d.name)}</a></li>`).join("")}<li><a href="{{root}}turkey-tours/">كل وجهات تركيا</a></li><li><a href="{{root}}packages/">البرامج السياحية</a></li><li><a href="{{root}}packages/turkey-7-days/">برنامج تركيا 7 أيام</a></li><li><a href="{{root}}turkey-visa/">تأشيرة تركيا للعرب</a></li></ul></details></li>
         ${link("world-tours/", "رحلات خارج تركيا", "world")}
         ${link("flights/", "تذاكر طيران", "flights")}
-        ${(data.hotels || []).length ? `<li><details${page.nav === "hotels" ? " open" : ""}><summary>فنادق ومنتجعات ${ic("chevron")}</summary><ul><li><a href="{{root}}hotels/"><b>كل الفنادق والمنتجعات</b></a></li>${data.hotels.map((h) => `<li><a href="{{root}}hotels/${h.slug}/">${h.slug === "family-friendly" ? "فنادق محافظة للعائلات" : "فنادق " + esc(h.city)}</a></li>`).join("")}</ul></details></li>` : link("hotels/", "فنادق ومنتجعات", "hotels")}
+        ${(data.hotels || []).length ? `<li><details${page.nav === "hotels" ? " open" : ""}><summary>فنادق ومنتجعات ${ic("chevron")}</summary><ul><li><a href="{{root}}hotels/"><b>كل الفنادق والمنتجعات</b></a></li><li><a href="{{root}}cabins/">أكواخ وبنغلات</a></li>${data.hotels.map((h) => `<li><a href="{{root}}hotels/${h.slug}/">${h.slug === "family-friendly" ? "فنادق محافظة للعائلات" : "فنادق " + esc(h.city)}</a></li>`).join("")}</ul></details></li>` : link("hotels/", "فنادق ومنتجعات", "hotels")}
         <li><details><summary>التأشيرات ${ic("chevron")}</summary><ul>
           <li><a href="{{root}}saudi-visa/"><b>تأشيرات السعودية</b></a></li>${g("saudi").map((v) => `<li><a href="{{root}}saudi-visa/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
           <li><a href="{{root}}gcc-visas/"><b>تأشيرات الخليج</b></a></li>${g("gcc").map((v) => `<li><a href="{{root}}gcc-visas/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
@@ -179,12 +179,12 @@ function vendorScripts(page) {
 
 // Strings the scripts show (T("…") in assets/js/*.js), shipped per page as a small table the build translates
 const JS_T = {};
-for (const f of ["main", "finder", "globe", "stadium"]) {
+for (const f of ["main", "finder", "globe", "stadium", "cabins"]) {
   const src = fs.readFileSync(path.join(ROOT_DIR, "assets/js", `${f}.js`), "utf8");
   JS_T[f] = [...new Set([...src.matchAll(/\bT\("((?:[^"\\]|\\.)*)"/g)].map((m) => JSON.parse(`"${m[1]}"`)))];
 }
 function jsStrings(page) {
-  const used = ["main", /data-finder/.test(page.body) && "finder", /data-globe/.test(page.body) && "globe", /data-stadium/.test(page.body) && "stadium"].filter(Boolean);
+  const used = ["main", /data-finder/.test(page.body) && "finder", /data-globe/.test(page.body) && "globe", /data-stadium/.test(page.body) && "stadium", /data-cabins/.test(page.body) && "cabins"].filter(Boolean);
   const table = Object.fromEntries(used.flatMap((f) => JS_T[f]).map((s) => [s, s]));
   return `<script type="application/json" id="oya-t">${JSON.stringify(table).replace(/</g, "\\u003c")}</script>`;
 }
@@ -267,6 +267,7 @@ ${vendorScripts(page)}<script src="{{root}}assets/js/main.js?v=${assetsVer}" def
 ${/data-finder/.test(page.body) ? `<script src="{{root}}assets/js/finder.js?v=${assetsVer}" defer></script>` : ""}
 ${/data-globe/.test(page.body) ? `<script type="module" src="{{root}}assets/js/globe.js?v=${assetsVer}"></script>` : ""}
 ${/data-stadium/.test(page.body) ? `<script type="module" src="{{root}}assets/js/stadium.js?v=${assetsVer}"></script>` : ""}
+${/data-cabins/.test(page.body) ? `<script src="{{root}}assets/js/cabins.js?v=${assetsVer}" defer></script>` : ""}
 </body>
 </html>`;
 }
