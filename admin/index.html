@@ -102,6 +102,8 @@ main{padding:28px 0 140px}
 .cabrow .acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .pill{display:inline-block;font-size:.72rem;font-weight:700;padding:.1em .6em;border-radius:999px;background:#E8F6EE;color:var(--ok);margin-inline-start:.4em}
 .pill.off{background:#F3F1EC;color:var(--muted)}
+.cabrow .ref{margin-top:4px;font-size:.78rem;color:#8A4B00;background:#FFF6E6;padding:.35em .6em;border-radius:8px;line-height:1.6}
+.cabrow .ref a{color:var(--navy);font-weight:600}
 .sbtn{min-height:40px;padding:.4em 1em;font-size:.88rem}
 .btn--danger{background:#fff;color:var(--bad);box-shadow:inset 0 0 0 1.5px #F2C7C2}
 .editor{position:fixed;inset:0;z-index:40;background:rgba(6,20,40,.55);display:grid;place-items:center;padding:16px;overflow:auto}
@@ -233,6 +235,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
       <div class="wide"><label>المواصفات</label><div class="feats" id="cFeats"></div></div>
       <div class="wide"><label for="cNote">وصف قصير (اختياري، يظهر بالعربية فقط)</label><textarea id="cNote" maxlength="240" placeholder="مثال: على بُعد 5 دقائق من بحيرة سبانجا، مع جاكوزي داخلي ومدفأة حطب."></textarea></div>
       <div class="wide"><label>الصور (الأولى هي صورة الغلاف)</label><div class="photos" id="cPhotos"></div></div>
+      <div class="wide"><label for="cRef">ملاحظة داخلية (لا تظهر على الموقع)</label><textarea id="cRef" maxlength="600" placeholder="مثال: رقم المالك، العمولة المتفق عليها، تقييم Google…"></textarea></div>
       <div class="wide"><label class="chk" style="margin:0"><input type="checkbox" id="cActive" checked> ظاهر على الموقع</label></div>
     </div>
     <div class="err" id="edErr" role="alert"></div>
@@ -285,6 +288,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
   var toastT = 0;
   function toast(msg, kind) { var t = $("#toast"); t.textContent = msg; t.className = "toast on " + (kind || ""); clearTimeout(toastT); toastT = setTimeout(function () { t.className = "toast"; }, 5200); }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function linkify(t) { return esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">المصدر</a>'); }
   var clone = function (o) { return JSON.parse(JSON.stringify(o)); };
   var today = function () { var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
   var sym = function () { return (db && db.currency && db.currency.symbol) || "$"; };
@@ -353,9 +357,9 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     $("#cabs").innerHTML = list.length ? list.map(function (c, i) {
       var ph = (c.photos || [])[0];
       return '<div class="cabrow">' + (ph ? '<img class="th" src="' + esc(photoSrc(ph)) + '" alt="">' : '<span class="th"></span>') +
-        "<div><h3>" + esc(c.name) + '<span class="pill' + (c.active === false ? " off" : "") + '">' + (c.active === false ? "مخفي" : "ظاهر") + "</span></h3><p>" +
-        esc(areaName[c.area] || c.area) + " • غرف النوم: " + (c.rooms || 1) + " • حتى " + (c.guests || 2) + " أشخاص • " +
-        (typeof c.price === "number" && c.price > 0 ? Number(c.price).toLocaleString("en-US") + " " + esc(sym()) + " / الليلة" : "حسب الموسم") + " • الصور: " + (c.photos || []).length + "</p></div>" +
+        "<div><h3>" + esc(c.name) + '<span class="pill' + (c.active === false ? " off" : "") + '">' + (c.active === false ? "مسودة / مخفي" : "ظاهر") + "</span></h3><p>" +
+        esc(areaName[c.area] || c.area) + " • غرف النوم: " + (c.rooms || "—") + " • الأشخاص: " + (c.guests || "—") + " • " +
+        (typeof c.price === "number" && c.price > 0 ? Number(c.price).toLocaleString("en-US") + " " + esc(sym()) + " / الليلة" : "حسب الموسم") + " • الصور: " + (c.photos || []).length + "</p>" + (c.ref ? '<p class="ref">' + linkify(c.ref) + "</p>" : "") + "</div>" +
         '<div class="acts"><button class="btn btn--ghost sbtn" type="button" data-edit="' + i + '">تعديل</button><button class="btn btn--danger sbtn" type="button" data-del="' + i + '">حذف</button></div></div>';
     }).join("") : '<div class="card empty">لا توجد أكواخ بعد. اضغط «إضافة كوخ» لإضافة أول كوخ.</div>';
   }
@@ -393,7 +397,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
   function openEditor(i) {
     edIdx = i; ed = i < 0 ? { id: "c" + Date.now().toString(36), name: "", area: "sapanca", rooms: 1, guests: 2, price: null, features: [], note: "", photos: [], active: true } : clone(F.cabins.db.cabins[i]);
     $("#edTitle").textContent = i < 0 ? "كوخ جديد" : "تعديل الكوخ";
-    $("#cName").value = ed.name; $("#cArea").value = ed.area; $("#cRooms").value = ed.rooms || 1; $("#cGuests").value = ed.guests || 2;
+    $("#cName").value = ed.name; $("#cArea").value = ed.area; $("#cRooms").value = ed.rooms || ""; $("#cGuests").value = ed.guests || ""; $("#cRef").value = ed.ref || "";
     $("#cPrice").value = typeof ed.price === "number" ? ed.price : ""; $("#cNote").value = ed.note || ""; $("#cActive").checked = ed.active !== false;
     $(".sym", $("#editor")).textContent = sym();
     $$("#cFeats input").forEach(function (x) { x.checked = (ed.features || []).indexOf(x.value) > -1; });
@@ -454,7 +458,9 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     if (!name) { $("#edErr").textContent = "اكتب اسم الكوخ."; $("#cName").focus(); return; }
     if (ed.photos.some(function (p) { return p.indexOf("uploading:") === 0; })) { $("#edErr").textContent = "انتظر حتى ينتهي رفع الصور."; return; }
     ed.name = name; ed.area = $("#cArea").value;
-    ed.rooms = Math.max(1, Math.round(+$("#cRooms").value || 1)); ed.guests = Math.max(1, Math.round(+$("#cGuests").value || 2));
+    ed.rooms = +$("#cRooms").value > 0 ? Math.round(+$("#cRooms").value) : null; ed.guests = +$("#cGuests").value > 0 ? Math.round(+$("#cGuests").value) : null;
+    if ($("#cActive").checked && (!ed.rooms || !ed.guests || !ed.photos.length)) { $("#edErr").textContent = "قبل إظهار الكوخ على الموقع أكمل: عدد غرف النوم، وعدد الأشخاص، وصورة واحدة على الأقل. أو أزل علامة «ظاهر على الموقع» واحفظه كمسودة."; return; }
+    ed.ref = $("#cRef").value.trim();
     ed.price = pr === "" ? null : Math.max(0, Math.round(+pr)) || null;
     ed.features = $$("#cFeats input:checked").map(function (x) { return x.value; });
     ed.note = $("#cNote").value.trim(); ed.active = $("#cActive").checked;

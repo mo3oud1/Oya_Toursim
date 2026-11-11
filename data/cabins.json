@@ -1,4 +1,232 @@
 {
   "_note": "Cabins and bungalows shown on oyatourism.com/cabins/ and the Sapanca / Trabzon pages — edit from oyatourism.com/admin/.",
-  "cabins": []
+  "cabins": [
+    {
+      "id": "d01",
+      "name": "Gül Ev Sapanca",
+      "area": "sapanca",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "pool",
+        "heated"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: Uzunkum، حوالي 2.4 كم من البحيرة. التقييم 9.5/10 من 114 تقييماً (cozycozy). مسبح مدفأ. https://www.cozycozy.com/us/sapanca-villa-rentals — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d02",
+      "name": "Lake Look Sapanca",
+      "area": "sapanca",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "pool",
+        "heated"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: Uzunkum. التقييم 9.5/10 (enuygun، عدد التقييمات غير مذكور). مسبح خاص مدفأ. https://www.enuygun.com/otel/tema/sapanca-bungalov-oteller/ — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d03",
+      "name": "Holiday Sapanca Kırkpınar",
+      "area": "sapanca",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "pool",
+        "heated"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: Kırkpınar. التقييم 9.8/10 على Booking لكن من 5 تقييمات فقط، وهي فيلا وليست بنغل. https://www.booking.com/hotel/tr/holiday-sapanca-kirkpinar.html — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d04",
+      "name": "Naturköy Bungalov",
+      "area": "sapanca",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "forest"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9.5/10 (enuygun، عدد التقييمات غير مذكور). https://www.enuygun.com/otel/tema/sapanca-bungalov-oteller/ — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d05",
+      "name": "Teona Kartepe Bungalov",
+      "area": "kartepe",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9/10 من 40 تقييماً (Turna). https://www.turna.com/otel/masukiye-kartepe-bungalov-oteller — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d06",
+      "name": "Green Nest Bungalow",
+      "area": "masukiye",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "forest"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9.2/10 من 9 تقييمات (sapancaotelleri). https://www.sapancaotelleri.com.tr/masukiye-otelleri — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d07",
+      "name": "Tree Bungalov Maşukiye",
+      "area": "masukiye",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "forest"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9.3/10 على Booking (3 تقييمات) و9/10 على Turna (12 تقييماً). https://www.booking.com/hotel/tr/tiny-house-masukiye.html — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d08",
+      "name": "Babil Bungalow",
+      "area": "masukiye",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9.2/10 (Turna، عدد التقييمات غير مذكور). https://www.turna.com/otel/masukiye-kartepe-bungalov-oteller — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d09",
+      "name": "Uzungöl Çaykara Bungalov",
+      "area": "uzungol",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "mountain"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: تقييم Google ‏4.8/5 من 272 تقييماً (Google Hotels) — الوحيد الذي وجدنا له تقييم Google مباشرة. https://www.google.com.tr/travel/hotels/entity/ChkI0rjPtszy5pkzGg0vZy8xMWtxODl3dnByEAE — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d10",
+      "name": "Uzungöl Ada Bungalow",
+      "area": "uzungol",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "lake"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9.3/10 من 27 تقييماً (Planet of Hotels)، على بُعد 3 دقائق مشياً من البحيرة. https://en.planetofhotels.com/turkey/uzungol/uzungol-ada-bungalow — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d11",
+      "name": "Raha Villa Bungalow",
+      "area": "uzungol",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "lake",
+        "mountain"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: تقييم «Wonderful» على Booking من 166 تقييماً، إطلالة على البحيرة من الجبل. https://www.booking.com/booking-home/city/tr/uzungol.html — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d12",
+      "name": "Ayder Bulut Dağevi Bungalow",
+      "area": "ayder",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "mountain"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 4.8/5 من 24 تقييماً (Neredekal) و8.4/10 من 48 (Planet of Hotels). https://tr.planetofhotels.com/turkiye/ayder-yaylasi/ayder-bulut-dagevi-bungalow — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d13",
+      "name": "Pilita Bungalov",
+      "area": "ayder",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "breakfast",
+        "mountain"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 4.7/5 من 88 تقييماً (Neredekal). مدح للفطور والخدمة، وملاحظات على الموقف وصغر الحمّام. https://www.etstur.com/Pilita-Bungalov — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d14",
+      "name": "Hoşdere Bungalov",
+      "area": "ayder",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "mountain"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 10/10 من 23 تقييماً (foodtravelturk). https://foodtravelturk.com/property/ho%C5%9Fdere-bungalov/EP-37655242 — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    },
+    {
+      "id": "d15",
+      "name": "Yayla Bungalov",
+      "area": "ayder",
+      "rooms": null,
+      "guests": null,
+      "price": null,
+      "features": [
+        "breakfast",
+        "mountain"
+      ],
+      "note": "",
+      "photos": [],
+      "active": false,
+      "ref": "مسودة — تحقّق قبل الإظهار: Booking: الموظفون 9.3، النظافة 9.0، الراحة 9.3. مدح للإطلالة والفطور. https://www.booking.com/hotel/tr/yayla-bungalov.html — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
+    }
+  ]
 }
