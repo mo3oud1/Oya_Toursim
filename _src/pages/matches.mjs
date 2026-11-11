@@ -6,12 +6,16 @@ import { matchForm } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
 
 // ---- Event data (edit here when official kick-off times / venues / prices are announced) ----
+// Club crests: the owner supplied them and chose to show them (they are the clubs' trademarks — the owner's
+// decision and risk). Set SHOW_CRESTS = false to fall back to the generic kit-colour shields.
+// stripes = kit colours for the generic shield / club card band; tone = the colour used for the card background.
+const SHOW_CRESTS = true;
 const teams = {
-  fcb: { name: "برشلونة", en: "FC Barcelona", short: "FCB", c1: "#19487E", c2: "rgba(255,255,255,.22)" },
-  atm: { name: "أتلتيكو مدريد", en: "Atlético de Madrid", short: "ATM", c1: "#143A68", c2: "rgba(255,255,255,.22)" },
-  rma: { name: "ريال مدريد", en: "Real Madrid", short: "RMA", c1: "#2B6BAB", c2: "rgba(255,255,255,.22)" },
-  rso: { name: "ريال سوسيداد", en: "Real Sociedad", short: "RSO", c1: "#0F2C52", c2: "rgba(255,255,255,.22)" },
-  tbd: { name: "الفائز من نصف النهائي", en: "TBD", short: "?", c1: "#19487E", c2: "#ED5404" },
+  fcb: { name: "برشلونة", en: "FC Barcelona", short: "FCB", stripes: ["#004D98", "#A50044"], rim: "#EDBB00", tone: "#004D98", nick: "البلاوغرانا", city: "برشلونة", founded: 1899 },
+  atm: { name: "أتلتيكو مدريد", en: "Atlético de Madrid", short: "ATM", stripes: ["#CB3524", "#FFFFFF"], band: "#272E61", rim: "#272E61", tone: "#CB3524", nick: "الروخيبلانكوس", city: "مدريد", founded: 1903 },
+  rma: { name: "ريال مدريد", en: "Real Madrid", short: "RMA", stripes: ["#FFFFFF", "#F1F1F1"], rim: "#FEBE10", tone: "#5B4A9E", nick: "لوس بلانكوس", city: "مدريد", founded: 1902 },
+  rso: { name: "ريال سوسيداد", en: "Real Sociedad", short: "RSO", stripes: ["#0067B1", "#FFFFFF"], rim: "#0067B1", tone: "#0067B1", nick: "التشوري أوردين", city: "سان سيباستيان", founded: 1909 },
+  tbd: { name: "الفائز من نصف النهائي", en: "TBD", short: "?", stripes: ["#19487E", "#143A68"], rim: "#ED5404", tone: "#ED5404" },
 };
 // Ticket prices per category — fill the numbers from the owner's price list (null = «اطلب السعر»).
 const CURRENCY = { symbol: "$", code: "USD" };
@@ -38,27 +42,72 @@ function priceTable() {
 <p class="muted mt-1" style="font-size:.85rem">الأسعار للتذكرة الواحدة وتخضع للتوفر وقت التأكيد، وتُرسل لك مكتوبة قبل الدفع.</p>`;
 }
 
-const crest = (t) => `<span class="team__crest" style="--c1:${t.c1};--c2:${t.c2};${t.dark ? "color:#1b1b1b;" : ""}">${t.short}</span>`;
-function matchCard(m, { compact = false } = {}) {
+// Generic heater shield striped in the club's kit colours, with the club's initials (not an official crest)
+let shieldN = 0;
+function shield(t, size = 72) {
+  const id = `sh${++shieldN}`, [s1, s2] = t.stripes, w = 64 / 5;
+  const stripes = [0, 1, 2, 3, 4].map((i) => `<rect x="${i * w}" y="0" width="${w + 0.2}" height="72" fill="${i % 2 ? s2 : s1}"/>`).join("");
+  return `<svg class="shield" width="${size}" height="${Math.round(size * 1.125)}" viewBox="0 0 64 72" aria-hidden="true" focusable="false">
+  <defs><clipPath id="${id}"><path d="M32 2 60 9.5V33c0 18.5-12.4 30.2-28 37C16.4 63.2 4 51.5 4 33V9.5Z"/></clipPath></defs>
+  <g clip-path="url(#${id})">${stripes}${t.band ? `<rect x="0" y="0" width="64" height="20" fill="${t.band}"/>` : ""}<rect x="0" y="0" width="64" height="72" fill="url(#shGloss)"/></g>
+  <path d="M32 2 60 9.5V33c0 18.5-12.4 30.2-28 37C16.4 63.2 4 51.5 4 33V9.5Z" fill="none" stroke="${t.rim}" stroke-width="3"/>
+  <rect x="13" y="29" width="38" height="17" rx="8.5" fill="rgba(8,24,48,.78)"/>
+  <text x="32" y="41.5" text-anchor="middle" font-family="Alexandria,system-ui,sans-serif" font-size="11.5" font-weight="800" fill="#fff" letter-spacing=".6">${t.short}</text>
+</svg>`;
+}
+// club crest image (owner-supplied) or the generic shield; alt is empty because the club name is written next to it
+const CREST_W = { fcb: 187, rma: 143, atm: 144, rso: 174 };
+function badge(t, h = 76) {
+  const k = Object.keys(teams).find((x) => teams[x] === t);
+  if (!SHOW_CRESTS || !CREST_W[k]) return shield(t, Math.round(h * 0.95));
+  return `<img class="crest" src="{{root}}assets/img/clubs/${k}.webp" width="${Math.round((CREST_W[k] * h) / 192)}" height="${h}" alt="" loading="lazy" decoding="async">`;
+}
+// shared gloss gradient for the shields (once per page)
+const shieldDefs = `<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="shGloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></linearGradient></defs></svg>`;
+
+// Match card styled as a ticket: dark stub with both clubs' colours, perforation, light details half
+function matchCard(m) {
   const h = teams[m.home], a = teams[m.away];
   const msg = `مرحباً أويا للسياحة، أرغب بباقة حضور كأس السوبر الإسباني 2027: ${m.stage} — ${h.name} × ${a.name} (${m.dateAr}).`;
+  const team = (t) => `<div class="mtk__team">${badge(t)}<b>${t.name}</b>${t.en !== "TBD" ? `<small class="ltr">${t.en}</small>` : ""}</div>`;
   return `
-<article class="match" data-reveal>
-  <div class="match__top"><span>${ic("trophy")} كأس السوبر الإسباني 2027 • ${m.stage}</span><span class="status">تذكرة رسمية باسمك</span></div>
-  <div class="match__teams">
-    <div class="team">${crest(h)}<b>${h.name}</b></div>
-    <span class="vs">VS</span>
-    <div class="team">${crest(a)}<b>${a.name}</b></div>
+<article class="mtk${m.home === "tbd" ? " mtk--final" : ""}" style="--hc:${h.tone};--ac:${a.tone}" data-reveal>
+  <div class="mtk__stub">
+    <div class="mtk__head"><span class="mtk__stage">${ic("trophy")}${m.stage}</span><span class="mtk__official">${ic("check")}تذكرة رسمية باسمك</span></div>
+    <div class="mtk__teams">${team(h)}<div class="mtk__mid"><span class="mtk__vs">VS</span><span class="mtk__time ltr">22:00</span></div>${team(a)}</div>
   </div>
-  <div class="match__info">
-    <span>${ic("calendar")}${m.dateAr}</span>
-    <span>${ic("stadium")}${m.venueAr}</span><span>${ic("clock")}صافرة البداية 22:00 بتوقيت إسطنبول</span>
-  </div>
-  <div class="match__foot">
-    ${minPrice(m) !== null ? `<div class="price"><small>يبدأ من / للتذكرة</small><b>${fmt(minPrice(m))}</b></div>` : `<div class="price"><small>الفئات</small><b style="font-size:1rem">الأولى • الثانية • الثالثة • VIP</b></div>`}
-    <a class="btn btn--sm" href="${waUrl(msg)}" target="_blank" rel="noopener">${ic("ticket")}<span>احجز</span></a>
+  <div class="mtk__perf" aria-hidden="true"></div>
+  <div class="mtk__body">
+    <ul class="mtk__meta">
+      <li>${ic("calendar")}<span>${m.dateAr}</span></li>
+      <li>${ic("stadium")}<span>${m.venueAr}</span></li>
+      <li>${ic("clock")}<span>صافرة البداية 22:00 بتوقيت إسطنبول</span></li>
+    </ul>
+    <div class="mtk__foot">
+      ${minPrice(m) !== null ? `<div class="price"><small>يبدأ من / للتذكرة</small><b>${fmt(minPrice(m))}</b></div>` : `<div class="price"><small>الفئات</small><b class="price__ask">الأولى • الثانية • الثالثة • VIP</b></div>`}
+      <a class="btn btn--sm" href="${waUrl(msg)}" target="_blank" rel="noopener">${ic("ticket")}<span>احجز</span></a>
+    </div>
   </div>
 </article>`;
+}
+
+// Club cards (kit colours, city, founded, nickname, their match in Istanbul)
+function clubCards() {
+  const matchOf = (k) => scMatches.find((m) => m.home === k || m.away === k);
+  return `<div class="clubs">${["fcb", "rma", "atm", "rso"].map((k) => {
+    const t = teams[k], m = matchOf(k);
+    return `<article class="club" style="--s1:${t.stripes[0]};--s2:${t.stripes[1]};--tone:${t.tone}">
+      <div class="club__band" aria-hidden="true"></div>
+      ${badge(t, 78)}
+      <h3>${t.name}</h3><small class="ltr club__en">${t.en}</small>
+      <dl class="club__facts">
+        <div><dt>المدينة</dt><dd>${t.city}</dd></div>
+        <div><dt>التأسيس</dt><dd class="ltr">${t.founded}</dd></div>
+        <div><dt>اللقب</dt><dd>${t.nick}</dd></div>
+      </dl>
+      <p class="club__match">${ic("calendar")}<span>${m.stage}</span></p>
+    </article>`;
+  }).join("")}</div>`;
 }
 
 const tiers = (ctx = "كأس السوبر الإسباني 2027") => `
@@ -243,7 +292,7 @@ ${pageHero({ crumbs, ...heroPhoto("hero-matches"), eyebrow: "تذاكر المب
 <section class="section" style="padding-top:0">
   <div class="container">
     ${sectionHead({ eyebrow: "جدول البطولة", title: "مباريات كأس السوبر الإسباني 2027", lead: "الجدول وفق ما أعلنه الاتحاد الإسباني لكرة القدم، مع الملعب وموعد الانطلاق لكل مباراة.", row: true, after: `<a class="btn btn--ghost" href="{{root}}matches/spanish-super-cup-2027/">الدليل الكامل ${ic("arrow", "i-flip")}</a>` })}
-    <div class="grid grid-3" data-stagger>${scMatches.map((m) => matchCard(m)).join("")}</div>
+    ${shieldDefs}<div class="grid grid-3 mtk-grid" data-stagger>${scMatches.map((m) => matchCard(m)).join("")}</div>
     <p class="muted mt-1" style="font-size:.85rem">المواعيد والملاعب وفق ما أعلنه الاتحاد الإسباني لكرة القدم: صافرة البداية 22:00 بتوقيت إسطنبول (20:00 بتوقيت إسبانيا).</p>
   </div>
 </section>
@@ -329,7 +378,7 @@ ${pageHero({ crumbs, ...heroPhoto("hero-super-cup"), eyebrow: `${ic("trophy")} �
 <section class="section">
   <div class="container">
     ${sectionHead({ eyebrow: "المباريات", title: "جدول مباريات السوبر الإسباني في إسطنبول", lead: "ثلاث مباريات في خمسة أيام — يمكنك حضور مباراة واحدة أو البطولة كاملة." })}
-    <div class="grid grid-3" data-stagger>${scMatches.map((m) => matchCard(m)).join("")}</div>
+    ${shieldDefs}<div class="grid grid-3 mtk-grid" data-stagger>${scMatches.map((m) => matchCard(m)).join("")}</div>
     <div class="table-wrap mt-2" data-reveal><table class="table"><thead><tr><th>المرحلة</th><th>المواجهة</th><th>التاريخ</th><th>المدينة</th></tr></thead><tbody>
       ${scMatches.map((m) => `<tr><td><strong>${m.stage}</strong></td><td>${teams[m.home].name} × ${teams[m.away].name}</td><td>${m.dateAr}</td><td>إسطنبول</td></tr>`).join("")}
     </tbody></table></div>
@@ -350,9 +399,7 @@ ${stadiumSection()}
       <p>ولأن أويا للسياحة مقرها إسطنبول، نرتّب لك الرحلة كاملة على الأرض: الفندق، الاستقبال، التنقل إلى الملعب، وحتى برنامجاً سياحياً قبل المباراة أو بعدها في إسطنبول وبورصة وسبانجا.</p>
     </div>
     <div data-reveal="right">
-      <div class="team-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-        ${["fcb", "rma", "atm", "rso"].map((k) => `<div class="svc" style="align-items:center;text-align:center;padding:22px">${crest(teams[k])}<b style="font-family:var(--ff-display)">${teams[k].name}</b><span class="muted ltr" style="font-size:.8rem">${teams[k].en}</span></div>`).join("")}
-      </div>
+      ${clubCards()}
     </div>
   </div>
 </section>

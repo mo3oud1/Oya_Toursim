@@ -8763,7 +8763,7 @@
    "packages/turkey-7-days/",
    "packages/istanbul-bursa-7-days/"
   ],
-  "n": 30
+  "n": 34
  },
  {
   "id": "89b68742ca",
@@ -44835,14 +44835,15 @@
   "n": 1
  },
  {
-  "id": "926e58ef01",
+  "id": "8f643adabe",
   "kind": "text",
-  "ar": "كأس السوبر الإسباني 2027 • نصف النهائي الأول",
+  "ar": "نصف النهائي الأول",
   "pages": [
    "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/spanish-super-cup-2027/",
+   "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
-  "n": 2
+  "n": 7
  },
  {
   "id": "8267dc0432",
@@ -44852,7 +44853,7 @@
    "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 3
+  "n": 4
  },
  {
   "id": "6fad8f1479",
@@ -44935,14 +44936,15 @@
   "n": 7
  },
  {
-  "id": "7b7f18936e",
+  "id": "6f5b03ac7f",
   "kind": "text",
-  "ar": "كأس السوبر الإسباني 2027 • نصف النهائي الثاني",
+  "ar": "نصف النهائي الثاني",
   "pages": [
    "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/spanish-super-cup-2027/",
+   "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
-  "n": 2
+  "n": 7
  },
  {
   "id": "7e4ee73a17",
@@ -44995,14 +44997,14 @@
   "n": 2
  },
  {
-  "id": "328a7eba66",
+  "id": "757c60b663",
   "kind": "text",
-  "ar": "كأس السوبر الإسباني 2027 • المباراة النهائية",
+  "ar": "المباراة النهائية",
   "pages": [
    "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 2
+  "n": 4
  },
  {
   "id": "19119fd97c",
@@ -45869,29 +45871,9 @@
   "n": 5
  },
  {
-  "id": "8f643adabe",
-  "kind": "text",
-  "ar": "نصف النهائي الأول",
-  "pages": [
-   "matches/spanish-super-cup-2027/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
-  ],
-  "n": 3
- },
- {
   "id": "e4e9f9900a",
   "kind": "text",
   "ar": "برشلونة × أتلتيكو مدريد",
-  "pages": [
-   "matches/spanish-super-cup-2027/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
-  ],
-  "n": 3
- },
- {
-  "id": "6f5b03ac7f",
-  "kind": "text",
-  "ar": "نصف النهائي الثاني",
   "pages": [
    "matches/spanish-super-cup-2027/",
    "blog/spanish-super-cup-2027-istanbul-guide/"
@@ -45907,15 +45889,6 @@
    "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
   "n": 3
- },
- {
-  "id": "757c60b663",
-  "kind": "text",
-  "ar": "المباراة النهائية",
-  "pages": [
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 2
  },
  {
   "id": "c9da68b972",
@@ -46317,6 +46290,78 @@
   "id": "b736b3838a",
   "kind": "text",
   "ar": "ولأن أويا للسياحة مقرها إسطنبول، نرتّب لك الرحلة كاملة على الأرض: الفندق، الاستقبال، التنقل إلى الملعب، وحتى برنامجاً سياحياً قبل المباراة أو بعدها في إسطنبول وبورصة وسبانجا.",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "68791537ce",
+  "kind": "text",
+  "ar": "التأسيس",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "92366b124b",
+  "kind": "text",
+  "ar": "اللقب",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "a41f3499be",
+  "kind": "text",
+  "ar": "البلاوغرانا",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6883376a46",
+  "kind": "text",
+  "ar": "مدريد",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "7b920bf241",
+  "kind": "text",
+  "ar": "لوس بلانكوس",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c10ccda951",
+  "kind": "text",
+  "ar": "الروخيبلانكوس",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8d7e3a90bf",
+  "kind": "text",
+  "ar": "سان سيباستيان",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a8305ab243",
+  "kind": "text",
+  "ar": "التشوري أوردين",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
