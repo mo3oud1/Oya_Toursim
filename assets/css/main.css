@@ -1479,3 +1479,19 @@ h3,h4{line-height:1.42}
 @media(max-width:640px){.brand img{height:34px}.site-header.is-solid .brand img{height:31px}}
 @media(min-width:641px) and (max-width:1099px){.brand img{height:40px}.site-header.is-solid .brand img{height:36px}}
 @media(max-width:640px){:root{--header-h:66px}.site-header.is-solid{--header-h:60px}}
+
+/* ---------- Home hero on phones: tidy column, nothing hidden behind the bottom bar ---------- */
+@media(max-width:640px){
+  .hero--photo{min-height:0;padding-bottom:104px}
+  .hero__copy .btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:22px}
+  .hero__copy .btn-row .btn{width:100%}
+  .hero__chips{display:none}
+  /* slide controls follow the buttons instead of floating over the bottom of the photo */
+  .hero__ctrl{position:static;justify-content:flex-start;margin-top:18px}
+}
+/* hero title in Latin/Cyrillic: two lines on laptops instead of three; no single word left alone at the end of a paragraph */
+@media(min-width:900px){[dir="ltr"] .hero h1.h-display{font-size:clamp(2.4rem,1rem + 2.7vw,3.7rem)}}
+.lead,.hero .lead{text-wrap:pretty}
+.hero .lead strong{white-space:nowrap}
+/* slide controls keep clear of the floating WhatsApp button (same corner) */
+@media(min-width:900px){.hero__ctrl{padding-inline-end:max(0px,calc(96px - (100vw - min(100vw - 2*var(--gutter),var(--container)))/2))}}
