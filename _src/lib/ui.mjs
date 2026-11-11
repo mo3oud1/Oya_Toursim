@@ -175,7 +175,7 @@ export function ctaBand({ title = "جاهز لحكايتك القادمة؟", le
 /* ---------- Cards ---------- */
 export function priceTag(p) {
   if (p.priceFrom) return `<div class="price"><small>يبدأ من</small><b>${ar(p.priceFrom)}<span class="cur">$</span></b></div>`;
-  return `<div class="price"><small>السعر</small><b style="font-size:1.02rem">حسب الموسم — اطلب عرضك</b></div>`;
+  return `<div class="price"><small>السعر</small><b class="price__ask">حسب الموسم — اطلب عرضك</b></div>`;
 }
 export function packageCard(p, page) {
   const href = `{{root}}packages/${p.slug}/`;
