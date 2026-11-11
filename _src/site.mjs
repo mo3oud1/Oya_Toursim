@@ -29,6 +29,7 @@ export const site = {
   addressLine: "", // العنوان التفصيلي للمكتب
   mapsUrl: "",
   socials: { instagram: "https://www.instagram.com/oya_tourism01", facebook: "https://www.facebook.com/share/1FyNG91QkB/", tiktok: "", youtube: "", snap: "" },
+  gtm: "GTM-5ZTB8H8V", // Google Tag Manager container
   ga4: "", // Google Analytics 4 ID e.g. G-XXXXXXX
   gscVerification: "", // Google Search Console meta verification token
 };

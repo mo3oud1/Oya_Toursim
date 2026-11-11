@@ -1,6 +1,8 @@
+import fs from "node:fs";
+import path from "node:path";
 import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
-import { ic, esc, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, packageCard, nightsAr } from "../lib/ui.mjs";
+import { ROOT_DIR, ic, esc, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, packageCard, nightsAr } from "../lib/ui.mjs";
 import { readFirst } from "../lib/templates.mjs";
 import { matchForm } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
@@ -19,14 +21,17 @@ const teams = {
 };
 // Ticket prices per category — fill the numbers from the owner's price list (null = «اطلب السعر»).
 const CURRENCY = { symbol: "$", code: "USD" };
-const CATS = [["cat3", "الفئة الثالثة"], ["cat2", "الفئة الثانية"], ["cat1", "الفئة الأولى"], ["vip", "VIP / ضيافة"]];
+// prices come from data/prices.json (edited from /admin/); labels A+ / A / B / C follow the owner's price list
+const PRICE_DB = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "data/prices.json"), "utf8"));
+const dbPrices = (id) => { const r = PRICE_DB.superCup?.matches?.[id] || {}; const o = {}; for (const k of ["cat3", "cat2", "cat1", "vip"]) o[k] = typeof r[k] === "number" && r[k] > 0 ? r[k] : null; return o; };
+const CATS = [["cat3", "الفئة C"], ["cat2", "الفئة B"], ["cat1", "الفئة A"], ["vip", "الفئة A+"]];
 export const scMatches = [
   { id: "sf1", stage: "نصف النهائي الأول", date: "2027-02-02", dateAr: "الثلاثاء 2 فبراير 2027 • 22:00", home: "fcb", away: "atm", start: "2027-02-02T22:00:00+03:00", venue: "Chobani Stadyumu (Fenerbahçe Şükrü Saracoğlu), Kadıköy", venueAr: "ملعب شكري سراج أوغلو (Chobani) — كاديكوي", form: "نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)",
-    prices: { cat3: null, cat2: null, cat1: null, vip: null } },
+    prices: dbPrices("sf1") },
   { id: "sf2", stage: "نصف النهائي الثاني", date: "2027-02-03", dateAr: "الأربعاء 3 فبراير 2027 • 22:00", home: "rso", away: "rma", start: "2027-02-03T22:00:00+03:00", venue: "Tüpraş Stadium, Beşiktaş", venueAr: "ملعب توبراش (Tüpraş) — بشكتاش", form: "نصف النهائي: ريال مدريد × ريال سوسيداد (3 فبراير)",
-    prices: { cat3: null, cat2: null, cat1: null, vip: null } },
+    prices: dbPrices("sf2") },
   { id: "final", stage: "المباراة النهائية", date: "2027-02-06", dateAr: "السبت 6 فبراير 2027 • 22:00", home: "tbd", away: "tbd", start: "2027-02-06T22:00:00+03:00", venue: "RAMS Park (Ali Sami Yen Sports Complex), Sarıyer", venueAr: "ملعب رامز بارك (RAMS Park) — سارير", form: "النهائي (6 فبراير)",
-    prices: { cat3: null, cat2: null, cat1: null, vip: null } },
+    prices: dbPrices("final") },
 ];
 const KICKOFF = "2027-02-02T22:00:00+03:00";
 const minPrice = (m) => { const v = Object.values(m.prices || {}).filter((x) => typeof x === "number"); return v.length ? Math.min(...v) : null; };
@@ -37,7 +42,7 @@ function priceTable() {
   return `
 <div class="table-wrap mt-2" data-reveal><table class="table price-table">
   <thead><tr><th>المباراة</th>${CATS.map(([, l]) => `<th>${l}</th>`).join("")}</tr></thead>
-  <tbody>${scMatches.map((m) => `<tr><td><strong>${m.stage}</strong><br><small class="muted">${teams[m.home].name} × ${teams[m.away].name}</small></td>${CATS.map(([k]) => `<td>${typeof m.prices?.[k] === "number" ? `<b class="pt">${fmt(m.prices[k])}</b>` : `<span class="muted">عند الطلب</span>`}</td>`).join("")}</tr>`).join("")}</tbody>
+  <tbody>${scMatches.map((m) => `<tr><td><strong>${m.stage}</strong><br><small class="muted">${teams[m.home].name} × ${teams[m.away].name}</small></td>${CATS.map(([k]) => `<td data-sc-p="${m.id}:${k}">${typeof m.prices?.[k] === "number" ? `<b class="pt">${fmt(m.prices[k])}</b>` : `<span class="muted">عند الطلب</span>`}</td>`).join("")}</tr>`).join("")}</tbody>
 </table></div>
 <p class="muted mt-1" style="font-size:.85rem">الأسعار للتذكرة الواحدة وتخضع للتوفر وقت التأكيد، وتُرسل لك مكتوبة قبل الدفع.</p>`;
 }
@@ -84,7 +89,7 @@ function matchCard(m) {
       <li>${ic("clock")}<span>صافرة البداية 22:00 بتوقيت إسطنبول</span></li>
     </ul>
     <div class="mtk__foot">
-      ${minPrice(m) !== null ? `<div class="price"><small>يبدأ من / للتذكرة</small><b>${fmt(minPrice(m))}</b></div>` : `<div class="price"><small>الفئات</small><b class="price__ask">الأولى • الثانية • الثالثة • VIP</b></div>`}
+      ${minPrice(m) !== null ? `<div class="price" data-sc-min="${m.id}"><small>يبدأ من / للتذكرة</small><b>${fmt(minPrice(m))}</b></div>` : `<div class="price" data-sc-min="${m.id}"><small>الفئات</small><b class="price__ask">A+ • A • B • C</b></div>`}
       <a class="btn btn--sm" href="${waUrl(msg)}" target="_blank" rel="noopener">${ic("ticket")}<span>احجز</span></a>
     </div>
   </div>
@@ -136,10 +141,10 @@ const tiers = (ctx = "كأس السوبر الإسباني 2027") => `
 
 // ---- 3D stadium & seating categories (illustrative) ----
 const SEATS = {
-  vip: { label: "VIP / الضيافة", color: "#F4B740", desc: "وسط الجهة الرئيسية: أفضل زاوية رؤية ومقاعد مريحة وخدمات ضيافة حسب ما يوفره المنظمون." },
-  cat1: { label: "الفئة الأولى", color: "#ED5404", desc: "الجوانب الطولية قرب منتصف الملعب: رؤية جانبية كاملة لكل اللعب، الخيار الأنسب لمتابعة المباراة." },
-  cat2: { label: "الفئة الثانية", color: "#4F8BC9", desc: "أطراف الجوانب والزوايا والمدرج العلوي الجانبي: رؤية جيدة وسعر أقل." },
-  cat3: { label: "الفئة الثالثة", color: "#2A9D8F", desc: "خلف المرمى: أجواء الجماهير الأكثر حماساً وبأقل سعر، والرؤية من طرف الملعب." },
+  vip: { label: "الفئة A+", color: "#F4B740", desc: "منتصف المدرج الرئيسي قرب خط منتصف الملعب: أفضل زاوية لمتابعة المباراة." },
+  cat1: { label: "الفئة A", color: "#ED5404", desc: "المدرجات الطولية على جانبي الملعب: رؤية جانبية كاملة لكل اللعب." },
+  cat2: { label: "الفئة B", color: "#4F8BC9", desc: "الزوايا وأطراف المدرجات الجانبية: رؤية متوازنة للملعب وسعر أقل." },
+  cat3: { label: "الفئة C", color: "#2A9D8F", desc: "المدرجات خلف المرميين: أجواء الجماهير الأكثر حماساً وأقل سعر." },
 };
 const VENUE_MODEL = {
   sf1: { capacity: "حوالي 47 ألف مقعد", model: { upperRows: 18, closedCorners: true, singleTierEnd: null } },
@@ -150,7 +155,7 @@ const priceText = (m, k) => (typeof m.prices?.[k] === "number" ? `${Number(m.pri
 function stadiumSection() {
   const cfg = {
     wa: "905399334331", currency: CURRENCY.symbol, categories: SEATS,
-    matches: scMatches.map((m) => ({ stage: m.stage, teams: `${teams[m.home].name} × ${teams[m.away].name}`, venue: m.venueAr, capacity: VENUE_MODEL[m.id].capacity, prices: m.prices, venueModel: VENUE_MODEL[m.id].model })),
+    matches: scMatches.map((m) => ({ id: m.id, stage: m.stage, teams: `${teams[m.home].name} × ${teams[m.away].name}`, venue: m.venueAr, capacity: VENUE_MODEL[m.id].capacity, prices: m.prices, venueModel: VENUE_MODEL[m.id].model })),
   };
   const m0 = scMatches[0];
   return `
@@ -192,7 +197,9 @@ function stadiumSection() {
             <p class="si-head"><span class="si-dot"></span><b class="si-cat">اختر مدرجاً</b></p>
             <p class="si-where">اضغط على أي جزء من المدرجات أو على فئة من القائمة، ثم شاهد المباراة من مكانك.</p>
             <p class="si-desc"></p>
-            <p class="si-price-row">السعر: <b class="si-price">—</b></p>
+            <p class="si-price-row">السعر للتذكرة: <b class="si-price">—</b></p>
+            <div class="si-qty si-price-row"><span>عدد التذاكر</span><div class="qty"><button type="button" class="qty__b" data-q="-1" aria-label="تذكرة أقل">−</button><output class="si-n" aria-live="polite">1</output><button type="button" class="qty__b" data-q="1" aria-label="تذكرة أكثر">+</button></div></div>
+            <p class="si-total-row si-price-row">الإجمالي التقديري: <b class="si-total">—</b></p>
             <button type="button" class="btn btn--block si-seat">${ic("eye")}<span>شاهد الملعب من مقعدك</span></button>
             <a class="btn btn--wa btn--block si-wa" href="#book" target="_blank" rel="noopener">${ic("whatsapp")}<span>احجز هذه الفئة</span></a>
           </div>
@@ -331,7 +338,7 @@ ${pageHero({ crumbs, ...heroPhoto("hero-matches"), eyebrow: "تذاكر المب
 <section class="section" id="book">
   <div class="container split">
     <div data-reveal>${sectionHead({ eyebrow: "سجّل طلبك", title: "أرسل طلبك… ونعود إليك بالعرض والتوفر", lead: "لكأس السوبر نبلغك فور فتح البيع الرسمي، ولبقية المباريات نرسل لك المتاح مع عرض مكتوب — دون أي التزام." })}</div>
-    <div class="form-card" data-reveal="zoom">${matchForm()}</div>
+    <div class="form-card" data-reveal="zoom">${matchForm({ prices: Object.fromEntries(scMatches.map((m) => [m.id, m.prices])) })}</div>
   </div>
 </section>
 ${faqBlock(faq, { title: "أسئلة شائعة عن تذاكر المباريات" })}
@@ -441,7 +448,7 @@ ${ist.length ? `
       ${sectionHead({ eyebrow: "احجز الآن", title: "سجّل طلب التذاكر", lead: "اختر المباراة والفئة والباقة، وسنعود إليك بالتوفر والسعر مكتوباً." })}
       ${disclaimer}
     </div>
-    <div class="form-card" data-reveal="zoom">${matchForm()}</div>
+    <div class="form-card" data-reveal="zoom">${matchForm({ prices: Object.fromEntries(scMatches.map((m) => [m.id, m.prices])) })}</div>
   </div>
 </section>
 ${faqBlock(faq, { title: "أسئلة شائعة عن السوبر الإسباني 2027" })}

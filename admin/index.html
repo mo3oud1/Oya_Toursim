@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>لوحة تحكم الأسعار — أويا للسياحة</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Alexandria;src:url("../assets/fonts/alexandria-arabic.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:Alexandria;src:url("../assets/fonts/alexandria-latin.woff2") format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Readex;src:url("../assets/fonts/readex-arabic.woff2") format("woff2");font-weight:160 700;font-display:swap}
+@font-face{font-family:Readex;src:url("../assets/fonts/readex-latin.woff2") format("woff2");font-weight:160 700;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F}
+:root{--navy:#19487E;--navy-900:#0B1F3A;--navy-950:#061428;--orange:#ED5404;--orange-btn:#C44A02;--sand:#F7F4EE;--line:#E6E1D8;--muted:#5D6B7E;--ok:#0E7A41;--bad:#B42318;--sky:#E8F1FA;
+  --ff-d:Alexandria,system-ui,sans-serif;--ff:Readex,system-ui,sans-serif}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--sand);color:var(--navy-900);font-family:var(--ff);font-size:16px;line-height:1.7}
+button,input,select{font:inherit}
+.wrap{width:min(100% - 32px,1080px);margin-inline:auto}
+/* top bar */
+.top{position:sticky;top:0;z-index:10;background:var(--navy-950);color:#fff;box-shadow:0 8px 30px -18px rgba(0,0,0,.6)}
+.top .wrap{display:flex;align-items:center;gap:14px;min-height:68px}
+.top img{height:34px;width:auto}
+.top b{font-family:var(--ff-d);font-weight:700;font-size:1.02rem}
+.top small{display:block;color:#9FB6CF;font-size:.78rem;line-height:1.3}
+.top .sp{flex:1}
+.link{white-space:nowrap;color:#fff;text-decoration:none;font-size:.9rem;padding:.45em .9em;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);background:none;border:0;cursor:pointer}
+.link:hover{background:rgba(255,255,255,.1)}
+/* login */
+.login{min-height:100svh;display:grid;place-items:center;padding:24px;background:radial-gradient(120% 80% at 80% 0%,#1d4f88 0,#061428 60%)}
+.login .card{width:min(100%,460px);padding:32px 28px}
+.login img{height:56px;display:block;margin-bottom:18px}
+h1,h2,h3{font-family:var(--ff-d);line-height:1.4;margin:0}
+.login h1{font-size:1.5rem}
+.login p{color:var(--muted);margin:.4em 0 1.2em}
+.card{background:#fff;border-radius:22px;box-shadow:0 20px 50px -30px rgba(6,20,40,.45)}
+label{display:block;font-weight:600;font-size:.92rem;margin-bottom:6px}
+input[type=text],input[type=password],input[type=number],input[type=search],select{width:100%;min-height:48px;padding:.55em .9em;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:inherit}
+input:focus,select:focus{outline:0;border-color:#2B6BAB;box-shadow:0 0 0 4px rgba(43,107,171,.16)}
+.chk{display:flex;align-items:center;gap:8px;font-weight:400;font-size:.9rem;margin:12px 0 18px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:.6em 1.4em;border:0;border-radius:999px;background:var(--orange-btn);color:#fff;font-family:var(--ff);font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 12px 26px -12px rgba(196,74,2,.7)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn--block{width:100%}
+.btn--ghost{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--line)}
+details.help{margin-top:18px;border-top:1px solid var(--line);padding-top:14px;font-size:.9rem;color:var(--muted)}
+details.help summary{cursor:pointer;color:var(--navy);font-weight:600}
+details.help ol{padding-inline-start:1.2em;margin:.6em 0 0}
+details.help li{margin-bottom:.35em}
+code{font-family:ui-monospace,monospace;font-size:.85em;background:var(--sky);padding:.1em .4em;border-radius:6px;direction:ltr;unicode-bidi:isolate}
+.err{color:var(--bad);font-size:.9rem;margin-top:10px;min-height:1.4em}
+/* main */
+main{padding:28px 0 140px}
+.hello{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:22px}
+.hello h1{font-size:1.6rem}
+.hello p{margin:.2em 0 0;color:var(--muted)}
+.tabs{display:flex;gap:6px;padding:5px;border-radius:16px;background:#fff;box-shadow:0 10px 30px -24px rgba(6,20,40,.5);margin-bottom:18px;overflow-x:auto}
+.tab{flex:1 0 auto;border:0;background:none;padding:.6em 1.1em;border-radius:12px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab[aria-selected=true]{background:var(--navy);color:#fff}
+.panel[hidden]{display:none}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.match{padding:20px}
+.match h3{font-size:1.05rem}
+.match .sub{color:var(--muted);font-size:.85rem;margin:2px 0 14px}
+.row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:10px 0;border-top:1px dashed var(--line)}
+.row:first-of-type{border-top:0}
+.dot{width:14px;height:14px;border-radius:50%}
+.row .nm{font-weight:600}
+.row .nm small{display:block;font-weight:400;color:var(--muted);font-size:.78rem;line-height:1.4}
+.money{position:relative;width:150px}
+.money input{padding-left:2.1em;padding-right:.9em;text-align:left;direction:ltr;font-family:var(--ff-d);font-weight:700;font-variant-numeric:tabular-nums}
+.money span{position:absolute;left:12px;top:50%;translate:0 -50%;color:var(--muted);font-weight:600;pointer-events:none}
+.changed input{border-color:var(--orange);background:#FFF6EF}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.tools input[type=search]{flex:1 1 240px}
+.tools select{width:auto}
+.list{padding:6px 18px}
+.list .row{grid-template-columns:1fr auto}
+.list .reg{display:inline-block;margin-inline-start:.4em;font-size:.72rem;font-weight:600;padding:.1em .55em;border-radius:999px;background:var(--sky);color:var(--navy);vertical-align:middle}
+.empty{padding:20px;color:var(--muted);text-align:center}
+.hint{display:flex;gap:10px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:var(--sky);color:var(--navy);font-size:.9rem;margin-bottom:16px}
+.settings{padding:22px;display:grid;gap:16px;max-width:520px}
+/* save bar */
+.bar{position:fixed;inset:auto 0 0;z-index:20;background:#fff;box-shadow:0 -10px 40px -20px rgba(6,20,40,.45);transform:translateY(110%);transition:transform .3s}
+.bar.on{transform:none}
+.bar .wrap{display:flex;align-items:center;gap:14px;min-height:76px;flex-wrap:wrap;padding-block:10px}
+.bar .count{flex:1;font-weight:600}
+.bar .count small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
+.toast{position:fixed;inset-inline:16px;bottom:96px;z-index:30;margin-inline:auto;width:min(100% - 32px,520px);padding:14px 18px;border-radius:16px;background:var(--navy-950);color:#fff;box-shadow:0 20px 40px -20px rgba(0,0,0,.6);opacity:0;translate:0 10px;transition:opacity .3s,translate .3s;pointer-events:none}
+.toast.on{opacity:1;translate:0 0}
+.toast.ok{background:var(--ok)}.toast.bad{background:var(--bad)}
+.loading{padding:60px 0;text-align:center;color:var(--muted)}
+@media(max-width:520px){.bar .count small{display:none}.bar .wrap{gap:10px}.bar .btn{min-height:46px;padding:.5em 1.1em}.top .wrap{gap:8px}.top b{font-size:.9rem;white-space:nowrap}.link{font-size:.8rem;padding:.4em .7em}.top img{height:28px}.row{grid-template-columns:auto 1fr}.money{grid-column:1/-1;width:100%}.list .row{grid-template-columns:1fr}.top small{display:none}}
+</style>
+</head>
+<body>
+
+<!-- login -->
+<section class="login" id="login" hidden>
+  <div class="card">
+    <img src="../assets/img/brand/oya-logo.svg" alt="أويا للسياحة" width="120" height="56">
+    <h1>لوحة تحكم الأسعار</h1>
+    <p>عدّل أسعار المباريات والبرامج، وتظهر على الموقع خلال دقائق.</p>
+    <form id="loginForm">
+      <label for="tok">مفتاح الدخول (GitHub token)</label>
+      <input id="tok" type="password" autocomplete="off" spellcheck="false" dir="ltr" placeholder="github_pat_…" required>
+      <label class="chk"><input type="checkbox" id="remember" checked> تذكّرني على هذا الجهاز</label>
+      <button class="btn btn--block" type="submit">دخول</button>
+      <div class="err" id="loginErr" role="alert"></div>
+    </form>
+    <details class="help">
+      <summary>كيف أحصل على مفتاح الدخول؟ (مرة واحدة)</summary>
+      <ol>
+        <li>ادخل إلى حسابك في GitHub، ثم افتح: <b>Settings ← Developer settings ← Personal access tokens ← Fine-grained tokens</b>.</li>
+        <li>اضغط <b>Generate new token</b>، واكتب اسماً مثل <code>OYA prices</code>، واختر مدة الصلاحية.</li>
+        <li>في <b>Repository access</b> اختر <b>Only select repositories</b> ثم المستودع <code>Oya_Toursim</code>.</li>
+        <li>في <b>Permissions ← Repository permissions</b> اجعل <b>Contents</b> = <b>Read and write</b>.</li>
+        <li>اضغط <b>Generate token</b>، وانسخ المفتاح والصقه هنا. لا تشاركه مع أحد.</li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<!-- app -->
+<div id="app" hidden>
+  <header class="top">
+    <div class="wrap">
+      <img src="../assets/img/brand/oya-logo-white.svg" alt="" width="74" height="34">
+      <div><b>لوحة تحكم الأسعار</b><small id="upd">—</small></div>
+      <span class="sp"></span>
+      <a class="link" href="../" target="_blank" rel="noopener">عرض الموقع</a>
+      <button class="link" type="button" id="logout">خروج</button>
+    </div>
+  </header>
+  <main class="wrap">
+    <div id="loading" class="loading">جارٍ تحميل الأسعار…</div>
+    <div id="content" hidden>
+      <div class="hello">
+        <div><h1>الأسعار</h1><p>اكتب السعر بالأرقام. اترك الخانة فارغة ليظهر «عند الطلب» أو «حسب الموسم».</p></div>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-tab="sc">كأس السوبر الإسباني 2027</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="pk">البرامج السياحية</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="st">الإعدادات</button>
+      </div>
+
+      <section class="panel" data-panel="sc">
+        <div class="hint">ⓘ<span>سعر التذكرة الواحدة لكل فئة. يظهر على صفحة المباريات، وفي مجسّم الملعب، وفي حساب الإجمالي داخل نموذج الحجز.</span></div>
+        <div class="grid" id="matches"></div>
+      </section>
+
+      <section class="panel" data-panel="pk" hidden>
+        <div class="tools">
+          <input type="search" id="q" placeholder="ابحث عن برنامج…" aria-label="بحث">
+          <select id="reg" aria-label="المنطقة"><option value="">كل البرامج</option><option value="turkey">داخل تركيا</option><option value="world">خارج تركيا</option></select>
+        </div>
+        <div class="hint">ⓘ<span>سعر «يبدأ من» للشخص الواحد. الخانة الفارغة تُظهر «حسب الموسم — اطلب عرضك».</span></div>
+        <div class="card list" id="pkgs"></div>
+      </section>
+
+      <section class="panel" data-panel="st" hidden>
+        <div class="card settings">
+          <div><label for="curr">العملة المعروضة</label>
+            <select id="curr"><option value="USD|$">دولار أمريكي ($)</option><option value="EUR|€">يورو (€)</option><option value="TRY|₺">ليرة تركية (₺)</option></select></div>
+          <div class="hint" style="margin:0">ⓘ<span>كل تعديل تحفظه يُسجَّل باسمك وتاريخه، ويمكن الرجوع إليه من <a id="hist" href="#" target="_blank" rel="noopener">سجل التعديلات</a>.</span></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="bar" id="bar" role="region" aria-label="حفظ التغييرات">
+    <div class="wrap">
+      <div class="count" id="count">لا توجد تغييرات<small>التغييرات تظهر على الموقع خلال دقائق من الحفظ</small></div>
+      <button class="btn btn--ghost" type="button" id="undo">تراجع</button>
+      <button class="btn" type="button" id="save">حفظ التغييرات</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  "use strict";
+  var OWNER = "mo3oud1", REPO = "Oya_Toursim", FILE = "data/prices.json", BRANCH = "main";
+  var API = "https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/" + FILE;
+  var CATS = [["vip", "#F4B740", "منتصف المدرج الرئيسي"], ["cat1", "#ED5404", "المدرجات الطولية"], ["cat2", "#4F8BC9", "الزوايا وأطراف المدرجات"], ["cat3", "#2A9D8F", "خلف المرميين"]];
+  var $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var token = null, sha = null, db = null, orig = null;
+
+  function store() { try { return window.localStorage; } catch (e) { return null; } }
+  function sess() { try { return window.sessionStorage; } catch (e) { return null; } }
+  function getTok() { var a = store(), b = sess(); return (a && a.getItem("oya-gh")) || (b && b.getItem("oya-gh")) || null; }
+  function setTok(t, keep) { var a = store(), b = sess(); try { if (keep && a) a.setItem("oya-gh", t); else if (b) b.setItem("oya-gh", t); } catch (e) {} }
+  function clearTok() { try { var a = store(), b = sess(); a && a.removeItem("oya-gh"); b && b.removeItem("oya-gh"); } catch (e) {} }
+
+  function b64dec(s) { var bin = atob(s.replace(/\s/g, "")), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return new TextDecoder().decode(u); }
+  function b64enc(s) { var u = new TextEncoder().encode(s), bin = ""; for (var i = 0; i < u.length; i += 0x8000) bin += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(bin); }
+  function gh(method, body) {
+    return fetch(API + (method === "GET" ? "?ref=" + BRANCH + "&t=" + Date.now() : ""), {
+      method: method, cache: "no-store",
+      headers: { Authorization: "Bearer " + token, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" },
+      body: body ? JSON.stringify(body) : undefined
+    });
+  }
+  function why(status) {
+    if (status === 401) return "المفتاح غير صحيح أو انتهت صلاحيته.";
+    if (status === 403 || status === 404) return "المفتاح لا يملك صلاحية على مستودع الموقع. تأكد من اختيار Oya_Toursim وصلاحية Contents: Read and write.";
+    if (status === 409 || status === 422) return "تم تعديل الأسعار من مكان آخر. أعد تحميل الصفحة ثم عدّل من جديد.";
+    return "تعذّر الاتصال (" + status + "). تحقّق من الإنترنت وحاول مرة أخرى.";
+  }
+  var toastT = 0;
+  function toast(msg, kind) { var t = $("#toast"); t.textContent = msg; t.className = "toast on " + (kind || ""); clearTimeout(toastT); toastT = setTimeout(function () { t.className = "toast"; }, 5200); }
+  var fmt = function (n) { return Number(n).toLocaleString("en-US"); };
+
+  /* ---------- login ---------- */
+  function showLogin(msg) { $("#app").hidden = true; $("#login").hidden = false; $("#loginErr").textContent = msg || ""; $("#tok").focus(); }
+  $("#loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    token = $("#tok").value.trim(); if (!token) return;
+    var btn = e.target.querySelector("button"); btn.disabled = true; btn.textContent = "جارٍ التحقق…";
+    load().then(function (ok) {
+      btn.disabled = false; btn.textContent = "دخول";
+      if (ok) { setTok(token, $("#remember").checked); $("#tok").value = ""; }
+    });
+  });
+  $("#logout").addEventListener("click", function () { if (dirty().length && !confirm("لديك تغييرات غير محفوظة. هل تريد الخروج؟")) return; clearTok(); token = null; showLogin(); });
+
+  /* ---------- load ---------- */
+  function load() {
+    return gh("GET").then(function (r) {
+      if (!r.ok) { showLogin(why(r.status)); return false; }
+      return r.json().then(function (j) {
+        sha = j.sha; db = JSON.parse(b64dec(j.content)); orig = JSON.parse(JSON.stringify(db));
+        $("#login").hidden = true; $("#app").hidden = false; render(); return true;
+      });
+    }).catch(function () { showLogin("تعذّر الاتصال. تحقّق من الإنترنت وحاول مرة أخرى."); return false; });
+  }
+
+  /* ---------- render ---------- */
+  function money(val, key) {
+    var sym = (db.currency && db.currency.symbol) || "$";
+    return '<div class="money"><input type="number" inputmode="numeric" min="0" step="1" data-key="' + key + '" value="' + (typeof val === "number" ? val : "") + '" placeholder="عند الطلب" aria-label="السعر"><span>' + sym + "</span></div>";
+  }
+  function render() {
+    $("#loading").hidden = true; $("#content").hidden = false;
+    $("#upd").textContent = "آخر تحديث: " + (db.updated || "—");
+    $("#hist").href = "https://github.com/" + OWNER + "/" + REPO + "/commits/" + BRANCH + "/" + FILE;
+    var labels = (db.superCup && db.superCup.categories) || {};
+    var m = (db.superCup && db.superCup.matches) || {};
+    $("#matches").innerHTML = Object.keys(m).map(function (id) {
+      var r = m[id], parts = (r.name || id).split(" — ");
+      return '<article class="card match"><h3>' + esc(parts[0]) + '</h3><p class="sub">' + esc(parts.slice(1).join(" — ")) + "</p>" +
+        CATS.map(function (c) {
+          return '<div class="row"><span class="dot" style="background:' + c[1] + '"></span><span class="nm">الفئة ' + esc(labels[c[0]] || c[0]) + "<small>" + c[2] + "</small></span>" + money(r[c[0]], "sc." + id + "." + c[0]) + "</div>";
+        }).join("") + "</article>";
+    }).join("");
+    renderPkgs();
+    var cur = (db.currency && (db.currency.code + "|" + db.currency.symbol)) || "USD|$";
+    $("#curr").value = cur;
+    update();
+  }
+  function renderPkgs() {
+    var q = $("#q").value.trim(), reg = $("#reg").value;
+    var rows = (db.packages || []).map(function (p, i) { return [p, i]; }).filter(function (x) { return (!reg || x[0].region === reg) && (!q || (x[0].name || "").indexOf(q) > -1); });
+    $("#pkgs").innerHTML = rows.length ? rows.map(function (x) {
+      var p = x[0];
+      return '<div class="row"><span class="nm">' + esc(p.name || p.slug) + '<span class="reg">' + (p.region === "world" ? "خارج تركيا" : "داخل تركيا") + "</span><small>" + esc(p.slug) + "</small></span>" + money(p.priceFrom, "pk." + x[1]).replace('placeholder="عند الطلب"', 'placeholder="حسب الموسم"') + "</div>";
+    }).join("") : '<div class="empty">لا توجد نتائج</div>';
+    markChanged();
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  /* ---------- edit ---------- */
+  function getRef(key, from) {
+    var k = key.split(".");
+    if (k[0] === "sc") return { o: from.superCup.matches[k[1]], f: k[2] };
+    return { o: from.packages[+k[1]], f: "priceFrom" };
+  }
+  document.addEventListener("input", function (e) {
+    var el = e.target;
+    if (el.matches && el.matches("input[data-key]")) {
+      var v = el.value.trim(), n = v === "" ? null : Math.round(Number(v));
+      if (v !== "" && (!isFinite(n) || n < 0)) return;
+      var ref = getRef(el.dataset.key, db); ref.o[ref.f] = n; update();
+    }
+  });
+  $("#q").addEventListener("input", renderPkgs);
+  $("#reg").addEventListener("change", renderPkgs);
+  $("#curr").addEventListener("change", function () { var p = this.value.split("|"); db.currency = { code: p[0], symbol: p[1] }; render(); });
+  $$(".tab").forEach(function (t) {
+    t.addEventListener("click", function () {
+      $$(".tab").forEach(function (x) { x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      $$(".panel").forEach(function (p) { p.hidden = p.dataset.panel !== t.dataset.tab; });
+    });
+  });
+
+  function dirty() {
+    if (!db || !orig) return [];
+    var out = [];
+    Object.keys(db.superCup.matches).forEach(function (id) { CATS.forEach(function (c) { if (db.superCup.matches[id][c[0]] !== orig.superCup.matches[id][c[0]]) out.push("sc." + id + "." + c[0]); }); });
+    db.packages.forEach(function (p, i) { if (p.priceFrom !== orig.packages[i].priceFrom) out.push("pk." + i); });
+    if (JSON.stringify(db.currency) !== JSON.stringify(orig.currency)) out.push("currency");
+    return out;
+  }
+  function markChanged() { var d = dirty(); $$("input[data-key]").forEach(function (el) { el.parentNode.classList.toggle("changed", d.indexOf(el.dataset.key) > -1); }); }
+  function update() {
+    var n = dirty().length;
+    $("#bar").classList.toggle("on", n > 0);
+    $("#count").firstChild.nodeValue = n ? (n === 1 ? "تغيير واحد غير محفوظ" : n === 2 ? "تغييران غير محفوظين" : n + (n <= 10 ? " تغييرات غير محفوظة" : " تغييراً غير محفوظ")) : "لا توجد تغييرات";
+    markChanged();
+  }
+  $("#undo").addEventListener("click", function () { db = JSON.parse(JSON.stringify(orig)); render(); });
+  window.addEventListener("beforeunload", function (e) { if (dirty().length) { e.preventDefault(); e.returnValue = ""; } });
+
+  /* ---------- save ---------- */
+  $("#save").addEventListener("click", function () {
+    var btn = this; btn.disabled = true; btn.textContent = "جارٍ الحفظ…";
+    var d = new Date(); db.updated = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    var n = dirty().length;
+    gh("PUT", { message: "تحديث الأسعار من لوحة التحكم (" + n + " " + (n === 1 ? "تغيير" : "تغييرات") + ")", content: b64enc(JSON.stringify(db, null, 2) + "\n"), sha: sha, branch: BRANCH })
+      .then(function (r) {
+        btn.disabled = false; btn.textContent = "حفظ التغييرات";
+        if (!r.ok) { toast(why(r.status), "bad"); return; }
+        return r.json().then(function (j) {
+          sha = j.content.sha; orig = JSON.parse(JSON.stringify(db));
+          $("#upd").textContent = "آخر تحديث: " + db.updated; update();
+          toast("تم الحفظ ✓ — تظهر الأسعار الجديدة على الموقع خلال 2–5 دقائق.", "ok");
+        });
+      }).catch(function () { btn.disabled = false; btn.textContent = "حفظ التغييرات"; toast("تعذّر الاتصال. لم يُحفظ شيء، حاول مرة أخرى.", "bad"); });
+  });
+
+  /* ---------- start ---------- */
+  token = getTok();
+  if (token) { $("#app").hidden = false; load(); } else showLogin();
+})();
+</script>
+</body>
+</html>

@@ -32,6 +32,22 @@ const data = {
   extras: await load("services-extra.mjs"),
 };
 
+// prices database (data/prices.json, edited from /admin/): package "from" prices; new packages are added with null
+const PRICES_FILE = path.join(ROOT_DIR, "data/prices.json");
+{
+  const db = JSON.parse(fs.readFileSync(PRICES_FILE, "utf8"));
+  const bySlug = new Map((db.packages || []).map((x) => [x.slug, x]));
+  const regionOf = (p) => (p.region || (p.destinations ? "world" : undefined));
+  let changed = false;
+  data.packages.forEach((p) => {
+    const row = bySlug.get(p.slug);
+    if (!row) { db.packages.push({ slug: p.slug, name: p.title, region: regionOf(p) || "turkey", priceFrom: null }); changed = true; return; }
+    if (row.name !== p.title) { row.name = p.title; changed = true; }
+    p.priceFrom = typeof row.priceFrom === "number" && row.priceFrom > 0 ? row.priceFrom : null;
+  });
+  if (changed) fs.writeFileSync(PRICES_FILE, JSON.stringify(db, null, 2) + "\n");
+}
+
 // path -> title (for related links)
 data.titles = {};
 data.destinations.forEach((d) => (data.titles[`turkey-tours/${d.slug}/`] = `السياحة في ${d.name}`));
@@ -167,7 +183,7 @@ fs.writeFileSync(path.join(ROOT_DIR, "sitemap.xml"), `<?xml version="1.0" encodi
 
 // robots.txt
 const basePath = new URL(site.url + "/").pathname; // "/" on a custom domain, "/Repo/" on github.io
-fs.writeFileSync(path.join(ROOT_DIR, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: ${basePath}_src/\nDisallow: ${basePath}README.md\n\nSitemap: ${site.url}/sitemap.xml\n`);
+fs.writeFileSync(path.join(ROOT_DIR, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: ${basePath}_src/\nDisallow: ${basePath}README.md\nDisallow: ${basePath}admin/\n\nSitemap: ${site.url}/sitemap.xml\n`);
 
 // web manifest
 fs.writeFileSync(path.join(ROOT_DIR, "site.webmanifest"), JSON.stringify({

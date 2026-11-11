@@ -1563,3 +1563,16 @@ h3,h4{line-height:1.42}
 .club__match{display:inline-flex;align-items:center;gap:.4em;margin:12px 0 0;padding:.3em .8em;border-radius:999px;background:color-mix(in srgb,var(--tone) 12%,#fff);color:color-mix(in srgb,var(--tone) 75%,#0B1F3A);font-size:.78rem;font-weight:700}
 .club__match .i{width:1em;height:1em}
 @media(max-width:420px){.clubs{gap:10px}.club{padding-inline:10px}.club__facts{grid-template-columns:1fr}.club__facts div{display:flex;justify-content:space-between;gap:8px}}
+
+/* ---------- Ticket count + estimated total (3D stadium panel, match form) ---------- */
+.si-qty{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0}
+.si-qty>span{font-size:.88rem;color:#B9CCE0}
+.qty{display:inline-flex;align-items:center;gap:4px;padding:3px;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.qty__b{width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:1.15rem;line-height:1;cursor:pointer;display:grid;place-items:center}
+.qty__b:hover{background:rgba(255,255,255,.22)}
+.qty output{min-width:26px;text-align:center;font-family:var(--ff-display);font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.si-total-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0;font-size:.88rem;color:#B9CCE0}
+.si-total{font-family:var(--ff-display);font-size:1.3rem;color:#fff;font-variant-numeric:tabular-nums}
+.field input[data-sc-est]{background:var(--sky-100);border-color:transparent;font-family:var(--ff-display);font-weight:700;color:var(--navy);cursor:default}
+.field input[data-sc-est]::placeholder{font-family:var(--ff-body);font-weight:400}
+.pt{font-variant-numeric:tabular-nums}

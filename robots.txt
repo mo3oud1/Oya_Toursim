@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /_src/
 Disallow: /README.md
+Disallow: /admin/
 
 Sitemap: https://oyatourism.com/sitemap.xml

@@ -124,16 +124,18 @@ export function visaForm({ compact = false, visa = "", options } = {}) {
 </form>`;
 }
 
-export function matchForm({ compact = false, match = "" } = {}) {
+// prices = { sf1: {cat3, cat2, cat1, vip}, … } — the form shows an estimated ticket total (updated live from data/prices.json)
+export function matchForm({ compact = false, match = "", prices = null } = {}) {
   return `
-<form novalidate data-wa data-intro="مرحباً أويا للسياحة، أرغب بباقة حضور مباراة:">
+<form novalidate data-wa data-intro="مرحباً أويا للسياحة، أرغب بباقة حضور مباراة:"${prices ? ` data-sc-form='${JSON.stringify(prices).replace(/'/g, "&#39;")}'` : ""}>
   <div class="form-grid">
-    ${field({ label: "المباراة", name: "match", type: "select", required: true, placeholder: "اختر المباراة", value: match, fid: "match-select", options: [
+    ${field({ label: "المباراة", name: "match", type: "select", required: true, placeholder: "اختر المباراة", value: match, fid: "match-select", attrs: 'data-sc-map="sf1,sf2,final,all,,,"', options: [
       { group: "كأس السوبر الإسباني 2027 — إسطنبول", items: ["نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)", "نصف النهائي: ريال سوسيداد × ريال مدريد (3 فبراير)", "النهائي (6 فبراير)", "باقة البطولة كاملة (3 مباريات)"] },
       { group: "مباريات أخرى", items: ["ديربي إسطنبول في الدوري التركي", "مباريات الأندية التركية في البطولات الأوروبية", "مباراة أخرى (سأذكرها في الملاحظات)"] },
     ] })}
-    ${field({ label: "الفئة", name: "category", type: "select", options: ["الفئة الأولى", "الفئة الثانية", "الفئة الثالثة", "VIP / ضيافة", "أفضل المتاح"], value: "الفئة الأولى" })}
+    ${field({ label: "الفئة", name: "category", type: "select", attrs: 'data-sc-map="cat1,cat2,cat3,vip,"', options: ["الفئة A", "الفئة B", "الفئة C", "الفئة A+", "أفضل المتاح"], value: "الفئة A" })}
     ${field({ label: "عدد المشجعين", name: "qty", type: "select", options: ["1", "2", "3", "4", "5", "6", "أكثر من 6"], value: "2" })}
+    ${prices ? field({ label: "السعر التقديري للتذاكر", name: "estimate", placeholder: "يظهر بعد اختيار المباراة والفئة", attrs: 'readonly tabindex="-1" data-sc-est' }) : ""}
     ${field({ label: "الباقة", name: "pack", type: "select", options: ["باقة المشجع: فندق + تنقلات + مساعدة في التذكرة الرسمية", "باقة VIP", "باقة كاملة مع الطيران", "لديّ تذكرتي — أحتاج الفندق والتنقلات فقط"], value: "باقة المشجع: فندق + تنقلات + مساعدة في التذكرة الرسمية" })}
     ${compact ? "" : field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: نريد مقاعد متجاورة، ووصول قبل المباراة بيومين" })}
   </div>

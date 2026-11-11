@@ -165,7 +165,7 @@ ${pageHero({ crumbs, eyebrow: `${daysAr(p.days)} • ${nightsAr(p.nights)} • $
 
     <aside class="aside-sticky">
       <div class="summary" data-reveal="right">
-        <div class="summary__top">${p.priceFrom ? `<div class="price"><small>يبدأ من / للشخص</small><b>${ar(p.priceFrom)}<span class="cur">$</span></b></div>` : `<div class="price"><small>السعر</small><b style="font-size:1.35rem">حسب الموسم والفندق</b></div>`}<p style="margin:.4em 0 0;color:#B9CCE0;font-size:.9rem">${p.priceNote || "اطلب عرض سعر مخصص لعدد المسافرين وتواريخك."}</p></div>
+        <div class="summary__top">${p.priceFrom ? `<div class="price" data-pkg-price="${p.slug}" data-per="1"><small>يبدأ من / للشخص</small><b>${ar(p.priceFrom)}<span class="cur">$</span></b></div>` : `<div class="price" data-pkg-price="${p.slug}" data-per="1"><small>السعر</small><b style="font-size:1.35rem">حسب الموسم والفندق</b></div>`}<p style="margin:.4em 0 0;color:#B9CCE0;font-size:.9rem">${p.priceNote || "اطلب عرض سعر مخصص لعدد المسافرين وتواريخك."}</p></div>
         <dl>
           <div><dt>${ic("calendar")}المدة</dt><dd>${daysAr(p.days)} / ${nightsAr(p.nights)}</dd></div>
           <div><dt>${ic("pin")}المدن</dt><dd>${esc(p.cities.join("، "))}</dd></div>${(p.dest || []).length ? `<div><dt>${ic("map")}أدلة الوجهات</dt><dd>${(p.dest || []).map((sl) => { const dd = data.destinations.find((x) => x.slug === sl); return dd ? `<a href="{{root}}turkey-tours/${sl}/">${esc(dd.name)}</a>` : ""; }).filter(Boolean).join("، ")}</dd></div>` : ""}

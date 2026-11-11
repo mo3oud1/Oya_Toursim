@@ -321,7 +321,33 @@ if (root) {
       const hit = ray.intersectObjects(pickables, false)[0];
       return hit ? hit.object : null;
     }
-    const priceOf = (k) => { const p = cfg.matches[matchIdx].prices || {}; return typeof p[k] === "number" ? `${p[k].toLocaleString("en-US")} ${cfg.currency}` : T("عند الطلب"); };
+    const priceNum = (k) => { const p = cfg.matches[matchIdx].prices || {}; return typeof p[k] === "number" && p[k] > 0 ? p[k] : null; };
+    const priceOf = (k) => { const v = priceNum(k); return v ? `${v.toLocaleString("en-US")} ${cfg.currency}` : T("عند الطلب"); };
+    // number of tickets + estimated total in the info panel
+    let qty = 1, lastPick = null;
+    const qOut = root.querySelector(".si-n"), totalEl = root.querySelector(".si-total");
+    function waHref(m) {
+      const k = m.userData.cat, c = CAT[k], match = cfg.matches[matchIdx], v = priceNum(k);
+      const total = v ? `${(v * qty).toLocaleString("en-US")} ${cfg.currency}` : T("عند الطلب");
+      return `https://wa.me/${cfg.wa}?text=${encodeURIComponent(T("مرحباً أويا، أرغب بـ{0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027. عدد التذاكر: {4} — الإجمالي التقديري: {5}.", [c.label, m.userData.info, match.stage, match.teams, qty, total]))}`;
+    }
+    function refreshTotal() {
+      if (qOut) qOut.textContent = qty;
+      if (!lastPick) return;
+      const v = priceNum(lastPick.userData.cat);
+      if (totalEl) totalEl.textContent = v ? `${(v * qty).toLocaleString("en-US")} ${cfg.currency}` : T("عند الطلب");
+      panel.querySelector(".si-wa").href = waHref(lastPick);
+      if (sheet) sheet.querySelector(".ss-wa").href = panel.querySelector(".si-wa").href;
+    }
+    root.querySelectorAll(".qty__b").forEach((b) => b.addEventListener("click", () => { qty = Math.min(10, Math.max(1, qty + Number(b.dataset.q))); refreshTotal(); }));
+    // live prices from data/prices.json (edited from /admin/)
+    if (window.oyaPrices) window.oyaPrices.then((db) => {
+      const sc = db && db.superCup && db.superCup.matches; if (!sc) return;
+      cfg.matches.forEach((m) => { if (sc[m.id]) m.prices = sc[m.id]; });
+      if (db.currency && db.currency.symbol) cfg.currency = db.currency.symbol;
+      root.querySelectorAll(".stadium-legend button").forEach((b) => { b.querySelector(".lg-price").textContent = priceOf(b.dataset.cat); });
+      if (lastPick) { panel.querySelector(".si-price").textContent = priceOf(lastPick.userData.cat); refreshTotal(); }
+    });
     function showInfo(m) {
       const k = m.userData.cat, c = CAT[k], match = cfg.matches[matchIdx];
       panel.querySelector(".si-dot").style.background = c.color;
@@ -329,7 +355,7 @@ if (root) {
       panel.querySelector(".si-where").textContent = m.userData.info;
       panel.querySelector(".si-desc").textContent = c.desc;
       panel.querySelector(".si-price").textContent = priceOf(k);
-      panel.querySelector(".si-wa").href = `https://wa.me/${cfg.wa}?text=${encodeURIComponent(T("مرحباً أويا، أرغب بـ{0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027.", [c.label, m.userData.info, match.stage, match.teams]))}`;
+      lastPick = m; refreshTotal();
       panel.classList.add("is-on");
       if (sheet) {
         sheet.querySelector(".ss-dot").style.background = c.color;

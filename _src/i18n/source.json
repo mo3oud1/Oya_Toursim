@@ -3134,7 +3134,7 @@
    "matches/spanish-super-cup-2027/",
    "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
-  "n": 4
+  "n": 8
  },
  {
   "id": "fffbfc9797",
@@ -3258,48 +3258,48 @@
   "n": 6
  },
  {
-  "id": "9b3c3218ef",
+  "id": "0b34ca912e",
   "kind": "text",
-  "ar": "الفئة الأولى",
+  "ar": "الفئة A",
   "pages": [
    "",
    "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 5
+  "n": 9
  },
  {
-  "id": "7c0d3dfc88",
+  "id": "13a01888e7",
   "kind": "text",
-  "ar": "الفئة الثانية",
+  "ar": "الفئة B",
   "pages": [
    "",
    "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 5
+  "n": 9
  },
  {
-  "id": "bbecd631fe",
+  "id": "e60028bcf9",
   "kind": "text",
-  "ar": "الفئة الثالثة",
+  "ar": "الفئة C",
   "pages": [
    "",
    "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 5
+  "n": 9
  },
  {
-  "id": "0f29c0fb3c",
+  "id": "235dd6e7ac",
   "kind": "text",
-  "ar": "VIP / ضيافة",
+  "ar": "الفئة A+",
   "pages": [
    "",
    "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 3
+  "n": 9
  },
  {
   "id": "9c8e283b26",
@@ -6100,11 +6100,11 @@
   "ar": "السعر",
   "pages": [
    "",
-   "turkey-tours/",
-   "turkey-tours/istanbul/",
-   "turkey-tours/trabzon/"
+   "flights/",
+   "hotels/",
+   "turkey-tours/"
   ],
-  "n": 203
+  "n": 291
  },
  {
   "id": "93bf376c21",
@@ -6112,11 +6112,11 @@
   "ar": "حسب الموسم — اطلب عرضك",
   "pages": [
    "",
-   "turkey-tours/",
-   "turkey-tours/istanbul/",
-   "turkey-tours/trabzon/"
+   "flights/",
+   "hotels/",
+   "turkey-tours/"
   ],
-  "n": 177
+  "n": 265
  },
  {
   "id": "6e77245735",
@@ -6999,6 +6999,66 @@
    "turkey-tours/"
   ],
   "n": 55
+ },
+ {
+  "id": "f1dd35cf2a",
+  "kind": "json",
+  "ar": "يبدأ من / للشخص",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "turkey-tours/"
+  ],
+  "n": 88
+ },
+ {
+  "id": "03806f257c",
+  "kind": "json",
+  "ar": "يبدأ من",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "turkey-tours/"
+  ],
+  "n": 88
+ },
+ {
+  "id": "ed154ad4f7",
+  "kind": "json",
+  "ar": "حسب الموسم والفندق",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "turkey-tours/"
+  ],
+  "n": 110
+ },
+ {
+  "id": "34444493a1",
+  "kind": "json",
+  "ar": "عند الطلب",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "turkey-tours/"
+  ],
+  "n": 88
+ },
+ {
+  "id": "dfa2c509f1",
+  "kind": "json",
+  "ar": "يبدأ من / للتذكرة",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "turkey-tours/"
+  ],
+  "n": 94
  },
  {
   "id": "517e78af19",
@@ -17708,18 +17768,6 @@
    "packages/trabzon-uzungol-7-days/"
   ],
   "n": 6
- },
- {
-  "id": "ed154ad4f7",
-  "kind": "text",
-  "ar": "حسب الموسم والفندق",
-  "pages": [
-   "packages/istanbul-5-days/",
-   "packages/turkey-7-days/",
-   "packages/istanbul-bursa-7-days/",
-   "packages/istanbul-sapanca-bursa-8-days/"
-  ],
-  "n": 22
  },
  {
   "id": "d99e39de7b",
@@ -44843,7 +44891,7 @@
    "matches/spanish-super-cup-2027/",
    "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
-  "n": 7
+  "n": 8
  },
  {
   "id": "8267dc0432",
@@ -44896,26 +44944,6 @@
   "n": 6
  },
  {
-  "id": "c20cfabdaa",
-  "kind": "text",
-  "ar": "الفئات",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 6
- },
- {
-  "id": "149e2341f5",
-  "kind": "text",
-  "ar": "الأولى • الثانية • الثالثة • VIP",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 6
- },
- {
   "id": "884fdde835",
   "kind": "message",
   "ar": "مرحباً أويا للسياحة، أرغب بباقة حضور كأس السوبر الإسباني 2027: نصف النهائي الأول — برشلونة × أتلتيكو مدريد (الثلاثاء 2 فبراير 2027 • 22:00).",
@@ -44944,7 +44972,7 @@
    "matches/spanish-super-cup-2027/",
    "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
-  "n": 7
+  "n": 8
  },
  {
   "id": "7e4ee73a17",
@@ -45004,7 +45032,7 @@
    "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 4
+  "n": 5
  },
  {
   "id": "19119fd97c",
@@ -45535,6 +45563,26 @@
   "n": 1
  },
  {
+  "id": "686c7d2093",
+  "kind": "text",
+  "ar": "السعر التقديري للتذاكر",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "f5817fe5d0",
+  "kind": "attr",
+  "ar": "يظهر بعد اختيار المباراة والفئة",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
   "id": "9061bfdc5d",
   "kind": "attr",
   "ar": "مثال: نريد مقاعد متجاورة، ووصول قبل المباراة بيومين",
@@ -45878,7 +45926,7 @@
    "matches/spanish-super-cup-2027/",
    "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
-  "n": 3
+  "n": 4
  },
  {
   "id": "fc7e6a9c30",
@@ -45888,7 +45936,7 @@
    "matches/spanish-super-cup-2027/",
    "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
-  "n": 3
+  "n": 4
  },
  {
   "id": "c9da68b972",
@@ -45897,7 +45945,34 @@
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 2
+  "n": 3
+ },
+ {
+  "id": "1f2b549163",
+  "kind": "text",
+  "ar": "أسعار التذاكر حسب الفئة",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f57206da4c",
+  "kind": "attr",
+  "ar": "جدول: المباراة، الفئة C، الفئة B",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3ea3d2d8eb",
+  "kind": "text",
+  "ar": "الأسعار للتذكرة الواحدة وتخضع للتوفر وقت التأكيد، وتُرسل لك مكتوبة قبل الدفع.",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
  },
  {
   "id": "8e148b574a",
@@ -46116,24 +46191,6 @@
   "n": 1
  },
  {
-  "id": "5a75cccb35",
-  "kind": "text",
-  "ar": "VIP / الضيافة",
-  "pages": [
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 2
- },
- {
-  "id": "34444493a1",
-  "kind": "text",
-  "ar": "عند الطلب",
-  "pages": [
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 5
- },
- {
   "id": "94b6b6e9b5",
   "kind": "text",
   "ar": "اختر مدرجاً",
@@ -46152,9 +46209,45 @@
   "n": 1
  },
  {
-  "id": "c66bc9ba59",
+  "id": "dca3d94dc3",
   "kind": "text",
-  "ar": "السعر: <g1>—</g1>",
+  "ar": "السعر للتذكرة: <g1>—</g1>",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "070b65abb0",
+  "kind": "text",
+  "ar": "عدد التذاكر",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0343925b01",
+  "kind": "attr",
+  "ar": "تذكرة أقل",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "bbe660f4cb",
+  "kind": "attr",
+  "ar": "تذكرة أكثر",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "432702e203",
+  "kind": "text",
+  "ar": "الإجمالي التقديري: <g1>—</g1>",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -46188,36 +46281,36 @@
   "n": 1
  },
  {
-  "id": "e981c3ad3b",
+  "id": "640c814116",
   "kind": "json",
-  "ar": "وسط الجهة الرئيسية: أفضل زاوية رؤية ومقاعد مريحة وخدمات ضيافة حسب ما يوفره المنظمون.",
+  "ar": "منتصف المدرج الرئيسي قرب خط منتصف الملعب: أفضل زاوية لمتابعة المباراة.",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
   "n": 1
  },
  {
-  "id": "eb7fdf07ce",
+  "id": "15326d9434",
   "kind": "json",
-  "ar": "الجوانب الطولية قرب منتصف الملعب: رؤية جانبية كاملة لكل اللعب، الخيار الأنسب لمتابعة المباراة.",
+  "ar": "المدرجات الطولية على جانبي الملعب: رؤية جانبية كاملة لكل اللعب.",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
   "n": 1
  },
  {
-  "id": "193a7131e8",
+  "id": "787246f387",
   "kind": "json",
-  "ar": "أطراف الجوانب والزوايا والمدرج العلوي الجانبي: رؤية جيدة وسعر أقل.",
+  "ar": "الزوايا وأطراف المدرجات الجانبية: رؤية متوازنة للملعب وسعر أقل.",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
   "n": 1
  },
  {
-  "id": "c9abdbbf9f",
+  "id": "6ccda927eb",
   "kind": "json",
-  "ar": "خلف المرمى: أجواء الجماهير الأكثر حماساً وبأقل سعر، والرؤية من طرف الملعب.",
+  "ar": "المدرجات خلف المرميين: أجواء الجماهير الأكثر حماساً وأقل سعر.",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -47023,9 +47116,9 @@
   "n": 1
  },
  {
-  "id": "8540130567",
+  "id": "6ff434c27d",
   "kind": "json",
-  "ar": "مرحباً أويا، أرغب بـ{0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027.",
+  "ar": "مرحباً أويا، أرغب بـ{0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027. عدد التذاكر: {4} — الإجمالي التقديري: {5}.",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -66892,9 +66985,9 @@
   "n": 1
  },
  {
-  "id": "42329b398a",
+  "id": "77b4677ee5",
   "kind": "text",
-  "ar": "لا يستخدم الموقع حالياً ملفات تعريف ارتباط للتتبع ولا أدوات إحصاء. وإن أضفنا أداة إحصاء لاحقاً فسنحدّث هذه الصفحة أولاً.",
+  "ar": "يستخدم الموقع Google Tag Manager وأدوات إحصاء من Google لقياس الزيارات وتحسين المحتوى، وقد تحفظ هذه الأدوات ملفات تعريف ارتباط في متصفحك. يمكنك حذفها أو منعها من إعدادات المتصفح.",
   "pages": [
    "privacy/"
   ],

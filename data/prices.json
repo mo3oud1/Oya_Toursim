@@ -1,0 +1,173 @@
+{
+  "_note": "Prices database for oyatourism.com — edit from oyatourism.com/admin/. null = «on request».",
+  "currency": {
+    "code": "USD",
+    "symbol": "$"
+  },
+  "updated": "2026-11-12",
+  "superCup": {
+    "categories": {
+      "vip": "A+",
+      "cat1": "A",
+      "cat2": "B",
+      "cat3": "C"
+    },
+    "matches": {
+      "sf1": {
+        "name": "نصف النهائي الأول — برشلونة × أتلتيكو مدريد",
+        "cat3": 810,
+        "cat2": 910,
+        "cat1": 1065,
+        "vip": 1235
+      },
+      "sf2": {
+        "name": "نصف النهائي الثاني — ريال سوسيداد × ريال مدريد",
+        "cat3": 810,
+        "cat2": 910,
+        "cat1": 1065,
+        "vip": 1235
+      },
+      "final": {
+        "name": "المباراة النهائية — رامز بارك",
+        "cat3": 915,
+        "cat2": 1000,
+        "cat1": 1340,
+        "vip": 1540
+      }
+    }
+  },
+  "packages": [
+    {
+      "slug": "istanbul-5-days",
+      "name": "برنامج إسطنبول 5 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "turkey-7-days",
+      "name": "برنامج تركيا 7 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "istanbul-bursa-7-days",
+      "name": "برنامج إسطنبول وبورصة 7 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "istanbul-sapanca-bursa-8-days",
+      "name": "برنامج إسطنبول وسبانجا وبورصة 8 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "trabzon-uzungol-7-days",
+      "name": "برنامج طرابزون وأوزنجول 7 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "black-sea-10-days",
+      "name": "برنامج الشمال التركي 10 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "istanbul-trabzon-10-days",
+      "name": "برنامج إسطنبول وطرابزون 10 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "turkey-family-12-days",
+      "name": "برنامج تركيا للعائلات 12 يوماً",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "turkey-honeymoon-9-days",
+      "name": "برنامج شهر العسل في تركيا 9 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "cappadocia-3-days",
+      "name": "برنامج كابادوكيا 3 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "antalya-7-days",
+      "name": "برنامج أنطاليا 7 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "grand-turkey-14-days",
+      "name": "برنامج تركيا الشامل 14 يوماً",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "istanbul-uludag-winter-6-days",
+      "name": "برنامج إسطنبول وأولوداغ الشتوي 6 أيام",
+      "region": "turkey",
+      "priceFrom": null
+    },
+    {
+      "slug": "georgia-7-days",
+      "name": "برنامج جورجيا 7 أيام",
+      "region": "world",
+      "priceFrom": null
+    },
+    {
+      "slug": "azerbaijan-6-days",
+      "name": "برنامج أذربيجان 6 أيام",
+      "region": "world",
+      "priceFrom": null
+    },
+    {
+      "slug": "bosnia-7-days",
+      "name": "برنامج البوسنة 7 أيام",
+      "region": "world",
+      "priceFrom": null
+    },
+    {
+      "slug": "malaysia-9-days",
+      "name": "برنامج ماليزيا 9 أيام",
+      "region": "world",
+      "priceFrom": null
+    },
+    {
+      "slug": "bali-9-days",
+      "name": "برنامج بالي 9 أيام",
+      "region": "world",
+      "priceFrom": null
+    },
+    {
+      "slug": "thailand-9-days",
+      "name": "برنامج تايلند 9 أيام",
+      "region": "world",
+      "priceFrom": null
+    },
+    {
+      "slug": "maldives-5-days",
+      "name": "برنامج المالديف 5 أيام",
+      "region": "world",
+      "priceFrom": null
+    },
+    {
+      "slug": "egypt-8-days",
+      "name": "برنامج مصر 8 أيام",
+      "region": "world",
+      "priceFrom": null
+    },
+    {
+      "slug": "uzbekistan-7-days",
+      "name": "برنامج أوزبكستان 7 أيام",
+      "region": "world",
+      "priceFrom": null
+    }
+  ]
+}

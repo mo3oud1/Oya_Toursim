@@ -161,6 +161,58 @@
     });
   });
 
+  /* ---------- Live prices (data/prices.json, edited from /admin/) ----------
+     The page is built with the prices of its build; this refreshes them so edits show without a rebuild. */
+  var fmtN = function (n) { return Number(n).toLocaleString("en-US"); };
+  var priceOk = function (v) { return typeof v === "number" && v > 0; };
+  var pMeta = $('meta[name="oya-prices"]');
+  if (pMeta && $("[data-pkg-price], [data-sc-min], [data-sc-p], [data-stadium], [data-sc-form]")) {
+    w.oyaPrices = fetch(pMeta.content + "?v=" + Math.floor(Date.now() / 60000), { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    w.oyaPrices.then(function (db) {
+      if (!db) return;
+      var cur = (db.currency && db.currency.symbol) || "$";
+      var money = function (n) { return fmtN(n) + '<span class="cur">' + cur + "</span>"; };
+      var pk = {}; (db.packages || []).forEach(function (r) { pk[r.slug] = r.priceFrom; });
+      $$("[data-pkg-price]").forEach(function (el) {
+        var slug = el.getAttribute("data-pkg-price"); if (!(slug in pk)) return;
+        var v = pk[slug], per = el.hasAttribute("data-per");
+        if (priceOk(v)) el.innerHTML = "<small>" + (per ? T("يبدأ من / للشخص") : T("يبدأ من")) + "</small><b>" + money(v) + "</b>";
+        else el.innerHTML = "<small>" + T("السعر") + "</small>" + (per ? '<b style="font-size:1.35rem">' + T("حسب الموسم والفندق") + "</b>" : '<b class="price__ask">' + T("حسب الموسم — اطلب عرضك") + "</b>");
+      });
+      var sc = (db.superCup && db.superCup.matches) || {};
+      $$("[data-sc-p]").forEach(function (el) {
+        var k = el.getAttribute("data-sc-p").split(":"), v = (sc[k[0]] || {})[k[1]];
+        el.innerHTML = priceOk(v) ? '<b class="pt">' + money(v) + "</b>" : '<span class="muted">' + T("عند الطلب") + "</span>";
+      });
+      $$("[data-sc-min]").forEach(function (el) {
+        var r = sc[el.getAttribute("data-sc-min")] || {}, vals = ["cat3", "cat2", "cat1", "vip"].map(function (c) { return r[c]; }).filter(priceOk);
+        if (vals.length) el.innerHTML = "<small>" + T("يبدأ من / للتذكرة") + "</small><b>" + money(Math.min.apply(null, vals)) + "</b>";
+      });
+      $$("form[data-sc-form]").forEach(function (f) {
+        var cur0 = JSON.parse(f.getAttribute("data-sc-form") || "{}");
+        Object.keys(sc).forEach(function (id) { cur0[id] = {}; ["cat3", "cat2", "cat1", "vip"].forEach(function (c) { cur0[id][c] = priceOk(sc[id][c]) ? sc[id][c] : null; }); });
+        f.setAttribute("data-sc-form", JSON.stringify(cur0)); f.setAttribute("data-sc-cur", cur);
+        f.dispatchEvent(new Event("sc-prices"));
+      });
+    });
+  }
+  /* Match form: estimated ticket total from match × category × number of fans */
+  $$("form[data-sc-form]").forEach(function (f) {
+    var est = $("[data-sc-est]", f); if (!est) return;
+    var mSel = $('select[name="match"]', f), cSel = $('select[name="category"]', f), qSel = $('select[name="qty"]', f);
+    var pick = function (sel) { var map = (sel.getAttribute("data-sc-map") || "").split(","), opts = [].slice.call(sel.options).filter(function (o) { return o.value !== ""; }); return map[opts.indexOf(sel.options[sel.selectedIndex])] || ""; };
+    function upd() {
+      var P = JSON.parse(f.getAttribute("data-sc-form") || "{}"), cur = f.getAttribute("data-sc-cur") || "$";
+      var m = pick(mSel), c = pick(cSel), q = parseInt(qSel.value, 10);
+      var ids = m === "all" ? ["sf1", "sf2", "final"] : m ? [m] : [], each = 0, ok = ids.length && c && q > 0 && q <= 6;
+      ids.forEach(function (id) { var v = (P[id] || {})[c]; if (priceOk(v)) each += v; else ok = false; });
+      est.value = ok ? T("{0} × {1} = {2}", [q, fmtN(each) + " " + cur, fmtN(each * q) + " " + cur]) : "";
+    }
+    [mSel, cSel, qSel].forEach(function (s) { s && s.addEventListener("change", upd); });
+    f.addEventListener("sc-prices", upd); upd(); setTimeout(upd, 0); // after a restored draft
+  });
+
   /* ---------- WhatsApp / e-mail inquiry forms ---------- */
   function collect(form) {
     var lines = [], seen = {};
@@ -209,7 +261,7 @@
     // restore draft (per-visitor convenience)
     var saved = store(function (ls) { return JSON.parse(ls.getItem(key) || "null"); });
     if (saved) $$("input, select, textarea", form).forEach(function (el) {
-      if (!el.name || !(el.name in saved)) return;
+      if (!el.name || !(el.name in saved) || el.readOnly) return;
       if (el.type === "radio" || el.type === "checkbox") el.checked = saved[el.name] === el.value; else if (!el.value || el.tagName === "SELECT") el.value = saved[el.name];
     });
     form.addEventListener("input", function (e) {

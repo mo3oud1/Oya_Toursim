@@ -211,6 +211,9 @@ export function renderPage(page, data, assetsVer, lang = "ar") {
 <html lang="${L.code}" dir="${L.dir}" data-wa="${site.whatsapp}" data-email="${site.email}">
 <head>
 <meta charset="utf-8">
+${site.gtm ? `<script async src="https://www.googletagmanager.com/gtm.js?id=${site.gtm}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());</script>
+` : ""}<meta name="oya-prices" content="{{site}}data/prices.json">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(page.description)}">
