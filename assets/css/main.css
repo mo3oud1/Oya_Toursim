@@ -1475,3 +1475,7 @@ h3,h4{line-height:1.42}
 [dir="rtl"] .card__title,[dir="rtl"] .svc h3{line-height:1.5}
 /* Latin/Cyrillic display titles: a little air for accents (İ, Ş, ã, Й) */
 [dir="ltr"] .page-hero h1,[dir="ltr"] .h-display{line-height:1.16}
+/* logo size per screen: smaller on phones so it sits in proportion with the menu and language buttons */
+@media(max-width:640px){.brand img{height:34px}.site-header.is-solid .brand img{height:31px}}
+@media(min-width:641px) and (max-width:1099px){.brand img{height:40px}.site-header.is-solid .brand img{height:36px}}
+@media(max-width:640px){:root{--header-h:66px}.site-header.is-solid{--header-h:60px}}
