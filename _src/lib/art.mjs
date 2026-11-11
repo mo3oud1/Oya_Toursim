@@ -71,18 +71,26 @@ export function skylineFar() {
   return `<svg viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"><path fill="currentColor" d="${d}"/><path class="window-lights" style="opacity:.45" d="${lights.join("")}"/></svg>`;
 }
 
-// Flight path echoing the logo contrail (two parallel trails + plane)
+// Hero airliner: rises out of the photo side, recedes into the sky and fades; its contrail draws behind it and
+// dissolves, then the flight repeats (15 s cycle). Stays on the photo side (left in RTL, mirrored for LTR in CSS)
+// so it never crosses the headline; hidden for reduced motion and on phones.
 export function flightSvg() {
-  // stays on the photo side (left in RTL) so the trail never crosses the headline
-  const p = "M-60 650 C 120 620 250 560 320 470 S 420 300 500 225";
-  const p2 = "M-60 664 C 124 632 256 572 328 482 S 428 312 508 237";
-  return `<svg class="hero__flight" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-  <path class="flight-guide" d="${p}"/>
-  <path class="flight-trail" pathLength="1" d="${p}"/>
-  <path class="flight-trail flight-trail--2" pathLength="1" d="${p2}"/>
-  <g class="flight-plane" opacity="0"><g transform="scale(1.5) translate(-12 -12) rotate(90 12 12)"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></g>
-    <animateMotion dur="3.2s" begin="0.4s" fill="freeze" rotate="auto" calcMode="linear"><mpath href="#hero-fp"/></animateMotion>
-    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.06;0.86;1" dur="3.2s" begin="0.4s" fill="freeze"/>
+  const p = "M-80 610 C 140 550 330 440 560 250";
+  // 15 s loop: wait 0.6 s → fly 5.4 s → contrail dissolves → rest
+  const t = 'dur="15s" begin="0.6s" repeatCount="indefinite"';
+  // top-view airliner (nose towards +x)
+  const plane = "M30 0 C30 -1.6 28.4 -2.6 26 -2.6 L9 -2.6 L-3 -17 L-8 -17 L1 -2.6 L-13 -2.6 L-18 -8 L-21.5 -8 L-18.5 0 L-21.5 8 L-18 8 L-13 2.6 L1 2.6 L-8 17 L-3 17 L9 2.6 L26 2.6 C28.4 2.6 30 1.6 30 0 Z";
+  return `<svg class="hero__flight" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <defs><linearGradient id="hero-trail" gradientUnits="userSpaceOnUse" x1="-80" y1="610" x2="560" y2="250"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".55" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity=".8"/></linearGradient></defs>
+  <path class="flight-trail" pathLength="1" d="${p}" stroke="url(#hero-trail)" stroke-dasharray="1 1" stroke-dashoffset="1" opacity="0">
+    <animate attributeName="stroke-dashoffset" values="1;1;0;0" keyTimes="0;0.001;0.36;1" calcMode="spline" keySplines="0 0 1 1;.45 .05 .55 .95;0 0 1 1" ${t}/>
+    <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.36;0.56;1" ${t}/>
+    <animate attributeName="stroke-width" values="2.4;2.4;2.4;9;9" keyTimes="0;0.02;0.36;0.56;1" ${t}/>
+  </path>
+  <g class="flight-plane" opacity="0">
+    <animateMotion ${t} rotate="auto" keyPoints="0;0;1;1" keyTimes="0;0.001;0.36;1" calcMode="spline" keySplines="0 0 1 1;.45 .05 .55 .95;0 0 1 1"><mpath href="#hero-fp"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.3;0.37;1" ${t}/>
+    <g><animateTransform attributeName="transform" type="scale" values="1.15;1.15;0.42;0.42" keyTimes="0;0.001;0.36;1" ${t}/><path d="${plane}"/></g>
   </g>
   <path id="hero-fp" d="${p}" fill="none"/>
 </svg>`;

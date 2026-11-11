@@ -255,11 +255,8 @@ body.no-scroll{overflow:hidden}
 .hero__moon{position:absolute;top:18%;left:12%;width:clamp(54px,6vw,86px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFF6E6,#F7D9A8 60%,#E9B978);box-shadow:0 0 60px 18px rgba(255,214,150,.22),0 0 160px 60px rgba(255,190,120,.10)}
 @keyframes float{50%{transform:translateY(-10px)}}
 .hero__flight{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.flight-trail{fill:none;stroke:rgba(255,255,255,.85);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;animation:trail 3.2s linear .4s forwards}
-.flight-trail--2{stroke:rgba(142,193,240,.7);stroke-width:1.4;animation-delay:.5s}
-.flight-guide{fill:none;stroke:rgba(255,255,255,.16);stroke-width:1.3;stroke-dasharray:4 10}
-@keyframes trail{to{stroke-dashoffset:0}}
-.flight-plane{fill:#fff;filter:drop-shadow(0 0 8px rgba(255,255,255,.65))}
+.flight-trail{fill:none;stroke-linecap:round}
+.flight-plane{fill:#fff;filter:drop-shadow(0 4px 6px rgba(4,16,34,.45)) drop-shadow(0 0 5px rgba(255,255,255,.4))}
 .hero__skyline{position:absolute;inset:auto 0 0 0;z-index:0;pointer-events:none}
 .hero__skyline svg{width:100%;height:clamp(150px,18vw,280px)}
 .skyline-far{position:absolute;inset:auto 0 clamp(60px,7vw,110px) 0;opacity:.55;color:#1E3F6B}
@@ -696,7 +693,7 @@ body.no-scroll{overflow:hidden}
   .js [data-reveal]{opacity:1;transform:none}
   .split-line>span{transform:none}
   .fade-in{opacity:1}
-  .flight-trail{stroke-dashoffset:0}
+  .hero__flight{display:none}
 }
 
 /* Print */
@@ -977,8 +974,17 @@ body.no-scroll{overflow:hidden}
 .hero__slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s var(--ease-io)}
 .hero__slide.is-on{opacity:1}
 .hero__slide img{width:100%;height:100%;object-fit:cover;object-position:var(--fx,30% 50%);transform-origin:var(--fx,30% 50%);transform:scale(1.04)}
-.hero__slide.is-on img{animation:heroDrift 9s linear both}
-@keyframes heroDrift{from{transform:scale(1.11)}to{transform:scale(1.01)}}
+/* photo motion: each slide moves differently (slow zoom / pan), and keeps moving while it fades out */
+.hero__slide.is-on img,.hero__slide.is-leaving img{animation:kbIn 9.5s linear both}
+.hero__slide:nth-child(3n+2).is-on img,.hero__slide:nth-child(3n+2).is-leaving img{animation-name:kbPanA}
+.hero__slide:nth-child(3n).is-on img,.hero__slide:nth-child(3n).is-leaving img{animation-name:kbPanB}
+@keyframes kbIn{from{transform:scale(1.03)}to{transform:scale(1.15)}}
+@keyframes kbPanA{from{transform:scale(1.15) translate3d(2.2%,.6%,0)}to{transform:scale(1.08) translate3d(-2.2%,-.8%,0)}}
+@keyframes kbPanB{from{transform:scale(1.14) translate3d(-2%,-1%,0)}to{transform:scale(1.05) translate3d(2%,.6%,0)}}
+/* depth: photo layer lags behind the scroll and drifts a little with the mouse; the copy lifts away as you scroll */
+.hero__slides{translate:calc(var(--mx,0) * -16px) calc(var(--my,0) * -10px + var(--hp,0) * 22%)}
+.hero__inner{translate:0 calc(var(--hp,0) * -60px);opacity:calc(1 - var(--hp,0) * 1.3)}
+[dir="ltr"] .hero__flight{transform:translateX(12%) scaleX(-1)}
 .hero--photo::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:
   linear-gradient(var(--scrim-dir),rgba(6,20,40,.9) 0%,rgba(6,20,40,.66) 32%,rgba(6,20,40,.14) 64%,rgba(6,20,40,0) 82%),
   linear-gradient(180deg,rgba(6,20,40,.62) 0%,rgba(6,20,40,0) 22%),
@@ -1007,7 +1013,7 @@ body.no-scroll{overflow:hidden}
   .hero__ctrl{justify-content:center;bottom:clamp(120px,30vw,150px)}
   .hero__loc{font-size:.82rem}
 }
-@media (prefers-reduced-motion:reduce){.hero__slide.is-on img{animation:none}.hero__slide{transition:none}}
+@media (prefers-reduced-motion:reduce){.hero__slide.is-on img,.hero__slide.is-leaving img{animation:none}.hero__slide{transition:none}.hero__slides,.hero__inner{translate:none;opacity:1}}
 
 /* Visa service value block */
 .vvalue{display:grid;gap:clamp(20px,3vw,36px);padding:clamp(24px,4vw,44px);border-radius:var(--r-xl);background:linear-gradient(160deg,#0A1F3A,#143A68);color:#DCE7F3;box-shadow:var(--sh-3)}
@@ -1499,3 +1505,5 @@ h3,h4{line-height:1.42}
 .prose figure{margin:1.6em 0}
 .prose figure img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:var(--r);box-shadow:var(--sh-1)}
 .prose figcaption{margin-top:10px;font-size:.88rem;color:var(--muted);line-height:1.7}
+/* booking box on wide screens: six fields in one row */
+@media(min-width:1280px){.booker .form-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}}

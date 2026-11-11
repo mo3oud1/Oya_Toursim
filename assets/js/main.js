@@ -354,8 +354,10 @@
     var s = slides[n], im = s.querySelector("img"), done = false;
     var go = function () {
       if (done) return; done = true;
-      slides[prev].classList.remove("is-on"); dots[prev].removeAttribute("aria-current");
-      s.classList.add("is-on"); dots[n].setAttribute("aria-current", "true");
+      // the outgoing photo keeps moving while it fades (no jump back to its start position)
+      var out = slides[prev]; out.classList.add("is-leaving"); setTimeout(function () { out.classList.remove("is-leaving"); }, 1800);
+      out.classList.remove("is-on"); dots[prev].removeAttribute("aria-current");
+      s.classList.remove("is-leaving"); s.classList.add("is-on"); dots[n].setAttribute("aria-current", "true");
       var span = document.createElement("span"); span.textContent = s.getAttribute("data-loc"); loc.replaceWith(span); loc = span;
       schedule();
     };
@@ -376,4 +378,17 @@
   var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 1200); };
   window.addEventListener("load", function () { idle(loadAll); });
   setPaused(paused);
+  // depth: the photo moves slower than the page on scroll, and follows the mouse a little (desktop)
+  if (!reduce) {
+    var ticking = false;
+    var depth = function () { ticking = false; var r = h.getBoundingClientRect(); var p = Math.min(1, Math.max(0, -r.top / r.height)); h.style.setProperty("--hp", p.toFixed(3)); };
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(depth); } }, { passive: true });
+    depth();
+    if (matchMedia("(pointer: fine)").matches) {
+      var mx = 0, my = 0, tx = 0, ty = 0, raf = 0;
+      var ease = function () { tx += (mx - tx) * 0.06; ty += (my - ty) * 0.06; h.style.setProperty("--mx", tx.toFixed(3)); h.style.setProperty("--my", ty.toFixed(3)); raf = Math.abs(mx - tx) + Math.abs(my - ty) > 0.002 ? requestAnimationFrame(ease) : 0; };
+      h.addEventListener("pointermove", function (e) { var r = h.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - 0.5; my = (e.clientY - r.top) / r.height - 0.5; if (!raf) raf = requestAnimationFrame(ease); });
+      h.addEventListener("pointerleave", function () { mx = 0; my = 0; if (!raf) raf = requestAnimationFrame(ease); });
+    }
+  }
 })();
