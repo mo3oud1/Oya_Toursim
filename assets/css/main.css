@@ -1467,3 +1467,11 @@ h3,h4{line-height:1.42}
 @media (min-width:641px) and (max-width:1279px){
   .booker .form-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
+
+/* ---------- Arabic headings: room between lines (tall Arabic letters, hamza and dots must not touch the line above) ---------- */
+[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] h4{line-height:1.42}
+[dir="rtl"] .h-display{line-height:1.4}
+[dir="rtl"] .page-hero h1{line-height:1.45}
+[dir="rtl"] .card__title,[dir="rtl"] .svc h3{line-height:1.5}
+/* Latin/Cyrillic display titles: a little air for accents (İ, Ş, ã, Й) */
+[dir="ltr"] .page-hero h1,[dir="ltr"] .h-display{line-height:1.16}
