@@ -5,16 +5,23 @@
       "id": "d01",
       "name": "Gül Ev Sapanca",
       "area": "sapanca",
-      "rooms": null,
-      "guests": null,
-      "price": null,
+      "rooms": 4,
+      "guests": 4,
+      "price": 500,
       "features": [
         "pool",
-        "heated"
+        "heated",
+        "jacuzzi",
+        "fireplace",
+        "forest",
+        "breakfast",
+        "wifi"
       ],
       "note": "",
-      "photos": [],
-      "active": false,
+      "photos": [
+        "assets/img/cabins/d01-mwe3roj6.webp"
+      ],
+      "active": true,
       "ref": "مسودة — تحقّق قبل الإظهار: Uzunkum، حوالي 2.4 كم من البحيرة. التقييم 9.5/10 من 114 تقييماً (cozycozy). مسبح مدفأ. https://www.cozycozy.com/us/sapanca-villa-rentals — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
     },
     {
@@ -228,5 +235,6 @@
       "active": false,
       "ref": "مسودة — تحقّق قبل الإظهار: Booking: الموظفون 9.3، النظافة 9.0، الراحة 9.3. مدح للإطلالة والفطور. https://www.booking.com/hotel/tr/yayla-bungalov.html — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
     }
-  ]
+  ],
+  "updated": "2026-11-13"
 }
