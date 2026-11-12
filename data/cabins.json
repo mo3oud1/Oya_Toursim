@@ -47,7 +47,7 @@
     },
     {
       "id": "d02",
-      "name": "Lake Look Sapanca",
+      "name": "1+1 GÜL DİBİ",
       "area": "sapanca",
       "rooms": 1,
       "guests": 3,
@@ -125,21 +125,6 @@
       ],
       "active": true,
       "ref": "مسودة — تحقّق قبل الإظهار: Kırkpınar. التقييم 9.8/10 على Booking لكن من 5 تقييمات فقط، وهي فيلا وليست بنغل. https://www.booking.com/hotel/tr/holiday-sapanca-kirkpinar.html — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
-    },
-    {
-      "id": "d04",
-      "name": "Naturköy Bungalov",
-      "area": "sapanca",
-      "rooms": null,
-      "guests": null,
-      "price": null,
-      "features": [
-        "forest"
-      ],
-      "note": "",
-      "photos": [],
-      "active": false,
-      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9.5/10 (enuygun، عدد التقييمات غير مذكور). https://www.enuygun.com/otel/tema/sapanca-bungalov-oteller/ — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
     },
     {
       "id": "d05",
