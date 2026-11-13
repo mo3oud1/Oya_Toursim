@@ -168,49 +168,6 @@
       "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9/10 من 40 تقييماً (Turna). https://www.turna.com/otel/masukiye-kartepe-bungalov-oteller — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
     },
     {
-      "id": "d06",
-      "name": "Green Nest Bungalow",
-      "area": "masukiye",
-      "rooms": null,
-      "guests": null,
-      "price": null,
-      "features": [
-        "forest"
-      ],
-      "note": "",
-      "photos": [],
-      "active": false,
-      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9.2/10 من 9 تقييمات (sapancaotelleri). https://www.sapancaotelleri.com.tr/masukiye-otelleri — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
-    },
-    {
-      "id": "d07",
-      "name": "Tree Bungalov Maşukiye",
-      "area": "masukiye",
-      "rooms": null,
-      "guests": null,
-      "price": null,
-      "features": [
-        "forest"
-      ],
-      "note": "",
-      "photos": [],
-      "active": false,
-      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9.3/10 على Booking (3 تقييمات) و9/10 على Turna (12 تقييماً). https://www.booking.com/hotel/tr/tiny-house-masukiye.html — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
-    },
-    {
-      "id": "d08",
-      "name": "Babil Bungalow",
-      "area": "masukiye",
-      "rooms": null,
-      "guests": null,
-      "price": null,
-      "features": [],
-      "note": "",
-      "photos": [],
-      "active": false,
-      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 9.2/10 (Turna، عدد التقييمات غير مذكور). https://www.turna.com/otel/masukiye-kartepe-bungalov-oteller — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
-    },
-    {
       "id": "d09",
       "name": "Uzungöl Çaykara Bungalov",
       "area": "uzungol",
@@ -255,21 +212,6 @@
       "photos": [],
       "active": false,
       "ref": "مسودة — تحقّق قبل الإظهار: تقييم «Wonderful» على Booking من 166 تقييماً، إطلالة على البحيرة من الجبل. https://www.booking.com/booking-home/city/tr/uzungol.html — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
-    },
-    {
-      "id": "d12",
-      "name": "Ayder Bulut Dağevi Bungalow",
-      "area": "ayder",
-      "rooms": null,
-      "guests": null,
-      "price": null,
-      "features": [
-        "mountain"
-      ],
-      "note": "",
-      "photos": [],
-      "active": false,
-      "ref": "مسودة — تحقّق قبل الإظهار: التقييم 4.8/5 من 24 تقييماً (Neredekal) و8.4/10 من 48 (Planet of Hotels). https://tr.planetofhotels.com/turkiye/ayder-yaylasi/ayder-bulut-dagevi-bungalow — لم نتحقق من Google Maps، وليس لدينا اتفاق معهم بعد."
     },
     {
       "id": "d13",
