@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https:; font-src 'self' https://oyatourism.com; connect-src 'self' https://oyatourism.com https://api.github.com https://api.openai.com https://generativelanguage.googleapis.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>لوحة التحكم — أويا للسياحة</title>
+<link rel="icon" href="https://oyatourism.com/favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Alexandria;src:url("https://oyatourism.com/assets/fonts/alexandria-arabic.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:Alexandria;src:url("https://oyatourism.com/assets/fonts/alexandria-latin.woff2") format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Readex;src:url("https://oyatourism.com/assets/fonts/readex-arabic.woff2") format("woff2");font-weight:160 700;font-display:swap}
+@font-face{font-family:Readex;src:url("https://oyatourism.com/assets/fonts/readex-latin.woff2") format("woff2");font-weight:160 700;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F}
+:root{--navy:#19487E;--navy-900:#0B1F3A;--navy-950:#061428;--orange:#ED5404;--orange-btn:#C44A02;--sand:#F7F4EE;--line:#E6E1D8;--muted:#5D6B7E;--ok:#0E7A41;--bad:#B42318;--sky:#E8F1FA;
+  --ff-d:Alexandria,system-ui,sans-serif;--ff:Readex,system-ui,sans-serif}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--sand);color:var(--navy-900);font-family:var(--ff);font-size:16px;line-height:1.7}
+button,input,select{font:inherit}
+.wrap{width:min(100% - 32px,1080px);margin-inline:auto}
+/* top bar */
+.top{position:sticky;top:0;z-index:10;background:var(--navy-950);color:#fff;box-shadow:0 8px 30px -18px rgba(0,0,0,.6)}
+.top .wrap{display:flex;align-items:center;gap:14px;min-height:68px}
+.top img{height:34px;width:auto}
+.top b{font-family:var(--ff-d);font-weight:700;font-size:1.02rem}
+.top small{display:block;color:#9FB6CF;font-size:.78rem;line-height:1.3}
+.top .sp{flex:1}
+.link{white-space:nowrap;color:#fff;text-decoration:none;font-size:.9rem;padding:.45em .9em;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);background:none;border:0;cursor:pointer}
+.link:hover{background:rgba(255,255,255,.1)}
+/* login */
+.login{min-height:100svh;display:grid;place-items:center;padding:24px;background:radial-gradient(120% 80% at 80% 0%,#1d4f88 0,#061428 60%)}
+.login .card{width:min(100%,460px);padding:32px 28px}
+.login img{height:56px;display:block;margin-bottom:18px}
+h1,h2,h3{font-family:var(--ff-d);line-height:1.4;margin:0}
+.login h1{font-size:1.5rem}
+.login p{color:var(--muted);margin:.4em 0 1.2em}
+.card{background:#fff;border-radius:22px;box-shadow:0 20px 50px -30px rgba(6,20,40,.45)}
+label{display:block;font-weight:600;font-size:.92rem;margin-bottom:6px}
+input[type=text],input[type=password],input[type=number],input[type=search],select{width:100%;min-height:48px;padding:.55em .9em;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:inherit}
+input:focus,select:focus{outline:0;border-color:#2B6BAB;box-shadow:0 0 0 4px rgba(43,107,171,.16)}
+.chk{display:flex;align-items:center;gap:8px;font-weight:400;font-size:.9rem;margin:12px 0 18px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:.6em 1.4em;border:0;border-radius:999px;background:var(--orange-btn);color:#fff;font-family:var(--ff);font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 12px 26px -12px rgba(196,74,2,.7)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn--block{width:100%}
+.btn--ghost{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--line)}
+details.help{margin-top:18px;border-top:1px solid var(--line);padding-top:14px;font-size:.9rem;color:var(--muted)}
+details.help summary{cursor:pointer;color:var(--navy);font-weight:600}
+details.help ol{padding-inline-start:1.2em;margin:.6em 0 0}
+details.help li{margin-bottom:.35em}
+code{font-family:ui-monospace,monospace;font-size:.85em;background:var(--sky);padding:.1em .4em;border-radius:6px;direction:ltr;unicode-bidi:isolate}
+.err{color:var(--bad);font-size:.9rem;margin-top:10px;min-height:1.4em}
+/* main */
+main{padding:28px 0 140px}
+.hello{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:22px}
+.hello h1{font-size:1.6rem}
+.hello p{margin:.2em 0 0;color:var(--muted)}
+.tabs{display:flex;gap:6px;padding:5px;border-radius:16px;background:#fff;box-shadow:0 10px 30px -24px rgba(6,20,40,.5);margin-bottom:18px;overflow-x:auto}
+.tab{flex:1 0 auto;border:0;background:none;padding:.6em 1.1em;border-radius:12px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab[aria-selected=true]{background:var(--navy);color:#fff}
+.panel[hidden]{display:none}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.match{padding:20px}
+.match h3{font-size:1.05rem}
+.match .sub{color:var(--muted);font-size:.85rem;margin:2px 0 14px}
+.row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:10px 0;border-top:1px dashed var(--line)}
+.row:first-of-type{border-top:0}
+.dot{width:14px;height:14px;border-radius:50%}
+.row .nm{font-weight:600}
+.row .nm small{display:block;font-weight:400;color:var(--muted);font-size:.78rem;line-height:1.4}
+.money{position:relative;width:150px}
+.money input{padding-left:2.1em;padding-right:.9em;text-align:left;direction:ltr;font-family:var(--ff-d);font-weight:700;font-variant-numeric:tabular-nums}
+.money span{position:absolute;left:12px;top:50%;translate:0 -50%;color:var(--muted);font-weight:600;pointer-events:none}
+.changed input{border-color:var(--orange);background:#FFF6EF}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.tools input[type=search]{flex:1 1 240px}
+.tools select{width:auto}
+.list{padding:6px 18px}
+.list .row{grid-template-columns:1fr auto}
+.list .reg{display:inline-block;margin-inline-start:.4em;font-size:.72rem;font-weight:600;padding:.1em .55em;border-radius:999px;background:var(--sky);color:var(--navy);vertical-align:middle}
+.empty{padding:20px;color:var(--muted);text-align:center}
+.hint{display:flex;gap:10px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:var(--sky);color:var(--navy);font-size:.9rem;margin-bottom:16px}
+.settings{padding:22px;display:grid;gap:16px;max-width:520px}
+/* save bar */
+.bar{position:fixed;inset:auto 0 0;z-index:20;background:#fff;box-shadow:0 -10px 40px -20px rgba(6,20,40,.45);transform:translateY(110%);transition:transform .3s}
+.bar.on{transform:none}
+.bar .wrap{display:flex;align-items:center;gap:14px;min-height:76px;flex-wrap:wrap;padding-block:10px}
+.bar .count{flex:1;font-weight:600}
+.bar .count small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
+.toast{position:fixed;inset-inline:16px;bottom:96px;z-index:30;margin-inline:auto;width:min(100% - 32px,520px);padding:14px 18px;border-radius:16px;background:var(--navy-950);color:#fff;box-shadow:0 20px 40px -20px rgba(0,0,0,.6);opacity:0;translate:0 10px;transition:opacity .3s,translate .3s;pointer-events:none}
+.toast.on{opacity:1;translate:0 0}
+.toast.ok{background:var(--ok)}.toast.bad{background:var(--bad)}
+.loading{padding:60px 0;text-align:center;color:var(--muted)}
+@media(max-width:520px){.bar .count small{display:none}.bar .wrap{gap:10px}.bar .btn{min-height:46px;padding:.5em 1.1em}.top .wrap{gap:8px}.top b{font-size:.9rem;white-space:nowrap}.link{font-size:.8rem;padding:.4em .7em}.top img{height:28px}.row{grid-template-columns:auto 1fr}.money{grid-column:1/-1;width:100%}.list .row{grid-template-columns:1fr}.top small{display:none}}
+/* cabins */
+.cabs{display:grid;gap:12px}
+.cabrow{display:grid;grid-template-columns:96px 1fr auto;gap:14px;align-items:center;padding:12px;border-radius:18px;background:#fff;box-shadow:0 10px 30px -24px rgba(6,20,40,.5)}
+.cabrow .th{width:96px;height:72px;border-radius:12px;object-fit:cover;background:linear-gradient(140deg,#2E5A3A,#1C3B2A)}
+.cabrow h3{font-size:1rem}
+.cabrow p{margin:0;color:var(--muted);font-size:.85rem}
+.cabrow .acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:.1em .6em;border-radius:999px;background:#E8F6EE;color:var(--ok);margin-inline-start:.4em}
+.pill.off{background:#F3F1EC;color:var(--muted)}
+.cabrow .ref{margin-top:4px;font-size:.78rem;color:#8A4B00;background:#FFF6E6;padding:.35em .6em;border-radius:8px;line-height:1.6}
+.cabrow .ref a{color:var(--navy);font-weight:600}
+.sbtn{min-height:40px;padding:.4em 1em;font-size:.88rem}
+.link.ext{color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--line)}
+.mv{min-width:40px;padding:.4em .6em}
+.th.ico{display:grid;place-items:center;color:#fff;font-size:1.6rem;font-weight:700;background:linear-gradient(140deg,#19487E,#0B1F3A)}
+.dur{display:flex;gap:8px;align-items:center}.dur input{width:90px}
+/* blog editor */
+.beditor{place-items:start center}
+.editor{grid-template-columns:minmax(0,1fr)}
+.editor.beditor .card{width:min(100%,1180px);max-height:none;padding:0;overflow:visible}
+.bhead{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:10px;padding:14px 20px;background:#fff;border-radius:22px 22px 0 0;border-bottom:1px solid var(--line)}
+.bhead h2{margin:0;font-size:1.15rem}.bhead .sp{flex:1}
+.bgrid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px;padding:20px}
+.btitle{font-family:var(--ff-d);font-size:1.5rem!important;font-weight:700;min-height:60px!important}
+.rte-bar{position:sticky;top:68px;z-index:2;display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:8px;border:1.5px solid var(--line);border-bottom:0;border-radius:14px 14px 0 0;background:#FBFAF7}
+.rte-bar button,.rte-img{border:0;background:#fff;box-shadow:inset 0 0 0 1px var(--line);border-radius:10px;padding:.35em .75em;font:inherit;font-size:.85rem;font-weight:600;color:var(--navy);cursor:pointer;margin:0}
+.rte-bar button:hover,.rte-img:hover{background:var(--sky)}
+.rte-img input{display:none}
+.rte{min-height:420px;padding:18px 20px;border:1.5px solid var(--line);border-radius:0 0 14px 14px;background:#fff;line-height:1.9;font-size:1.02rem;outline:0}
+.rte:focus{border-color:#2B6BAB;box-shadow:0 0 0 4px rgba(43,107,171,.12)}
+.rte:empty::before{content:attr(data-ph);color:#9AA5B4}
+.rte h2{font-size:1.35rem;margin:1.1em 0 .4em}.rte h3{font-size:1.12rem;margin:1em 0 .3em}.rte p{margin:0 0 .9em}
+.rte blockquote{margin:1em 0;padding:.6em 1em;border-inline-start:4px solid var(--orange);background:#FFF6EF;border-radius:8px}
+.rte figure{margin:1em 0}.rte img{max-width:100%;border-radius:12px;display:block}.rte figcaption{font-size:.85rem;color:var(--muted);text-align:center}
+.rte img[data-up]{opacity:.45}
+.rte a{color:#2B6BAB}
+.bcount{margin:.4em 0 0;color:var(--muted);font-size:.85rem}
+.bfaq{margin-top:18px;padding:16px;border-radius:16px;background:#FBFAF7}
+.bfaq h3{font-size:1rem;margin-bottom:10px}
+.faqrow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.faqrow textarea{min-height:60px}
+.faqrow>.btn{align-self:start}
+.bside{display:grid;gap:14px;align-content:start}
+.bbox{padding:16px;border-radius:16px;background:#FBFAF7;display:grid;gap:6px}
+.bbox h3{font-size:1rem;margin-bottom:4px}
+.bbox label{margin:6px 0 0}
+.bnote{margin:0;color:var(--muted);font-size:.8rem;line-height:1.5}
+.bnote.bad{color:var(--bad)}.bnote.ok{color:var(--ok)}
+.seg2{display:flex;gap:8px}.seg2 label{flex:1;margin:0;display:flex;align-items:center;justify-content:center;gap:6px;padding:.5em;border-radius:12px;background:#fff;box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer}
+.seg2 label:has(input:checked){box-shadow:inset 0 0 0 2px var(--navy);background:var(--sky)}
+.slug{display:flex;align-items:center;gap:4px;direction:ltr}.slug span{color:var(--muted);font-size:.85rem}
+.bcover .ph{aspect-ratio:16/9}.bcover .addph{aspect-ratio:16/9}
+.seo{margin-top:8px;display:grid;gap:4px;font-size:.84rem}
+.seo .bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:6px}.seo .bar i{display:block;height:100%;border-radius:99px}
+.seo p{margin:0;display:flex;gap:6px;line-height:1.5}.seo .y{color:var(--ok)}.seo .n{color:#A15C00}
+.ai .btn{width:100%;justify-content:flex-start;text-align:start;white-space:normal}
+.ai details{background:#fff;border-radius:12px;padding:8px 10px}.ai summary{cursor:pointer;font-weight:600;color:var(--navy);font-size:.9rem}
+.ai details textarea{margin:8px 0}
+.ai.busy{opacity:.7;pointer-events:none}
+@media(max-width:900px){.bgrid{grid-template-columns:1fr}.rte-bar{top:62px}}
+.langbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 6px}
+.langbar .lb-l{font-size:.85rem;color:var(--muted);font-weight:600;margin-inline-end:4px}
+.langbar button{border:0;border-radius:999px;padding:.35em .9em;font:inherit;font-size:.86rem;font-weight:600;background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer}
+.langbar button.on{background:var(--navy);color:#fff;box-shadow:none}
+.langbar button i{font-style:normal;color:var(--ok)}.langbar button.on i{color:#9BE3B9}
+.lchips{display:flex;gap:4px;margin-top:4px!important}.lchips span{font-size:.7rem;font-weight:700;padding:.05em .45em;border-radius:6px;background:#F3F1EC;color:#A7A096}.lchips span.on{background:#E8F6EE;color:var(--ok)}
+details.ml{background:#FBFAF7;border-radius:14px;padding:10px 14px}details.ml summary{cursor:pointer;font-weight:600;color:var(--navy)}
+.err.bherr{margin:0;font-size:.85rem;max-width:45%;line-height:1.4;min-height:0}
+.err.bherr:empty{display:none}
+.shared{font-family:var(--ff);font-weight:500;font-size:.72rem;color:var(--muted);margin-inline-start:.4em}
+.lang-other .f2>div:not([data-tr]),.lang-other .bbox:first-child,.lang-other .bcover{opacity:.5}
+.lang-other .f2>div:not([data-tr]):focus-within{opacity:1}
+input.nan{border-color:var(--bad)!important;background:#FFF4F2}
+.ph .x{width:36px;height:36px;font-size:1rem}.ph .first{padding:.4em .8em;font-size:.78rem}
+@media(max-width:700px){
+  .edfoot{position:sticky;bottom:-22px;background:#fff;margin:18px -22px -22px;padding:12px 22px;box-shadow:0 -8px 20px -14px rgba(6,20,40,.4)}
+  .bgrid{display:flex;flex-direction:column;padding:14px}.bgrid>*,.bside>*{min-width:0}.bside{display:contents}.bside>.bbox:first-child{order:-1}.bmain{order:0}.bside>.bbox{order:1}
+  .rte-bar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;top:60px}.rte-bar button,.rte-img{white-space:nowrap}
+  .bhead{flex-wrap:wrap}.err.bherr{order:5;max-width:100%;flex-basis:100%}
+}
+.ph1{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.btn--danger{background:#fff;color:var(--bad);box-shadow:inset 0 0 0 1.5px #F2C7C2}
+.editor{position:fixed;inset:0;z-index:40;background:rgba(6,20,40,.55);display:grid;place-items:center;padding:16px;overflow:auto}
+.editor .card{width:min(100%,760px);max-height:calc(100svh - 32px);overflow:auto;padding:22px}
+.editor h2{font-size:1.25rem;margin-bottom:14px}
+.f2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}
+.f2 .wide{grid-column:1/-1}
+textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--line);border-radius:14px;font:inherit;resize:vertical}
+.feats{display:flex;flex-wrap:wrap;gap:8px}
+.feats label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:.35em .8em;border-radius:999px;background:var(--sky);font-weight:500;font-size:.88rem;cursor:pointer}
+.feats input{accent-color:var(--navy)}
+.photos{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+.ph{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#eee}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph .x{position:absolute;top:6px;left:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(6,20,40,.7);color:#fff;cursor:pointer}
+.ph .first{position:absolute;bottom:6px;right:6px;border:0;border-radius:999px;padding:.15em .6em;font-size:.72rem;background:rgba(255,255,255,.9);color:var(--navy);cursor:pointer}
+.ph .cover{position:absolute;bottom:6px;right:6px;border-radius:999px;padding:.15em .6em;font-size:.72rem;background:var(--orange-btn);color:#fff}
+.ph.up::after{content:"جارٍ الرفع…";position:absolute;inset:0;display:grid;place-items:center;background:rgba(255,255,255,.75);font-size:.85rem;font-weight:600}
+.addph{display:grid;place-items:center;aspect-ratio:4/3;border-radius:12px;border:2px dashed var(--line);color:var(--navy);font-weight:600;cursor:pointer;text-align:center;font-size:.88rem}
+.addph input{display:none}
+.edfoot{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+@media(max-width:520px){.cabrow{grid-template-columns:72px 1fr}.cabrow .th{width:72px;height:56px}.cabrow .acts{grid-column:1/-1;justify-content:flex-start}}
+</style>
+</head>
+<body>
+
+<!-- login -->
+<section class="login" id="login" hidden>
+  <div class="card">
+    <img src="https://oyatourism.com/assets/img/brand/oya-logo.svg" alt="أويا للسياحة" width="120" height="56">
+    <h1>لوحة التحكم</h1>
+    <p>عدّل المباريات والفنادق والأكواخ والطيران والأسعار، وتظهر على الموقع خلال دقائق.</p>
+    <form id="loginForm">
+      <label for="tok">مفتاح الدخول (GitHub token)</label>
+      <input id="tok" type="password" autocomplete="off" spellcheck="false" dir="ltr" placeholder="github_pat_…" required>
+      <label class="chk"><input type="checkbox" id="remember"> تذكّرني على هذا الجهاز (فقط على جهازك الشخصي)</label>
+      <button class="btn btn--block" type="submit">دخول</button>
+      <div class="err" id="loginErr" role="alert"></div>
+    </form>
+    <details class="help">
+      <summary>كيف أحصل على مفتاح الدخول؟ (مرة واحدة)</summary>
+      <ol>
+        <li>ادخل إلى حسابك في GitHub، ثم افتح: <b>Settings ← Developer settings ← Personal access tokens ← Fine-grained tokens</b>.</li>
+        <li>اضغط <b>Generate new token</b>، واكتب اسماً مثل <code>OYA prices</code>، واختر مدة الصلاحية.</li>
+        <li>في <b>Repository access</b> اختر <b>Only select repositories</b> ثم المستودع <code>Oya_Toursim</code>.</li>
+        <li>في <b>Permissions ← Repository permissions</b> اجعل <b>Contents</b> = <b>Read and write</b>.</li>
+        <li>اضغط <b>Generate token</b>، وانسخ المفتاح والصقه هنا. لا تشاركه مع أحد.</li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<!-- app -->
+<div id="app" hidden>
+  <header class="top">
+    <div class="wrap">
+      <img src="https://oyatourism.com/assets/img/brand/oya-logo-white.svg" alt="" width="74" height="34">
+      <div><b>لوحة التحكم</b><small id="upd">—</small></div>
+      <span class="sp"></span>
+      <a class="link" href="https://oyatourism.com/" target="_blank" rel="noopener">عرض الموقع</a>
+      <button class="link" type="button" id="logout">خروج</button>
+    </div>
+  </header>
+  <main class="wrap">
+    <div id="loading" class="loading">جارٍ التحميل…</div>
+    <div id="content" hidden>
+      <div class="hello">
+        <div><h1 id="ttl">المباريات والبطولات</h1><p id="sub">أضف بطولة أو مباراة، أو عدّلها، أو احذفها — وتظهر في صفحة تذاكر المباريات.</p></div>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-tab="ev">المباريات</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="sc">أسعار كأس السوبر</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="ho">الفنادق</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="cb">الأكواخ والبنغلات</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="fl">الطيران</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="bl">المدونة</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="pk">البرامج السياحية</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="st">الإعدادات</button>
+      </div>
+
+      <section class="panel" data-panel="ev">
+        <div class="tools"><button class="btn" type="button" data-add="events">＋ إضافة بطولة أو مباراة</button><a class="link ext" href="https://oyatourism.com/matches/" target="_blank" rel="noopener">صفحة تذاكر المباريات</a></div>
+        <div class="hint">ⓘ<span>كل بطاقة هنا تظهر في صفحة «تذاكر المباريات». البطاقة المرتبطة بصفحة (مثل كأس السوبر) تفتح صفحتها، والباقي يفتح طلباً على واتساب. رتّبها بالأسهم ▲▼. اكتب النصوص بالعربية ثم بباقي اللغات من شريط اللغات داخل النافذة.</span></div>
+        <div class="cabs" data-list="events"></div>
+      </section>
+
+      <section class="panel" data-panel="ho" hidden>
+        <div class="tools"><button class="btn" type="button" data-add="hotels">＋ إضافة فندق</button><a class="link ext" href="https://oyatourism.com/hotels/" target="_blank" rel="noopener">صفحة الفنادق</a></div>
+        <div class="hint">ⓘ<span>كل فندق تضيفه يظهر في صفحة «فنادق ومنتجعات» تحت «فنادق مختارة» وفي صفحة فنادق مدينته. أضف فقط الفنادق التي تتعامل معها، بصورها الحقيقية. اسم الفندق يظهر كما هو بكل اللغات، والمنطقة والوصف تكتبهما لكل لغة من شريط اللغات.</span></div>
+        <div class="cabs" data-list="hotels"></div>
+      </section>
+
+      <section class="panel" data-panel="fl" hidden>
+        <div class="tools"><button class="btn" type="button" data-add="flights">＋ إضافة وجهة طيران</button><a class="link ext" href="https://oyatourism.com/flights/" target="_blank" rel="noopener">صفحة الطيران</a></div>
+        <div class="hint">ⓘ<span>الوجهات تظهر في صفحة «تذاكر طيران» تحت «رحلات من إسطنبول إلى أهم الوجهات»، وكل وجهة تفتح طلب حجز على واتساب. أسماء المدن تُترجم تلقائياً لكل اللغات. رتّبها بالأسهم ▲▼.</span></div>
+        <div class="cabs" data-list="flights"></div>
+      </section>
+
+      <section class="panel" data-panel="bl" hidden>
+        <div class="tools"><button class="btn" type="button" id="addPost">＋ مقال جديد</button><a class="link ext" href="https://oyatourism.com/blog/" target="_blank" rel="noopener">المدونة على الموقع</a></div>
+        <div class="hint">ⓘ<span>اكتب المقال وأضف صوره، واختر «نشر» مع موعد النشر: يظهر في المدونة كصفحة كاملة تقرؤها محركات البحث (عنوان ووصف وبيانات منظمة وخريطة الموقع) خلال دقائق من الحفظ، أو في موعده إن كان مجدولاً (خلال ساعة من الموعد). «مسودة» لا تظهر على الموقع. اكتب المقال بالعربية، ثم بأي لغة أخرى من شريط اللغات: كل لغة تكتبها تصبح صفحة في موقع تلك اللغة.</span></div>
+        <div class="cabs" id="posts"></div>
+      </section>
+
+      <section class="panel" data-panel="sc" hidden>
+        <div class="hint">ⓘ<span>سعر التذكرة الواحدة لكل فئة. يظهر على صفحة المباريات، وفي مجسّم الملعب، وفي حساب الإجمالي داخل نموذج الحجز.</span></div>
+        <div class="grid" id="matches"></div>
+      </section>
+
+      <section class="panel" data-panel="pk" hidden>
+        <div class="tools">
+          <input type="search" id="q" placeholder="ابحث عن برنامج…" aria-label="بحث">
+          <select id="reg" aria-label="المنطقة"><option value="">كل البرامج</option><option value="turkey">داخل تركيا</option><option value="world">خارج تركيا</option></select>
+        </div>
+        <div class="hint">ⓘ<span>سعر «يبدأ من» للشخص الواحد. الخانة الفارغة تُظهر «حسب الموسم — اطلب عرضك».</span></div>
+        <div class="card list" id="pkgs"></div>
+      </section>
+
+      <section class="panel" data-panel="cb" hidden>
+        <div class="tools">
+          <button class="btn" type="button" id="addCab">＋ إضافة كوخ</button>
+          <a class="link ext" href="https://oyatourism.com/cabins/" target="_blank" rel="noopener">صفحة الأكواخ على الموقع</a>
+        </div>
+        <div class="hint">ⓘ<span>كل كوخ تضيفه يظهر في صفحة «أكواخ وبنغلات» وفي صفحة فنادق مدينته (سبانجا أو طرابزون وأوزنجول). استخدم صوراً حقيقية للكوخ نفسه. المواصفات تظهر مترجمة بكل اللغات، والوصف تكتبه بالعربية ثم بباقي اللغات من «الوصف بلغات الموقع الأخرى».</span></div>
+        <div class="cabs" id="cabs"></div>
+      </section>
+
+      <section class="panel" data-panel="st" hidden>
+        <div class="card settings">
+          <div><label for="curr">العملة المعروضة</label>
+            <select id="curr" aria-describedby="currNote"><option value="USD|$">دولار أمريكي ($)</option><option value="EUR|€">يورو (€)</option><option value="TRY|₺">ليرة تركية (₺)</option></select>
+            <p id="currNote" style="margin:.4em 0 0;color:var(--muted);font-size:.85rem">تغيير العملة يغيّر الرمز فقط ولا يحوّل الأرقام — عدّل الأسعار بعدها.</p></div>
+          <div><label for="aiProv">المساعد الذكي (اختياري): الترجمة وتحسين النصوص</label>
+            <select id="aiProv"><option value="openai">ChatGPT (OpenAI)</option><option value="gemini">Gemini (Google)</option></select></div>
+          <div><label for="aiKey">مفتاح API</label>
+            <input type="password" id="aiKey" dir="ltr" autocomplete="off" spellcheck="false" placeholder="sk-… / AIza…">
+            <p style="margin:.4em 0 0;color:var(--muted);font-size:.85rem" id="aiHint"></p></div>
+          <div><label for="aiModel">النموذج (اتركه فارغاً للافتراضي)</label><input type="text" id="aiModel" dir="ltr" autocomplete="off" spellcheck="false"></div>
+          <div><button class="btn btn--ghost" type="button" id="aiTest">جرّب الاتصال</button></div>
+          <div class="hint" style="margin:0">ⓘ<span>كل تعديل تحفظه يُسجَّل باسمك وتاريخه، ويمكن الرجوع إليه من <a id="hist" href="#" target="_blank" rel="noopener">سجل التعديلات</a>.</span></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="bar" id="bar" role="region" aria-label="حفظ التغييرات">
+    <div class="wrap">
+      <div class="count" id="count">لا توجد تغييرات<small>التغييرات تظهر على الموقع خلال دقائق من الحفظ</small></div>
+      <button class="btn btn--ghost" type="button" id="undo">إلغاء كل التغييرات</button>
+      <button class="btn" type="button" id="save">حفظ التغييرات</button>
+    </div>
+  </div>
+</div>
+
+<!-- cabin editor -->
+<div class="editor" id="editor" hidden role="dialog" aria-modal="true" aria-labelledby="edTitle">
+  <div class="card">
+    <h2 id="edTitle">كوخ جديد</h2>
+    <div class="f2">
+      <div class="wide"><label for="cName">اسم الكوخ (كما يظهر للزبون)</label><input type="text" id="cName" placeholder="مثال: Sapanca Lake Bungalow"></div>
+      <div><label for="cArea">المنطقة</label><select id="cArea"></select></div>
+      <div><label for="cPrice">سعر الليلة</label><div class="money" style="width:100%"><input type="text" inputmode="numeric" id="cPrice" min="0" step="1" inputmode="numeric" placeholder="حسب الموسم"><span class="sym">$</span></div></div>
+      <div><label for="cRooms">غرف النوم</label><input type="text" inputmode="numeric" id="cRooms" min="1" max="20" step="1" value="1" inputmode="numeric"></div>
+      <div><label for="cGuests">أقصى عدد للأشخاص</label><input type="text" inputmode="numeric" id="cGuests" min="1" max="40" step="1" value="2" inputmode="numeric"></div>
+      <div class="wide"><label>المواصفات</label><div class="feats" id="cFeats"></div></div>
+      <div class="wide"><label for="cNote">وصف قصير بالعربية (اختياري)</label><textarea id="cNote" maxlength="240" placeholder="مثال: على بُعد 5 دقائق من بحيرة سبانجا، مع جاكوزي داخلي ومدفأة حطب."></textarea></div>
+      <div class="wide"><details class="ml"><summary>الوصف بلغات الموقع الأخرى</summary>
+        <div class="f2" style="margin-top:10px">
+          <div><label for="cNote_en">English</label><textarea id="cNote_en" dir="ltr" maxlength="300"></textarea></div>
+          <div><label for="cNote_ru">Русский</label><textarea id="cNote_ru" dir="ltr" maxlength="300"></textarea></div>
+          <div><label for="cNote_tr">Türkçe</label><textarea id="cNote_tr" dir="ltr" maxlength="300"></textarea></div>
+          <div><label for="cNote_pt">Português</label><textarea id="cNote_pt" dir="ltr" maxlength="300"></textarea></div>
+        </div>
+        <button class="btn btn--ghost sbtn" type="button" id="cAi" style="margin-top:8px">✦ ترجم الوصف العربي تلقائياً (للخانات الفارغة)</button>
+      </details></div>
+      <div class="wide"><label>الصور (الأولى هي صورة الغلاف)</label><div class="photos" id="cPhotos"></div></div>
+      <div class="wide"><label for="cRef">ملاحظة داخلية (لا تظهر على صفحات الموقع، لكنها محفوظة في ملف عام — لا تكتب فيها أسراراً)</label><textarea id="cRef" maxlength="600" placeholder="مثال: رقم المالك، العمولة المتفق عليها، تقييم Google…"></textarea></div>
+      <div class="wide"><label class="chk" style="margin:0"><input type="checkbox" id="cActive" checked> ظاهر على الموقع</label></div>
+    </div>
+    <div class="err" id="edErr" role="alert"></div>
+    <div class="edfoot">
+      <button class="btn btn--ghost" type="button" id="edCancel">إلغاء</button>
+      <button class="btn" type="button" id="edOk">حفظ الكوخ</button>
+    </div>
+  </div>
+</div>
+<!-- generic editor: events, hotels, flights -->
+<div class="editor" id="gEditor" hidden role="dialog" aria-modal="true" aria-labelledby="gTitle">
+  <div class="card">
+    <h2 id="gTitle">إضافة</h2>
+    <div class="langbar" id="gLangs"></div>
+    <p class="bnote" id="gLangNote" style="margin:0 0 6px"></p>
+    <button class="btn btn--ghost sbtn" type="button" id="gAi" hidden style="margin:0 0 12px">✦ ترجم تلقائياً الخانات الفارغة في كل اللغات</button>
+    <div class="f2" id="gFields"></div>
+    <div class="err" id="gErr" role="alert"></div>
+    <div class="edfoot">
+      <button class="btn btn--ghost" type="button" id="gCancel">إلغاء</button>
+      <button class="btn" type="button" id="gOk">حفظ</button>
+    </div>
+  </div>
+</div>
+<!-- blog editor -->
+<div class="editor beditor" id="bEditor" hidden role="dialog" aria-modal="true" aria-labelledby="bHead">
+  <div class="card">
+    <div class="bhead"><h2 id="bHead">مقال جديد</h2><span class="sp"></span><span class="err bherr" id="bErrTop" role="alert"></span><button class="btn btn--ghost sbtn" type="button" id="bCancel">إغلاق</button><button class="btn sbtn" type="button" id="bOk">حفظ المقال</button></div>
+    <div class="bgrid">
+      <div class="bmain">
+        <div class="langbar" id="bLangs"></div>
+        <p class="bnote" id="bLangNote" style="margin:0 0 8px"></p>
+        <input type="text" id="bTitle" class="btitle" placeholder="عنوان المقال" aria-label="عنوان المقال" maxlength="120">
+        <div class="rte-bar" role="toolbar" aria-label="تنسيق النص">
+          <button type="button" data-cmd="h2" title="عنوان رئيسي داخل المقال">عنوان</button>
+          <button type="button" data-cmd="h3" title="عنوان فرعي">عنوان فرعي</button>
+          <button type="button" data-cmd="p" title="فقرة عادية">فقرة</button>
+          <button type="button" data-cmd="bold" title="عريض"><b>B</b></button>
+          <button type="button" data-cmd="ul" title="قائمة نقطية">• قائمة</button>
+          <button type="button" data-cmd="ol" title="قائمة مرقمة">1. قائمة</button>
+          <button type="button" data-cmd="quote" title="اقتباس">❝ اقتباس</button>
+          <button type="button" data-cmd="link" title="رابط">🔗 رابط</button>
+          <label class="rte-img" title="صورة داخل المقال">🖼 صورة<input type="file" accept="image/*" id="bImg"></label>
+          <button type="button" data-cmd="clear" title="إزالة التنسيق">إزالة التنسيق</button>
+        </div>
+        <div class="rte" id="bBody" contenteditable="true" dir="rtl" aria-label="نص المقال" data-ph="اكتب مقالك هنا… استخدم «عنوان» لتقسيم المقال إلى أقسام، وأضف الصور من زر «صورة»."></div>
+        <button class="btn btn--ghost sbtn" type="button" id="bCopyAr" hidden style="margin-top:8px">انسخ النص العربي مع الصور هنا لأترجمه</button>
+        <p class="bcount" id="bCount">0 كلمة</p>
+        <div class="bfaq">
+          <h3>أسئلة شائعة في آخر المقال (تظهر في نتائج Google — لكل لغة أسئلتها)</h3>
+          <div id="bFaq"></div>
+          <button class="btn btn--ghost sbtn" type="button" id="bFaqAdd">＋ سؤال</button>
+        </div>
+      </div>
+      <aside class="bside">
+        <section class="bbox">
+          <h3>النشر <small class="shared">لكل اللغات</small></h3>
+          <div class="seg2" role="radiogroup" aria-label="حالة المقال"><label><input type="radio" name="bStatus" value="draft" checked> مسودة</label><label><input type="radio" name="bStatus" value="publish"> نشر</label></div>
+          <label for="bWhen">موعد النشر (بتوقيت إسطنبول)</label>
+          <input type="datetime-local" id="bWhen">
+          <p class="bnote" id="bWhenNote"></p>
+          <label for="bCat">التصنيف</label>
+          <select id="bCat"><option>دليل السفر</option><option>برامج سياحية</option><option>تأشيرات</option><option>مباريات</option><option>شهر العسل</option><option>فنادق وأكواخ</option><option>عروض وأخبار</option></select>
+        </section>
+        <section class="bbox">
+          <h3>صورة الغلاف <small class="shared">الصورة لكل اللغات، والوصف لكل لغة</small></h3>
+          <div class="bcover" id="bCover"></div>
+          <label for="bCoverAlt">وصف الصورة (لمحركات البحث)</label>
+          <input type="text" id="bCoverAlt" placeholder="مثال: بحيرة أوزنجول وسط الضباب">
+        </section>
+        <section class="bbox">
+          <h3>محركات البحث</h3>
+          <label for="bKey">الكلمة المفتاحية</label><input type="text" id="bKey" placeholder="مثال: أوزنجول في الشتاء">
+          <label for="bSlug">رابط المقال (بالإنجليزية — واحد لكل اللغات)</label><div class="slug"><span dir="ltr">/blog/</span><input type="text" id="bSlug" dir="ltr" placeholder="uzungol-winter-guide"></div>
+          <label for="bSeo">عنوان Google (اختياري)</label><input type="text" id="bSeo" maxlength="70"><p class="bnote" id="bSeoN"></p>
+          <label for="bDesc">الوصف في Google</label><textarea id="bDesc" maxlength="170" rows="3"></textarea><p class="bnote" id="bDescN"></p>
+          <label for="bEx">مقتطف يظهر في بطاقة المقال (اختياري)</label><textarea id="bEx" maxlength="260" rows="3"></textarea>
+          <div class="seo" id="bSeoCheck"></div>
+        </section>
+        <section class="bbox ai">
+          <h3>✦ المساعد الذكي</h3>
+          <p class="bnote" id="aiState"></p>
+          <button class="btn btn--ghost sbtn" type="button" data-ai="translate">ترجم المقال إلى كل اللغات (من العربية)</button>
+          <button class="btn btn--ghost sbtn" type="button" data-ai="polish">حسّن السرد وسلاسة المقال</button>
+          <button class="btn btn--ghost sbtn" type="button" data-ai="seo">اقترح العنوان والوصف والرابط والأسئلة</button>
+          <details><summary>اكتب مسودة من نقاطي</summary><textarea id="aiNotes" rows="5" placeholder="اكتب أفكارك ومعلوماتك كنقاط: المكان، أفضل وقت، ماذا يفعل الزائر، نصائح… (يكتب المساعد من معلوماتك فقط)"></textarea><button class="btn btn--ghost sbtn" type="button" data-ai="draft">اكتب المسودة</button></details>
+          <button class="btn btn--ghost sbtn" type="button" id="aiUndo" hidden>↶ تراجع عن آخر تعديل للمساعد</button>
+        </section>
+      </aside>
+    </div>
+    <div class="err" id="bErr" role="alert"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js?v=20261114e"></script>
+</body>
+</html>
