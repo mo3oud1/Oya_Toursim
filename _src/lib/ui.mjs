@@ -73,7 +73,8 @@ export function photoSources(key) {
   if (!file) return null;
   const base = file.replace(/\.\w+$/, "");
   const set = [["-640", 640], ["-1024", 1024]].filter(([s]) => fs.existsSync(path.join(PHOTO_DIR, `${base}${s}.webp`))).map(([s, w]) => `{{root}}assets/img/photos/${base}${s}.webp ${w}w`);
-  return { src: `{{root}}assets/img/photos/${file}`, srcset: [...set, `{{root}}assets/img/photos/${file} 1536w`].join(", ") };
+  const big = fs.existsSync(path.join(PHOTO_DIR, `${base}-2048.webp`)) ? [`{{root}}assets/img/photos/${base}-2048.webp 2048w`] : []; // large screens (home hero)
+  return { src: `{{root}}assets/img/photos/${file}`, srcset: [...set, `{{root}}assets/img/photos/${file} 1536w`, ...big].join(", ") };
 }
 export function registerImage(key, prompt, usedOn) {
   if (!key) return;

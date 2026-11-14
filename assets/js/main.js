@@ -400,12 +400,19 @@
   var slides = [].slice.call(h.querySelectorAll(".hero__slide"));
   var dots = [].slice.call(h.querySelectorAll(".hero__dot"));
   var loc = h.querySelector(".hero__loc span"), btn = h.querySelector(".hero__pause");
+  // arched window (wide screens): the same scene again, with a link to its service
+  var aImgs = [].slice.call(h.querySelectorAll(".hero__arch-frame img")), cap = h.querySelector(".hero__cap");
+  var capN = cap && cap.querySelector(".hero__cap-n"), capT = cap && cap.querySelector(".hero__cap-t b");
   if (slides.length < 2) return;
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var i = 0, timer = 0, paused = reduce, visible = true, loaded = false, D = 7000;
   function loadAll() {
     if (loaded) return; loaded = true;
-    slides.forEach(function (s) { var im = s.querySelector("img[data-src]"); if (im) { im.srcset = im.getAttribute("data-srcset"); im.src = im.getAttribute("data-src"); im.removeAttribute("data-src"); } });
+    slides.forEach(function (s) {
+      var so = s.querySelector("source[data-srcset]"); if (so) { so.srcset = so.getAttribute("data-srcset"); so.removeAttribute("data-srcset"); }
+      var im = s.querySelector("img[data-src]"); if (im) { im.srcset = im.getAttribute("data-srcset"); im.src = im.getAttribute("data-src"); im.removeAttribute("data-src"); }
+    });
+    if (cap && cap.offsetParent) aImgs.forEach(function (im) { if (im.dataset.src) { im.src = im.dataset.src; im.removeAttribute("data-src"); } });
   }
   function schedule() { clearTimeout(timer); if (!paused && visible) timer = setTimeout(function () { show(i + 1); }, D); }
   function show(n) {
@@ -420,6 +427,12 @@
       out.classList.remove("is-on"); dots[prev].removeAttribute("aria-current");
       s.classList.remove("is-leaving"); s.classList.add("is-on"); dots[n].setAttribute("aria-current", "true");
       var span = document.createElement("span"); span.textContent = s.getAttribute("data-loc"); loc.replaceWith(span); loc = span;
+      if (cap && aImgs[n]) {
+        var was = aImgs[prev]; was.classList.add("is-prev"); was.classList.remove("is-on"); setTimeout(function () { was.classList.remove("is-prev"); }, 1100);
+        aImgs[n].classList.remove("is-prev"); aImgs[n].classList.add("is-on");
+        cap.setAttribute("href", s.getAttribute("data-href")); capN.textContent = "0" + (n + 1); capT.textContent = s.getAttribute("data-title");
+        cap.classList.remove("is-swap"); void cap.offsetWidth; cap.classList.add("is-swap");
+      }
       schedule();
     };
     if (im && !im.complete) { im.addEventListener("load", go, { once: true }); setTimeout(go, 1500); } else go();

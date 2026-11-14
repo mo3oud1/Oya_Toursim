@@ -35,21 +35,24 @@ export function homePage(data) {
     { cls: "b-3", img: "hero-saudi", icon: "mosque", title: "تأشيرات", text: "السعودية والخليج وشنغن وبريطانيا وأمريكا — تجهيز ملف كامل.", href: "visas/" },
   ];
 
-  // Cinematic hero: real-looking destination photos crossfading with a slow drift (decorative; first slide is the LCP image)
+  // Cinematic hero: five real photographs (licensed Adobe Stock, and one of our own cabins), one per service.
+  // Each scene fills the screen, and on wide screens an arched window shows it again with a link to the service.
+  // `-p` files are upright crops: the arched window, and the background on phones. The first scene is the LCP image.
   const SLIDES = [
-    { img: "hero-about", loc: "إسطنبول، تركيا", fx: "32% 50%" },
-    { img: "hero-turkey", loc: "كابادوكيا، تركيا", fx: "30% 40%" },
-    { img: "dest-uzungol", loc: "أوزنجول، طرابزون", fx: "35% 50%" },
-    { img: "hero-world", loc: "جزر المالديف", fx: "25% 50%" },
-    { img: "hero-saudi", loc: "العُلا، السعودية", fx: "28% 60%" },
+    { img: "home-istanbul", loc: "أورتاكوي، إسطنبول", title: "جولات إسطنبول اليومية", href: "day-trips/", fx: "40% 50%" },
+    { img: "home-yacht", loc: "جولة بحرية خاصة", title: "يخت خاص في البوسفور", href: "activities/private-yacht/", fx: "40% 60%" },
+    { img: "home-cabin", loc: "سبانجا، تركيا", title: "أكواخ وبنغلات بمسبح خاص", href: "cabins/", fx: "50% 60%" },
+    { img: "home-cappadocia", loc: "كابادوكيا، تركيا", title: "برامج كابادوكيا", href: "turkey-tours/cappadocia/", fx: "45% 45%" },
+    { img: "home-transfer", loc: "استقبال من المطار", title: "سيارة خاصة مع سائق", href: "transfers/", fx: "60% 55%" },
   ];
+  const upright = (sl) => `{{root}}assets/img/photos/${sl.img}-p.webp`;
   page.body = `
 <section class="hero hero--photo" data-hero-slides>
   <div class="hero__slides" aria-hidden="true">
     ${SLIDES.map((sl, i) => { const src = photoSources(sl.img); if (!src) return ""; registerImage(sl.img, "", "");
-      return `<div class="hero__slide${i === 0 ? " is-on" : ""}" data-loc="${sl.loc}" style="--fx:${sl.fx}">${i === 0
-        ? `<img src="${src.src}" srcset="${src.srcset}" sizes="100vw" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">`
-        : `<img data-src="${src.src}" data-srcset="${src.srcset}" sizes="100vw" alt="" width="1536" height="1024" decoding="async">`}</div>`; }).join("")}
+      return `<div class="hero__slide${i === 0 ? " is-on" : ""}" data-loc="${sl.loc}" data-title="${sl.title}" data-href="{{root}}${sl.href}" style="--fx:${sl.fx}"><picture>${i === 0
+        ? `<source media="(max-width:700px)" srcset="${upright(sl)}"><img src="${src.src}" srcset="${src.srcset}" sizes="100vw" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">`
+        : `<source media="(max-width:700px)" data-srcset="${upright(sl)}"><img data-src="${src.src}" data-srcset="${src.srcset}" sizes="100vw" alt="" width="1536" height="1024" decoding="async">`}</picture></div>`; }).join("")}
   </div>
   ${flightSvg()}
   <div class="container hero__inner">
@@ -64,6 +67,10 @@ export function homePage(data) {
         <span class="chip chip--dark">${ic("shield")}عروض مكتوبة وواضحة قبل الدفع</span>
       </div>
     </div>
+    <aside class="hero__arch fade-in" style="--d:.35s">
+      <div class="hero__arch-frame">${SLIDES.map((sl, i) => `<img ${i === 0 ? `class="is-on" src="${upright(sl)}"` : `data-src="${upright(sl)}"`} alt="${sl.title}" width="900" height="1200" decoding="async">`).join("")}</div>
+      <a class="hero__cap" href="{{root}}${SLIDES[0].href}"><span class="hero__cap-n" translate="no">01</span><span class="hero__cap-t"><b>${SLIDES[0].title}</b><small>اكتشف المزيد</small></span>${ic("arrow", "i-flip")}</a>
+    </aside>
   </div>
   <div class="hero__ctrl container" aria-label="صور الوجهات">
     <p class="hero__loc">${ic("pin")}<span>${SLIDES[0].loc}</span></p>
