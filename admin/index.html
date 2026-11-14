@@ -109,6 +109,49 @@ main{padding:28px 0 140px}
 .mv{min-width:40px;padding:.4em .6em}
 .th.ico{display:grid;place-items:center;color:#fff;font-size:1.6rem;font-weight:700;background:linear-gradient(140deg,#19487E,#0B1F3A)}
 .dur{display:flex;gap:8px;align-items:center}.dur input{width:90px}
+/* blog editor */
+.beditor{place-items:start center}
+.editor.beditor .card{width:min(100%,1180px);max-height:none;padding:0;overflow:visible}
+.bhead{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:10px;padding:14px 20px;background:#fff;border-radius:22px 22px 0 0;border-bottom:1px solid var(--line)}
+.bhead h2{margin:0;font-size:1.15rem}.bhead .sp{flex:1}
+.bgrid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px;padding:20px}
+.btitle{font-family:var(--ff-d);font-size:1.5rem!important;font-weight:700;min-height:60px!important}
+.rte-bar{position:sticky;top:68px;z-index:2;display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:8px;border:1.5px solid var(--line);border-bottom:0;border-radius:14px 14px 0 0;background:#FBFAF7}
+.rte-bar button,.rte-img{border:0;background:#fff;box-shadow:inset 0 0 0 1px var(--line);border-radius:10px;padding:.35em .75em;font:inherit;font-size:.85rem;font-weight:600;color:var(--navy);cursor:pointer;margin:0}
+.rte-bar button:hover,.rte-img:hover{background:var(--sky)}
+.rte-img input{display:none}
+.rte{min-height:420px;padding:18px 20px;border:1.5px solid var(--line);border-radius:0 0 14px 14px;background:#fff;line-height:1.9;font-size:1.02rem;outline:0}
+.rte:focus{border-color:#2B6BAB;box-shadow:0 0 0 4px rgba(43,107,171,.12)}
+.rte:empty::before{content:attr(data-ph);color:#9AA5B4}
+.rte h2{font-size:1.35rem;margin:1.1em 0 .4em}.rte h3{font-size:1.12rem;margin:1em 0 .3em}.rte p{margin:0 0 .9em}
+.rte blockquote{margin:1em 0;padding:.6em 1em;border-inline-start:4px solid var(--orange);background:#FFF6EF;border-radius:8px}
+.rte figure{margin:1em 0}.rte img{max-width:100%;border-radius:12px;display:block}.rte figcaption{font-size:.85rem;color:var(--muted);text-align:center}
+.rte img[data-up]{opacity:.45}
+.rte a{color:#2B6BAB}
+.bcount{margin:.4em 0 0;color:var(--muted);font-size:.85rem}
+.bfaq{margin-top:18px;padding:16px;border-radius:16px;background:#FBFAF7}
+.bfaq h3{font-size:1rem;margin-bottom:10px}
+.faqrow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.faqrow textarea{min-height:60px}
+.faqrow>.btn{align-self:start}
+.bside{display:grid;gap:14px;align-content:start}
+.bbox{padding:16px;border-radius:16px;background:#FBFAF7;display:grid;gap:6px}
+.bbox h3{font-size:1rem;margin-bottom:4px}
+.bbox label{margin:6px 0 0}
+.bnote{margin:0;color:var(--muted);font-size:.8rem;line-height:1.5}
+.bnote.bad{color:var(--bad)}.bnote.ok{color:var(--ok)}
+.seg2{display:flex;gap:8px}.seg2 label{flex:1;margin:0;display:flex;align-items:center;justify-content:center;gap:6px;padding:.5em;border-radius:12px;background:#fff;box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer}
+.seg2 label:has(input:checked){box-shadow:inset 0 0 0 2px var(--navy);background:var(--sky)}
+.slug{display:flex;align-items:center;gap:4px;direction:ltr}.slug span{color:var(--muted);font-size:.85rem}
+.bcover .ph{aspect-ratio:16/9}.bcover .addph{aspect-ratio:16/9}
+.seo{margin-top:8px;display:grid;gap:4px;font-size:.84rem}
+.seo .bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:6px}.seo .bar i{display:block;height:100%;border-radius:99px}
+.seo p{margin:0;display:flex;gap:6px;line-height:1.5}.seo .y{color:var(--ok)}.seo .n{color:#A15C00}
+.ai .btn{width:100%;justify-content:flex-start;text-align:start;white-space:normal}
+.ai details{background:#fff;border-radius:12px;padding:8px 10px}.ai summary{cursor:pointer;font-weight:600;color:var(--navy);font-size:.9rem}
+.ai details textarea{margin:8px 0}
+.ai.busy{opacity:.7;pointer-events:none}
+@media(max-width:900px){.bgrid{grid-template-columns:1fr}.rte-bar{top:62px}}
 .ph1{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 .btn--danger{background:#fff;color:var(--bad);box-shadow:inset 0 0 0 1.5px #F2C7C2}
 .editor{position:fixed;inset:0;z-index:40;background:rgba(6,20,40,.55);display:grid;place-items:center;padding:16px;overflow:auto}
@@ -184,6 +227,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
         <button class="tab" role="tab" aria-selected="false" data-tab="ho">الفنادق</button>
         <button class="tab" role="tab" aria-selected="false" data-tab="cb">الأكواخ والبنغلات</button>
         <button class="tab" role="tab" aria-selected="false" data-tab="fl">الطيران</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="bl">المدونة</button>
         <button class="tab" role="tab" aria-selected="false" data-tab="pk">البرامج السياحية</button>
         <button class="tab" role="tab" aria-selected="false" data-tab="st">الإعدادات</button>
       </div>
@@ -204,6 +248,12 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
         <div class="tools"><button class="btn" type="button" data-add="flights">＋ إضافة وجهة طيران</button><a class="link ext" href="../flights/" target="_blank" rel="noopener">صفحة الطيران</a></div>
         <div class="hint">ⓘ<span>الوجهات تظهر في صفحة «تذاكر طيران» تحت «رحلات من إسطنبول إلى أهم الوجهات»، وكل وجهة تفتح طلب حجز على واتساب. أسماء المدن تُترجم تلقائياً لكل اللغات. رتّبها بالأسهم ▲▼.</span></div>
         <div class="cabs" data-list="flights"></div>
+      </section>
+
+      <section class="panel" data-panel="bl" hidden>
+        <div class="tools"><button class="btn" type="button" id="addPost">＋ مقال جديد</button><a class="link ext" href="../blog/" target="_blank" rel="noopener">المدونة على الموقع</a></div>
+        <div class="hint">ⓘ<span>اكتب المقال وأضف صوره، واختر «نشر» مع موعد النشر: يظهر في المدونة كصفحة كاملة تقرؤها محركات البحث (عنوان ووصف وبيانات منظمة وخريطة الموقع) خلال دقائق من الحفظ، أو في موعده إن كان مجدولاً (خلال ساعة من الموعد). «مسودة» لا تظهر على الموقع. المقالات المكتوبة هنا تظهر في النسخة العربية.</span></div>
+        <div class="cabs" id="posts"></div>
       </section>
 
       <section class="panel" data-panel="sc" hidden>
@@ -233,6 +283,9 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
         <div class="card settings">
           <div><label for="curr">العملة المعروضة</label>
             <select id="curr"><option value="USD|$">دولار أمريكي ($)</option><option value="EUR|€">يورو (€)</option><option value="TRY|₺">ليرة تركية (₺)</option></select></div>
+          <div><label for="aiKey">مفتاح Claude API للمساعد الذكي في المدونة (اختياري)</label>
+            <input type="password" id="aiKey" dir="ltr" autocomplete="off" spellcheck="false" placeholder="sk-ant-…">
+            <p style="margin:.4em 0 0;color:var(--muted);font-size:.85rem">يُحفظ على هذا الجهاز فقط ولا يُرسل إلا إلى Claude عند ضغط أزرار المساعد. تحصل عليه من platform.claude.com ← API keys، وتُحتسب تكلفة الاستخدام على حسابك هناك.</p></div>
           <div class="hint" style="margin:0">ⓘ<span>كل تعديل تحفظه يُسجَّل باسمك وتاريخه، ويمكن الرجوع إليه من <a id="hist" href="#" target="_blank" rel="noopener">سجل التعديلات</a>.</span></div>
         </div>
       </section>
@@ -281,6 +334,71 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
       <button class="btn btn--ghost" type="button" id="gCancel">إلغاء</button>
       <button class="btn" type="button" id="gOk">حفظ</button>
     </div>
+  </div>
+</div>
+<!-- blog editor -->
+<div class="editor beditor" id="bEditor" hidden role="dialog" aria-modal="true" aria-labelledby="bHead">
+  <div class="card">
+    <div class="bhead"><h2 id="bHead">مقال جديد</h2><span class="sp"></span><button class="btn btn--ghost sbtn" type="button" id="bCancel">إغلاق</button><button class="btn sbtn" type="button" id="bOk">حفظ المقال</button></div>
+    <div class="bgrid">
+      <div class="bmain">
+        <input type="text" id="bTitle" class="btitle" placeholder="عنوان المقال" aria-label="عنوان المقال" maxlength="120">
+        <div class="rte-bar" role="toolbar" aria-label="تنسيق النص">
+          <button type="button" data-cmd="h2" title="عنوان رئيسي داخل المقال">عنوان</button>
+          <button type="button" data-cmd="h3" title="عنوان فرعي">عنوان فرعي</button>
+          <button type="button" data-cmd="p" title="فقرة عادية">فقرة</button>
+          <button type="button" data-cmd="bold" title="عريض"><b>B</b></button>
+          <button type="button" data-cmd="ul" title="قائمة نقطية">• قائمة</button>
+          <button type="button" data-cmd="ol" title="قائمة مرقمة">1. قائمة</button>
+          <button type="button" data-cmd="quote" title="اقتباس">❝ اقتباس</button>
+          <button type="button" data-cmd="link" title="رابط">🔗 رابط</button>
+          <label class="rte-img" title="صورة داخل المقال">🖼 صورة<input type="file" accept="image/*" id="bImg"></label>
+          <button type="button" data-cmd="clear" title="إزالة التنسيق">إزالة التنسيق</button>
+        </div>
+        <div class="rte" id="bBody" contenteditable="true" dir="rtl" aria-label="نص المقال" data-ph="اكتب مقالك هنا… استخدم «عنوان» لتقسيم المقال إلى أقسام، وأضف الصور من زر «صورة»."></div>
+        <p class="bcount" id="bCount">0 كلمة</p>
+        <div class="bfaq">
+          <h3>أسئلة شائعة في آخر المقال (تظهر في نتائج Google)</h3>
+          <div id="bFaq"></div>
+          <button class="btn btn--ghost sbtn" type="button" id="bFaqAdd">＋ سؤال</button>
+        </div>
+      </div>
+      <aside class="bside">
+        <section class="bbox">
+          <h3>النشر</h3>
+          <div class="seg2" role="radiogroup" aria-label="حالة المقال"><label><input type="radio" name="bStatus" value="draft" checked> مسودة</label><label><input type="radio" name="bStatus" value="publish"> نشر</label></div>
+          <label for="bWhen">موعد النشر (بتوقيت إسطنبول)</label>
+          <input type="datetime-local" id="bWhen">
+          <p class="bnote" id="bWhenNote"></p>
+          <label for="bCat">التصنيف</label>
+          <select id="bCat"><option>دليل السفر</option><option>برامج سياحية</option><option>تأشيرات</option><option>مباريات</option><option>شهر العسل</option><option>فنادق وأكواخ</option><option>عروض وأخبار</option></select>
+        </section>
+        <section class="bbox">
+          <h3>صورة الغلاف</h3>
+          <div class="bcover" id="bCover"></div>
+          <label for="bCoverAlt">وصف الصورة (لمحركات البحث)</label>
+          <input type="text" id="bCoverAlt" placeholder="مثال: بحيرة أوزنجول وسط الضباب">
+        </section>
+        <section class="bbox">
+          <h3>محركات البحث</h3>
+          <label for="bKey">الكلمة المفتاحية</label><input type="text" id="bKey" placeholder="مثال: أوزنجول في الشتاء">
+          <label for="bSlug">رابط المقال (بالإنجليزية)</label><div class="slug"><span dir="ltr">/blog/</span><input type="text" id="bSlug" dir="ltr" placeholder="uzungol-winter-guide"></div>
+          <label for="bSeo">عنوان Google (اختياري)</label><input type="text" id="bSeo" maxlength="70"><p class="bnote" id="bSeoN"></p>
+          <label for="bDesc">الوصف في Google</label><textarea id="bDesc" maxlength="170" rows="3"></textarea><p class="bnote" id="bDescN"></p>
+          <label for="bEx">مقتطف يظهر في بطاقة المقال (اختياري)</label><textarea id="bEx" maxlength="260" rows="3"></textarea>
+          <div class="seo" id="bSeoCheck"></div>
+        </section>
+        <section class="bbox ai">
+          <h3>✦ المساعد الذكي (Claude)</h3>
+          <p class="bnote" id="aiState"></p>
+          <button class="btn btn--ghost sbtn" type="button" data-ai="polish">حسّن السرد وسلاسة المقال</button>
+          <button class="btn btn--ghost sbtn" type="button" data-ai="seo">اقترح العنوان والوصف والرابط والأسئلة</button>
+          <details><summary>اكتب مسودة من نقاطي</summary><textarea id="aiNotes" rows="5" placeholder="اكتب أفكارك ومعلوماتك كنقاط: المكان، أفضل وقت، ماذا يفعل الزائر، نصائح… (يكتب المساعد من معلوماتك فقط)"></textarea><button class="btn btn--ghost sbtn" type="button" data-ai="draft">اكتب المسودة</button></details>
+          <button class="btn btn--ghost sbtn" type="button" id="aiUndo" hidden>↶ تراجع عن آخر تعديل للمساعد</button>
+        </section>
+      </aside>
+    </div>
+    <div class="err" id="bErr" role="alert"></div>
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -353,7 +471,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     });
   }
   function load() {
-    return loadFile("prices").then(function () { return Promise.all(["cabins", "events", "hotels", "flights"].map(loadFile)); }).then(function () {
+    return loadFile("prices").then(function () { return Promise.all(["cabins", "events", "hotels", "flights", "blog"].map(loadFile)); }).then(function () {
       db = F.prices.db; if (!F.cabins.db.cabins) F.cabins.db.cabins = [];
       GEN.forEach(function (k) { if (!Array.isArray(F[k].db[F[k].list])) F[k].db[F[k].list] = []; });
       $("#login").hidden = true; $("#app").hidden = false; render(); return true;
@@ -377,7 +495,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
           return '<div class="row"><span class="dot" style="background:' + c[1] + '"></span><span class="nm">الفئة ' + esc(labels[c[0]] || c[0]) + "<small>" + c[2] + "</small></span>" + money(r[c[0]], "sc." + id + "." + c[0]) + "</div>";
         }).join("") + "</article>";
     }).join("");
-    renderPkgs(); renderCabs(); GEN.forEach(renderGen);
+    renderPkgs(); renderCabs(); GEN.forEach(renderGen); renderBlog();
     $("#curr").value = (db.currency && (db.currency.code + "|" + db.currency.symbol)) || "USD|$";
     update();
   }
@@ -420,7 +538,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
   $("#q").addEventListener("input", renderPkgs);
   $("#reg").addEventListener("change", renderPkgs);
   $("#curr").addEventListener("change", function () { var p = this.value.split("|"); db.currency = { code: p[0], symbol: p[1] }; render(); });
-  var SUBS = { ev: ["المباريات والبطولات", "أضف بطولة أو مباراة، أو عدّلها، أو احذفها — وتظهر في صفحة تذاكر المباريات."], ho: ["الفنادق", "أضف الفنادق التي تتعامل معها بصورها الحقيقية وسعر الليلة."], fl: ["الطيران", "أضف وجهات الطيران التي تريد إبرازها، مع مدة الرحلة والسعر إن أردت."], sc: ["الأسعار", "اكتب السعر بالأرقام. اترك الخانة فارغة ليظهر «عند الطلب»."], pk: ["الأسعار", "اكتب السعر بالأرقام. اترك الخانة فارغة ليظهر «حسب الموسم»."], cb: ["الأكواخ والبنغلات", "أضف الأكواخ التي تتعامل معها بصورها الحقيقية وسعر الليلة."], st: ["الإعدادات", "إعدادات عامة للعرض."] };
+  var SUBS = { bl: ["المدونة", "اكتب مقالاتك وأضف صورها وانشرها فوراً أو جدولها لموعد لاحق."], ev: ["المباريات والبطولات", "أضف بطولة أو مباراة، أو عدّلها، أو احذفها — وتظهر في صفحة تذاكر المباريات."], ho: ["الفنادق", "أضف الفنادق التي تتعامل معها بصورها الحقيقية وسعر الليلة."], fl: ["الطيران", "أضف وجهات الطيران التي تريد إبرازها، مع مدة الرحلة والسعر إن أردت."], sc: ["الأسعار", "اكتب السعر بالأرقام. اترك الخانة فارغة ليظهر «عند الطلب»."], pk: ["الأسعار", "اكتب السعر بالأرقام. اترك الخانة فارغة ليظهر «حسب الموسم»."], cb: ["الأكواخ والبنغلات", "أضف الأكواخ التي تتعامل معها بصورها الحقيقية وسعر الليلة."], st: ["الإعدادات", "إعدادات عامة للعرض."] };
   $$(".tab").forEach(function (t) {
     t.addEventListener("click", function () {
       $$(".tab").forEach(function (x) { x.setAttribute("aria-selected", x === t ? "true" : "false"); });
@@ -687,6 +805,258 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     toast("تمت إضافة التعديل — اضغط «حفظ التغييرات» لنشره على الموقع.");
   });
 
+  /* ---------- blog: write, photos, schedule, SEO check, writing assistant ---------- */
+  F.blog = { path: "data/blog.json", list: "posts" }; GEN.push("blog");
+  var takenSlugs = []; // built-in articles (from the sitemap) — the panel cannot reuse their links
+  fetch("../sitemap.xml", { cache: "no-store" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (x) { var m, re = /oyatourism\.com\/blog\/([a-z0-9-]+)\//g; while ((m = re.exec(x))) if (takenSlugs.indexOf(m[1]) < 0) takenSlugs.push(m[1]); }).catch(function () {});
+  var istNow = function () { var p = {}; new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + "-" + p.month + "-" + p.day + "T" + (p.hour === "24" ? "00" : p.hour) + ":" + p.minute; };
+  var whenMs = function (w) { return w ? new Date(w + ":00+03:00").getTime() : 0; };
+  var fmtWhen = function (w) { return w ? w.replace("T", " — ") : ""; };
+  function postState(p) {
+    if (p.status !== "publish") return ["مسودة", "off"];
+    if (whenMs(p.publishAt) > Date.now()) return ["مجدول: " + fmtWhen(p.publishAt), "sch"];
+    return ["منشور", ""];
+  }
+  function renderBlog() {
+    var list = F.blog.db.posts, box = $("#posts"); if (!box) return;
+    box.innerHTML = list.length ? list.map(function (p, i) {
+      var st = postState(p), th = p.cover ? (localImg["photos/" + p.cover] || "../assets/img/photos/" + p.cover + "-640.webp") : "";
+      return '<div class="cabrow">' + (th ? '<img class="th" src="' + esc(th) + '" alt="">' : '<span class="th ico" aria-hidden="true">✎</span>') +
+        "<div><h3>" + esc(p.title || "بدون عنوان") + '<span class="pill' + (st[1] === "off" ? " off" : "") + '"' + (st[1] === "sch" ? ' style="background:#FFF3DC;color:#8A4B00"' : "") + ">" + esc(st[0]) + "</span></h3><p>" +
+        esc([p.category, (p.words || 0) + " كلمة", p.slug ? "/blog/" + p.slug + "/" : ""].filter(Boolean).join(" • ")) + "</p></div>" +
+        '<div class="acts">' + (st[0] === "منشور" && p.slug ? '<a class="btn btn--ghost sbtn" href="../blog/' + esc(p.slug) + '/" target="_blank" rel="noopener">عرض</a>' : "") +
+        '<button class="btn btn--ghost sbtn" type="button" data-pedit="' + i + '">تعديل</button><button class="btn btn--danger sbtn" type="button" data-pdel="' + i + '">حذف</button></div></div>';
+    }).join("") : '<div class="card empty">لا توجد مقالات بعد. اضغط «مقال جديد» لكتابة أول مقال.</div>';
+  }
+  $("#posts").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.pedit != null) openPost(+b.dataset.pedit);
+    if (b.dataset.pdel != null) { var p = F.blog.db.posts[+b.dataset.pdel]; if (confirm("حذف المقال «" + (p.title || "") + "»؟ تختفي صفحته من الموقع بعد الحفظ.")) { F.blog.db.posts.splice(+b.dataset.pdel, 1); renderBlog(); update(); } }
+  });
+  $("#addPost").addEventListener("click", function () { openPost(-1); });
+
+  var bi = -1, bp = null, aiUndo = null, rte = $("#bBody");
+  // stored body uses site paths (assets/…); the editor shows them from the admin folder (../assets/…)
+  var toEditor = function (h) { return String(h || "").replace(/src="assets\//g, 'src="../assets/'); };
+  function fromEditor() {
+    var c = rte.cloneNode(true);
+    $$("img", c).forEach(function (im) { var p = im.getAttribute("data-p"); if (p) im.setAttribute("src", p); im.removeAttribute("data-p"); im.removeAttribute("style"); });
+    $$("[style]", c).forEach(function (x) { x.removeAttribute("style"); });
+    // top-level text and inline pieces go into paragraphs; editor <div>s become <p>
+    var BLK = /^(P|H2|H3|UL|OL|BLOCKQUOTE|FIGURE|TABLE|DIV)$/, cur = null;
+    [].slice.call(c.childNodes).forEach(function (n) {
+      if (n.nodeType === 1 && BLK.test(n.nodeName)) { cur = null; if (n.nodeName === "DIV") { var np = document.createElement("p"); np.innerHTML = n.innerHTML; c.replaceChild(np, n); } return; }
+      if (n.nodeType === 3 && !n.textContent.trim()) { if (cur) cur.appendChild(n); else c.removeChild(n); return; }
+      if (n.nodeName === "BR" && !cur) { c.removeChild(n); return; }
+      if (!cur) { cur = document.createElement("p"); c.insertBefore(cur, n); }
+      cur.appendChild(n);
+    });
+    $$("p", c).forEach(function (x) { if (!x.textContent.trim() && !x.querySelector("img")) x.parentNode.removeChild(x); });
+    return c.innerHTML.replace(/src="\.\.\/assets\//g, 'src="assets/').replace(/&nbsp;/g, " ").trim();
+  }
+  var wordsOf = function (h) { return String(h || "").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length; };
+  function openPost(i) {
+    bi = i; aiUndo = null; $("#aiUndo").hidden = true;
+    bp = i < 0 ? { id: "p" + Date.now().toString(36), title: "", slug: "", body: "", category: "دليل السفر", keyword: "", seoTitle: "", description: "", excerpt: "", cover: "", coverAlt: "", faq: [], status: "draft", publishAt: istNow(), created: today() } : clone(F.blog.db.posts[i]);
+    $("#bHead").textContent = i < 0 ? "مقال جديد" : "تعديل المقال";
+    $("#bTitle").value = bp.title; rte.innerHTML = toEditor(bp.body);
+    try { document.execCommand("defaultParagraphSeparator", false, "p"); } catch (e) {}
+    $$("img", rte).forEach(function (im) { var p = (im.getAttribute("src") || "").replace(/^\.\.\//, ""); if (localImg[p]) { im.setAttribute("data-p", p); im.src = localImg[p]; } });
+    $$('input[name="bStatus"]').forEach(function (x) { x.checked = x.value === (bp.status || "draft"); });
+    $("#bWhen").value = bp.publishAt || istNow();
+    var cat = $("#bCat"); if (![].some.call(cat.options, function (o) { return o.value === bp.category; })) cat.add(new Option(bp.category, bp.category)); cat.value = bp.category;
+    $("#bCoverAlt").value = bp.coverAlt || ""; $("#bKey").value = bp.keyword || ""; $("#bSlug").value = bp.slug || ""; $("#bSeo").value = bp.seoTitle || ""; $("#bDesc").value = bp.description || ""; $("#bEx").value = bp.excerpt || "";
+    drawFaq(); drawCover(); $("#bErr").textContent = ""; aiState();
+    $("#bEditor").hidden = false; document.body.style.overflow = "hidden"; $("#bEditor").scrollTop = 0; $("#bTitle").focus(); check();
+  }
+  function closePost() { $("#bEditor").hidden = true; document.body.style.overflow = ""; bp = null; }
+  $("#bCancel").addEventListener("click", function () { if (bp && JSON.stringify(collect(true)) !== JSON.stringify(bi < 0 ? null : F.blog.db.posts[bi]) && !confirm("إغلاق دون حفظ التعديلات على هذا المقال؟")) return; closePost(); });
+  // FAQ rows
+  function drawFaq() {
+    $("#bFaq").innerHTML = (bp.faq || []).map(function (f, i) { return '<div class="faqrow"><div><input type="text" data-fq="' + i + '" value="' + esc(f.q) + '" placeholder="السؤال"><textarea data-fa="' + i + '" placeholder="الجواب">' + esc(f.a) + '</textarea></div><button class="btn btn--danger sbtn" type="button" data-frm="' + i + '" aria-label="حذف السؤال">✕</button></div>'; }).join("");
+  }
+  $("#bFaqAdd").addEventListener("click", function () { syncFaq(); bp.faq.push({ q: "", a: "" }); drawFaq(); });
+  $("#bFaq").addEventListener("click", function (e) { var b = e.target.closest("[data-frm]"); if (b) { syncFaq(); bp.faq.splice(+b.dataset.frm, 1); drawFaq(); check(); } });
+  function syncFaq() { bp.faq = (bp.faq || []).map(function (f, i) { var q = $('[data-fq="' + i + '"]'), a = $('[data-fa="' + i + '"]'); return { q: q ? q.value.trim() : f.q, a: a ? a.value.trim() : f.a }; }); }
+  // cover: full size + 1024 + 640 WebP in assets/img/photos (the site's responsive images) and a 1200×630 share image
+  function drawCover() {
+    var k = bp.cover, src = k ? (localImg["photos/" + k] || "../assets/img/photos/" + k + "-640.webp") : "";
+    $("#bCover").innerHTML = k ? '<div class="ph' + (k.indexOf("uploading") === 0 ? " up" : "") + '"><img src="' + esc(src) + '" alt=""><button class="x" type="button" id="bCoverX" aria-label="حذف الصورة">✕</button></div>' : '<label class="addph">＋ صورة الغلاف<input type="file" accept="image/*" id="bCoverF"></label>';
+  }
+  $("#bCover").addEventListener("click", function (e) { if (e.target.id === "bCoverX") { bp.cover = ""; drawCover(); check(); } });
+  $("#bCover").addEventListener("change", function (e) { if (e.target.id === "bCoverF" && e.target.files[0]) uploadCover(e.target.files[0]); });
+  function resized(img, maxW, maxH, crop, type, q) {
+    var c = document.createElement("canvas"), sw = img.width, sh = img.height, sx = 0, sy = 0;
+    if (crop) { var r = maxW / maxH; if (sw / sh > r) { sx = (sw - sh * r) / 2; sw = sh * r; } else { sy = (sh - sw / r) / 2; sh = sw / r; } c.width = maxW; c.height = maxH; }
+    else { var s = Math.min(1, maxW / sw); c.width = Math.round(sw * s); c.height = Math.round(sh * s); }
+    c.getContext("2d").drawImage(img, sx, sy, sw, sh, 0, 0, c.width, c.height);
+    return new Promise(function (res) { c.toBlob(function (b) { b.arrayBuffer().then(function (x) { res(new Uint8Array(x)); }); }, type, q); });
+  }
+  var webpOK = (function () { var c = document.createElement("canvas"); c.width = c.height = 1; return c.toDataURL("image/webp").indexOf("data:image/webp") === 0; })();
+  function putFile(path, bytes, msg) { return gh("PUT", path, { message: msg, content: b64bytes(bytes), branch: BRANCH }).then(function (r) { if (!r.ok) throw r.status; }); }
+  function loadImg(file) { return new Promise(function (res, rej) { var u = URL.createObjectURL(file), im = new Image(); im.onload = function () { res([im, u]); }; im.onerror = function () { rej("img"); }; im.src = u; }); }
+  function uploadCover(file) {
+    if (!webpOK) { toast("هذا المتصفح لا يدعم حفظ الصور بصيغة WebP. استخدم Chrome أو Edge أو Firefox.", "bad"); return; }
+    var post = bp, key = "ob-" + post.id + "-" + Date.now().toString(36); post.cover = "uploading"; drawCover();
+    loadImg(file).then(function (x) {
+      var im = x[0], u = x[1], msg = "صورة غلاف مقال: " + ($("#bTitle").value.trim() || post.id);
+      localImg["photos/" + key] = u;
+      return Promise.all([resized(im, 1536, 0, false, "image/webp", 0.82), resized(im, 1024, 0, false, "image/webp", 0.8), resized(im, 640, 0, false, "image/webp", 0.78), resized(im, 1200, 630, true, "image/jpeg", 0.84)])
+        .then(function (b) { return putFile("assets/img/photos/" + key + ".webp", b[0], msg).then(function () { return Promise.all([putFile("assets/img/photos/" + key + "-1024.webp", b[1], msg), putFile("assets/img/photos/" + key + "-640.webp", b[2], msg), putFile("assets/img/og/" + key + ".jpg", b[3], msg)]); }); })
+        .then(function () { post.cover = key; if (bp === post) { drawCover(); check(); } });
+    }).catch(function (st) { post.cover = ""; if (bp === post) drawCover(); toast(st === "img" ? "هذا الملف ليس صورة." : "لم تُرفع الصورة: " + (typeof st === "number" ? why(st) : "حاول مرة أخرى."), "bad"); });
+  }
+  // images inside the article: one WebP (max 1400px) in assets/img/blog, inserted as a figure with its caption
+  var savedRange = null;
+  rte.addEventListener("keyup", keepRange); rte.addEventListener("mouseup", keepRange); rte.addEventListener("input", function () { keepRange(); check(); });
+  function keepRange() { var s = getSelection(); if (s.rangeCount && rte.contains(s.anchorNode)) savedRange = s.getRangeAt(0).cloneRange(); }
+  function restoreRange() { rte.focus(); if (savedRange) { var s = getSelection(); s.removeAllRanges(); s.addRange(savedRange); } }
+  $("#bImg").addEventListener("change", function (e) {
+    var file = e.target.files[0]; e.target.value = ""; if (!file) return;
+    var alt = prompt("اكتب وصفاً قصيراً للصورة (يظهر تحتها ويفيد محركات البحث):", "") || "";
+    var post = bp, path = "assets/img/blog/" + post.id + "-" + Date.now().toString(36) + ".webp";
+    loadImg(file).then(function (x) {
+      localImg[path] = x[1];
+      restoreRange();
+      document.execCommand("insertHTML", false, '<figure><img src="' + x[1] + '" data-p="' + path + '" data-up="1" alt="' + esc(alt) + '">' + (alt ? "<figcaption>" + esc(alt) + "</figcaption>" : "") + "</figure><p><br></p>");
+      return resized(x[0], 1400, 0, false, "image/webp", 0.8).then(function (b) { return putFile(path, b, "صورة في مقال: " + ($("#bTitle").value.trim() || post.id)); })
+        .then(function () { $$('img[data-p="' + path + '"]', rte).forEach(function (im) { im.removeAttribute("data-up"); }); check(); });
+    }).catch(function (st) { $$('img[data-p="' + path + '"]', rte).forEach(function (im) { var f = im.closest("figure"); (f || im).remove(); }); toast(st === "img" ? "هذا الملف ليس صورة." : "لم تُرفع الصورة: " + (typeof st === "number" ? why(st) : "حاول مرة أخرى."), "bad"); });
+  });
+  // toolbar
+  $(".rte-bar").addEventListener("mousedown", function (e) { if (e.target.closest("button")) e.preventDefault(); });
+  $(".rte-bar").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-cmd]"); if (!b) return; var c = b.dataset.cmd; restoreRange();
+    if (c === "h2" || c === "h3" || c === "p") document.execCommand("formatBlock", false, c);
+    if (c === "quote") document.execCommand("formatBlock", false, "blockquote");
+    if (c === "bold") document.execCommand("bold");
+    if (c === "ul") document.execCommand("insertUnorderedList");
+    if (c === "ol") document.execCommand("insertOrderedList");
+    if (c === "clear") { document.execCommand("removeFormat"); document.execCommand("formatBlock", false, "p"); }
+    if (c === "link") { var u = prompt("الصق الرابط: صفحة من موقعنا (مثل https://oyatourism.com/hotels/istanbul/) أو موقع آخر", "https://"); if (u && /^https?:\/\/\S+$/.test(u)) document.execCommand("createLink", false, u); }
+    keepRange(); check();
+  });
+  // paste as clean text (no fonts or colours from Word / websites); blank lines become paragraphs
+  rte.addEventListener("paste", function (e) {
+    var t = (e.clipboardData || window.clipboardData).getData("text/plain"); if (!t) return; e.preventDefault();
+    var html = t.replace(/\r/g, "").split(/\n{2,}/).map(function (p) { return "<p>" + esc(p).replace(/\n/g, "<br>") + "</p>"; }).join("");
+    document.execCommand("insertHTML", false, html); check();
+  });
+  ["#bTitle", "#bKey", "#bSlug", "#bSeo", "#bDesc", "#bEx", "#bCoverAlt", "#bWhen"].forEach(function (s) { $(s).addEventListener("input", check); });
+  $$('input[name="bStatus"]').forEach(function (x) { x.addEventListener("change", check); });
+  $("#bFaq").addEventListener("input", check);
+
+  /* live SEO check (no AI needed) */
+  function collect(soft) {
+    if (!bp) return null; syncFaq();
+    var o = clone(bp);
+    o.title = $("#bTitle").value.trim(); o.body = fromEditor(); o.words = wordsOf(o.body);
+    o.status = ($('input[name="bStatus"]:checked') || {}).value || "draft"; o.publishAt = $("#bWhen").value || istNow();
+    o.category = $("#bCat").value; o.coverAlt = $("#bCoverAlt").value.trim(); o.keyword = $("#bKey").value.trim();
+    o.slug = $("#bSlug").value.trim().toLowerCase(); o.seoTitle = $("#bSeo").value.trim(); o.description = $("#bDesc").value.trim(); o.excerpt = $("#bEx").value.trim();
+    o.faq = (bp.faq || []).filter(function (f) { return f.q || f.a; });
+    if (!soft) o.updated = today();
+    return o;
+  }
+  function check() {
+    if (!bp) return; var o = collect(true), k = o.keyword, body = o.body, txt = body.replace(/<[^>]+>/g, " "), firstP = (/<p>([\s\S]*?)<\/p>/.exec(body) || [, ""])[1];
+    var h2 = (body.match(/<h2/g) || []).length, imgs = body.match(/<img[^>]*>/g) || [], noAlt = imgs.filter(function (x) { return !/alt="[^"]+"/.test(x); }).length;
+    var seoT = o.seoTitle || o.title, has = function (s) { return k && s && s.indexOf(k) > -1; };
+    var internal = /href="(https?:\/\/(www\.)?oyatourism\.com\/|\.\.\/|\/)/.test(body);
+    var slugOk = /^[a-z0-9]+(-[a-z0-9]+)*$/.test(o.slug) && o.slug.length >= 3 && o.slug.length <= 80, slugFree = takenSlugs.indexOf(o.slug) < 0 && !F.blog.db.posts.some(function (p, i) { return i !== bi && p.slug === o.slug; });
+    var rows = [
+      [seoT.length >= 20 && seoT.length <= 65, "عنوان Google بين 20 و65 حرفاً (الآن " + seoT.length + ")"],
+      [o.description.length >= 110 && o.description.length <= 165, "الوصف بين 110 و165 حرفاً (الآن " + o.description.length + ")"],
+      [slugOk && slugFree, !o.slug ? "اكتب رابطاً بالإنجليزية" : !slugOk ? "الرابط بأحرف إنجليزية صغيرة وأرقام وشرطات فقط" : !slugFree ? "هذا الرابط مستخدم لمقال آخر" : "الرابط صالح"],
+      [!!k, "اختر كلمة مفتاحية يبحث عنها الزبون"],
+      [has(seoT), "الكلمة المفتاحية في العنوان"],
+      [has(o.description), "الكلمة المفتاحية في الوصف"],
+      [has(firstP), "الكلمة المفتاحية في الفقرة الأولى"],
+      [k && (body.match(/<h2[^>]*>[\s\S]*?<\/h2>/g) || []).some(function (h) { return h.indexOf(k) > -1; }), "الكلمة المفتاحية في أحد العناوين"],
+      [o.words >= 600, "طول المقال 600 كلمة أو أكثر (الآن " + o.words + ")"],
+      [h2 >= 2, "عنوانان أو أكثر داخل المقال (الآن " + h2 + ")"],
+      [!!o.cover && o.cover !== "uploading" && !!o.coverAlt, "صورة غلاف مع وصفها"],
+      [imgs.length > 0 && !noAlt, imgs.length ? (noAlt ? noAlt + " صورة بدون وصف" : "كل الصور لها وصف") : "أضف صورة واحدة على الأقل داخل المقال"],
+      [internal, "رابط واحد على الأقل لصفحة من موقعنا (فندق، برنامج، تأشيرة…)"],
+      [o.faq.filter(function (f) { return f.q && f.a; }).length >= 2, "سؤالان شائعان أو أكثر في آخر المقال"]
+    ];
+    var ok = rows.filter(function (r) { return r[0]; }).length, pct = Math.round(ok / rows.length * 100), col = pct >= 80 ? "var(--ok)" : pct >= 50 ? "#D98E04" : "var(--bad)";
+    $("#bSeoCheck").innerHTML = '<div class="bar"><i style="width:' + pct + "%;background:" + col + '"></i></div><b style="color:' + col + '">جاهزية المقال لمحركات البحث: ' + pct + "%</b>" + rows.map(function (r) { return '<p class="' + (r[0] ? "y" : "n") + '">' + (r[0] ? "✓" : "○") + " <span>" + esc(r[1]) + "</span></p>"; }).join("");
+    $("#bCount").textContent = o.words + " كلمة • " + Math.max(1, Math.round(o.words / 200)) + " دقائق قراءة";
+    $("#bSeoN").textContent = (o.seoTitle ? o.seoTitle.length + " حرفاً" : "فارغ = يُستخدم عنوان المقال");
+    $("#bDescN").textContent = o.description.length + " / 160 حرفاً"; $("#bDescN").className = "bnote " + (o.description.length >= 110 && o.description.length <= 165 ? "ok" : "bad");
+    var w = $("#bWhenNote");
+    if (o.status !== "publish") { w.textContent = "مسودة: لا تظهر على الموقع."; w.className = "bnote"; }
+    else if (whenMs(o.publishAt) > Date.now() + 60000) { w.textContent = "مجدول: يُنشر تلقائياً في " + fmtWhen(o.publishAt) + " (خلال ساعة من الموعد)."; w.className = "bnote ok"; }
+    else { w.textContent = "يُنشر بعد الحفظ خلال دقائق."; w.className = "bnote ok"; }
+  }
+  $("#bOk").addEventListener("click", function () {
+    var o = collect(false), err = "";
+    if (!o.title) err = "اكتب عنوان المقال.";
+    else if (/data-up="1"/.test(rte.innerHTML) || o.cover === "uploading") err = "انتظر حتى ينتهي رفع الصور.";
+    else if (o.status === "publish") {
+      if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(o.slug) || o.slug.length < 3) err = "قبل النشر اكتب رابط المقال بالإنجليزية (مثل uzungol-winter-guide)، أو احفظه كمسودة.";
+      else if (takenSlugs.indexOf(o.slug) > -1 || F.blog.db.posts.some(function (p, i) { return i !== bi && p.slug === o.slug; })) err = "هذا الرابط مستخدم لمقال آخر. اختر رابطاً مختلفاً.";
+      else if (!o.description) err = "قبل النشر اكتب وصف Google للمقال.";
+      else if (o.words < 120) err = "المقال قصير جداً للنشر. أكمل كتابته أو احفظه كمسودة.";
+    }
+    if (err) { $("#bErr").textContent = err; return; }
+    if (o.cover === "uploading") o.cover = "";
+    if (bi < 0) F.blog.db.posts.unshift(o); else F.blog.db.posts[bi] = o;
+    closePost(); renderBlog(); update();
+    toast("تم حفظ المقال في القائمة — اضغط «حفظ التغييرات» لنشره على الموقع.");
+  });
+
+  /* writing assistant: the owner's own Claude API key, called straight from this page (no server of ours) */
+  var aiKey = function () { try { return localStorage.getItem("oya-ai") || ""; } catch (e) { return ""; } };
+  var keyIn = $("#aiKey"); if (keyIn) { keyIn.value = aiKey(); keyIn.addEventListener("change", function () { try { if (keyIn.value.trim()) localStorage.setItem("oya-ai", keyIn.value.trim()); else localStorage.removeItem("oya-ai"); } catch (e) {} toast(keyIn.value.trim() ? "تم حفظ مفتاح المساعد على هذا الجهاز." : "تم حذف مفتاح المساعد من هذا الجهاز.", "ok"); }); }
+  function aiState() { $("#aiState").textContent = aiKey() ? "يقرأ المساعد مقالك ويعيد صياغته أو يقترح، وأنت تراجع قبل الحفظ. لا يضيف أسعاراً أو معلومات من عنده." : "لتفعيله أضف مفتاح Claude API من تبويب «الإعدادات»."; }
+  var BRAND = "أنت محرر محتوى سياحي عربي محترف لموقع «أويا للسياحة» (OYA Tourism)، وكالة سفر في إسطنبول تخدم الزبائن العرب: فنادق، أكواخ، طيران، برامج سياحية، تأشيرات، وتذاكر مباريات. اكتب بالعربية الفصحى المعاصرة السهلة، بنبرة دافئة وواثقة وعملية. قواعد صارمة: لا تخترع معلومات أو أسعاراً أو تواريخ أو أرقاماً أو أسماء أو تقييمات أو ضمانات أو ادعاءات ترخيص؛ استخدم فقط ما يقدمه المستخدم. احتفظ بكل رقم وتاريخ واسم ورابط وصورة كما هي. لا تَعِد بحجز مضمون؛ أويا تساعد في الحجز وتؤكد التوفر كتابةً. الوسوم المسموحة في HTML فقط: p, h2, h3, strong, em, ul, ol, li, blockquote, a (href), figure, img (src, alt), figcaption. لا تستخدم h1 ولا أنماط CSS.";
+  function claude(task, schema) {
+    var key = aiKey(); if (!key) return Promise.reject("nokey");
+    var body = { model: "claude-opus-5-5", max_tokens: 16000, system: BRAND, output_config: { effort: "medium", format: { type: "json_schema", schema: schema } }, fallbacks: "default", messages: [{ role: "user", content: task }] };
+    return fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2026-10-21", "anthropic-beta": "server-side-fallback-2026-07-01", "anthropic-dangerous-direct-browser-access": "true" }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw { st: r.status, msg: j.error && j.error.message }; return j; }); })
+      .then(function (j) {
+        if (j.stop_reason === "refusal") throw { msg: "اعتذر المساعد عن هذا الطلب. عدّل النص وحاول مرة أخرى." };
+        if (j.stop_reason === "max_tokens") throw { msg: "المقال طويل جداً على المساعد في طلب واحد. جرّب على جزء منه." };
+        var t = (j.content || []).filter(function (b) { return b.type === "text"; }).map(function (b) { return b.text; }).join("");
+        return JSON.parse(t);
+      });
+  }
+  var aiErr = function (e) { if (e === "nokey") return "أضف مفتاح Claude API من تبويب «الإعدادات» أولاً."; if (e && e.st === 401) return "مفتاح Claude API غير صحيح."; if (e && e.st === 429) return "المساعد مشغول الآن، حاول بعد دقيقة."; if (e && e.st === 529) return "خدمة Claude مزدحمة الآن، حاول بعد قليل."; return (e && e.msg) || "تعذّر الاتصال بالمساعد. تحقّق من الإنترنت وحاول مرة أخرى."; };
+  $(".bbox.ai").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-ai]"); if (!b || !bp) return;
+    var box = this, kind = b.dataset.ai, o = collect(true), label = b.textContent;
+    if (kind !== "draft" && o.words < 40) { toast("اكتب المقال أولاً (أو استخدم «اكتب مسودة من نقاطي»).", "bad"); return; }
+    if (kind === "draft" && !$("#aiNotes").value.trim()) { toast("اكتب نقاطك ومعلوماتك أولاً.", "bad"); return; }
+    var job;
+    if (kind === "polish") job = claude("أعد صياغة المقال التالي ليصبح سلساً وممتعاً في السرد ومريحاً للقراءة على الجوال: فقرات قصيرة (2–4 جمل)، انتقالات طبيعية بين الأقسام، مقدمة تشد القارئ وخاتمة تدعوه بلطف للتواصل مع أويا. حافظ على كل المعلومات والأرقام والروابط والصور ووصفها، وعلى العناوين (h2/h3) مع تحسين صياغتها، واستخدم الكلمة المفتاحية «" + o.keyword + "» بشكل طبيعي في المقدمة وفي عنوان واحد على الأقل دون حشو. لا تحذف أي معلومة ولا تضف معلومة جديدة.\n\nالعنوان: " + o.title + "\n\nالمقال (HTML):\n" + o.body,
+      { type: "object", properties: { html: { type: "string", description: "المقال المحسّن بصيغة HTML بالوسوم المسموحة فقط" } }, required: ["html"], additionalProperties: false });
+    if (kind === "draft") job = claude("اكتب مسودة مقال لمدونة أويا للسياحة بعنوان: «" + (o.title || "") + "»" + (o.keyword ? " والكلمة المفتاحية: «" + o.keyword + "»" : "") + ". استخدم فقط المعلومات في النقاط التالية، ورتّبها في مقدمة ثم أقسام بعناوين h2 (وh3 عند الحاجة) ثم خاتمة تدعو للتواصل مع أويا. حيث تنقص معلومة مهمة (سعر، تاريخ، مدة…) لا تخترعها، بل اكتب مكانها [أضف: …] ليكملها صاحب الموقع.\n\nالنقاط:\n" + $("#aiNotes").value.trim(),
+      { type: "object", properties: { html: { type: "string" }, title: { type: "string", description: "عنوان مقترح إن لم يوجد عنوان" } }, required: ["html", "title"], additionalProperties: false });
+    if (kind === "seo") job = claude("اقرأ المقال التالي واقترح عناصر الظهور في محركات البحث بالعربية، من محتوى المقال فقط:\n- seoTitle: عنوان Google جذاب بين 40 و60 حرفاً يتضمن الكلمة المفتاحية في أوله إن أمكن.\n- description: وصف بين 130 و160 حرفاً يلخص فائدة المقال ويدعو للقراءة.\n- slug: رابط قصير بالإنجليزية بأحرف صغيرة وشرطات (3–6 كلمات).\n- keyword: أفضل كلمة مفتاحية عربية يبحث بها الزبون (استخدم الحالية إن كانت جيدة).\n- excerpt: مقتطف من جملتين لبطاقة المقال.\n- faq: 3 أسئلة يسألها الزبائن فعلاً، وأجوبتها مأخوذة من المقال فقط.\n\nالعنوان: " + o.title + "\nالكلمة المفتاحية الحالية: " + (o.keyword || "—") + "\n\nالمقال:\n" + o.body.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 30000),
+      { type: "object", properties: { seoTitle: { type: "string" }, description: { type: "string" }, slug: { type: "string" }, keyword: { type: "string" }, excerpt: { type: "string" }, faq: { type: "array", items: { type: "object", properties: { q: { type: "string" }, a: { type: "string" } }, required: ["q", "a"], additionalProperties: false } } }, required: ["seoTitle", "description", "slug", "keyword", "excerpt", "faq"], additionalProperties: false });
+    box.classList.add("busy"); b.textContent = "⏳ يعمل المساعد… (قد يأخذ دقيقة)";
+    job.then(function (r) {
+      if (!bp) return;
+      aiUndo = { body: fromEditor(), seo: { k: $("#bKey").value, s: $("#bSlug").value, t: $("#bSeo").value, d: $("#bDesc").value, e: $("#bEx").value, faq: clone(bp.faq), title: $("#bTitle").value } };
+      if (r.html) { rte.innerHTML = toEditor(r.html); $$("img", rte).forEach(function (im) { var p = (im.getAttribute("src") || "").replace(/^\.\.\//, ""); if (localImg[p]) { im.setAttribute("data-p", p); im.src = localImg[p]; } }); }
+      if (kind === "draft" && !$("#bTitle").value.trim() && r.title) $("#bTitle").value = r.title;
+      if (kind === "seo") {
+        $("#bSeo").value = r.seoTitle || ""; $("#bDesc").value = r.description || ""; $("#bEx").value = r.excerpt || ""; if (!$("#bKey").value.trim()) $("#bKey").value = r.keyword || ""; else if (r.keyword && r.keyword !== $("#bKey").value.trim()) toast("اقترح المساعد كلمة مفتاحية: «" + r.keyword + "» — غيّرها بنفسك إن أعجبتك.");
+        var sl = String(r.slug || "").toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, ""); if (!$("#bSlug").value.trim() || bp.status !== "publish") $("#bSlug").value = sl;
+        if (Array.isArray(r.faq) && r.faq.length) { syncFaq(); bp.faq = bp.faq.filter(function (f) { return f.q && f.a; }).concat(r.faq); drawFaq(); }
+      }
+      $("#aiUndo").hidden = false; check(); toast("جاهز ✓ — راجع النص قبل الحفظ.", "ok");
+    }).catch(function (e) { toast(aiErr(e), "bad"); }).then(function () { box.classList.remove("busy"); b.textContent = label; });
+  });
+  $("#aiUndo").addEventListener("click", function () {
+    if (!aiUndo || !bp) return; var u = aiUndo.seo;
+    rte.innerHTML = toEditor(aiUndo.body); $("#bKey").value = u.k; $("#bSlug").value = u.s; $("#bSeo").value = u.t; $("#bDesc").value = u.d; $("#bEx").value = u.e; $("#bTitle").value = u.title; bp.faq = u.faq; drawFaq();
+    aiUndo = null; $("#aiUndo").hidden = true; check();
+  });
+
   /* ---------- changes + save ---------- */
   function priceDirty() {
     if (!db || !F.prices.orig) return [];
@@ -704,7 +1074,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     var n = priceDirty().length, c = cabDirty(), parts = [];
     if (n) parts.push(n === 1 ? "تغيير واحد في الأسعار" : n === 2 ? "تغييران في الأسعار" : n + (n <= 10 ? " تغييرات في الأسعار" : " تغييراً في الأسعار"));
     if (c) parts.push("تعديلات على الأكواخ");
-    var GL = { events: "المباريات", hotels: "الفنادق", flights: "الطيران" }, g = GEN.filter(genDirty);
+    var GL = { events: "المباريات", hotels: "الفنادق", flights: "الطيران", blog: "المدونة" }, g = GEN.filter(genDirty);
     g.forEach(function (k) { parts.push("تعديلات على " + GL[k]); });
     $("#bar").classList.toggle("on", !!(n || c || g.length));
     $("#count").firstChild.nodeValue = parts.length ? parts.join(" + ") + " — غير محفوظة" : "لا توجد تغييرات";
@@ -726,10 +1096,10 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     btn.disabled = true; btn.textContent = "جارٍ الحفظ…";
     if (n) { db.updated = today(); chain = chain.then(function () { return put("prices", "تحديث الأسعار من لوحة التحكم (" + n + " " + (n === 1 ? "تغيير" : "تغييرات") + ")"); }); }
     if (c) { F.cabins.db.updated = today(); chain = chain.then(function () { return put("cabins", "تحديث الأكواخ من لوحة التحكم (" + F.cabins.db.cabins.length + " كوخ)"); }); }
-    GEN.filter(genDirty).forEach(function (k) { F[k].db.updated = today(); chain = chain.then(function () { return put(k, "تحديث " + { events: "المباريات", hotels: "الفنادق", flights: "وجهات الطيران" }[k] + " من لوحة التحكم"); }); });
+    GEN.filter(genDirty).forEach(function (k) { F[k].db.updated = today(); chain = chain.then(function () { return put(k, "تحديث " + { events: "المباريات", hotels: "الفنادق", flights: "وجهات الطيران", blog: "المدونة" }[k] + " من لوحة التحكم"); }); });
     chain.then(function () {
       btn.disabled = false; btn.textContent = "حفظ التغييرات";
-      $("#upd").textContent = "آخر تحديث للأسعار: " + (db.updated || "—"); update(); renderCabs(); GEN.forEach(renderGen);
+      $("#upd").textContent = "آخر تحديث للأسعار: " + (db.updated || "—"); update(); renderCabs(); GEN.forEach(renderGen); renderBlog();
       toast("تم الحفظ ✓ — تظهر التغييرات على الموقع خلال 2–5 دقائق.", "ok");
     }).catch(function (st) {
       btn.disabled = false; btn.textContent = "حفظ التغييرات"; update();

@@ -8,6 +8,7 @@ import { site } from "./site.mjs";
 import { ROOT_DIR, imageRegistry, photoExists } from "./lib/ui.mjs";
 import { renderPage } from "./lib/layout.mjs";
 import { destinationPage, packagePage, visaPage, postPage } from "./lib/templates.mjs";
+import { ownerPosts, pruneOwnerPages } from "./lib/ownerposts.mjs";
 import { homePage } from "./pages/home.mjs";
 import { flightsPage, hotelsPage } from "./pages/services.mjs";
 import { turkeyHub, worldHub, packagesHub, visaHub, blogHub } from "./pages/hubs.mjs";
@@ -32,6 +33,9 @@ const data = {
   hotels: await load("hotels.mjs"),
   extras: await load("services-extra.mjs"),
 };
+// articles written in the admin panel (data/blog.json): published ones whose time has come; a slug already
+// used by a built-in article is ignored so the panel can never replace or delete one
+data.ownerPosts = ownerPosts().filter((p) => !data.posts.some((x) => x.slug === p.slug));
 
 // prices database (data/prices.json, edited from /admin/): package "from" prices; new packages are added with null
 const PRICES_FILE = path.join(ROOT_DIR, "data/prices.json");
@@ -56,6 +60,7 @@ data.packages.forEach((p) => (data.titles[`packages/${p.slug}/`] = p.title));
 const hubOf = { saudi: "saudi-visa/", gcc: "gcc-visas/", intl: "visas/" };
 data.visas.forEach((v) => (data.titles[`${hubOf[v.group]}${v.slug}/`] = v.name));
 data.posts.forEach((p) => (data.titles[`blog/${p.slug}/`] = p.title));
+data.ownerPosts.forEach((p) => (data.titles[`blog/${p.slug}/`] = p.title));
 data.hotels.forEach((h) => (data.titles[`hotels/${h.slug}/`] = h.slug === "family-friendly" ? "فنادق محافظة وعائلية" : `فنادق ${h.city}`));
 data.extras.forEach((x) => (data.titles[x.path] = x.h1.split(":")[0]));
 Object.assign(data.titles, { "cabins/": "أكواخ وبنغلات", "flights/": "تذاكر طيران", "hotels/": "فنادق ومنتجعات", "turkey-tours/": "السياحة في تركيا", "world-tours/": "رحلات خارج تركيا", "packages/": "البرامج السياحية", "saudi-visa/": "تأشيرات السعودية", "gcc-visas/": "تأشيرات الخليج", "visas/": "التأشيرات الدولية", "matches/": "تذاكر المباريات", "matches/spanish-super-cup-2027/": "تذاكر كأس السوبر الإسباني 2027", "turkey-visa/": "تأشيرة تركيا للعرب" });
@@ -76,6 +81,7 @@ const pages = [
   superCupPage(data),
   blogHub(data),
   ...data.posts.map((p) => postPage(p, data)),
+  ...data.ownerPosts.map((p) => ({ ...postPage(p, data), noLocale: true })),
   ...data.hotels.map((h) => hotelCityPage(h, data)),
   ...data.extras.map((x) => extraPage(x, data)),
   ...(data.extras.length ? [offersHub(data)] : []),
@@ -143,6 +149,9 @@ const write = (p, html) => { const f = outFile(p); fs.mkdirSync(path.dirname(f),
 // remove language folders from a previous build (pages that no longer exist must not linger)
 for (const L of OTHERS) fs.rmSync(path.join(ROOT_DIR, L.prefix), { recursive: true, force: true });
 
+pruneOwnerPages(data.ownerPosts);
+// cards of Arabic-only articles (written in the panel) are left out of the other languages
+const stripArOnly = (html) => html.replace(/<article class="card post-card" data-ar-only[\s\S]*?<\/article>/g, "");
 const written = [];
 const titles = new Map();
 for (const page of pages) {
@@ -162,7 +171,7 @@ for (const page of pages) {
     t.page = page.path;
     const p = L.prefix + page.path;
     const d = p.split("/").filter(Boolean).length;
-    const html = localNumbers(t.html(post(renderPage(page, data, ver, L.code))), L.code);
+    const html = localNumbers(t.html(post(stripArOnly(renderPage(page, data, ver, L.code)))), L.code);
     written.push({ page, lang: L, path: p, out: write(p, fixRoots(html, "../".repeat(d), d > 1 ? "../".repeat(d - 1) : "./")) });
   }
 }

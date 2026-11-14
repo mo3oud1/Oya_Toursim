@@ -1,0 +1,43 @@
+# Rebuilds the site when the admin panel saves something in data/ (articles, prices, matches, hotels, flights)
+# and every hour, so scheduled articles go live on time. The generated pages are committed back to main.
+name: Build site
+on:
+  push:
+    branches: [main]
+    paths: ["data/**"]
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Anything to publish?
+        id: due
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then echo "run=$(node _src/due.mjs)" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
+      - name: Build
+        if: steps.due.outputs.run == 'yes'
+        run: node _src/build.mjs
+      - name: Commit the generated pages
+        if: steps.due.outputs.run == 'yes'
+        run: |
+          git config user.name "oya-site-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git reset -q -- data   # never write back the panel's own files
+          if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
+          git commit -m "Automatic build: publish changes from the admin panel"
+          for i in 1 2 3 4; do git pull --rebase -X theirs origin main && git push origin HEAD:main && break; sleep $((i * 5)); done
+          curl -sS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true
