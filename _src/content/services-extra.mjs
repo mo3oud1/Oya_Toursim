@@ -18,7 +18,7 @@ export default [
     path: "transfers/",
     kind: "service",
     icon: "car",
-    img: "svc-airport-transfer",
+    img: "home-transfer", // a real photograph (licensed)
     imgPrompt: "Photorealistic travel photography, a premium black passenger van with tinted windows and no brand logos or badges waiting at the curbside of a modern international airport terminal at dusk, a chauffeur in a dark suit placing suitcases into the open trunk, the van in the left half of the frame, glass terminal facade glowing with warm light, wet pavement reflections, the chauffeur seen from the side, no readable signs. Wide cinematic composition with the main subject in the left half of the frame and calmer, uncluttered space on the right half for headline text. Natural colors, high dynamic range, no text, no logos, no watermarks, landscape 3:2.",
     seo: {
       title: "استقبال وتوصيل المطارات في إسطنبول وتركيا | أويا",

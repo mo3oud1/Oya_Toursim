@@ -1869,3 +1869,27 @@ h3,h4{line-height:1.42}
 @keyframes capIn{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.hero__arch-frame img.is-on,.hero__cap.is-swap .hero__cap-t,.hero__cap.is-swap .hero__cap-n{animation:none}.hero__arch{translate:none}}
 @media print{.hero__arch{display:none!important}}
+
+/* ---------- service pages: section navigation that stays under the header ---------- */
+.hdr-off .jump{top:0}
+.jump{position:sticky;top:calc(var(--header-h) - 10px);transition:top .35s var(--ease);z-index:30;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.jump .container{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:8px}
+.jump .container::-webkit-scrollbar{display:none}
+.jump a:not(.btn){flex:none;padding:.5em .9em;border-radius:999px;color:var(--ink-2);font-weight:600;font-size:.93rem;text-decoration:none;white-space:nowrap;transition:background-color .25s,color .25s}
+.jump a:not(.btn):hover{background:var(--orange-100);color:var(--navy)}
+.jump a[aria-current="true"]{background:var(--navy);color:#fff}
+.jump__cta{flex:none;margin-inline-start:auto}
+:is(#overview,#options,#steps,#faq,#book){scroll-margin-top:calc(var(--header-h) + 50px)}
+@media (max-width:1023px){.jump__cta{display:none}}
+@media print{.jump{display:none}}
+/* trip stops read as a route: numbered, in visiting order */
+.route{counter-reset:stop}
+.route .svc{counter-increment:stop}
+.route .svc::after{content:counter(stop);position:absolute;top:18px;inset-inline-end:18px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-family:var(--ff-display);font-weight:700;font-size:.9rem}
+/* section cards with the page's photograph */
+.vcard--photo{padding-top:0;overflow:hidden}
+.vcard__ph{display:block;margin-inline:-24px;margin-bottom:6px;aspect-ratio:16/9;overflow:hidden;background:var(--line)}
+.vcard__ph--art{display:grid;place-items:center;background:linear-gradient(140deg,var(--navy-900),var(--navy) 70%,var(--blue));color:rgba(255,255,255,.9)}
+.vcard__ph--art .i{width:44px;height:44px}
+.vcard__ph img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+@media (hover:hover){.vcard--photo:hover .vcard__ph img{transform:scale(1.05)}}

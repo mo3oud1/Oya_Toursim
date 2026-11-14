@@ -26,6 +26,7 @@
       var goingDown = y > lastY && y > 420;
       var menuOpen = $(".has-mega.is-open");
       header.classList.toggle("is-hidden", goingDown && !menuOpen);
+      document.documentElement.classList.toggle("hdr-off", goingDown && !menuOpen); // bars that sit under the header move up with it
     }
     if (progress) {
       var h = d.documentElement.scrollHeight - w.innerHeight;
@@ -530,3 +531,20 @@ document.addEventListener("click", function (e) {
   var sec = a.closest("[id], section, header, footer, nav, .mbar, .fab-wa"), where = a.className.match(/fab-wa|mbar|si-wa|ss-wa|evt__go|cab|ctile/) || [];
   track(kind, { link_location: (sec && (sec.id || sec.tagName.toLowerCase())) || "page", link_type: where[0] || "link" });
 }, true);
+
+/* Section navigation on service pages: the link of the section in view is marked. */
+(function () {
+  var nav = document.querySelector("[data-jump]"); if (!nav || !window.IntersectionObserver) return;
+  var links = [].slice.call(nav.querySelectorAll('a[href^="#"]:not(.btn)')), map = {};
+  links.forEach(function (a) { var el = document.getElementById(a.getAttribute("href").slice(1)); if (el) map[el.id] = a; });
+  var io = new IntersectionObserver(function (en) {
+    en.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.removeAttribute("aria-current"); });
+      var a = map[e.target.id]; a.setAttribute("aria-current", "true");
+      var c = nav.querySelector(".container"); // keep the marked link in view without moving the page
+      if (c.scrollWidth > c.clientWidth && c.scrollBy) c.scrollBy({ left: a.getBoundingClientRect().left + a.offsetWidth / 2 - (c.getBoundingClientRect().left + c.clientWidth / 2), behavior: "smooth" });
+    });
+  }, { rootMargin: "-35% 0px -55% 0px" });
+  Object.keys(map).forEach(function (id) { io.observe(document.getElementById(id)); });
+})();

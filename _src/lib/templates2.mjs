@@ -2,7 +2,7 @@
 import { hotelsSection, HOTEL_CITIES } from "./catalog.mjs";
 import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
-import { factIcon, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, waBtn, waUrl } from "./ui.mjs";
+import { factIcon, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, waBtn, waUrl, photoSources } from "./ui.mjs";
 import { hotelForm, tourForm, transferForm, driverForm, dayTripForm, umrahForm, serviceForm } from "./forms.mjs";
 import { readFirst } from "./templates.mjs";
 import { cabinsSection } from "../pages/cabins.mjs";
@@ -101,19 +101,20 @@ export function extraPage(s, data) {
 ${pageHero({ crumbs, eyebrow: s.eyebrow || (isOffer ? "عرض موسمي" : "خدمة"), title: s.h1, lead: s.intro, icon: s.icon || "car", img: s.img, prompt: s.imgPrompt, alt: s.navLabel || s.h1, page: path,
     chips: (s.facts || []).slice(0, 3).map((f) => ({ icon: "check-circle", text: `${f.k}: ${strip(f.v).split(/[،(]/)[0]}` })),
     actions: `<a class="btn" href="#book">${ic(isOffer ? "calendar" : "send")}<span>${s.slug === "ramadan-umrah-2027" ? "سجّل اهتمامك" : s.group === "residency" ? "أرسل طلبك" : "احجز الآن"}</span></a>${waBtn(`مرحباً أويا، أرغب بالاستفسار عن: ${s.h1.split(":")[0]}.`, "واتساب", "btn btn--glass")}` })}
+${s.group ? `<nav class="jump" aria-label="نظرة سريعة" data-jump><div class="container"><a href="#overview">نظرة سريعة</a>${s.options && s.options.length ? `<a href="#options">${(s.optHead || { eyebrow: "الخيارات" }).eyebrow}</a>` : ""}${s.steps && s.steps.length ? `<a href="#steps">كيف تعمل</a>` : ""}<a href="#faq">أسئلة شائعة</a><a class="btn btn--sm jump__cta" href="#book">${s.group === "residency" ? "أرسل طلبك" : "احجز الآن"}</a></div></nav>` : ""}
 <section class="section section--tight"><div class="container">${kv(s.facts)}</div></section>
-<section class="section" style="padding-top:0">
+<section class="section" style="padding-top:0" id="overview">
   <div class="container split">
     <div class="prose" data-reveal><h2 class="h-l" style="margin-top:0">نظرة سريعة</h2>${s.overview.map((p) => `<p>${p}</p>`).join("")}</div>
     <div data-reveal="right">${s.includes && s.includes.length ? `<div class="incl" style="grid-template-columns:1fr"><div class="yes"><h3>${ic("check-circle")} ما تشمله الخدمة</h3><ul class="yes">${s.includes.map((x) => `<li>${ic("check")}<span>${x}</span></li>`).join("")}</ul></div></div>` : ""}</div>
   </div>
 </section>
 ${photoStrip(s.gallery, { eyebrow: "الحرمان الشريفان", title: "مكة المكرمة والمدينة المنورة", page: path })}
-${s.options && s.options.length ? `<section class="section section--white"><div class="container">${sectionHead(s.optHead || { eyebrow: "الخيارات", title: isOffer ? "ماذا نرتّب لك؟" : "اختر ما يناسبك" })}<div class="grid grid-3" data-stagger>${s.options.map((o) => `<div class="svc" data-reveal><span class="ico">${ic(o.icon || "sparkles")}</span><h3>${o.name}</h3><p>${o.text}</p></div>`).join("")}</div></div></section>` : ""}
+${s.options && s.options.length ? `<section class="section section--white" id="options"><div class="container">${sectionHead(s.optHead || { eyebrow: "الخيارات", title: isOffer ? "ماذا نرتّب لك؟" : "اختر ما يناسبك" })}<div class="grid ${s.group === "trips" ? "grid-4 route" : s.group && s.options.length === 4 ? "grid-4" : "grid-3"}" data-stagger>${s.options.map((o) => `<div class="svc" data-reveal><span class="ico">${ic(o.icon || "sparkles")}</span><h3>${o.name}</h3><p>${o.text}</p></div>`).join("")}</div></div></section>` : ""}
 ${s.items && s.items.length ? `<section class="section"><div class="container">${sectionHead({ eyebrow: "الجولات", title: "اختر جولتك اليومية", lead: "مدد الجولات تقريبية وتشمل التنقل بسيارة خاصة مع سائق يتحدث العربية." })}<div class="grid grid-3" data-stagger>${s.items.map((t) => `<article class="vcard" data-reveal><span class="chip" style="align-self:flex-start">${ic("pin")}من ${esc(t.from)} • ${esc(t.duration)}</span><h3>${esc(t.name)}</h3><p>${t.text}</p><div class="facts">${(t.stops || []).slice(0, 5).map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div><a class="link-arrow" href="#book" data-prefill="trip-select" data-prefill-value="${esc(t.name)}">احجز هذه الجولة ${ic("arrow")}</a></article>`).join("")}</div></div></section>` : ""}
 ${s.slug === "day-trips" && group("trips").length ? `<section class="section section--white"><div class="container">${sectionHead({ eyebrow: "جولات خاصة بسائق", title: "جولات لها صفحة مفصّلة", lead: "جولة خاصة مدتها نحو 10 ساعات بسيارة وسائق يتحدث العربية أو الإنجليزية، ولغات أخرى عند الطلب." })}${serviceCards(group("trips"))}</div></section>` : ""}
 ${suggested.length ? `<section class="section"><div class="container">${sectionHead({ eyebrow: "برامج مقترحة", title: "برامج تناسب هذا الموسم" })}<div class="grid grid-3" data-stagger>${suggested.map((p) => packageCard(p, path)).join("")}</div></div></section>` : ""}
-${s.steps && s.steps.length ? `<section class="section section--white"><div class="container">${sectionHead({ eyebrow: "كيف تعمل", title: "خطوات بسيطة", center: true })}${steps(s.steps)}</div></section>` : ""}
+${s.steps && s.steps.length ? `<section class="section section--white" id="steps"><div class="container">${sectionHead({ eyebrow: "كيف تعمل", title: "خطوات بسيطة", center: true })}${steps(s.steps)}</div></section>` : ""}
 ${s.checklist && s.checklist.length ? `<section class="section section--sky"><div class="container">${sectionHead({ eyebrow: "قائمة التحضير", title: s.slug === "ramadan-umrah-2027" ? "جدول التحضير لعمرة رمضان" : "قائمة الحجز المبكر" })}<ul class="docs">${s.checklist.map((x) => `<li>${ic("check-circle")}<span>${x}</span></li>`).join("")}</ul></div></section>` : ""}
 ${s.notes && s.notes.length ? `<section class="section section--tight"><div class="container stack">${s.notes.map((n) => `<div class="note note--warn" data-reveal>${ic("alert")}<span>${n}</span></div>`).join("")}</div></section>` : ""}
 <section class="section section--white" id="book">
@@ -133,12 +134,13 @@ ${s.group === "residency" ? ctaBand({ title: "عندك سؤال عن حالتك�
 }
 
 // cards linking to the pages of one section
-const serviceCards = (list) => `<div class="grid grid-3" data-stagger>${list.map((o) => `<article class="vcard" data-reveal><span class="ico ico--orange">${ic(o.icon || "compass")}</span><h3><a class="cover" href="{{root}}${o.path}">${esc(o.navLabel)}</a></h3><p>${o.card}</p><span class="link-arrow">التفاصيل ${ic("arrow")}</span></article>`).join("")}</div>`;
+// every card has the same top band: the page's photograph, or its icon on navy while a real photo is missing
+const serviceCards = (list) => `<div class="grid grid-3" data-stagger>${list.map((o) => `<article class="vcard vcard--photo" data-reveal>${o.img && photoSources(o.img) ? `<span class="vcard__ph"><img src="${photoSources(o.img).src.replace(/\.webp$/, "-640.webp")}" alt="" width="640" height="427" loading="lazy" decoding="async"></span>` : `<span class="vcard__ph vcard__ph--art" aria-hidden="true">${ic(o.icon || "compass")}</span>`}<h3><a class="cover" href="{{root}}${o.path}">${esc(o.navLabel)}</a></h3><p>${o.card}</p><span class="link-arrow">التفاصيل ${ic("arrow")}</span></article>`).join("")}</div>`;
 
 // section pages: activities and tickets, residency and approvals
 const HUBS = {
   activities: {
-    path: "activities/", nav: "tours", icon: "sailboat", name: "أنشطة وتذاكر",
+    path: "activities/", nav: "tours", icon: "sailboat", name: "أنشطة وتذاكر", img: "home-yacht",
     title: "أنشطة وتذاكر في إسطنبول: يخوت وسهرات وأماكن ترفيه | أويا",
     description: "يخت خاص في البوسفور، سهرة عشاء بحرية، وتذاكر الأكواريوم ومدن الألعاب وحديقة الحيوانات في إسطنبول، مع التوصيل من الفندق. احجز عبر واتساب.",
     h1: "أنشطة وتذاكر في إسطنبول",
@@ -161,7 +163,7 @@ export function serviceHub(key, data) {
   const crumbs = [{ name: "الرئيسية", path: "" }, { name: h.name, path: h.path }];
   const page = { path: h.path, nav: h.nav, crumbs, title: h.title, description: h.description };
   page.body = `
-${pageHero({ crumbs, eyebrow: h.name, title: h.h1, lead: h.lead, icon: h.icon, page: h.path, actions: waBtn(h.wa, "اسألنا عبر واتساب", "btn btn--wa") })}
+${pageHero({ crumbs, eyebrow: h.name, title: h.h1, lead: h.lead, icon: h.icon, img: h.img, alt: h.name, page: h.path, actions: waBtn(h.wa, "اسألنا عبر واتساب", "btn btn--wa") })}
 <section class="section"><div class="container">${serviceCards(list)}</div></section>
 <section class="section section--tight"><div class="container">${sectionHead({ eyebrow: "خدمات قريبة", title: "قد يهمك أيضاً" })}<div class="contact-tiles">${h.more.map((o) => `<a class="ctile" href="{{root}}${o.path}"><span class="ico">${ic(o.icon)}</span><div><b>${o.name}</b></div></a>`).join("")}</div></div></section>
 ${ctaBand({ wa: h.wa })}`;

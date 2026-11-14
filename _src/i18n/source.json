@@ -556,7 +556,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 238
+  "n": 239
  },
  {
   "id": "0b17849755",
@@ -568,7 +568,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 239
+  "n": 240
  },
  {
   "id": "6e452e064b",
@@ -4418,7 +4418,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 130
+  "n": 131
  },
  {
   "id": "9404de8145",
@@ -7465,7 +7465,7 @@
    "transfers/",
    "private-driver/"
   ],
-  "n": 25
+  "n": 28
  },
  {
   "id": "52a847b849",
@@ -7927,7 +7927,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 96
+  "n": 109
  },
  {
   "id": "f1dd35cf2a",
@@ -63419,7 +63419,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 21
+  "n": 53
  },
  {
   "id": "cd530df46e",
@@ -63527,7 +63527,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 7
+  "n": 9
  },
  {
   "id": "1b5a2424e5",
@@ -63622,7 +63622,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 21
+  "n": 37
  },
  {
   "id": "c60763beef",
@@ -64033,7 +64033,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 21
+  "n": 37
  },
  {
   "id": "a182037611",
@@ -67727,6 +67727,18 @@
   "n": 1
  },
  {
+  "id": "3205ad6f34",
+  "kind": "text",
+  "ar": "محطات الجولة",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 16
+ },
+ {
   "id": "79a0568bfc",
   "kind": "text",
   "ar": "حوالي 10 ساعات",
@@ -67850,18 +67862,6 @@
   "id": "eb3f34ae5c",
   "kind": "text",
   "ar": "تواصل مع فريقنا بالعربية عبر واتساب طوال اليوم.",
-  "pages": [
-   "day-trips/sapanca-masukiye/",
-   "day-trips/bursa/",
-   "day-trips/princes-islands/",
-   "day-trips/sile-agva/"
-  ],
-  "n": 8
- },
- {
-  "id": "3205ad6f34",
-  "kind": "text",
-  "ar": "محطات الجولة",
   "pages": [
    "day-trips/sapanca-masukiye/",
    "day-trips/bursa/",
@@ -71385,6 +71385,16 @@
   "n": 1
  },
  {
+  "id": "30146e8ab0",
+  "kind": "text",
+  "ar": "الأوراق",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/egypt-security-approval/"
+  ],
+  "n": 4
+ },
+ {
   "id": "d2a1638936",
   "kind": "text",
   "ar": "الجهة المانحة",
@@ -71502,16 +71512,6 @@
    "residency/tourist-residence-permit/"
   ],
   "n": 1
- },
- {
-  "id": "30146e8ab0",
-  "kind": "text",
-  "ar": "الأوراق",
-  "pages": [
-   "residency/tourist-residence-permit/",
-   "residency/egypt-security-approval/"
-  ],
-  "n": 2
  },
  {
   "id": "31ee3ad874",
@@ -71968,6 +71968,15 @@
   "n": 1
  },
  {
+  "id": "2b23d86f9b",
+  "kind": "text",
+  "ar": "قبل أن تقرر",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
   "id": "8504250125",
   "kind": "text",
   "ar": "لمن",
@@ -72071,15 +72080,6 @@
   "id": "a1377ed6e1",
   "kind": "text",
   "ar": "حجز الموعد ومتابعة الطلب حتى صدور القرار.",
-  "pages": [
-   "residency/kimlik-to-residence/"
-  ],
-  "n": 1
- },
- {
-  "id": "2b23d86f9b",
-  "kind": "text",
-  "ar": "قبل أن تقرر",
   "pages": [
    "residency/kimlik-to-residence/"
   ],
