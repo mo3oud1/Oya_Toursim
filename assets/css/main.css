@@ -1403,7 +1403,7 @@ h3,h4{line-height:1.42}
 }
 @media(max-width:400px){[dir="ltr"] .mbar a .i{display:none}}
 /* long words (Russian, Turkish, Portuguese) in big headings break instead of widening the page */
-[dir="ltr"] h1,[dir="ltr"] h2,[dir="ltr"] h3{overflow-wrap:break-word;hyphens:auto}
+[dir="ltr"] h1,[dir="ltr"] h2,[dir="ltr"] h3{overflow-wrap:break-word;hyphens:manual}
 @media(max-width:480px){[lang="ru"] .h-xl{font-size:clamp(1.55rem,6.4vw,1.9rem)}}
 .stadium>*{min-width:0}
 .stadium-body>*{min-width:0}
@@ -1605,3 +1605,8 @@ h3,h4{line-height:1.42}
 .cab-empty h3{margin:6px 0 0}
 .cab-empty p{margin:0 0 8px;color:var(--muted);max-width:46ch}
 .cab-sec[hidden]{display:none}
+
+/* notes inside a table card */
+.table-wrap>p{margin:0;padding:10px 16px 14px;line-height:1.7}
+/* cabin names are Latin: keep their own order inside Arabic pages */
+.cab__body h3{unicode-bidi:isolate}

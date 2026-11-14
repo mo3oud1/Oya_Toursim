@@ -43,10 +43,12 @@
       "</div></article>";
   }
 
-  fetch(root + "data/cabins.json?v=" + Math.floor(Date.now() / 60000), { cache: "no-cache" })
+  var ctl = window.AbortController ? new AbortController() : null; if (ctl) setTimeout(function () { ctl.abort(); }, 8000);
+  fetch(root + "data/cabins.json?v=" + Math.floor(Date.now() / 60000), { cache: "no-cache", signal: ctl ? ctl.signal : undefined })
     .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
     .then(function (db) {
-      var all = ((db && db.cabins) || []).filter(function (c) { return c && c.active !== false && c.name; });
+      var list0 = db && Array.isArray(db.cabins) ? db.cabins : [];
+      var all = list0.filter(function (c) { return c && typeof c === "object" && c.active !== false && c.name; }).map(function (c) { if (!Array.isArray(c.photos)) c.photos = []; if (!Array.isArray(c.features)) c.features = []; return c; });
       var cur = (db && db.currency) || "$";
       blocks.forEach(function (b) { setup(b, all, cur); });
     });

@@ -174,7 +174,7 @@
       if (!db) return;
       var cur = (db.currency && db.currency.symbol) || "$";
       var money = function (n) { return fmtN(n) + '<span class="cur">' + cur + "</span>"; };
-      var pk = {}; (db.packages || []).forEach(function (r) { pk[r.slug] = r.priceFrom; });
+      var pk = {}; (Array.isArray(db.packages) ? db.packages : []).forEach(function (r) { pk[r.slug] = r.priceFrom; });
       $$("[data-pkg-price]").forEach(function (el) {
         var slug = el.getAttribute("data-pkg-price"); if (!(slug in pk)) return;
         var v = pk[slug], per = el.hasAttribute("data-per");

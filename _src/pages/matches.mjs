@@ -152,7 +152,7 @@ const VENUE_MODEL = {
   sf2: { capacity: "حوالي 42 ألف مقعد", model: { upperRows: 16, closedCorners: true, singleTierEnd: "W" } },
   final: { capacity: "حوالي 53 ألف مقعد", model: { upperRows: 20, closedCorners: true, singleTierEnd: null } },
 };
-const priceText = (m, k) => (typeof m.prices?.[k] === "number" ? `${Number(m.prices[k]).toLocaleString("en-US")} ${CURRENCY.symbol}` : "عند الطلب");
+const priceText = (m, k) => (typeof m.prices?.[k] === "number" ? `${Number(m.prices[k]).toLocaleString("en-US")}${CURRENCY.symbol}` : "عند الطلب");
 function stadiumSection() {
   const cfg = {
     wa: "905399334331", currency: CURRENCY.symbol, categories: SEATS,

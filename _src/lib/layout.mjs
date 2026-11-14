@@ -253,6 +253,7 @@ ${(() => { // preload the LCP photo (page hero, or the home hero's first slide) 
 ${site.ga4 ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${site.ga4}"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${site.ga4}");</script>` : ""}
 </head>
 <body class="page-${page.nav || "x"} lang-${L.code}">
+${site.gtm ? `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${site.gtm}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>` : ""}
 <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
 <div class="progress" aria-hidden="true"></div>
 ${header(page, data, L)}

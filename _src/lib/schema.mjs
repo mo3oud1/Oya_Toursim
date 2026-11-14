@@ -91,13 +91,7 @@ export function tripNode(page, p) {
       numberOfItems: p.itinerary.length,
       itemListElement: p.itinerary.map((d, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "TouristAttraction", name: `اليوم ${d.day}: ${strip(d.title)}`, description: strip(d.text) } })),
     },
-    offers: {
-      "@type": "Offer",
-      url: abs(page.path),
-      availability: "https://schema.org/InStock",
-      ...(p.priceFrom ? { price: p.priceFrom, priceCurrency: "USD" } : {}),
-      offeredBy: { "@id": ORG },
-    },
+    ...(p.priceFrom ? { offers: { "@type": "Offer", url: abs(page.path), price: p.priceFrom, priceCurrency: "USD", offeredBy: { "@id": ORG } } } : {}),
   };
 }
 export function destinationNode(page, d) {

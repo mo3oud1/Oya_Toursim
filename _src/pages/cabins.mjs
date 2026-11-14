@@ -41,7 +41,7 @@ export function cabinsSection(group) {
   return `
 <section class="section section--white cab-sec" data-cab-sec hidden>
   <div class="container">
-    ${sectionHead({ eyebrow: "أكواخ وبنغلات", title: `أكواخ وبنغلات في ${GROUPS[group]}`, lead: "أكواخ نتعامل معها مباشرة، بصورها الحقيقية وسعر الليلة. اختر الكوخ ونؤكد لك التوفر كتابةً قبل الدفع.", row: true, after: `<a class="btn btn--ghost" href="{{root}}cabins/">كل الأكواخ ${ic("arrow")}</a>` })}
+    ${sectionHead({ eyebrow: "أكواخ وبنغلات", title: `أكواخ وبنغلات في ${GROUPS[group]}`, lead: "أكواخ نتعامل معها مباشرة، بصورها الحقيقية وسعر الليلة. اختر الكوخ ونؤكد لك التوفر كتابةً قبل الدفع.", row: true, after: `<a class="btn btn--ghost" href="{{root}}cabins/">كل الأكواخ ${ic("arrow", "i-flip")}</a>` })}
     ${cabinsBlock({ group, limit: 6 })}
   </div>
 </section>`;
