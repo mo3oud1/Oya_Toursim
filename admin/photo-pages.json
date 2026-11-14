@@ -372,8 +372,8 @@
  },
  {
   "slot": "dest-istanbul",
-  "path": "turkey-tours/cappadocia/",
-  "name": "السياحة في كابادوكيا",
+  "path": "turkey-tours/istanbul/",
+  "name": "السياحة في إسطنبول",
   "group": "وجهات تركيا",
   "img": "dest-istanbul",
   "custom": false,
@@ -381,19 +381,19 @@
   "upright": false
  },
  {
-  "slot": "dest-trabzon",
-  "path": "turkey-tours/cappadocia/",
-  "name": "السياحة في كابادوكيا",
+  "slot": "dest-antalya",
+  "path": "turkey-tours/antalya/",
+  "name": "السياحة في أنطاليا",
   "group": "وجهات تركيا",
-  "img": "dest-trabzon",
+  "img": "dest-antalya",
   "custom": false,
   "used": 9,
   "upright": false
  },
  {
   "slot": "dest-uzungol",
-  "path": "turkey-tours/cappadocia/",
-  "name": "السياحة في كابادوكيا",
+  "path": "turkey-tours/uzungol/",
+  "name": "السياحة في أوزنجول",
   "group": "وجهات تركيا",
   "img": "dest-uzungol",
   "custom": false,
@@ -401,9 +401,19 @@
   "upright": false
  },
  {
+  "slot": "dest-bodrum",
+  "path": "turkey-tours/bodrum/",
+  "name": "السياحة في بودروم",
+  "group": "وجهات تركيا",
+  "img": "dest-bodrum",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
   "slot": "dest-bursa",
-  "path": "turkey-tours/cappadocia/",
-  "name": "السياحة في كابادوكيا",
+  "path": "turkey-tours/bursa/",
+  "name": "السياحة في بورصة",
   "group": "وجهات تركيا",
   "img": "dest-bursa",
   "custom": false,
@@ -412,8 +422,8 @@
  },
  {
   "slot": "dest-sapanca",
-  "path": "turkey-tours/cappadocia/",
-  "name": "السياحة في كابادوكيا",
+  "path": "turkey-tours/sapanca/",
+  "name": "السياحة في سبانجا",
   "group": "وجهات تركيا",
   "img": "dest-sapanca",
   "custom": false,
@@ -421,11 +431,11 @@
   "upright": false
  },
  {
-  "slot": "dest-antalya",
-  "path": "turkey-tours/cappadocia/",
-  "name": "السياحة في كابادوكيا",
+  "slot": "dest-trabzon",
+  "path": "turkey-tours/trabzon/",
+  "name": "السياحة في طرابزون",
   "group": "وجهات تركيا",
-  "img": "dest-antalya",
+  "img": "dest-trabzon",
   "custom": false,
   "used": 9,
   "upright": false
@@ -441,26 +451,6 @@
   "upright": false
  },
  {
-  "slot": "dest-bodrum",
-  "path": "turkey-tours/cappadocia/",
-  "name": "السياحة في كابادوكيا",
-  "group": "وجهات تركيا",
-  "img": "dest-bodrum",
-  "custom": false,
-  "used": 9,
-  "upright": false
- },
- {
-  "slot": "pkg-georgia-7-days",
-  "path": "packages/azerbaijan-6-days/",
-  "name": "برنامج أذربيجان 6 أيام",
-  "group": "البرامج السياحية",
-  "img": "pkg-georgia-7-days",
-  "custom": false,
-  "used": 11,
-  "upright": false
- },
- {
   "slot": "pkg-azerbaijan-6-days",
   "path": "packages/azerbaijan-6-days/",
   "name": "برنامج أذربيجان 6 أيام",
@@ -471,23 +461,13 @@
   "upright": false
  },
  {
-  "slot": "pkg-bosnia-7-days",
-  "path": "packages/azerbaijan-6-days/",
-  "name": "برنامج أذربيجان 6 أيام",
+  "slot": "pkg-istanbul-5-days",
+  "path": "packages/istanbul-5-days/",
+  "name": "برنامج إسطنبول 5 أيام",
   "group": "البرامج السياحية",
-  "img": "pkg-bosnia-7-days",
+  "img": "pkg-istanbul-5-days",
   "custom": false,
-  "used": 11,
-  "upright": false
- },
- {
-  "slot": "pkg-malaysia-9-days",
-  "path": "packages/azerbaijan-6-days/",
-  "name": "برنامج أذربيجان 6 أيام",
-  "group": "البرامج السياحية",
-  "img": "pkg-malaysia-9-days",
-  "custom": false,
-  "used": 6,
+  "used": 22,
   "upright": false
  },
  {
@@ -501,29 +481,9 @@
   "upright": false
  },
  {
-  "slot": "pkg-istanbul-5-days",
-  "path": "packages/istanbul-sapanca-bursa-8-days/",
-  "name": "برنامج إسطنبول وسبانجا وبورصة 8 أيام",
-  "group": "البرامج السياحية",
-  "img": "pkg-istanbul-5-days",
-  "custom": false,
-  "used": 22,
-  "upright": false
- },
- {
-  "slot": "pkg-turkey-7-days",
-  "path": "packages/istanbul-sapanca-bursa-8-days/",
-  "name": "برنامج إسطنبول وسبانجا وبورصة 8 أيام",
-  "group": "البرامج السياحية",
-  "img": "pkg-turkey-7-days",
-  "custom": false,
-  "used": 15,
-  "upright": false
- },
- {
   "slot": "pkg-istanbul-bursa-7-days",
-  "path": "packages/istanbul-sapanca-bursa-8-days/",
-  "name": "برنامج إسطنبول وسبانجا وبورصة 8 أيام",
+  "path": "packages/istanbul-bursa-7-days/",
+  "name": "برنامج إسطنبول وبورصة 7 أيام",
   "group": "البرامج السياحية",
   "img": "pkg-istanbul-bursa-7-days",
   "custom": false,
@@ -548,6 +508,16 @@
   "img": "pkg-istanbul-trabzon-10-days",
   "custom": false,
   "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "pkg-bosnia-7-days",
+  "path": "packages/bosnia-7-days/",
+  "name": "برنامج البوسنة 7 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-bosnia-7-days",
+  "custom": false,
+  "used": 11,
   "upright": false
  },
  {
@@ -611,6 +581,16 @@
   "upright": false
  },
  {
+  "slot": "pkg-turkey-7-days",
+  "path": "packages/turkey-7-days/",
+  "name": "برنامج تركيا 7 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-turkey-7-days",
+  "custom": false,
+  "used": 15,
+  "upright": false
+ },
+ {
   "slot": "pkg-grand-turkey-14-days",
   "path": "packages/grand-turkey-14-days/",
   "name": "برنامج تركيا الشامل 14 يوماً",
@@ -628,6 +608,16 @@
   "img": "pkg-turkey-family-12-days",
   "custom": false,
   "used": 8,
+  "upright": false
+ },
+ {
+  "slot": "pkg-georgia-7-days",
+  "path": "packages/georgia-7-days/",
+  "name": "برنامج جورجيا 7 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-georgia-7-days",
+  "custom": false,
+  "used": 11,
   "upright": false
  },
  {
@@ -656,6 +646,16 @@
   "name": "برنامج كابادوكيا 3 أيام",
   "group": "البرامج السياحية",
   "img": "pkg-cappadocia-3-days",
+  "custom": false,
+  "used": 6,
+  "upright": false
+ },
+ {
+  "slot": "pkg-malaysia-9-days",
+  "path": "packages/malaysia-9-days/",
+  "name": "برنامج ماليزيا 9 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-malaysia-9-days",
   "custom": false,
   "used": 6,
   "upright": false
@@ -901,23 +901,23 @@
   "upright": false
  },
  {
+  "slot": "blog-honeymoon-in-turkey",
+  "path": "blog/honeymoon-in-turkey/",
+  "name": "أفضل وجهات شهر العسل في تركيا: مقارنة سريعة للعرسان",
+  "group": "المدونة",
+  "img": "blog-honeymoon-in-turkey",
+  "custom": false,
+  "used": 11,
+  "upright": false
+ },
+ {
   "slot": "blog-best-time-to-visit-turkey",
-  "path": "blog/saudi-tourist-visa-for-turkey-residents/",
-  "name": "التأشيرة السياحية السعودية للمقيمين في تركيا: من يحق له وكيف يقدّم؟",
+  "path": "blog/best-time-to-visit-turkey/",
+  "name": "أفضل وقت لزيارة تركيا 2027: دليل الشهور والمدن",
   "group": "المدونة",
   "img": "blog-best-time-to-visit-turkey",
   "custom": false,
   "used": 47,
-  "upright": false
- },
- {
-  "slot": "blog-cost-of-travel-to-turkey",
-  "path": "blog/saudi-tourist-visa-for-turkey-residents/",
-  "name": "التأشيرة السياحية السعودية للمقيمين في تركيا: من يحق له وكيف يقدّم؟",
-  "group": "المدونة",
-  "img": "blog-cost-of-travel-to-turkey",
-  "custom": false,
-  "used": 55,
   "upright": false
  },
  {
@@ -931,19 +931,9 @@
   "upright": false
  },
  {
-  "slot": "blog-schengen-visa-from-turkey",
-  "path": "blog/saudi-tourist-visa-for-turkey-residents/",
-  "name": "التأشيرة السياحية السعودية للمقيمين في تركيا: من يحق له وكيف يقدّم؟",
-  "group": "المدونة",
-  "img": "blog-schengen-visa-from-turkey",
-  "custom": false,
-  "used": 21,
-  "upright": false
- },
- {
   "slot": "blog-turkey-family-itinerary-10-days",
-  "path": "packages/istanbul-sapanca-bursa-8-days/",
-  "name": "برنامج إسطنبول وسبانجا وبورصة 8 أيام",
+  "path": "blog/turkey-family-itinerary-10-days/",
+  "name": "برنامج سياحي في تركيا 10 أيام للعائلات: إسطنبول وبورصة وطرابزون",
   "group": "المدونة",
   "img": "blog-turkey-family-itinerary-10-days",
   "custom": false,
@@ -951,33 +941,33 @@
   "upright": false
  },
  {
-  "slot": "blog-honeymoon-in-turkey",
-  "path": "packages/turkey-honeymoon-9-days/",
-  "name": "برنامج شهر العسل في تركيا 9 أيام",
+  "slot": "blog-cost-of-travel-to-turkey",
+  "path": "blog/cost-of-travel-to-turkey/",
+  "name": "تكلفة السفر إلى تركيا 2027: كيف تحسب ميزانية رحلتك؟",
   "group": "المدونة",
-  "img": "blog-honeymoon-in-turkey",
+  "img": "blog-cost-of-travel-to-turkey",
   "custom": false,
-  "used": 11,
-  "upright": false
- },
- {
-  "slot": "blog-istanbul-itinerary-5-days",
-  "path": "blog/spanish-super-cup-2027-istanbul-guide/",
-  "name": "كأس السوبر الإسباني 2027 في إسطنبول: الدليل الشامل للمشجع العربي",
-  "group": "المدونة",
-  "img": "blog-istanbul-itinerary-5-days",
-  "custom": false,
-  "used": 22,
+  "used": 55,
   "upright": false
  },
  {
   "slot": "blog-day-trips-from-istanbul",
-  "path": "blog/spanish-super-cup-2027-istanbul-guide/",
-  "name": "كأس السوبر الإسباني 2027 في إسطنبول: الدليل الشامل للمشجع العربي",
+  "path": "blog/day-trips-from-istanbul/",
+  "name": "رحلات يومية من إسطنبول: سبانجا وبورصة وجزر الأميرات",
   "group": "المدونة",
-  "img": "pg-blog-day-trips-from-istanbul-mwgyktvm",
-  "custom": true,
+  "img": "blog-day-trips-from-istanbul",
+  "custom": false,
   "used": 28,
+  "upright": false
+ },
+ {
+  "slot": "blog-schengen-visa-from-turkey",
+  "path": "blog/schengen-visa-from-turkey/",
+  "name": "شنغن من تركيا خطوة بخطوة: كيف تجهّز ملفك قبل الموعد",
+  "group": "المدونة",
+  "img": "blog-schengen-visa-from-turkey",
+  "custom": false,
+  "used": 21,
   "upright": false
  },
  {
@@ -985,9 +975,19 @@
   "path": "blog/spanish-super-cup-2027-istanbul-guide/",
   "name": "كأس السوبر الإسباني 2027 في إسطنبول: الدليل الشامل للمشجع العربي",
   "group": "المدونة",
-  "img": "blog-spanish-super-cup-2027-istanbul-guide",
-  "custom": false,
+  "img": "pg-blog-day-trips-from-istanbul-mwgyktvm",
+  "custom": true,
   "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "blog-istanbul-itinerary-5-days",
+  "path": "blog/istanbul-itinerary-5-days/",
+  "name": "ماذا تزور في إسطنبول خلال 5 أيام؟ دليل التخطيط",
+  "group": "المدونة",
+  "img": "blog-istanbul-itinerary-5-days",
+  "custom": false,
+  "used": 22,
   "upright": false
  },
  {
@@ -1002,10 +1002,40 @@
  },
  {
   "slot": "gallery-riyadh-dusk",
-  "path": "saudi-visa/business/",
-  "name": "تأشيرة زيارة الأعمال",
+  "path": "saudi-visa/",
+  "name": "تأشيرات السعودية",
   "group": "معرض الصور",
   "img": "gallery-riyadh-dusk",
+  "custom": false,
+  "used": 2,
+  "upright": false
+ },
+ {
+  "slot": "gallery-makkah-aerial",
+  "path": "saudi-visa/",
+  "name": "تأشيرات السعودية",
+  "group": "معرض الصور",
+  "img": "gallery-makkah-aerial",
+  "custom": false,
+  "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "gallery-madinah-sunset",
+  "path": "saudi-visa/",
+  "name": "تأشيرات السعودية",
+  "group": "معرض الصور",
+  "img": "gallery-madinah-sunset",
+  "custom": false,
+  "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "gallery-kaaba-tawaf",
+  "path": "saudi-visa/umrah/",
+  "name": "تأشيرة العمرة",
+  "group": "معرض الصور",
+  "img": "gallery-kaaba-tawaf",
   "custom": false,
   "used": 2,
   "upright": false
@@ -1018,36 +1048,6 @@
   "img": "gallery-riyadh-night",
   "custom": false,
   "used": 1,
-  "upright": false
- },
- {
-  "slot": "gallery-makkah-aerial",
-  "path": "offers/ramadan-umrah-2027/",
-  "name": "عمرة رمضان 2027 من تركيا",
-  "group": "معرض الصور",
-  "img": "gallery-makkah-aerial",
-  "custom": false,
-  "used": 3,
-  "upright": false
- },
- {
-  "slot": "gallery-madinah-sunset",
-  "path": "offers/ramadan-umrah-2027/",
-  "name": "عمرة رمضان 2027 من تركيا",
-  "group": "معرض الصور",
-  "img": "gallery-madinah-sunset",
-  "custom": false,
-  "used": 3,
-  "upright": false
- },
- {
-  "slot": "gallery-kaaba-tawaf",
-  "path": "offers/ramadan-umrah-2027/",
-  "name": "عمرة رمضان 2027 من تركيا",
-  "group": "معرض الصور",
-  "img": "gallery-kaaba-tawaf",
-  "custom": false,
-  "used": 2,
   "upright": false
  }
 ]

@@ -128,12 +128,16 @@ const pages = [
   const own = new Set(pageRows.map((r) => r.path));
   const KIND = [["home-", "الصفحة الرئيسية"], ["hero-", "رؤوس الأقسام"], ["dest-", "وجهات تركيا"], ["pkg-", "البرامج السياحية"], ["visa-", "التأشيرات"], ["hotels-", "الفنادق"], ["blog-", "المدونة"], ["gallery-", "معرض الصور"]];
   const nameOf = Object.fromEntries(pages.map((p) => [p.path, String(p.title).split(" | ")[0]]));
+  const heroOf = {};
+  for (const p of pages) { const m = /class="page-hero__bg"><img[^>]*?src="\{\{root\}\}assets\/img\/photos\/([\w-]+)\.\w+"/.exec(p.body || ""); if (m && !(m[1] in heroOf)) heroOf[m[1]] = p.path; }
   const slotRows = [];
   for (const [key, r] of imageRegistry) {
     if (/^(pg|ob)-/.test(key)) continue; // uploaded files and article covers are not slots
     const used = [...r.usedOn];
     if (!r.label && used.length && used.every((p) => own.has(p))) continue; // photos only service pages use are changed per page
-    const where = used.slice().sort((a, b) => b.length - a.length)[0] || "";
+    // the page a photo belongs to: the one that shows it as its own header photo, else the page its name points to
+    const guess = [["blog-", "blog/"], ["dest-", "turkey-tours/"], ["pkg-", "packages/"], ["hotels-", "hotels/"]].map(([p, dir]) => (key.startsWith(p) ? `${dir}${key.slice(p.length)}/` : "")).find((x) => x && nameOf[x]);
+    const where = guess || heroOf[base(key)] || used.slice().sort((a, b) => a.length - b.length)[0] || "";
     slotRows.push({ slot: key, path: where, name: r.label || data.titles[where] || nameOf[where] || "الصفحة الرئيسية", group: (KIND.find(([p]) => key.startsWith(p)) || [0, "صور أخرى"])[1], img: base(key), custom: !!photoSwaps[key], used: used.length, upright: key.startsWith("home-") });
   }
   const order = ["الصفحة الرئيسية", "رؤوس الأقسام", "جولات يومية", "أنشطة وتذاكر", "إقامات وموافقات", "خدمات وعروض", "وجهات تركيا", "البرامج السياحية", "الفنادق", "التأشيرات", "المدونة", "معرض الصور", "صور أخرى"];
