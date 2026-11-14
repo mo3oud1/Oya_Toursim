@@ -6,6 +6,7 @@ import { ROOT_DIR, ic, esc, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waU
 import { readFirst } from "../lib/templates.mjs";
 import { matchForm } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
+import { eventsGrid } from "../lib/catalog.mjs";
 
 // ---- Event data (edit here when official kick-off times / venues / prices are announced) ----
 // Club crests: the owner supplied them and chose to show them (they are the clubs' trademarks — the owner's
@@ -72,7 +73,7 @@ function badge(t, h = 76) {
 const shieldDefs = `<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="shGloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></linearGradient></defs></svg>`;
 
 // Match card styled as a ticket: dark stub with both clubs' colours, perforation, light details half
-function matchCard(m) {
+function matchCard(m, pickIdx = null) {
   const h = teams[m.home], a = teams[m.away];
   const msg = `مرحباً أويا للسياحة، أرغب بباقة حضور كأس السوبر الإسباني 2027: ${m.stage} — ${h.name} × ${a.name} (${m.dateAr}).`;
   const team = (t) => `<div class="mtk__team">${badge(t)}<b>${t.name}</b>${t.en !== "TBD" ? `<small class="ltr">${t.en}</small>` : ""}</div>`;
@@ -91,7 +92,7 @@ function matchCard(m) {
     </ul>
     <div class="mtk__foot">
       ${minPrice(m) !== null ? `<div class="price" data-sc-min="${m.id}"><small>يبدأ من / للتذكرة</small><b>${fmt(minPrice(m))}</b></div>` : `<div class="price" data-sc-min="${m.id}"><small>الفئات</small><b class="price__ask">A+ • A • B • C</b></div>`}
-      <a class="btn btn--sm" href="${waUrl(msg)}" target="_blank" rel="noopener">${ic("ticket")}<span>احجز</span></a>
+      ${pickIdx === null ? `<a class="btn btn--sm" href="${waUrl(msg)}" target="_blank" rel="noopener">${ic("ticket")}<span>احجز</span></a>` : `<a class="btn btn--sm" href="#stadium" data-pick-match="${pickIdx}">${ic("stadium")}<span>اختر مقعدك</span></a>`}
     </div>
   </div>
 </article>`;
@@ -153,16 +154,18 @@ const VENUE_MODEL = {
   final: { capacity: "حوالي 53 ألف مقعد", model: { upperRows: 20, closedCorners: true, singleTierEnd: null } },
 };
 const priceText = (m, k) => (typeof m.prices?.[k] === "number" ? `${Number(m.prices[k]).toLocaleString("en-US")}${CURRENCY.symbol}` : "عند الطلب");
-function stadiumSection() {
+// kit colours for the players on the model pitch (shirt, shorts); unknown finalists get neutral OYA colours
+const kit = (k, s0, s1) => (k === "tbd" || k === "tbd2" ? [s0, s1] : [teams[k].stripes[0] === "#FFFFFF" ? "#F4F4F4" : teams[k].stripes[0], teams[k].band || (k === "fcb" ? "#004D98" : teams[k].stripes[1])]);
+function stadiumSection({ step = false } = {}) {
   const cfg = {
     wa: "905399334331", currency: CURRENCY.symbol, categories: SEATS,
-    matches: scMatches.map((m) => ({ id: m.id, stage: m.stage, teams: `${teams[m.home].name} × ${teams[m.away].name}`, venue: m.venueAr, capacity: VENUE_MODEL[m.id].capacity, prices: m.prices, venueModel: VENUE_MODEL[m.id].model })),
+    matches: scMatches.map((m) => ({ id: m.id, stage: m.stage, teams: `${teams[m.home].name} × ${teams[m.away].name}`, venue: m.venueAr, capacity: VENUE_MODEL[m.id].capacity, prices: m.prices, venueModel: VENUE_MODEL[m.id].model, kits: [kit(m.home, "#ED5404", "#ffffff"), kit(m.away, "#19487E", "#ffffff")] })),
   };
   const m0 = scMatches[0];
   return `
 <section class="section stadium-sec" id="stadium" data-stadium>
   <div class="container">
-    ${sectionHead({ eyebrow: `${ic("stadium")} مجسم الملعب`, title: "اجلس في مقعدك… قبل أن تصل إلى الملعب", lead: "ملعب ثلاثي الأبعاد مليء بالجماهير: اضغط على أي مدرج لترى فئته وسعره، ثم «شاهد الملعب من مقعدك» لتجلس مكانك وتشاهد الملعب كما ستراه يوم المباراة — وجرّب الموجة وصوت المدرجات.", center: true })}
+    ${sectionHead({ eyebrow: step ? "الخطوة 2" : `${ic("stadium")} مجسم الملعب`, title: "اجلس في مقعدك… قبل أن تصل إلى الملعب", lead: "ملعب ثلاثي الأبعاد بمدرجاته وجماهيره واللاعبين بألوان الفريقين: اختر مدرجاً من المجسم أو من الخريطة، ثم «شاهد الملعب من مقعدك» واختر الصف والمكان لترى المباراة كما ستراها يوم المباراة.", center: true })}
     <div class="stadium">
       <div class="stadium-bar">
         <div class="stadium-tabs" role="tablist" aria-label="المباراة والملعب">${scMatches.map((m, i) => `<button type="button" role="tab" class="stadium-tab" aria-selected="${i === 0}">${m.stage}<small>${m.venueAr.split(" — ")[0]}</small></button>`).join("")}</div>
@@ -176,7 +179,7 @@ function stadiumSection() {
           <p class="stadium-nogl">تعذّر تشغيل العرض ثلاثي الأبعاد على هذا الجهاز — يمكنك اختيار الفئة من القائمة.</p>
           <div class="stadium-tip" role="status"></div>
           <p class="stadium-venue">${m0.venueAr} • ${VENUE_MODEL[m0.id].capacity}</p>
-          <p class="stadium-hint">${ic("refresh")}<span>اسحب للتدوير</span><span class="hint-more"> • اضغط على مدرج ثم «شاهد من مقعدك»</span></p>
+          <p class="stadium-hint">${ic("refresh")}<span>اسحب للتدوير</span><span class="hint-more"> • اضغط على مدرج أو على الخريطة ثم «شاهد من مقعدك»</span></p>
           <div class="stadium-sheet" aria-live="polite">
             <p><span class="ss-dot"></span><b class="ss-cat"></b><span class="ss-where"></span></p>
             <div class="ss-actions"><button type="button" class="btn btn--sm ss-seat">${ic("eye")}<span>شاهد من مقعدك</span></button><a class="btn btn--wa btn--sm ss-wa" href="#book" target="_blank" rel="noopener">${ic("whatsapp")}<span>احجز</span></a><button type="button" class="ss-close" aria-label="إغلاق">${ic("x")}</button></div>
@@ -186,6 +189,12 @@ function stadiumSection() {
             <button type="button" data-zoom="out" aria-label="تصغير">${ic("minus")}</button>
             <button type="button" data-wave>${ic("waves")}<span>الموجة</span></button>
             <button type="button" data-sound aria-pressed="false" aria-label="تشغيل صوت المدرجات">${ic("volume-x")}${ic("volume")}</button>
+          </div>
+          <div class="stadium-map" role="group" aria-label="خريطة الملعب من الأعلى: اضغط على مدرج لاختياره"></div>
+          <div class="stadium-seatpick">
+            <p class="sp-head"><b class="sp-row">الصف</b><span>موقع تقريبي داخل الفئة؛ رقم المقعد النهائي تحدده الجهة المنظمة</span></p>
+            <label><span class="sp-lbl">الصف</span><small>الأمام</small><input type="range" min="0" max="100" value="42" data-seat-row aria-label="الصف: من الأمام إلى الخلف"><small>الخلف</small></label>
+            <label><span class="sp-lbl">المكان</span><small>الطرف</small><input type="range" min="0" max="100" value="50" data-seat-along aria-label="المكان على طول المدرج"><small>الطرف الآخر</small></label>
           </div>
           <p class="stadium-seatlabel" aria-live="polite"></p>
           <button type="button" class="stadium-exit">${ic("refresh")}<span>عودة للمنظر العام</span></button>
@@ -283,41 +292,15 @@ export function matchesHub(data) {
     { q: "هل تقدمون باقات تشمل الفندق والطيران؟", a: "نعم، يمكنك اختيار باقة المشجع (فندق + تنقلات + مساعدة في التذكرة الرسمية) أو باقة VIP، مع إمكانية إضافة تذاكر الطيران وبرنامج سياحي في تركيا. وإن كانت تذكرتك معك نرتّب لك الفندق والتنقلات فقط." },
     { q: "هل أنتم الجهة الرسمية لبيع التذاكر؟", a: "لا، أويا للسياحة وكالة سفر مستقلة وليست تابعة للأندية أو الاتحادات. لا نبيع التذاكر ولا نملك مخزوناً منها: تُشترى التذكرة من القناة الرسمية باسمك وبسعرها الرسمي، ودورنا الإقامة والتنقلات ومساعدتك في إجراءات الشراء مقابل رسوم خدمة نوضحها لك مسبقاً." },
   ];
-  const others = [
-    { icon: "stadium", title: "ديربيات إسطنبول", text: "أجواء لا تُنسى في مباريات غلطة سراي وفنربخشة وبشكتاش ضمن الدوري التركي.", tag: "حسب الجدول" },
-    { icon: "trophy", title: "الليالي الأوروبية في إسطنبول", text: "مباريات الأندية التركية في البطولات الأوروبية على ملاعب إسطنبول.", tag: "حسب القرعة" },
-    { icon: "globe", title: "مباريات حول العالم", text: "نساعدك في تذاكر مباريات كبرى في أوروبا والخليج مع الطيران والفندق.", tag: "حسب الطلب" },
-  ];
   page.body = `
-${pageHero({ crumbs, ...heroPhoto("hero-matches"), eyebrow: "تذاكر المباريات • جديد في أويا", title: "تذاكر المباريات… احضر المباراة وعِش الحكاية", lead: "من كأس السوبر الإسباني 2027 في إسطنبول إلى ديربيات الدوري التركي والليالي الأوروبية — نرتّب لك الفندق والتنقلات ونساعدك في تذكرتك الرسمية باسمك، في باقة واحدة.", icon: "ball", page: path,
+${pageHero({ crumbs, ...heroPhoto("hero-matches"), eyebrow: `${ic("ticket")} تذاكر المباريات`, title: "تذاكر المباريات في إسطنبول والعالم", lead: "اختر البطولة أو المباراة: نساعدك في شراء تذكرتك الرسمية باسمك، ونرتّب لك الفندق والتنقلات — وفي كأس السوبر الإسباني 2027 تختار مقعدك على مجسم الملعب قبل أن تحجز.", icon: "ball", page: path,
     chips: [{ icon: "ticket", text: "تذكرة رسمية باسمك" }, { icon: "hotel", text: "باقات مع الفندق" }, { icon: "car", text: "نقل من وإلى الملعب" }],
-    actions: `<a class="btn" href="#book">${ic("ticket")}<span>اطلب باقتك</span></a>${waBtn("مرحباً أويا، أرغب بالاستفسار عن تذاكر المباريات.", "اسأل عبر واتساب", "btn btn--glass")}` })}
+    actions: `<a class="btn" href="#events">${ic("ticket")}<span>اختر المباراة</span></a>${waBtn("مرحباً أويا، أرغب بالاستفسار عن تذاكر المباريات.", "اسأل عبر واتساب", "btn btn--glass")}` })}
 
-<section class="section">
-  <div class="container">${superCup.promo()}</div>
-</section>
-
-<section class="section" style="padding-top:0">
+<section class="section" id="events">
   <div class="container">
-    ${sectionHead({ eyebrow: "جدول البطولة", title: "مباريات كأس السوبر الإسباني 2027", lead: "الجدول وفق ما أعلنه الاتحاد الإسباني لكرة القدم، مع الملعب وموعد الانطلاق لكل مباراة.", row: true, after: `<a class="btn btn--ghost" href="{{root}}matches/spanish-super-cup-2027/">الدليل الكامل ${ic("arrow", "i-flip")}</a>` })}
-    ${shieldDefs}<div class="grid grid-3 mtk-grid" data-stagger>${scMatches.map((m) => matchCard(m)).join("")}</div>
-    <p class="muted mt-1" style="font-size:.85rem">المواعيد والملاعب وفق ما أعلنه الاتحاد الإسباني لكرة القدم: صافرة البداية 22:00 بتوقيت إسطنبول (20:00 بتوقيت إسبانيا).</p>
-  </div>
-</section>
-
-<section class="section section--white">
-  <div class="container">
-    ${sectionHead({ eyebrow: "باقات المباريات", title: "اختر طريقتك في حضور المباراة", center: true })}
-    ${tiers("حضور مباراة")}
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    ${sectionHead({ eyebrow: "مباريات أخرى", title: "مباريات أخرى حسب الطلب" })}
-    <div class="grid grid-3" data-stagger>
-      ${others.map((o) => `<div class="svc" data-reveal><span class="chip chip--orange" style="align-self:flex-start">${o.tag}</span><span class="ico">${ic(o.icon)}</span><h3>${o.title}</h3><p>${o.text}</p><a class="link-arrow" href="${waUrl(`مرحباً أويا، أرغب بحضور: ${o.title}.`)}" target="_blank" rel="noopener">اسأل عن الباقة ${ic("arrow")}</a></div>`).join("")}
-    </div>
+    ${sectionHead({ eyebrow: "البطولات والمباريات", title: "اختر المباراة التي تريد حضورها", lead: "اضغط على البطولة لترى مبارياتها وتختار مقعدك، أو اسألنا عن أي مباراة أخرى." })}
+    ${eventsGrid()}
   </div>
 </section>
 
@@ -336,7 +319,14 @@ ${pageHero({ crumbs, ...heroPhoto("hero-matches"), eyebrow: "تذاكر المب
   </div>
 </section>
 
-<section class="section" id="book">
+<section class="section">
+  <div class="container">
+    ${sectionHead({ eyebrow: "باقات المباريات", title: "اختر طريقتك في حضور المباراة", center: true })}
+    ${tiers("حضور مباراة")}
+  </div>
+</section>
+
+<section class="section section--white" id="book">
   <div class="container split">
     <div data-reveal>${sectionHead({ eyebrow: "سجّل طلبك", title: "أرسل طلبك… ونعود إليك بالعرض والتوفر", lead: "نرسل لك التوفر والسعر النهائي في عرض مكتوب قبل أي دفع — دون أي التزام." })}</div>
     <div class="form-card" data-reveal="zoom">${matchForm({ prices: Object.fromEntries(scMatches.map((m) => [m.id, m.prices])) })}</div>
@@ -362,6 +352,9 @@ function evt(m) {
   };
 }
 
+// ticket flow: 1) pick the match  2) pick the seat on the stadium model  3) send the request
+const stepNav = `<ol class="tsteps" aria-label="خطوات طلب التذكرة">${[["#pick", "ticket", "اختر المباراة"], ["#stadium", "stadium", "اختر مقعدك"], ["#book", "send", "أرسل طلبك"]].map(([h, i, t], n) => `<li><a href="${h}"><span class="tsteps__n">${n + 1}</span>${ic(i)}<span>${t}</span></a></li>`).join("")}</ol>`;
+
 export function superCupPage(data) {
   const path = "matches/spanish-super-cup-2027/";
   const crumbs = [{ name: "الرئيسية", path: "" }, { name: "تذاكر المباريات", path: "matches/" }, { name: "كأس السوبر الإسباني 2027", path }];
@@ -380,22 +373,32 @@ export function superCupPage(data) {
   ];
   page.body = `
 ${pageHero({ crumbs, ...heroPhoto("hero-super-cup"), eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبراير 2027`, title: "تذاكر كأس السوبر الإسباني 2027 في إسطنبول", lead: "الكلاسيكو المحتمل في النهائي، ونجوم الليغا على أرض إسطنبول. احجز باقة إقامة المشجع مع أويا للسياحة، ونساعدك في الحصول على تذكرتك الرسمية باسمك وحسب التوفر — من قلب المدينة المستضيفة.", icon: "trophy", page: path,
-    actions: `<a class="btn" href="#book">${ic("ticket")}<span>سجّل اهتمامك بالباقة</span></a>${waBtn("مرحباً أويا، أرغب بباقة حضور كأس السوبر الإسباني 2027 في إسطنبول.", "واتساب", "btn btn--glass")}`,
+    actions: `<a class="btn" href="#pick">${ic("stadium")}<span>اختر مباراتك ومقعدك</span></a>${waBtn("مرحباً أويا، أرغب بباقة حضور كأس السوبر الإسباني 2027 في إسطنبول.", "واتساب", "btn btn--glass")}`,
     extra: `<div class="mt-2" style="max-width:560px">${countdown()}</div>` })}
 
-<section class="section">
+<section class="section section--tight tsteps-sec">
+  <div class="container">${stepNav}</div>
+</section>
+
+<section class="section" id="pick" style="padding-top:0">
   <div class="container">
-    ${sectionHead({ eyebrow: "المباريات", title: "جدول مباريات السوبر الإسباني في إسطنبول", lead: "ثلاث مباريات في خمسة أيام — يمكنك حضور مباراة واحدة أو البطولة كاملة." })}
-    ${shieldDefs}<div class="grid grid-3 mtk-grid" data-stagger>${scMatches.map((m) => matchCard(m)).join("")}</div>
-    <div class="table-wrap mt-2" data-reveal><table class="table"><thead><tr><th>المرحلة</th><th>المواجهة</th><th>التاريخ</th><th>المدينة</th></tr></thead><tbody>
-      ${scMatches.map((m) => `<tr><td><strong>${m.stage}</strong></td><td>${teams[m.home].name} × ${teams[m.away].name}</td><td>${m.dateAr}</td><td>إسطنبول</td></tr>`).join("")}
-    </tbody></table></div>
-    <p class="muted mt-1" style="font-size:.85rem">المواعيد والملاعب وفق ما أعلنه الاتحاد الإسباني لكرة القدم: صافرة البداية 22:00 بتوقيت إسطنبول (20:00 بتوقيت إسبانيا).</p>
-    ${hasPrices() ? `<h3 class="h-l mt-3" id="prices">أسعار التذاكر حسب الفئة</h3>${priceTable()}` : ""}
+    ${sectionHead({ eyebrow: "الخطوة 1", title: "اختر المباراة", lead: "ثلاث مباريات على ثلاثة ملاعب في إسطنبول، وصافرة البداية 22:00 بتوقيت إسطنبول (20:00 بتوقيت إسبانيا) وفق ما أعلنه الاتحاد الإسباني لكرة القدم." })}
+    ${shieldDefs}<div class="grid grid-3 mtk-grid" data-stagger>${scMatches.map((m, i) => matchCard(m, i)).join("")}</div>
+    ${hasPrices() ? `<details class="mt-2 sc-prices"><summary>${ic("ticket")} أسعار التذاكر حسب الفئة</summary>${priceTable()}</details>` : ""}
   </div>
 </section>
 
-${stadiumSection()}
+${stadiumSection({ step: true })}
+
+<section class="section section--white" id="book">
+  <div class="container split">
+    <div data-reveal>
+      ${sectionHead({ eyebrow: "الخطوة 3", title: "أرسل طلبك… ونعود إليك بالتوفر والسعر", lead: "اخترت المباراة والفئة على المجسم؟ تجدها هنا جاهزة. نرسل لك التوفر والسعر النهائي في عرض مكتوب قبل أي دفع — دون أي التزام." })}
+      ${disclaimer}
+    </div>
+    <div class="form-card" data-reveal="zoom">${matchForm({ prices: Object.fromEntries(scMatches.map((m) => [m.id, m.prices])) })}</div>
+  </div>
+</section>
 
 <section class="section section--white">
   <div class="container split">
@@ -443,15 +446,6 @@ ${ist.length ? `
   </div>
 </section>` : ""}
 
-<section class="section section--white" id="book">
-  <div class="container split">
-    <div data-reveal>
-      ${sectionHead({ eyebrow: "احجز الآن", title: "سجّل طلب التذاكر", lead: "اختر المباراة والفئة والباقة، وسنعود إليك بالتوفر والسعر مكتوباً." })}
-      ${disclaimer}
-    </div>
-    <div class="form-card" data-reveal="zoom">${matchForm({ prices: Object.fromEntries(scMatches.map((m) => [m.id, m.prices])) })}</div>
-  </div>
-</section>
 ${faqBlock(faq, { title: "أسئلة شائعة عن السوبر الإسباني 2027" })}
 ${readFirst(["matches"], data, path, "دليل المشجع")}
 ${ctaBand({ title: "شاهد الكلاسيكو المحتمل… من إسطنبول", lead: "فندقك وتنقلاتك جاهزة قبل أن تصل، ونساعدك في تذكرتك الرسمية باسمك.", wa: "مرحباً أويا، أرغب بباقة كأس السوبر الإسباني 2027 في إسطنبول." })}`;

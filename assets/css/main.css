@@ -1655,3 +1655,63 @@ h3,h4{line-height:1.42}
 .dest__areas .i{width:1em;height:1em;color:var(--orange-300);flex:none}
 @media(min-width:1040px){.features--4{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:699px){.hcities .dest{aspect-ratio:auto;min-height:260px}}
+/* ---- tickets page: step bar, seat picker, stadium minimap ---- */
+.tsteps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;counter-reset:none}
+.tsteps a{display:flex;align-items:center;gap:.6em;padding:14px 16px;border-radius:16px;background:#fff;box-shadow:var(--sh-1);color:var(--navy);font-weight:700;text-decoration:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.tsteps a:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.tsteps .i{width:20px;height:20px;color:var(--orange-btn);flex:none}
+.tsteps__n{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-size:.85rem;flex:none}
+.tsteps-sec{padding-block:28px}
+@media(max-width:640px){.tsteps{gap:6px}.tsteps a{flex-direction:column;text-align:center;gap:.35em;padding:10px 6px;font-size:.8rem}.tsteps .i{display:none}}
+.stadium-map{position:absolute;inset-inline-start:12px;bottom:12px;z-index:3;width:168px;aspect-ratio:1;border-radius:16px;background:rgba(6,20,40,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.14);padding:6px;visibility:hidden}
+.is-ready .stadium-map:not(:empty){visibility:visible}
+.stadium-map svg{width:100%;height:100%;display:block}
+.stadium-map polygon{stroke:rgba(6,20,40,.9);stroke-width:.5;opacity:.85;cursor:pointer;transition:opacity .2s}
+.stadium-map polygon:hover{opacity:1}
+.stadium-map polygon.is-sel{opacity:1;stroke:#fff;stroke-width:1.4}
+.sm-you circle{fill:#fff;stroke:var(--orange-btn);stroke-width:1.6}
+.sm-cone{fill:rgba(255,255,255,.28);stroke:rgba(255,255,255,.6);stroke-width:.6}
+.stadium-seatpick{position:absolute;left:50%;translate:-50% 0;bottom:70px;z-index:3;width:min(700px,calc(100% - 340px));display:none;grid-template-columns:1fr 1fr;gap:4px 20px;padding:8px 14px 8px;border-radius:16px;background:rgba(6,20,40,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff}
+.is-seat .stadium-seatpick{display:grid}
+.sp-head{grid-column:1/-1;margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:.1em .7em;font-size:.72rem;color:#9FB6CF;line-height:1.5}
+.sp-head b{color:#fff;font-size:.88rem}
+.stadium-seatpick label{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;column-gap:8px;font-size:.82rem;font-weight:700}
+.stadium-seatpick label small{font-size:.68rem;font-weight:400;color:#9FB6CF;white-space:nowrap}
+.stadium-seatpick label[hidden]{display:none}
+.stadium-seatpick input[type=range]{width:100%;accent-color:var(--orange-btn);min-height:28px}
+.is-seat .stadium-map{width:132px}
+@media(max-width:1023px){
+  .stadium-map{width:118px;bottom:auto;top:96px}
+  .stadium-sheet.is-on~.stadium-map{display:none}
+  .is-seat .stadium-map{width:104px;top:96px}
+  .stadium-seatpick{bottom:66px;padding:6px 12px 6px;grid-template-columns:1fr;width:calc(100% - 20px)}
+  .sp-head span{display:none}
+}
+.drawer__tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+/* events (tournaments & matches) on the tickets page */
+.evt{position:relative;display:flex;flex-direction:column;border-radius:var(--r-l);overflow:hidden;background:#fff;box-shadow:var(--sh-1);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.evt:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.evt__media{position:relative;aspect-ratio:16/9;background:linear-gradient(140deg,var(--navy-800),var(--navy));overflow:hidden}
+.evt__media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.evt:hover .evt__media img{transform:scale(1.05)}
+.evt__art{position:absolute;inset:0;display:grid;place-items:center;color:rgba(255,255,255,.9)}
+.evt__art .i{width:64px;height:64px;color:var(--orange-300)}
+.evt__media::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,20,40,.55),transparent 55%);pointer-events:none}
+.evt__tag{position:absolute;inset-inline-start:12px;bottom:12px;z-index:1;padding:.3em .8em;border-radius:999px;background:rgba(255,255,255,.94);color:var(--navy);font-size:.8rem;font-weight:700}
+.evt__body{display:flex;flex-direction:column;gap:8px;padding:18px 20px 20px;flex:1}
+.evt__body h3{margin:0;font-size:1.2rem}
+.evt__body h3 a{color:inherit;text-decoration:none}
+.evt__body p{margin:0;color:var(--muted);font-size:.93rem;line-height:1.75}
+.evt__foot{margin-top:auto;padding-top:10px;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.evt__go{position:relative;z-index:2;margin-inline-start:auto}
+.evt-grid{display:grid;gap:22px;grid-template-columns:1fr}
+@media(min-width:700px){.evt-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.evt--featured{grid-column:1/-1}}
+@media(min-width:1040px){.evt-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:900px){.evt--featured{flex-direction:row}.evt--featured .evt__media{aspect-ratio:auto;flex:1.25 1 0;min-height:320px}.evt--featured .evt__body{flex:1 1 0;padding:32px;justify-content:center}.evt--featured h3{font-size:1.6rem}}
+.ctile{position:relative}
+.ctile__price{margin-inline-start:auto;align-self:center;font-weight:700;color:var(--orange-btn);font-size:.85rem;white-space:nowrap}
+.cab__stars{color:#E9A100;letter-spacing:.1em}
+.sc-prices{border-radius:var(--r);background:#fff;box-shadow:var(--sh-1);padding:4px 18px}
+.sc-prices summary{cursor:pointer;padding:12px 0;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:.5em}
+.sc-prices summary .i{width:20px;height:20px;color:var(--orange-btn)}
+.evt a.cover::after{content:"";position:absolute;inset:0;z-index:1}

@@ -1,0 +1,133 @@
+{
+  "_note": "Tournaments and matches shown on oyatourism.com/matches/ — edit from oyatourism.com/admin/. link = a page on the site (e.g. matches/spanish-super-cup-2027/) or empty for a WhatsApp request.",
+  "events": [
+    {
+      "id": "super-cup-2027",
+      "title": "كأس السوبر الإسباني 2027",
+      "titleEn": "Spanish Super Cup 2027",
+      "tag": "إسطنبول • 2–6 فبراير 2027",
+      "tagEn": "Istanbul • February 2–6, 2027",
+      "text": "برشلونة، ريال مدريد، أتلتيكو مدريد وريال سوسيداد على أرض إسطنبول. اختر مباراتك ومقعدك على مجسم الملعب.",
+      "textEn": "Barcelona, Real Madrid, Atlético de Madrid and Real Sociedad in Istanbul. Choose your match and your seat on the stadium model.",
+      "link": "matches/spanish-super-cup-2027/",
+      "photo": "assets/img/stadium-poster.webp",
+      "icon": "trophy",
+      "priceFrom": null,
+      "featured": true,
+      "active": true,
+      "i18n": {
+        "ru": {
+          "title": "Суперкубок Испании 2027",
+          "tag": "Стамбул • 2–6 февраля 2027 г.",
+          "text": "«Барселона», «Реал Мадрид», «Атлетико Мадрид» и «Реал Сосьедад» в Стамбуле. Выберите матч и место на 3D-модели стадиона."
+        },
+        "tr": {
+          "title": "İspanya Süper Kupası 2027",
+          "tag": "İstanbul • 2–6 Şubat 2027",
+          "text": "Barcelona, Real Madrid, Atlético Madrid ve Real Sociedad İstanbul'da. Maçınızı ve koltuğunuzu stadyum modelinde seçin."
+        },
+        "pt": {
+          "title": "Supercopa da Espanha 2027",
+          "tag": "Istambul • 2 a 6 de fevereiro de 2027",
+          "text": "Barcelona, Real Madrid, Atlético de Madrid e Real Sociedad em Istambul. Escolha seu jogo e seu lugar no modelo do estádio."
+        }
+      }
+    },
+    {
+      "id": "istanbul-derbies",
+      "title": "ديربيات إسطنبول",
+      "titleEn": "Istanbul derbies",
+      "tag": "حسب الجدول",
+      "tagEn": "Per the schedule",
+      "text": "أجواء لا تُنسى في مباريات غلطة سراي وفنربخشة وبشكتاش ضمن الدوري التركي.",
+      "textEn": "An unforgettable atmosphere at Galatasaray, Fenerbahçe and Beşiktaş matches in the Turkish league.",
+      "link": "",
+      "photo": "",
+      "icon": "stadium",
+      "priceFrom": null,
+      "featured": false,
+      "active": true,
+      "i18n": {
+        "ru": {
+          "title": "Стамбульские дерби",
+          "tag": "По расписанию",
+          "text": "Незабываемая атмосфера на матчах «Галатасарая», «Фенербахче» и «Бешикташа» в чемпионате Турции."
+        },
+        "tr": {
+          "title": "İstanbul derbileri",
+          "tag": "Programa göre",
+          "text": "Türkiye ligindeki Galatasaray, Fenerbahçe ve Beşiktaş maçlarında unutulmaz bir atmosfer."
+        },
+        "pt": {
+          "title": "Clássicos de Istambul",
+          "tag": "Conforme a programação",
+          "text": "Um clima inesquecível nos jogos de Galatasaray, Fenerbahçe e Beşiktaş no campeonato turco."
+        }
+      }
+    },
+    {
+      "id": "european-nights",
+      "title": "الليالي الأوروبية في إسطنبول",
+      "titleEn": "European nights in Istanbul",
+      "tag": "حسب القرعة",
+      "tagEn": "Per the draw",
+      "text": "مباريات الأندية التركية في البطولات الأوروبية على ملاعب إسطنبول.",
+      "textEn": "Turkish clubs' matches in European competitions at Istanbul stadiums.",
+      "link": "",
+      "photo": "",
+      "icon": "ball",
+      "priceFrom": null,
+      "featured": false,
+      "active": true,
+      "i18n": {
+        "ru": {
+          "title": "Европейские вечера в Стамбуле",
+          "tag": "По итогам жеребьёвки",
+          "text": "Матчи турецких клубов в европейских турнирах на стадионах Стамбула."
+        },
+        "tr": {
+          "title": "İstanbul'da Avrupa geceleri",
+          "tag": "Kuraya göre",
+          "text": "Türk kulüplerinin Avrupa turnuvalarındaki maçları, İstanbul stadyumlarında."
+        },
+        "pt": {
+          "title": "Noites europeias em Istambul",
+          "tag": "Conforme o sorteio",
+          "text": "Jogos de clubes turcos em competições europeias nos estádios de Istambul."
+        }
+      }
+    },
+    {
+      "id": "world-matches",
+      "title": "مباريات حول العالم",
+      "titleEn": "Matches around the world",
+      "tag": "حسب الطلب",
+      "tagEn": "On request",
+      "text": "نساعدك في تذاكر مباريات كبرى في أوروبا والخليج مع الطيران والفندق.",
+      "textEn": "We help you with tickets to major matches in Europe and the Gulf, together with flights and hotel.",
+      "link": "",
+      "photo": "",
+      "icon": "globe",
+      "priceFrom": null,
+      "featured": false,
+      "active": true,
+      "i18n": {
+        "ru": {
+          "title": "Матчи по всему миру",
+          "tag": "По запросу",
+          "text": "Поможем с билетами на крупные матчи в Европе и странах Персидского залива вместе с перелётом и отелем."
+        },
+        "tr": {
+          "title": "Dünyanın dört bir yanında maçlar",
+          "tag": "Talebe göre",
+          "text": "Avrupa'daki ve Körfez'deki büyük maçların biletleri konusunda uçuş ve otelle birlikte yardımcı oluruz."
+        },
+        "pt": {
+          "title": "Jogos pelo mundo",
+          "tag": "Sob consulta",
+          "text": "Ajudamos com ingressos para grandes jogos na Europa e nos países do Golfo, junto com passagem aérea e hotel."
+        }
+      }
+    }
+  ]
+}

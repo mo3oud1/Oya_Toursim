@@ -40,6 +40,7 @@ if (root) {
     const tot = litePanel.querySelector(".si-total"); if (tot) tot.textContent = liteMoney(v ? v * lite.qty : null);
     litePanel.querySelector(".si-wa").href = `https://wa.me/${cfg.wa}?text=${encodeURIComponent(TL("مرحباً أويا، أرغب بتذاكر {0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027. عدد التذاكر: {4} — الإجمالي التقديري: {5}.", [c.label, m.venue, m.stage, m.teams, lite.qty, liteMoney(v ? v * lite.qty : null)]))}`;
     litePanel.classList.add("is-on");
+    syncForm(lite.idx, lite.cat, lite.qty);
   }
   root.querySelectorAll(".stadium-legend button").forEach((b) => b.addEventListener("click", () => {
     if (is3D()) return;
@@ -51,10 +52,30 @@ if (root) {
     lite.idx = i;
     root.querySelectorAll(".stadium-tab").forEach((x) => x.setAttribute("aria-selected", x === t ? "true" : "false"));
     const ven = root.querySelector(".stadium-venue"); if (ven) ven.textContent = `${cfg.matches[i].venue} • ${cfg.matches[i].capacity}`;
-    lite.pendingTab = i; liteDraw();
+    lite.pendingTab = i; liteDraw(); syncForm(i, lite.cat, lite.qty);
   }));
   root.querySelectorAll(".qty__b").forEach((b) => b.addEventListener("click", () => { if (is3D()) return; lite.qty = Math.min(10, Math.max(1, lite.qty + Number(b.dataset.q))); liteDraw(); }));
   if (window.oyaPrices) window.oyaPrices.then((db) => { const sc = db && db.superCup && db.superCup.matches; if (!sc || is3D()) return; cfg.matches.forEach((m) => { if (sc[m.id]) m.prices = sc[m.id]; }); if (db.currency && db.currency.symbol) cfg.currency = db.currency.symbol; liteDraw(); });
+  // the request form below follows what the visitor picks on the stadium (match, category, number of tickets)
+  const scForm = document.querySelector("form[data-sc-form]");
+  function syncForm(mi, cat, n) {
+    if (!scForm) return;
+    const setSel = (name, key) => {
+      const sel = scForm.querySelector(`select[name="${name}"]`); if (!sel || !key) return;
+      const map = (sel.getAttribute("data-sc-map") || "").split(","), opts = [...sel.options].filter((o) => o.value !== "");
+      const o = opts[map.indexOf(key)]; if (o && sel.value !== o.value) { sel.value = o.value; sel.dispatchEvent(new Event("change", { bubbles: true })); }
+    };
+    setSel("match", cfg.matches[mi] && cfg.matches[mi].id); setSel("category", cat);
+    const q = scForm.querySelector('select[name="qty"]');
+    if (q && n) { const o = [...q.options].find((x) => x.value === String(n)); if (o && q.value !== o.value) { q.value = o.value; q.dispatchEvent(new Event("change", { bubbles: true })); } }
+  }
+  document.querySelectorAll("[data-pick-match]").forEach((a) => a.addEventListener("click", (e) => {
+    e.preventDefault();
+    const t = root.querySelectorAll(".stadium-tab")[Number(a.dataset.pickMatch)];
+    if (t && t.getAttribute("aria-selected") !== "true") t.click(); else if (!is3D()) { lite.idx = Number(a.dataset.pickMatch); syncForm(lite.idx, lite.cat, lite.qty); }
+    root.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    start();
+  }));
   if (!coarse) {
     const io = new IntersectionObserver((e) => { if (e[0].isIntersecting) { io.disconnect(); start(); } }, { rootMargin: "200px" });
     io.observe(root);
@@ -200,6 +221,53 @@ if (root) {
       crowd = { body, head, n, pos: Float32Array.from(C.pos) };
     }
 
+    // ---------- players: two teams in a 4-3-3 in their kit colours, a referee and the ball ----------
+    let players = null;
+    const FORM = [[-49, 0], [-36, -22], [-38, -7], [-38, 7], [-36, 22], [-22, -14], [-24, 0], [-22, 14], [-8, -20], [-6, 0], [-8, 20]];
+    function buildPlayers(match) {
+      const kits = (match && match.kits) || [["#ED5404", "#ffffff"], ["#19487E", "#ffffff"]];
+      const list = [];
+      [1, -1].forEach((side, ti) => FORM.forEach(([x, z], i) => list.push({ bx: x * side, bz: z * side, side, gk: i === 0, shirt: i === 0 ? (ti ? "#F2C230" : "#2FA84F") : kits[ti][0], shorts: i === 0 ? "#1b1f27" : kits[ti][1], ph: Math.random() * 6.28, run: i ? 1 : 0.25 })));
+      list.push({ bx: 0, bz: 8, side: 0, ref: true, shirt: "#111111", shorts: "#111111", ph: 1, run: 1 });
+      const n = list.length;
+      const mk = (geo, color) => { const m = new THREE.InstancedMesh(geo, new THREE.MeshLambertMaterial({ color }), n); m.frustumCulled = false; stadium.add(m); return m; };
+      const torso = mk(new THREE.CylinderGeometry(0.27, 0.23, 0.72, 8).translate(0, 1.2, 0), 0xffffff);
+      const shorts = mk(new THREE.CylinderGeometry(0.25, 0.25, 0.3, 8).translate(0, 0.72, 0), 0xffffff);
+      const legs = mk(new THREE.BoxGeometry(0.34, 0.6, 0.2).translate(0, 0.3, 0), 0xffffff);
+      const head = mk(new THREE.SphereGeometry(0.15, 8, 6).translate(0, 1.72, 0), 0xffffff);
+      const col = new THREE.Color();
+      list.forEach((p, i) => {
+        torso.setColorAt(i, col.set(p.shirt)); shorts.setColorAt(i, col.set(p.shorts)); legs.setColorAt(i, col.set(p.shirt).lerp(new THREE.Color(0x222222), 0.35));
+        head.setColorAt(i, SKIN[i % SKIN.length]);
+      });
+      const ball = new THREE.Mesh(new THREE.SphereGeometry(0.2, 12, 8), new THREE.MeshLambertMaterial({ color: 0xffffff, emissive: 0x444444 }));
+      stadium.add(ball);
+      players = { list, parts: [torso, shorts, legs, head], ball, o: new THREE.Object3D() };
+      movePlayers(0);
+    }
+    function movePlayers(t) {
+      if (!players) return;
+      const { list, parts, ball, o } = players;
+      // the ball wanders over the pitch; both teams shift towards it, the nearest players press it
+      const bx = 30 * Math.sin(t * 0.11) + 9 * Math.sin(t * 0.37), bz = 20 * Math.sin(t * 0.15 + 1) + 6 * Math.sin(t * 0.5);
+      ball.position.set(bx, 0.2 + Math.abs(Math.sin(t * 2.2)) * 0.25, bz);
+      list.forEach((p, i) => {
+        let x, z;
+        if (p.ref) { x = bx - 9; z = bz + 7; }
+        else if (p.gk) { x = p.bx; z = Math.max(-4, Math.min(4, bz * 0.12)); }
+        else {
+          x = p.bx + bx * 0.45 + Math.sin(t * 0.6 + p.ph) * 2.2 * p.run; z = p.bz * 0.85 + bz * 0.25 + Math.cos(t * 0.5 + p.ph) * 2 * p.run;
+          const dx = bx - x, dz = bz - z, d = Math.hypot(dx, dz);
+          if (d < 13) { const k = (13 - d) / 13 * 0.75; x += dx * k; z += dz * k; }
+        }
+        x = Math.max(-51, Math.min(51, x)); z = Math.max(-33, Math.min(33, z));
+        o.position.set(x, Math.abs(Math.sin(t * 7 + p.ph)) * 0.05 * p.run, z);
+        o.rotation.set(0, Math.atan2(bx - x, bz - z), 0); o.scale.setScalar(1.12); o.updateMatrix();
+        parts.forEach((m) => m.setMatrixAt(i, o.matrix));
+      });
+      parts.forEach((m) => { m.instanceMatrix.needsUpdate = true; if (m.instanceColor) m.instanceColor.needsUpdate = true; });
+    }
+
     function build(v, match) {
       scene.remove(stadium);
       stadium.traverse((o) => {
@@ -207,7 +275,7 @@ if (root) {
         if (o.material && !sharedMats.has(o.material)) { if (o.material.map && o.material.map !== pitchTex && o.material.map !== glowTex) o.material.map.dispose(); o.material.dispose(); }
         if (o.isInstancedMesh) o.dispose();
       });
-      selected = null;
+      selected = null; players = null; hiddenSeats = [];
       stadium = new THREE.Group(); pickables = []; boards = []; screens = []; C = { pos: [], rot: [], col: [], skin: [] };
       const off = 8;
       const lower = profileShape(20, 0.85, 0.42, 1.4);
@@ -295,6 +363,7 @@ if (root) {
         stadium.add(frame, scr); screens.push(sc);
       }
       makeCrowd();
+      buildPlayers(match);
       scene.add(stadium);
       radiusMax = 52.5 + upOff + upper.depth + 150;
     }
@@ -310,6 +379,7 @@ if (root) {
         camera.position.copy(seat.pos);
         const dir = new THREE.Vector3(Math.sin(seat.baseYaw + yaw) * Math.cos(pitchA), Math.sin(pitchA), Math.cos(seat.baseYaw + yaw) * Math.cos(pitchA));
         camera.lookAt(seat.pos.clone().add(dir));
+        mapCone();
       }
     }
     function resize() {
@@ -319,24 +389,29 @@ if (root) {
     new ResizeObserver(resize).observe(stage);
 
     const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-    function flyTo(toPos, toLook, toFov, done) {
+    function flyTo(toPos, toLook, toFov, done, opt = {}) {
       const fromPos = camera.position.clone(), fromLook = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion).multiplyScalar(60).add(fromPos);
-      fly = { t0: performance.now(), dur: reduce ? 1 : 1900, fromPos, toPos, fromLook, toLook, fromFov: camera.fov, toFov, done };
+      fly = { t0: performance.now(), dur: reduce ? 1 : opt.dur || 1900, arc: opt.arc !== false, fromPos, toPos, fromLook, toLook, fromFov: camera.fov, toFov, done };
     }
+    let seatRow = 0.42, seatAlong = 0.5, hiddenSeats = [];
     function seatFor(m) {
-      const { prof, len, slice, slices } = m.userData; m.updateMatrixWorld();
-      const r = Math.round(prof.rows * (m.userData.upper ? 0.4 : 0.42));
-      const local = new THREE.Vector3((r + 0.5) * prof.tread, prof.h0 + r * prof.riser + 1.32, 0);
+      const { prof, len } = m.userData; m.updateMatrixWorld();
+      const r = Math.round((prof.rows - 1) * seatRow);
+      const local = new THREE.Vector3((r + 0.5) * prof.tread, prof.h0 + r * prof.riser + 1.32, (seatAlong - 0.5) * Math.max(0, len - 2));
       const pos = local.clone().applyMatrix4(m.matrixWorld);
       const look = new THREE.Vector3(pos.x * 0.12, 0.5, pos.z * 0.12);
-      return { pos, look, baseYaw: Math.atan2(look.x - pos.x, look.z - pos.z), basePitch: Math.atan2(look.y - pos.y, Math.hypot(look.x - pos.x, look.z - pos.z)) };
+      return { pos, look, row: r + 1, rows: prof.rows, baseYaw: Math.atan2(look.x - pos.x, look.z - pos.z), basePitch: Math.atan2(look.y - pos.y, Math.hypot(look.x - pos.x, look.z - pos.z)) };
     }
     function emptySeat(p) { // free the chosen seat (and the one next to it) so the view isn't blocked
       if (!crowd) return;
+      hiddenSeats.forEach(([i, mb, mh]) => { crowd.body.setMatrixAt(i, mb); crowd.head.setMatrixAt(i, mh); }); hiddenSeats = [];
       const m4 = new THREE.Matrix4().makeScale(0, 0, 0);
       for (let i = 0; i < crowd.n; i++) {
         const dx = crowd.pos[i * 3] - p.x, dy = crowd.pos[i * 3 + 1] - (p.y - 1.32), dz = crowd.pos[i * 3 + 2] - p.z;
-        if (dx * dx + dz * dz < 3.2 && dy < 0.3 && dy > -1.0) { crowd.body.setMatrixAt(i, m4); crowd.head.setMatrixAt(i, m4); }
+        if (dx * dx + dz * dz < 3.2 && dy < 0.3 && dy > -1.0) {
+          const mb = new THREE.Matrix4(), mh = new THREE.Matrix4(); crowd.body.getMatrixAt(i, mb); crowd.head.getMatrixAt(i, mh); hiddenSeats.push([i, mb, mh]);
+          crowd.body.setMatrixAt(i, m4); crowd.head.setMatrixAt(i, m4);
+        }
       }
       crowd.body.instanceMatrix.needsUpdate = true; crowd.head.instanceMatrix.needsUpdate = true;
     }
@@ -368,7 +443,8 @@ if (root) {
     function waHref(m) {
       const k = m.userData.cat, c = CAT[k], match = cfg.matches[matchIdx], v = priceNum(k);
       const total = v ? `${(v * qty).toLocaleString(NUM_LOC)}${cfg.currency}` : T("عند الطلب");
-      return `https://wa.me/${cfg.wa}?text=${encodeURIComponent(T("مرحباً أويا، أرغب بتذاكر {0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027. عدد التذاكر: {4} — الإجمالي التقديري: {5}.", [c.label, m.userData.info, match.stage, match.teams, qty, total]))}`;
+      const where = mode !== "orbit" && seat && m === selected ? `${m.userData.info} • ${T("الصف {0} تقريباً", [seat.row])}` : m.userData.info;
+      return `https://wa.me/${cfg.wa}?text=${encodeURIComponent(T("مرحباً أويا، أرغب بتذاكر {0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027. عدد التذاكر: {4} — الإجمالي التقديري: {5}.", [c.label, where, match.stage, match.teams, qty, total]))}`;
     }
     function refreshTotal() {
       if (qOut) qOut.textContent = qty;
@@ -376,6 +452,7 @@ if (root) {
       const v = priceNum(lastPick.userData.cat);
       if (totalEl) totalEl.textContent = v ? `${(v * qty).toLocaleString(NUM_LOC)}${cfg.currency}` : T("عند الطلب");
       panel.querySelector(".si-wa").href = waHref(lastPick);
+      syncForm(matchIdx, lastPick.userData.cat, qty);
       if (sheet) sheet.querySelector(".ss-wa").href = panel.querySelector(".si-wa").href;
     }
     root.querySelectorAll(".qty__b").forEach((b) => b.addEventListener("click", () => { qty = Math.min(10, Math.max(1, qty + Number(b.dataset.q))); refreshTotal(); }));
@@ -411,23 +488,77 @@ if (root) {
       if (selected) selected.material = mats[selected.userData.cat];
       selected = m;
       if (m) { m.material = mats[m.userData.cat].clone(); m.material.emissiveIntensity = 0.9; showInfo(m); auto = false; }
+      drawMap();
     }
     function enterSeat(m) {
       if (!m) return;
-      select(m); seat = seatFor(m); emptySeat(seat.pos);
+      select(m); seatAlong = 0.5; seat = seatFor(m); emptySeat(seat.pos);
       yaw = 0; pitchA = seat.basePitch;
       if (selected) selected.material = mats[selected.userData.cat]; // natural colours from the seat
       mode = "flying"; auto = false; root.classList.add("is-seat");
       const sr = stage.getBoundingClientRect();
       if (sr.top < 60 || sr.bottom > innerHeight) stage.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
-      seatLabel.textContent = T("منظرك من: {0} — {1}", [CAT[m.userData.cat].label, m.userData.info]);
-      flyTo(seat.pos, seat.look, coarse ? 68 : 60, () => { mode = "seat"; exitBtn.focus({ preventScroll: true }); });
+      seatText(m); seatUI(m);
+      flyTo(seat.pos, seat.look, coarse ? 68 : 60, () => { mode = "seat"; exitBtn.focus({ preventScroll: true }); drawMap(); });
       wave(1.4); if (audio) audio.roar();
     }
+    // move inside the chosen stand: row (front ↔ back) and position (along the stand); the view follows
+    const pickUI = root.querySelector(".stadium-seatpick");
+    const rowIn = pickUI && pickUI.querySelector("[data-seat-row]"), alongIn = pickUI && pickUI.querySelector("[data-seat-along]");
+    const rowOut = pickUI && pickUI.querySelector(".sp-row");
+    function seatText(m) {
+      seatLabel.textContent = T("منظرك من: {0} — {1}", [CAT[m.userData.cat].label, m.userData.info]) + " • " + T("الصف {0}", [seat.row]);
+      if (rowOut) rowOut.textContent = T("الصف {0} من {1}", [seat.row, seat.rows]);
+      refreshTotal();
+    }
+    function seatUI(m) {
+      if (!pickUI) return;
+      rowIn.value = Math.round(seatRow * 100); alongIn.value = Math.round(seatAlong * 100);
+      alongIn.closest("label").hidden = m.userData.slices > 0;
+    }
+    function reseat() {
+      if (!selected || mode === "orbit") return;
+      seat = seatFor(selected); emptySeat(seat.pos); seatText(selected);
+      if (mode === "seat") { mode = "flying"; flyTo(seat.pos, seat.pos.clone().add(new THREE.Vector3(Math.sin(seat.baseYaw + yaw) * Math.cos(pitchA), Math.sin(pitchA), Math.cos(seat.baseYaw + yaw) * Math.cos(pitchA))), camera.fov, () => { mode = "seat"; drawMap(); }, { dur: 420, arc: false }); }
+    }
+    if (rowIn) {
+      rowIn.addEventListener("input", () => { seatRow = rowIn.value / 100; reseat(); });
+      alongIn.addEventListener("input", () => { seatAlong = alongIn.value / 100; reseat(); });
+    }
+
+    // ---------- minimap: the stadium from above, click a stand to choose it; "you are here" in the seat view ----------
+    const mapEl = root.querySelector(".stadium-map");
+    let mapScale = 1;
+    function drawMap() {
+      if (!mapEl) return;
+      const ext = radiusMax - 150, S = 100 / ext; mapScale = S;
+      const P = (v) => `${(v.x * S).toFixed(1)},${(v.z * S).toFixed(1)}`;
+      let svg = `<rect x="${-52.5 * S}" y="${-34 * S}" width="${105 * S}" height="${68 * S}" rx="1.5" fill="#2f7d3a"/><line x1="0" y1="${-34 * S}" x2="0" y2="${34 * S}" stroke="rgba(255,255,255,.6)" stroke-width=".6"/><circle r="${9 * S}" fill="none" stroke="rgba(255,255,255,.6)" stroke-width=".6"/>`;
+      pickables.forEach((m, i) => {
+        const { prof, len } = m.userData; m.updateMatrixWorld();
+        const pts = [[0, -len / 2], [prof.depth, -len / 2], [prof.depth, len / 2], [0, len / 2]].map(([x, z]) => P(new THREE.Vector3(x, 0, z).applyMatrix4(m.matrixWorld))).join(" ");
+        svg += `<polygon data-i="${i}" points="${pts}" fill="${CAT[m.userData.cat].color}"${m === selected ? ' class="is-sel"' : ""}/>`;
+      });
+      if (mode !== "orbit" && seat) svg += `<g class="sm-you" transform="translate(${(seat.pos.x * S).toFixed(1)} ${(seat.pos.z * S).toFixed(1)})"><path class="sm-cone" d="M0 0 L-9 -26 A27 27 0 0 1 9 -26 Z"/><circle r="3.2"/></g>`;
+      mapEl.innerHTML = `<svg viewBox="-104 -104 208 208" aria-hidden="true">${svg}</svg>`;
+      mapCone();
+    }
+    function mapCone() {
+      const g = mapEl && mapEl.querySelector(".sm-you"); if (!g || !seat) return;
+      const a = (seat.baseYaw + yaw) * 180 / Math.PI; // yaw 0 looks towards +z; the cone points to -y in the map
+      g.setAttribute("transform", `translate(${(seat.pos.x * mapScale).toFixed(1)} ${(seat.pos.z * mapScale).toFixed(1)}) rotate(${(180 - a).toFixed(1)})`);
+    }
+    if (mapEl) mapEl.addEventListener("click", (e) => {
+      const poly = e.target.closest("polygon"); if (!poly) return;
+      const m = pickables[Number(poly.dataset.i)]; if (!m) return;
+      if (mode === "seat") { if (selected) selected.material = mats[selected.userData.cat]; selected = m; showInfo(m); seat = seatFor(m); emptySeat(seat.pos); yaw = 0; pitchA = seat.basePitch; seatText(m); seatUI(m); mode = "flying"; flyTo(seat.pos, seat.look, camera.fov, () => { mode = "seat"; drawMap(); }, { dur: 900, arc: false }); }
+      else { select(m); drawMap(); }
+    });
+
     function exitSeat() {
       mode = "flying"; root.classList.remove("is-seat");
       az = -0.65; pol = 0.86; rad = 215;
-      flyTo(orbitPos(), target.clone(), 42, () => { mode = "orbit"; if (selected) { selected.material = mats[selected.userData.cat].clone(); selected.material.emissiveIntensity = 0.9; } });
+      flyTo(orbitPos(), target.clone(), 42, () => { mode = "orbit"; if (selected) { selected.material = mats[selected.userData.cat].clone(); selected.material.emissiveIntensity = 0.9; } drawMap(); refreshTotal(); });
     }
     let waveUntil = 0;
     function wave(delay = 0) { if (reduce) return; setTimeout(() => { waveUntil = performance.now() + 9000; if (audio) audio.roar(); }, delay * 1000); }
@@ -437,6 +568,7 @@ if (root) {
       pickables.forEach((p) => { p.material = mats[p.userData.cat]; });
       pickables.filter((p) => p.userData.cat === k).forEach((p) => { p.material = mats[k].clone(); p.material.emissiveIntensity = 0.75; });
       if (m) { selected = m; showInfo(m); }
+      drawMap();
     }));
     const sit = () => enterSeat(selected || pickables.find((p) => p.userData.cat === "vip"));
     if (seatBtn) seatBtn.addEventListener("click", sit);
@@ -448,7 +580,7 @@ if (root) {
       tabs.forEach((x) => x.setAttribute("aria-selected", x === t ? "true" : "false"));
       matchIdx = i; selected = null; panel.classList.remove("is-on"); if (sheet) sheet.classList.remove("is-on");
       if (mode !== "orbit") { mode = "orbit"; root.classList.remove("is-seat"); camera.fov = 42; camera.updateProjectionMatrix(); }
-      build(cfg.matches[i].venueModel, cfg.matches[i]);
+      build(cfg.matches[i].venueModel, cfg.matches[i]); drawMap(); syncForm(i, null, qty);
       root.querySelector(".stadium-venue").textContent = `${cfg.matches[i].venue} • ${cfg.matches[i].capacity}`;
       root.querySelectorAll(".stadium-legend button").forEach((b) => { b.querySelector(".lg-price").textContent = priceOf(b.dataset.cat); });
       updateCam();
@@ -515,10 +647,10 @@ if (root) {
       const dt = Math.min(0.05, (now - last) / 1000); last = now;
       U.time.value += dt;
       U.wave.value += ((now < waveUntil ? 1 : 0) - U.wave.value) * Math.min(1, dt * 2.5);
-      if (!reduce) boards.forEach((t) => { t.offset.x = (t.offset.x + dt * 0.035) % 1; });
+      if (!reduce) { boards.forEach((t) => { t.offset.x = (t.offset.x + dt * 0.035) % 1; }); movePlayers(U.time.value); }
       if (fly) {
         const t = Math.min(1, (now - fly.t0) / fly.dur), k = ease(t);
-        const p = fly.fromPos.clone().lerp(fly.toPos, k); p.y += Math.sin(Math.PI * k) * (mode === "flying" ? 22 : 0);
+        const p = fly.fromPos.clone().lerp(fly.toPos, k); p.y += Math.sin(Math.PI * k) * (mode === "flying" && fly.arc ? 22 : 0);
         camera.position.copy(p); camera.lookAt(fly.fromLook.clone().lerp(fly.toLook, k));
         camera.fov = fly.fromFov + (fly.toFov - fly.fromFov) * k; camera.updateProjectionMatrix();
         if (t >= 1) { const d = fly.done; fly = null; d && d(); updateCam(); }
@@ -528,7 +660,7 @@ if (root) {
     function kick() { if (!raf && visible) { last = performance.now(); raf = requestAnimationFrame(frame); } }
 
     build(cfg.matches[0].venueModel, cfg.matches[0]);
-    resize(); updateCam(); kick();
+    resize(); updateCam(); drawMap(); kick();
     canvas.tabIndex = -1;
     root.classList.remove("is-loading"); root.classList.add("is-ready");
     // carry over what the visitor already chose in lite mode

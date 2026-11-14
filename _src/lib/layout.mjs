@@ -63,7 +63,6 @@ function megaMore(data) {
     <h4>مباريات وعروض</h4>
     <ul>
       ${li("matches/spanish-super-cup-2027/", "كأس السوبر الإسباني 2027", "trophy")}
-      ${li("matches/", "تذاكر المباريات", "ball")}
       ${li("offers/", "العروض الموسمية", "sparkles")}
     </ul>
   </div>
@@ -90,7 +89,7 @@ function langMenu(page, L) {
 }
 
 function header(page, data, L) {
-  const primary = ["hotels", "cabins", "flights"];
+  const primary = ["hotels", "cabins", "flights", "matches"];
   const items = nav.map((n) => {
     const active = page.nav === n.key || (n.key === "more" && !primary.includes(page.nav) && page.nav !== "home");
     if (n.mega) {
@@ -129,6 +128,7 @@ function drawer(page, data, L) {
         <a class="drawer__tile" href="{{root}}hotels/"${page.nav === "hotels" ? ' aria-current="page"' : ""}>${ic("hotel")}<span>فنادق ومنتجعات</span></a>
         <a class="drawer__tile" href="{{root}}cabins/"${page.nav === "cabins" ? ' aria-current="page"' : ""}>${ic("cabin")}<span>أكواخ وبنغلات</span></a>
         <a class="drawer__tile" href="{{root}}flights/"${page.nav === "flights" ? ' aria-current="page"' : ""}>${ic("takeoff")}<span>تذاكر طيران</span></a>
+        <a class="drawer__tile" href="{{root}}matches/"${page.nav === "matches" ? ' aria-current="page"' : ""}>${ic("ticket")}<span>تذاكر المباريات</span></a>
       </div>
       <ul>
         ${link("", "الرئيسية", "home")}
@@ -141,7 +141,6 @@ function drawer(page, data, L) {
           <li><a href="{{root}}visas/"><b>تأشيرات دولية</b></a></li>${g("intl").map((v) => `<li><a href="{{root}}visas/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
         </ul></details></li>
         ${(data.extras || []).length ? `<li><details><summary>خدمات وعروض ${ic("chevron")}</summary><ul>${data.extras.map((x) => `<li><a href="{{root}}${x.path}">${esc(x.navLabel || x.h1.split(":")[0])}</a></li>`).join("")}<li><a href="{{root}}offers/">كل العروض الموسمية</a></li></ul></details></li>` : ""}
-        ${link("matches/", "تذاكر المباريات", "matches")}
         ${link("blog/", "المدونة", "blog")}
         ${link("about/", "من نحن", "about")}
         ${link("faq/", "الأسئلة الشائعة", "faq")}
@@ -217,12 +216,12 @@ function vendorScripts(page) {
 
 // Strings the scripts show (T("…") in assets/js/*.js), shipped per page as a small table the build translates
 const JS_T = {};
-for (const f of ["main", "finder", "globe", "stadium", "cabins"]) {
+for (const f of ["main", "finder", "globe", "stadium", "cabins", "catalog"]) {
   const src = fs.readFileSync(path.join(ROOT_DIR, "assets/js", `${f}.js`), "utf8");
   JS_T[f] = [...new Set([...src.matchAll(/\bT\("((?:[^"\\]|\\.)*)"/g)].map((m) => JSON.parse(`"${m[1]}"`)))];
 }
 function jsStrings(page) {
-  const used = ["main", /data-finder/.test(page.body) && "finder", /data-globe/.test(page.body) && "globe", /data-stadium/.test(page.body) && "stadium", /data-cabins/.test(page.body) && "cabins"].filter(Boolean);
+  const used = ["main", /data-finder/.test(page.body) && "finder", /data-globe/.test(page.body) && "globe", /data-stadium/.test(page.body) && "stadium", /data-cabins/.test(page.body) && "cabins", /data-(events|flights|hotels)\b/.test(page.body) && "catalog"].filter(Boolean);
   const table = Object.fromEntries(used.flatMap((f) => JS_T[f]).map((s) => [s, s]));
   return `<script type="application/json" id="oya-t">${JSON.stringify(table).replace(/</g, "\\u003c")}</script>`;
 }
@@ -307,6 +306,7 @@ ${/data-finder/.test(page.body) ? `<script src="{{root}}assets/js/finder.js?v=${
 ${/data-globe/.test(page.body) ? `<script type="module" src="{{root}}assets/js/globe.js?v=${assetsVer}"></script>` : ""}
 ${/data-stadium/.test(page.body) ? `<script type="module" src="{{root}}assets/js/stadium.js?v=${assetsVer}"></script>` : ""}
 ${/data-cabins/.test(page.body) ? `<script src="{{root}}assets/js/cabins.js?v=${assetsVer}" defer></script>` : ""}
+${/data-(events|flights|hotels)\b/.test(page.body) ? `<script src="{{root}}assets/js/catalog.js?v=${assetsVer}" defer></script>` : ""}
 </body>
 </html>`;
 }

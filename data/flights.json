@@ -1,0 +1,133 @@
+{
+  "_note": "Flight routes shown on oyatourism.com/flights/ — edit from oyatourism.com/admin/. from/to are airport codes; mins = typical direct flight time.",
+  "routes": [
+    {
+      "id": "ist-ruh",
+      "from": "IST",
+      "to": "RUH",
+      "mins": 240,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-jed",
+      "from": "IST",
+      "to": "JED",
+      "mins": 225,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-dmm",
+      "from": "IST",
+      "to": "DMM",
+      "mins": 240,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-med",
+      "from": "IST",
+      "to": "MED",
+      "mins": 210,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-dxb",
+      "from": "IST",
+      "to": "DXB",
+      "mins": 255,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-doh",
+      "from": "IST",
+      "to": "DOH",
+      "mins": 240,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-kwi",
+      "from": "IST",
+      "to": "KWI",
+      "mins": 210,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-mct",
+      "from": "IST",
+      "to": "MCT",
+      "mins": 300,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-bgw",
+      "from": "IST",
+      "to": "BGW",
+      "mins": 180,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-ebl",
+      "from": "IST",
+      "to": "EBL",
+      "mins": 150,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-amm",
+      "from": "IST",
+      "to": "AMM",
+      "mins": 120,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-cai",
+      "from": "IST",
+      "to": "CAI",
+      "mins": 135,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-tzx",
+      "from": "IST",
+      "to": "TZX",
+      "mins": 105,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-ayt",
+      "from": "IST",
+      "to": "AYT",
+      "mins": 80,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-tbs",
+      "from": "IST",
+      "to": "TBS",
+      "mins": 135,
+      "price": null,
+      "active": true
+    },
+    {
+      "id": "ist-gyd",
+      "from": "IST",
+      "to": "GYD",
+      "mins": 180,
+      "price": null,
+      "active": true
+    }
+  ]
+}

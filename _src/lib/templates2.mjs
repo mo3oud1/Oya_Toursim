@@ -1,4 +1,5 @@
 // Templates: hotel city pages, quick service pages, seasonal offers (+ offers hub)
+import { hotelsSection, HOTEL_CITIES } from "./catalog.mjs";
 import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
 import { factIcon, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, waBtn, waUrl } from "./ui.mjs";
@@ -51,6 +52,7 @@ ${pageHero({ crumbs, eyebrow: `فنادق ومنتجعات • <span class="ltr"
   </div>
 </section>
 
+${HOTEL_CITIES[h.slug] ? hotelsSection({ city: h.slug, title: `فنادق مختارة في ${h.city}` }) : ""}
 ${h.slug === "sapanca" ? cabinsSection("sapanca") : ["trabzon", "uzungol"].includes(h.slug) ? cabinsSection("trabzon") : ""}
 <section class="section section--sky">
   <div class="container grid grid-2">

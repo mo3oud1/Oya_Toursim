@@ -39,6 +39,7 @@ export const nav = [
   { key: "hotels", label: "فنادق ومنتجعات", href: "hotels/", icon: "hotel", mega: "hotels" },
   { key: "cabins", label: "أكواخ وبنغلات", href: "cabins/", icon: "cabin" },
   { key: "flights", label: "تذاكر طيران", href: "flights/", icon: "takeoff" },
+  { key: "matches", label: "تذاكر المباريات", href: "matches/", icon: "ticket" },
   { key: "more", label: "المزيد", mega: "more" },
 ];
 

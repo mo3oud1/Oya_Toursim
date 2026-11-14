@@ -4,6 +4,7 @@ import { ic, esc, media, photoImg, toneFor, sectionHead, faqBlock, ctaBand, page
 import { flightForm, hotelForm, cityList } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
 import { cabinsBlock } from "./cabins.mjs";
+import { flightRoutes, hotelsSection } from "../lib/catalog.mjs";
 
 const g = (page, extra) => [S.orgNode(), S.websiteNode(), S.webPageNode(page), S.breadcrumbNode(page), ...extra].filter(Boolean);
 
@@ -14,12 +15,6 @@ export function flightsPage() {
   const page = { path, nav: "flights", crumbs,
     title: "حجز تذاكر طيران من إسطنبول وإليها بأنسب الخيارات | أويا",
     description: "احجز تذاكر طيرانك من إسطنبول إلى الرياض وجدة وبغداد وأربيل ودبي وطرابزون والعالم بأسعار تنافسية ودعم بالعربية. أرسل وجهتك وتاريخك عبر واتساب." };
-  const routes = [
-    ["إسطنبول", "الرياض", "4 ساعات تقريباً"], ["إسطنبول", "جدة", "3 ساعات و45 دقيقة تقريباً"], ["إسطنبول", "الدمام", "4 ساعات تقريباً"], ["إسطنبول", "المدينة المنورة", "3 ساعات و30 دقيقة تقريباً"],
-    ["إسطنبول", "دبي", "4 ساعات و15 دقيقة تقريباً"], ["إسطنبول", "الدوحة", "4 ساعات تقريباً"], ["إسطنبول", "الكويت", "3 ساعات و30 دقيقة تقريباً"], ["إسطنبول", "مسقط", "5 ساعات تقريباً"],
-    ["إسطنبول", "بغداد", "3 ساعات تقريباً"], ["إسطنبول", "أربيل", "ساعتان و30 دقيقة تقريباً"], ["إسطنبول", "عمّان", "ساعتان تقريباً"], ["إسطنبول", "القاهرة", "ساعتان و15 دقيقة تقريباً"],
-    ["إسطنبول", "طرابزون", "ساعة و45 دقيقة تقريباً"], ["إسطنبول", "أنطاليا", "ساعة و20 دقيقة تقريباً"], ["إسطنبول", "تبليسي", "ساعتان و15 دقيقة تقريباً"], ["إسطنبول", "باكو", "3 ساعات تقريباً"],
-  ];
   const faq = [
     { q: "متى أحجز للحصول على أفضل سعر لتذكرة الطيران؟", a: "كقاعدة عامة، الحجز المبكر قبل عدة أسابيع يمنحك خيارات وأسعاراً أفضل، خصوصاً في مواسم الصيف والأعياد والعطلات المدرسية. أرسل لنا تواريخك ونقارن لك الخيارات المتاحة على أكثر من شركة." },
     { q: "ما الفرق بين مطار إسطنبول ومطار صبيحة؟", a: "مطار إسطنبول (IST) يقع في الجانب الأوروبي ويخدم أغلب الرحلات الدولية والخطوط التركية، بينما مطار صبيحة كوكجن (SAW) في الجانب الآسيوي وتعمل منه شركات منخفضة التكلفة مثل بيغاسوس. اختيار المطار يؤثر على وقت الوصول لفندقك، ونرشدك للأنسب." },
@@ -39,9 +34,7 @@ ${pageHero({ crumbs, ...heroPhoto("hero-flights"), eyebrow: "تذاكر طيرا
 <section class="section">
   <div class="container">
     ${sectionHead({ eyebrow: "وجهات رئيسية", title: "رحلات من إسطنبول إلى أهم الوجهات", lead: "اضغط على الوجهة لإرسال طلب سريع عبر واتساب. المدد الزمنية تقريبية للرحلات المباشرة." })}
-    <div class="grid grid-4" data-stagger>
-      ${routes.map(([a, b, t]) => `<a class="ctile" data-reveal href="${waUrl(`مرحباً أويا، أرغب بحجز طيران من ${a} إلى ${b}.`)}" target="_blank" rel="noopener"><span class="ico">${ic("plane")}</span><div><b>${a} ← ${b}</b><span>${t}</span></div></a>`).join("")}
-    </div>
+    ${flightRoutes()}
   </div>
 </section>
 
@@ -131,6 +124,8 @@ ${pageHero({ crumbs, ...heroPhoto("hero-hotels"), eyebrow: `${ic("star")} الخ
     <div class="grid grid-3 hcities" data-stagger>${(data.hotels || []).map((h) => `<a class="dest" href="{{root}}hotels/${h.slug}/" data-reveal>${media({ img: h.img, prompt: h.imgPrompt, alt: h.h1, ratio: "", page: path, tone: h.destination ? toneFor(h.destination) : "gulf" })}<div class="dest__body"><h3>${h.slug === "family-friendly" ? "فنادق محافظة" : "فنادق " + esc(h.city)}</h3><span class="en">${esc(h.cityEn)}</span>${areas[h.slug] ? `<ul class="dest__areas">${areas[h.slug].map((x) => `<li>${ic("pin")}${x}</li>`).join("")}</ul>` : ""}<p>${esc(h.intro)}</p></div></a>`).join("")}</div>
   </div>
 </section>
+
+${hotelsSection()}
 
 <section class="section section--white cab-sec" data-cab-sec hidden>
   <div class="container">

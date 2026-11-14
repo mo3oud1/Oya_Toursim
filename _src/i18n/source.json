@@ -379,6 +379,18 @@
   "n": 277
  },
  {
+  "id": "cb67232d5c",
+  "kind": "text",
+  "ar": "تذاكر المباريات",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 274
+ },
+ {
   "id": "6a4ef56148",
   "kind": "text",
   "ar": "المزيد",
@@ -544,19 +556,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 181
- },
- {
-  "id": "cb67232d5c",
-  "kind": "text",
-  "ar": "تذاكر المباريات",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 273
+  "n": 182
  },
  {
   "id": "9b2bed3bb5",
@@ -724,7 +724,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 260
+  "n": 265
  },
  {
   "id": "41d1c5a5d5",
@@ -736,7 +736,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 221
+  "n": 225
  },
  {
   "id": "62140011f1",
@@ -748,7 +748,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 223
+  "n": 227
  },
  {
   "id": "27d9d4af03",
@@ -760,7 +760,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 206
+  "n": 214
  },
  {
   "id": "83371ac8d3",
@@ -772,7 +772,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 217
+  "n": 221
  },
  {
   "id": "c52396a897",
@@ -784,7 +784,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 242
+  "n": 250
  },
  {
   "id": "e5ad3eb4f1",
@@ -796,7 +796,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 252
+  "n": 260
  },
  {
   "id": "b3eed31404",
@@ -808,7 +808,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 237
+  "n": 245
  },
  {
   "id": "56aa9ed5ce",
@@ -5246,30 +5246,27 @@
   "kind": "text",
   "ar": "حدث استثنائي في إسطنبول",
   "pages": [
-   "",
-   "matches/"
+   ""
   ],
-  "n": 2
+  "n": 1
  },
  {
   "id": "59807d8c19",
   "kind": "text",
   "ar": "كأس السوبر الإسباني 2027 <g1>في إسطنبول</g1>",
   "pages": [
-   "",
-   "matches/"
+   ""
   ],
-  "n": 2
+  "n": 1
  },
  {
   "id": "48726f8d57",
   "kind": "text",
   "ar": "برشلونة، ريال مدريد، أتلتيكو مدريد وريال سوسيداد على أرض إسطنبول من 2 إلى 6 فبراير 2027. احجز باقة المشجع مع الفندق والتنقلات، ونساعدك في تذكرتك الرسمية باسمك.",
   "pages": [
-   "",
-   "matches/"
+   ""
   ],
-  "n": 2
+  "n": 1
  },
  {
   "id": "2bc65601a2",
@@ -5277,30 +5274,27 @@
   "ar": "مرحباً أويا، أرغب بباقة حضور كأس السوبر الإسباني 2027 في إسطنبول.",
   "pages": [
    "",
-   "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 4
+  "n": 3
  },
  {
   "id": "13f94d5eb4",
   "kind": "text",
   "ar": "تفاصيل التذاكر والباقات",
   "pages": [
-   "",
-   "matches/"
+   ""
   ],
-  "n": 2
+  "n": 1
  },
  {
   "id": "2f5ddd63e2",
   "kind": "text",
   "ar": "احجز عبر واتساب",
   "pages": [
-   "",
-   "matches/"
+   ""
   ],
-  "n": 2
+  "n": 1
  },
  {
   "id": "64f75a0519",
@@ -5308,10 +5302,9 @@
   "ar": "العد التنازلي لانطلاق البطولة",
   "pages": [
    "",
-   "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 3
+  "n": 2
  },
  {
   "id": "efc446efeb",
@@ -5319,10 +5312,9 @@
   "ar": "يوم",
   "pages": [
    "",
-   "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 3
+  "n": 2
  },
  {
   "id": "40add5d3e4",
@@ -5330,10 +5322,9 @@
   "ar": "ساعة",
   "pages": [
    "",
-   "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 3
+  "n": 2
  },
  {
   "id": "b030187c8a",
@@ -5341,10 +5332,9 @@
   "ar": "دقيقة",
   "pages": [
    "",
-   "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 3
+  "n": 2
  },
  {
   "id": "8fdf716e8c",
@@ -5352,20 +5342,18 @@
   "ar": "ثانية",
   "pages": [
    "",
-   "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 3
+  "n": 2
  },
  {
   "id": "e45ac256af",
   "kind": "text",
   "ar": "حتى انطلاق البطولة (حسب المواعيد المعلنة)",
   "pages": [
-   "",
-   "matches/"
+   ""
   ],
-  "n": 2
+  "n": 1
  },
  {
   "id": "6108b73459",
@@ -6297,9 +6285,11 @@
   "ar": "البحرين",
   "pages": [
    "",
-   "turkey-visa/"
+   "flights/",
+   "hotels/",
+   "matches/"
   ],
-  "n": 2
+  "n": 10
  },
  {
   "id": "1b62b8414b",
@@ -6361,11 +6351,11 @@
   "ar": "أرسل طلبك",
   "pages": [
    "",
+   "matches/spanish-super-cup-2027/",
    "transfers/",
-   "private-driver/",
-   "day-trips/"
+   "private-driver/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "52a847b849",
@@ -6815,7 +6805,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 55
+  "n": 54
  },
  {
   "id": "f1dd35cf2a",
@@ -6875,7 +6865,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 95
+  "n": 92
  },
  {
   "id": "517e78af19",
@@ -7064,11 +7054,11 @@
   "ar": "إطلالة على البحيرة",
   "pages": [
    "",
+   "flights/",
    "hotels/",
-   "cabins/",
-   "hotels/trabzon/"
+   "cabins/"
   ],
-  "n": 6
+  "n": 10
  },
  {
   "id": "aace8caf79",
@@ -7136,11 +7126,11 @@
   "ar": "فطور",
   "pages": [
    "",
+   "flights/",
    "hotels/",
-   "cabins/",
-   "hotels/trabzon/"
+   "cabins/"
   ],
-  "n": 6
+  "n": 10
  },
  {
   "id": "0daf322cd3",
@@ -7148,11 +7138,11 @@
   "ar": "إنترنت",
   "pages": [
    "",
+   "flights/",
    "hotels/",
-   "cabins/",
-   "hotels/trabzon/"
+   "cabins/"
   ],
-  "n": 6
+  "n": 10
  },
  {
   "id": "961b7303ee",
@@ -7160,11 +7150,11 @@
   "ar": "موقف سيارات",
   "pages": [
    "",
+   "flights/",
    "hotels/",
-   "cabins/",
-   "hotels/trabzon/"
+   "cabins/"
   ],
-  "n": 6
+  "n": 10
  },
  {
   "id": "0cfd53abc8",
@@ -7172,11 +7162,11 @@
   "ar": "مناسب للعائلات",
   "pages": [
    "",
+   "flights/",
    "hotels/",
-   "cabins/",
-   "hotels/trabzon/"
+   "cabins/"
   ],
-  "n": 6
+  "n": 10
  },
  {
   "id": "f007c6d86c",
@@ -7208,11 +7198,11 @@
   "ar": "صورة أخرى",
   "pages": [
    "",
+   "flights/",
    "hotels/",
-   "cabins/",
-   "hotels/trabzon/"
+   "cabins/"
   ],
-  "n": 6
+  "n": 10
  },
  {
   "id": "cde42511f5",
@@ -7244,11 +7234,11 @@
   "ar": "لليلة الواحدة",
   "pages": [
    "",
+   "flights/",
    "hotels/",
-   "cabins/",
-   "hotels/trabzon/"
+   "cabins/"
   ],
-  "n": 6
+  "n": 10
  },
  {
   "id": "44a912a484",
@@ -7256,11 +7246,11 @@
   "ar": "احجز",
   "pages": [
    "",
+   "flights/",
    "hotels/",
-   "cabins/",
-   "matches/"
+   "cabins/"
   ],
-  "n": 13
+  "n": 11
  },
  {
   "id": "f7f66e8147",
@@ -8373,6 +8363,882 @@
   "n": 1
  },
  {
+  "id": "3be12a6ebf",
+  "kind": "json",
+  "ar": "التذاكر والمقاعد",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 9
+ },
+ {
+  "id": "ca0fbaa627",
+  "kind": "json",
+  "ar": "مرحباً أويا، أرغب بحضور: {0}.",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "860623aedc",
+  "kind": "json",
+  "ar": "اسأل عن التذاكر",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 11
+ },
+ {
+  "id": "62fad731ab",
+  "kind": "json",
+  "ar": "إسطنبول (صبيحة)",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "edcd26fdbb",
+  "kind": "json",
+  "ar": "أنقرة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "5085c8b159",
+  "kind": "json",
+  "ar": "إزمير",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "ab855b4b6c",
+  "kind": "json",
+  "ar": "دالامان",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "ec7f247fb5",
+  "kind": "json",
+  "ar": "الرياض",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "saudi-visa/business/",
+   "matches/"
+  ],
+  "n": 9
+ },
+ {
+  "id": "de8dd0bdf7",
+  "kind": "json",
+  "ar": "جدة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "822c2b165b",
+  "kind": "json",
+  "ar": "الدمام",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "dddd2c6240",
+  "kind": "json",
+  "ar": "المدينة المنورة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "fcaf1acf39",
+  "kind": "json",
+  "ar": "الطائف",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "91e1a9d4dd",
+  "kind": "json",
+  "ar": "أبها",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "ffece82489",
+  "kind": "json",
+  "ar": "تبوك",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "f93b1fc7e4",
+  "kind": "json",
+  "ar": "القصيم",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "4a07a7fb2a",
+  "kind": "json",
+  "ar": "دبي",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "cd666d6577",
+  "kind": "json",
+  "ar": "أبوظبي",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "cddb334857",
+  "kind": "json",
+  "ar": "الشارقة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "2939f11fd0",
+  "kind": "json",
+  "ar": "الدوحة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "827e1566b1",
+  "kind": "json",
+  "ar": "الكويت",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 9
+ },
+ {
+  "id": "33d29ee2d4",
+  "kind": "json",
+  "ar": "مسقط",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "ec508beda9",
+  "kind": "json",
+  "ar": "بغداد",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "b0452d3e01",
+  "kind": "json",
+  "ar": "أربيل",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "7dcf868fd7",
+  "kind": "json",
+  "ar": "البصرة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "b9468050c0",
+  "kind": "json",
+  "ar": "النجف",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "301247a527",
+  "kind": "json",
+  "ar": "السليمانية",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "0304eff487",
+  "kind": "json",
+  "ar": "عمّان",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "e53b00b6e8",
+  "kind": "json",
+  "ar": "بيروت",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "f3cf609414",
+  "kind": "json",
+  "ar": "دمشق",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "5ec902034b",
+  "kind": "json",
+  "ar": "حلب",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "93019aa020",
+  "kind": "json",
+  "ar": "القاهرة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "packages/egypt-8-days/",
+   "matches/"
+  ],
+  "n": 9
+ },
+ {
+  "id": "e751d30e80",
+  "kind": "json",
+  "ar": "الغردقة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "e4002e134b",
+  "kind": "json",
+  "ar": "الدار البيضاء",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "337728ec26",
+  "kind": "json",
+  "ar": "مراكش",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "ba84e974b0",
+  "kind": "json",
+  "ar": "تونس",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 9
+ },
+ {
+  "id": "cd77976e16",
+  "kind": "json",
+  "ar": "الجزائر",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 9
+ },
+ {
+  "id": "da7424b2a0",
+  "kind": "json",
+  "ar": "طرابلس",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "eecf965c35",
+  "kind": "json",
+  "ar": "الخرطوم",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "8f6ccfc856",
+  "kind": "json",
+  "ar": "تبليسي",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "packages/georgia-7-days/",
+   "matches/"
+  ],
+  "n": 10
+ },
+ {
+  "id": "2711499b32",
+  "kind": "json",
+  "ar": "باتومي",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "1f5b393151",
+  "kind": "json",
+  "ar": "باكو",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "packages/azerbaijan-6-days/",
+   "matches/"
+  ],
+  "n": 9
+ },
+ {
+  "id": "ab19b51e79",
+  "kind": "json",
+  "ar": "طشقند",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "packages/uzbekistan-7-days/",
+   "matches/"
+  ],
+  "n": 10
+ },
+ {
+  "id": "fa5644980a",
+  "kind": "json",
+  "ar": "كوالالمبور",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "packages/malaysia-9-days/",
+   "matches/"
+  ],
+  "n": 9
+ },
+ {
+  "id": "169923cbc2",
+  "kind": "json",
+  "ar": "لندن",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "0ec5a45c9b",
+  "kind": "json",
+  "ar": "باريس",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "b0da122018",
+  "kind": "json",
+  "ar": "فرانكفورت",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "0e72753603",
+  "kind": "json",
+  "ar": "ميونخ",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "86c12140ad",
+  "kind": "json",
+  "ar": "أمستردام",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "6883376a46",
+  "kind": "json",
+  "ar": "مدريد",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 10
+ },
+ {
+  "id": "8267dc0432",
+  "kind": "json",
+  "ar": "برشلونة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 11
+ },
+ {
+  "id": "6f7df8a0e4",
+  "kind": "json",
+  "ar": "روما",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "65be297af9",
+  "kind": "json",
+  "ar": "فيينا",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "e1f7f1758c",
+  "kind": "json",
+  "ar": "حوالي {0} س {1} د",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "fc19270d31",
+  "kind": "json",
+  "ar": "حوالي {0} س",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "4b6d42f5aa",
+  "kind": "json",
+  "ar": "حوالي {0} د",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "68381d2094",
+  "kind": "json",
+  "ar": "مرحباً أويا، أرغب بحجز طيران من {0} إلى {1}.",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "3a3d365db9",
+  "kind": "json",
+  "ar": "من {0}",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "178a65bde7",
+  "kind": "json",
+  "ar": "فندق",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "21c16abc0c",
+  "kind": "json",
+  "ar": "منتجع",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "f68e1aa26a",
+  "kind": "json",
+  "ar": "شقق فندقية",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 9
+ },
+ {
+  "id": "cd49359168",
+  "kind": "json",
+  "ar": "فيلا",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "adf9775d3d",
+  "kind": "json",
+  "ar": "مسبح",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "7318183725",
+  "kind": "json",
+  "ar": "مسبح داخلي",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "b802430e58",
+  "kind": "json",
+  "ar": "سبا",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "50a18d32ea",
+  "kind": "json",
+  "ar": "إطلالة بحرية",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "563fd5fc33",
+  "kind": "json",
+  "ar": "إطلالة على البوسفور",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "2dcaf9eaba",
+  "kind": "json",
+  "ar": "مناسب للعائلات المحافظة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "b903affa0a",
+  "kind": "json",
+  "ar": "أنشطة للأطفال",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "1acff125a0",
+  "kind": "json",
+  "ar": "في وسط المدينة",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "51b62ef12a",
+  "kind": "json",
+  "ar": "شاطئ خاص",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "58bbf78499",
+  "kind": "json",
+  "ar": "شامل كل شيء",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "9937637cdb",
+  "kind": "json",
+  "ar": "{0} نجوم",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "8bd984dcb5",
+  "kind": "json",
+  "ar": "مرحباً أويا، أرغب بحجز فندق «{0}» ({1}). التواريخ وعدد الأشخاص:",
+  "pages": [
+   "flights/",
+   "hotels/",
+   "matches/",
+   "hotels/istanbul/"
+  ],
+  "n": 8
+ },
+ {
   "id": "8b668978c7",
   "kind": "text",
   "ar": "حجز فنادق ومنتجعات في تركيا للعائلات والأزواج | أويا",
@@ -8801,6 +9667,51 @@
    "hotels/family-friendly/"
   ],
   "n": 3
+ },
+ {
+  "id": "ffb3af27cb",
+  "kind": "text",
+  "ar": "فنادق مختارة",
+  "pages": [
+   "hotels/",
+   "hotels/istanbul/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 6
+ },
+ {
+  "id": "80aef409a7",
+  "kind": "text",
+  "ar": "فنادق مختارة نتعامل معها",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c890402cc8",
+  "kind": "text",
+  "ar": "فنادق نعرفها ونحجز فيها لزبائننا، بصورها الحقيقية وسعر الليلة. اختر فندقك ونؤكد لك التوفر كتابةً.",
+  "pages": [
+   "hotels/",
+   "hotels/istanbul/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 6
+ },
+ {
+  "id": "1ed4c42be3",
+  "kind": "text",
+  "ar": "لعرض الفنادق فعّل JavaScript، أو راسلنا على واتساب لنرسل لك الخيارات.",
+  "pages": [
+   "hotels/",
+   "hotels/istanbul/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 6
  },
  {
   "id": "825aaa7b06",
@@ -17885,7 +18796,7 @@
    "packages/istanbul-bursa-7-days/",
    "packages/istanbul-sapanca-bursa-8-days/"
   ],
-  "n": 33
+  "n": 29
  },
  {
   "id": "1b0b21d8b4",
@@ -27534,15 +28445,6 @@
   "n": 1
  },
  {
-  "id": "8f6ccfc856",
-  "kind": "text",
-  "ar": "تبليسي",
-  "pages": [
-   "packages/georgia-7-days/"
-  ],
-  "n": 2
- },
- {
   "id": "ade1b78ddd",
   "kind": "text",
   "ar": "من تبليسي إلى بورجومي",
@@ -28483,15 +29385,6 @@
    "packages/bali-9-days/"
   ],
   "n": 6
- },
- {
-  "id": "1f5b393151",
-  "kind": "text",
-  "ar": "باكو",
-  "pages": [
-   "packages/azerbaijan-6-days/"
-  ],
-  "n": 1
  },
  {
   "id": "cdecee0edd",
@@ -30123,15 +31016,6 @@
   "id": "a0d519151a",
   "kind": "text",
   "ar": "تذاكر التلفريك ومدن الألعاب ورسوم دخول المواقع",
-  "pages": [
-   "packages/malaysia-9-days/"
-  ],
-  "n": 1
- },
- {
-  "id": "fa5644980a",
-  "kind": "text",
-  "ar": "كوالالمبور",
   "pages": [
    "packages/malaysia-9-days/"
   ],
@@ -33372,15 +34256,6 @@
   "n": 1
  },
  {
-  "id": "93019aa020",
-  "kind": "text",
-  "ar": "القاهرة",
-  "pages": [
-   "packages/egypt-8-days/"
-  ],
-  "n": 1
- },
- {
   "id": "97dbfa79b4",
   "kind": "text",
   "ar": "فنادق في الجيزة بإطلالة على الأهرامات، أو على كورنيش النيل في وسط القاهرة والزمالك.",
@@ -34108,15 +34983,6 @@
    "packages/uzbekistan-7-days/"
   ],
   "n": 1
- },
- {
-  "id": "ab19b51e79",
-  "kind": "text",
-  "ar": "طشقند",
-  "pages": [
-   "packages/uzbekistan-7-days/"
-  ],
-  "n": 2
  },
  {
   "id": "e2bafbb46e",
@@ -38979,15 +39845,6 @@
   "id": "62ec8b4c3a",
   "kind": "text",
   "ar": "عاصمة الأعمال",
-  "pages": [
-   "saudi-visa/business/"
-  ],
-  "n": 1
- },
- {
-  "id": "ec7f247fb5",
-  "kind": "text",
-  "ar": "الرياض",
   "pages": [
    "saudi-visa/business/"
   ],
@@ -44978,27 +45835,18 @@
   "n": 1
  },
  {
-  "id": "f8a677f792",
+  "id": "28f0a71e69",
   "kind": "text",
-  "ar": "تذاكر المباريات • جديد في أويا",
+  "ar": "تذاكر المباريات في إسطنبول والعالم",
   "pages": [
    "matches/"
   ],
   "n": 1
  },
  {
-  "id": "9cba3ced6b",
+  "id": "2636c368d0",
   "kind": "text",
-  "ar": "تذاكر المباريات… احضر المباراة وعِش الحكاية",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "d8efd77809",
-  "kind": "text",
-  "ar": "من كأس السوبر الإسباني 2027 في إسطنبول إلى ديربيات الدوري التركي والليالي الأوروبية — نرتّب لك الفندق والتنقلات ونساعدك في تذكرتك الرسمية باسمك، في باقة واحدة.",
+  "ar": "اختر البطولة أو المباراة: نساعدك في شراء تذكرتك الرسمية باسمك، ونرتّب لك الفندق والتنقلات — وفي كأس السوبر الإسباني 2027 تختار مقعدك على مجسم الملعب قبل أن تحجز.",
   "pages": [
    "matches/"
   ],
@@ -45012,7 +45860,7 @@
    "matches/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 7
+  "n": 4
  },
  {
   "id": "26a76ecde7",
@@ -45042,106 +45890,9 @@
   "n": 1
  },
  {
-  "id": "db91480c12",
+  "id": "fffbfc9797",
   "kind": "text",
-  "ar": "اطلب باقتك",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "b39af13445",
-  "kind": "text",
-  "ar": "جدول البطولة",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "b81ee997a2",
-  "kind": "text",
-  "ar": "مباريات كأس السوبر الإسباني 2027",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "25e95d2e4c",
-  "kind": "text",
-  "ar": "الجدول وفق ما أعلنه الاتحاد الإسباني لكرة القدم، مع الملعب وموعد الانطلاق لكل مباراة.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "550ba79824",
-  "kind": "text",
-  "ar": "الدليل الكامل",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "8f643adabe",
-  "kind": "text",
-  "ar": "نصف النهائي الأول",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
-  ],
-  "n": 8
- },
- {
-  "id": "8267dc0432",
-  "kind": "text",
-  "ar": "برشلونة",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 4
- },
- {
-  "id": "6fad8f1479",
-  "kind": "text",
-  "ar": "أتلتيكو مدريد",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "39f0638732",
-  "kind": "text",
-  "ar": "الثلاثاء 2 فبراير 2027 • 22:00",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "5492079a1b",
-  "kind": "text",
-  "ar": "ملعب شكري سراج أوغلو (Chobani) — كاديكوي",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "68ed370040",
-  "kind": "text",
-  "ar": "صافرة البداية 22:00 بتوقيت إسطنبول",
+  "ar": "اختر المباراة",
   "pages": [
    "matches/",
    "matches/spanish-super-cup-2027/"
@@ -45149,140 +45900,244 @@
   "n": 6
  },
  {
-  "id": "884fdde835",
+  "id": "88de6c8506",
+  "kind": "text",
+  "ar": "البطولات والمباريات",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "96ea3c4eb3",
+  "kind": "text",
+  "ar": "اختر المباراة التي تريد حضورها",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "dc7b990863",
+  "kind": "text",
+  "ar": "اضغط على البطولة لترى مبارياتها وتختار مقعدك، أو اسألنا عن أي مباراة أخرى.",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "43ec72b412",
+  "kind": "text",
+  "ar": "إسطنبول • 2–6 فبراير 2027",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "6b2f307c4c",
+  "kind": "text",
+  "ar": "برشلونة، ريال مدريد، أتلتيكو مدريد وريال سوسيداد على أرض إسطنبول. اختر مباراتك ومقعدك على مجسم الملعب.",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6623a5665b",
+  "kind": "text",
+  "ar": "حسب الجدول",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b72f330733",
+  "kind": "text",
+  "ar": "ديربيات إسطنبول",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "683f363b2f",
+  "kind": "text",
+  "ar": "أجواء لا تُنسى في مباريات غلطة سراي وفنربخشة وبشكتاش ضمن الدوري التركي.",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "695a91492c",
   "kind": "message",
-  "ar": "مرحباً أويا للسياحة، أرغب بباقة حضور كأس السوبر الإسباني 2027: نصف النهائي الأول — برشلونة × أتلتيكو مدريد (الثلاثاء 2 فبراير 2027 • 22:00).",
+  "ar": "مرحباً أويا، أرغب بحضور: ديربيات إسطنبول.",
   "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/"
   ],
-  "n": 2
+  "n": 1
  },
  {
-  "id": "6f5b03ac7f",
+  "id": "158eb41291",
   "kind": "text",
-  "ar": "نصف النهائي الثاني",
+  "ar": "حسب القرعة",
   "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
+   "matches/"
   ],
-  "n": 8
+  "n": 1
  },
  {
-  "id": "7e4ee73a17",
+  "id": "08ee1f77a4",
   "kind": "text",
-  "ar": "ريال سوسيداد",
+  "ar": "الليالي الأوروبية في إسطنبول",
   "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/"
   ],
-  "n": 3
+  "n": 1
  },
  {
-  "id": "7ef900da86",
+  "id": "0f9433f809",
   "kind": "text",
-  "ar": "ريال مدريد",
+  "ar": "مباريات الأندية التركية في البطولات الأوروبية على ملاعب إسطنبول.",
   "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/"
   ],
-  "n": 3
+  "n": 1
  },
  {
-  "id": "65de0693d8",
-  "kind": "text",
-  "ar": "الأربعاء 3 فبراير 2027 • 22:00",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "2a3422a942",
-  "kind": "text",
-  "ar": "ملعب توبراش (Tüpraş) — بشكتاش",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "fa37e747d3",
+  "id": "ada7d8678a",
   "kind": "message",
-  "ar": "مرحباً أويا للسياحة، أرغب بباقة حضور كأس السوبر الإسباني 2027: نصف النهائي الثاني — ريال سوسيداد × ريال مدريد (الأربعاء 3 فبراير 2027 • 22:00).",
+  "ar": "مرحباً أويا، أرغب بحضور: الليالي الأوروبية في إسطنبول.",
   "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/"
   ],
-  "n": 2
+  "n": 1
  },
  {
-  "id": "757c60b663",
+  "id": "c41e6f3bac",
   "kind": "text",
-  "ar": "المباراة النهائية",
+  "ar": "حسب الطلب",
   "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/"
   ],
-  "n": 5
+  "n": 1
  },
  {
-  "id": "7cbfa71f5a",
+  "id": "70e1de36c5",
   "kind": "text",
-  "ar": "الفائز من نصف النهائي الأول",
+  "ar": "مباريات حول العالم",
   "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/"
   ],
-  "n": 2
+  "n": 1
  },
  {
-  "id": "c812fa88cb",
+  "id": "a75545ba89",
   "kind": "text",
-  "ar": "الفائز من نصف النهائي الثاني",
+  "ar": "نساعدك في تذاكر مباريات كبرى في أوروبا والخليج مع الطيران والفندق.",
   "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/"
   ],
-  "n": 2
+  "n": 1
  },
  {
-  "id": "6b7d0a9725",
-  "kind": "text",
-  "ar": "السبت 6 فبراير 2027 • 22:00",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "502e9ff4d4",
-  "kind": "text",
-  "ar": "ملعب رامز بارك (RAMS Park) — سارير",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "505369f593",
+  "id": "ba7b6333fa",
   "kind": "message",
-  "ar": "مرحباً أويا للسياحة، أرغب بباقة حضور كأس السوبر الإسباني 2027: المباراة النهائية — الفائز من نصف النهائي الأول × الفائز من نصف النهائي الثاني (السبت 6 فبراير 2027 • 22:00).",
+  "ar": "مرحباً أويا، أرغب بحضور: مباريات حول العالم.",
   "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/"
   ],
-  "n": 2
+  "n": 1
  },
  {
-  "id": "4f8bef4e2f",
+  "id": "55f4e9629e",
   "kind": "text",
-  "ar": "المواعيد والملاعب وفق ما أعلنه الاتحاد الإسباني لكرة القدم: صافرة البداية 22:00 بتوقيت إسطنبول (20:00 بتوقيت إسبانيا).",
+  "ar": "كيف تعمل الخدمة",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d57f5dc108",
+  "kind": "text",
+  "ar": "من الطلب إلى المدرّج في 4 خطوات",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d916526184",
+  "kind": "text",
+  "ar": "حدد المباراة والفئة وعدد المشجعين ونوع الباقة.",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "69b5919776",
+  "kind": "text",
+  "ar": "تأكيد التوفر والسعر",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0c2e15e6cc",
+  "kind": "text",
+  "ar": "نرسل لك العرض مكتوباً مع شروط الاستلام والإلغاء.",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8061d13ecf",
+  "kind": "text",
+  "ar": "التذكرة الرسمية باسمك",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3bfe44f4af",
+  "kind": "text",
+  "ar": "نساعدك في الشراء من القناة الرسمية بأسماء المشجعين ونرسل لك تفاصيل الاستلام.",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "02360c7ca6",
+  "kind": "text",
+  "ar": "يوم المباراة",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "09334d8132",
+  "kind": "text",
+  "ar": "نقل للملعب وإرشادات دخول بالعربية — فقط استمتع.",
+  "pages": [
+   "matches/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a870fa2b92",
+  "kind": "text",
+  "ar": "أويا للسياحة وكالة سفر مستقلة، وغير تابعة للاتحاد الإسباني لكرة القدم أو الأندية أو الجهات المنظمة. نساعدك في شراء التذاكر عبر القنوات الرسمية المعتمدة فقط، باسمك وبسعرها الرسمي مع رسوم خدمة معلنة، ونرتّب لك الإقامة والتنقلات. لا نبيع تذاكر من السوق السوداء أو بأسعار مضاعفة.",
   "pages": [
    "matches/",
    "matches/spanish-super-cup-2027/"
@@ -45534,243 +46389,6 @@
   "n": 1
  },
  {
-  "id": "b2cf06bd1d",
-  "kind": "text",
-  "ar": "مباريات أخرى",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "bb7235d60a",
-  "kind": "text",
-  "ar": "مباريات أخرى حسب الطلب",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "6623a5665b",
-  "kind": "text",
-  "ar": "حسب الجدول",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "b72f330733",
-  "kind": "text",
-  "ar": "ديربيات إسطنبول",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "683f363b2f",
-  "kind": "text",
-  "ar": "أجواء لا تُنسى في مباريات غلطة سراي وفنربخشة وبشكتاش ضمن الدوري التركي.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "695a91492c",
-  "kind": "message",
-  "ar": "مرحباً أويا، أرغب بحضور: ديربيات إسطنبول.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "d47e35088a",
-  "kind": "text",
-  "ar": "اسأل عن الباقة",
-  "pages": [
-   "matches/"
-  ],
-  "n": 3
- },
- {
-  "id": "158eb41291",
-  "kind": "text",
-  "ar": "حسب القرعة",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "08ee1f77a4",
-  "kind": "text",
-  "ar": "الليالي الأوروبية في إسطنبول",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "0f9433f809",
-  "kind": "text",
-  "ar": "مباريات الأندية التركية في البطولات الأوروبية على ملاعب إسطنبول.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "ada7d8678a",
-  "kind": "message",
-  "ar": "مرحباً أويا، أرغب بحضور: الليالي الأوروبية في إسطنبول.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "c41e6f3bac",
-  "kind": "text",
-  "ar": "حسب الطلب",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "70e1de36c5",
-  "kind": "text",
-  "ar": "مباريات حول العالم",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "a75545ba89",
-  "kind": "text",
-  "ar": "نساعدك في تذاكر مباريات كبرى في أوروبا والخليج مع الطيران والفندق.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "ba7b6333fa",
-  "kind": "message",
-  "ar": "مرحباً أويا، أرغب بحضور: مباريات حول العالم.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "55f4e9629e",
-  "kind": "text",
-  "ar": "كيف تعمل الخدمة",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "d57f5dc108",
-  "kind": "text",
-  "ar": "من الطلب إلى المدرّج في 4 خطوات",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "fffbfc9797",
-  "kind": "text",
-  "ar": "اختر المباراة",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "d916526184",
-  "kind": "text",
-  "ar": "حدد المباراة والفئة وعدد المشجعين ونوع الباقة.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "69b5919776",
-  "kind": "text",
-  "ar": "تأكيد التوفر والسعر",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "0c2e15e6cc",
-  "kind": "text",
-  "ar": "نرسل لك العرض مكتوباً مع شروط الاستلام والإلغاء.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "8061d13ecf",
-  "kind": "text",
-  "ar": "التذكرة الرسمية باسمك",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "3bfe44f4af",
-  "kind": "text",
-  "ar": "نساعدك في الشراء من القناة الرسمية بأسماء المشجعين ونرسل لك تفاصيل الاستلام.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "02360c7ca6",
-  "kind": "text",
-  "ar": "يوم المباراة",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "09334d8132",
-  "kind": "text",
-  "ar": "نقل للملعب وإرشادات دخول بالعربية — فقط استمتع.",
-  "pages": [
-   "matches/"
-  ],
-  "n": 1
- },
- {
-  "id": "a870fa2b92",
-  "kind": "text",
-  "ar": "أويا للسياحة وكالة سفر مستقلة، وغير تابعة للاتحاد الإسباني لكرة القدم أو الأندية أو الجهات المنظمة. نساعدك في شراء التذاكر عبر القنوات الرسمية المعتمدة فقط، باسمك وبسعرها الرسمي مع رسوم خدمة معلنة، ونرتّب لك الإقامة والتنقلات. لا نبيع تذاكر من السوق السوداء أو بأسعار مضاعفة.",
-  "pages": [
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 2
- },
- {
   "id": "6cfa614f9e",
   "kind": "text",
   "ar": "سجّل طلبك",
@@ -45872,6 +46490,16 @@
   "id": "f8677da43f",
   "kind": "text",
   "ar": "باقة البطولة كاملة (3 مباريات)",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "b2cf06bd1d",
+  "kind": "attr",
+  "ar": "مباريات أخرى",
   "pages": [
    "matches/",
    "matches/spanish-super-cup-2027/"
@@ -46114,6 +46742,16 @@
   "n": 1
  },
  {
+  "id": "db91480c12",
+  "kind": "text",
+  "ar": "اطلب باقتك",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
   "id": "55f0df478e",
   "kind": "text",
   "ar": "تذاكر كأس السوبر الإسباني 2027 في إسطنبول وباقات المشجع | أويا",
@@ -46294,15 +46932,6 @@
   "n": 1
  },
  {
-  "id": "43ec72b412",
-  "kind": "text",
-  "ar": "إسطنبول • 2–6 فبراير 2027",
-  "pages": [
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 1
- },
- {
   "id": "8e073451bd",
   "kind": "text",
   "ar": "تذاكر كأس السوبر الإسباني 2027 في إسطنبول",
@@ -46321,107 +46950,186 @@
   "n": 1
  },
  {
-  "id": "2276d40def",
+  "id": "c4712079d3",
   "kind": "text",
-  "ar": "سجّل اهتمامك بالباقة",
+  "ar": "اختر مباراتك ومقعدك",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
   "n": 1
  },
  {
-  "id": "4ba87390b3",
-  "kind": "text",
-  "ar": "المباريات",
-  "pages": [
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 1
- },
- {
-  "id": "9637148c2d",
-  "kind": "text",
-  "ar": "جدول مباريات السوبر الإسباني في إسطنبول",
-  "pages": [
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 1
- },
- {
-  "id": "9d22f243d4",
-  "kind": "text",
-  "ar": "ثلاث مباريات في خمسة أيام — يمكنك حضور مباراة واحدة أو البطولة كاملة.",
-  "pages": [
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 1
- },
- {
-  "id": "8d32d402da",
+  "id": "e034f8da41",
   "kind": "attr",
-  "ar": "جدول: المرحلة، المواجهة، التاريخ، المدينة",
+  "ar": "خطوات طلب التذكرة",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
   "n": 1
  },
  {
-  "id": "388163f189",
+  "id": "e4aceab95e",
   "kind": "text",
-  "ar": "المرحلة",
-  "pages": [
-   "matches/spanish-super-cup-2027/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
-  ],
-  "n": 5
- },
- {
-  "id": "fabe61291e",
-  "kind": "text",
-  "ar": "المواجهة",
+  "ar": "اختر مقعدك",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
   "n": 4
  },
  {
-  "id": "d94d702d83",
+  "id": "b1c6d98602",
   "kind": "text",
-  "ar": "التاريخ",
+  "ar": "الخطوة 1",
   "pages": [
-   "matches/spanish-super-cup-2027/",
-   "day-trips/"
+   "matches/spanish-super-cup-2027/"
   ],
-  "n": 5
+  "n": 1
  },
  {
-  "id": "e4e9f9900a",
+  "id": "0e590c1ac2",
   "kind": "text",
-  "ar": "برشلونة × أتلتيكو مدريد",
+  "ar": "ثلاث مباريات على ثلاثة ملاعب في إسطنبول، وصافرة البداية 22:00 بتوقيت إسطنبول (20:00 بتوقيت إسبانيا) وفق ما أعلنه الاتحاد الإسباني لكرة القدم.",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8f643adabe",
+  "kind": "text",
+  "ar": "نصف النهائي الأول",
   "pages": [
    "matches/spanish-super-cup-2027/",
    "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
-  "n": 4
+  "n": 6
  },
  {
-  "id": "fc7e6a9c30",
+  "id": "6fad8f1479",
   "kind": "text",
-  "ar": "ريال سوسيداد × ريال مدريد",
+  "ar": "أتلتيكو مدريد",
   "pages": [
-   "matches/spanish-super-cup-2027/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
+   "matches/spanish-super-cup-2027/"
   ],
-  "n": 4
+  "n": 2
  },
  {
-  "id": "ebbaa8515b",
+  "id": "39f0638732",
   "kind": "text",
-  "ar": "الفائز من نصف النهائي الأول × الفائز من نصف النهائي الثاني",
+  "ar": "الثلاثاء 2 فبراير 2027 • 22:00",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5492079a1b",
+  "kind": "text",
+  "ar": "ملعب شكري سراج أوغلو (Chobani) — كاديكوي",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "68ed370040",
+  "kind": "text",
+  "ar": "صافرة البداية 22:00 بتوقيت إسطنبول",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
   "n": 3
+ },
+ {
+  "id": "6f5b03ac7f",
+  "kind": "text",
+  "ar": "نصف النهائي الثاني",
+  "pages": [
+   "matches/spanish-super-cup-2027/",
+   "blog/spanish-super-cup-2027-istanbul-guide/"
+  ],
+  "n": 6
+ },
+ {
+  "id": "7e4ee73a17",
+  "kind": "text",
+  "ar": "ريال سوسيداد",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "7ef900da86",
+  "kind": "text",
+  "ar": "ريال مدريد",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "65de0693d8",
+  "kind": "text",
+  "ar": "الأربعاء 3 فبراير 2027 • 22:00",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2a3422a942",
+  "kind": "text",
+  "ar": "ملعب توبراش (Tüpraş) — بشكتاش",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "757c60b663",
+  "kind": "text",
+  "ar": "المباراة النهائية",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "7cbfa71f5a",
+  "kind": "text",
+  "ar": "الفائز من نصف النهائي الأول",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c812fa88cb",
+  "kind": "text",
+  "ar": "الفائز من نصف النهائي الثاني",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6b7d0a9725",
+  "kind": "text",
+  "ar": "السبت 6 فبراير 2027 • 22:00",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "502e9ff4d4",
+  "kind": "text",
+  "ar": "ملعب رامز بارك (RAMS Park) — سارير",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
  },
  {
   "id": "1f2b549163",
@@ -46442,6 +47150,35 @@
   "n": 1
  },
  {
+  "id": "e4e9f9900a",
+  "kind": "text",
+  "ar": "برشلونة × أتلتيكو مدريد",
+  "pages": [
+   "matches/spanish-super-cup-2027/",
+   "blog/spanish-super-cup-2027-istanbul-guide/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "fc7e6a9c30",
+  "kind": "text",
+  "ar": "ريال سوسيداد × ريال مدريد",
+  "pages": [
+   "matches/spanish-super-cup-2027/",
+   "blog/spanish-super-cup-2027-istanbul-guide/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "ebbaa8515b",
+  "kind": "text",
+  "ar": "الفائز من نصف النهائي الأول × الفائز من نصف النهائي الثاني",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
   "id": "949471338c",
   "kind": "text",
   "ar": "الأسعار للتذكرة الواحدة حسب الفئة وتخضع للتوفر وقت التأكيد. ونرسل لك قبل أي دفع عرضاً مكتوباً يوضّح السعر الرسمي للتذكرة ورسوم خدمتنا.",
@@ -46451,9 +47188,9 @@
   "n": 1
  },
  {
-  "id": "8e148b574a",
+  "id": "4738eb88e1",
   "kind": "text",
-  "ar": "مجسم الملعب",
+  "ar": "الخطوة 2",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -46469,9 +47206,9 @@
   "n": 1
  },
  {
-  "id": "5779bfc719",
+  "id": "a4e01484f5",
   "kind": "text",
-  "ar": "ملعب ثلاثي الأبعاد مليء بالجماهير: اضغط على أي مدرج لترى فئته وسعره، ثم «شاهد الملعب من مقعدك» لتجلس مكانك وتشاهد الملعب كما ستراه يوم المباراة — وجرّب الموجة وصوت المدرجات.",
+  "ar": "ملعب ثلاثي الأبعاد بمدرجاته وجماهيره واللاعبين بألوان الفريقين: اختر مدرجاً من المجسم أو من الخريطة، ثم «شاهد الملعب من مقعدك» واختر الصف والمكان لترى المباراة كما ستراها يوم المباراة.",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -46586,9 +47323,9 @@
   "n": 1
  },
  {
-  "id": "08ecf5507a",
+  "id": "9b359aab34",
   "kind": "text",
-  "ar": "• اضغط على مدرج ثم «شاهد من مقعدك»",
+  "ar": "• اضغط على مدرج أو على الخريطة ثم «شاهد من مقعدك»",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -46647,6 +47384,97 @@
    "matches/spanish-super-cup-2027/"
   ],
   "n": 2
+ },
+ {
+  "id": "a240002da1",
+  "kind": "attr",
+  "ar": "خريطة الملعب من الأعلى: اضغط على مدرج لاختياره",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a2528a9e7f",
+  "kind": "text",
+  "ar": "الصف",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "f9cf6f65a3",
+  "kind": "text",
+  "ar": "موقع تقريبي داخل الفئة؛ رقم المقعد النهائي تحدده الجهة المنظمة",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4b38436242",
+  "kind": "attr",
+  "ar": "الصف: من الأمام إلى الخلف",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "24e93bd759",
+  "kind": "text",
+  "ar": "الأمام",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "35ec9b08f9",
+  "kind": "text",
+  "ar": "الخلف",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "800639b2cd",
+  "kind": "attr",
+  "ar": "المكان على طول المدرج",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ab283ecbb4",
+  "kind": "text",
+  "ar": "المكان",
+  "pages": [
+   "matches/spanish-super-cup-2027/",
+   "blog/trabzon-uzungol-travel-guide/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "8e0c0193f8",
+  "kind": "text",
+  "ar": "الطرف",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "1d0318f797",
+  "kind": "text",
+  "ar": "الطرف الآخر",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
  },
  {
   "id": "275f8f156c",
@@ -46820,6 +47648,33 @@
   "n": 1
  },
  {
+  "id": "8a533a4914",
+  "kind": "text",
+  "ar": "الخطوة 3",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "aaf7d9c5f4",
+  "kind": "text",
+  "ar": "أرسل طلبك… ونعود إليك بالتوفر والسعر",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3bbb998f89",
+  "kind": "text",
+  "ar": "اخترت المباراة والفئة على المجسم؟ تجدها هنا جاهزة. نرسل لك التوفر والسعر النهائي في عرض مكتوب قبل أي دفع — دون أي التزام.",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
   "id": "304efbbbf1",
   "kind": "text",
   "ar": "عن البطولة",
@@ -46890,15 +47745,6 @@
    "matches/spanish-super-cup-2027/"
   ],
   "n": 1
- },
- {
-  "id": "6883376a46",
-  "kind": "text",
-  "ar": "مدريد",
-  "pages": [
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 2
  },
  {
   "id": "7b920bf241",
@@ -47415,24 +48261,6 @@
   "n": 1
  },
  {
-  "id": "4cad8ed961",
-  "kind": "text",
-  "ar": "سجّل طلب التذاكر",
-  "pages": [
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 1
- },
- {
-  "id": "62552baeda",
-  "kind": "text",
-  "ar": "اختر المباراة والفئة والباقة، وسنعود إليك بالتوفر والسعر مكتوباً.",
-  "pages": [
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 1
- },
- {
   "id": "38d3bb31d4",
   "kind": "text",
   "ar": "أسئلة شائعة عن السوبر الإسباني 2027",
@@ -47585,18 +48413,18 @@
   "n": 1
  },
  {
-  "id": "8e0c0193f8",
+  "id": "76482d8997",
   "kind": "json",
-  "ar": "الطرف",
+  "ar": "الزاوية",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
   "n": 1
  },
  {
-  "id": "76482d8997",
+  "id": "b973f03785",
   "kind": "json",
-  "ar": "الزاوية",
+  "ar": "الصف {0} تقريباً",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -47615,6 +48443,24 @@
   "id": "5f41412a5d",
   "kind": "json",
   "ar": "منظرك من: {0} — {1}",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6ce2e7a212",
+  "kind": "json",
+  "ar": "الصف {0}",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "05acaf348c",
+  "kind": "json",
+  "ar": "الصف {0} من {1}",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -51276,15 +52122,6 @@
   "id": "d2589c94e4",
   "kind": "attr",
   "ar": "جدول: المكان، يناسب، ملاحظة",
-  "pages": [
-   "blog/trabzon-uzungol-travel-guide/"
-  ],
-  "n": 1
- },
- {
-  "id": "ab283ecbb4",
-  "kind": "text",
-  "ar": "المكان",
   "pages": [
    "blog/trabzon-uzungol-travel-guide/"
   ],
@@ -56637,6 +57474,15 @@
   "n": 1
  },
  {
+  "id": "388163f189",
+  "kind": "text",
+  "ar": "المرحلة",
+  "pages": [
+   "blog/spanish-super-cup-2027-istanbul-guide/"
+  ],
+  "n": 1
+ },
+ {
   "id": "a5db9477e9",
   "kind": "text",
   "ar": "ماذا نفعل لك؟",
@@ -57603,15 +58449,6 @@
   "n": 1
  },
  {
-  "id": "f68e1aa26a",
-  "kind": "text",
-  "ar": "شقق فندقية",
-  "pages": [
-   "hotels/istanbul/"
-  ],
-  "n": 1
- },
- {
   "id": "ab7f3b141e",
   "kind": "text",
   "ar": "غرفتا نوم أو أكثر مع صالة ومطبخ، مع استقبال وخدمة تنظيف بحسب ما يحدده المكان. الخيار المفضّل للعائلات الكبيرة وللإقامات الأطول من أسبوع.",
@@ -57651,6 +58488,15 @@
   "id": "5d45f12197",
   "kind": "text",
   "ar": "توازن جيد بين السعر والموقع لمن يقضي يومه في الجولات ويعود للنوم. الأهم أن تكون المحطة على بُعد دقائق مشياً.",
+  "pages": [
+   "hotels/istanbul/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "cf1c9c1215",
+  "kind": "text",
+  "ar": "فنادق مختارة في إسطنبول",
   "pages": [
    "hotels/istanbul/"
   ],
@@ -58357,6 +59203,15 @@
   "n": 1
  },
  {
+  "id": "b5f0bca6d1",
+  "kind": "text",
+  "ar": "فنادق مختارة في طرابزون",
+  "pages": [
+   "hotels/trabzon/"
+  ],
+  "n": 1
+ },
+ {
   "id": "722419f564",
   "kind": "text",
   "ar": "أكواخ وبنغلات في طرابزون وأوزنجول وأيدر",
@@ -58927,6 +59782,15 @@
   "n": 1
  },
  {
+  "id": "2a2bcc2c32",
+  "kind": "text",
+  "ar": "فنادق مختارة في أوزنجول",
+  "pages": [
+   "hotels/uzungol/"
+  ],
+  "n": 1
+ },
+ {
   "id": "5f186677e5",
   "kind": "text",
   "ar": "هل الإطلالة على البحيرة من الغرفة نفسها أم من مكان عام فقط؟",
@@ -59470,6 +60334,15 @@
   "id": "e2ec1b00d5",
   "kind": "text",
   "ar": "في معشوقية وكارتبه بين الأشجار، أجواء ريفية دافئة تناسب الشتاء والثلج، لكن الوصول إليها يحتاج سيارة.",
+  "pages": [
+   "hotels/sapanca/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b604feb0e1",
+  "kind": "text",
+  "ar": "فنادق مختارة في سبانجا",
   "pages": [
    "hotels/sapanca/"
   ],
@@ -60111,6 +60984,15 @@
   "id": "2d7a26fdfb",
   "kind": "text",
   "ar": "بلا مشروبات كحولية، ومع مسابح أو شواطئ منفصلة للنساء، ويتركز كثير منها في ألانيا ومنطقة سيدا.",
+  "pages": [
+   "hotels/antalya/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "977a6399af",
+  "kind": "text",
+  "ar": "فنادق مختارة في أنطاليا",
   "pages": [
    "hotels/antalya/"
   ],
@@ -63602,6 +64484,15 @@
   "n": 1
  },
  {
+  "id": "d94d702d83",
+  "kind": "attr",
+  "ar": "التاريخ",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
   "id": "b1e37d3d19",
   "kind": "text",
   "ar": "المشاركون",
@@ -65507,15 +66398,6 @@
   "n": 1
  },
  {
-  "id": "827e1566b1",
-  "kind": "text",
-  "ar": "الكويت",
-  "pages": [
-   "turkey-visa/"
-  ],
-  "n": 1
- },
- {
   "id": "091334fc15",
   "kind": "text",
   "ar": "حتى 90 يوماً خلال آخر 180 يوماً",
@@ -65546,15 +66428,6 @@
   "id": "aec612effa",
   "kind": "text",
   "ar": "لبنان",
-  "pages": [
-   "turkey-visa/"
-  ],
-  "n": 1
- },
- {
-  "id": "ba84e974b0",
-  "kind": "text",
-  "ar": "تونس",
   "pages": [
    "turkey-visa/"
   ],
@@ -65613,15 +66486,6 @@
    "turkey-visa/"
   ],
   "n": 5
- },
- {
-  "id": "cd77976e16",
-  "kind": "text",
-  "ar": "الجزائر",
-  "pages": [
-   "turkey-visa/"
-  ],
-  "n": 1
  },
  {
   "id": "ac965520f5",
