@@ -1,4 +1,5 @@
 import { site } from "../site.mjs";
+import { cabinsBlock } from "./cabins.mjs";
 import { ic, ar, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, featureItem, photoSources, photoImg, registerImage } from "../lib/ui.mjs";
 import { booker, cityList } from "../lib/forms.mjs";
 import { flightSvg } from "../lib/art.mjs";
@@ -26,13 +27,12 @@ export function homePage(data) {
   ];
   const services = [
     { cls: "b-hero svc--dark", img: "hero-hotels", icon: "hotel", title: "فنادق ومنتجعات", text: "فنادق 5 نجوم، منتجعات شاملة كل شيء، شقق فندقية وفلل بمسبح خاص في إسطنبول وطرابزون وسبانجا وأنطاليا — مختارة لتناسب العائلات والأزواج.", href: "hotels/", badge: "الأكثر طلباً", art: "bed" },
-    { cls: "b-3", img: "hero-flights", icon: "takeoff", title: "تذاكر طيران", text: "رحلات من وإلى إسطنبول والعالم بأفضل الخيارات المتاحة.", href: "flights/" },
+    { cls: "b-6 svc--dark", img: "hotels-sapanca", icon: "cabin", title: "أكواخ وبنغلات", text: "بيوت خشبية بجاكوزي ومدفأة ومسبح في سبانجا وطرابزون، بصور حقيقية وسعر الليلة.", href: "cabins/" },
+    { cls: "b-6 svc--dark", img: "hero-flights", icon: "takeoff", title: "تذاكر طيران", text: "رحلات من وإلى إسطنبول والعالم، نقارن لك الخيارات ونرسلها مكتوبة.", href: "flights/" },
     { cls: "b-3", img: "hero-turkey", icon: "map", title: "السياحة في تركيا", text: "برامج يوماً بيوم مع سائق يتحدث العربية، ومرشد عند الطلب.", href: "turkey-tours/" },
     { cls: "b-3", img: "hero-world", icon: "globe", title: "خارج تركيا", text: "جورجيا، أذربيجان، البوسنة، ماليزيا وغيرها.", href: "world-tours/" },
     { cls: "b-3 svc--orange", img: "hero-matches", icon: "ball", title: "تذاكر المباريات", text: "السوبر الإسباني 2027 في إسطنبول ومباريات كبرى.", href: "matches/" },
-    { cls: "b-4", img: "hero-saudi", icon: "mosque", title: "تأشيرات السعودية", text: "سياحية، عمرة، زيارة عائلية وشخصية، أعمال وترانزيت.", href: "saudi-visa/" },
-    { cls: "b-4", img: "hero-gcc", icon: "passport", title: "تأشيرات الخليج", text: "الإمارات، قطر، عُمان، البحرين والكويت.", href: "gcc-visas/" },
-    { cls: "b-4", img: "visa-schengen", icon: "globe", title: "تأشيرات دولية", text: "شنغن، بريطانيا، أمريكا وكندا — تجهيز ملف كامل.", href: "visas/" },
+    { cls: "b-3", img: "hero-saudi", icon: "mosque", title: "تأشيرات", text: "السعودية والخليج وشنغن وبريطانيا وأمريكا — تجهيز ملف كامل.", href: "visas/" },
   ];
 
   // Cinematic hero: real-looking destination photos crossfading with a slow drift (decorative; first slide is the LCP image)
@@ -97,6 +97,13 @@ export function homePage(data) {
         <a href="{{root}}offers/">${ic("calendar")}<span>كل العروض الموسمية</span></a>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section section--white cab-sec" data-cab-sec hidden>
+  <div class="container">
+    ${sectionHead({ eyebrow: `${ic("cabin")} أكواخ وبنغلات`, title: "كوخ خشبي بين الغابات… بصور حقيقية", lead: "أكواخ نتعامل معها مباشرة في سبانجا وطرابزون: جاكوزي ومدفأة ومسبح وإطلالة. اختر كوخك ونؤكد لك التوفر كتابةً.", row: true, after: `<a class="btn btn--ghost" href="{{root}}cabins/">كل الأكواخ ${ic("arrow", "i-flip")}</a>` })}
+    ${cabinsBlock({ limit: 3, filters: false })}
   </div>
 </section>
 

@@ -10,8 +10,8 @@ const graph = (page, nodes = []) => [S.orgNode(), S.websiteNode(), S.webPageNode
 const GROUPS = { sapanca: "سبانجا وكارتبه ومعشوقية", trabzon: "طرابزون وأوزنجول وأيدر" };
 
 // listing block: filters + grid (+ empty state). `group` limits it to one region (city pages).
-export function cabinsBlock({ group = "", limit = 0 } = {}) {
-  const filters = group ? "" : `
+export function cabinsBlock({ group = "", limit = 0, filters: showFilters = true } = {}) {
+  const filters = group || !showFilters ? "" : `
   <div class="cab-filters" role="group" aria-label="تصفية الأكواخ">
     <div class="filters" data-cab-group>
       <button type="button" class="filter" aria-pressed="true" data-v="">الكل</button>
@@ -50,7 +50,7 @@ export function cabinsSection(group) {
 export function cabinsPage() {
   const path = "cabins/";
   const crumbs = [{ name: "الرئيسية", path: "" }, { name: "فنادق ومنتجعات", path: "hotels/" }, { name: "أكواخ وبنغلات", path }];
-  const page = { path, nav: "hotels", crumbs,
+  const page = { path, nav: "cabins", crumbs,
     title: "أكواخ وبنغلات في سبانجا وطرابزون وأوزنجول | أويا",
     description: "أكواخ وبنغلات خشبية في سبانجا وكارتبه ومعشوقية وطرابزون وأوزنجول بصور حقيقية وسعر الليلة: مسبح أو جاكوزي أو مدفأة وإطلالة. احجز عبر واتساب." };
   const faq = [

@@ -216,13 +216,29 @@ export function contactForm() {
 </form>`;
 }
 
+export function cabinForm({ compact = false } = {}) {
+  return `
+<form novalidate data-wa data-date-pair data-intro="مرحباً أويا للسياحة، أبحث عن كوخ أو بنغل للإقامة:">
+  <div class="form-grid">
+    ${field({ label: "المنطقة", name: "area", type: "select", options: ["سبانجا وكارتبه ومعشوقية", "طرابزون وأوزنجول وأيدر", "لا مانع — اقترحوا عليّ"], value: "سبانجا وكارتبه ومعشوقية" })}
+    ${field({ label: "تاريخ الوصول", name: "checkin", type: "date", required: true, attrs: "data-date-start" })}
+    ${field({ label: "تاريخ المغادرة", name: "checkout", type: "date", required: true, attrs: "data-date-end" })}
+    ${field({ label: "عدد الأشخاص", name: "guests", type: "select", options: ["2", "3–4", "5–6", "7 أو أكثر"], value: "2" })}
+    ${field({ label: "الأهم لك", name: "want", type: "select", options: ["جاكوزي", "مسبح مدفأ", "مدفأة حطب", "إطلالة على البحيرة أو الجبل", "لا مانع"], value: "جاكوزي" })}
+    ${compact ? "" : field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: "مثال: شهر عسل، نفضّل كوخاً هادئاً بإطلالة" })}
+  </div>
+  ${actions("اطلب أكواخاً متاحة عبر واتساب")}
+  <p class="booker__more"><a href="{{root}}cabins/">${ic("cabin")}<span>أو تصفّح الأكواخ بالصور والأسعار</span></a></p>
+</form>`;
+}
+
 export function booker() {
   const tabs = [
-    { key: "hotels", label: "فنادق", icon: "bed", body: hotelForm({ compact: true }) },
+    { key: "hotels", label: "فنادق", icon: "hotel", body: hotelForm({ compact: true }) },
+    { key: "cabins", label: "أكواخ وبنغلات", short: "أكواخ", icon: "cabin", body: cabinForm({ compact: true }) },
     { key: "flights", label: "طيران", icon: "takeoff", body: flightForm({ compact: true }) },
     { key: "tours", label: "برامج سياحية", short: "برامج", icon: "map", body: tourForm({ compact: true }) },
     { key: "visas", label: "تأشيرات", icon: "passport", body: visaForm({ compact: true }) },
-    { key: "matches", label: "مباريات", icon: "ball", body: matchForm({ compact: true }) },
   ];
   return `
 <div class="booker fade-in" style="--d:.6s" data-tabs id="book">

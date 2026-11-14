@@ -14,35 +14,68 @@ function ogFor(page) {
 
 const abs = (p) => `${site.url}/${p}`;
 
-function megaTurkey(data) {
-  const ds = data.destinations || [];
+// "Hotels" menu: hotels by city, cabins, family hotels — with a cabins card
+function megaHotels(data) {
+  const hs = (data.hotels || []);
   return `
-<div class="mega" role="region" aria-label="رحلات تركيا">
+<div class="mega mega--hotels" role="region" aria-label="فنادق ومنتجعات">
   <div>
-    <h4>وجهات داخل تركيا</h4>
+    <h4>فنادق حسب المدينة</h4>
     <ul class="cols-2" style="display:grid">
-      ${ds.map((d) => `<li><a href="{{root}}turkey-tours/${d.slug}/">${esc(d.name)}<small>${esc(d.tagline || "")}</small></a></li>`).join("")}
-      <li><a href="{{root}}turkey-tours/"><b>كل وجهات تركيا ←</b></a></li>
-      <li><a href="{{root}}turkey-visa/"><b>تأشيرة تركيا للعرب ←</b></a></li>
+      ${hs.filter((h) => h.slug !== "family-friendly").map((h) => `<li><a href="{{root}}hotels/${h.slug}/">${ic("pin")}<span>فنادق ${esc(h.city)}</span></a></li>`).join("")}
+      <li><a href="{{root}}hotels/family-friendly/">${ic("family")}<span>فنادق محافظة للعائلات</span></a></li>
+      <li><a href="{{root}}hotels/"><b>كل الفنادق والمنتجعات</b></a></li>
     </ul>
   </div>
-  <div class="mega-feature">
-    <b>برامج سياحية متكاملة</b>
-    <span>برامج يوماً بيوم لإسطنبول، طرابزون، بورصة وكابادوكيا مع سائق يتحدث العربية.</span>
-    <a href="{{root}}packages/">تصفّح البرامج</a>
-    ${(data.extras || []).filter((x) => x.kind !== "offer").length ? `<span style="position:relative;display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">${(data.extras || []).filter((x) => x.kind !== "offer").map((x) => `<a href="{{root}}${x.path}" style="font-size:.85rem;padding:.3em .7em">${esc(x.navLabel || x.h1.split(":")[0])}</a>`).join("")}</span>` : ""}
-    ${(data.hotels || []).length ? `<span style="position:relative;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">${data.hotels.filter((h) => h.slug !== "family-friendly").map((h) => `<a href="{{root}}hotels/${h.slug}/" style="font-size:.85rem;padding:.3em .7em">فنادق ${esc(h.city)}</a>`).join("")}<a href="{{root}}cabins/" style="font-size:.85rem;padding:.3em .7em">أكواخ وبنغلات</a></span>` : ""}
-  </div>
+  <a class="mega-feature mega-feature--cabins" href="{{root}}cabins/">
+    <b>${ic("cabin")} أكواخ وبنغلات</b>
+    <span>بيوت خشبية بجاكوزي ومدفأة ومسبح في سبانجا وطرابزون — بصور حقيقية وسعر الليلة.</span>
+    <span class="mega-feature__go">تصفّح الأكواخ ${ic("arrow", "i-flip")}</span>
+  </a>
 </div>`;
 }
-function megaVisas(data) {
+// "More" menu: everything that is not hotels, cabins or flights, in four clear groups
+function megaMore(data) {
   const g = (k) => (data.visas || []).filter((v) => v.group === k);
-  const col = (title, base, list, hub) => `<div><h4>${title}</h4><ul>${list.map((v) => `<li><a href="{{root}}${base}${v.slug}/">${esc(v.name)}</a></li>`).join("")}<li><a href="{{root}}${hub}"><b>عرض الكل ←</b></a></li></ul></div>`;
+  const li = (href, label, icon) => `<li><a href="{{root}}${href}">${icon ? ic(icon) : ""}<span>${label}</span></a></li>`;
   return `
-<div class="mega" style="grid-template-columns:repeat(3,1fr);width:min(900px,92vw)" role="region" aria-label="التأشيرات">
-  ${col("تأشيرات السعودية", "saudi-visa/", g("saudi"), "saudi-visa/")}
-  ${col("تأشيرات الخليج", "gcc-visas/", g("gcc"), "gcc-visas/")}
-  ${col("تأشيرات دولية", "visas/", g("intl"), "visas/")}
+<div class="mega mega--more" role="region" aria-label="المزيد">
+  <div>
+    <h4>رحلات وبرامج</h4>
+    <ul>
+      ${li("turkey-tours/", "السياحة في تركيا", "map")}
+      ${li("packages/", "البرامج السياحية", "route")}
+      ${li("world-tours/", "رحلات خارج تركيا", "globe")}
+      ${li("day-trips/", "جولات يومية", "compass")}
+      ${li("transfers/", "استقبال المطار والتنقلات", "car")}
+    </ul>
+  </div>
+  <div>
+    <h4>التأشيرات</h4>
+    <ul>
+      ${li("turkey-visa/", "تأشيرة تركيا للعرب", "passport")}
+      ${li("saudi-visa/", "تأشيرات السعودية", "mosque")}
+      ${li("gcc-visas/", "تأشيرات الخليج", "passport")}
+      ${li("visas/", "تأشيرات دولية", "globe")}
+    </ul>
+  </div>
+  <div>
+    <h4>مباريات وعروض</h4>
+    <ul>
+      ${li("matches/spanish-super-cup-2027/", "كأس السوبر الإسباني 2027", "trophy")}
+      ${li("matches/", "تذاكر المباريات", "ball")}
+      ${li("offers/", "العروض الموسمية", "sparkles")}
+    </ul>
+  </div>
+  <div>
+    <h4>أويا</h4>
+    <ul>
+      ${li("about/", "من نحن", "")}
+      ${li("blog/", "المدونة", "")}
+      ${li("faq/", "الأسئلة الشائعة", "")}
+      ${li("contact/", "تواصل معنا", "")}
+    </ul>
+  </div>
 </div>`;
 }
 
@@ -57,12 +90,13 @@ function langMenu(page, L) {
 }
 
 function header(page, data, L) {
+  const primary = ["hotels", "cabins", "flights"];
   const items = nav.map((n) => {
-    const active = page.nav === n.key;
+    const active = page.nav === n.key || (n.key === "more" && !primary.includes(page.nav) && page.nav !== "home");
     if (n.mega) {
-      return `<li class="has-mega${active ? " is-active" : ""}"><button class="nav-trigger" type="button" aria-expanded="false">${n.label}${ic("chevron")}</button>${n.mega === "turkey" ? megaTurkey(data) : megaVisas(data)}</li>`;
+      return `<li class="has-mega${active ? " is-active" : ""}${n.icon ? " nav-main" : " nav-more"}"><button class="nav-trigger" type="button" aria-expanded="false">${n.icon ? ic(n.icon, "nav-ico") : ""}<span>${n.label}</span>${ic("chevron")}</button>${n.mega === "hotels" ? megaHotels(data) : megaMore(data)}</li>`;
     }
-    return `<li><a href="{{root}}${n.href}"${active ? ' aria-current="page"' : ""}>${n.label}${n.isNew ? '<span class="tag-new">جديد</span>' : ""}</a></li>`;
+    return `<li class="nav-main"><a href="{{root}}${n.href}"${active ? ' aria-current="page"' : ""}>${n.icon ? ic(n.icon, "nav-ico") : ""}<span>${n.label}</span></a></li>`;
   }).join("");
   return `
 <header class="site-header${page.lightHeader ? " is-light" : ""}">
@@ -91,19 +125,23 @@ function drawer(page, data, L) {
   <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="القائمة">
     <div class="drawer__head"><img src="{{root}}assets/img/brand/oya-lockup.svg" alt="${site.name}" width="180" height="40"><button class="drawer__close" type="button" data-close-drawer aria-label="إغلاق القائمة">${ic("x")}</button></div>
     <div class="drawer__body">
+      <div class="drawer__tiles">
+        <a class="drawer__tile" href="{{root}}hotels/"${page.nav === "hotels" ? ' aria-current="page"' : ""}>${ic("hotel")}<span>فنادق ومنتجعات</span></a>
+        <a class="drawer__tile" href="{{root}}cabins/"${page.nav === "cabins" ? ' aria-current="page"' : ""}>${ic("cabin")}<span>أكواخ وبنغلات</span></a>
+        <a class="drawer__tile" href="{{root}}flights/"${page.nav === "flights" ? ' aria-current="page"' : ""}>${ic("takeoff")}<span>تذاكر طيران</span></a>
+      </div>
       <ul>
         ${link("", "الرئيسية", "home")}
-        <li><details><summary>رحلات تركيا ${ic("chevron")}</summary><ul>${ds.map((d) => `<li><a href="{{root}}turkey-tours/${d.slug}/">${esc(d.name)}</a></li>`).join("")}<li><a href="{{root}}turkey-tours/">كل وجهات تركيا</a></li><li><a href="{{root}}packages/">البرامج السياحية</a></li><li><a href="{{root}}packages/turkey-7-days/">برنامج تركيا 7 أيام</a></li><li><a href="{{root}}turkey-visa/">تأشيرة تركيا للعرب</a></li></ul></details></li>
-        ${link("world-tours/", "رحلات خارج تركيا", "world")}
-        ${link("flights/", "تذاكر طيران", "flights")}
-        ${(data.hotels || []).length ? `<li><details${page.nav === "hotels" ? " open" : ""}><summary>فنادق ومنتجعات ${ic("chevron")}</summary><ul><li><a href="{{root}}hotels/"><b>كل الفنادق والمنتجعات</b></a></li><li><a href="{{root}}cabins/">أكواخ وبنغلات</a></li>${data.hotels.map((h) => `<li><a href="{{root}}hotels/${h.slug}/">${h.slug === "family-friendly" ? "فنادق محافظة للعائلات" : "فنادق " + esc(h.city)}</a></li>`).join("")}</ul></details></li>` : link("hotels/", "فنادق ومنتجعات", "hotels")}
+        ${(data.hotels || []).length ? `<li><details><summary>فنادق حسب المدينة ${ic("chevron")}</summary><ul>${data.hotels.map((h) => `<li><a href="{{root}}hotels/${h.slug}/">${h.slug === "family-friendly" ? "فنادق محافظة للعائلات" : "فنادق " + esc(h.city)}</a></li>`).join("")}</ul></details></li>` : ""}
+        <li><details><summary>رحلات وبرامج ${ic("chevron")}</summary><ul><li><a href="{{root}}turkey-tours/"><b>السياحة في تركيا</b></a></li>${ds.map((d) => `<li><a href="{{root}}turkey-tours/${d.slug}/">${esc(d.name)}</a></li>`).join("")}<li><a href="{{root}}packages/"><b>البرامج السياحية</b></a></li><li><a href="{{root}}world-tours/"><b>رحلات خارج تركيا</b></a></li></ul></details></li>
         <li><details><summary>التأشيرات ${ic("chevron")}</summary><ul>
+          <li><a href="{{root}}turkey-visa/"><b>تأشيرة تركيا للعرب</b></a></li>
           <li><a href="{{root}}saudi-visa/"><b>تأشيرات السعودية</b></a></li>${g("saudi").map((v) => `<li><a href="{{root}}saudi-visa/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
           <li><a href="{{root}}gcc-visas/"><b>تأشيرات الخليج</b></a></li>${g("gcc").map((v) => `<li><a href="{{root}}gcc-visas/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
           <li><a href="{{root}}visas/"><b>تأشيرات دولية</b></a></li>${g("intl").map((v) => `<li><a href="{{root}}visas/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
         </ul></details></li>
         ${(data.extras || []).length ? `<li><details><summary>خدمات وعروض ${ic("chevron")}</summary><ul>${data.extras.map((x) => `<li><a href="{{root}}${x.path}">${esc(x.navLabel || x.h1.split(":")[0])}</a></li>`).join("")}<li><a href="{{root}}offers/">كل العروض الموسمية</a></li></ul></details></li>` : ""}
-        ${link("matches/", 'تذاكر المباريات <span class="tag-new">جديد</span>', "matches")}
+        ${link("matches/", "تذاكر المباريات", "matches")}
         ${link("blog/", "المدونة", "blog")}
         ${link("about/", "من نحن", "about")}
         ${link("faq/", "الأسئلة الشائعة", "faq")}

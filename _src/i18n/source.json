@@ -223,232 +223,28 @@
   "n": 89
  },
  {
-  "id": "b986d8fb16",
+  "id": "9320d82842",
   "kind": "text",
-  "ar": "الرئيسية",
+  "ar": "فنادق ومنتجعات",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 352
+  "n": 380
  },
  {
-  "id": "d53e924e15",
+  "id": "f37ee87aad",
   "kind": "text",
-  "ar": "رحلات تركيا",
+  "ar": "فنادق حسب المدينة",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 267
- },
- {
-  "id": "09e544c9b9",
-  "kind": "text",
-  "ar": "وجهات داخل تركيا",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 90
- },
- {
-  "id": "2c0c54272e",
-  "kind": "text",
-  "ar": "إسطنبول<g1>مدينة القارتين وسحر البوسفور</g1>",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "e7121ea358",
-  "kind": "text",
-  "ar": "طرابزون<g1>بوابة الشمال التركي الأخضر</g1>",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "91acbe4437",
-  "kind": "text",
-  "ar": "أوزنجول<g1>بحيرة بين الغيوم والغابات</g1>",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "db572218e9",
-  "kind": "text",
-  "ar": "بورصة<g1>العاصمة العثمانية الأولى وجبل الثلج</g1>",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "15c145a62a",
-  "kind": "text",
-  "ar": "سبانجا<g1>بحيرة وغابات على بُعد ساعتين</g1>",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "30fc19be7e",
-  "kind": "text",
-  "ar": "أنطاليا<g1>شمس وبحر وجبال على المتوسط</g1>",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "bd1eba424f",
-  "kind": "text",
-  "ar": "كابادوكيا<g1>مناطيد الشروق فوق المداخن الخرافية</g1>",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "e753ea2cc2",
-  "kind": "text",
-  "ar": "بودروم<g1>خلجان إيجة ومراسي اليخوت</g1>",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "eb884a3d74",
-  "kind": "text",
-  "ar": "كل وجهات تركيا ←",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "e0f6a1f419",
-  "kind": "text",
-  "ar": "تأشيرة تركيا للعرب ←",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "bb98a395a7",
-  "kind": "text",
-  "ar": "برامج سياحية متكاملة",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "6e27f32ab6",
-  "kind": "text",
-  "ar": "برامج يوماً بيوم لإسطنبول، طرابزون، بورصة وكابادوكيا مع سائق يتحدث العربية.",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "1d1d7313bf",
-  "kind": "text",
-  "ar": "تصفّح البرامج",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "1c2e537da3",
-  "kind": "text",
-  "ar": "استقبال المطار",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 269
- },
- {
-  "id": "86a6ef632a",
-  "kind": "text",
-  "ar": "سائق خاص",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 269
- },
- {
-  "id": "375a760c41",
-  "kind": "text",
-  "ar": "جولات يومية",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 277
+  "n": 178
  },
  {
   "id": "6e61ba0367",
@@ -511,6 +307,30 @@
   "n": 189
  },
  {
+  "id": "0d9e515208",
+  "kind": "text",
+  "ar": "فنادق محافظة للعائلات",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 178
+ },
+ {
+  "id": "d76ab89c68",
+  "kind": "text",
+  "ar": "كل الفنادق والمنتجعات",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 89
+ },
+ {
   "id": "833fec6b50",
   "kind": "text",
   "ar": "أكواخ وبنغلات",
@@ -520,24 +340,24 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 183
+  "n": 275
  },
  {
-  "id": "174c3dd898",
+  "id": "3d7a22f631",
   "kind": "text",
-  "ar": "خارج تركيا",
+  "ar": "بيوت خشبية بجاكوزي ومدفأة ومسبح في سبانجا وطرابزون — بصور حقيقية وسعر الليلة.",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 130
+  "n": 89
  },
  {
-  "id": "22c2256e80",
+  "id": "6ba767682d",
   "kind": "text",
-  "ar": "طيران",
+  "ar": "تصفّح الأكواخ",
   "pages": [
    "",
    "flights/",
@@ -547,9 +367,45 @@
   "n": 90
  },
  {
-  "id": "9320d82842",
+  "id": "b10076293f",
   "kind": "text",
-  "ar": "فنادق ومنتجعات",
+  "ar": "تذاكر طيران",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 277
+ },
+ {
+  "id": "6a4ef56148",
+  "kind": "text",
+  "ar": "المزيد",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 178
+ },
+ {
+  "id": "574f73f898",
+  "kind": "text",
+  "ar": "رحلات وبرامج",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 178
+ },
+ {
+  "id": "a53e50f866",
+  "kind": "text",
+  "ar": "السياحة في تركيا",
   "pages": [
    "",
    "flights/",
@@ -557,6 +413,54 @@
    "cabins/"
   ],
   "n": 291
+ },
+ {
+  "id": "c4d5296aa0",
+  "kind": "text",
+  "ar": "البرامج السياحية",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 298
+ },
+ {
+  "id": "fe75bdcbdb",
+  "kind": "text",
+  "ar": "رحلات خارج تركيا",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 196
+ },
+ {
+  "id": "375a760c41",
+  "kind": "text",
+  "ar": "جولات يومية",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 277
+ },
+ {
+  "id": "2fa972a884",
+  "kind": "text",
+  "ar": "استقبال المطار والتنقلات",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 89
  },
  {
   "id": "d54b539f80",
@@ -568,7 +472,19 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 357
+  "n": 268
+ },
+ {
+  "id": "0bccb0ca4d",
+  "kind": "text",
+  "ar": "تأشيرة تركيا للعرب",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 268
  },
  {
   "id": "4528dad84d",
@@ -580,103 +496,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 310
- },
- {
-  "id": "56aa9ed5ce",
-  "kind": "text",
-  "ar": "التأشيرة السياحية السعودية",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 302
- },
- {
-  "id": "04258e6a3d",
-  "kind": "text",
-  "ar": "تأشيرة العمرة",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 302
- },
- {
-  "id": "1146a2fe59",
-  "kind": "text",
-  "ar": "تأشيرة الزيارة العائلية",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 214
- },
- {
-  "id": "ccb9b5d623",
-  "kind": "text",
-  "ar": "تأشيرة الزيارة الشخصية",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 211
- },
- {
-  "id": "54f4d1f93f",
-  "kind": "text",
-  "ar": "تأشيرة زيارة الأعمال",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 211
- },
- {
-  "id": "80a09010d7",
-  "kind": "text",
-  "ar": "تأشيرة الترانزيت (العبور)",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 192
- },
- {
-  "id": "9f9f9a71e0",
-  "kind": "text",
-  "ar": "التأشيرة السياحية للمقيمين في الخليج",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 192
- },
- {
-  "id": "f7d9ae1660",
-  "kind": "text",
-  "ar": "عرض الكل ←",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 267
+  "n": 309
  },
  {
   "id": "d26d1188d8",
@@ -688,79 +508,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 301
- },
- {
-  "id": "49f2cf86bd",
-  "kind": "text",
-  "ar": "فيزا الإمارات (دبي)",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 191
- },
- {
-  "id": "9e6ef76825",
-  "kind": "text",
-  "ar": "فيزا قطر",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 191
- },
- {
-  "id": "edcc32acd5",
-  "kind": "text",
-  "ar": "فيزا سلطنة عُمان",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 191
- },
- {
-  "id": "43796c22d7",
-  "kind": "text",
-  "ar": "فيزا البحرين",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 191
- },
- {
-  "id": "b0e2fe4483",
-  "kind": "text",
-  "ar": "فيزا الكويت",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 191
- },
- {
-  "id": "f22fa8e7c5",
-  "kind": "text",
-  "ar": "التأشيرة الخليجية الموحدة",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 190
+  "n": 300
  },
  {
   "id": "51bff8d9dd",
@@ -772,60 +520,12 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 201
+  "n": 200
  },
  {
-  "id": "a8e3004e8c",
+  "id": "336fa6fae3",
   "kind": "text",
-  "ar": "فيزا شنغن",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 189
- },
- {
-  "id": "3a1622a1ef",
-  "kind": "text",
-  "ar": "فيزا بريطانيا",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 188
- },
- {
-  "id": "fd6b0d25da",
-  "kind": "text",
-  "ar": "فيزا أمريكا",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 188
- },
- {
-  "id": "cd7f938446",
-  "kind": "text",
-  "ar": "فيزا كندا",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 188
- },
- {
-  "id": "13e9b3e6cd",
-  "kind": "text",
-  "ar": "تذاكر المباريات<g1>جديد</g1>",
+  "ar": "مباريات وعروض",
   "pages": [
    "",
    "flights/",
@@ -833,6 +533,102 @@
    "cabins/"
   ],
   "n": 89
+ },
+ {
+  "id": "a6054bb245",
+  "kind": "text",
+  "ar": "كأس السوبر الإسباني 2027",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 181
+ },
+ {
+  "id": "cb67232d5c",
+  "kind": "text",
+  "ar": "تذاكر المباريات",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 273
+ },
+ {
+  "id": "9b2bed3bb5",
+  "kind": "text",
+  "ar": "العروض الموسمية",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 185
+ },
+ {
+  "id": "e6a3894be5",
+  "kind": "text",
+  "ar": "أويا",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 89
+ },
+ {
+  "id": "629d28fb52",
+  "kind": "text",
+  "ar": "من نحن",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 271
+ },
+ {
+  "id": "0780717b36",
+  "kind": "text",
+  "ar": "المدونة",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 290
+ },
+ {
+  "id": "90b224ff94",
+  "kind": "text",
+  "ar": "الأسئلة الشائعة",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 271
+ },
+ {
+  "id": "9886382321",
+  "kind": "text",
+  "ar": "تواصل معنا",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 270
  },
  {
   "id": "d76522a035",
@@ -907,6 +703,18 @@
   "n": 89
  },
  {
+  "id": "b986d8fb16",
+  "kind": "text",
+  "ar": "الرئيسية",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 263
+ },
+ {
   "id": "aade71c74c",
   "kind": "text",
   "ar": "إسطنبول",
@@ -928,7 +736,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 221
+  "n": 222
  },
  {
   "id": "62140011f1",
@@ -940,7 +748,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 221
+  "n": 222
  },
  {
   "id": "27d9d4af03",
@@ -964,7 +772,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 216
+  "n": 217
  },
  {
   "id": "c52396a897",
@@ -1003,100 +811,208 @@
   "n": 237
  },
  {
-  "id": "1c0dd2a352",
+  "id": "56aa9ed5ce",
   "kind": "text",
-  "ar": "كل وجهات تركيا",
+  "ar": "التأشيرة السياحية السعودية",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 89
+  "n": 213
  },
  {
-  "id": "c4d5296aa0",
+  "id": "04258e6a3d",
   "kind": "text",
-  "ar": "البرامج السياحية",
+  "ar": "تأشيرة العمرة",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 209
+  "n": 213
  },
  {
-  "id": "4abc6faa71",
+  "id": "1146a2fe59",
   "kind": "text",
-  "ar": "برنامج تركيا 7 أيام",
+  "ar": "تأشيرة الزيارة العائلية",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 126
+  "n": 125
  },
  {
-  "id": "0bccb0ca4d",
+  "id": "ccb9b5d623",
   "kind": "text",
-  "ar": "تأشيرة تركيا للعرب",
+  "ar": "تأشيرة الزيارة الشخصية",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 179
+  "n": 122
  },
  {
-  "id": "fe75bdcbdb",
+  "id": "54f4d1f93f",
   "kind": "text",
-  "ar": "رحلات خارج تركيا",
+  "ar": "تأشيرة زيارة الأعمال",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 107
+  "n": 122
  },
  {
-  "id": "b10076293f",
+  "id": "80a09010d7",
   "kind": "text",
-  "ar": "تذاكر طيران",
+  "ar": "تأشيرة الترانزيت (العبور)",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 188
+  "n": 103
  },
  {
-  "id": "d76ab89c68",
+  "id": "9f9f9a71e0",
   "kind": "text",
-  "ar": "كل الفنادق والمنتجعات",
+  "ar": "التأشيرة السياحية للمقيمين في الخليج",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 89
+  "n": 103
  },
  {
-  "id": "0d9e515208",
+  "id": "49f2cf86bd",
   "kind": "text",
-  "ar": "فنادق محافظة للعائلات",
+  "ar": "فيزا الإمارات (دبي)",
   "pages": [
    "",
    "flights/",
    "hotels/",
    "cabins/"
   ],
-  "n": 89
+  "n": 102
+ },
+ {
+  "id": "9e6ef76825",
+  "kind": "text",
+  "ar": "فيزا قطر",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 102
+ },
+ {
+  "id": "edcc32acd5",
+  "kind": "text",
+  "ar": "فيزا سلطنة عُمان",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 102
+ },
+ {
+  "id": "43796c22d7",
+  "kind": "text",
+  "ar": "فيزا البحرين",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 102
+ },
+ {
+  "id": "b0e2fe4483",
+  "kind": "text",
+  "ar": "فيزا الكويت",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 102
+ },
+ {
+  "id": "f22fa8e7c5",
+  "kind": "text",
+  "ar": "التأشيرة الخليجية الموحدة",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 101
+ },
+ {
+  "id": "a8e3004e8c",
+  "kind": "text",
+  "ar": "فيزا شنغن",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 100
+ },
+ {
+  "id": "3a1622a1ef",
+  "kind": "text",
+  "ar": "فيزا بريطانيا",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 99
+ },
+ {
+  "id": "fd6b0d25da",
+  "kind": "text",
+  "ar": "فيزا أمريكا",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 99
+ },
+ {
+  "id": "cd7f938446",
+  "kind": "text",
+  "ar": "فيزا كندا",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 99
  },
  {
   "id": "780d1200d0",
@@ -1109,6 +1025,30 @@
    "cabins/"
   ],
   "n": 89
+ },
+ {
+  "id": "1c2e537da3",
+  "kind": "text",
+  "ar": "استقبال المطار",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 180
+ },
+ {
+  "id": "86a6ef632a",
+  "kind": "text",
+  "ar": "سائق خاص",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 180
  },
  {
   "id": "6506017529",
@@ -1145,66 +1085,6 @@
    "cabins/"
   ],
   "n": 90
- },
- {
-  "id": "071199ae51",
-  "kind": "text",
-  "ar": "تذاكر المباريات <g1>جديد</g1>",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 89
- },
- {
-  "id": "0780717b36",
-  "kind": "text",
-  "ar": "المدونة",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 201
- },
- {
-  "id": "629d28fb52",
-  "kind": "text",
-  "ar": "من نحن",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 182
- },
- {
-  "id": "90b224ff94",
-  "kind": "text",
-  "ar": "الأسئلة الشائعة",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 182
- },
- {
-  "id": "9886382321",
-  "kind": "text",
-  "ar": "تواصل معنا",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 181
  },
  {
   "id": "7402851a96",
@@ -1432,6 +1312,24 @@
   "n": 1
  },
  {
+  "id": "fc773bdde5",
+  "kind": "text",
+  "ar": "أكواخ",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
+  "id": "22c2256e80",
+  "kind": "text",
+  "ar": "طيران",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
   "id": "7289d8a636",
   "kind": "text",
   "ar": "برامج سياحية",
@@ -1462,19 +1360,7 @@
    "saudi-visa/umrah/",
    "saudi-visa/family-visit/"
   ],
-  "n": 44
- },
- {
-  "id": "a09e26bdd0",
-  "kind": "text",
-  "ar": "مباريات",
-  "pages": [
-   "",
-   "matches/spanish-super-cup-2027/",
-   "blog/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
-  ],
-  "n": 4
+  "n": 45
  },
  {
   "id": "13ef17d39f",
@@ -1546,7 +1432,7 @@
    "hotels/istanbul/",
    "hotels/trabzon/"
   ],
-  "n": 8
+  "n": 9
  },
  {
   "id": "f0396eef3b",
@@ -1558,7 +1444,7 @@
    "hotels/istanbul/",
    "hotels/trabzon/"
   ],
-  "n": 8
+  "n": 9
  },
  {
   "id": "220c049af1",
@@ -1570,7 +1456,7 @@
    "hotels/",
    "hotels/istanbul/"
   ],
-  "n": 21
+  "n": 23
  },
  {
   "id": "aaa6900eb0",
@@ -1582,7 +1468,7 @@
    "hotels/istanbul/",
    "hotels/trabzon/"
   ],
-  "n": 8
+  "n": 9
  },
  {
   "id": "67ee609514",
@@ -1594,7 +1480,7 @@
    "hotels/istanbul/",
    "hotels/trabzon/"
   ],
-  "n": 8
+  "n": 9
  },
  {
   "id": "f6672e1850",
@@ -1907,6 +1793,156 @@
    "turkey-tours/"
   ],
   "n": 74
+ },
+ {
+  "id": "202142a694",
+  "kind": "attr",
+  "ar": "مرحباً أويا للسياحة، أبحث عن كوخ أو بنغل للإقامة:",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
+  "id": "89b68742ca",
+  "kind": "text",
+  "ar": "المنطقة",
+  "pages": [
+   "",
+   "hotels/",
+   "blog/istanbul-itinerary-5-days/",
+   "blog/spanish-super-cup-2027-istanbul-guide/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "b4be008218",
+  "kind": "text",
+  "ar": "سبانجا وكارتبه ومعشوقية",
+  "pages": [
+   "",
+   "cabins/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "1e38b4a5ef",
+  "kind": "text",
+  "ar": "طرابزون وأوزنجول وأيدر",
+  "pages": [
+   "",
+   "cabins/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "0a55cefb0e",
+  "kind": "text",
+  "ar": "لا مانع — اقترحوا عليّ",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
+  "id": "1d2badbae4",
+  "kind": "text",
+  "ar": "عدد الأشخاص",
+  "pages": [
+   "",
+   "cabins/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "c2f1783c5a",
+  "kind": "text",
+  "ar": "7 أو أكثر",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
+  "id": "5a7f131dd0",
+  "kind": "text",
+  "ar": "الأهم لك",
+  "pages": [
+   ""
+  ],
+  "n": 2
+ },
+ {
+  "id": "187198619e",
+  "kind": "text",
+  "ar": "جاكوزي",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 6
+ },
+ {
+  "id": "7863febc94",
+  "kind": "text",
+  "ar": "مسبح مدفأ",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 6
+ },
+ {
+  "id": "3551f208a3",
+  "kind": "text",
+  "ar": "مدفأة حطب",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 6
+ },
+ {
+  "id": "61bee76469",
+  "kind": "text",
+  "ar": "إطلالة على البحيرة أو الجبل",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
+  "id": "b9328ec81f",
+  "kind": "text",
+  "ar": "لا مانع",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
+  "id": "89637f0575",
+  "kind": "text",
+  "ar": "اطلب أكواخاً متاحة عبر واتساب",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
+  "id": "82715c09ef",
+  "kind": "text",
+  "ar": "أو تصفّح الأكواخ بالصور والأسعار",
+  "pages": [
+   ""
+  ],
+  "n": 1
  },
  {
   "id": "4dc65913d3",
@@ -2359,6 +2395,18 @@
   "n": 35
  },
  {
+  "id": "174c3dd898",
+  "kind": "attr",
+  "ar": "خارج تركيا",
+  "pages": [
+   "",
+   "turkey-tours/",
+   "turkey-tours/istanbul/",
+   "turkey-tours/trabzon/"
+  ],
+  "n": 41
+ },
+ {
   "id": "655f7d9072",
   "kind": "text",
   "ar": "جورجيا",
@@ -2500,7 +2548,7 @@
    "turkey-tours/istanbul/",
    "turkey-tours/trabzon/"
   ],
-  "n": 63
+  "n": 62
  },
  {
   "id": "58907aa34b",
@@ -3113,304 +3161,6 @@
    "visas/"
   ],
   "n": 21
- },
- {
-  "id": "5b911a0bfa",
-  "kind": "attr",
-  "ar": "مرحباً أويا للسياحة، أرغب بباقة حضور مباراة:",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "7a300d76cf",
-  "kind": "text",
-  "ar": "المباراة<g1>*</g1>",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "27b3b0ba9b",
-  "kind": "attr",
-  "ar": "المباراة",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
-  ],
-  "n": 8
- },
- {
-  "id": "fffbfc9797",
-  "kind": "text",
-  "ar": "اختر المباراة",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 4
- },
- {
-  "id": "d6da03e08e",
-  "kind": "attr",
-  "ar": "كأس السوبر الإسباني 2027 — إسطنبول",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "8050abffda",
-  "kind": "text",
-  "ar": "نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "d4f7906f82",
-  "kind": "text",
-  "ar": "نصف النهائي: ريال سوسيداد × ريال مدريد (3 فبراير)",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "5562acfb84",
-  "kind": "text",
-  "ar": "النهائي (6 فبراير)",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "f8677da43f",
-  "kind": "text",
-  "ar": "باقة البطولة كاملة (3 مباريات)",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "b2cf06bd1d",
-  "kind": "attr",
-  "ar": "مباريات أخرى",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 4
- },
- {
-  "id": "ff4eaa4fa3",
-  "kind": "text",
-  "ar": "ديربي إسطنبول في الدوري التركي",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "e761f157b2",
-  "kind": "text",
-  "ar": "مباريات الأندية التركية في البطولات الأوروبية",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "588b929856",
-  "kind": "text",
-  "ar": "مباراة أخرى (سأذكرها في الملاحظات)",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "59de6a8f17",
-  "kind": "text",
-  "ar": "الفئة",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 6
- },
- {
-  "id": "235dd6e7ac",
-  "kind": "text",
-  "ar": "الفئة A+",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 9
- },
- {
-  "id": "0b34ca912e",
-  "kind": "text",
-  "ar": "الفئة A",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 9
- },
- {
-  "id": "13a01888e7",
-  "kind": "text",
-  "ar": "الفئة B",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 9
- },
- {
-  "id": "e60028bcf9",
-  "kind": "text",
-  "ar": "الفئة C",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 9
- },
- {
-  "id": "9c8e283b26",
-  "kind": "text",
-  "ar": "أفضل المتاح",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "2597a7e8e8",
-  "kind": "text",
-  "ar": "عدد المشجعين",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 6
- },
- {
-  "id": "6d029ea294",
-  "kind": "text",
-  "ar": "أكثر من 6",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "bcbc898209",
-  "kind": "text",
-  "ar": "الباقة",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 6
- },
- {
-  "id": "3a170e0d80",
-  "kind": "text",
-  "ar": "باقة المشجع: فندق + تنقلات + مساعدة في التذكرة الرسمية",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "881da43a33",
-  "kind": "text",
-  "ar": "باقة VIP",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 4
- },
- {
-  "id": "b50745d299",
-  "kind": "text",
-  "ar": "باقة كاملة مع الطيران",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "a1dbcf6378",
-  "kind": "text",
-  "ar": "لديّ تذكرتي — أحتاج الفندق والتنقلات فقط",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
- },
- {
-  "id": "64d26d5740",
-  "kind": "text",
-  "ar": "اطلب باقتك عبر واتساب",
-  "pages": [
-   "",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
-  ],
-  "n": 3
  },
  {
   "id": "14e4f155ba",
@@ -4252,28 +4002,25 @@
    "turkey-tours/trabzon/",
    "turkey-tours/uzungol/"
   ],
-  "n": 16
+  "n": 15
  },
  {
-  "id": "9ccf8ccfbd",
+  "id": "6c8e4d5dd9",
   "kind": "text",
-  "ar": "رحلات من وإلى إسطنبول والعالم بأفضل الخيارات المتاحة.",
+  "ar": "بيوت خشبية بجاكوزي ومدفأة ومسبح في سبانجا وطرابزون، بصور حقيقية وسعر الليلة.",
   "pages": [
    ""
   ],
   "n": 1
  },
  {
-  "id": "a53e50f866",
+  "id": "59ba43363e",
   "kind": "text",
-  "ar": "السياحة في تركيا",
+  "ar": "رحلات من وإلى إسطنبول والعالم، نقارن لك الخيارات ونرسلها مكتوبة.",
   "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
+   ""
   ],
-  "n": 113
+  "n": 1
  },
  {
   "id": "a0af252e4f",
@@ -4294,18 +4041,6 @@
   "n": 1
  },
  {
-  "id": "cb67232d5c",
-  "kind": "text",
-  "ar": "تذاكر المباريات",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 95
- },
- {
   "id": "ff420d3607",
   "kind": "text",
   "ar": "السوبر الإسباني 2027 في إسطنبول ومباريات كبرى.",
@@ -4315,27 +4050,9 @@
   "n": 1
  },
  {
-  "id": "b8fbc9b3e0",
+  "id": "11a63a434e",
   "kind": "text",
-  "ar": "سياحية، عمرة، زيارة عائلية وشخصية، أعمال وترانزيت.",
-  "pages": [
-   ""
-  ],
-  "n": 1
- },
- {
-  "id": "28c60bfb1d",
-  "kind": "text",
-  "ar": "الإمارات، قطر، عُمان، البحرين والكويت.",
-  "pages": [
-   ""
-  ],
-  "n": 1
- },
- {
-  "id": "df2323ca22",
-  "kind": "text",
-  "ar": "شنغن، بريطانيا، أمريكا وكندا — تجهيز ملف كامل.",
+  "ar": "السعودية والخليج وشنغن وبريطانيا وأمريكا — تجهيز ملف كامل.",
   "pages": [
    ""
   ],
@@ -4349,6 +4066,96 @@
    ""
   ],
   "n": 1
+ },
+ {
+  "id": "9404de8145",
+  "kind": "text",
+  "ar": "كوخ خشبي بين الغابات… بصور حقيقية",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
+  "id": "75375d799d",
+  "kind": "text",
+  "ar": "أكواخ نتعامل معها مباشرة في سبانجا وطرابزون: جاكوزي ومدفأة ومسبح وإطلالة. اختر كوخك ونؤكد لك التوفر كتابةً.",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
+  "id": "891b500aa0",
+  "kind": "text",
+  "ar": "كل الأكواخ",
+  "pages": [
+   "",
+   "hotels/trabzon/",
+   "hotels/uzungol/",
+   "hotels/sapanca/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "c1f8bcf24e",
+  "kind": "text",
+  "ar": "نضيف الأكواخ المتاحة قريباً",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "3f1d3b183f",
+  "kind": "text",
+  "ar": "أخبرنا بالمنطقة والتواريخ وعدد الأشخاص، ونرسل لك صوراً وأسعار أكواخ متاحة فعلاً.",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "4b8f8bf80f",
+  "kind": "message",
+  "ar": "مرحباً أويا، أبحث عن كوخ أو بنغل للإقامة.",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 7
+ },
+ {
+  "id": "aa2aa2e877",
+  "kind": "text",
+  "ar": "اطلب خيارات عبر واتساب",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "b7ea6ccd37",
+  "kind": "text",
+  "ar": "لعرض الأكواخ فعّل JavaScript، أو راسلنا على واتساب لنرسل لك الخيارات.",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
  },
  {
   "id": "038f035d4c",
@@ -4637,6 +4444,18 @@
    "turkey-tours/bursa/"
   ],
   "n": 26
+ },
+ {
+  "id": "4abc6faa71",
+  "kind": "json",
+  "ar": "برنامج تركيا 7 أيام",
+  "pages": [
+   "",
+   "turkey-tours/",
+   "packages/",
+   "packages/istanbul-5-days/"
+  ],
+  "n": 37
  },
  {
   "id": "17eb7e3e00",
@@ -6218,6 +6037,15 @@
   "n": 1
  },
  {
+  "id": "09e544c9b9",
+  "kind": "text",
+  "ar": "وجهات داخل تركيا",
+  "pages": [
+   ""
+  ],
+  "n": 1
+ },
+ {
   "id": "f6fb52807a",
   "kind": "text",
   "ar": "برنامجاً سياحياً جاهزاً",
@@ -6869,30 +6697,6 @@
   "n": 92
  },
  {
-  "id": "a6054bb245",
-  "kind": "text",
-  "ar": "كأس السوبر الإسباني 2027",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 92
- },
- {
-  "id": "9b2bed3bb5",
-  "kind": "text",
-  "ar": "العروض الموسمية",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 96
- },
- {
   "id": "5126e0ecc2",
   "kind": "text",
   "ar": "التأشيرات الدولية",
@@ -7204,6 +7008,270 @@
    ""
   ],
   "n": 1
+ },
+ {
+  "id": "2975003814",
+  "kind": "json",
+  "ar": "معشوقية",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 6
+ },
+ {
+  "id": "154ed81db6",
+  "kind": "json",
+  "ar": "كارتبه",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 6
+ },
+ {
+  "id": "efc5803b7b",
+  "kind": "json",
+  "ar": "أيدر",
+  "pages": [
+   "",
+   "cabins/",
+   "packages/trabzon-uzungol-7-days/",
+   "packages/black-sea-10-days/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "0c0a17f5a9",
+  "kind": "json",
+  "ar": "مسبح خاص",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "3be4e4dc4a",
+  "kind": "json",
+  "ar": "إطلالة على البحيرة",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "aace8caf79",
+  "kind": "json",
+  "ar": "إطلالة جبلية",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "18bda6e3b9",
+  "kind": "json",
+  "ar": "بين الغابات",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "f6f8c88dd0",
+  "kind": "json",
+  "ar": "حديقة خاصة",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "65baa9cacf",
+  "kind": "json",
+  "ar": "منطقة شواء",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "fb116ac31c",
+  "kind": "json",
+  "ar": "مطبخ مجهّز",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "3215fc08a5",
+  "kind": "json",
+  "ar": "فطور",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "0daf322cd3",
+  "kind": "json",
+  "ar": "إنترنت",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "961b7303ee",
+  "kind": "json",
+  "ar": "موقف سيارات",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "0cfd53abc8",
+  "kind": "json",
+  "ar": "مناسب للعائلات",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "f007c6d86c",
+  "kind": "json",
+  "ar": "مناسب للأزواج",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "9c69ff89fb",
+  "kind": "json",
+  "ar": "مرحباً أويا، أرغب بحجز «{0}» ({1}). التواريخ وعدد الأشخاص:",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "1d34bae7b6",
+  "kind": "json",
+  "ar": "صورة أخرى",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "cde42511f5",
+  "kind": "json",
+  "ar": "غرف النوم: {0}",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "4a1e02ebf2",
+  "kind": "json",
+  "ar": "الأشخاص: حتى {0}",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "d556e3ca0b",
+  "kind": "json",
+  "ar": "لليلة الواحدة",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "44a912a484",
+  "kind": "json",
+  "ar": "احجز",
+  "pages": [
+   "",
+   "cabins/",
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 12
+ },
+ {
+  "id": "f7f66e8147",
+  "kind": "json",
+  "ar": "عدد الأكواخ: {0}",
+  "pages": [
+   "",
+   "cabins/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 5
  },
  {
   "id": "c81920b856",
@@ -8838,17 +8906,6 @@
   "n": 34
  },
  {
-  "id": "89b68742ca",
-  "kind": "text",
-  "ar": "المنطقة",
-  "pages": [
-   "hotels/",
-   "blog/istanbul-itinerary-5-days/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
-  ],
-  "n": 3
- },
- {
   "id": "557b31ccc3",
   "kind": "text",
   "ar": "تناسب من؟",
@@ -9456,27 +9513,6 @@
   "n": 1
  },
  {
-  "id": "4b8f8bf80f",
-  "kind": "message",
-  "ar": "مرحباً أويا، أبحث عن كوخ أو بنغل للإقامة.",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 6
- },
- {
-  "id": "6ba767682d",
-  "kind": "text",
-  "ar": "تصفّح الأكواخ",
-  "pages": [
-   "cabins/"
-  ],
-  "n": 1
- },
- {
   "id": "0502e8455d",
   "kind": "text",
   "ar": "اختر كوخك",
@@ -9523,33 +9559,6 @@
    "packages/"
   ],
   "n": 4
- },
- {
-  "id": "b4be008218",
-  "kind": "text",
-  "ar": "سبانجا وكارتبه ومعشوقية",
-  "pages": [
-   "cabins/"
-  ],
-  "n": 1
- },
- {
-  "id": "1e38b4a5ef",
-  "kind": "text",
-  "ar": "طرابزون وأوزنجول وأيدر",
-  "pages": [
-   "cabins/"
-  ],
-  "n": 1
- },
- {
-  "id": "1d2badbae4",
-  "kind": "text",
-  "ar": "عدد الأشخاص",
-  "pages": [
-   "cabins/"
-  ],
-  "n": 1
  },
  {
   "id": "1dc289441e",
@@ -9631,54 +9640,6 @@
    "cabins/"
   ],
   "n": 1
- },
- {
-  "id": "c1f8bcf24e",
-  "kind": "text",
-  "ar": "نضيف الأكواخ المتاحة قريباً",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "3f1d3b183f",
-  "kind": "text",
-  "ar": "أخبرنا بالمنطقة والتواريخ وعدد الأشخاص، ونرسل لك صوراً وأسعار أكواخ متاحة فعلاً.",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "aa2aa2e877",
-  "kind": "text",
-  "ar": "اطلب خيارات عبر واتساب",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "b7ea6ccd37",
-  "kind": "text",
-  "ar": "لعرض الأكواخ فعّل JavaScript، أو راسلنا على واتساب لنرسل لك الخيارات.",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
  },
  {
   "id": "a25fcb0cb6",
@@ -9790,306 +9751,6 @@
    "blog/cost-of-travel-to-turkey/"
   ],
   "n": 15
- },
- {
-  "id": "2975003814",
-  "kind": "json",
-  "ar": "معشوقية",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 5
- },
- {
-  "id": "154ed81db6",
-  "kind": "json",
-  "ar": "كارتبه",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 5
- },
- {
-  "id": "efc5803b7b",
-  "kind": "json",
-  "ar": "أيدر",
-  "pages": [
-   "cabins/",
-   "packages/trabzon-uzungol-7-days/",
-   "packages/black-sea-10-days/",
-   "blog/trabzon-uzungol-travel-guide/"
-  ],
-  "n": 7
- },
- {
-  "id": "0c0a17f5a9",
-  "kind": "json",
-  "ar": "مسبح خاص",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "7863febc94",
-  "kind": "json",
-  "ar": "مسبح مدفأ",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "187198619e",
-  "kind": "json",
-  "ar": "جاكوزي",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "3551f208a3",
-  "kind": "json",
-  "ar": "مدفأة حطب",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "3be4e4dc4a",
-  "kind": "json",
-  "ar": "إطلالة على البحيرة",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "aace8caf79",
-  "kind": "json",
-  "ar": "إطلالة جبلية",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "18bda6e3b9",
-  "kind": "json",
-  "ar": "بين الغابات",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "f6f8c88dd0",
-  "kind": "json",
-  "ar": "حديقة خاصة",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "65baa9cacf",
-  "kind": "json",
-  "ar": "منطقة شواء",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "fb116ac31c",
-  "kind": "json",
-  "ar": "مطبخ مجهّز",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "3215fc08a5",
-  "kind": "json",
-  "ar": "فطور",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "0daf322cd3",
-  "kind": "json",
-  "ar": "إنترنت",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "961b7303ee",
-  "kind": "json",
-  "ar": "موقف سيارات",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "0cfd53abc8",
-  "kind": "json",
-  "ar": "مناسب للعائلات",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "f007c6d86c",
-  "kind": "json",
-  "ar": "مناسب للأزواج",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "9c69ff89fb",
-  "kind": "json",
-  "ar": "مرحباً أويا، أرغب بحجز «{0}» ({1}). التواريخ وعدد الأشخاص:",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "1d34bae7b6",
-  "kind": "json",
-  "ar": "صورة أخرى",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "cde42511f5",
-  "kind": "json",
-  "ar": "غرف النوم: {0}",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "4a1e02ebf2",
-  "kind": "json",
-  "ar": "الأشخاص: حتى {0}",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "d556e3ca0b",
-  "kind": "json",
-  "ar": "لليلة الواحدة",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
- },
- {
-  "id": "44a912a484",
-  "kind": "json",
-  "ar": "احجز",
-  "pages": [
-   "cabins/",
-   "matches/",
-   "matches/spanish-super-cup-2027/",
-   "hotels/trabzon/"
-  ],
-  "n": 11
- },
- {
-  "id": "f7f66e8147",
-  "kind": "json",
-  "ar": "عدد الأكواخ: {0}",
-  "pages": [
-   "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 4
  },
  {
   "id": "01a59cef91",
@@ -46034,6 +45695,16 @@
   "n": 1
  },
  {
+  "id": "881da43a33",
+  "kind": "text",
+  "ar": "باقة VIP",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 3
+ },
+ {
   "id": "d0fd53743d",
   "kind": "text",
   "ar": "تجربة فاخرة متكاملة للعائلات ورجال الأعمال.",
@@ -46104,6 +45775,16 @@
    "matches/"
   ],
   "n": 1
+ },
+ {
+  "id": "b2cf06bd1d",
+  "kind": "text",
+  "ar": "مباريات أخرى",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 3
  },
  {
   "id": "bb7235d60a",
@@ -46250,6 +45931,16 @@
   "n": 1
  },
  {
+  "id": "fffbfc9797",
+  "kind": "text",
+  "ar": "اختر المباراة",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 3
+ },
+ {
   "id": "d916526184",
   "kind": "text",
   "ar": "حدد المباراة والفئة وعدد المشجعين ونوع الباقة.",
@@ -46350,6 +46041,197 @@
   "n": 1
  },
  {
+  "id": "5b911a0bfa",
+  "kind": "attr",
+  "ar": "مرحباً أويا للسياحة، أرغب بباقة حضور مباراة:",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "7a300d76cf",
+  "kind": "text",
+  "ar": "المباراة<g1>*</g1>",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "27b3b0ba9b",
+  "kind": "attr",
+  "ar": "المباراة",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/",
+   "blog/spanish-super-cup-2027-istanbul-guide/"
+  ],
+  "n": 7
+ },
+ {
+  "id": "d6da03e08e",
+  "kind": "attr",
+  "ar": "كأس السوبر الإسباني 2027 — إسطنبول",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "8050abffda",
+  "kind": "text",
+  "ar": "نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "d4f7906f82",
+  "kind": "text",
+  "ar": "نصف النهائي: ريال سوسيداد × ريال مدريد (3 فبراير)",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "5562acfb84",
+  "kind": "text",
+  "ar": "النهائي (6 فبراير)",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "f8677da43f",
+  "kind": "text",
+  "ar": "باقة البطولة كاملة (3 مباريات)",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "ff4eaa4fa3",
+  "kind": "text",
+  "ar": "ديربي إسطنبول في الدوري التركي",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "e761f157b2",
+  "kind": "text",
+  "ar": "مباريات الأندية التركية في البطولات الأوروبية",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "588b929856",
+  "kind": "text",
+  "ar": "مباراة أخرى (سأذكرها في الملاحظات)",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "59de6a8f17",
+  "kind": "text",
+  "ar": "الفئة",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "235dd6e7ac",
+  "kind": "text",
+  "ar": "الفئة A+",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "0b34ca912e",
+  "kind": "text",
+  "ar": "الفئة A",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "13a01888e7",
+  "kind": "text",
+  "ar": "الفئة B",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "e60028bcf9",
+  "kind": "text",
+  "ar": "الفئة C",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "9c8e283b26",
+  "kind": "text",
+  "ar": "أفضل المتاح",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "2597a7e8e8",
+  "kind": "text",
+  "ar": "عدد المشجعين",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "6d029ea294",
+  "kind": "text",
+  "ar": "أكثر من 6",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
   "id": "686c7d2093",
   "kind": "text",
   "ar": "السعر التقديري للتذاكر",
@@ -46370,9 +46252,59 @@
   "n": 2
  },
  {
+  "id": "bcbc898209",
+  "kind": "text",
+  "ar": "الباقة",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "3a170e0d80",
+  "kind": "text",
+  "ar": "باقة المشجع: فندق + تنقلات + مساعدة في التذكرة الرسمية",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "b50745d299",
+  "kind": "text",
+  "ar": "باقة كاملة مع الطيران",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "a1dbcf6378",
+  "kind": "text",
+  "ar": "لديّ تذكرتي — أحتاج الفندق والتنقلات فقط",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
   "id": "9061bfdc5d",
   "kind": "attr",
   "ar": "مثال: نريد مقاعد متجاورة، ووصول قبل المباراة بيومين",
+  "pages": [
+   "matches/",
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "64d26d5740",
+  "kind": "text",
+  "ar": "اطلب باقتك عبر واتساب",
   "pages": [
    "matches/",
    "matches/spanish-super-cup-2027/"
@@ -47762,6 +47694,17 @@
    "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
   "n": 8
+ },
+ {
+  "id": "a09e26bdd0",
+  "kind": "text",
+  "ar": "مباريات",
+  "pages": [
+   "matches/spanish-super-cup-2027/",
+   "blog/",
+   "blog/spanish-super-cup-2027-istanbul-guide/"
+  ],
+  "n": 3
  },
  {
   "id": "85a649e0ff",
@@ -58661,17 +58604,6 @@
   "id": "6bdbb4a9d1",
   "kind": "text",
   "ar": "أكواخ نتعامل معها مباشرة، بصورها الحقيقية وسعر الليلة. اختر الكوخ ونؤكد لك التوفر كتابةً قبل الدفع.",
-  "pages": [
-   "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
-  ],
-  "n": 3
- },
- {
-  "id": "891b500aa0",
-  "kind": "text",
-  "ar": "كل الأكواخ",
   "pages": [
    "hotels/trabzon/",
    "hotels/uzungol/",

@@ -1378,17 +1378,9 @@ h3,h4{line-height:1.42}
 [dir="ltr"] .page-hero.is-composed .page-hero__bg img{inset-inline-end:auto;left:0}
 .nf__langs{display:flex;flex-direction:column;gap:6px;margin-top:28px;font-size:.92rem}
 .nf__langs a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
-/* header in longer languages: the logo is the home link, tighter items, WhatsApp as an icon,
-   and the full menu only where it fits (the drawer below that) */
-[dir="ltr"] .nav>ul>li:first-child{display:none}
-[dir="ltr"] .nav a,[dir="ltr"] .nav button.nav-trigger{padding:.5em .6em;font-size:.94rem}
+/* header in longer languages: WhatsApp as an icon to keep the row short */
 [dir="ltr"] .header-cta .btn{width:44px;padding:0;justify-content:center}
 [dir="ltr"] .header-cta .btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-@media(min-width:1180px) and (max-width:1379px){
-  [dir="ltr"] .nav,[dir="ltr"] .header-cta{display:none}
-  [dir="ltr"] .menu-btn{display:grid}
-  [dir="ltr"] .site-header .lang{margin-inline-start:auto}
-}
 /* bottom bar on phones: long labels (Russian, Portuguese) shrink or wrap instead of widening the page */
 .mbar{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.3fr)}
 .mbar a{min-width:0;padding-inline:6px;text-align:center;line-height:1.2}
@@ -1612,3 +1604,38 @@ h3,h4{line-height:1.42}
 .table-wrap>p{margin:0;padding:10px 16px 14px;line-height:1.7}
 /* cabin names are Latin: keep their own order inside Arabic pages */
 .cab__body h3{unicode-bidi:isolate}
+
+/* ---------- Simple header: three main services + "More" ---------- */
+@media(min-width:1024px){.nav{display:block}.header-cta{display:flex}.menu-btn{display:none}}
+.nav>ul{gap:4px}
+.nav .nav-main>a,.nav .nav-main>.nav-trigger{gap:.45em;padding:.55em .9em;font-weight:600}
+.nav .nav-ico{width:1.15em;height:1.15em;opacity:.9}
+.nav .nav-more>.nav-trigger{font-weight:500;opacity:.92}
+.nav .nav-more{margin-inline-start:6px;padding-inline-start:10px;border-inline-start:1px solid rgba(255,255,255,.22)}
+.is-solid .nav .nav-more,.is-light .nav .nav-more{border-color:var(--line)}
+.nav .nav-main>a[aria-current="page"],.nav .nav-main.is-active>.nav-trigger{color:#fff;background:rgba(255,255,255,.14)}
+.is-solid .nav .nav-main>a[aria-current="page"],.is-light .nav .nav-main>a[aria-current="page"],.is-solid .nav .nav-main.is-active>.nav-trigger,.is-light .nav .nav-main.is-active>.nav-trigger{color:var(--navy);background:var(--sky-100)}
+.mega--hotels{width:min(760px,92vw)}
+.mega--more{grid-template-columns:repeat(4,minmax(0,1fr))!important;width:min(940px,94vw)!important;gap:8px}
+.mega a .i{width:1.05em;height:1.05em;color:var(--blue);flex:none}
+.mega li>a{display:flex;align-items:center;gap:.55em}
+.mega-feature--cabins{text-decoration:none;background:linear-gradient(160deg,rgba(6,20,40,.2),rgba(6,20,40,.85)),url("../img/photos/hotels-sapanca-640.webp") center/cover!important;min-height:220px}
+.mega-feature--cabins b{display:flex;align-items:center;gap:.4em}
+.mega-feature--cabins:hover .mega-feature__go{background:rgba(255,255,255,.24)}
+.mega .mega-feature__go{position:relative;align-self:flex-start;margin-top:12px;display:inline-flex;align-items:center;gap:.4em;padding:.45em .9em;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-weight:600;font-size:.9rem}
+/* drawer: the three main services as large tiles */
+.drawer__tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:14px}
+.drawer__tile{display:grid;justify-items:center;gap:6px;padding:14px 6px;border-radius:16px;background:var(--sky-50,#F1F6FB);color:var(--navy);font-weight:700;font-size:.86rem;text-align:center;line-height:1.35;text-decoration:none}
+.drawer__tile .i{width:26px;height:26px;color:var(--orange-btn)}
+.drawer__tile[aria-current="page"]{background:var(--navy);color:#fff}
+.drawer__tile[aria-current="page"] .i{color:var(--orange-300)}
+@media(max-width:640px){.bento>.svc.b-3:last-child{grid-column:span 6}}
+.booker__more{margin:10px 0 0;font-size:.9rem}
+.booker__more a{display:inline-flex;align-items:center;gap:.4em;color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.booker__more .i{width:1.1em;height:1.1em}
+.mega .cols-2 li>a{display:flex}
+.mega-feature--cabins b,.mega-feature--cabins span{color:#fff!important;text-shadow:0 2px 12px rgba(0,0,0,.45)}
+.mega-feature--cabins b .i{color:var(--orange-300)}
+.mega--more h4{white-space:nowrap}
+.mega--more li>a{white-space:normal;line-height:1.35}
+.drawer__body .drawer__tile{display:flex;flex-direction:column;align-items:center;justify-content:center}

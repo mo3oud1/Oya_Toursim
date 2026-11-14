@@ -34,16 +34,12 @@ export const site = {
   gscVerification: "", // Google Search Console meta verification token
 };
 
+// Header: three primary services (hotels, cabins, flights) and one "More" menu for the rest
 export const nav = [
-  { key: "home", label: "الرئيسية", href: "" },
-  {
-    key: "turkey", label: "رحلات تركيا", href: "turkey-tours/", mega: "turkey",
-  },
-  { key: "world", label: "خارج تركيا", href: "world-tours/" },
-  { key: "flights", label: "طيران", href: "flights/" },
-  { key: "hotels", label: "فنادق ومنتجعات", href: "hotels/" },
-  { key: "visas", label: "التأشيرات", href: "visas/", mega: "visas" },
-  { key: "matches", label: "تذاكر المباريات", href: "matches/", isNew: true },
+  { key: "hotels", label: "فنادق ومنتجعات", href: "hotels/", icon: "hotel", mega: "hotels" },
+  { key: "cabins", label: "أكواخ وبنغلات", href: "cabins/", icon: "cabin" },
+  { key: "flights", label: "تذاكر طيران", href: "flights/", icon: "takeoff" },
+  { key: "more", label: "المزيد", mega: "more" },
 ];
 
 // Common city list for flight/hotel forms (datalist)
