@@ -51,7 +51,11 @@ const PH = [
   "linear-gradient(155deg,#061428 0%,#19487E 70%,#B8551E 150%)",
 ];
 const hash = (s) => [...String(s)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
+// Photographs replaced from /admin/ (data/photos.json "slots"): the slot keeps its name, its file changes.
+let PHOTO_SWAP = {};
+export function setPhotoSwaps(map) { PHOTO_SWAP = map || {}; }
 export function photoExists(key) {
+  key = PHOTO_SWAP[key] || key;
   return ["webp", "jpg", "jpeg", "png", "avif"].map((e) => `${key}.${e}`).find((f) => fs.existsSync(path.join(ROOT_DIR, "assets/img/photos", f)));
 }
 // Responsive <img>: uses <key>-640/-1024 WebP variants when present (made at import time)
@@ -76,9 +80,16 @@ export function photoSources(key) {
   const big = fs.existsSync(path.join(PHOTO_DIR, `${base}-2048.webp`)) ? [`{{root}}assets/img/photos/${base}-2048.webp 2048w`] : []; // large screens (home hero)
   return { src: `{{root}}assets/img/photos/${file}`, srcset: [...set, `{{root}}assets/img/photos/${file} 1536w`, ...big].join(", ") };
 }
-export function registerImage(key, prompt, usedOn) {
+// upright crop of a photo (home hero: arched window, and the background on phones); the photo itself when there is none
+export function photoUpright(key) {
+  const f = photoExists(key); if (!f) return "";
+  const p = f.replace(/\.\w+$/, "-p.webp");
+  return `{{root}}assets/img/photos/${fs.existsSync(path.join(PHOTO_DIR, p)) ? p : f}`;
+}
+export function registerImage(key, prompt, usedOn, label) {
   if (!key) return;
   const r = imageRegistry.get(key) || { prompt: "", usedOn: new Set() };
+  if (label && !r.label) r.label = label;
   if (prompt && !r.prompt) r.prompt = prompt;
   if (usedOn) r.usedOn.add(usedOn);
   imageRegistry.set(key, r);

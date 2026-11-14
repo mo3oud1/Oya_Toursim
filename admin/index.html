@@ -210,6 +210,72 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 .addph input{display:none}
 .edfoot{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
 @media(max-width:520px){.cabrow{grid-template-columns:72px 1fr}.cabrow .th{width:72px;height:56px}.cabrow .acts{grid-column:1/-1;justify-content:flex-start}}
+
+/* ===== shell: sidebar, page header, dashboard ===== */
+body{background:#F3F5F9}
+#app{display:grid;grid-template-columns:268px minmax(0,1fr);min-height:100svh}
+.side{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;padding:18px 14px;background:var(--navy-950);color:#fff;overflow-y:auto;scrollbar-width:thin}
+.side__brand{display:flex;align-items:center;gap:12px;padding:4px 8px 16px;margin-bottom:6px;border-bottom:1px solid rgba(255,255,255,.1)}
+.side__brand img{height:34px;width:auto}
+.side__brand b{font-family:var(--ff-d);font-size:1rem}
+.side__brand small{display:block;color:#9FB6CF;font-size:.74rem;line-height:1.4}
+.side .tabs{display:flex;flex-direction:column;gap:2px;padding:0;margin:0;background:none;box-shadow:none;border-radius:0;overflow:visible}
+.side__h{margin:16px 10px 4px;font-size:.72rem;font-weight:600;color:#7F93AD}
+.side .tab{position:relative;flex:none;display:flex;align-items:center;gap:10px;width:100%;padding:.6em .8em;border-radius:12px;color:#C9D6E6;font-weight:500;font-size:.95rem;text-align:start;transition:background-color .2s,color .2s}
+.side .tab svg,.menu svg{flex:none;width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.side .tab:hover{background:rgba(255,255,255,.07);color:#fff}
+.side .tab[aria-selected=true]{background:rgba(255,255,255,.12);color:#fff;font-weight:600}
+.side .tab[aria-selected=true]::before{content:"";position:absolute;inset-inline-start:-14px;top:9px;bottom:9px;width:4px;border-radius:4px;background:var(--orange)}
+.side .tab:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.side .tab .n{margin-inline-start:auto;min-width:22px;padding:0 .5em;border-radius:999px;background:rgba(255,255,255,.14);font-size:.72rem;font-style:normal;text-align:center;line-height:1.7}
+.side .tab .n.warn{background:var(--orange-btn);color:#fff}
+.side__foot{margin-top:auto;display:flex;gap:8px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1)}
+.side__foot .link{flex:1;text-align:center}
+.side__scrim{display:none}
+.shell{min-width:0;display:flex;flex-direction:column}
+.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:14px;padding:16px clamp(16px,3vw,36px);background:rgba(243,245,249,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--navy-900);box-shadow:none;border-bottom:1px solid var(--line)}
+.top h1{font-size:1.35rem}
+.top p{margin:.1em 0 0;color:var(--muted);font-size:.9rem;line-height:1.5}
+.menu{display:none;place-items:center;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--navy);cursor:pointer}
+main.wrap{width:auto;max-width:1180px;margin:0;padding:24px clamp(16px,3vw,36px) 150px}
+.card{border:1px solid var(--line);box-shadow:0 1px 2px rgba(6,20,40,.04)}
+.bar{inset-inline-start:268px}
+.loading{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));padding:0;text-align:start}
+.skel{height:110px;border-radius:18px;background:linear-gradient(100deg,#e9edf3 30%,#f6f8fb 50%,#e9edf3 70%);background-size:200% 100%;animation:skel 1.2s linear infinite}
+@keyframes skel{to{background-position:-200% 0}}
+.stats{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin-bottom:26px}
+@media (max-width:520px){.stat{padding:14px}.stat b{font-size:1.6rem}}
+.stat{display:grid;gap:2px;padding:18px;border:1px solid var(--line);border-radius:18px;background:#fff;color:inherit;text-align:start;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s}
+.stat:hover{transform:translateY(-2px);border-color:#c9d3e0;box-shadow:0 14px 30px -22px rgba(6,20,40,.55)}
+.stat small{color:var(--muted);font-size:.84rem}
+.stat b{font-family:var(--ff-d);font-size:1.9rem;line-height:1.25;color:var(--navy);font-variant-numeric:tabular-nums}
+.stat span{font-size:.8rem;color:var(--muted)}
+.stat.warn b{color:var(--orange-btn)}
+.hm__h{font-size:1.05rem;margin:0 0 12px}
+.quick{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.qa{display:grid;gap:2px;padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:#fff;color:inherit;text-align:start;cursor:pointer;transition:border-color .2s,background-color .2s}
+.qa:hover{border-color:var(--navy);background:#fbfcfe}
+.qa b{color:var(--navy);font-weight:700}
+.qa span{font-size:.84rem;color:var(--muted)}
+.stat:focus-visible,.qa:focus-visible,.menu:focus-visible{outline:3px solid rgba(43,107,171,.4);outline-offset:2px}
+@media (min-width:960px){.stats,.quick{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.phtools input[type=search]{flex:1 1 220px;max-width:340px;min-height:44px}
+.phtools select{width:auto;min-height:44px}
+.phcount{margin-inline-start:auto;color:var(--muted);font-size:.86rem}
+.phcard small{color:var(--muted);font-size:.78rem;line-height:1.5}
+@media (max-width:959px){
+  #app{display:block}
+  .side{position:fixed;inset-block:0;inset-inline-start:0;z-index:40;width:min(84vw,300px);height:auto;transform:translateX(105%);transition:transform .3s cubic-bezier(.22,1,.36,1)}
+  [dir=ltr] .side{transform:translateX(-105%)}
+  body.nav-open .side{transform:none}
+  .side__scrim{display:block;position:fixed;inset:0;z-index:35;background:rgba(6,20,40,.5);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+  body.nav-open .side__scrim{opacity:1;visibility:visible;transition-delay:0s}
+  .menu{display:grid}
+  .top{padding-block:12px}
+  .top p{display:none}
+  .bar{inset-inline-start:0}
+}
+@media (prefers-reduced-motion:reduce){.skel{animation:none}.side{transition:none}}
 </style>
 </head>
 <body>
@@ -242,34 +308,49 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 
 <!-- app -->
 <div id="app" hidden>
+  <aside class="side" id="side" aria-label="أقسام اللوحة">
+    <div class="side__brand"><img src="https://oyatourism.com/assets/img/brand/oya-logo-white.svg" alt="" width="74" height="34"><div><b>لوحة التحكم</b><small id="upd">—</small></div></div>
+    <nav class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-tab="hm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>الرئيسية</span><em class="n" data-n="hm" hidden></em></button>
+        <p class="side__h">المحتوى</p>
+        <button class="tab" role="tab" aria-selected="false" data-tab="bl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg><span>المدونة</span><em class="n" data-n="bl" hidden></em></button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="ph"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m4 17 5-4 4 3 3-2 4 3"/></svg><span>صور الموقع</span><em class="n" data-n="ph" hidden></em></button>
+        <p class="side__h">الخدمات والأسعار</p>
+        <button class="tab" role="tab" aria-selected="false" data-tab="ho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16M15 10h4a1 1 0 0 1 1 1v10M3 21h18M8 8h3M8 12h3M8 16h3"/></svg><span>الفنادق</span><em class="n" data-n="ho" hidden></em></button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="cb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7M5 10v10h14V10M10 20v-5h4v5"/></svg><span>الأكواخ والبنغلات</span><em class="n" data-n="cb" hidden></em></button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="fl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13l18-7-6 15-3-6z"/><path d="m12 15 4-5"/></svg><span>الطيران</span><em class="n" data-n="fl" hidden></em></button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="ev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8a2 2 0 0 0 0 4v4h16v-4a2 2 0 0 0 0-4V6H4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg><span>المباريات</span><em class="n" data-n="ev" hidden></em></button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="sc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v4a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 3M16 6h3a3 3 0 0 1-3 3M12 12v4M9 20h6M10 16h4v4h-4z"/></svg><span>أسعار كأس السوبر</span><em class="n" data-n="sc" hidden></em></button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="pk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6V4h6v2M4 7h16v12H4zM4 12h16"/></svg><span>البرامج السياحية</span><em class="n" data-n="pk" hidden></em></button>
+        <p class="side__h">النظام</p>
+        <button class="tab" role="tab" aria-selected="false" data-tab="st"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14.2 3h-4l-.4 2.6a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5a7 7 0 0 0 0 2.4l-2 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2l.4 2.6h4l.4-2.6a7 7 0 0 0 2-1.2l2.3.9 2-3.4-2-1.5c.07-.4.1-.8.1-1.2z"/></svg><span>الإعدادات</span><em class="n" data-n="st" hidden></em></button>
+    </nav>
+    <div class="side__foot"><a class="link" href="https://oyatourism.com/" target="_blank" rel="noopener">عرض الموقع</a><button class="link" type="button" id="logout">خروج</button></div>
+  </aside>
+  <div class="side__scrim" id="navScrim"></div>
+  <div class="shell">
   <header class="top">
-    <div class="wrap">
-      <img src="https://oyatourism.com/assets/img/brand/oya-logo-white.svg" alt="" width="74" height="34">
-      <div><b>لوحة التحكم</b><small id="upd">—</small></div>
-      <span class="sp"></span>
-      <a class="link" href="https://oyatourism.com/" target="_blank" rel="noopener">عرض الموقع</a>
-      <button class="link" type="button" id="logout">خروج</button>
-    </div>
+    <button class="menu" type="button" id="navBtn" aria-label="فتح القائمة" aria-controls="side"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <div class="top__t"><h1 id="ttl">الرئيسية</h1><p id="sub">نظرة سريعة على محتوى الموقع، واختصارات لأكثر ما تحتاجه.</p></div>
   </header>
   <main class="wrap">
-    <div id="loading" class="loading">جارٍ التحميل…</div>
+    <div id="loading" class="loading"><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
     <div id="content" hidden>
-      <div class="hello">
-        <div><h1 id="ttl">المباريات والبطولات</h1><p id="sub">أضف بطولة أو مباراة، أو عدّلها، أو احذفها — وتظهر في صفحة تذاكر المباريات.</p></div>
-      </div>
-      <div class="tabs" role="tablist">
-        <button class="tab" role="tab" aria-selected="true" data-tab="ev">المباريات</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="sc">أسعار كأس السوبر</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="ho">الفنادق</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="cb">الأكواخ والبنغلات</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="fl">الطيران</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="bl">المدونة</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="pk">البرامج السياحية</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="ph">صور الصفحات</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="st">الإعدادات</button>
-      </div>
 
-      <section class="panel" data-panel="ev">
+      <section class="panel" data-panel="hm">
+        <div class="stats" id="hmStats"></div>
+        <h2 class="hm__h">إجراءات سريعة</h2>
+        <div class="quick">
+          <button class="qa" type="button" data-go="bl" data-click="#addPost"><b>＋ مقال جديد</b><span>اكتب مقالاً وانشره أو جدوله</span></button>
+          <button class="qa" type="button" data-go="ph"><b>تغيير صورة</b><span>أي صورة في الموقع، والصفحة الرئيسية</span></button>
+          <button class="qa" type="button" data-go="cb" data-click="#addCab"><b>＋ كوخ جديد</b><span>بصوره وسعر الليلة</span></button>
+          <button class="qa" type="button" data-go="ho" data-click='[data-add="hotels"]'><b>＋ فندق جديد</b><span>يظهر في صفحة الفنادق ومدينته</span></button>
+          <button class="qa" type="button" data-go="pk"><b>أسعار البرامج</b><span>سعر «يبدأ من» لكل برنامج</span></button>
+          <button class="qa" type="button" data-go="ev"><b>المباريات</b><span>بطولات ومباريات وتذاكر</span></button>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="ev" hidden>
         <div class="tools"><button class="btn" type="button" data-add="events">＋ إضافة بطولة أو مباراة</button><a class="link ext" href="https://oyatourism.com/matches/" target="_blank" rel="noopener">صفحة تذاكر المباريات</a></div>
         <div class="hint">ⓘ<span>كل بطاقة هنا تظهر في صفحة «تذاكر المباريات». البطاقة المرتبطة بصفحة (مثل كأس السوبر) تفتح صفحتها، والباقي يفتح طلباً على واتساب. رتّبها بالأسهم ▲▼. اكتب النصوص بالعربية ثم بباقي اللغات من شريط اللغات داخل النافذة.</span></div>
         <div class="cabs" data-list="events"></div>
@@ -308,7 +389,13 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
       </section>
 
       <section class="panel" data-panel="ph" hidden>
-        <div class="hint">ⓘ<span>هنا تغيّر الصورة الرئيسية لكل صفحة خدمة. نزّل صورة حقيقية تعبّر عن الصفحة (من تصويركم، أو من موقع صور مجاني مثل Pexels)، ثم اضغط «اختر صورة». اختر صورة عرضية (أفقية) بعرض 1600 بكسل أو أكثر. تُحفظ فوراً وتظهر على الموقع خلال 2–5 دقائق.</span></div>
+        <div class="hint">ⓘ<span>هنا تغيّر أي صورة في الموقع: صور الصفحة الرئيسية، رؤوس الأقسام، الوجهات، البرامج، الفنادق، التأشيرات والخدمات. نزّل صورة حقيقية تعبّر عن الصفحة (من تصويركم، أو من موقع صور مجاني مثل Pexels)، ثم اضغط «اختر صورة». اختر صورة عرضية (أفقية) بعرض 1600 بكسل أو أكثر. تُحفظ فوراً وتظهر على الموقع خلال 2–5 دقائق.</span></div>
+        <div class="tools phtools">
+          <input type="search" id="phQ" placeholder="ابحث باسم الصفحة…" aria-label="بحث في الصور">
+          <select id="phG" aria-label="القسم"><option value="">كل الأقسام</option></select>
+          <label class="chk" style="margin:0"><input type="checkbox" id="phMissing"> بدون صورة فقط</label>
+          <span class="phcount" id="phCount"></span>
+        </div>
         <div id="phList" class="phpages"></div>
       </section>
 
@@ -338,6 +425,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
       </section>
     </div>
   </main>
+  </div>
 
   <div class="bar" id="bar" role="region" aria-label="حفظ التغييرات">
     <div class="wrap">
@@ -466,6 +554,6 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="app.js?v=20261114f"></script>
+<script src="app.js?v=20261114g"></script>
 </body>
 </html>

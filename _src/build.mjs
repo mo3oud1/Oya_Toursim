@@ -5,7 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { site } from "./site.mjs";
-import { readAr, ROOT_DIR, imageRegistry, photoExists } from "./lib/ui.mjs";
+import { readAr, ROOT_DIR, imageRegistry, photoExists, setPhotoSwaps } from "./lib/ui.mjs";
 import { pageLocales, renderPage } from "./lib/layout.mjs";
 import { destinationPage, packagePage, visaPage, postPage } from "./lib/templates.mjs";
 import { ownerPosts, pruneOwnerPages, ownerPostDict } from "./lib/ownerposts.mjs";
@@ -40,23 +40,19 @@ const data = {
 // used by a built-in article is ignored so the panel can never replace or delete one
 data.ownerPosts = ownerPosts().filter((p) => !data.posts.some((x) => x.slug === p.slug));
 
-// page photographs uploaded from /admin/ (data/photos.json): { pages: { "<page path>": "pg-…" } }.
+// Photographs uploaded from /admin/ (data/photos.json):
+//   pages — { "<page path>": "pg-…" } for service pages and sections (a page with no photo of its own can get one)
+//   slots — { "<photo name>": "pg-…" } for every other photograph of the site, the home hero included
 // A key is used only when it has the expected shape and its file exists; otherwise the page keeps its own photo.
+const photoSwaps = {};
 {
   let up = {};
-  try { up = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "data/photos.json"), "utf8")).pages || {}; } catch {}
-  data.pagePhotos = {};
-  for (const [p, k] of Object.entries(up && typeof up === "object" ? up : {})) if (typeof k === "string" && /^pg-[a-z0-9-]{3,90}$/.test(k) && photoExists(k)) data.pagePhotos[p] = k;
+  try { up = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "data/photos.json"), "utf8")) || {}; } catch {}
+  const good = (m) => Object.fromEntries(Object.entries(m && typeof m === "object" && !Array.isArray(m) ? m : {}).filter(([, k]) => typeof k === "string" && /^pg-[a-z0-9-]{3,90}$/.test(k) && photoExists(k)));
+  data.pagePhotos = good(up.pages);
+  Object.assign(photoSwaps, good(up.slots));
+  setPhotoSwaps(photoSwaps);
   for (const x of [...data.services, ...data.extras]) if (data.pagePhotos[x.path]) x.img = data.pagePhotos[x.path];
-  // the list the panel shows: every page whose photo can be changed, with the photo it has now
-  const GROUP = { trips: "جولات يومية", activities: "أنشطة وتذاكر", residency: "إقامات وموافقات" };
-  const rows = [
-    { path: "activities/", name: "قسم: أنشطة وتذاكر", group: GROUP.activities, img: data.pagePhotos["activities/"] || "home-yacht" },
-    { path: "residency/", name: "قسم: إقامات وموافقات", group: GROUP.residency, img: data.pagePhotos["residency/"] || "" },
-    ...data.services.map((x) => ({ path: x.path, name: x.navLabel, group: GROUP[x.group], img: x.img && photoExists(x.img) ? x.img : "" })),
-    ...data.extras.map((x) => ({ path: x.path, name: x.navLabel || x.h1.split(":")[0], group: "خدمات وعروض", img: x.img && photoExists(x.img) ? x.img : "" })),
-  ].map((r) => ({ ...r, custom: !!data.pagePhotos[r.path] }));
-  fs.writeFileSync(path.join(ROOT_DIR, "admin/photo-pages.json"), JSON.stringify(rows, null, 1) + "\n");
 }
 
 // prices database (data/prices.json, edited from /admin/): package "from" prices; new packages are added with null
@@ -118,6 +114,32 @@ const pages = [
   aboutPage(data), contactPage(data), faqPage(data), privacyPage(), termsPage(),
   notFoundPage(),
 ];
+
+// The list the panel shows under «صور الموقع»: every photograph that can be changed, with the file it has now.
+{
+  const base = (k) => (k && photoExists(k) ? photoExists(k).replace(/\.\w+$/, "") : "");
+  const GROUP = { trips: "جولات يومية", activities: "أنشطة وتذاكر", residency: "إقامات وموافقات" };
+  const pageRows = [
+    { path: "activities/", name: "قسم: أنشطة وتذاكر", group: GROUP.activities, img: base(data.pagePhotos["activities/"] || "home-yacht") },
+    { path: "residency/", name: "قسم: إقامات وموافقات", group: GROUP.residency, img: base(data.pagePhotos["residency/"]) },
+    ...data.services.map((x) => ({ path: x.path, name: x.navLabel, group: GROUP[x.group], img: base(x.img) })),
+    ...data.extras.map((x) => ({ path: x.path, name: x.navLabel || x.h1.split(":")[0], group: "خدمات وعروض", img: base(x.img) })),
+  ].map((r) => ({ ...r, custom: !!data.pagePhotos[r.path] }));
+  const own = new Set(pageRows.map((r) => r.path));
+  const KIND = [["home-", "الصفحة الرئيسية"], ["hero-", "رؤوس الأقسام"], ["dest-", "وجهات تركيا"], ["pkg-", "البرامج السياحية"], ["visa-", "التأشيرات"], ["hotels-", "الفنادق"], ["blog-", "المدونة"], ["gallery-", "معرض الصور"]];
+  const nameOf = Object.fromEntries(pages.map((p) => [p.path, String(p.title).split(" | ")[0]]));
+  const slotRows = [];
+  for (const [key, r] of imageRegistry) {
+    if (/^(pg|ob)-/.test(key)) continue; // uploaded files and article covers are not slots
+    const used = [...r.usedOn];
+    if (!r.label && used.length && used.every((p) => own.has(p))) continue; // photos only service pages use are changed per page
+    const where = used.slice().sort((a, b) => b.length - a.length)[0] || "";
+    slotRows.push({ slot: key, path: where, name: r.label || data.titles[where] || nameOf[where] || "الصفحة الرئيسية", group: (KIND.find(([p]) => key.startsWith(p)) || [0, "صور أخرى"])[1], img: base(key), custom: !!photoSwaps[key], used: used.length, upright: key.startsWith("home-") });
+  }
+  const order = ["الصفحة الرئيسية", "رؤوس الأقسام", "جولات يومية", "أنشطة وتذاكر", "إقامات وموافقات", "خدمات وعروض", "وجهات تركيا", "البرامج السياحية", "الفنادق", "التأشيرات", "المدونة", "معرض الصور", "صور أخرى"];
+  const rows = [...slotRows, ...pageRows].sort((a, b) => order.indexOf(a.group) - order.indexOf(b.group) || a.name.localeCompare(b.name, "ar"));
+  fs.writeFileSync(path.join(ROOT_DIR, "admin/photo-pages.json"), JSON.stringify(rows, null, 1) + "\n");
+}
 
 // cache-busting version from asset contents
 // cache-busting version: covers the stylesheet, the icon sprite and every first-party script

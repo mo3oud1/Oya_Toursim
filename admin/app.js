@@ -75,8 +75,8 @@
     });
   }
   function load() {
-    return loadFile("prices").then(function () { return Promise.all(["cabins", "events", "hotels", "flights", "blog", "photos"].map(loadFile)); }).then(function () {
-      if (!F.photos.db.pages || typeof F.photos.db.pages !== "object" || Array.isArray(F.photos.db.pages)) F.photos.db.pages = {};
+    return Promise.all(["prices", "cabins", "events", "hotels", "flights", "blog", "photos"].map(loadFile)).then(function () {
+      ["pages", "slots"].forEach(function (m) { if (!F.photos.db[m] || typeof F.photos.db[m] !== "object" || Array.isArray(F.photos.db[m])) F.photos.db[m] = {}; });
       loadPhotoPages();
       db = F.prices.db; if (!F.cabins.db.cabins) F.cabins.db.cabins = [];
       GEN.forEach(function (k) { if (!Array.isArray(F[k].db[F[k].list])) F[k].db[F[k].list] = []; });
@@ -101,7 +101,7 @@
           return '<div class="row"><span class="dot" style="background:' + c[1] + '"></span><span class="nm">الفئة ' + esc(labels[c[0]] || c[0]) + "<small>" + c[2] + "</small></span>" + money(r[c[0]], "sc." + id + "." + c[0]) + "</div>";
         }).join("") + "</article>";
     }).join("");
-    renderPkgs(); renderCabs(); GEN.forEach(renderGen); renderBlog();
+    renderPkgs(); renderCabs(); GEN.forEach(renderGen); renderBlog(); renderHome();
     $("#curr").value = (db.currency && (db.currency.code + "|" + db.currency.symbol)) || "USD|$";
     update();
   }
@@ -144,14 +144,41 @@
   $("#q").addEventListener("input", renderPkgs);
   $("#reg").addEventListener("change", renderPkgs);
   $("#curr").addEventListener("change", function () { var p = this.value.split("|"); db.currency = { code: p[0], symbol: p[1] }; render(); });
-  var SUBS = { ph: ["صور الصفحات", "غيّر الصورة الرئيسية لأي صفحة خدمة: اختر الصورة وتُحفظ فوراً."], bl: ["المدونة", "اكتب مقالاتك وأضف صورها وانشرها فوراً أو جدولها لموعد لاحق."], ev: ["المباريات والبطولات", "أضف بطولة أو مباراة، أو عدّلها، أو احذفها — وتظهر في صفحة تذاكر المباريات."], ho: ["الفنادق", "أضف الفنادق التي تتعامل معها بصورها الحقيقية وسعر الليلة."], fl: ["الطيران", "أضف وجهات الطيران التي تريد إبرازها، مع مدة الرحلة والسعر إن أردت."], sc: ["الأسعار", "اكتب السعر بالأرقام. اترك الخانة فارغة ليظهر «عند الطلب»."], pk: ["الأسعار", "اكتب السعر بالأرقام. اترك الخانة فارغة ليظهر «حسب الموسم»."], cb: ["الأكواخ والبنغلات", "أضف الأكواخ التي تتعامل معها بصورها الحقيقية وسعر الليلة."], st: ["الإعدادات", "إعدادات عامة للعرض."] };
-  $$(".tab").forEach(function (t) {
-    t.addEventListener("click", function () {
-      $$(".tab").forEach(function (x) { x.setAttribute("aria-selected", x === t ? "true" : "false"); });
-      $$(".panel").forEach(function (p) { p.hidden = p.dataset.panel !== t.dataset.tab; });
-      $("#ttl").textContent = SUBS[t.dataset.tab][0]; $("#sub").textContent = SUBS[t.dataset.tab][1];
-    });
+  var SUBS = { hm: ["الرئيسية", "نظرة سريعة على محتوى الموقع، واختصارات لأكثر ما تحتاجه."], ph: ["صور الموقع", "غيّر أي صورة في الموقع، والصفحة الرئيسية: اختر الصورة وتُحفظ فوراً."], bl: ["المدونة", "اكتب مقالاتك وأضف صورها وانشرها فوراً أو جدولها لموعد لاحق."], ev: ["المباريات والبطولات", "أضف بطولة أو مباراة، أو عدّلها، أو احذفها — وتظهر في صفحة تذاكر المباريات."], ho: ["الفنادق", "أضف الفنادق التي تتعامل معها بصورها الحقيقية وسعر الليلة."], fl: ["الطيران", "أضف وجهات الطيران التي تريد إبرازها، مع مدة الرحلة والسعر إن أردت."], sc: ["الأسعار", "اكتب السعر بالأرقام. اترك الخانة فارغة ليظهر «عند الطلب»."], pk: ["الأسعار", "اكتب السعر بالأرقام. اترك الخانة فارغة ليظهر «حسب الموسم»."], cb: ["الأكواخ والبنغلات", "أضف الأكواخ التي تتعامل معها بصورها الحقيقية وسعر الليلة."], st: ["الإعدادات", "إعدادات عامة للعرض."] };
+  function showTab(k, keepHash) {
+    if (!SUBS[k]) k = "hm";
+    $$(".tab").forEach(function (x) { x.setAttribute("aria-selected", x.dataset.tab === k ? "true" : "false"); });
+    $$(".panel").forEach(function (p) { p.hidden = p.dataset.panel !== k; });
+    $("#ttl").textContent = SUBS[k][0]; $("#sub").textContent = SUBS[k][1];
+    document.body.classList.remove("nav-open");
+    if (!keepHash) { try { history.replaceState(null, "", "#" + k); } catch (e) {} window.scrollTo(0, 0); }
+    if (k === "hm") renderHome();
+  }
+  $$(".tab").forEach(function (t) { t.addEventListener("click", function () { showTab(t.dataset.tab); }); });
+  $("#navBtn").addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
+  $("#navScrim").addEventListener("click", function () { document.body.classList.remove("nav-open"); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") document.body.classList.remove("nav-open"); });
+  // dashboard tiles and shortcuts open a section (and press its "add" button when they name one)
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-go]"); if (!b) return;
+    showTab(b.dataset.go); var c = b.dataset.click && $(b.dataset.click); if (c) c.click();
   });
+  function renderHome() {
+    var box = $("#hmStats"); if (!box || !F.cabins.db) return;
+    var cabs = F.cabins.db.cabins || [], shown = cabs.filter(function (c) { return c.active !== false; }).length;
+    var posts = (F.blog && F.blog.db && F.blog.db.posts) || [], live = posts.filter(function (p) { return p.status === "publish"; }).length;
+    var nophoto = phRows ? phRows.filter(function (r) { return !phCurrent(r); }).length : null;
+    var tiles = [
+      ["bl", "المقالات", posts.length, live + " منشور أو مجدول، " + (posts.length - live) + " مسودة"],
+      ["cb", "الأكواخ الظاهرة", shown, cabs.length - shown ? (cabs.length - shown) + " مخفي بانتظار الصور والسعر" : "كلها ظاهرة على الموقع"],
+      ["ho", "الفنادق", (F.hotels.db.hotels || []).length, "في صفحة الفنادق ومدنها"],
+      ["fl", "وجهات الطيران", (F.flights.db.routes || []).length, "في صفحة تذاكر الطيران"],
+      ["ev", "البطولات والمباريات", (F.events.db.events || []).length, "في صفحة تذاكر المباريات"],
+      ["ph", "صور ناقصة", nophoto === null ? "…" : nophoto, nophoto ? "صفحات بلا صورة حقيقية بعد" : "كل الصفحات لها صورة", nophoto ? " warn" : ""]
+    ];
+    box.innerHTML = tiles.map(function (t) { return '<button class="stat' + (t[4] || "") + '" type="button" data-go="' + t[0] + '"><small>' + esc(t[1]) + "</small><b>" + esc(t[2]) + "</b><span>" + esc(t[3]) + "</span></button>"; }).join("");
+    var n = $('[data-n="ph"]'); if (n) { n.hidden = !nophoto; n.textContent = nophoto || ""; n.className = "n warn"; }
+  }
 
   /* ---------- cabins editing ---------- */
   $("#cArea").innerHTML = AREAS.map(function (a) { return '<option value="' + a[0] + '">' + a[1] + "</option>"; }).join("");
@@ -871,56 +898,73 @@
       renderPhotoPages();
     }).catch(function () { phRows = []; renderPhotoPages(); });
   }
-  function phKey(p) { var k = F.photos.db.pages[p]; return typeof k === "string" && /^pg-[a-z0-9-]{3,90}$/.test(k) ? k : ""; }
+  function phMap(r) { return F.photos.db[r.slot ? "slots" : "pages"]; }
+  function phId(r) { return r.slot || r.path; }
+  function phKey(r) { var k = phMap(r)[phId(r)]; return typeof k === "string" && /^pg-[a-z0-9-]{3,90}$/.test(k) ? k : ""; }
+  function phCurrent(r) { return phKey(r) || (r.custom ? "" : r.img); }
   function renderPhotoPages() {
     var box = $("#phList"); if (!box || !phRows) return;
-    if (!phRows.length) { box.innerHTML = '<p class="hint">لم تُحمَّل قائمة الصفحات. أعد تحميل اللوحة بعد دقيقة.</p>'; return; }
-    var groups = []; phRows.forEach(function (r) { if (groups.indexOf(r.group) < 0) groups.push(r.group); });
+    if (!phRows.length) { box.innerHTML = '<p class="hint">لم تُحمَّل قائمة الصور. أعد تحميل اللوحة بعد دقيقة.</p>'; return; }
+    var all = []; phRows.forEach(function (r) { if (all.indexOf(r.group) < 0) all.push(r.group); });
+    var sel = $("#phG"); if (sel.options.length < 2) sel.innerHTML = '<option value="">كل الأقسام</option>' + all.map(function (g) { return "<option>" + esc(g) + "</option>"; }).join("");
+    var q = $("#phQ").value.trim().toLowerCase(), only = sel.value, miss = $("#phMissing").checked;
+    var list = phRows.filter(function (r) { return (!only || r.group === only) && (!miss || !phCurrent(r)) && (!q || (r.name + " " + (r.slot || "") + " " + r.path).toLowerCase().indexOf(q) >= 0); });
+    var groups = all.filter(function (g) { return list.some(function (r) { return r.group === g; }); });
+    $("#phCount").textContent = list.length + " من " + phRows.length;
+    if (!list.length) { box.innerHTML = '<p class="hint">لا توجد نتائج.</p>'; renderHome(); return; }
     box.innerHTML = groups.map(function (g) {
-      return "<h3>" + esc(g) + '</h3><div class="phgrid">' + phRows.filter(function (r) { return r.group === g; }).map(function (r) {
-        var i = phRows.indexOf(r), mine = phKey(r.path), key = mine || (r.custom ? "" : r.img), busy = phBusy[r.path];
+      return "<h3>" + esc(g) + '</h3><div class="phgrid">' + list.filter(function (r) { return r.group === g; }).map(function (r) {
+        var i = phRows.indexOf(r), mine = phKey(r), key = phCurrent(r), busy = phBusy[phId(r)];
         var src = key ? (localImg["photos/" + key] || SITE + "assets/img/photos/" + encodeURIComponent(key) + "-640.webp") : "";
         return '<article class="phcard"><div class="ph' + (key ? "" : " none") + (busy ? " up" : "") + '">' + (key ? '<img src="' + esc(src) + '" alt="" loading="lazy">' : "لا توجد صورة بعد") + "</div>" +
-          '<div class="bd"><b>' + esc(r.name) + '</b><div class="acts"><label class="btn"><span>' + (busy ? "جارٍ الرفع…" : key ? "تغيير الصورة" : "＋ اختر صورة") + '</span><input type="file" accept="image/*" data-ph="' + i + '"' + (busy ? " disabled" : "") + "></label>" +
+          '<div class="bd"><b>' + esc(r.name) + "</b>" + (r.used > 1 ? "<small>تظهر في " + r.used + " صفحات</small>" : "") + '<div class="acts"><label class="btn"><span>' + (busy ? "جارٍ الرفع…" : key ? "تغيير الصورة" : "＋ اختر صورة") + '</span><input type="file" accept="image/*" data-ph="' + i + '"' + (busy ? " disabled" : "") + "></label>" +
           (mine && !busy ? '<button class="del" type="button" data-phx="' + i + '">حذف صورتي</button>' : "") +
           '<a class="link ext" href="' + esc(SITE + r.path) + '" target="_blank" rel="noopener">الصفحة</a></div></div></article>';
       }).join("") + "</div>";
     }).join("");
+    renderHome();
   }
+  ["input", "change"].forEach(function (ev) { $(".phtools").addEventListener(ev, renderPhotoPages); });
   function savePhotos(msg) { F.photos.db.updated = today(); return put("photos", msg); }
   $("#phList").addEventListener("change", function (e) {
     var t = e.target, r = t.dataset && t.dataset.ph !== undefined ? phRows[+t.dataset.ph] : null, file = r && t.files && t.files[0]; if (!file) return;
     if (!webpOK) { toast("هذا المتصفح لا يدعم حفظ الصور بصيغة WebP. استخدم Chrome أو Edge أو Firefox.", "bad"); return; }
-    var slug = r.path.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60), key = "pg-" + slug + "-" + Date.now().toString(36), msg = "صورة صفحة: " + r.name;
-    phBusy[r.path] = 1; renderPhotoPages();
+    var id = phId(r), map = phMap(r), was = map[id];
+    var slug = id.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60), key = "pg-" + slug + "-" + Date.now().toString(36), msg = "صورة: " + r.name;
+    phBusy[id] = 1; renderPhotoPages();
     loadImg(file).then(function (x) {
       var im = x[0];
       if (im.width < 1000) toast("الصورة صغيرة (عرضها " + im.width + " بكسل) وقد تظهر غير واضحة. الأفضل 1600 بكسل أو أكثر.", "bad");
       localImg["photos/" + key] = x[1];
       var jobs = [resized(im, 1536, 0, false, "image/webp", 0.82), resized(im, 1024, 0, false, "image/webp", 0.8), resized(im, 640, 0, false, "image/webp", 0.78), resized(im, 1200, 630, true, "image/jpeg", 0.84)];
-      if (im.width >= 2048) jobs.push(resized(im, 2048, 0, false, "image/webp", 0.8));
+      jobs.push(im.width >= 2048 ? resized(im, 2048, 0, false, "image/webp", 0.8) : Promise.resolve(null));
+      jobs.push(r.upright ? resized(im, 900, 1200, true, "image/webp", 0.8) : Promise.resolve(null)); // home hero: upright crop for the arched window and phones
       return Promise.all(jobs).then(function (b) {
         return putFile("assets/img/photos/" + key + ".webp", b[0], msg)
           .then(function () { return putFile("assets/img/photos/" + key + "-1024.webp", b[1], msg); })
           .then(function () { return putFile("assets/img/photos/" + key + "-640.webp", b[2], msg); })
           .then(function () { return putFile("assets/img/og/" + key + ".jpg", b[3], msg); })
-          .then(function () { return b[4] ? putFile("assets/img/photos/" + key + "-2048.webp", b[4], msg) : null; });
+          .then(function () { return b[4] ? putFile("assets/img/photos/" + key + "-2048.webp", b[4], msg) : null; })
+          .then(function () { return b[5] ? putFile("assets/img/photos/" + key + "-p.webp", b[5], msg) : null; });
       });
-    }).then(function () { F.photos.db.pages[r.path] = key; return savePhotos(msg); })
-      .then(function () { delete phBusy[r.path]; renderPhotoPages(); toast("تم حفظ الصورة ✓ — تظهر على الموقع خلال 2–5 دقائق.", "ok"); })
+    }).then(function () { map[id] = key; return savePhotos(msg); })
+      .then(function () { delete phBusy[id]; renderPhotoPages(); toast("تم حفظ الصورة ✓ — تظهر على الموقع خلال 2–5 دقائق.", "ok"); })
       .catch(function (st) {
-        delete phBusy[r.path]; if (F.photos.db.pages[r.path] === key) { delete F.photos.db.pages[r.path]; if (F.photos.orig.pages && F.photos.orig.pages[r.path]) F.photos.db.pages[r.path] = F.photos.orig.pages[r.path]; }
+        delete phBusy[id]; if (map[id] === key) { if (was) map[id] = was; else delete map[id]; }
         renderPhotoPages();
         toast(st === "img" ? "هذا الملف ليس صورة." : "لم تُحفظ الصورة: " + (st && st.st ? why(st.st) : typeof st === "number" ? why(st) : "حاول مرة أخرى."), "bad");
       });
   });
   $("#phList").addEventListener("click", function (e) {
     var t = e.target; if (!t.dataset || t.dataset.phx === undefined) return;
-    var r = phRows[+t.dataset.phx]; if (!r || !confirm("حذف صورتك لصفحة «" + r.name + "»؟ ترجع الصفحة إلى صورتها السابقة.")) return;
-    var old = F.photos.db.pages[r.path]; delete F.photos.db.pages[r.path]; r.custom = false; r.img = "";
-    savePhotos("حذف صورة صفحة: " + r.name).then(function () { renderPhotoPages(); toast("تم الحذف ✓ — يظهر التغيير خلال 2–5 دقائق.", "ok"); })
-      .catch(function (st) { F.photos.db.pages[r.path] = old; renderPhotoPages(); toast("لم يُحذف: " + (st && st.st ? why(st.st) : "حاول مرة أخرى."), "bad"); });
+    var r = phRows[+t.dataset.phx]; if (!r || !confirm("حذف صورتك لـ«" + r.name + "»؟ ترجع الصورة السابقة.")) return;
+    var map = phMap(r), id = phId(r), old = map[id], was = [r.custom, r.img]; delete map[id]; r.custom = false; r.img = "";
+    savePhotos("حذف صورة: " + r.name).then(function () { renderPhotoPages(); toast("تم الحذف ✓ — ترجع الصورة السابقة خلال 2–5 دقائق.", "ok"); })
+      .catch(function (st) { map[id] = old; r.custom = was[0]; r.img = was[1]; renderPhotoPages(); toast("لم يُحذف: " + (st && st.st ? why(st.st) : "حاول مرة أخرى."), "bad"); });
   });
+
+  showTab((location.hash || "").slice(1) || "hm", true);
+  window.addEventListener("hashchange", function () { showTab((location.hash || "").slice(1) || "hm", true); });
 
   /* ---------- start ---------- */
   token = getTok();

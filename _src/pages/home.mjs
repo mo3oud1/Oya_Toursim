@@ -1,6 +1,6 @@
 import { site } from "../site.mjs";
 import { cabinsBlock } from "./cabins.mjs";
-import { ic, ar, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, featureItem, photoSources, photoImg, registerImage } from "../lib/ui.mjs";
+import { ic, ar, sectionHead, faqBlock, ctaBand, packageCard, destCard, visaCard, postCard, waBtn, featureItem, photoSources, photoUpright, photoImg, registerImage } from "../lib/ui.mjs";
 import { booker, cityList } from "../lib/forms.mjs";
 import { flightSvg } from "../lib/art.mjs";
 import * as S from "../lib/schema.mjs";
@@ -45,11 +45,11 @@ export function homePage(data) {
     { img: "home-cappadocia", loc: "كابادوكيا، تركيا", title: "برامج كابادوكيا", href: "turkey-tours/cappadocia/", fx: "45% 45%" },
     { img: "home-transfer", loc: "استقبال من المطار", title: "سيارة خاصة مع سائق", href: "transfers/", fx: "60% 55%" },
   ];
-  const upright = (sl) => `{{root}}assets/img/photos/${sl.img}-p.webp`;
+  const upright = (sl) => photoUpright(sl.img);
   page.body = `
 <section class="hero hero--photo" data-hero-slides>
   <div class="hero__slides" aria-hidden="true">
-    ${SLIDES.map((sl, i) => { const src = photoSources(sl.img); if (!src) return ""; registerImage(sl.img, "", "");
+    ${SLIDES.map((sl, i) => { const src = photoSources(sl.img); if (!src) return ""; registerImage(sl.img, "", "", `مشهد الهيرو ${i + 1}: ${sl.title}`);
       return `<div class="hero__slide${i === 0 ? " is-on" : ""}" data-loc="${sl.loc}" data-title="${sl.title}" data-href="{{root}}${sl.href}" style="--fx:${sl.fx}"><picture>${i === 0
         ? `<source media="(max-width:700px)" srcset="${upright(sl)}"><img src="${src.src}" srcset="${src.srcset}" sizes="100vw" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">`
         : `<source media="(max-width:700px)" data-srcset="${upright(sl)}"><img data-src="${src.src}" data-srcset="${src.srcset}" sizes="100vw" alt="" width="1536" height="1024" decoding="async">`}</picture></div>`; }).join("")}

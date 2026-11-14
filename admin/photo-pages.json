@@ -1,23 +1,240 @@
 [
  {
-  "path": "activities/",
-  "name": "قسم: أنشطة وتذاكر",
-  "group": "أنشطة وتذاكر",
-  "img": "home-yacht",
-  "custom": false
+  "slot": "home-bosphorus-night",
+  "path": "activities/bosphorus-dinner-cruise/",
+  "name": "مشهد الهيرو 1: سهرة البوسفور",
+  "group": "الصفحة الرئيسية",
+  "img": "home-bosphorus-night",
+  "custom": false,
+  "used": 1,
+  "upright": true
  },
  {
-  "path": "residency/",
-  "name": "قسم: إقامات وموافقات",
-  "group": "إقامات وموافقات",
+  "slot": "home-yacht",
+  "path": "activities/private-yacht/",
+  "name": "مشهد الهيرو 2: يخت خاص في البوسفور",
+  "group": "الصفحة الرئيسية",
+  "img": "home-yacht",
+  "custom": false,
+  "used": 2,
+  "upright": true
+ },
+ {
+  "slot": "home-cabin",
+  "path": "day-trips/sapanca-masukiye/",
+  "name": "مشهد الهيرو 3: أكواخ وبنغلات بمسبح خاص",
+  "group": "الصفحة الرئيسية",
+  "img": "home-cabin",
+  "custom": false,
+  "used": 1,
+  "upright": true
+ },
+ {
+  "slot": "home-cappadocia",
+  "path": "",
+  "name": "مشهد الهيرو 4: برامج كابادوكيا",
+  "group": "الصفحة الرئيسية",
+  "img": "home-cappadocia",
+  "custom": false,
+  "used": 0,
+  "upright": true
+ },
+ {
+  "slot": "home-transfer",
+  "path": "transfers/",
+  "name": "مشهد الهيرو 5: سيارة خاصة مع سائق",
+  "group": "الصفحة الرئيسية",
+  "img": "home-transfer",
+  "custom": false,
+  "used": 1,
+  "upright": true
+ },
+ {
+  "slot": "hero-faq",
+  "path": "faq/",
+  "name": "أسئلة شائعة عن السفر إلى تركيا والحجز",
+  "group": "رؤوس الأقسام",
+  "img": "hero-faq",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-packages",
+  "path": "packages/",
+  "name": "البرامج السياحية",
+  "group": "رؤوس الأقسام",
+  "img": "hero-packages",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-visas",
+  "path": "visas/",
+  "name": "التأشيرات الدولية",
+  "group": "رؤوس الأقسام",
+  "img": "hero-visas",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-turkey",
+  "path": "turkey-tours/",
+  "name": "السياحة في تركيا",
+  "group": "رؤوس الأقسام",
+  "img": "hero-turkey",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-gcc",
+  "path": "gcc-visas/",
+  "name": "تأشيرات الخليج",
+  "group": "رؤوس الأقسام",
+  "img": "hero-gcc",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-saudi",
+  "path": "saudi-visa/",
+  "name": "تأشيرات السعودية",
+  "group": "رؤوس الأقسام",
+  "img": "hero-saudi",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-turkey-visa",
+  "path": "turkey-visa/",
+  "name": "تأشيرة تركيا للعرب",
+  "group": "رؤوس الأقسام",
+  "img": "hero-turkey-visa",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-matches",
+  "path": "matches/",
+  "name": "تذاكر المباريات",
+  "group": "رؤوس الأقسام",
+  "img": "hero-matches",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-flights",
+  "path": "flights/",
+  "name": "تذاكر طيران",
+  "group": "رؤوس الأقسام",
+  "img": "hero-flights",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-super-cup",
+  "path": "matches/spanish-super-cup-2027/",
+  "name": "تذاكر كأس السوبر الإسباني 2027",
+  "group": "رؤوس الأقسام",
+  "img": "hero-super-cup",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-contact",
+  "path": "contact/",
+  "name": "تواصل معنا: واتساب والهاتف والبريد",
+  "group": "رؤوس الأقسام",
+  "img": "hero-contact",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-blog",
+  "path": "blog/",
+  "name": "دليل السفر إلى تركيا ونصائح السياحة",
+  "group": "رؤوس الأقسام",
+  "img": "hero-blog",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-world",
+  "path": "world-tours/",
+  "name": "رحلات خارج تركيا",
+  "group": "رؤوس الأقسام",
+  "img": "hero-world",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-offers",
+  "path": "offers/",
+  "name": "عروض سياحية موسمية 2027: العيد ورمضان والسوبر الإسباني",
+  "group": "رؤوس الأقسام",
+  "img": "hero-offers",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-hotels",
+  "path": "hotels/",
+  "name": "فنادق ومنتجعات",
+  "group": "رؤوس الأقسام",
+  "img": "hero-hotels",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "hero-about",
+  "path": "about/",
+  "name": "من نحن: أويا للسياحة — وكالة سفر عربية في إسطنبول",
+  "group": "رؤوس الأقسام",
+  "img": "hero-about",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "path": "day-trips/princes-islands/",
+  "name": "جزر الأميرات",
+  "group": "جولات يومية",
   "img": "",
   "custom": false
  },
  {
-  "path": "day-trips/sapanca-masukiye/",
-  "name": "رحلة سبانجا ومعشوقية",
+  "path": "day-trips/istanbul-asian-side/",
+  "name": "جولة إسطنبول الآسيوية",
   "group": "جولات يومية",
-  "img": "home-cabin",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "day-trips/istanbul-european-side/",
+  "name": "جولة إسطنبول الأوروبية",
+  "group": "جولات يومية",
+  "img": "home-istanbul",
+  "custom": false
+ },
+ {
+  "path": "day-trips/izmit-kartepe/",
+  "name": "رحلة إزميت وكارتبه",
+  "group": "جولات يومية",
+  "img": "",
   "custom": false
  },
  {
@@ -28,10 +245,10 @@
   "custom": false
  },
  {
-  "path": "day-trips/princes-islands/",
-  "name": "جزر الأميرات",
+  "path": "day-trips/sapanca-masukiye/",
+  "name": "رحلة سبانجا ومعشوقية",
   "group": "جولات يومية",
-  "img": "",
+  "img": "home-cabin",
   "custom": false
  },
  {
@@ -49,50 +266,8 @@
   "custom": false
  },
  {
-  "path": "day-trips/izmit-kartepe/",
-  "name": "رحلة إزميت وكارتبه",
-  "group": "جولات يومية",
-  "img": "",
-  "custom": false
- },
- {
-  "path": "day-trips/istanbul-european-side/",
-  "name": "جولة إسطنبول الأوروبية",
-  "group": "جولات يومية",
-  "img": "home-istanbul",
-  "custom": false
- },
- {
-  "path": "day-trips/istanbul-asian-side/",
-  "name": "جولة إسطنبول الآسيوية",
-  "group": "جولات يومية",
-  "img": "",
-  "custom": false
- },
- {
-  "path": "activities/private-yacht/",
-  "name": "يخت خاص في البوسفور",
-  "group": "أنشطة وتذاكر",
-  "img": "home-yacht",
-  "custom": false
- },
- {
-  "path": "activities/bosphorus-dinner-cruise/",
-  "name": "سهرة البوسفور",
-  "group": "أنشطة وتذاكر",
-  "img": "home-bosphorus-night",
-  "custom": false
- },
- {
   "path": "activities/istanbul-aquarium/",
   "name": "تذاكر الأكواريوم",
-  "group": "أنشطة وتذاكر",
-  "img": "",
-  "custom": false
- },
- {
-  "path": "activities/theme-parks/",
-  "name": "تذاكر مدن الألعاب",
   "group": "أنشطة وتذاكر",
   "img": "",
   "custom": false
@@ -105,15 +280,36 @@
   "custom": false
  },
  {
-  "path": "residency/tourist-residence-permit/",
-  "name": "الإقامة السياحية في تركيا",
-  "group": "إقامات وموافقات",
+  "path": "activities/theme-parks/",
+  "name": "تذاكر مدن الألعاب",
+  "group": "أنشطة وتذاكر",
   "img": "",
   "custom": false
  },
  {
-  "path": "residency/kimlik-to-residence/",
-  "name": "تحويل الكملك إلى إقامة",
+  "path": "activities/bosphorus-dinner-cruise/",
+  "name": "سهرة البوسفور",
+  "group": "أنشطة وتذاكر",
+  "img": "home-bosphorus-night",
+  "custom": false
+ },
+ {
+  "path": "activities/",
+  "name": "قسم: أنشطة وتذاكر",
+  "group": "أنشطة وتذاكر",
+  "img": "home-yacht",
+  "custom": false
+ },
+ {
+  "path": "activities/private-yacht/",
+  "name": "يخت خاص في البوسفور",
+  "group": "أنشطة وتذاكر",
+  "img": "home-yacht",
+  "custom": false
+ },
+ {
+  "path": "residency/tourist-residence-permit/",
+  "name": "الإقامة السياحية في تركيا",
   "group": "إقامات وموافقات",
   "img": "",
   "custom": false
@@ -126,6 +322,20 @@
   "custom": false
  },
  {
+  "path": "residency/kimlik-to-residence/",
+  "name": "تحويل الكملك إلى إقامة",
+  "group": "إقامات وموافقات",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "residency/",
+  "name": "قسم: إقامات وموافقات",
+  "group": "إقامات وموافقات",
+  "img": "",
+  "custom": false
+ },
+ {
   "path": "transfers/",
   "name": "استقبال المطار",
   "group": "خدمات وعروض",
@@ -133,17 +343,17 @@
   "custom": false
  },
  {
-  "path": "private-driver/",
-  "name": "سائق خاص",
-  "group": "خدمات وعروض",
-  "img": "svc-private-driver",
-  "custom": false
- },
- {
   "path": "day-trips/",
   "name": "جولات يومية",
   "group": "خدمات وعروض",
   "img": "svc-day-trips",
+  "custom": false
+ },
+ {
+  "path": "private-driver/",
+  "name": "سائق خاص",
+  "group": "خدمات وعروض",
+  "img": "svc-private-driver",
   "custom": false
  },
  {
@@ -159,5 +369,685 @@
   "group": "خدمات وعروض",
   "img": "svc-ramadan-umrah-2027",
   "custom": false
+ },
+ {
+  "slot": "dest-istanbul",
+  "path": "turkey-tours/cappadocia/",
+  "name": "السياحة في كابادوكيا",
+  "group": "وجهات تركيا",
+  "img": "dest-istanbul",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "dest-trabzon",
+  "path": "turkey-tours/cappadocia/",
+  "name": "السياحة في كابادوكيا",
+  "group": "وجهات تركيا",
+  "img": "dest-trabzon",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "dest-uzungol",
+  "path": "turkey-tours/cappadocia/",
+  "name": "السياحة في كابادوكيا",
+  "group": "وجهات تركيا",
+  "img": "dest-uzungol",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "dest-bursa",
+  "path": "turkey-tours/cappadocia/",
+  "name": "السياحة في كابادوكيا",
+  "group": "وجهات تركيا",
+  "img": "dest-bursa",
+  "custom": false,
+  "used": 10,
+  "upright": false
+ },
+ {
+  "slot": "dest-sapanca",
+  "path": "turkey-tours/cappadocia/",
+  "name": "السياحة في كابادوكيا",
+  "group": "وجهات تركيا",
+  "img": "dest-sapanca",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "dest-antalya",
+  "path": "turkey-tours/cappadocia/",
+  "name": "السياحة في كابادوكيا",
+  "group": "وجهات تركيا",
+  "img": "dest-antalya",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "dest-cappadocia",
+  "path": "turkey-tours/cappadocia/",
+  "name": "السياحة في كابادوكيا",
+  "group": "وجهات تركيا",
+  "img": "dest-cappadocia",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "dest-bodrum",
+  "path": "turkey-tours/cappadocia/",
+  "name": "السياحة في كابادوكيا",
+  "group": "وجهات تركيا",
+  "img": "dest-bodrum",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "pkg-georgia-7-days",
+  "path": "packages/azerbaijan-6-days/",
+  "name": "برنامج أذربيجان 6 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-georgia-7-days",
+  "custom": false,
+  "used": 11,
+  "upright": false
+ },
+ {
+  "slot": "pkg-azerbaijan-6-days",
+  "path": "packages/azerbaijan-6-days/",
+  "name": "برنامج أذربيجان 6 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-azerbaijan-6-days",
+  "custom": false,
+  "used": 11,
+  "upright": false
+ },
+ {
+  "slot": "pkg-bosnia-7-days",
+  "path": "packages/azerbaijan-6-days/",
+  "name": "برنامج أذربيجان 6 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-bosnia-7-days",
+  "custom": false,
+  "used": 11,
+  "upright": false
+ },
+ {
+  "slot": "pkg-malaysia-9-days",
+  "path": "packages/azerbaijan-6-days/",
+  "name": "برنامج أذربيجان 6 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-malaysia-9-days",
+  "custom": false,
+  "used": 6,
+  "upright": false
+ },
+ {
+  "slot": "pkg-istanbul-uludag-winter-6-days",
+  "path": "packages/istanbul-uludag-winter-6-days/",
+  "name": "برنامج إسطنبول وأولوداغ الشتوي 6 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-istanbul-uludag-winter-6-days",
+  "custom": false,
+  "used": 4,
+  "upright": false
+ },
+ {
+  "slot": "pkg-istanbul-5-days",
+  "path": "packages/istanbul-sapanca-bursa-8-days/",
+  "name": "برنامج إسطنبول وسبانجا وبورصة 8 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-istanbul-5-days",
+  "custom": false,
+  "used": 22,
+  "upright": false
+ },
+ {
+  "slot": "pkg-turkey-7-days",
+  "path": "packages/istanbul-sapanca-bursa-8-days/",
+  "name": "برنامج إسطنبول وسبانجا وبورصة 8 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-turkey-7-days",
+  "custom": false,
+  "used": 15,
+  "upright": false
+ },
+ {
+  "slot": "pkg-istanbul-bursa-7-days",
+  "path": "packages/istanbul-sapanca-bursa-8-days/",
+  "name": "برنامج إسطنبول وسبانجا وبورصة 8 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-istanbul-bursa-7-days",
+  "custom": false,
+  "used": 20,
+  "upright": false
+ },
+ {
+  "slot": "pkg-istanbul-sapanca-bursa-8-days",
+  "path": "packages/istanbul-sapanca-bursa-8-days/",
+  "name": "برنامج إسطنبول وسبانجا وبورصة 8 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-istanbul-sapanca-bursa-8-days",
+  "custom": false,
+  "used": 11,
+  "upright": false
+ },
+ {
+  "slot": "pkg-istanbul-trabzon-10-days",
+  "path": "packages/istanbul-trabzon-10-days/",
+  "name": "برنامج إسطنبول وطرابزون 10 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-istanbul-trabzon-10-days",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "pkg-black-sea-10-days",
+  "path": "packages/black-sea-10-days/",
+  "name": "برنامج الشمال التركي 10 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-black-sea-10-days",
+  "custom": false,
+  "used": 8,
+  "upright": false
+ },
+ {
+  "slot": "pkg-maldives-5-days",
+  "path": "packages/maldives-5-days/",
+  "name": "برنامج المالديف 5 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-maldives-5-days",
+  "custom": false,
+  "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "pkg-antalya-7-days",
+  "path": "packages/antalya-7-days/",
+  "name": "برنامج أنطاليا 7 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-antalya-7-days",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "pkg-uzbekistan-7-days",
+  "path": "packages/uzbekistan-7-days/",
+  "name": "برنامج أوزبكستان 7 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-uzbekistan-7-days",
+  "custom": false,
+  "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "pkg-bali-9-days",
+  "path": "packages/bali-9-days/",
+  "name": "برنامج بالي 9 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-bali-9-days",
+  "custom": false,
+  "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "pkg-thailand-9-days",
+  "path": "packages/thailand-9-days/",
+  "name": "برنامج تايلند 9 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-thailand-9-days",
+  "custom": false,
+  "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "pkg-grand-turkey-14-days",
+  "path": "packages/grand-turkey-14-days/",
+  "name": "برنامج تركيا الشامل 14 يوماً",
+  "group": "البرامج السياحية",
+  "img": "pkg-grand-turkey-14-days",
+  "custom": false,
+  "used": 8,
+  "upright": false
+ },
+ {
+  "slot": "pkg-turkey-family-12-days",
+  "path": "packages/turkey-family-12-days/",
+  "name": "برنامج تركيا للعائلات 12 يوماً",
+  "group": "البرامج السياحية",
+  "img": "pkg-turkey-family-12-days",
+  "custom": false,
+  "used": 8,
+  "upright": false
+ },
+ {
+  "slot": "pkg-turkey-honeymoon-9-days",
+  "path": "packages/turkey-honeymoon-9-days/",
+  "name": "برنامج شهر العسل في تركيا 9 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-turkey-honeymoon-9-days",
+  "custom": false,
+  "used": 8,
+  "upright": false
+ },
+ {
+  "slot": "pkg-trabzon-uzungol-7-days",
+  "path": "packages/trabzon-uzungol-7-days/",
+  "name": "برنامج طرابزون وأوزنجول 7 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-trabzon-uzungol-7-days",
+  "custom": false,
+  "used": 11,
+  "upright": false
+ },
+ {
+  "slot": "pkg-cappadocia-3-days",
+  "path": "packages/cappadocia-3-days/",
+  "name": "برنامج كابادوكيا 3 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-cappadocia-3-days",
+  "custom": false,
+  "used": 6,
+  "upright": false
+ },
+ {
+  "slot": "pkg-egypt-8-days",
+  "path": "packages/egypt-8-days/",
+  "name": "برنامج مصر 8 أيام",
+  "group": "البرامج السياحية",
+  "img": "pkg-egypt-8-days",
+  "custom": false,
+  "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "hotels-istanbul",
+  "path": "hotels/istanbul/",
+  "name": "فنادق إسطنبول",
+  "group": "الفنادق",
+  "img": "hotels-istanbul",
+  "custom": false,
+  "used": 2,
+  "upright": false
+ },
+ {
+  "slot": "hotels-antalya",
+  "path": "hotels/antalya/",
+  "name": "فنادق أنطاليا",
+  "group": "الفنادق",
+  "img": "hotels-antalya",
+  "custom": false,
+  "used": 2,
+  "upright": false
+ },
+ {
+  "slot": "hotels-uzungol",
+  "path": "hotels/uzungol/",
+  "name": "فنادق أوزنجول",
+  "group": "الفنادق",
+  "img": "hotels-uzungol",
+  "custom": false,
+  "used": 2,
+  "upright": false
+ },
+ {
+  "slot": "hotels-sapanca",
+  "path": "hotels/sapanca/",
+  "name": "فنادق سبانجا",
+  "group": "الفنادق",
+  "img": "hotels-sapanca",
+  "custom": false,
+  "used": 2,
+  "upright": false
+ },
+ {
+  "slot": "hotels-trabzon",
+  "path": "hotels/trabzon/",
+  "name": "فنادق طرابزون",
+  "group": "الفنادق",
+  "img": "hotels-trabzon",
+  "custom": false,
+  "used": 2,
+  "upright": false
+ },
+ {
+  "slot": "hotels-family-friendly",
+  "path": "hotels/family-friendly/",
+  "name": "فنادق محافظة وعائلية",
+  "group": "الفنادق",
+  "img": "hotels-family-friendly",
+  "custom": false,
+  "used": 2,
+  "upright": false
+ },
+ {
+  "slot": "visa-gcc-unified",
+  "path": "gcc-visas/gcc-unified/",
+  "name": "التأشيرة الخليجية الموحدة",
+  "group": "التأشيرات",
+  "img": "visa-gcc-unified",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-saudi-tourist",
+  "path": "saudi-visa/tourist/",
+  "name": "التأشيرة السياحية السعودية",
+  "group": "التأشيرات",
+  "img": "visa-saudi-tourist",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-saudi-gcc-residents",
+  "path": "saudi-visa/gcc-residents/",
+  "name": "التأشيرة السياحية للمقيمين في الخليج",
+  "group": "التأشيرات",
+  "img": "visa-saudi-gcc-residents",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-saudi-transit",
+  "path": "saudi-visa/transit/",
+  "name": "تأشيرة الترانزيت (العبور)",
+  "group": "التأشيرات",
+  "img": "visa-saudi-transit",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-saudi-personal-visit",
+  "path": "saudi-visa/personal-visit/",
+  "name": "تأشيرة الزيارة الشخصية",
+  "group": "التأشيرات",
+  "img": "visa-saudi-personal-visit",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-saudi-family-visit",
+  "path": "saudi-visa/family-visit/",
+  "name": "تأشيرة الزيارة العائلية",
+  "group": "التأشيرات",
+  "img": "visa-saudi-family-visit",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-saudi-umrah",
+  "path": "saudi-visa/umrah/",
+  "name": "تأشيرة العمرة",
+  "group": "التأشيرات",
+  "img": "visa-saudi-umrah",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-saudi-business",
+  "path": "saudi-visa/business/",
+  "name": "تأشيرة زيارة الأعمال",
+  "group": "التأشيرات",
+  "img": "visa-saudi-business",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-uae",
+  "path": "gcc-visas/uae/",
+  "name": "فيزا الإمارات (دبي)",
+  "group": "التأشيرات",
+  "img": "visa-uae",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-bahrain",
+  "path": "gcc-visas/bahrain/",
+  "name": "فيزا البحرين",
+  "group": "التأشيرات",
+  "img": "visa-bahrain",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-kuwait",
+  "path": "gcc-visas/kuwait/",
+  "name": "فيزا الكويت",
+  "group": "التأشيرات",
+  "img": "visa-kuwait",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-usa",
+  "path": "visas/usa/",
+  "name": "فيزا أمريكا",
+  "group": "التأشيرات",
+  "img": "visa-usa",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-uk",
+  "path": "visas/uk/",
+  "name": "فيزا بريطانيا",
+  "group": "التأشيرات",
+  "img": "visa-uk",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-oman",
+  "path": "gcc-visas/oman/",
+  "name": "فيزا سلطنة عُمان",
+  "group": "التأشيرات",
+  "img": "visa-oman",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-schengen",
+  "path": "visas/schengen/",
+  "name": "فيزا شنغن",
+  "group": "التأشيرات",
+  "img": "visa-schengen",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-qatar",
+  "path": "gcc-visas/qatar/",
+  "name": "فيزا قطر",
+  "group": "التأشيرات",
+  "img": "visa-qatar",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "visa-canada",
+  "path": "visas/canada/",
+  "name": "فيزا كندا",
+  "group": "التأشيرات",
+  "img": "visa-canada",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "blog-best-time-to-visit-turkey",
+  "path": "blog/saudi-tourist-visa-for-turkey-residents/",
+  "name": "التأشيرة السياحية السعودية للمقيمين في تركيا: من يحق له وكيف يقدّم؟",
+  "group": "المدونة",
+  "img": "blog-best-time-to-visit-turkey",
+  "custom": false,
+  "used": 47,
+  "upright": false
+ },
+ {
+  "slot": "blog-cost-of-travel-to-turkey",
+  "path": "blog/saudi-tourist-visa-for-turkey-residents/",
+  "name": "التأشيرة السياحية السعودية للمقيمين في تركيا: من يحق له وكيف يقدّم؟",
+  "group": "المدونة",
+  "img": "blog-cost-of-travel-to-turkey",
+  "custom": false,
+  "used": 55,
+  "upright": false
+ },
+ {
+  "slot": "blog-saudi-tourist-visa-for-turkey-residents",
+  "path": "blog/saudi-tourist-visa-for-turkey-residents/",
+  "name": "التأشيرة السياحية السعودية للمقيمين في تركيا: من يحق له وكيف يقدّم؟",
+  "group": "المدونة",
+  "img": "blog-saudi-tourist-visa-for-turkey-residents",
+  "custom": false,
+  "used": 21,
+  "upright": false
+ },
+ {
+  "slot": "blog-schengen-visa-from-turkey",
+  "path": "blog/saudi-tourist-visa-for-turkey-residents/",
+  "name": "التأشيرة السياحية السعودية للمقيمين في تركيا: من يحق له وكيف يقدّم؟",
+  "group": "المدونة",
+  "img": "blog-schengen-visa-from-turkey",
+  "custom": false,
+  "used": 21,
+  "upright": false
+ },
+ {
+  "slot": "blog-turkey-family-itinerary-10-days",
+  "path": "packages/istanbul-sapanca-bursa-8-days/",
+  "name": "برنامج إسطنبول وسبانجا وبورصة 8 أيام",
+  "group": "المدونة",
+  "img": "blog-turkey-family-itinerary-10-days",
+  "custom": false,
+  "used": 31,
+  "upright": false
+ },
+ {
+  "slot": "blog-honeymoon-in-turkey",
+  "path": "packages/turkey-honeymoon-9-days/",
+  "name": "برنامج شهر العسل في تركيا 9 أيام",
+  "group": "المدونة",
+  "img": "blog-honeymoon-in-turkey",
+  "custom": false,
+  "used": 11,
+  "upright": false
+ },
+ {
+  "slot": "blog-istanbul-itinerary-5-days",
+  "path": "blog/spanish-super-cup-2027-istanbul-guide/",
+  "name": "كأس السوبر الإسباني 2027 في إسطنبول: الدليل الشامل للمشجع العربي",
+  "group": "المدونة",
+  "img": "blog-istanbul-itinerary-5-days",
+  "custom": false,
+  "used": 22,
+  "upright": false
+ },
+ {
+  "slot": "blog-day-trips-from-istanbul",
+  "path": "blog/spanish-super-cup-2027-istanbul-guide/",
+  "name": "كأس السوبر الإسباني 2027 في إسطنبول: الدليل الشامل للمشجع العربي",
+  "group": "المدونة",
+  "img": "blog-day-trips-from-istanbul",
+  "custom": false,
+  "used": 28,
+  "upright": false
+ },
+ {
+  "slot": "blog-spanish-super-cup-2027-istanbul-guide",
+  "path": "blog/spanish-super-cup-2027-istanbul-guide/",
+  "name": "كأس السوبر الإسباني 2027 في إسطنبول: الدليل الشامل للمشجع العربي",
+  "group": "المدونة",
+  "img": "blog-spanish-super-cup-2027-istanbul-guide",
+  "custom": false,
+  "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "blog-trabzon-uzungol-travel-guide",
+  "path": "blog/trabzon-uzungol-travel-guide/",
+  "name": "نصائح السفر إلى طرابزون وأوزنجول قبل أن تحجز",
+  "group": "المدونة",
+  "img": "blog-trabzon-uzungol-travel-guide",
+  "custom": false,
+  "used": 9,
+  "upright": false
+ },
+ {
+  "slot": "gallery-riyadh-dusk",
+  "path": "saudi-visa/business/",
+  "name": "تأشيرة زيارة الأعمال",
+  "group": "معرض الصور",
+  "img": "gallery-riyadh-dusk",
+  "custom": false,
+  "used": 2,
+  "upright": false
+ },
+ {
+  "slot": "gallery-riyadh-night",
+  "path": "saudi-visa/business/",
+  "name": "تأشيرة زيارة الأعمال",
+  "group": "معرض الصور",
+  "img": "gallery-riyadh-night",
+  "custom": false,
+  "used": 1,
+  "upright": false
+ },
+ {
+  "slot": "gallery-makkah-aerial",
+  "path": "offers/ramadan-umrah-2027/",
+  "name": "عمرة رمضان 2027 من تركيا",
+  "group": "معرض الصور",
+  "img": "gallery-makkah-aerial",
+  "custom": false,
+  "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "gallery-madinah-sunset",
+  "path": "offers/ramadan-umrah-2027/",
+  "name": "عمرة رمضان 2027 من تركيا",
+  "group": "معرض الصور",
+  "img": "gallery-madinah-sunset",
+  "custom": false,
+  "used": 3,
+  "upright": false
+ },
+ {
+  "slot": "gallery-kaaba-tawaf",
+  "path": "offers/ramadan-umrah-2027/",
+  "name": "عمرة رمضان 2027 من تركيا",
+  "group": "معرض الصور",
+  "img": "gallery-kaaba-tawaf",
+  "custom": false,
+  "used": 2,
+  "upright": false
  }
 ]
