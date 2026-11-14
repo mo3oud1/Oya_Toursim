@@ -137,7 +137,7 @@
         if (n) { e.preventDefault(); select(n, true); }
       });
     });
-    var hash = w.location.hash.replace("#", "");
+    var hash = w.location.hash.replace("#", ""); if (!/^[a-z0-9-]{1,30}$/.test(hash)) hash = "";
     var pre = hash && $("[role=tab][data-key='" + hash + "']", wrap);
     if (pre) {
       select(pre);
@@ -172,7 +172,7 @@
       .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
     w.oyaPrices.then(function (db) {
       if (!db) return;
-      var cur = (db.currency && db.currency.symbol) || "$";
+      var cur = String((db.currency && db.currency.symbol) || "$").replace(/[^$€₺£¥\u0600-\u06FFA-Za-z.]/g, "").slice(0, 4) || "$";
       var money = function (n) { return fmtN(n) + '<span class="cur">' + cur + "</span>"; };
       var pk = {}; (Array.isArray(db.packages) ? db.packages : []).forEach(function (r) { pk[r.slug] = r.priceFrom; });
       $$("[data-pkg-price]").forEach(function (el) {
@@ -261,6 +261,7 @@
     var key = draftKey(form, fi);
     // restore draft (per-visitor convenience)
     var saved = store(function (ls) { return JSON.parse(ls.getItem(key) || "null"); });
+    if (saved && !(saved._t > Date.now() - 14 * 864e5)) { store(function (ls) { ls.removeItem(key); }); saved = null; }
     if (saved) $$("input, select, textarea", form).forEach(function (el) {
       if (!el.name || !(el.name in saved) || el.readOnly) return;
       if (el.type === "radio" || el.type === "checkbox") el.checked = saved[el.name] === el.value; else if (!el.value || el.tagName === "SELECT") el.value = saved[el.name];
@@ -270,7 +271,7 @@
       if (f && f.classList.contains("is-invalid") && e.target.value.trim()) { f.classList.remove("is-invalid"); e.target.setAttribute("aria-invalid", "false"); }
       var data = {};
       $$("input, select, textarea", form).forEach(function (el) { if (el.name && ((el.type !== "radio" && el.type !== "checkbox") || el.checked)) data[el.name] = el.value; });
-      store(function (ls) { ls.setItem(key, JSON.stringify(data)); });
+      data._t = Date.now(); store(function (ls) { ls.setItem(key, JSON.stringify(data)); });
     });
     form.addEventListener("change", function (e) { form.dispatchEvent(new Event("input", { bubbles: true })); });
 
