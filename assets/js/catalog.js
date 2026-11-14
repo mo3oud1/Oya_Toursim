@@ -93,7 +93,7 @@
     return '<article class="cab" data-reveal><div class="cab__media"' + (photos.length > 1 ? ' tabindex="0" role="group" aria-roledescription="carousel" aria-label="' + esc(T("صورة أخرى")) + '"' : "") + '>' + (photos.length ? photos.map(function (p, i) {
       return '<img ' + (i ? 'data-src="' : 'src="') + esc(root + p) + '" alt="' + esc(h.name + " — " + city) + '" loading="lazy" decoding="async">';
     }).join("") : '<span class="cab__noimg" aria-hidden="true"></span>') +
-      (photos.length > 1 ? '<button type="button" class="cab__nav cab__l" aria-label="' + esc(T("صورة أخرى")) + '">‹</button><button type="button" class="cab__nav cab__r" aria-label="' + esc(T("صورة أخرى")) + '">›</button><span class="cab__n">1 / ' + photos.length + "</span>" : "") +
+      (photos.length > 1 ? '<button type="button" dir="ltr" class="cab__nav cab__l" aria-label="' + esc(T("صورة أخرى")) + '">‹</button><button type="button" dir="ltr" class="cab__nav cab__r" aria-label="' + esc(T("صورة أخرى")) + '">›</button><span class="cab__n">1 / ' + photos.length + "</span>" : "") +
       '<span class="cab__area">' + esc(city) + "</span></div>" +
       '<div class="cab__body"><h3 translate="no">' + esc(h.name) + "</h3>" +
       '<p class="cab__specs"><span>' + esc(KIND[h.kind] || KIND.hotel) + "</span>" + stars + (tr(h, "area") ? "<span>" + esc(tr(h, "area")) + "</span>" : "") + "</p>" +

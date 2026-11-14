@@ -77,7 +77,7 @@ export function skylineFar() {
 export function flightSvg() {
   const p = "M-80 610 C 140 550 330 440 560 250";
   // 15 s loop: wait 0.6 s → fly 5.4 s → contrail dissolves → rest
-  const t = 'dur="15s" begin="0.6s" repeatCount="indefinite"';
+  const t = 'dur="15s" begin="0.6s" repeatCount="1" fill="freeze"'; // one flight per visit
   // top-view airliner (nose towards +x)
   const plane = "M30 0 C30 -1.6 28.4 -2.6 26 -2.6 L9 -2.6 L-3 -17 L-8 -17 L1 -2.6 L-13 -2.6 L-18 -8 L-21.5 -8 L-18.5 0 L-21.5 8 L-18 8 L-13 2.6 L1 2.6 L-8 17 L-3 17 L9 2.6 L26 2.6 C28.4 2.6 30 1.6 30 0 Z";
   return `<svg class="hero__flight" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
