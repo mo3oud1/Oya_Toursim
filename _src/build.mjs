@@ -18,6 +18,7 @@ import { aboutPage, contactPage, faqPage, privacyPage, termsPage, notFoundPage }
 import { hotelCityPage, extraPage, offersHub } from "./lib/templates2.mjs";
 import { turkeyVisaPage } from "./pages/turkey-visa.mjs";
 import { cabinsPage } from "./pages/cabins.mjs";
+import { cabinPages, cabinDict, pruneCabinPages, cabinTitle } from "./lib/cabinpages.mjs";
 import { Translator, hasAr, idOf } from "./lib/i18n.mjs";
 
 const load = async (f) => {
@@ -66,11 +67,14 @@ data.hotels.forEach((h) => (data.titles[`hotels/${h.slug}/`] = h.slug === "famil
 data.extras.forEach((x) => (data.titles[x.path] = x.h1.split(":")[0]));
 Object.assign(data.titles, { "cabins/": "أكواخ وبنغلات", "flights/": "تذاكر طيران", "hotels/": "فنادق ومنتجعات", "turkey-tours/": "السياحة في تركيا", "world-tours/": "رحلات خارج تركيا", "packages/": "البرامج السياحية", "saudi-visa/": "تأشيرات السعودية", "gcc-visas/": "تأشيرات الخليج", "visas/": "التأشيرات الدولية", "matches/": "تذاكر المباريات", "matches/spanish-super-cup-2027/": "تذاكر كأس السوبر الإسباني 2027", "turkey-visa/": "تأشيرة تركيا للعرب" });
 
+const cabPages = cabinPages();
+cabPages.forEach((p) => (data.titles[p.path] = cabinTitle(p.cabin)));
 const pages = [
   homePage(data),
   flightsPage(data),
   hotelsPage(data),
   cabinsPage(data),
+  ...cabPages,
   turkeyHub(data),
   ...data.destinations.map((d) => destinationPage(d, data)),
   worldHub(data),
@@ -141,7 +145,7 @@ const READ = { en: "{0} min read", ru: "{0} мин чтения", tr: "{0} dk ok
 for (const L of OTHERS) for (let n = 1; n <= 60; n++) { const id = idOf(readAr(n)); if (!translators[L.code].dict[id]) translators[L.code].dict[id] = READ[L.code].replace("{0}", n); }
 for (const L of OTHERS) {
   const dict = translators[L.code].dict, add = (d) => { for (const [k, v] of Object.entries(d)) if (!(k in dict)) dict[k] = v; }; // never replace the site's own wording
-  add(eventsDict(L.code, dict, idOf)); add(ownerPostDict(data.ownerPosts, L.code, idOf));
+  add(eventsDict(L.code, dict, idOf)); add(ownerPostDict(data.ownerPosts, L.code, idOf)); add(cabinDict(L.code, dict, idOf));
 }
 
 // shared HTML clean-up (before translation, so generated labels such as table captions are translated too)
@@ -159,9 +163,22 @@ const write = (p, html) => { const f = outFile(p); fs.mkdirSync(path.dirname(f),
 for (const L of OTHERS) fs.rmSync(path.join(ROOT_DIR, L.prefix), { recursive: true, force: true });
 
 pruneOwnerPages(data.ownerPosts);
+pruneCabinPages(cabPages);
 // cards of Arabic-only articles (written in the panel) are left out of the other languages
 // cards of panel articles that have no version in this language are left out
-const stripArOnly = (html, code) => html.replace(/<article class="card post-card" data-langs="([a-z ]+)"[\s\S]*?<\/article>/g, (m, l) => (l.split(" ").includes(code) ? m : ""));
+const stripArOnly = (html, code) => html.replace(/<article class="card post-card" data-langs="([a-z ]+)"[\s\S]*?<\/article>/g, (m, l) => (l.split(" ").includes(code) ? m : ""))
+  .replace(/<p class="cab__note" data-langs="([a-z ]+)">[^<]*<\/p>/g, (m, l) => (l.split(" ").includes(code) ? m : "")); // a cabin note the owner wrote in Arabic only
+// translated descriptions run longer than the Arabic: keep what search results show whole (about 160 characters)
+const fitDesc = (s) => {
+  if (s.length <= 160) return s;
+  const c = s.slice(0, 161);
+  let i = Math.max(c.lastIndexOf(". "), c.lastIndexOf("! "), c.lastIndexOf("? "));
+  if (i >= 80) return c.slice(0, i + 1);
+  i = Math.max(c.lastIndexOf(", "), c.lastIndexOf("; "), c.lastIndexOf(": "), c.lastIndexOf(" — "), c.lastIndexOf(" – "));
+  if (i >= 100) return c.slice(0, i).trim() + "…";
+  return c.slice(0, c.lastIndexOf(" ")).replace(/[,;:–—-]+$/, "").trim() + "…";
+};
+const trimDesc = (html) => html.replace(/(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")([^"]*)(")/g, (m, a, s, z) => a + fitDesc(s) + z);
 const written = [];
 const titles = new Map();
 for (const page of pages) {
@@ -182,7 +199,7 @@ for (const page of pages) {
     t.page = page.path;
     const p = L.prefix + page.path;
     const d = p.split("/").filter(Boolean).length;
-    const html = localNumbers(t.html(post(stripArOnly(renderPage((page.perLang && page.perLang[L.code]) || page, data, ver, L.code), L.code))), L.code);
+    const html = trimDesc(localNumbers(t.html(post(stripArOnly(renderPage((page.perLang && page.perLang[L.code]) || page, data, ver, L.code), L.code))), L.code));
     written.push({ page, lang: L, path: p, out: write(p, fixRoots(html, "../".repeat(d), d > 1 ? "../".repeat(d - 1) : "./")) });
   }
 }
@@ -196,14 +213,24 @@ fs.writeFileSync(path.join(I18N_DIR, "_missing.json"), JSON.stringify(Object.fro
 
 // sitemap.xml — every language version, each listing its alternates
 const today = new Date().toISOString().slice(0, 10);
-const prio = (p) => (p === "" ? "1.0" : /^(hotels|flights|turkey-tours|saudi-visa|gcc-visas|visas|packages|matches|world-tours)\/$/.test(p) ? "0.9" : /^(turkey-tours|packages|saudi-visa|gcc-visas|visas|matches|turkey-visa)\//.test(p) ? "0.8" : p.startsWith("blog/") ? "0.7" : "0.5");
+const prio = (p) => (p === "" ? "1.0" : /^(hotels|cabins|flights|turkey-tours|saudi-visa|gcc-visas|visas|packages|matches|world-tours)\/$/.test(p) ? "0.9" : /^(turkey-tours|packages|saudi-visa|gcc-visas|visas|matches|turkey-visa|cabins)\//.test(p) ? "0.8" : p.startsWith("blog/") ? "0.7" : "0.5");
 // image sitemap entries: the main (1536w) photo files used on each page, hero first
-const pagePhotos = (body) => [...new Set([...String(body || "").matchAll(/assets\/img\/photos\/([\w-]+?)(?:-640|-1024)?\.webp/g)].map((m) => m[1]))].slice(0, 12);
+const pagePhotos = (body) => [...new Set([...String(body || "").matchAll(/assets\/img\/(?:photos\/([\w-]+?)(?:-640|-1024)?\.webp|(cabins\/[\w-]+\.webp))/g)].map((m) => (m[1] ? `photos/${m[1]}.webp` : m[2])))].slice(0, 20);
+// <lastmod> is the day a page's own content last changed (kept in _src/.lastmod.json), not the day of the build
+const LASTMOD_FILE = path.join(ROOT_DIR, "_src/.lastmod.json");
+const lastmod = readJson(LASTMOD_FILE, {});
+const modOf = (page) => {
+  const h = crypto.createHash("md5").update(`${page.title}\n${page.description}\n${page.body}`).digest("hex").slice(0, 12), e = lastmod[page.path];
+  if (!Array.isArray(e) || e[0] !== h) lastmod[page.path] = [h, today];
+  return lastmod[page.path][1];
+};
 const urls = written.filter((w) => !w.page.noindex).map((w) => {
-  const imgs = pagePhotos(w.page.body).map((k) => `<image:image><image:loc>${site.url}/assets/img/photos/${k}.webp</image:loc></image:image>`).join("");
+  const imgs = pagePhotos(w.page.body).map((k) => `<image:image><image:loc>${site.url}/assets/img/${k}</image:loc></image:image>`).join("");
   const alts = pageLocales(w.page).length < 2 ? "" : pageLocales(w.page).map((l) => `<xhtml:link rel="alternate" hreflang="${l.code}" href="${site.url}/${l.prefix}${w.page.path}"/>`).join("") + `<xhtml:link rel="alternate" hreflang="x-default" href="${site.url}/${w.page.path}"/>`;
-  return `  <url><loc>${site.url}/${w.path}</loc><priority>${prio(w.page.path)}</priority>${alts}${imgs}</url>`;
+  return `  <url><loc>${site.url}/${w.path}</loc><lastmod>${modOf(w.page)}</lastmod><priority>${prio(w.page.path)}</priority>${alts}${imgs}</url>`;
 });
+{ const live = new Set(pages.map((p) => p.path)); for (const k of Object.keys(lastmod)) if (!live.has(k)) delete lastmod[k]; }
+fs.writeFileSync(LASTMOD_FILE, JSON.stringify(Object.fromEntries(Object.keys(lastmod).sort().map((k) => [k, lastmod[k]])), null, 0).replace(/\],/g, "],\n") + "\n");
 fs.writeFileSync(path.join(ROOT_DIR, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join("\n")}\n</urlset>\n`);
 
 // robots.txt

@@ -386,7 +386,7 @@ ${pageHero({ crumbs, ...heroPhoto("hero-super-cup"), eyebrow: `${ic("trophy")} �
   <div class="container">
     ${sectionHead({ eyebrow: "الخطوة 1", title: "اختر المباراة", lead: "ثلاث مباريات على ثلاثة ملاعب في إسطنبول، وصافرة البداية 22:00 بتوقيت إسطنبول (20:00 بتوقيت إسبانيا) وفق ما أعلنه الاتحاد الإسباني لكرة القدم." })}
     ${shieldDefs}<div class="grid grid-3 mtk-grid" data-stagger>${scMatches.map((m, i) => matchCard(m, i)).join("")}</div>
-    ${hasPrices() ? `<details class="mt-2 sc-prices"><summary>${ic("ticket")} أسعار التذاكر حسب الفئة</summary>${priceTable()}</details>` : ""}
+    ${hasPrices() ? `<details class="mt-2 sc-prices"><summary>${ic("ticket")} أسعار تقديرية للتذاكر حسب الفئة</summary>${priceTable()}</details>` : ""}
   </div>
 </section>
 

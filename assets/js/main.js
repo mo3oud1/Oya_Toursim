@@ -293,7 +293,7 @@
       if (win) { try { win.opener = null; } catch (err) {} } else { w.location.href = url; }
       if (done) done.classList.add("is-on");
       store(function (ls) { ls.removeItem(key); }); // the request was sent: do not keep personal details in the browser
-      if (w.gtag) w.gtag("event", "generate_lead", { method: "whatsapp", form: form.getAttribute("data-intro") });
+      track("generate_lead", { method: "whatsapp", form_name: (form.getAttribute("data-intro") || "").slice(0, 80) });
     });
     var copy = $("[data-copy]", form);
     copy && copy.addEventListener("click", function () {
@@ -501,3 +501,19 @@
     card.addEventListener("pointerenter", function () { load(imgs[1]); }, { once: true });
   };
 })();
+
+/* Measurement: every WhatsApp, phone and email click is a lead signal (Google Tag Manager custom events
+   whatsapp_click / tel_click / email_click, with where on the page it happened). No personal data is sent. */
+function track(name, params) {
+  var w = window; w.dataLayer = w.dataLayer || [];
+  var o = { event: name, page_path: location.pathname, page_language: document.documentElement.lang };
+  for (var k in params) o[k] = params[k];
+  w.dataLayer.push(o);
+}
+document.addEventListener("click", function (e) {
+  var a = e.target.closest && e.target.closest("a[href]"); if (!a) return;
+  var h = a.getAttribute("href") || "", kind = /^https:\/\/wa\.me\//.test(h) ? "whatsapp_click" : /^tel:/.test(h) ? "tel_click" : /^mailto:/.test(h) ? "email_click" : "";
+  if (!kind) return;
+  var sec = a.closest("[id], section, header, footer, nav, .mbar, .fab-wa"), where = a.className.match(/fab-wa|mbar|si-wa|ss-wa|evt__go|cab|ctile/) || [];
+  track(kind, { link_location: (sec && (sec.id || sec.tagName.toLowerCase())) || "page", link_type: where[0] || "link" });
+}, true);

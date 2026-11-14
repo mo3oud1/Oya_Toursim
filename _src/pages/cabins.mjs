@@ -1,8 +1,9 @@
 // Cabins & bungalows (أكواخ وبنغلات) — the owner adds real cabins from /admin/ (data/cabins.json).
-// Cards are drawn in the browser by assets/js/cabins.js so a cabin added in the panel shows without a rebuild;
-// area and feature labels live in that script (T("…") strings, translated by the build).
+// The cards are written into the page by the build (lib/cabinpages.mjs) and each cabin has its own page;
+// assets/js/cabins.js runs the filters and adds what changed in the panel since the last build.
 import { ic, esc, sectionHead, faqBlock, ctaBand, pageHero, waBtn } from "../lib/ui.mjs";
 import * as S from "../lib/schema.mjs";
+import { cabinCards, cabinList, AREAS } from "../lib/cabinpages.mjs";
 
 const graph = (page, nodes = []) => [S.orgNode(), S.websiteNode(), S.webPageNode(page, "CollectionPage"), S.breadcrumbNode(page), ...nodes].filter(Boolean);
 
@@ -11,6 +12,7 @@ const GROUPS = { sapanca: "سبانجا وكارتبه ومعشوقية", trabzo
 
 // listing block: filters + grid (+ empty state). `group` limits it to one region (city pages).
 export function cabinsBlock({ group = "", limit = 0, filters: showFilters = true } = {}) {
+  const cards = cabinCards({ group, limit });
   const filters = group || !showFilters ? "" : `
   <div class="cab-filters" role="group" aria-label="تصفية الأكواخ">
     <div class="filters" data-cab-group>
@@ -25,21 +27,20 @@ export function cabinsBlock({ group = "", limit = 0, filters: showFilters = true
 <div class="cabins" data-cabins data-group="${group}" data-limit="${limit}">
   ${filters}
   <p class="cab-count muted" aria-live="polite"></p>
-  <div class="grid grid-3 cab-grid"></div>
-  <div class="cab-empty" hidden>
+  <div class="grid grid-3 cab-grid">${cards}</div>
+  <div class="cab-empty"${cards ? " hidden" : ""}>
     <span class="ico">${ic("bed")}</span>
     <h3>نضيف الأكواخ المتاحة قريباً</h3>
     <p>أخبرنا بالمنطقة والتواريخ وعدد الأشخاص، ونرسل لك صوراً وأسعار أكواخ متاحة فعلاً.</p>
     ${waBtn("مرحباً أويا، أبحث عن كوخ أو بنغل للإقامة.", "اطلب خيارات عبر واتساب", "btn btn--wa")}
   </div>
-  <noscript><p class="muted">لعرض الأكواخ فعّل JavaScript، أو راسلنا على واتساب لنرسل لك الخيارات.</p></noscript>
 </div>`;
 }
 
 // section for the Sapanca / Trabzon hotel pages (hidden by the script while the region has no cabins)
 export function cabinsSection(group) {
   return `
-<section class="section section--white cab-sec" data-cab-sec hidden>
+<section class="section section--white cab-sec" data-cab-sec${cabinList().some((c) => AREAS[c.area][1] === group) ? "" : " hidden"}>
   <div class="container">
     ${sectionHead({ eyebrow: "أكواخ وبنغلات", title: `أكواخ وبنغلات في ${GROUPS[group]}`, lead: "أكواخ نتعامل معها مباشرة، بصورها الحقيقية وسعر الليلة. اختر الكوخ ونؤكد لك التوفر كتابةً قبل الدفع.", row: true, after: `<a class="btn btn--ghost" href="{{root}}cabins/">كل الأكواخ ${ic("arrow", "i-flip")}</a>` })}
     ${cabinsBlock({ group, limit: 6 })}
@@ -51,22 +52,23 @@ export function cabinsPage() {
   const path = "cabins/";
   const crumbs = [{ name: "الرئيسية", path: "" }, { name: "فنادق ومنتجعات", path: "hotels/" }, { name: "أكواخ وبنغلات", path }];
   const page = { path, nav: "cabins", crumbs,
-    title: "أكواخ وبنغلات في سبانجا وطرابزون وأوزنجول | أويا",
-    description: "أكواخ وبنغلات خشبية في سبانجا وكارتبه ومعشوقية وطرابزون وأوزنجول بصور حقيقية وسعر الليلة: مسبح أو جاكوزي أو مدفأة وإطلالة. احجز عبر واتساب." };
+    title: "شاليهات وبنغلات سبانجا وكارتبه بمسبح خاص | أويا",
+    description: "شاليهات وبنغلات وأكواخ في سبانجا وكارتبه ومعشوقية بصور حقيقية وسعر الليلة: مسبح مدفأ خاص أو جاكوزي أو مدفأة حطب. اختر كوخك واحجز عبر واتساب." };
   const faq = [
+    { q: "ما الفرق بين الشاليه والبنغل والكوخ في سبانجا؟", a: "الأسماء الثلاثة تُستخدم لنوع واحد تقريباً: بيت مستقل صغير بين الأشجار، غالباً خشبي، مع مسبح أو جاكوزي خاص. «البنغل» هو الاسم الشائع في تركيا، و«الشاليه» و«الكوخ» أكثر ما يبحث به المسافر العربي. الأهم أن تتأكد من عدد الغرف، وهل المسبح خاص ومدفأ." },
     { q: "هل الصور حقيقية للكوخ نفسه؟", a: "نعم، نعرض صور الكوخ الذي نحجزه لك. وإن تغيّر شيء في الكوخ قبل وصولك نخبرك به قبل التأكيد." },
     { q: "هل السعر المعروض نهائي؟", a: "السعر المعروض لليلة الواحدة ويتغيّر حسب الموسم وأيام الأسبوع وعدد الليالي. نرسل لك السعر النهائي مكتوباً مع التوفر قبل أي دفع." },
     { q: "هل المسبح خاص ومدفأ؟", a: "يختلف ذلك من كوخ لآخر. نوضّح لك في العرض إن كان المسبح أو الجاكوزي خاصاً بالكوخ، وهل هو مدفأ في الشتاء." },
     { q: "هل يمكن ترتيب الاستقبال والسيارة؟", a: "نعم، نرتّب الاستقبال من المطار والتنقل بسيارة خاصة مع سائق، وجولات يومية في المنطقة." },
   ];
   page.body = `
-${pageHero({ crumbs, eyebrow: "فنادق ومنتجعات • أكواخ وبنغلات", title: "أكواخ وبنغلات في سبانجا وطرابزون وأوزنجول", lead: "بيوت خشبية بين الغابات والبحيرات: جاكوزي ومدفأة ومسبح خاص وإطلالة. اختر الكوخ من الصور الحقيقية، ونؤكد لك التوفر والسعر كتابةً.", icon: "bed", img: "hotels-sapanca", alt: "بنغل خشبي بين الأشجار في سبانجا",
+${pageHero({ crumbs, eyebrow: "فنادق ومنتجعات • أكواخ وبنغلات", title: "شاليهات وبنغلات وأكواخ سبانجا وكارتبه", lead: "بيوت خشبية بين الغابات والبحيرات: جاكوزي ومدفأة ومسبح خاص وإطلالة. اختر الكوخ من الصور الحقيقية، ونؤكد لك التوفر والسعر كتابةً.", icon: "bed", img: "hotels-sapanca", alt: "بنغل خشبي بين الأشجار في سبانجا",
   chips: [{ icon: "check-circle", text: "صور حقيقية لكل كوخ" }, { icon: "check-circle", text: "سعر الليلة واضح" }, { icon: "check-circle", text: "استقبال وسيارة خاصة عند الطلب" }],
   actions: `<a class="btn" href="#list">${ic("bed")}<span>تصفّح الأكواخ</span></a>${waBtn("مرحباً أويا، أبحث عن كوخ أو بنغل للإقامة.", "واتساب", "btn btn--glass")}` })}
 
 <section class="section" id="list">
   <div class="container">
-    ${sectionHead({ eyebrow: "اختر كوخك", title: "الأكواخ والبنغلات المتاحة", lead: "صفِّ حسب المنطقة وعدد الأشخاص، ثم اضغط «احجز» لترسل لنا طلبك على واتساب." })}
+    ${sectionHead({ eyebrow: "اختر كوخك", title: "الأكواخ والبنغلات المتاحة", lead: "صفِّ حسب المنطقة وعدد الأشخاص. لكل كوخ صفحة بصوره ومواصفاته، وزر «احجز» يرسل طلبك على واتساب." })}
     ${cabinsBlock()}
   </div>
 </section>

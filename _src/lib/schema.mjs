@@ -21,7 +21,7 @@ export function orgNode() {
     telephone: site.phoneIntl,
     address: { "@type": "PostalAddress", addressLocality: "Istanbul", addressCountry: "TR", ...(site.addressLine ? { streetAddress: site.addressLine } : {}) },
     areaServed: ["TR", "SA", "AE", "QA", "KW", "BH", "OM", "IQ", "JO", "LB", "SY", "EG", "MA", "DZ", "TN", "LY"].map((c) => ({ "@type": "Country", name: c })),
-    knowsLanguage: ["ar", "tr", "en"],
+    knowsLanguage: ["ar", "tr", "en", "ru", "pt"],
     openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], opens: "09:00", closes: "23:00" }],
     contactPoint: [{ "@type": "ContactPoint", telephone: site.phoneIntl, contactType: "customer service", availableLanguage: ["Arabic", "Turkish", "English"], areaServed: "Worldwide" }],
     ...(sameAs.length ? { sameAs } : {}),

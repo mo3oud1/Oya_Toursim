@@ -433,11 +433,11 @@ export default [
     imgPrompt:
       "Photorealistic travel photography of a private wooden bungalow near Lake Sapanca, Turkey: a small heated pool and an outdoor jacuzzi on a timber deck with gentle steam rising, tall green and autumn-gold trees around, a glimpse of the calm lake through the forest, soft late-afternoon light, natural colors, cinematic composition, no people, no text, no logos, no watermarks, landscape 3:2",
     seo: {
-      title: "بنغلات وشاليهات سبانجا بمسبح خاص | أويا",
+      title: "فنادق سبانجا ومنتجعاتها: دليل أين تقيم | أويا",
       description:
-        "بنغلات سبانجا بمسبح خاص أو جاكوزي، وفنادق على البحيرة وأكواخ معشوقية وكارتبه: دليل الاختيار والحجز للعائلات والعرسان. أرسل طلبك عبر واتساب الآن.",
+        "فنادق ومنتجعات سبانجا على البحيرة، ومناطق الإقامة في معشوقية وكارتبه: دليل الاختيار للعائلات والعرسان، مع أكواخ وبنغلات بمسبح خاص. أرسل طلبك عبر واتساب.",
     },
-    h1: "بنغلات سبانجا وفنادقها: دليل الإقامة بجانب البحيرة",
+    h1: "فنادق سبانجا ومنتجعاتها: دليل الإقامة بجانب البحيرة",
     intro:
       "سبانجا أقرب وجهة طبيعية إلى إسطنبول، وأشهر ما فيها البنغلات الخاصة بمسبح أو جاكوزي بين الأشجار. ليلة أو ليلتان هنا تكفيان لاستراحة هادئة وسط برنامج المدينة.",
     facts: [
