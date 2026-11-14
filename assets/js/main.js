@@ -93,9 +93,11 @@
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     revealEls.forEach(function (el) { io.observe(el); });
-    // stagger children
-    $$("[data-stagger]").forEach(function (g) { $$("[data-reveal]", g).forEach(function (el, i) { el.style.setProperty("--rd", (i % 8) * 0.08 + "s"); }); });
-  } else { revealEls.forEach(function (el) { el.classList.add("is-in"); }); }
+    // stagger children (cards of one grid follow each other)
+    var stagger = function (g) { $$("[data-reveal]", g).forEach(function (el, i) { el.style.setProperty("--rd", (i % 6) * 0.09 + "s"); }); };
+    $$("[data-stagger]").forEach(stagger);
+    w.__oyaReveal = function (box) { stagger(box); $$("[data-reveal]:not(.is-in)", box).forEach(function (el) { io.observe(el); }); };
+  } else { revealEls.forEach(function (el) { el.classList.add("is-in"); }); w.__oyaReveal = function (box) { $$("[data-reveal]", box).forEach(function (el) { el.classList.add("is-in"); }); }; }
 
   /* ---------- Counters ---------- */
   var counters = $$("[data-count]");
