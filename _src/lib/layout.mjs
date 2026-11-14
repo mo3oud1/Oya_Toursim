@@ -82,7 +82,7 @@ function megaMore(data) {
 
 // Language menu: links to the same page in every language. Names are in their own language (translate="no").
 function langMenu(page, L) {
-  if (page.noLocale) return "";
+  if (pageLocales(page).length < 2) return "";
   return `
     <div class="lang" data-lang>
       <button class="lang__btn" type="button" aria-expanded="false" aria-haspopup="true" aria-label="اللغة">${ic("globe")}<span translate="no">${L.short}</span>${ic("chevron")}</button>

@@ -6,7 +6,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { ROOT_DIR, ic, esc, waUrl, sectionHead } from "./ui.mjs";
 
-const readJson = (f, key) => { try { const j = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "data", f), "utf8")); return Array.isArray(j[key]) ? j[key] : []; } catch { return []; } };
+const readJson = (f, key) => { try { const j = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "data", f), "utf8")); return Array.isArray(j[key]) ? j[key].filter((x) => x && typeof x === "object") : []; } catch { return []; } };
+// the currency chosen in the panel (data/prices.json)
+const CUR = (() => { try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "data/prices.json"), "utf8")).currency.symbol || "$"; } catch { return "$"; } })();
 // same signature as catalog.js computes from the live file
 export const sig = (list, keys) => { let h = 0; const s = JSON.stringify(list.map((x) => keys.map((k) => x[k] ?? null))); for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return String(h >>> 0); };
 
@@ -24,7 +26,7 @@ export const AIRPORTS = {
 export function arDur(mins) {
   const h = Math.floor(mins / 60), m = mins % 60;
   const hs = h === 0 ? "" : h === 1 ? "ساعة" : h === 2 ? "ساعتان" : h <= 10 ? `${h} ساعات` : `${h} ساعة`;
-  const ms = m ? `${m} دقيقة` : "";
+  const ms = !m ? "" : m === 1 ? "دقيقة" : m === 2 ? "دقيقتان" : m <= 10 ? `${m} دقائق` : `${m} دقيقة`;
   return `${[hs, ms].filter(Boolean).join(" و")} تقريباً`;
 }
 
@@ -33,7 +35,7 @@ const FKEYS = ["id", "from", "to", "mins", "price", "active"];
 export function flightRoutes() {
   const all = readJson("flights.json", "routes");
   const list = all.filter((r) => r && r.active !== false && AIRPORTS[r.from] && AIRPORTS[r.to]);
-  const tile = (r) => `<a class="ctile" data-reveal href="${waUrl(`مرحباً أويا، أرغب بحجز طيران من ${AIRPORTS[r.from]} إلى ${AIRPORTS[r.to]}.`)}" target="_blank" rel="noopener"><span class="ico">${ic("plane")}</span><div><b>${AIRPORTS[r.from]} ← ${AIRPORTS[r.to]}</b><span>${r.mins ? arDur(r.mins) : ""}</span></div>${typeof r.price === "number" && r.price > 0 ? `<span class="ctile__price">من ${Number(r.price).toLocaleString("en-US")}$</span>` : ""}</a>`;
+  const tile = (r) => `<a class="ctile" data-reveal href="${waUrl(`مرحباً أويا، أرغب بحجز طيران من ${AIRPORTS[r.from]} إلى ${AIRPORTS[r.to]}.`)}" target="_blank" rel="noopener"><span class="ico">${ic("plane")}</span><div><b>${AIRPORTS[r.from]} ← ${AIRPORTS[r.to]}</b><span>${r.mins ? arDur(r.mins) : ""}</span></div>${typeof r.price === "number" && r.price > 0 ? `<span class="ctile__price">من ${Number(r.price).toLocaleString("en-US")}${esc(CUR)}</span>` : ""}</a>`;
   return `<div class="grid grid-4" data-stagger data-flights data-sig="${sig(all, FKEYS)}">${list.map(tile).join("")}</div>`;
 }
 
@@ -66,7 +68,7 @@ export function eventCard(e) {
   <div class="evt__body">
     <h3>${link ? `<a class="cover" href="${link}">${esc(e.title)}</a>` : esc(e.title)}</h3>
     ${e.text ? `<p>${esc(e.text)}</p>` : ""}
-    <div class="evt__foot">${price ? `<div class="price"><small>يبدأ من / للتذكرة</small><b>${Number(e.priceFrom).toLocaleString("en-US")}<span class="cur">$</span></b></div>` : ""}${go}</div>
+    <div class="evt__foot">${price ? `<div class="price"><small>يبدأ من / للتذكرة</small><b>${Number(e.priceFrom).toLocaleString("en-US")}<span class="cur">${esc(CUR)}</span></b></div>` : ""}${go}</div>
   </div>
 </article>`;
 }

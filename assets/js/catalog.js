@@ -24,6 +24,8 @@
   var tr = function (o, f) { if (isAr) return o[f] || ""; var i = o.i18n || {}; return (i[lang] && i[lang][f]) || (i.en && i.en[f]) || o[f + "En"] || ""; };
   var txt = function (o, f) { return tr(o, f) || o[f] || ""; };
   var reveal = function (box) { if (window.__oyaReveal) window.__oyaReveal(box); else [].slice.call(box.querySelectorAll("[data-reveal]")).forEach(function (x) { x.classList.add("is-in"); }); };
+  // the currency chosen in the panel (data/prices.json)
+  var curP = null, currency = function () { return curP || (curP = get("prices.json").then(function (d) { return (d && d.currency && d.currency.symbol) || "$"; })); };
   function get(file) {
     var ctl = window.AbortController ? new AbortController() : null; if (ctl) setTimeout(function () { ctl.abort(); }, 8000);
     return fetch(root + "data/" + file + "?v=" + Math.floor(Date.now() / 60000), { cache: "no-cache", signal: ctl ? ctl.signal : undefined })
@@ -32,8 +34,8 @@
 
   /* ---------- events ---------- */
   var EKEYS = ["id", "title", "tag", "text", "link", "photo", "icon", "priceFrom", "featured", "active", "i18n"];
-  if (ev) get("events.json").then(function (db) {
-    var all = db && Array.isArray(db.events) ? db.events : null; if (!all || sig(all, EKEYS) === ev.getAttribute("data-sig")) return;
+  if (ev) Promise.all([get("events.json"), currency()]).then(function (x) { var db = x[0], cur = x[1];
+    var all = db && Array.isArray(db.events) ? db.events.filter(function (e) { return e && typeof e === "object"; }) : null; if (!all || sig(all, EKEYS) === ev.getAttribute("data-sig")) return;
     ev.innerHTML = all.filter(function (e) { return e && e.active !== false && e.title; }).map(function (e) {
       var link = e.link ? home + String(e.link).replace(/^\/+/, "") : "", title = txt(e, "title"), tag = txt(e, "tag"), text = txt(e, "text");
       var price = typeof e.priceFrom === "number" && e.priceFrom > 0;
@@ -43,7 +45,7 @@
         (e.photo ? '<img src="' + esc(root + e.photo) + '" alt="" loading="lazy" decoding="async">' : '<span class="evt__art">' + icon(e.icon || "ball") + "</span>") +
         (tag ? '<span class="evt__tag">' + esc(tag) + "</span>" : "") + '</div><div class="evt__body"><h3>' + (link ? '<a class="cover" href="' + esc(link) + '">' + esc(title) + "</a>" : esc(title)) + "</h3>" +
         (text ? "<p>" + esc(text) + "</p>" : "") + '<div class="evt__foot">' +
-        (price ? '<div class="price"><small>' + esc(T("يبدأ من / للتذكرة")) + "</small><b>" + num(e.priceFrom) + '<span class="cur">$</span></b></div>' : "") + go + "</div></div></article>";
+        (price ? '<div class="price"><small>' + esc(T("يبدأ من / للتذكرة")) + "</small><b>" + num(e.priceFrom) + '<span class="cur">' + esc(cur) + "</span></b></div>" : "") + go + "</div></div></article>";
     }).join("");
     reveal(ev);
   });
@@ -60,16 +62,17 @@
   };
   function dur(mins) {
     var h = Math.floor(mins / 60), m = mins % 60;
-    if (isAr) { var hs = h === 0 ? "" : h === 1 ? "ساعة" : h === 2 ? "ساعتان" : h <= 10 ? h + " ساعات" : h + " ساعة"; return [hs, m ? m + " دقيقة" : ""].filter(Boolean).join(" و") + " تقريباً"; }
+    if (isAr) { var hs = h === 0 ? "" : h === 1 ? "ساعة" : h === 2 ? "ساعتان" : h <= 10 ? h + " ساعات" : h + " ساعة", ms = !m ? "" : m === 1 ? "دقيقة" : m === 2 ? "دقيقتان" : m <= 10 ? m + " دقائق" : m + " دقيقة"; return [hs, ms].filter(Boolean).join(" و") + " تقريباً"; }
     return h && m ? T("حوالي {0} س {1} د", [h, m]) : h ? T("حوالي {0} س", [h]) : T("حوالي {0} د", [m]);
   }
   var FKEYS = ["id", "from", "to", "mins", "price", "active"];
-  if (fl) get("flights.json").then(function (db) {
-    var all = db && Array.isArray(db.routes) ? db.routes : null; if (!all || sig(all, FKEYS) === fl.getAttribute("data-sig")) return;
+  if (fl) Promise.all([get("flights.json"), currency()]).then(function (x) { var db = x[0], cur = x[1];
+    // Arabic pages keep the built tiles unless the panel changed them; other languages always draw them in their language
+    var all = db && Array.isArray(db.routes) ? db.routes.filter(function (r) { return r && typeof r === "object"; }) : null; if (!all || (isAr && sig(all, FKEYS) === fl.getAttribute("data-sig"))) return;
     fl.innerHTML = all.filter(function (r) { return r && r.active !== false && AIRPORTS[r.from] && AIRPORTS[r.to]; }).map(function (r) {
       var a = AIRPORTS[r.from], b = AIRPORTS[r.to];
       return '<a class="ctile" data-reveal href="' + esc(wa(T("مرحباً أويا، أرغب بحجز طيران من {0} إلى {1}.", [a, b]))) + '" target="_blank" rel="noopener"><span class="ico">' + icon("plane") + "</span><div><b>" + esc(a) + (rtl ? " ← " : " → ") + esc(b) + "</b><span>" + (r.mins ? esc(dur(r.mins)) : "") + "</span></div>" +
-        (typeof r.price === "number" && r.price > 0 ? '<span class="ctile__price">' + esc(T("من {0}", [num(r.price) + "$"])) + "</span>" : "") + "</a>";
+        (typeof r.price === "number" && r.price > 0 ? '<span class="ctile__price">' + esc(T("من {0}", [num(r.price) + cur])) + "</span>" : "") + "</a>";
     }).join("");
     reveal(fl);
   });
@@ -107,9 +110,9 @@
     card.querySelector(".cab__l").addEventListener("click", function () { go(rtl ? 1 : -1); });
     card.querySelector(".cab__r").addEventListener("click", function () { go(rtl ? -1 : 1); });
   }
-  if (ho.length) get("hotels.json").then(function (db) {
+  if (ho.length) Promise.all([get("hotels.json"), currency()]).then(function (x) { var db = x[0], cur0 = x[1];
     var all = (db && Array.isArray(db.hotels) ? db.hotels : []).filter(function (h) { return h && typeof h === "object" && h.active !== false && h.name; });
-    var cur = (db && db.currency) || "$";
+    var cur = cur0;
     ho.forEach(function (b) {
       var city = b.getAttribute("data-city") || "", limit = +b.getAttribute("data-limit") || 0, grid = b.querySelector(".cab-grid");
       var list = all.filter(function (h) { return !city || h.city === city; }); if (limit) list = list.slice(0, limit);

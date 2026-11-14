@@ -4,7 +4,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { ROOT_DIR } from "./lib/ui.mjs";
 import { ownerPosts } from "./lib/ownerposts.mjs";
+import builtIn from "./content/posts.mjs";
 let built = [];
 try { built = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "_src/.owner-posts.json"), "utf8")); } catch {}
-const now = ownerPosts().map((p) => p.slug).sort();
+const now = ownerPosts().filter((p) => !builtIn.some((x) => x.slug === p.slug)).map((p) => p.slug).sort();
 console.log(JSON.stringify(now) === JSON.stringify([...built].sort()) ? "no" : "yes");

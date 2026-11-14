@@ -488,6 +488,8 @@
   F.blog = { path: "data/blog.json", list: "posts" }; GEN.push("blog");
   var takenSlugs = []; // built-in articles (from the sitemap) — the panel cannot reuse their links
   fetch("../sitemap.xml", { cache: "no-store" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (x) { var m, re = /oyatourism\.com\/blog\/([a-z0-9-]+)\//g; while ((m = re.exec(x))) if (takenSlugs.indexOf(m[1]) < 0) takenSlugs.push(m[1]); }).catch(function () {});
+  // a link used by a built-in article (the panel's own published articles are in the sitemap too, and are not "taken")
+  var builtIn = function (slug) { return takenSlugs.indexOf(slug) > -1 && !(F.blog.orig.posts || []).some(function (p) { return p.slug === slug; }); };
   var istNow = function () { var p = {}; new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + "-" + p.month + "-" + p.day + "T" + (p.hour === "24" ? "00" : p.hour) + ":" + p.minute; };
   var whenMs = function (w) { return w ? new Date(w + ":00+03:00").getTime() : 0; };
   var fmtWhen = function (w) { return w ? w.replace("T", " — ") : ""; };
@@ -688,7 +690,7 @@
     var h2 = (body.match(/<h2/g) || []).length, imgs = body.match(/<img[^>]*>/g) || [], noAlt = imgs.filter(function (x) { return !/alt="[^"]+"/.test(x); }).length;
     var has = function (s) { return k && s && s.toLowerCase().indexOf(k.toLowerCase()) > -1; };
     var internal = /href="(https?:\/\/(www\.)?oyatourism\.com\/|\.\.\/|\/)/.test(body);
-    var slugOk = /^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug) && slug.length >= 3 && slug.length <= 80, slugFree = takenSlugs.indexOf(slug) < 0 && !F.blog.db.posts.some(function (p, i) { return i !== bi && p.slug === slug; });
+    var slugOk = /^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug) && slug.length >= 3 && slug.length <= 80, slugFree = !builtIn(slug) && !F.blog.db.posts.some(function (p, i) { return i !== bi && p.slug === slug; });
     var rows = [
       [seoT.length >= 20 && seoT.length <= 65, "عنوان Google بين 20 و65 حرفاً (الآن " + seoT.length + ")"],
       [desc.length >= 110 && desc.length <= 165, "الوصف بين 110 و165 حرفاً (الآن " + desc.length + ")"],
@@ -722,7 +724,7 @@
     else if (/data-up="1"/.test(rte.innerHTML) || o.cover === "uploading") err = "انتظر حتى ينتهي رفع الصور.";
     else if (o.status === "publish") {
       if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(o.slug) || o.slug.length < 3) err = "قبل النشر اكتب رابط المقال بالإنجليزية (مثل uzungol-winter-guide)، أو احفظه كمسودة.";
-      else if (takenSlugs.indexOf(o.slug) > -1 || F.blog.db.posts.some(function (p, i) { return i !== bi && p.slug === o.slug; })) err = "هذا الرابط مستخدم لمقال آخر. اختر رابطاً مختلفاً.";
+      else if (builtIn(o.slug) || F.blog.db.posts.some(function (p, i) { return i !== bi && p.slug === o.slug; })) err = "هذا الرابط مستخدم لمقال آخر. اختر رابطاً مختلفاً.";
       else if (!o.description) err = "قبل النشر اكتب وصف Google للمقال بالعربية.";
       else if (o.words < 120) err = "النص العربي قصير جداً للنشر. أكمل كتابته أو احفظه كمسودة.";
       else { var half = LANGS.slice(1).filter(function (l) { var v = langOf(o, l[0]); return !!v.title !== !!wordsOf(v.body); }); if (half.length) err = "نسخة " + LNAME[half[0][0]] + " ناقصة: اكتب لها العنوان والنص معاً، أو امسح ما كتبته فيها."; }
