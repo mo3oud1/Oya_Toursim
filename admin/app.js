@@ -1,5 +1,7 @@
 (function () {
   "use strict";
+  // the public site (files, photos, sitemap, page links); the panel itself is served from its own address
+  var SITE = "https://oyatourism.com/";
   if (window.top !== window.self) { document.documentElement.hidden = true; return; } // never inside another site's frame
   // numbers can be typed with Arabic digits (١٥٠) or separators (1,200): turned into 150 / 1200 as you type
   document.addEventListener("input", function (e) {
@@ -110,7 +112,7 @@
     }).join("") : '<div class="empty">لا توجد نتائج</div>';
     markChanged();
   }
-  function photoSrc(p) { return localImg[p] || "../" + p; }
+  function photoSrc(p) { return localImg[p] || SITE + p; }
   function renderCabs() {
     var list = F.cabins.db.cabins;
     $("#cabs").innerHTML = list.length ? list.map(function (c, i) {
@@ -487,7 +489,7 @@
   /* ---------- blog: write in every language, photos, schedule, SEO check ---------- */
   F.blog = { path: "data/blog.json", list: "posts" }; GEN.push("blog");
   var takenSlugs = []; // built-in articles (from the sitemap) — the panel cannot reuse their links
-  fetch("../sitemap.xml", { cache: "no-store" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (x) { var m, re = /oyatourism\.com\/blog\/([a-z0-9-]+)\//g; while ((m = re.exec(x))) if (takenSlugs.indexOf(m[1]) < 0) takenSlugs.push(m[1]); }).catch(function () {});
+  fetch(SITE + "sitemap.xml", { cache: "no-store" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (x) { var m, re = /oyatourism\.com\/blog\/([a-z0-9-]+)\//g; while ((m = re.exec(x))) if (takenSlugs.indexOf(m[1]) < 0) takenSlugs.push(m[1]); }).catch(function () {});
   // a link used by a built-in article (the panel's own published articles are in the sitemap too, and are not "taken")
   var builtIn = function (slug) { return takenSlugs.indexOf(slug) > -1 && !(F.blog.orig.posts || []).some(function (p) { return p.slug === slug; }); };
   var istNow = function () { var p = {}; new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + "-" + p.month + "-" + p.day + "T" + (p.hour === "24" ? "00" : p.hour) + ":" + p.minute; };
@@ -504,11 +506,11 @@
   function renderBlog() {
     var list = F.blog.db.posts, box = $("#posts"); if (!box) return;
     box.innerHTML = list.length ? list.map(function (p, i) {
-      var st = postState(p), th = p.cover ? (localImg["photos/" + p.cover] || "../assets/img/photos/" + p.cover + "-640.webp") : "";
+      var st = postState(p), th = p.cover ? (localImg["photos/" + p.cover] || SITE + "assets/img/photos/" + p.cover + "-640.webp") : "";
       return '<div class="cabrow">' + (th ? '<img class="th" src="' + esc(th) + '" alt="">' : '<span class="th ico" aria-hidden="true">✎</span>') +
         "<div><h3>" + esc(p.title || "بدون عنوان") + '<span class="pill' + (st[1] === "off" ? " off" : "") + '"' + (st[1] === "sch" ? ' style="background:#FFF3DC;color:#8A4B00"' : "") + ">" + esc(st[0]) + "</span></h3><p>" +
         esc([p.category, (p.words || 0) + " كلمة", p.slug ? "/blog/" + p.slug + "/" : ""].filter(Boolean).join(" • ")) + '</p><p class="lchips">' + LANGS.map(function (l) { return '<span class="' + (hasLang(p, l[0]) ? "on" : "") + '">' + l[2] + "</span>"; }).join("") + "</p></div>" +
-        '<div class="acts">' + (st[0] === "منشور" && p.slug ? '<a class="btn btn--ghost sbtn" href="../blog/' + esc(p.slug) + '/" target="_blank" rel="noopener">عرض</a>' : "") +
+        '<div class="acts">' + (st[0] === "منشور" && p.slug ? '<a class="btn btn--ghost sbtn" href="' + SITE + 'blog/' + esc(p.slug) + '/" target="_blank" rel="noopener">عرض</a>' : "") +
         '<button class="btn btn--ghost sbtn" type="button" data-pedit="' + i + '">تعديل</button><button class="btn btn--danger sbtn" type="button" data-pdel="' + i + '">حذف</button></div></div>';
     }).join("") : '<div class="card empty">لا توجد مقالات بعد. اضغط «مقال جديد» لكتابة أول مقال.</div>';
   }
@@ -535,7 +537,7 @@
         if (!keep) { if (n.nodeName === "DIV") { var p = document.createElement("p"); while (n.firstChild) p.appendChild(n.firstChild); node.replaceChild(p, n); } else { while (n.firstChild) node.insertBefore(n.firstChild, n); node.removeChild(n); } return; }
         [].slice.call(n.attributes).forEach(function (a) {
           var k = a.name.toLowerCase(), v = a.value.trim();
-          var ok = keep.indexOf(k) > -1 && !(k === "href" && !/^(https?:\/\/[^\s]+|\.\.\/[\w\/.#-]*)$/i.test(v)) && !(k === "src" && !/^(\.\.\/assets\/|assets\/|blob:|https:\/\/)/.test(v));
+          var ok = keep.indexOf(k) > -1 && !(k === "href" && !/^https?:\/\/[^\s]+$/i.test(v)) && !(k === "src" && !/^(assets\/|blob:|https:\/\/)/.test(v));
           if (!ok) n.removeAttribute(a.name);
         });
         if (n.nodeName === "IMG" && !n.getAttribute("src")) node.removeChild(n);
@@ -543,8 +545,8 @@
     })(t.content);
     return t.innerHTML;
   }
-  var toEditor = function (h) { return cleanHTML(String(h || "").replace(/src="assets\//g, 'src="../assets/')); };
-  function showImgs() { $$("img", rte).forEach(function (im) { var p = (im.getAttribute("src") || "").replace(/^\.\.\//, ""); if (localImg[p]) { im.setAttribute("data-p", p); im.src = localImg[p]; } }); }
+  var toEditor = function (h) { return cleanHTML(String(h || "").replace(/src="assets\//g, 'src="' + SITE + 'assets/')); };
+  function showImgs() { $$("img", rte).forEach(function (im) { var p = (im.getAttribute("src") || "").replace(SITE, ""); if (localImg[p]) { im.setAttribute("data-p", p); im.src = localImg[p]; } }); }
   function fromEditor() {
     var c = rte.cloneNode(true);
     $$("img", c).forEach(function (im) { var p = im.getAttribute("data-p"); if (p) im.setAttribute("src", p); im.removeAttribute("data-p"); im.removeAttribute("style"); });
@@ -559,7 +561,7 @@
       cur.appendChild(n);
     });
     $$("p", c).forEach(function (x) { if (!x.textContent.trim() && !x.querySelector("img")) x.parentNode.removeChild(x); });
-    return c.innerHTML.replace(/src="\.\.\/assets\//g, 'src="assets/').replace(/&nbsp;/g, " ").trim();
+    return c.innerHTML.split('src="' + SITE + 'assets/').join('src="assets/').replace(/&nbsp;/g, " ").trim();
   }
   var wordsOf = function (h) { return String(h || "").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length; };
   // the per-language fields live in the form while that language is open; stash() writes them back
@@ -606,7 +608,7 @@
   function syncFaq() { bp._faq = (bp._faq || []).map(function (f, i) { var q = $('[data-fq="' + i + '"]'), a = $('[data-fa="' + i + '"]'); return { q: q ? q.value.trim() : f.q, a: a ? a.value.trim() : f.a }; }); }
   // cover (shared by every language): full size + 1024 + 640 WebP in assets/img/photos and a 1200×630 share image
   function drawCover() {
-    var k = bp.cover, src = k ? (localImg["photos/" + k] || "../assets/img/photos/" + k + "-640.webp") : "";
+    var k = bp.cover, src = k ? (localImg["photos/" + k] || SITE + "assets/img/photos/" + k + "-640.webp") : "";
     $("#bCover").innerHTML = k ? '<div class="ph' + (k.indexOf("uploading") === 0 ? " up" : "") + '"><img src="' + esc(src) + '" alt=""><button class="x" type="button" id="bCoverX" aria-label="حذف الصورة">✕</button></div>' : '<label class="addph">＋ صورة الغلاف<input type="file" accept="image/*" id="bCoverF"></label>';
   }
   $("#bCover").addEventListener("click", function (e) { if (e.target.id === "bCoverX") { bp.cover = ""; drawCover(); check(); } });

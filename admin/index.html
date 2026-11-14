@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https:; font-src 'self'; connect-src 'self' https://api.github.com https://api.openai.com https://generativelanguage.googleapis.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https:; font-src 'self' https://oyatourism.com; connect-src 'self' https://oyatourism.com https://api.github.com https://api.openai.com https://generativelanguage.googleapis.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>لوحة التحكم — أويا للسياحة</title>
-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://oyatourism.com/favicon.svg" type="image/svg+xml">
 <style>
-@font-face{font-family:Alexandria;src:url("../assets/fonts/alexandria-arabic.woff2") format("woff2");font-weight:100 900;font-display:swap}
-@font-face{font-family:Alexandria;src:url("../assets/fonts/alexandria-latin.woff2") format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F}
-@font-face{font-family:Readex;src:url("../assets/fonts/readex-arabic.woff2") format("woff2");font-weight:160 700;font-display:swap}
-@font-face{font-family:Readex;src:url("../assets/fonts/readex-latin.woff2") format("woff2");font-weight:160 700;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Alexandria;src:url("https://oyatourism.com/assets/fonts/alexandria-arabic.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:Alexandria;src:url("https://oyatourism.com/assets/fonts/alexandria-latin.woff2") format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Readex;src:url("https://oyatourism.com/assets/fonts/readex-arabic.woff2") format("woff2");font-weight:160 700;font-display:swap}
+@font-face{font-family:Readex;src:url("https://oyatourism.com/assets/fonts/readex-latin.woff2") format("woff2");font-weight:160 700;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F}
 :root{--navy:#19487E;--navy-900:#0B1F3A;--navy-950:#061428;--orange:#ED5404;--orange-btn:#C44A02;--sand:#F7F4EE;--line:#E6E1D8;--muted:#5D6B7E;--ok:#0E7A41;--bad:#B42318;--sky:#E8F1FA;
   --ff-d:Alexandria,system-ui,sans-serif;--ff:Readex,system-ui,sans-serif}
 *{box-sizing:border-box}
@@ -204,7 +204,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 <!-- login -->
 <section class="login" id="login" hidden>
   <div class="card">
-    <img src="../assets/img/brand/oya-logo.svg" alt="أويا للسياحة" width="120" height="56">
+    <img src="https://oyatourism.com/assets/img/brand/oya-logo.svg" alt="أويا للسياحة" width="120" height="56">
     <h1>لوحة التحكم</h1>
     <p>عدّل المباريات والفنادق والأكواخ والطيران والأسعار، وتظهر على الموقع خلال دقائق.</p>
     <form id="loginForm">
@@ -231,10 +231,10 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 <div id="app" hidden>
   <header class="top">
     <div class="wrap">
-      <img src="../assets/img/brand/oya-logo-white.svg" alt="" width="74" height="34">
+      <img src="https://oyatourism.com/assets/img/brand/oya-logo-white.svg" alt="" width="74" height="34">
       <div><b>لوحة التحكم</b><small id="upd">—</small></div>
       <span class="sp"></span>
-      <a class="link" href="../" target="_blank" rel="noopener">عرض الموقع</a>
+      <a class="link" href="https://oyatourism.com/" target="_blank" rel="noopener">عرض الموقع</a>
       <button class="link" type="button" id="logout">خروج</button>
     </div>
   </header>
@@ -256,25 +256,25 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
       </div>
 
       <section class="panel" data-panel="ev">
-        <div class="tools"><button class="btn" type="button" data-add="events">＋ إضافة بطولة أو مباراة</button><a class="link ext" href="../matches/" target="_blank" rel="noopener">صفحة تذاكر المباريات</a></div>
+        <div class="tools"><button class="btn" type="button" data-add="events">＋ إضافة بطولة أو مباراة</button><a class="link ext" href="https://oyatourism.com/matches/" target="_blank" rel="noopener">صفحة تذاكر المباريات</a></div>
         <div class="hint">ⓘ<span>كل بطاقة هنا تظهر في صفحة «تذاكر المباريات». البطاقة المرتبطة بصفحة (مثل كأس السوبر) تفتح صفحتها، والباقي يفتح طلباً على واتساب. رتّبها بالأسهم ▲▼. اكتب النصوص بالعربية ثم بباقي اللغات من شريط اللغات داخل النافذة.</span></div>
         <div class="cabs" data-list="events"></div>
       </section>
 
       <section class="panel" data-panel="ho" hidden>
-        <div class="tools"><button class="btn" type="button" data-add="hotels">＋ إضافة فندق</button><a class="link ext" href="../hotels/" target="_blank" rel="noopener">صفحة الفنادق</a></div>
+        <div class="tools"><button class="btn" type="button" data-add="hotels">＋ إضافة فندق</button><a class="link ext" href="https://oyatourism.com/hotels/" target="_blank" rel="noopener">صفحة الفنادق</a></div>
         <div class="hint">ⓘ<span>كل فندق تضيفه يظهر في صفحة «فنادق ومنتجعات» تحت «فنادق مختارة» وفي صفحة فنادق مدينته. أضف فقط الفنادق التي تتعامل معها، بصورها الحقيقية. اسم الفندق يظهر كما هو بكل اللغات، والمنطقة والوصف تكتبهما لكل لغة من شريط اللغات.</span></div>
         <div class="cabs" data-list="hotels"></div>
       </section>
 
       <section class="panel" data-panel="fl" hidden>
-        <div class="tools"><button class="btn" type="button" data-add="flights">＋ إضافة وجهة طيران</button><a class="link ext" href="../flights/" target="_blank" rel="noopener">صفحة الطيران</a></div>
+        <div class="tools"><button class="btn" type="button" data-add="flights">＋ إضافة وجهة طيران</button><a class="link ext" href="https://oyatourism.com/flights/" target="_blank" rel="noopener">صفحة الطيران</a></div>
         <div class="hint">ⓘ<span>الوجهات تظهر في صفحة «تذاكر طيران» تحت «رحلات من إسطنبول إلى أهم الوجهات»، وكل وجهة تفتح طلب حجز على واتساب. أسماء المدن تُترجم تلقائياً لكل اللغات. رتّبها بالأسهم ▲▼.</span></div>
         <div class="cabs" data-list="flights"></div>
       </section>
 
       <section class="panel" data-panel="bl" hidden>
-        <div class="tools"><button class="btn" type="button" id="addPost">＋ مقال جديد</button><a class="link ext" href="../blog/" target="_blank" rel="noopener">المدونة على الموقع</a></div>
+        <div class="tools"><button class="btn" type="button" id="addPost">＋ مقال جديد</button><a class="link ext" href="https://oyatourism.com/blog/" target="_blank" rel="noopener">المدونة على الموقع</a></div>
         <div class="hint">ⓘ<span>اكتب المقال وأضف صوره، واختر «نشر» مع موعد النشر: يظهر في المدونة كصفحة كاملة تقرؤها محركات البحث (عنوان ووصف وبيانات منظمة وخريطة الموقع) خلال دقائق من الحفظ، أو في موعده إن كان مجدولاً (خلال ساعة من الموعد). «مسودة» لا تظهر على الموقع. اكتب المقال بالعربية، ثم بأي لغة أخرى من شريط اللغات: كل لغة تكتبها تصبح صفحة في موقع تلك اللغة.</span></div>
         <div class="cabs" id="posts"></div>
       </section>
@@ -296,7 +296,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
       <section class="panel" data-panel="cb" hidden>
         <div class="tools">
           <button class="btn" type="button" id="addCab">＋ إضافة كوخ</button>
-          <a class="link ext" href="../cabins/" target="_blank" rel="noopener">صفحة الأكواخ على الموقع</a>
+          <a class="link ext" href="https://oyatourism.com/cabins/" target="_blank" rel="noopener">صفحة الأكواخ على الموقع</a>
         </div>
         <div class="hint">ⓘ<span>كل كوخ تضيفه يظهر في صفحة «أكواخ وبنغلات» وفي صفحة فنادق مدينته (سبانجا أو طرابزون وأوزنجول). استخدم صوراً حقيقية للكوخ نفسه. المواصفات تظهر مترجمة بكل اللغات، والوصف تكتبه بالعربية ثم بباقي اللغات من «الوصف بلغات الموقع الأخرى».</span></div>
         <div class="cabs" id="cabs"></div>
@@ -447,6 +447,6 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="app.js?v=20261114d"></script>
+<script src="app.js?v=20261114e"></script>
 </body>
 </html>
