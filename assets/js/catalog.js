@@ -16,7 +16,8 @@
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var num = function (n) { return Number(n).toLocaleString({ ru: "ru-RU", tr: "tr-TR", pt: "pt-BR" }[lang] || "en-US"); };
   var wa = function (msg) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg); };
-  var icon = function (n) { var u = document.querySelector("use[href*='icons.svg#']"); var base = u ? u.getAttribute("href").split("#")[0] : root + "assets/img/icons.svg"; return '<svg class="i" aria-hidden="true" focusable="false"><use href="' + base + "#" + n + '"/></svg>'; };
+  var ICONS = { ball: 1, trophy: 1, stadium: 1, globe: 1, ticket: 1, whatsapp: 1, plane: 1 };
+  var icon = function (n) { if (!ICONS[n]) n = "ball"; var u = document.querySelector("use[href*='icons.svg#']"); var base = u ? u.getAttribute("href").split("#")[0] : root + "assets/img/icons.svg"; return '<svg class="i" aria-hidden="true" focusable="false"><use href="' + base + "#" + n + '"/></svg>'; };
   var sig = function (list, keys) { var h = 0, s = JSON.stringify(list.map(function (x) { return keys.map(function (k) { return x[k] == null ? null : x[k]; }); })); for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return String(h >>> 0); };
   // owner text: Arabic, English, and (for older entries) other languages; falls back to English then Arabic
   // tr: this language's own wording (or English), never Arabic on a translated page; txt: falls back to Arabic
@@ -83,7 +84,7 @@
   };
   function hotelCard(h, cur) {
     var city = CITIES[h.city] || "", photos = (h.photos || []).filter(Boolean), price = typeof h.price === "number" && h.price > 0;
-    var stars = +h.stars > 0 ? '<span class="cab__stars" aria-label="' + esc(T("{0} نجوم", [h.stars])) + '">' + new Array(+h.stars + 1).join("★") + "</span>" : "";
+    var nst = Math.max(0, Math.min(5, parseInt(h.stars, 10) || 0)), stars = nst > 0 ? '<span class="cab__stars" aria-label="' + esc(T("{0} نجوم", [nst])) + '">' + new Array(nst + 1).join("★") + "</span>" : "";
     var feats = (h.features || []).filter(function (f) { return HFEAT[f]; }).slice(0, 6);
     var msg = T("مرحباً أويا، أرغب بحجز فندق «{0}» ({1}). التواريخ وعدد الأشخاص:", [h.name, city]);
     return '<article class="cab" data-reveal><div class="cab__media">' + (photos.length ? photos.map(function (p, i) {

@@ -5,7 +5,7 @@
 // .github/workflows/build.yml rebuilds the site on every change and every hour.
 import fs from "node:fs";
 import path from "node:path";
-import { ROOT_DIR, photoExists } from "./ui.mjs";
+import { ROOT_DIR, photoExists, esc } from "./ui.mjs";
 
 const FILE = path.join(ROOT_DIR, "data/blog.json");
 const MANIFEST = path.join(ROOT_DIR, "_src/.owner-posts.json"); // slugs built last time (to remove deleted articles)
@@ -35,6 +35,7 @@ export function sanitize(html) {
     for (const a of (m[2] || "").matchAll(/([a-zA-Z-]+)\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+))/g)) {
       const k = a[1].toLowerCase(), v = (a[3] ?? a[4] ?? a[5] ?? "").replace(/&amp;/g, "&");
       if (!ALLOW[t].includes(k)) continue;
+      if (k === "href" && /^\/[\/\\]/.test(v)) continue;
       if (k === "href" && !/^(https?:\/\/|\/|#|mailto:|tel:)/i.test(v) && !/^[a-z0-9-]+(\/[a-z0-9-]*)*\/?(#[\w-]*)?$/i.test(v)) continue;
       if (k === "src" && !/^(assets\/img\/|https:\/\/)/.test(v)) continue;
       attrs.push(`${k}="${escAttr(v)}"`);
@@ -70,19 +71,19 @@ function version(p, lang) {
   const seoTitle = String(v.seoTitle || title).trim();
   const desc = String(v.description || v.excerpt || "").trim();
   return {
-    owner: true, lang, slug: p.slug, title, h1: title,
+    owner: true, lang, slug: p.slug, title, h1: esc(title), rawTitle: title,
     seo: { title: seoTitle.length > 60 ? seoTitle : `${seoTitle} | ${BRAND[lang]}`, description: desc.slice(0, 165) },
-    excerpt: String(v.excerpt || v.description || "").trim(), date, updated: (p.updated || date).slice(0, 10),
+    excerpt: esc(String(v.excerpt || v.description || "").trim()), rawExcerpt: String(v.excerpt || v.description || "").trim(), date, updated: (p.updated || date).slice(0, 10),
     dateText: new Date(date).toLocaleDateString(LOCALE[lang], { year: "numeric", month: "long", day: "numeric" }),
     readMins: Math.max(2, Math.round(words(body) / 200)), category: p.category || "دليل السفر", icon: "doc",
     img: p.cover && photoExists(p.cover) ? p.cover : null, imgAlt: String(v.coverAlt || p.coverAlt || title).trim(),
-    body, faq: (v.faq || []).filter((f) => f && f.q && f.a).map((f) => ({ q: String(f.q).trim(), a: String(f.a).trim() })), related: [],
+    body, faq: (v.faq || []).filter((f) => f && f.q && f.a).map((f) => ({ q: esc(String(f.q).trim()), a: esc(String(f.a).trim()) })), related: [],
   };
 }
 // published articles (Arabic version, with .tr = the other languages that have a title and a text)
 export function ownerPosts(now = new Date()) {
   let db = { posts: [] };
-  try { db = JSON.parse(fs.readFileSync(FILE, "utf8")); } catch {}
+  if (fs.existsSync(FILE)) db = JSON.parse(fs.readFileSync(FILE, "utf8")); // a parse error stops the build on purpose
   const list = Array.isArray(db.posts) ? db.posts : [];
   return list
     .filter((p) => p && p.status === "publish" && /^[a-z0-9-]{3,90}$/.test(p.slug || "") && (!p.publishAt || istanbulTime(p.publishAt) <= now))
@@ -98,7 +99,7 @@ export function ownerPosts(now = new Date()) {
 // translations the panel provides for text that appears on translated pages (blog cards): Arabic → language
 export function ownerPostDict(posts, lang, idOf) {
   const d = {};
-  for (const p of posts) { const v = p.tr[lang]; if (!v) continue; d[idOf(p.title)] = v.title; if (p.excerpt) d[idOf(p.excerpt)] = v.excerpt || v.seo.description || v.title; if (p.imgAlt) d[idOf(p.imgAlt)] = v.imgAlt; }
+  for (const p of posts) { const v = p.tr[lang]; if (!v) continue; d[idOf(p.rawTitle)] = v.rawTitle; if (p.rawExcerpt) d[idOf(p.rawExcerpt)] = v.rawExcerpt || v.seo.description || v.rawTitle; if (p.imgAlt) d[idOf(p.imgAlt)] = v.imgAlt; }
   return d;
 }
 

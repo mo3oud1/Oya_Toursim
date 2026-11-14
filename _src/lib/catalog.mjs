@@ -44,8 +44,8 @@ export function eventsDict(lang, dict, idOf) {
   const d = {}, msg = dict[idOf("مرحباً أويا، أرغب بحضور: {0}.")];
   for (const e of readJson("events.json", "events")) {
     const i = e.i18n || {}, pick = (f) => (i[lang] && i[lang][f]) || (i.en && i.en[f]) || "";
-    for (const f of ["title", "tag", "text"]) if (e[f] && pick(f)) d[idOf(e[f])] = pick(f);
-    if (e.title && pick("title") && msg) d[idOf(`مرحباً أويا، أرغب بحضور: ${e.title}.`)] = msg.replace("{0}", pick("title"));
+    for (const f of ["title", "tag", "text"]) if (e[f] && pick(f) && !(idOf(e[f]) in dict)) d[idOf(e[f])] = pick(f);
+    if (e.title && pick("title") && msg && !(idOf(`مرحباً أويا، أرغب بحضور: ${e.title}.`) in dict)) d[idOf(`مرحباً أويا، أرغب بحضور: ${e.title}.`)] = msg.replace("{0}", pick("title"));
   }
   return d;
 }
@@ -62,7 +62,7 @@ export function eventCard(e) {
     : `<a class="btn btn--wa btn--sm evt__go" href="${waUrl(`مرحباً أويا، أرغب بحضور: ${e.title}.`)}" target="_blank" rel="noopener">${ic("whatsapp")}<span>اسأل عن التذاكر</span></a>`;
   return `
 <article class="evt${e.featured ? " evt--featured" : ""}" data-reveal>
-  <div class="evt__media">${e.photo ? `<img src="{{root}}${esc(e.photo)}" alt="" loading="lazy" decoding="async">` : `<span class="evt__art">${ic(e.icon || "ball")}</span>`}${e.tag ? `<span class="evt__tag">${esc(e.tag)}</span>` : ""}</div>
+  <div class="evt__media">${e.photo ? `<img src="{{root}}${esc(e.photo)}" alt="" loading="lazy" decoding="async">` : `<span class="evt__art">${ic(["ball", "trophy", "stadium", "globe"].includes(e.icon) ? e.icon : "ball")}</span>`}${e.tag ? `<span class="evt__tag">${esc(e.tag)}</span>` : ""}</div>
   <div class="evt__body">
     <h3>${link ? `<a class="cover" href="${link}">${esc(e.title)}</a>` : esc(e.title)}</h3>
     ${e.text ? `<p>${esc(e.text)}</p>` : ""}

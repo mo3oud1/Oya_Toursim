@@ -139,7 +139,10 @@ const translators = Object.fromEntries(OTHERS.map((L) => [L.code, new Translator
 // reading time of any length (articles from the panel can be short or long): fill the ones not translated yet
 const READ = { en: "{0} min read", ru: "{0} мин чтения", tr: "{0} dk okuma", pt: "{0} min de leitura" };
 for (const L of OTHERS) for (let n = 1; n <= 60; n++) { const id = idOf(readAr(n)); if (!translators[L.code].dict[id]) translators[L.code].dict[id] = READ[L.code].replace("{0}", n); }
-for (const L of OTHERS) Object.assign(translators[L.code].dict, eventsDict(L.code, translators[L.code].dict, idOf), ownerPostDict(data.ownerPosts, L.code, idOf));
+for (const L of OTHERS) {
+  const dict = translators[L.code].dict, add = (d) => { for (const [k, v] of Object.entries(d)) if (!(k in dict)) dict[k] = v; }; // never replace the site's own wording
+  add(eventsDict(L.code, dict, idOf)); add(ownerPostDict(data.ownerPosts, L.code, idOf));
+}
 
 // shared HTML clean-up (before translation, so generated labels such as table captions are translated too)
 const post = (html) => enhanceTables(html.replace(/\n\s*\n+/g, "\n").replace(/<(details|li)([^>]*?) data-reveal(="[a-z]+")?/g, "<$1$2"));

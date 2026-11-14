@@ -36,7 +36,7 @@
       (photos.length > 1 ? '<button type="button" class="cab__nav cab__l" aria-label="' + esc(T("صورة أخرى")) + '">‹</button><button type="button" class="cab__nav cab__r" aria-label="' + esc(T("صورة أخرى")) + '">›</button><span class="cab__n">1 / ' + photos.length + "</span>" : "") +
       '<span class="cab__area">' + esc(area[0]) + "</span></div>" +
       '<div class="cab__body"><h3 translate="no">' + esc(c.name) + "</h3>" +
-      '<p class="cab__specs"><span>' + T("غرف النوم: {0}", [c.rooms || 1]) + "</span><span>" + T("الأشخاص: حتى {0}", [c.guests || 2]) + "</span></p>" +
+      '<p class="cab__specs"><span>' + T("غرف النوم: {0}", [Math.max(1, Math.min(50, parseInt(c.rooms, 10) || 1))]) + "</span><span>" + T("الأشخاص: حتى {0}", [Math.max(1, Math.min(99, parseInt(c.guests, 10) || 2))]) + "</span></p>" +
       (feats.length ? '<ul class="cab__feats">' + feats.map(function (f) { return "<li>" + esc(FEAT[f]) + "</li>"; }).join("") + "</ul>" : "") +
       (note(c) ? '<p class="cab__note">' + esc(note(c)) + "</p>" : "") +
       '<div class="cab__foot"><div class="price"><small>' + (price ? T("لليلة الواحدة") : T("السعر")) + "</small><b" + (price ? "" : ' class="price__ask"') + ">" +

@@ -38,6 +38,16 @@ jobs:
           git add -A
           git reset -q -- data   # never write back the panel's own files
           if git diff --cached --quiet; then echo "Nothing changed."; exit 0; fi
-          git commit -m "Automatic build: publish changes from the admin panel"
-          for i in 1 2 3 4; do git pull --rebase -X theirs origin main && git push origin HEAD:main && break; sleep $((i * 5)); done
+          git commit -q -m "Automatic build: publish changes from the admin panel"
+          ok=0
+          for i in 1 2 3 4; do
+            if git push origin HEAD:main; then ok=1; break; fi
+            sleep $((i * 5))
+            # someone pushed meanwhile: start again from the latest main and rebuild there
+            git fetch -q origin main && git reset -q --hard origin/main && node _src/build.mjs
+            git add -A && git reset -q -- data
+            if git diff --cached --quiet; then ok=1; break; fi
+            git commit -q -m "Automatic build: publish changes from the admin panel"
+          done
+          [ "$ok" = 1 ] || { echo "Could not push the build"; exit 1; }
           curl -sS -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true
