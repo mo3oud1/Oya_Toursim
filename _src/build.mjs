@@ -15,7 +15,7 @@ import { flightsPage, hotelsPage } from "./pages/services.mjs";
 import { turkeyHub, worldHub, packagesHub, visaHub, blogHub } from "./pages/hubs.mjs";
 import { matchesHub, superCupPage } from "./pages/matches.mjs";
 import { aboutPage, contactPage, faqPage, privacyPage, termsPage, notFoundPage } from "./pages/info.mjs";
-import { hotelCityPage, extraPage, offersHub } from "./lib/templates2.mjs";
+import { hotelCityPage, extraPage, offersHub, serviceHub } from "./lib/templates2.mjs";
 import { turkeyVisaPage } from "./pages/turkey-visa.mjs";
 import { cabinsPage } from "./pages/cabins.mjs";
 import { cabinPages, cabinDict, pruneCabinPages, cabinTitle } from "./lib/cabinpages.mjs";
@@ -34,6 +34,7 @@ const data = {
   posts: (await load("posts.mjs")).sort((a, b) => (a.date < b.date ? 1 : -1)),
   hotels: await load("hotels.mjs"),
   extras: await load("services-extra.mjs"),
+  services: await load("services-new.mjs"), // day trips, activities and tickets, residency (added on the owner's request)
 };
 // articles written in the admin panel (data/blog.json): published ones whose time has come; a slug already
 // used by a built-in article is ignored so the panel can never replace or delete one
@@ -65,6 +66,8 @@ data.posts.forEach((p) => (data.titles[`blog/${p.slug}/`] = p.title));
 data.ownerPosts.forEach((p) => (data.titles[`blog/${p.slug}/`] = p.title));
 data.hotels.forEach((h) => (data.titles[`hotels/${h.slug}/`] = h.slug === "family-friendly" ? "فنادق محافظة وعائلية" : `فنادق ${h.city}`));
 data.extras.forEach((x) => (data.titles[x.path] = x.h1.split(":")[0]));
+data.services.forEach((x) => (data.titles[x.path] = x.navLabel));
+Object.assign(data.titles, { "activities/": "أنشطة وتذاكر", "residency/": "إقامات وموافقات" });
 Object.assign(data.titles, { "cabins/": "أكواخ وبنغلات", "flights/": "تذاكر طيران", "hotels/": "فنادق ومنتجعات", "turkey-tours/": "السياحة في تركيا", "world-tours/": "رحلات خارج تركيا", "packages/": "البرامج السياحية", "saudi-visa/": "تأشيرات السعودية", "gcc-visas/": "تأشيرات الخليج", "visas/": "التأشيرات الدولية", "matches/": "تذاكر المباريات", "matches/spanish-super-cup-2027/": "تذاكر كأس السوبر الإسباني 2027", "turkey-visa/": "تأشيرة تركيا للعرب" });
 
 const cabPages = cabinPages();
@@ -90,6 +93,8 @@ const pages = [
   ...data.hotels.map((h) => hotelCityPage(h, data)),
   ...data.extras.map((x) => extraPage(x, data)),
   ...(data.extras.length ? [offersHub(data)] : []),
+  ...data.services.map((x) => extraPage(x, data)),
+  serviceHub("activities", data), serviceHub("residency", data),
   turkeyVisaPage(data),
   aboutPage(data), contactPage(data), faqPage(data), privacyPage(), termsPage(),
   notFoundPage(),
@@ -213,7 +218,7 @@ fs.writeFileSync(path.join(I18N_DIR, "_missing.json"), JSON.stringify(Object.fro
 
 // sitemap.xml — every language version, each listing its alternates
 const today = new Date().toISOString().slice(0, 10);
-const prio = (p) => (p === "" ? "1.0" : /^(hotels|cabins|flights|turkey-tours|saudi-visa|gcc-visas|visas|packages|matches|world-tours)\/$/.test(p) ? "0.9" : /^(turkey-tours|packages|saudi-visa|gcc-visas|visas|matches|turkey-visa|cabins)\//.test(p) ? "0.8" : p.startsWith("blog/") ? "0.7" : "0.5");
+const prio = (p) => (p === "" ? "1.0" : /^(day-trips|activities|residency)\/./.test(p) ? "0.8" : /^(hotels|cabins|flights|turkey-tours|saudi-visa|gcc-visas|visas|packages|matches|world-tours)\/$/.test(p) ? "0.9" : /^(turkey-tours|packages|saudi-visa|gcc-visas|visas|matches|turkey-visa|cabins)\//.test(p) ? "0.8" : p.startsWith("blog/") ? "0.7" : "0.5");
 // image sitemap entries: the main (1536w) photo files used on each page, hero first
 const pagePhotos = (body) => [...new Set([...String(body || "").matchAll(/assets\/img\/(?:photos\/([\w-]+?)(?:-640|-1024)?\.webp|(cabins\/[\w-]+\.webp))/g)].map((m) => (m[1] ? `photos/${m[1]}.webp` : m[2])))].slice(0, 20);
 // <lastmod> is the day a page's own content last changed (kept in _src/.lastmod.json), not the day of the build

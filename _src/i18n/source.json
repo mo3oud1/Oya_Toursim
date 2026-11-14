@@ -27,7 +27,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "3ac1cb4251",
@@ -39,7 +39,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 290
+  "n": 344
  },
  {
   "id": "740ff384c4",
@@ -51,7 +51,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "dc11d723f9",
@@ -63,7 +63,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 94
+  "n": 112
  },
  {
   "id": "89bfec080a",
@@ -184,7 +184,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "e1703dad24",
@@ -196,7 +196,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "cdcb2ea6d1",
@@ -208,7 +208,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "cb75b65677",
@@ -220,7 +220,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "9320d82842",
@@ -232,7 +232,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 396
+  "n": 468
  },
  {
   "id": "f37ee87aad",
@@ -244,7 +244,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 186
+  "n": 222
  },
  {
   "id": "6e61ba0367",
@@ -256,7 +256,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 197
+  "n": 233
  },
  {
   "id": "2fd5b6cd30",
@@ -268,7 +268,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 197
+  "n": 233
  },
  {
   "id": "c1bd30ffb1",
@@ -280,7 +280,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 197
+  "n": 233
  },
  {
   "id": "f4c53f4900",
@@ -292,7 +292,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 197
+  "n": 233
  },
  {
   "id": "fad125b74f",
@@ -304,7 +304,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 197
+  "n": 233
  },
  {
   "id": "0d9e515208",
@@ -316,7 +316,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 186
+  "n": 222
  },
  {
   "id": "d76ab89c68",
@@ -328,7 +328,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "833fec6b50",
@@ -340,7 +340,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 300
+  "n": 354
  },
  {
   "id": "3d7a22f631",
@@ -352,7 +352,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "6ba767682d",
@@ -364,7 +364,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 94
+  "n": 112
  },
  {
   "id": "b10076293f",
@@ -376,7 +376,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 289
+  "n": 343
  },
  {
   "id": "cb67232d5c",
@@ -388,7 +388,283 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 286
+  "n": 340
+ },
+ {
+  "id": "62ae9af37f",
+  "kind": "text",
+  "ar": "جولات",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 111
+ },
+ {
+  "id": "b67183ed0e",
+  "kind": "attr",
+  "ar": "جولات وأنشطة",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 222
+ },
+ {
+  "id": "a8049287fd",
+  "kind": "text",
+  "ar": "جولات يومية خاصة",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 111
+ },
+ {
+  "id": "5f757492c7",
+  "kind": "text",
+  "ar": "رحلة سبانجا ومعشوقية",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 241
+ },
+ {
+  "id": "da18188358",
+  "kind": "text",
+  "ar": "رحلة بورصا",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 241
+ },
+ {
+  "id": "be5bd1cabc",
+  "kind": "text",
+  "ar": "جزر الأميرات",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 244
+ },
+ {
+  "id": "01d9c0fa72",
+  "kind": "text",
+  "ar": "رحلة شيلا وأغوا",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 240
+ },
+ {
+  "id": "6af58e6a99",
+  "kind": "text",
+  "ar": "رحلة يلوا",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 240
+ },
+ {
+  "id": "a5432a1de5",
+  "kind": "text",
+  "ar": "رحلة إزميت وكارتبه",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 240
+ },
+ {
+  "id": "f2e48c76db",
+  "kind": "text",
+  "ar": "جولة إسطنبول الأوروبية",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 242
+ },
+ {
+  "id": "244b30277f",
+  "kind": "text",
+  "ar": "جولة إسطنبول الآسيوية",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 241
+ },
+ {
+  "id": "cc83b36722",
+  "kind": "text",
+  "ar": "كل الجولات اليومية",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 222
+ },
+ {
+  "id": "f84acdad50",
+  "kind": "text",
+  "ar": "بوسفور وتذاكر",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 111
+ },
+ {
+  "id": "ded9e62461",
+  "kind": "text",
+  "ar": "يخت خاص في البوسفور",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 236
+ },
+ {
+  "id": "0b17849755",
+  "kind": "text",
+  "ar": "سهرة البوسفور",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 236
+ },
+ {
+  "id": "6e452e064b",
+  "kind": "text",
+  "ar": "تذاكر الأكواريوم",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 235
+ },
+ {
+  "id": "06038da7ab",
+  "kind": "text",
+  "ar": "تذاكر مدن الألعاب",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 235
+ },
+ {
+  "id": "4230be90bf",
+  "kind": "text",
+  "ar": "تذاكر حديقة الحيوانات",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 235
+ },
+ {
+  "id": "1995d59be5",
+  "kind": "text",
+  "ar": "كل الأنشطة والتذاكر",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 222
+ },
+ {
+  "id": "afaaeb83ba",
+  "kind": "text",
+  "ar": "سيارات وتنقلات",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 111
+ },
+ {
+  "id": "f5128d2983",
+  "kind": "text",
+  "ar": "استقبال وتوديع المطار",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 111
+ },
+ {
+  "id": "97970ee98d",
+  "kind": "text",
+  "ar": "سائق خاص باليوم",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 111
+ },
+ {
+  "id": "6fbb19d54c",
+  "kind": "text",
+  "ar": "جولة 10 ساعات بسائق",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 111
  },
  {
   "id": "6a4ef56148",
@@ -400,7 +676,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 186
+  "n": 222
  },
  {
   "id": "574f73f898",
@@ -412,7 +688,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 186
+  "n": 222
  },
  {
   "id": "a53e50f866",
@@ -424,7 +700,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 303
+  "n": 357
  },
  {
   "id": "c4d5296aa0",
@@ -436,7 +712,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 310
+  "n": 364
  },
  {
   "id": "fe75bdcbdb",
@@ -448,31 +724,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 204
- },
- {
-  "id": "375a760c41",
-  "kind": "text",
-  "ar": "جولات يومية",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 289
- },
- {
-  "id": "2fa972a884",
-  "kind": "text",
-  "ar": "استقبال المطار والتنقلات",
-  "pages": [
-   "",
-   "flights/",
-   "hotels/",
-   "cabins/"
-  ],
-  "n": 93
+  "n": 240
  },
  {
   "id": "d54b539f80",
@@ -484,7 +736,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 280
+  "n": 334
  },
  {
   "id": "0bccb0ca4d",
@@ -496,7 +748,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 280
+  "n": 335
  },
  {
   "id": "4528dad84d",
@@ -508,7 +760,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 321
+  "n": 376
  },
  {
   "id": "d26d1188d8",
@@ -520,7 +772,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 312
+  "n": 367
  },
  {
   "id": "51bff8d9dd",
@@ -532,7 +784,19 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 208
+  "n": 244
+ },
+ {
+  "id": "62719bbdb0",
+  "kind": "text",
+  "ar": "إقامات وموافقات",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 348
  },
  {
   "id": "336fa6fae3",
@@ -544,7 +808,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "a6054bb245",
@@ -556,7 +820,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 190
+  "n": 226
  },
  {
   "id": "9b2bed3bb5",
@@ -568,7 +832,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 193
+  "n": 229
  },
  {
   "id": "e6a3894be5",
@@ -580,7 +844,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "629d28fb52",
@@ -592,7 +856,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 283
+  "n": 337
  },
  {
   "id": "0780717b36",
@@ -604,7 +868,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 302
+  "n": 356
  },
  {
   "id": "90b224ff94",
@@ -616,7 +880,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 283
+  "n": 337
  },
  {
   "id": "9886382321",
@@ -628,7 +892,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 282
+  "n": 336
  },
  {
   "id": "d76522a035",
@@ -640,7 +904,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 184
+  "n": 220
  },
  {
   "id": "a841ff3bf1",
@@ -652,7 +916,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 373
+  "n": 445
  },
  {
   "id": "7b5629bcb4",
@@ -664,7 +928,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 293
+  "n": 363
  },
  {
   "id": "09e80f8b25",
@@ -676,7 +940,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "13704f7714",
@@ -688,7 +952,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "d22d8603d7",
@@ -700,7 +964,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "b986d8fb16",
@@ -712,7 +976,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 275
+  "n": 329
  },
  {
   "id": "aade71c74c",
@@ -724,7 +988,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 273
+  "n": 309
  },
  {
   "id": "41d1c5a5d5",
@@ -736,7 +1000,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 237
+  "n": 273
  },
  {
   "id": "62140011f1",
@@ -748,7 +1012,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 239
+  "n": 275
  },
  {
   "id": "27d9d4af03",
@@ -760,7 +1024,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 222
+  "n": 258
  },
  {
   "id": "83371ac8d3",
@@ -772,7 +1036,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 260
+  "n": 296
  },
  {
   "id": "c52396a897",
@@ -784,7 +1048,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 258
+  "n": 294
  },
  {
   "id": "e5ad3eb4f1",
@@ -796,7 +1060,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 268
+  "n": 304
  },
  {
   "id": "b3eed31404",
@@ -808,7 +1072,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 253
+  "n": 289
  },
  {
   "id": "56aa9ed5ce",
@@ -820,7 +1084,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 221
+  "n": 257
  },
  {
   "id": "04258e6a3d",
@@ -832,7 +1096,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 221
+  "n": 257
  },
  {
   "id": "1146a2fe59",
@@ -844,7 +1108,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 129
+  "n": 147
  },
  {
   "id": "ccb9b5d623",
@@ -856,7 +1120,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 126
+  "n": 144
  },
  {
   "id": "54f4d1f93f",
@@ -868,7 +1132,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 126
+  "n": 144
  },
  {
   "id": "80a09010d7",
@@ -880,7 +1144,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 107
+  "n": 125
  },
  {
   "id": "9f9f9a71e0",
@@ -892,7 +1156,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 107
+  "n": 125
  },
  {
   "id": "49f2cf86bd",
@@ -904,7 +1168,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 106
+  "n": 124
  },
  {
   "id": "9e6ef76825",
@@ -916,7 +1180,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 106
+  "n": 124
  },
  {
   "id": "edcc32acd5",
@@ -928,7 +1192,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 106
+  "n": 124
  },
  {
   "id": "43796c22d7",
@@ -940,7 +1204,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 106
+  "n": 124
  },
  {
   "id": "b0e2fe4483",
@@ -952,7 +1216,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 106
+  "n": 124
  },
  {
   "id": "f22fa8e7c5",
@@ -964,7 +1228,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 105
+  "n": 123
  },
  {
   "id": "a8e3004e8c",
@@ -976,7 +1240,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 104
+  "n": 122
  },
  {
   "id": "3a1622a1ef",
@@ -988,7 +1252,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 103
+  "n": 121
  },
  {
   "id": "fd6b0d25da",
@@ -1000,7 +1264,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 103
+  "n": 121
  },
  {
   "id": "cd7f938446",
@@ -1012,7 +1276,43 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 103
+  "n": 121
+ },
+ {
+  "id": "458fe84341",
+  "kind": "text",
+  "ar": "الإقامة السياحية في تركيا",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 121
+ },
+ {
+  "id": "c03d85b923",
+  "kind": "text",
+  "ar": "تحويل الكملك إلى إقامة",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 120
+ },
+ {
+  "id": "9cd3d4e59d",
+  "kind": "text",
+  "ar": "الموافقة الأمنية لمصر",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 120
  },
  {
   "id": "780d1200d0",
@@ -1024,7 +1324,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "1c2e537da3",
@@ -1036,7 +1336,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 188
+  "n": 225
  },
  {
   "id": "86a6ef632a",
@@ -1048,7 +1348,19 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 188
+  "n": 225
+ },
+ {
+  "id": "375a760c41",
+  "kind": "text",
+  "ar": "جولات يومية",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 257
  },
  {
   "id": "6506017529",
@@ -1060,7 +1372,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 188
+  "n": 224
  },
  {
   "id": "7f5e98a1e1",
@@ -1072,7 +1384,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 188
+  "n": 224
  },
  {
   "id": "1043d339fd",
@@ -1084,7 +1396,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 94
+  "n": 112
  },
  {
   "id": "7402851a96",
@@ -1096,7 +1408,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 275
+  "n": 329
  },
  {
   "id": "cc5a5caeba",
@@ -1108,7 +1420,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 96
+  "n": 114
  },
  {
   "id": "a1eeb77cdb",
@@ -1291,7 +1603,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 94
+  "n": 112
  },
  {
   "id": "d35eeff0dc",
@@ -1339,7 +1651,7 @@
    "turkey-tours/trabzon/",
    "turkey-tours/uzungol/"
   ],
-  "n": 42
+  "n": 55
  },
  {
   "id": "c58366dd3d",
@@ -1456,7 +1768,7 @@
    "hotels/",
    "hotels/istanbul/"
   ],
-  "n": 23
+  "n": 36
  },
  {
   "id": "aaa6900eb0",
@@ -1708,7 +2020,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 74
+  "n": 90
  },
  {
   "id": "563f71990d",
@@ -1720,7 +2032,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 74
+  "n": 90
  },
  {
   "id": "5da7d10793",
@@ -1732,7 +2044,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 74
+  "n": 90
  },
  {
   "id": "035a3984df",
@@ -1744,7 +2056,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 74
+  "n": 90
  },
  {
   "id": "2fd0c1bdda",
@@ -1756,7 +2068,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 74
+  "n": 90
  },
  {
   "id": "e8e3413f4c",
@@ -1768,7 +2080,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 74
+  "n": 90
  },
  {
   "id": "7a610a297f",
@@ -1780,7 +2092,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 74
+  "n": 90
  },
  {
   "id": "4e35567230",
@@ -1792,7 +2104,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 74
+  "n": 90
  },
  {
   "id": "202142a694",
@@ -1849,9 +2161,11 @@
   "ar": "عدد الأشخاص",
   "pages": [
    "",
-   "cabins/"
+   "cabins/",
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/"
   ],
-  "n": 3
+  "n": 19
  },
  {
   "id": "c2f1783c5a",
@@ -1985,7 +2299,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 97
+  "n": 115
  },
  {
   "id": "586ab53e9a",
@@ -2547,7 +2861,7 @@
    "turkey-tours/istanbul/",
    "turkey-tours/trabzon/"
   ],
-  "n": 62
+  "n": 78
  },
  {
   "id": "58907aa34b",
@@ -2691,7 +3005,7 @@
    "turkey-tours/istanbul/",
    "turkey-tours/trabzon/"
   ],
-  "n": 36
+  "n": 44
  },
  {
   "id": "f6e659f15f",
@@ -2895,7 +3209,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 114
+  "n": 132
  },
  {
   "id": "5683bb35ce",
@@ -2967,7 +3281,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 116
+  "n": 134
  },
  {
   "id": "bf92d49c8f",
@@ -3027,7 +3341,7 @@
    "gcc-visas/",
    "visas/"
   ],
-  "n": 22
+  "n": 25
  },
  {
   "id": "6223daaeef",
@@ -3039,7 +3353,7 @@
    "gcc-visas/",
    "visas/"
   ],
-  "n": 27
+  "n": 30
  },
  {
   "id": "b8d30d53fb",
@@ -3051,7 +3365,7 @@
    "gcc-visas/",
    "visas/"
   ],
-  "n": 21
+  "n": 24
  },
  {
   "id": "43d4373937",
@@ -3063,7 +3377,7 @@
    "gcc-visas/",
    "visas/"
   ],
-  "n": 22
+  "n": 25
  },
  {
   "id": "990935659b",
@@ -3075,7 +3389,7 @@
    "gcc-visas/",
    "visas/"
   ],
-  "n": 21
+  "n": 24
  },
  {
   "id": "9da8520ac7",
@@ -3087,7 +3401,7 @@
    "gcc-visas/",
    "visas/"
   ],
-  "n": 21
+  "n": 24
  },
  {
   "id": "235f222094",
@@ -3099,7 +3413,7 @@
    "gcc-visas/",
    "visas/"
   ],
-  "n": 21
+  "n": 24
  },
  {
   "id": "aa0e2bdd19",
@@ -3147,7 +3461,7 @@
    "gcc-visas/",
    "visas/"
   ],
-  "n": 21
+  "n": 29
  },
  {
   "id": "bb26a08a71",
@@ -3953,7 +4267,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 95
+  "n": 113
  },
  {
   "id": "5d3d2de4b0",
@@ -4065,6 +4379,18 @@
    ""
   ],
   "n": 1
+ },
+ {
+  "id": "9ed059559c",
+  "kind": "text",
+  "ar": "أنشطة وتذاكر",
+  "pages": [
+   "",
+   "flights/",
+   "hotels/",
+   "cabins/"
+  ],
+  "n": 130
  },
  {
   "id": "9404de8145",
@@ -4408,7 +4734,7 @@
    "cabins/",
    "cabins/sapanca-cabin-d01/"
   ],
-  "n": 42
+  "n": 58
  },
  {
   "id": "44a912a484",
@@ -6513,7 +6839,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 94
+  "n": 112
  },
  {
   "id": "3f40410d91",
@@ -6680,7 +7006,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 296
+  "n": 330
  },
  {
   "id": "93bf376c21",
@@ -6692,7 +7018,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 270
+  "n": 288
  },
  {
   "id": "6e77245735",
@@ -7111,7 +7437,7 @@
    "transfers/",
    "private-driver/"
   ],
-  "n": 6
+  "n": 25
  },
  {
   "id": "52a847b849",
@@ -7213,7 +7539,7 @@
    "turkey-tours/trabzon/",
    "turkey-tours/uzungol/"
   ],
-  "n": 60
+  "n": 73
  },
  {
   "id": "92ab66bfbc",
@@ -7237,7 +7563,7 @@
    "turkey-tours/trabzon/",
    "turkey-tours/uzungol/"
   ],
-  "n": 115
+  "n": 141
  },
  {
   "id": "a6e3e94804",
@@ -7249,7 +7575,7 @@
    "turkey-tours/trabzon/",
    "turkey-tours/uzungol/"
   ],
-  "n": 152
+  "n": 178
  },
  {
   "id": "bb7fcbaf66",
@@ -7273,7 +7599,7 @@
    "turkey-tours/antalya/",
    "turkey-tours/cappadocia/"
   ],
-  "n": 88
+  "n": 114
  },
  {
   "id": "052483762b",
@@ -7285,7 +7611,7 @@
    "turkey-tours/antalya/",
    "turkey-tours/cappadocia/"
   ],
-  "n": 43
+  "n": 56
  },
  {
   "id": "087bec75ac",
@@ -7297,7 +7623,7 @@
    "matches/spanish-super-cup-2027/",
    "blog/"
   ],
-  "n": 22
+  "n": 48
  },
  {
   "id": "828a5d36c6",
@@ -7309,7 +7635,7 @@
    "matches/spanish-super-cup-2027/",
    "blog/"
   ],
-  "n": 10
+  "n": 23
  },
  {
   "id": "e2559f8dad",
@@ -7321,7 +7647,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 83
+  "n": 99
  },
  {
   "id": "6c1a94a586",
@@ -7333,7 +7659,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 89
+  "n": 107
  },
  {
   "id": "033ab67a52",
@@ -7345,7 +7671,7 @@
    "turkey-tours/istanbul/",
    "turkey-tours/trabzon/"
   ],
-  "n": 30
+  "n": 45
  },
  {
   "id": "60fe7d39fa",
@@ -7357,7 +7683,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 58
+  "n": 73
  },
  {
   "id": "c7a1baf58d",
@@ -7369,7 +7695,7 @@
    "world-tours/",
    "packages/"
   ],
-  "n": 22
+  "n": 35
  },
  {
   "id": "893f5adb00",
@@ -7381,7 +7707,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "5b716d3b34",
@@ -7393,7 +7719,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "0915ef8ea5",
@@ -7405,7 +7731,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 94
+  "n": 112
  },
  {
   "id": "0b81b4688b",
@@ -7417,7 +7743,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 94
+  "n": 112
  },
  {
   "id": "ac86ec8e2a",
@@ -7429,7 +7755,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 94
+  "n": 112
  },
  {
   "id": "316b369eb1",
@@ -7441,7 +7767,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 96
+  "n": 114
  },
  {
   "id": "5126e0ecc2",
@@ -7453,7 +7779,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 107
+  "n": 125
  },
  {
   "id": "f91f1049bb",
@@ -7465,7 +7791,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 94
+  "n": 112
  },
  {
   "id": "c3721b0a95",
@@ -7477,7 +7803,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "798d71823a",
@@ -7489,7 +7815,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "86b2ee56df",
@@ -7501,7 +7827,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "20b7f4c49a",
@@ -7513,7 +7839,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "519e6e2aa2",
@@ -7525,7 +7851,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "967c0ac73d",
@@ -7537,7 +7863,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "f96cfbf1d7",
@@ -7549,7 +7875,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "f223e7d3d0",
@@ -7561,7 +7887,7 @@
    "hotels/",
    "turkey-tours/"
   ],
-  "n": 54
+  "n": 96
  },
  {
   "id": "f1dd35cf2a",
@@ -7573,7 +7899,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "03806f257c",
@@ -7585,7 +7911,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "ed154ad4f7",
@@ -7597,7 +7923,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 115
+  "n": 133
  },
  {
   "id": "34444493a1",
@@ -7609,7 +7935,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "dfa2c509f1",
@@ -7621,7 +7947,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 96
+  "n": 114
  },
  {
   "id": "517e78af19",
@@ -7633,7 +7959,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "62424d33ad",
@@ -7645,7 +7971,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "9262af16b9",
@@ -7657,7 +7983,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "d56958465c",
@@ -7669,7 +7995,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "701dc29f3c",
@@ -7681,7 +8007,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "fd452f265e",
@@ -7693,7 +8019,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "439856ae49",
@@ -7705,7 +8031,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 93
+  "n": 111
  },
  {
   "id": "258517693f",
@@ -7778,7 +8104,7 @@
    "cabins/",
    "cabins/sapanca-cabin-d01/"
   ],
-  "n": 18
+  "n": 19
  },
  {
   "id": "efc5803b7b",
@@ -8079,7 +8405,7 @@
    "cabins/",
    "cabins/sapanca-cabin-d01/"
   ],
-  "n": 91
+  "n": 109
  },
  {
   "id": "950905c63d",
@@ -8154,7 +8480,7 @@
    "turkey-tours/",
    "turkey-tours/istanbul/"
   ],
-  "n": 67
+  "n": 83
  },
  {
   "id": "4806563404",
@@ -8166,7 +8492,7 @@
    "turkey-tours/",
    "turkey-tours/istanbul/"
   ],
-  "n": 68
+  "n": 84
  },
  {
   "id": "2886faadb8",
@@ -8917,9 +9243,10 @@
   "pages": [
    "flights/",
    "turkey-tours/istanbul/",
-   "contact/"
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
   ],
-  "n": 3
+  "n": 6
  },
  {
   "id": "214af9bd22",
@@ -11258,7 +11585,7 @@
    "cabins/sapanca-cabin-d02/",
    "cabins/sapanca-cabin-d03/"
   ],
-  "n": 19
+  "n": 21
  },
  {
   "id": "5f487d2d6e",
@@ -12135,16 +12462,6 @@
    "turkey-tours/istanbul/"
   ],
   "n": 2
- },
- {
-  "id": "be5bd1cabc",
-  "kind": "json",
-  "ar": "جزر الأميرات",
-  "pages": [
-   "turkey-tours/istanbul/",
-   "blog/day-trips-from-istanbul/"
-  ],
-  "n": 4
  },
  {
   "id": "ce42c8cbb3",
@@ -13056,7 +13373,7 @@
    "turkey-tours/uzungol/",
    "turkey-tours/bursa/"
   ],
-  "n": 59
+  "n": 72
  },
  {
   "id": "5887c6896d",
@@ -13068,7 +13385,7 @@
    "turkey-tours/uzungol/",
    "turkey-tours/bursa/"
   ],
-  "n": 41
+  "n": 54
  },
  {
   "id": "69179bcbb0",
@@ -13080,7 +13397,7 @@
    "turkey-tours/sapanca/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 32
+  "n": 58
  },
  {
   "id": "3956ade4cd",
@@ -13092,7 +13409,7 @@
    "turkey-tours/sapanca/",
    "saudi-visa/tourist/"
   ],
-  "n": 57
+  "n": 70
  },
  {
   "id": "eff745ad1b",
@@ -13104,7 +13421,7 @@
    "turkey-tours/sapanca/",
    "matches/spanish-super-cup-2027/"
   ],
-  "n": 15
+  "n": 28
  },
  {
   "id": "01ed4984e3",
@@ -14761,7 +15078,7 @@
    "packages/istanbul-sapanca-bursa-8-days/",
    "day-trips/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "1a6db96b94",
@@ -15522,7 +15839,7 @@
    "packages/turkey-7-days/",
    "packages/turkey-honeymoon-9-days/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "5697dd1557",
@@ -19942,7 +20259,7 @@
    "packages/istanbul-bursa-7-days/",
    "packages/istanbul-sapanca-bursa-8-days/"
   ],
-  "n": 23
+  "n": 35
  },
  {
   "id": "31bd354489",
@@ -21328,9 +21645,10 @@
   "kind": "text",
   "ar": "الجامع الأخضر والتربة الخضراء",
   "pages": [
-   "packages/istanbul-bursa-7-days/"
+   "packages/istanbul-bursa-7-days/",
+   "day-trips/bursa/"
   ],
-  "n": 1
+  "n": 2
  },
  {
   "id": "9f9c5a3836",
@@ -21741,9 +22059,10 @@
   "pages": [
    "packages/istanbul-sapanca-bursa-8-days/",
    "blog/day-trips-from-istanbul/",
-   "hotels/sapanca/"
+   "hotels/sapanca/",
+   "day-trips/sapanca-masukiye/"
   ],
-  "n": 6
+  "n": 8
  },
  {
   "id": "aa0c45fd6f",
@@ -37263,7 +37582,7 @@
    "visas/",
    "saudi-visa/tourist/"
   ],
-  "n": 19
+  "n": 20
  },
  {
   "id": "4ed2bb2574",
@@ -37392,7 +37711,7 @@
    "visas/",
    "saudi-visa/tourist/"
   ],
-  "n": 20
+  "n": 23
  },
  {
   "id": "329e2468e4",
@@ -51264,9 +51583,11 @@
   "ar": "الخدمة",
   "pages": [
    "blog/cost-of-travel-to-turkey/",
-   "contact/"
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/"
   ],
-  "n": 3
+  "n": 11
  },
  {
   "id": "f45b40ce05",
@@ -51960,9 +52281,10 @@
   "pages": [
    "blog/istanbul-itinerary-5-days/",
    "blog/honeymoon-in-turkey/",
-   "blog/day-trips-from-istanbul/"
+   "blog/day-trips-from-istanbul/",
+   "day-trips/sapanca-masukiye/"
   ],
-  "n": 14
+  "n": 24
  },
  {
   "id": "6dc2779baf",
@@ -51979,9 +52301,10 @@
   "ar": "السلطان أحمد",
   "pages": [
    "blog/istanbul-itinerary-5-days/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
+   "blog/spanish-super-cup-2027-istanbul-guide/",
+   "day-trips/istanbul-european-side/"
   ],
-  "n": 2
+  "n": 3
  },
  {
   "id": "c14a2f9b90",
@@ -52318,7 +52641,7 @@
    "blog/turkey-family-itinerary-10-days/",
    "blog/honeymoon-in-turkey/"
   ],
-  "n": 4
+  "n": 5
  },
  {
   "id": "ac26b3bdf9",
@@ -55643,9 +55966,10 @@
   "kind": "text",
   "ar": "الرسوم الرسمية",
   "pages": [
-   "blog/schengen-visa-from-turkey/"
+   "blog/schengen-visa-from-turkey/",
+   "residency/tourist-residence-permit/"
   ],
-  "n": 1
+  "n": 2
  },
  {
   "id": "b04768362d",
@@ -56633,9 +56957,10 @@
   "kind": "text",
   "ar": "رحلة سبانجا ومعشوقية من إسطنبول",
   "pages": [
-   "blog/day-trips-from-istanbul/"
+   "blog/day-trips-from-istanbul/",
+   "day-trips/sapanca-masukiye/"
   ],
-  "n": 2
+  "n": 3
  },
  {
   "id": "f382a24c6e",
@@ -63066,7 +63391,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 5
+  "n": 21
  },
  {
   "id": "cd530df46e",
@@ -63105,7 +63430,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 5
+  "n": 21
  },
  {
   "id": "8e66a3cd28",
@@ -63149,9 +63474,11 @@
   "ar": "مقاعد أطفال عند الطلب المسبق.",
   "pages": [
    "transfers/",
-   "private-driver/"
+   "private-driver/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/"
   ],
-  "n": 2
+  "n": 9
  },
  {
   "id": "d4a71deac9",
@@ -63172,7 +63499,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 5
+  "n": 7
  },
  {
   "id": "1b5a2424e5",
@@ -63267,7 +63594,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 5
+  "n": 21
  },
  {
   "id": "c60763beef",
@@ -63279,7 +63606,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 5
+  "n": 21
  },
  {
   "id": "31976a61a7",
@@ -63408,7 +63735,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 5
+  "n": 21
  },
  {
   "id": "57fd0b1d95",
@@ -63596,9 +63923,11 @@
   "ar": "اسم الفندق أو المنطقة",
   "pages": [
    "transfers/",
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/"
   ],
-  "n": 2
+  "n": 15
  },
  {
   "id": "d33c9dba01",
@@ -63652,9 +63981,10 @@
   "pages": [
    "transfers/",
    "day-trips/",
-   "offers/ramadan-umrah-2027/"
+   "offers/ramadan-umrah-2027/",
+   "day-trips/sapanca-masukiye/"
   ],
-  "n": 3
+  "n": 11
  },
  {
   "id": "20ff432324",
@@ -63684,7 +64014,7 @@
    "day-trips/",
    "offers/eid-al-fitr-2027/"
   ],
-  "n": 5
+  "n": 21
  },
  {
   "id": "a182037611",
@@ -65104,9 +65434,10 @@
   "kind": "text",
   "ar": "البازار الكبير وسوق التوابل",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/istanbul-european-side/"
   ],
-  "n": 1
+  "n": 2
  },
  {
   "id": "62bb4ff335",
@@ -65361,13 +65692,115 @@
   "n": 1
  },
  {
+  "id": "f7b2e7bc8c",
+  "kind": "text",
+  "ar": "جولات خاصة بسائق",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "57449c24e7",
+  "kind": "text",
+  "ar": "جولات لها صفحة مفصّلة",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2f735176aa",
+  "kind": "text",
+  "ar": "جولة خاصة مدتها نحو 10 ساعات بسيارة وسائق يتحدث العربية أو الإنجليزية، ولغات أخرى عند الطلب.",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4a962d5f4f",
+  "kind": "text",
+  "ar": "بحيرة سبانجا، شلالات معشوقية وغداء بجانب النهر، وإطلالات كارتبه.",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8f986c3f25",
+  "kind": "text",
+  "ar": "تلفريك أولوداغ، الجامع الأخضر، الشجرة المعمّرة وسوق الحرير.",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "13b98393f9",
+  "kind": "text",
+  "ar": "عبّارة في بحر مرمرة إلى بيوك أدا: بيوت خشبية، عربات كهربائية وهدوء بلا سيارات.",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8edc3bfb94",
+  "kind": "text",
+  "ar": "ساحل البحر الأسود: فنارة شيلا، ونهر أغوا بقواربه وأكواخه على الماء.",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ed7e24f2e5",
+  "kind": "text",
+  "ar": "ينابيع ترمال الساخنة، شلال سودوشن وقصر أتاتورك المتحرك.",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "89813212de",
+  "kind": "text",
+  "ar": "حديقة أورمانيا الطبيعية، جبل كارتبه وكورنيش إزميت.",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f0b619350a",
+  "kind": "text",
+  "ar": "آيا صوفيا والجامع الأزرق وتوبكابي، البازار الكبير، غلطة وتقسيم وأورتاكوي.",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b1ff706c4c",
+  "kind": "text",
+  "ar": "تلة وجامع تشامليجا، أوسكودار وبرج الفتاة، قصر بيلربي وكاديكوي.",
+  "pages": [
+   "day-trips/"
+  ],
+  "n": 1
+ },
+ {
   "id": "4ec394d667",
   "kind": "text",
   "ar": "اختر الجولة",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 2
+  "n": 10
  },
  {
   "id": "7576567085",
@@ -65473,36 +65906,48 @@
   "kind": "attr",
   "ar": "مرحباً أويا للسياحة، أرغب بحجز جولة يومية:",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 9
  },
  {
   "id": "77be35e846",
   "kind": "text",
   "ar": "الجولة<g1>*</g1>",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 9
  },
  {
   "id": "cb839dbc57",
   "kind": "attr",
   "ar": "الجولة",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 9
  },
  {
   "id": "03725d10cd",
   "kind": "attr",
   "ar": "من إسطنبول",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 9
  },
  {
   "id": "5b6507d386",
@@ -65518,81 +65963,108 @@
   "kind": "text",
   "ar": "التاريخ<g1>*</g1>",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 14
  },
  {
   "id": "d94d702d83",
   "kind": "attr",
   "ar": "التاريخ",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 14
  },
  {
   "id": "b1e37d3d19",
   "kind": "text",
   "ar": "المشاركون",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 2
+  "n": 18
  },
  {
   "id": "b927f8d373",
   "kind": "text",
   "ar": "عائلة (3–5)",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 9
  },
  {
   "id": "c6920ca9a2",
   "kind": "text",
   "ar": "6–7 أشخاص",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 9
  },
  {
   "id": "ebf14fe3a0",
   "kind": "text",
   "ar": "مكان الإقامة<g1>(اختياري)</g1>",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 14
  },
  {
   "id": "ccbea31b17",
   "kind": "attr",
   "ar": "مكان الإقامة",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 14
  },
  {
   "id": "45108ceff8",
   "kind": "attr",
   "ar": "مثال: معنا أطفال صغار، نفضّل الانطلاق 9 صباحاً",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 9
  },
  {
   "id": "511a2aecbf",
   "kind": "text",
   "ar": "احجز الجولة عبر واتساب",
   "pages": [
-   "day-trips/"
+   "day-trips/",
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/"
   ],
-  "n": 1
+  "n": 9
  },
  {
   "id": "91627116a8",
@@ -67100,6 +67572,5285 @@
   "ar": "فندق قرب الملعب وتنقلات ومساعدة في التذكرة الرسمية — 2 إلى 6 فبراير 2027 في إسطنبول.",
   "pages": [
    "offers/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "fa016ec2d7",
+  "kind": "text",
+  "ar": "رحلة سبانجا ومعشوقية من إسطنبول بسائق خاص | أويا",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "9fcf8fdf87",
+  "kind": "attr",
+  "ar": "رحلة يومية خاصة من إسطنبول إلى سبانجا ومعشوقية: البحيرة والشلالات وغداء بجانب النهر وكارتبه، بسيارة خاصة وسائق يتحدث العربية. احجز عبر واتساب.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "350763ea60",
+  "kind": "json",
+  "ar": "يوم كامل بين بحيرة سبانجا (صبنجة) وغابات معشوقية وجداولها، بسيارة خاصة تنطلق من فندقك في إسطنبول وتعود بك إليه، وعلى إيقاع عائلتك أنت.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "1a4facc164",
+  "kind": "json",
+  "ar": "نحو 130 كيلومتراً، ويستغرق الطريق بالسيارة ساعة ونصفاً إلى ساعتين حسب الزحمة ومكان فندقك.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "9d18767503",
+  "kind": "json",
+  "ar": "هل يكفي يوم واحد لسبانجا ومعشوقية؟",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "d8a0da2f82",
+  "kind": "json",
+  "ar": "نعم، يوم واحد يكفي للبحيرة ومعشوقية وكارتبه. ومن أراد الهدوء أكثر يبيت ليلة في كوخ أو بنغل، ونرتب له ذلك.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "b743b86bf3",
+  "kind": "json",
+  "ar": "ما أفضل وقت لزيارة سبانجا؟",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "722ddefa6e",
+  "kind": "json",
+  "ar": "المنطقة خضراء طوال السنة: ربيع وصيف للطبيعة والأنشطة، وخريف لألوان الغابات، وشتاء للثلج في كارتبه.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "e869f576cc",
+  "kind": "text",
+  "ar": "جولة خاصة بسائق من إسطنبول",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "1e22723c52",
+  "kind": "text",
+  "ar": "رحلة سبانجا ومعشوقية من إسطنبول: يوم أخضر بسيارة خاصة",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "98f16dd40d",
+  "kind": "text",
+  "ar": "المدة: حوالي 10 ساعات",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/sile-agva/",
+   "day-trips/yalova/",
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 6
+ },
+ {
+  "id": "300b83037f",
+  "kind": "text",
+  "ar": "المسافة: نحو 130 كم من إسطنبول",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "fe32cce1ce",
+  "kind": "text",
+  "ar": "تناسب: العائلات ومحبي الطبيعة في كل الفصول",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "88fa85ce26",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: رحلة سبانجا ومعشوقية من إسطنبول.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "79a0568bfc",
+  "kind": "text",
+  "ar": "حوالي 10 ساعات",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/sile-agva/",
+   "day-trips/yalova/",
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 6
+ },
+ {
+  "id": "a374bb89a2",
+  "kind": "text",
+  "ar": "المسافة",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/sile-agva/",
+   "day-trips/yalova/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "37ba3b52c8",
+  "kind": "text",
+  "ar": "نحو 130 كم من إسطنبول، ساعة ونصف إلى ساعتين",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "292904b15b",
+  "kind": "text",
+  "ar": "العائلات ومحبي الطبيعة في كل الفصول",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "623ebd06d7",
+  "kind": "text",
+  "ar": "حسب السيارة وعدد الأشخاص، في عرض مكتوب",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/sile-agva/",
+   "day-trips/yalova/"
+  ],
+  "n": 7
+ },
+ {
+  "id": "8904e82d71",
+  "kind": "text",
+  "ar": "سبانجا أقرب مهرب أخضر من إسطنبول: بحيرة هادئة تحيط بها التلال، وعلى بعد دقائق منها قرية معشوقية بشلالاتها الصغيرة ومطاعمها المبنية فوق الجداول. الطريق سريع ومباشر، فلا يضيع يومك في التنقل.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a02f1d6cf8",
+  "kind": "text",
+  "ar": "نبدأ عادةً بالبحيرة وجلساتها، ثم ننتقل إلى معشوقية للغداء بجانب الماء، ونختم بإطلالات كارتبه الجبلية. وإن أحببت البقاء ليلة، نرتب لك كوخاً أو بنغلاً بمسبح خاص في المنطقة.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "89241bea0a",
+  "kind": "text",
+  "ar": "سيارة خاصة لك ولمرافقيك فقط، مع الوقود ورسوم الطرق والجسور.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/sile-agva/",
+   "day-trips/yalova/"
+  ],
+  "n": 7
+ },
+ {
+  "id": "520a933413",
+  "kind": "text",
+  "ar": "سائق يتحدث العربية أو الإنجليزية، ولغات أخرى عند الطلب المسبق وحسب التوفر.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/sile-agva/",
+   "day-trips/yalova/"
+  ],
+  "n": 7
+ },
+ {
+  "id": "32d66e8de6",
+  "kind": "text",
+  "ar": "الاستلام من الفندق والعودة إليه في إسطنبول.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/sile-agva/",
+   "day-trips/yalova/"
+  ],
+  "n": 7
+ },
+ {
+  "id": "294739080a",
+  "kind": "text",
+  "ar": "برنامج مرن: تختار أنت المحطات ومدة التوقف في كل واحدة.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/sile-agva/",
+   "day-trips/yalova/"
+  ],
+  "n": 7
+ },
+ {
+  "id": "eb3f34ae5c",
+  "kind": "text",
+  "ar": "تواصل مع فريقنا بالعربية عبر واتساب طوال اليوم.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "3205ad6f34",
+  "kind": "text",
+  "ar": "محطات الجولة",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "de0061a3a9",
+  "kind": "text",
+  "ar": "ماذا تزور في هذا اليوم؟",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "792fd16660",
+  "kind": "text",
+  "ar": "ممشى البحيرة وجلساتها ومقاهيها، ومحطة مناسبة للصور وللأطفال.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1d7eebcbc8",
+  "kind": "text",
+  "ar": "معشوقية وشلالاتها",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5173730c6e",
+  "kind": "text",
+  "ar": "قرية بين الغابات تشتهر بجداولها ومطاعم السمك المبنية فوق الماء.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "da064234e8",
+  "kind": "text",
+  "ar": "إطلالات جبلية، وثلج في الشتاء، وتلفريك كارتبه عند تشغيله.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "16ebfeb793",
+  "kind": "text",
+  "ar": "أنشطة اختيارية",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f24a7c5c67",
+  "kind": "text",
+  "ar": "دراجات رباعية وزيبلاين وركوب خيل في مراكز المغامرات القريبة، حسب الموسم.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3556ae3df9",
+  "kind": "text",
+  "ar": "أرسل التاريخ وعدد الأشخاص",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 13
+ },
+ {
+  "id": "e0d448442c",
+  "kind": "text",
+  "ar": "واسم فندقك أو منطقتك في إسطنبول، وما تحب أن تزوره، عبر واتساب أو النموذج.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "1f0bb7ac54",
+  "kind": "text",
+  "ar": "نرسل لك العرض مكتوباً",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 9
+ },
+ {
+  "id": "31884c8e1b",
+  "kind": "text",
+  "ar": "نوع السيارة والمسار المقترح وما يشمله السعر وما لا يشمله، قبل أي دفع.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "e26602f22a",
+  "kind": "text",
+  "ar": "نؤكد الحجز",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 13
+ },
+ {
+  "id": "447cea4ebb",
+  "kind": "text",
+  "ar": "نرسل لك بيانات السائق وموعد الانطلاق من فندقك.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "be3e63cac9",
+  "kind": "text",
+  "ar": "استمتع بيومك",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "ead218c41e",
+  "kind": "text",
+  "ar": "السائق معك طوال الجولة، وفريقنا متاح على واتساب لأي تعديل.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "aeca0c3d73",
+  "kind": "text",
+  "ar": "تشغيل التلفريك والأنشطة يتوقف على الطقس والموسم، ونتأكد لك قبل الانطلاق.",
+  "pages": [
+   "day-trips/sapanca-masukiye/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3d48f6b31d",
+  "kind": "text",
+  "ar": "تذاكر الدخول والوجبات والأنشطة الاختيارية غير مشمولة عادةً، ونوضّح ذلك في عرضك المكتوب.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "0938d2791c",
+  "kind": "text",
+  "ar": "المدد تقريبية وتتأثر بزحمة إسطنبول، خاصة في نهاية الأسبوع والعطل. الانطلاق المبكر يمنحك وقتاً أطول في الوجهة.",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "cda8a3802d",
+  "kind": "text",
+  "ar": "خدمات أخرى قد تهمك",
+  "pages": [
+   "day-trips/sapanca-masukiye/",
+   "day-trips/bursa/",
+   "day-trips/princes-islands/",
+   "day-trips/sile-agva/"
+  ],
+  "n": 16
+ },
+ {
+  "id": "682532c2c3",
+  "kind": "text",
+  "ar": "رحلة بورصا وأولوداغ من إسطنبول بسائق خاص | أويا",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "3c941ca1e5",
+  "kind": "attr",
+  "ar": "رحلة يومية خاصة من إسطنبول إلى بورصا: تلفريك جبل أولوداغ، الجامع الأخضر، الشجرة المعمّرة وسوق الحرير، بسيارة خاصة وسائق يتحدث العربية. احجز عبر واتساب.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "92cbe1e025",
+  "kind": "json",
+  "ar": "رحلة بورصا وجبل أولوداغ من إسطنبول",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "cbea07f39d",
+  "kind": "json",
+  "ar": "من إسطنبول إلى بورصا (بورصة) عبر جسر عثمان غازي، لتصعد بالتلفريك إلى أولوداغ ثم تنزل إلى المدينة العثمانية القديمة وأسواقها، بسيارة خاصة وبرنامج تحدده أنت.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "18c00f0a9b",
+  "kind": "json",
+  "ar": "كم تبعد بورصا عن إسطنبول؟",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "518e0438c2",
+  "kind": "json",
+  "ar": "نحو 150 كيلومتراً عبر جسر عثمان غازي، ويستغرق الطريق ساعتين إلى ساعتين ونصف حسب الزحمة.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "cc49ec2d13",
+  "kind": "json",
+  "ar": "هل يوجد ثلج في أولوداغ؟",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "cdc0859d58",
+  "kind": "json",
+  "ar": "يتساقط الثلج عادةً بين ديسمبر ومارس، ويختلف من سنة لأخرى. أخبرنا بتاريخ رحلتك ونخبرك بحالة الجبل قبل الانطلاق.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "617f17cec4",
+  "kind": "json",
+  "ar": "هل تذكرة التلفريك مشمولة؟",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "4714a5d5ac",
+  "kind": "json",
+  "ar": "تذاكر التلفريك والدخول غير مشمولة عادةً في سعر السيارة، ونوضّح ذلك في العرض. ويمكن أن نضيفها لك عند الطلب.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "54b10cb4c3",
+  "kind": "text",
+  "ar": "رحلة بورصا وجبل أولوداغ من إسطنبول: يوم كامل بسيارة خاصة",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "36319b5f4e",
+  "kind": "text",
+  "ar": "المدة: حوالي 12 ساعة",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "680839f381",
+  "kind": "text",
+  "ar": "المسافة: نحو 150 كم من إسطنبول",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b0758fad4a",
+  "kind": "text",
+  "ar": "تناسب: العائلات",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "76caf9b2a1",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: رحلة بورصا وجبل أولوداغ من إسطنبول.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5233c04569",
+  "kind": "text",
+  "ar": "حوالي 12 ساعة",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a2aec0478d",
+  "kind": "text",
+  "ar": "نحو 150 كم من إسطنبول، ساعتان إلى ساعتين ونصف",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "eeed6430ae",
+  "kind": "text",
+  "ar": "العائلات، ومحبي الثلج شتاءً والطبيعة صيفاً",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d42d21b742",
+  "kind": "text",
+  "ar": "بورصا أول عاصمة للدولة العثمانية، وتجمع في يوم واحد بين الجبل والمدينة: ثلج أولوداغ في الشتاء وغاباته في الصيف، ثم جوامع وأسواق عمرها مئات السنين.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5818cc1568",
+  "kind": "text",
+  "ar": "اليوم طويل قليلاً بسبب المسافة، لذلك ننصح بالانطلاق باكراً. ومن أراد التمهل يضيف ليلة في بورصا، أو يختار برنامجاً يجمع إسطنبول وبورصا.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "eca8a4dfaf",
+  "kind": "text",
+  "ar": "من أطول خطوط التلفريك في العالم، يصعد بك فوق الغابات إلى منطقة الفنادق والتزلج.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "821edd13cf",
+  "kind": "text",
+  "ar": "من أجمل آثار بورصا العثمانية، ببلاطهما الأخضر المميز.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "9123c3fa64",
+  "kind": "text",
+  "ar": "الشجرة المعمّرة (إنكايا)",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "41d610193d",
+  "kind": "text",
+  "ar": "شجرة دلب عمرها قرون، تجلس تحت أغصانها لشرب الشاي.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "70d66dd341",
+  "kind": "text",
+  "ar": "السوق المسقوف وسوق الحرير",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ea1f2e55bb",
+  "kind": "text",
+  "ar": "خان كوزا وأسواق بورصا القديمة للحرير والمناشف والحلويات.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2b25c9389d",
+  "kind": "text",
+  "ar": "التلفريك قد يتوقف عند الرياح القوية أو للصيانة، وعندها نصعد بالسيارة أو نعدّل البرنامج.",
+  "pages": [
+   "day-trips/bursa/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ad18b064c3",
+  "kind": "text",
+  "ar": "رحلة جزر الأميرات (بيوك أدا) من إسطنبول | أويا",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "fa5848ad3c",
+  "kind": "attr",
+  "ar": "رحلة يومية إلى جزر الأميرات: عبّارة في بحر مرمرة إلى بيوك أدا، جولة بالعربات الكهربائية أو الدراجات، وغداء على الواجهة البحرية. احجز عبر واتساب.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "ac3c4b0ada",
+  "kind": "json",
+  "ar": "رحلة جزر الأميرات",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a08061d9f1",
+  "kind": "json",
+  "ar": "نوصلك إلى رصيف العبّارات، فتبحر في بحر مرمرة إلى بيوك أدا، أكبر جزر الأميرات: شوارع هادئة بلا سيارات، وبيوت خشبية قديمة وواجهة بحرية للغداء.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "c6d4665182",
+  "kind": "json",
+  "ar": "كم تستغرق العبّارة إلى جزر الأميرات؟",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "6f5c159c58",
+  "kind": "json",
+  "ar": "من 45 دقيقة تقريباً من الجانب الآسيوي (بوستانجي) إلى نحو ساعة ونصف من كاباتاش، حسب الخط وعدد المحطات.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "a4960321c0",
+  "kind": "json",
+  "ar": "هل توجد سيارات في جزر الأميرات؟",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "8543aa3395",
+  "kind": "json",
+  "ar": "لا، السيارات الخاصة ممنوعة. التنقل بالعربات الكهربائية العامة أو الدراجات أو المشي.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "28e498d02e",
+  "kind": "json",
+  "ar": "أي جزيرة أفضل للزيارة؟",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "a7374fc8cd",
+  "kind": "json",
+  "ar": "بيوك أدا هي الأكبر والأشهر وفيها أكثر الخدمات. ومن يحب الهدوء أكثر يختار هيبلي أدا أو بورغاز أدا.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "fa3eb99bf7",
+  "kind": "text",
+  "ar": "رحلة جزر الأميرات: يوم في بيوك أدا بلا سيارات",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "7b0740c622",
+  "kind": "text",
+  "ar": "المدة: حوالي 7 إلى 8 ساعات",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "9d977b753f",
+  "kind": "text",
+  "ar": "العبّارة: من كاباتاش أو بوستانجي",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "715bf52c47",
+  "kind": "text",
+  "ar": "تناسب: العائلات ومحبي المشي والهدوء",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ca65dff268",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: رحلة جزر الأميرات.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1b3b663ac1",
+  "kind": "text",
+  "ar": "حوالي 7 إلى 8 ساعات",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b2cf46dee8",
+  "kind": "text",
+  "ar": "العبّارة",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c5ed46b2ae",
+  "kind": "text",
+  "ar": "من كاباتاش أو بوستانجي، 45 إلى 90 دقيقة حسب الرصيف",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e12b7a090d",
+  "kind": "text",
+  "ar": "العائلات ومحبي المشي والهدوء",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "9836581fbe",
+  "kind": "text",
+  "ar": "حسب عدد الأشخاص ونوع الخدمة، في عرض مكتوب",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c19f50ece9",
+  "kind": "text",
+  "ar": "جزر الأميرات تسع جزر في بحر مرمرة، وأشهرها بيوك أدا. السيارات الخاصة ممنوعة فيها، والتنقل بالعربات الكهربائية أو الدراجات أو المشي، وهذا سر هدوئها.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "13510a6389",
+  "kind": "text",
+  "ar": "الرحلة نفسها جزء من المتعة: عبّارة تمر أمام سواحل إسطنبول. وعلى الجزيرة تتجول بين القصور الخشبية، وتصعد إن أحببت إلى التلة المطلة على البحر، ثم تتغدى سمكاً على الواجهة.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d997af2f54",
+  "kind": "text",
+  "ar": "التوصيل بسيارة خاصة من فندقك إلى رصيف العبّارات والعودة.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "350ad43803",
+  "kind": "text",
+  "ar": "شرح واضح لمواعيد العبّارات وخط العودة.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "50ccbe784f",
+  "kind": "text",
+  "ar": "مرافق يتحدث العربية عند الطلب المسبق.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "52765a2576",
+  "kind": "text",
+  "ar": "عبّارة بحر مرمرة",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b71ded20a3",
+  "kind": "text",
+  "ar": "نوصلك إلى الرصيف ونشرح لك خط العودة، أو نرتب لك مرافقاً عند الطلب.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "682d7d4158",
+  "kind": "text",
+  "ar": "جولة في بيوك أدا",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "504867e158",
+  "kind": "text",
+  "ar": "بالعربات الكهربائية أو الدراجات بين البيوت الخشبية والحدائق.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0b7f6fb29b",
+  "kind": "text",
+  "ar": "تلة آيا يورغي",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "bd21d06e88",
+  "kind": "text",
+  "ar": "صعود على الأقدام لمن يحب المشي، وإطلالة واسعة على البحر والجزر.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "244599e67d",
+  "kind": "text",
+  "ar": "غداء على البحر",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ec162d03e0",
+  "kind": "text",
+  "ar": "مطاعم السمك على الواجهة البحرية قرب الرصيف.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d28c727ee9",
+  "kind": "text",
+  "ar": "الجزر تزدحم كثيراً في عطلة نهاية الأسبوع صيفاً. يوم من وسط الأسبوع أهدأ وأمتع.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6fb65dfc95",
+  "kind": "text",
+  "ar": "مواعيد العبّارات تتغير بين الصيف والشتاء، ونؤكد لك موعد العودة قبل الانطلاق.",
+  "pages": [
+   "day-trips/princes-islands/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1127fdabe6",
+  "kind": "text",
+  "ar": "رحلة شيلا وأغوا من إسطنبول بسائق خاص | أويا",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "882796e72a",
+  "kind": "attr",
+  "ar": "رحلة يومية خاصة من إسطنبول إلى شيلا وأغوا على البحر الأسود: الفنارة والشاطئ، وجولة قارب في نهر أغوا وغداء على ضفته. احجز عبر واتساب.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "25a33f43fb",
+  "kind": "json",
+  "ar": "رحلة شيلا وأغوا من إسطنبول",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0b6eaa812b",
+  "kind": "json",
+  "ar": "يوم على ساحل البحر الأسود شمال شرق إسطنبول: فنارة شيلا (شيلي) وشاطئها، ثم بلدة أغوا الهادئة بين نهرين، مع جولة قارب وغداء على ضفة الماء.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "e362ddb9c6",
+  "kind": "json",
+  "ar": "كم تبعد شيلا وأغوا عن إسطنبول؟",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "d988ccb457",
+  "kind": "json",
+  "ar": "شيلا على بعد نحو 70 كيلومتراً وأغوا نحو 100 كيلومتر، ويستغرق الطريق ساعة ونصفاً إلى ساعتين حسب مكان فندقك.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "fb35d230d4",
+  "kind": "json",
+  "ar": "هل تصلح الرحلة في الشتاء؟",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "1e733ecdf8",
+  "kind": "json",
+  "ar": "نعم، تبقى جميلة للهدوء والطبيعة والجلسات على النهر، لكن السباحة وبعض الأنشطة صيفية فقط.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "1ec0003f85",
+  "kind": "json",
+  "ar": "هل يمكن المبيت في أغوا؟",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "57d892c693",
+  "kind": "json",
+  "ar": "نعم، في أغوا فنادق صغيرة وأكواخ على النهر، ونرتب لك ليلة هناك إن رغبت.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "b2cccc8447",
+  "kind": "text",
+  "ar": "رحلة شيلا وأغوا من إسطنبول: البحر الأسود في يوم",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "76db77034b",
+  "kind": "text",
+  "ar": "المسافة: شيلا نحو 70 كم",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d6f168351b",
+  "kind": "text",
+  "ar": "تناسب: الأزواج والعائلات ومحبي الطبيعة والبحر",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e29b29236c",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: رحلة شيلا وأغوا من إسطنبول.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ea156908ac",
+  "kind": "text",
+  "ar": "شيلا نحو 70 كم، وأغوا نحو 100 كم من إسطنبول",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c3cb5a1cde",
+  "kind": "text",
+  "ar": "الأزواج والعائلات ومحبي الطبيعة والبحر",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e2a790f5ab",
+  "kind": "text",
+  "ar": "شيلا وأغوا وجه آخر لإسطنبول: غابات تصل إلى البحر، وبلدات صغيرة هادئة. شيلا تشتهر بفنارتها وميناء الصيادين وشاطئها الرملي، وأغوا بنهرها الذي تصطف على ضفتيه المقاهي والأكواخ.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "11ca439b48",
+  "kind": "text",
+  "ar": "نبدأ بشيلا للفنارة والإطلالة، ثم نكمل إلى أغوا لجولة قارب في النهر والغداء. وفي الطريق محطات طبيعية قصيرة حسب الوقت والطقس.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "60448a93c1",
+  "kind": "text",
+  "ar": "فنارة شيلا",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f2a38fd1c2",
+  "kind": "text",
+  "ar": "فنارة تاريخية تطل على البحر الأسود والميناء والقلعة الصغيرة.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "811dc45b91",
+  "kind": "text",
+  "ar": "شاطئ شيلا",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f2b8cc74b3",
+  "kind": "text",
+  "ar": "شاطئ رملي طويل للمشي والجلوس، والسباحة صيفاً حين يسمح البحر.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "bf4863c67b",
+  "kind": "text",
+  "ar": "نهر أغوا",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "25b021a15e",
+  "kind": "text",
+  "ar": "جولة بالقارب بين الأشجار، ومقاهٍ ومطاعم على الضفة.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f42cf0870f",
+  "kind": "text",
+  "ar": "محطات طبيعية",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "25dae29c62",
+  "kind": "text",
+  "ar": "خلجان صخرية وإطلالات على الساحل بين شيلا وأغوا.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "446ea149cf",
+  "kind": "text",
+  "ar": "البحر الأسود أمواجه قوية أحياناً، فالتزم بتعليمات السباحة على الشاطئ.",
+  "pages": [
+   "day-trips/sile-agva/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "32cd6715f2",
+  "kind": "text",
+  "ar": "رحلة يلوا من إسطنبول: ترمال والشلالات بسائق خاص | أويا",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "a37118fb0c",
+  "kind": "attr",
+  "ar": "رحلة يومية خاصة من إسطنبول إلى يلوا: ينابيع ترمال الساخنة، شلال سودوشن، القصر المتحرك والحديقة النباتية، بسيارة خاصة وسائق يتحدث العربية.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "a41a530ae9",
+  "kind": "json",
+  "ar": "رحلة يلوا من إسطنبول",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "11e4937311",
+  "kind": "json",
+  "ar": "يلوا (يالوفا) مدينة خضراء على الضفة الجنوبية لبحر مرمرة، تشتهر بينابيع ترمال الساخنة وشلالاتها. نأخذك إليها بسيارة خاصة عبر جسر عثمان غازي ونعود بك في اليوم نفسه.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "8d56b3e6c0",
+  "kind": "json",
+  "ar": "كيف أذهب من إسطنبول إلى يلوا؟",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "0bf95ce67d",
+  "kind": "json",
+  "ar": "بالسيارة عبر جسر عثمان غازي في ساعة ونصف تقريباً، أو بالعبّارة السريعة من إسطنبول. في جولتنا نأخذك بالسيارة لتتنقل بسهولة بين المحطات.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "17abea28e2",
+  "kind": "json",
+  "ar": "هل تناسب ينابيع ترمال العائلات؟",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "0d6f3fbd0f",
+  "kind": "json",
+  "ar": "نعم، وتتوفر في بعض المرافق غرف خاصة للعائلات. أخبرنا بما تفضّله ونتحقق من المتاح.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "aa14f634ea",
+  "kind": "json",
+  "ar": "هل يمكن جمع يلوا وبورصا في يوم؟",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "16c5bcb619",
+  "kind": "json",
+  "ar": "ممكن، لكنه يوم طويل ومزدحم. الأفضل تخصيص يوم لكل واحدة، أو المبيت ليلة في بورصا.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "a001125a5e",
+  "kind": "text",
+  "ar": "رحلة يلوا من إسطنبول: ينابيع ترمال والشلالات",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8acb252c7b",
+  "kind": "text",
+  "ar": "المسافة: نحو 100 كم من إسطنبول",
+  "pages": [
+   "day-trips/yalova/",
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "2be51e4e54",
+  "kind": "text",
+  "ar": "تناسب: العائلات ومحبي الطبيعة والاستجمام",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8fd76a5ee3",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: رحلة يلوا من إسطنبول.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f109b0a754",
+  "kind": "text",
+  "ar": "نحو 100 كم من إسطنبول، ساعة ونصف تقريباً",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8531a4a228",
+  "kind": "text",
+  "ar": "العائلات ومحبي الطبيعة والاستجمام",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b33d86488b",
+  "kind": "text",
+  "ar": "يلوا قريبة وهادئة وأقل ازدحاماً من الوجهات المشهورة. أشهر ما فيها منطقة ترمال بينابيعها الساخنة وسط الغابة، وشلال سودوشن في الجبل، والقصر المتحرك على شاطئ المدينة.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2a875f5502",
+  "kind": "text",
+  "ar": "نرتب المحطات حسب رغبتك: من يريد الاستجمام يطيل الوقت في ترمال، ومن يحب الطبيعة يصعد إلى الشلال والقرى الجبلية.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "232b249e98",
+  "kind": "text",
+  "ar": "ينابيع ترمال",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "522476a264",
+  "kind": "text",
+  "ar": "منطقة حمامات ساخنة تاريخية بين الأشجار، على بعد دقائق من مركز يلوا.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "bf105c4c3c",
+  "kind": "text",
+  "ar": "شلال سودوشن",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "48ef2b97ef",
+  "kind": "text",
+  "ar": "شلال في الغابة تصل إليه بمشي قصير، مع جلسات شاي حوله.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b27b4f5bbf",
+  "kind": "text",
+  "ar": "القصر المتحرك",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "06771e4a77",
+  "kind": "text",
+  "ar": "قصر أتاتورك الصيفي على الشاطئ، وقصته مع شجرة الدلب مشهورة.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a754838993",
+  "kind": "text",
+  "ar": "حديقة كاراجا النباتية",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8b783ad1eb",
+  "kind": "text",
+  "ar": "حديقة أشجار واسعة مناسبة للمشي والتصوير في الربيع والخريف.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "528ae7fa2f",
+  "kind": "text",
+  "ar": "أقسام الحمامات في ترمال منفصلة للرجال والنساء في بعض المرافق، وتتوفر غرف خاصة للعائلات. نتحقق لك من المتاح قبل الزيارة.",
+  "pages": [
+   "day-trips/yalova/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f73751957b",
+  "kind": "text",
+  "ar": "رحلة إزميت وكارتبه من إسطنبول بسائق خاص | أويا",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "2a13ce42b0",
+  "kind": "attr",
+  "ar": "رحلة يومية خاصة من إسطنبول إلى إزميت وكارتبه: حديقة أورمانيا الطبيعية، جبل كارتبه وتلفريكه، وكورنيش إزميت، بسيارة خاصة وسائق يتحدث العربية.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "7958b4e324",
+  "kind": "json",
+  "ar": "رحلة إزميت وكارتبه من إسطنبول",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "181ef495d9",
+  "kind": "json",
+  "ar": "إزميت (كوجالي) على خليجها شرق إسطنبول، وفوقها جبل كارتبه وغاباته. يوم يجمع حديقة أورمانيا الطبيعية والجبل والكورنيش، بسيارة خاصة من فندقك.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "f0f6924ea5",
+  "kind": "json",
+  "ar": "كم تبعد إزميت عن إسطنبول؟",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "b89dce1802",
+  "kind": "json",
+  "ar": "نحو 100 كيلومتر شرقاً، ويستغرق الطريق ساعة إلى ساعة ونصف حسب الزحمة ومكان فندقك.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "128c03e27e",
+  "kind": "json",
+  "ar": "هل يمكن جمع إزميت وسبانجا في يوم؟",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "07364f4c48",
+  "kind": "json",
+  "ar": "نعم، المنطقتان متجاورتان. نرتب لك المحطات التي تهمك من الاثنتين في يوم واحد.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "1c7de6a6d6",
+  "kind": "json",
+  "ar": "متى يكون الثلج في كارتبه؟",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "7a0f70ed8f",
+  "kind": "json",
+  "ar": "عادةً بين ديسمبر ومارس، ويختلف من سنة لأخرى. نخبرك بحالة الجبل قبل الرحلة.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "f64d4824b2",
+  "kind": "text",
+  "ar": "رحلة إزميت وكارتبه من إسطنبول: جبل وغابة وخليج",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "23b210c710",
+  "kind": "text",
+  "ar": "تناسب: العائلات والأطفال",
+  "pages": [
+   "day-trips/izmit-kartepe/",
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "123259850f",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: رحلة إزميت وكارتبه من إسطنبول.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "185c982ade",
+  "kind": "text",
+  "ar": "نحو 100 كم من إسطنبول، ساعة إلى ساعة ونصف",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "86944242b7",
+  "kind": "text",
+  "ar": "العائلات والأطفال، ومحبي الثلج شتاءً",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "de8007c700",
+  "kind": "text",
+  "ar": "هذه الجولة خيار جيد لمن زار سبانجا من قبل ويريد جديداً في المنطقة نفسها. أورمانيا حديقة طبيعية واسعة فيها حيوانات وممرات مشي، وكارتبه مقصد الثلج الأقرب إلى إسطنبول.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c40fdae7c9",
+  "kind": "text",
+  "ar": "يمكن ختم اليوم على كورنيش إزميت وحديقة سيكا، أو المرور بمعشوقية للغداء بجانب الجداول.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0dfff1adc6",
+  "kind": "text",
+  "ar": "حديقة أورمانيا",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "af39697ffd",
+  "kind": "text",
+  "ar": "حديقة طبيعية واسعة في كارتبه، بحيوانات وممرات مشي ومناطق للأطفال.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6814bf1d93",
+  "kind": "text",
+  "ar": "جبل كارتبه",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "51443e7e79",
+  "kind": "text",
+  "ar": "إطلالات على الخليج وبحيرة سبانجا، وتزلج في الشتاء، وتلفريك عند تشغيله.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ca93a94a95",
+  "kind": "text",
+  "ar": "كورنيش إزميت وحديقة سيكا",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5f50cd6667",
+  "kind": "text",
+  "ar": "ممشى طويل على الخليج، ومقاهٍ وألعاب للأطفال.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "9d67329ec6",
+  "kind": "text",
+  "ar": "معشوقية للغداء",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5ec6aa3d23",
+  "kind": "text",
+  "ar": "مطاعم فوق الجداول بين الغابات، على طريق العودة.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4d8ffe0640",
+  "kind": "text",
+  "ar": "حالة الثلج والتلفريك في كارتبه تتغير حسب الطقس، ونتأكد لك قبل الانطلاق.",
+  "pages": [
+   "day-trips/izmit-kartepe/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ce35e9cb70",
+  "kind": "text",
+  "ar": "جولة إسطنبول الأوروبية بسائق خاص: 10 ساعات | أويا",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "43e710befc",
+  "kind": "attr",
+  "ar": "جولة خاصة في الجانب الأوروبي من إسطنبول مدتها نحو 10 ساعات: آيا صوفيا والجامع الأزرق وتوبكابي والبازار الكبير وغلطة وأورتاكوي، بسائق يتحدث العربية.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "97c830aba5",
+  "kind": "json",
+  "ar": "أشهر معالم إسطنبول في يوم واحد: السلطان أحمد وآيا صوفيا والبازار الكبير، ثم غلطة وتقسيم وساحل البوسفور، بسيارة خاصة تنتظرك عند كل محطة.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "9049449b01",
+  "kind": "json",
+  "ar": "هل تكفي 10 ساعات لمعالم إسطنبول الأوروبية؟",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "7a7e880101",
+  "kind": "json",
+  "ar": "تكفي لأهم المعالم مع دخول متحف أو اثنين. ومن أراد دخول كل المتاحف على مهل يحتاج يومين.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "65df898d23",
+  "kind": "json",
+  "ar": "هل السائق مرشد سياحي؟",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "95defde805",
+  "kind": "json",
+  "ar": "السائق يوصلك ويساعدك في التنقل، وليس مرشداً سياحياً. وإن أردت شرحاً تاريخياً نرتب لك مرشداً مرخصاً عند الطلب.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "0cfd8c8383",
+  "kind": "json",
+  "ar": "هل تذاكر المتاحف مشمولة؟",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "e4ec0b29e8",
+  "kind": "json",
+  "ar": "تذاكر الدخول غير مشمولة عادةً في سعر السيارة، ونوضّح ذلك في العرض. ويمكن أن نضيفها لك عند الطلب.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "9965af10c1",
+  "kind": "text",
+  "ar": "جولة إسطنبول الأوروبية: 10 ساعات بسيارة خاصة وسائق",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "25be7316e3",
+  "kind": "text",
+  "ar": "الانطلاق: من فندقك في إسطنبول",
+  "pages": [
+   "day-trips/istanbul-european-side/",
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "10092a445e",
+  "kind": "text",
+  "ar": "تناسب: من يزور إسطنبول لأول مرة",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d43566b41d",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: جولة إسطنبول الأوروبية.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e5c5f85a0a",
+  "kind": "text",
+  "ar": "الانطلاق",
+  "pages": [
+   "day-trips/istanbul-european-side/",
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "f29cbbe54f",
+  "kind": "text",
+  "ar": "من فندقك في إسطنبول",
+  "pages": [
+   "day-trips/istanbul-european-side/",
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "e94dbcb15b",
+  "kind": "text",
+  "ar": "من يزور إسطنبول لأول مرة، والعائلات",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "704dfb6585",
+  "kind": "text",
+  "ar": "الجانب الأوروبي يضم أغلب معالم إسطنبول التاريخية. السيارة الخاصة توفر عليك التنقل بين المناطق، لكن منطقة السلطان أحمد نفسها تُزار مشياً، فالمعالم فيها متقاربة.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "32c2ff856c",
+  "kind": "text",
+  "ar": "عشر ساعات لا تكفي لدخول كل شيء، لذلك نرتب معك الأولويات: أي المتاحف تدخل، وأين تكتفي بالصور، ومتى تتوقف للصلاة والغداء.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "76a1cb4349",
+  "kind": "text",
+  "ar": "آيا صوفيا والجامع الأزرق وقصر توبكابي وخزان البازيليك، متقاربة مشياً.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2b8a6cddf0",
+  "kind": "text",
+  "ar": "أقدم أسواق إسطنبول المسقوفة، للهدايا والحلويات والتوابل.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a180b7e70a",
+  "kind": "text",
+  "ar": "غلطة وتقسيم",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d162467a97",
+  "kind": "text",
+  "ar": "برج غلطة وشارع الاستقلال وميدان تقسيم.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e744c8bc8e",
+  "kind": "text",
+  "ar": "ساحل البوسفور",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "44981df33f",
+  "kind": "text",
+  "ar": "قصر دولمة بهجة من الخارج أو الداخل، ثم أورتاكوي وجامعها تحت الجسر.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a89719def5",
+  "kind": "text",
+  "ar": "قصر توبكابي يغلق عادةً يوم الثلاثاء، وقصر دولمة بهجة يوم الاثنين، والبازار الكبير يوم الأحد. نرتب يوم جولتك على ذلك ونتأكد من المواعيد قبلها.",
+  "pages": [
+   "day-trips/istanbul-european-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f2a4066d4b",
+  "kind": "text",
+  "ar": "جولة إسطنبول الآسيوية بسائق خاص: 10 ساعات | أويا",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "3d222811f9",
+  "kind": "attr",
+  "ar": "جولة خاصة في الجانب الآسيوي من إسطنبول مدتها نحو 10 ساعات: تلة وجامع تشامليجا، أوسكودار وبرج الفتاة، قصر بيلربي وكاديكوي وشارع بغداد.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "f396986577",
+  "kind": "json",
+  "ar": "الجانب الآسيوي أهدأ وأقل ازدحاماً بالسياح: إطلالات تشامليجا على المدينة كلها، وساحل أوسكودار المقابل لبرج الفتاة، وأسواق كاديكوي وشارع بغداد.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "9b4f6a9a59",
+  "kind": "json",
+  "ar": "ما الفرق بين إسطنبول الأوروبية والآسيوية؟",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "2691cfb861",
+  "kind": "json",
+  "ar": "الأوروبية فيها أغلب المعالم التاريخية والأسواق القديمة. الآسيوية أهدأ، وتشتهر بإطلالاتها وأحيائها السكنية ومقاهيها وأسواقها الحديثة.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "082a7ad4ee",
+  "kind": "json",
+  "ar": "هل يمكن جمع الجانبين في يوم واحد؟",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "977058c602",
+  "kind": "json",
+  "ar": "ممكن بشكل مختصر: محطتان أو ثلاث في كل جانب. لكن الأفضل يوم لكل جانب حتى لا يضيع الوقت في الزحمة.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "2dffd75c6b",
+  "kind": "json",
+  "ar": "كيف نعبر إلى الجانب الآسيوي؟",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "a7235a8af1",
+  "kind": "json",
+  "ar": "بالسيارة عبر أحد جسور البوسفور أو نفق أوراسيا، حسب الزحمة ومكان فندقك.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "11c7c63fed",
+  "kind": "text",
+  "ar": "جولة إسطنبول الآسيوية: 10 ساعات بسيارة خاصة وسائق",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "7c66dc48ed",
+  "kind": "text",
+  "ar": "تناسب: من زار المعالم المشهورة ويريد وجهاً آخر للمدينة",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "7e5d6d9901",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: جولة إسطنبول الآسيوية.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2b603b3550",
+  "kind": "text",
+  "ar": "من زار المعالم المشهورة ويريد وجهاً آخر للمدينة",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "66aa3f897c",
+  "kind": "text",
+  "ar": "نعبر البوسفور بالجسر أو النفق، ونبدأ من تلة تشامليجا وجامعها الكبير حيث ترى إسطنبول من فوق. ثم ننزل إلى ساحل أوسكودار وحي كوزغونجوك ببيوته الملونة.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c6a32bedac",
+  "kind": "text",
+  "ar": "بعد الظهر لكاديكوي وسوقها ومقاهي مودا، أو للتسوق في شارع بغداد. ونختم بغروب الشمس أمام برج الفتاة.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3fb0b4b25c",
+  "kind": "text",
+  "ar": "تلة وجامع تشامليجا",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a0651b9495",
+  "kind": "text",
+  "ar": "أعلى إطلالة على إسطنبول، وبجوارها أكبر جوامع تركيا.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ddb2e0d5f7",
+  "kind": "text",
+  "ar": "أوسكودار وبرج الفتاة",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6b1bf03c93",
+  "kind": "text",
+  "ar": "ممشى ساحلي وجلسات تطل على البرج والمدينة القديمة، وأجمل وقت له الغروب.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e0ed99d552",
+  "kind": "text",
+  "ar": "قصر بيلربي وكوزغونجوك",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3236195af9",
+  "kind": "text",
+  "ar": "قصر صيفي عثماني تحت جسر البوسفور، وحي هادئ ببيوت خشبية ملونة.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "42bc5168d7",
+  "kind": "text",
+  "ar": "كاديكوي وشارع بغداد",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8aafbf872e",
+  "kind": "text",
+  "ar": "سوق شعبي ومطاعم ومقاهٍ في مودا، وماركات ومراكز تسوق في شارع بغداد.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "364c1aecc4",
+  "kind": "text",
+  "ar": "قصر بيلربي يغلق عادةً يوم الاثنين. نتأكد من المواعيد قبل جولتك.",
+  "pages": [
+   "day-trips/istanbul-asian-side/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "11bf4562e7",
+  "kind": "text",
+  "ar": "تأجير يخت خاص في البوسفور بإسطنبول | أويا",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "1ce963f7eb",
+  "kind": "attr",
+  "ar": "يخت خاص في مضيق البوسفور لك ولمرافقيك فقط: جولة بالساعة للعائلة أو لعيد ميلاد أو طلب زواج، مع عشاء وتزيين عند الطلب. اطلب العرض عبر واتساب.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "40a96801aa",
+  "kind": "json",
+  "ar": "جولة في مضيق البوسفور على يخت خاص بطاقمه، تختار أنت مدتها وموعدها ومن يرافقك فيها. تناسب العائلات والمناسبات الخاصة ومن يريد رؤية إسطنبول من الماء بهدوء.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "ec5f83a45a",
+  "kind": "json",
+  "ar": "كم شخصاً يتسع اليخت؟",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "964bfba418",
+  "kind": "json",
+  "ar": "يختلف من يخت لآخر، من يخوت صغيرة لمجموعة قليلة إلى يخوت كبيرة للمناسبات. أخبرنا بعددكم ونقترح المناسب.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "a2e146aba9",
+  "kind": "json",
+  "ar": "هل يمكن إحضار طعامنا أو طلب عشاء؟",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "7b9932f907",
+  "kind": "json",
+  "ar": "يمكن طلب عشاء أو ضيافة مع الحجز. وإحضار الطعام من الخارج يختلف حسب اليخت، ونوضّحه لك في العرض.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "3ea0567657",
+  "kind": "json",
+  "ar": "هل اليخت خاص بنا فقط؟",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "215977eab3",
+  "kind": "json",
+  "ar": "نعم، اليخت لك ولمرافقيك فقط طوال المدة، وليس رحلة مشتركة.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "b38415385f",
+  "kind": "text",
+  "ar": "يخت خاص لك ولمن معك",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4cc0c9e318",
+  "kind": "text",
+  "ar": "يخت خاص في البوسفور: جولة لك ولمن معك فقط",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e3b46b8414",
+  "kind": "text",
+  "ar": "المدة: بالساعة",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a0dfefe94e",
+  "kind": "text",
+  "ar": "السعة: تختلف من يخت لآخر",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "34823668cd",
+  "kind": "text",
+  "ar": "المسار: قصور وجسور البوسفور وبرج الفتاة",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0ae3ec2aed",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: يخت خاص في البوسفور.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "dad6e22d33",
+  "kind": "text",
+  "ar": "بالساعة، وساعتان على الأقل عادةً",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "7871c0f125",
+  "kind": "text",
+  "ar": "السعة",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "61cde65f7e",
+  "kind": "text",
+  "ar": "تختلف من يخت لآخر، ونقترح المناسب لعددكم",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "27c6651384",
+  "kind": "text",
+  "ar": "المسار",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e1f635ddb4",
+  "kind": "text",
+  "ar": "قصور وجسور البوسفور وبرج الفتاة",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4daf693f78",
+  "kind": "text",
+  "ar": "حسب اليخت والمدة والإضافات، في عرض مكتوب",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "04c098eec2",
+  "kind": "text",
+  "ar": "على اليخت الخاص ترى قصر دولمة بهجة وجامع أورتاكوي وقلعة روملي والجسور من زاوية لا تراها من البر، ودون زحام الرحلات الجماعية. وقت الغروب هو الأكثر طلباً.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6bc77da9a8",
+  "kind": "text",
+  "ar": "اليخوت تختلف كثيراً في الحجم والتجهيز، لذلك نرسل لك صوراً حقيقية لليخت المقترح وما يشمله سعره قبل أن تؤكد.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "88655c2e3a",
+  "kind": "text",
+  "ar": "يخت خاص مع القبطان والطاقم طوال المدة المتفق عليها.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0c814fdd69",
+  "kind": "text",
+  "ar": "مسار في البوسفور يُتفق عليه حسب المدة.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "301238ac1b",
+  "kind": "text",
+  "ar": "مشروبات ترحيبية غير كحولية في أغلب اليخوت، ونؤكدها في العرض.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "56b9b072e6",
+  "kind": "text",
+  "ar": "صور حقيقية لليخت قبل الحجز.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "81d3860d48",
+  "kind": "text",
+  "ar": "اختر ما يناسب مناسبتك",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "be5c71e1e3",
+  "kind": "text",
+  "ar": "جولة عائلية",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "12ce80d623",
+  "kind": "text",
+  "ar": "ساعتان في البوسفور مع جلسة مريحة للعائلة والأطفال.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2745ad11b0",
+  "kind": "text",
+  "ar": "عشاء على اليخت",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3bbd8a8b73",
+  "kind": "text",
+  "ar": "وجبة تُحضّر مسبقاً وتقدَّم خلال الجولة، بقائمة تختارها.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "bb3354397e",
+  "kind": "text",
+  "ar": "عيد ميلاد أو طلب زواج",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "144ad1bcd8",
+  "kind": "text",
+  "ar": "تزيين اليخت وكعكة وورود، ومصوّر عند الطلب.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "bfeb574b0e",
+  "kind": "text",
+  "ar": "جولة الغروب",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2f56ae5862",
+  "kind": "text",
+  "ar": "الموعد الأجمل للصور، ويُحجز مبكراً في الصيف وعطل نهاية الأسبوع.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "56dde3ee03",
+  "kind": "text",
+  "ar": "وأعمار الأطفال إن وُجدوا، عبر واتساب أو النموذج.",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "60cc2bf4a6",
+  "kind": "text",
+  "ar": "نرسل لك السعر الحالي مكتوباً",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "c8c3afd7d3",
+  "kind": "text",
+  "ar": "مع ما يشمله بوضوح، وخيار التوصيل من الفندق إن رغبت.",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "322ff7368e",
+  "kind": "text",
+  "ar": "نرسل لك التذاكر أو تأكيد الحجز وموعد الاستلام.",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "78df38c5c1",
+  "kind": "text",
+  "ar": "استمتع بوقتك",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "72f0c02808",
+  "kind": "text",
+  "ar": "فريقنا متاح بالعربية على واتساب لأي استفسار.",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "78e9e8acbb",
+  "kind": "text",
+  "ar": "نقطة الانطلاق تختلف حسب اليخت، ونرسل لك موقعها. ويمكن أن نرتب توصيلك من الفندق.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0ae31aecfa",
+  "kind": "text",
+  "ar": "عند سوء الأحوال الجوية قد تؤجَّل الجولة حفاظاً على السلامة، ونتفق معك على موعد بديل.",
+  "pages": [
+   "activities/private-yacht/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "512643d13a",
+  "kind": "attr",
+  "ar": "مرحباً أويا للسياحة، أرغب بالاستفسار عن خدمة:",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "6ec07e43bb",
+  "kind": "text",
+  "ar": "الخدمة<g1>*</g1>",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "a04b32afb9",
+  "kind": "text",
+  "ar": "اختر الخدمة",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "4fa1a15140",
+  "kind": "attr",
+  "ar": "مثال: معنا أطفال صغار، نحتاج توصيلاً من الفندق",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "8dea56d1a6",
+  "kind": "text",
+  "ar": "أرسل الطلب عبر واتساب",
+  "pages": [
+   "activities/private-yacht/",
+   "activities/bosphorus-dinner-cruise/",
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 8
+ },
+ {
+  "id": "917128d584",
+  "kind": "text",
+  "ar": "سهرة البوسفور: رحلة عشاء بحرية في إسطنبول | أويا",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "b7875e8619",
+  "kind": "attr",
+  "ar": "سهرة البوسفور في إسطنبول: رحلة مسائية على سفينة مع عشاء وعروض فلكلورية وإطلالة على الجسور والقصور المضاءة، مع التوصيل من الفندق. احجز عبر واتساب.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "3d861c9fa7",
+  "kind": "json",
+  "ar": "رحلة مسائية على سفينة في مضيق البوسفور: عشاء، وعروض فلكلورية وموسيقية، وأضواء الجسور والقصور على الجانبين. نرتب لك الحجز والتوصيل من الفندق.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "95abc9689d",
+  "kind": "json",
+  "ar": "كم تستغرق سهرة البوسفور؟",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "00a1bbd641",
+  "kind": "json",
+  "ar": "حوالي ثلاث ساعات، تبدأ مساءً. ومع التوصيل من الفندق والعودة يطول الوقت ساعة أو أكثر حسب الزحمة.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "fe85363e4c",
+  "kind": "json",
+  "ar": "هل السهرة مناسبة للعائلات؟",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "7ee9a557b4",
+  "kind": "json",
+  "ar": "تختلف السفن في أجوائها. أخبرنا بما يناسب عائلتك، ونقترح سفينة مناسبة أو طاولة أبعد عن المسرح، أو يختاً خاصاً بديلاً.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "33e9fc8481",
+  "kind": "json",
+  "ar": "هل الطعام حلال؟",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "ebc658fc67",
+  "kind": "json",
+  "ar": "اللحوم المقدَّمة في تركيا حلال في العموم، ونسأل لك عن قائمة السفينة التي تختارها ونخبرك بها قبل الحجز.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "534c826cff",
+  "kind": "text",
+  "ar": "عشاء وعروض على الماء",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1ddf18a563",
+  "kind": "text",
+  "ar": "سهرة البوسفور: عشاء وعروض على سفينة في إسطنبول",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "203a64881d",
+  "kind": "text",
+  "ar": "المدة: حوالي 3 ساعات مساءً",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e561629c15",
+  "kind": "text",
+  "ar": "البرنامج: عشاء وعروض فلكلورية وموسيقية",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "9a3a1a2164",
+  "kind": "text",
+  "ar": "التوصيل: من فنادق المناطق المركزية عادةً",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4670c8f00c",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: سهرة البوسفور.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6050c664dd",
+  "kind": "text",
+  "ar": "حوالي 3 ساعات مساءً",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "75a0df7cbf",
+  "kind": "text",
+  "ar": "عشاء وعروض فلكلورية وموسيقية",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "259de02abb",
+  "kind": "text",
+  "ar": "التوصيل",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c6539cb0c6",
+  "kind": "text",
+  "ar": "من فنادق المناطق المركزية عادةً",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2fa2f0f387",
+  "kind": "text",
+  "ar": "حسب الطاولة والقائمة، في عرض مكتوب",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "22191c851e",
+  "kind": "text",
+  "ar": "السهرة رحلة مشتركة على سفينة، وليست يختاً خاصاً. تجلس على طاولة محجوزة لك، ويُقدَّم العشاء أثناء إبحار السفينة بين الجانبين الأوروبي والآسيوي.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c5668eba0b",
+  "kind": "text",
+  "ar": "السفن تختلف في مستوى الطعام والعروض ومواقع الطاولات. لذلك نخبرك بوضوح ماذا تشمل كل فئة قبل الحجز.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d0052f866f",
+  "kind": "text",
+  "ar": "حجز طاولة باسمك على السفينة.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8256ddb42c",
+  "kind": "text",
+  "ar": "عشاء بقائمة محددة ومشروبات غير كحولية، حسب الفئة.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "26750ec523",
+  "kind": "text",
+  "ar": "برنامج العروض على السفينة.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "93bfa200d6",
+  "kind": "text",
+  "ar": "التوصيل من الفندق والعودة إليه في المناطق المركزية، ونؤكده في العرض.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "15f9176430",
+  "kind": "text",
+  "ar": "اختر الفئة المناسبة",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4dbe535884",
+  "kind": "text",
+  "ar": "الفئة العادية",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "41ffb37783",
+  "kind": "text",
+  "ar": "طاولة داخل الصالة مع قائمة العشاء الأساسية.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e07c3e13da",
+  "kind": "text",
+  "ar": "فئة VIP",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "788adc9c28",
+  "kind": "text",
+  "ar": "طاولة أقرب إلى المسرح أو النوافذ، وقائمة أوسع.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ad3364a31b",
+  "kind": "text",
+  "ar": "طاولة عائلية",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f050288ecf",
+  "kind": "text",
+  "ar": "نطلب لك مكاناً مناسباً للعائلة، وقائمة بلا مشروبات كحولية.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5d330e2020",
+  "kind": "text",
+  "ar": "مناسبة خاصة",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "591677178b",
+  "kind": "text",
+  "ar": "كعكة أو تزيين للطاولة لعيد ميلاد أو ذكرى زواج، عند الطلب المسبق.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c0c63f09dc",
+  "kind": "text",
+  "ar": "بعض السفن تقدّم مشروبات كحولية، وبرنامج العروض يتضمن رقصاً شرقياً في أغلبها. أخبرنا إن كنت تفضّل أجواء عائلية، ونقترح لك الأنسب أو بديلاً مثل اليخت الخاص.",
+  "pages": [
+   "activities/bosphorus-dinner-cruise/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "294fb49bb0",
+  "kind": "text",
+  "ar": "تذاكر أكواريوم إسطنبول (فلوريا) مع التوصيل | أويا",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "df0adf2513",
+  "kind": "attr",
+  "ar": "تذاكر أكواريوم إسطنبول في فلوريا: مسار بحري مسقوف وقسم الغابة المطيرة، مناسب للأطفال في كل الفصول. نرتب التذاكر والتوصيل من الفندق عبر واتساب.",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "d1e9744cbd",
+  "kind": "json",
+  "ar": "تذاكر أكواريوم إسطنبول في فلوريا",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "4b03087012",
+  "kind": "json",
+  "ar": "أكواريوم إسطنبول في منطقة فلوريا على بحر مرمرة من أكبر أحواض الأسماك في المنطقة. نرتب لك التذاكر، ومعها سيارة خاصة من الفندق إن رغبت.",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "dbb12c80cb",
+  "kind": "json",
+  "ar": "أين يقع أكواريوم إسطنبول؟",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "55b895bc6a",
+  "kind": "json",
+  "ar": "في منطقة فلوريا على ساحل بحر مرمرة، في الجانب الأوروبي، وهو أقرب إلى مطار أتاتورك القديم منه إلى السلطان أحمد وتقسيم.",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "4733f47247",
+  "kind": "json",
+  "ar": "كم تستغرق الزيارة؟",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "40009bb6ce",
+  "kind": "json",
+  "ar": "ساعتان إلى ثلاث ساعات عادةً، حسب وتيرة الأطفال ووقت التوقف للصور.",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "aea02dfbf4",
+  "kind": "json",
+  "ar": "هل يوجد أكثر من أكواريوم في إسطنبول؟",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "8581aaeb40",
+  "kind": "json",
+  "ar": "نعم، توجد أحواض أسماك أخرى داخل بعض مراكز التسوق. أخبرنا بمكان فندقك ونقترح الأقرب لك.",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "2df0074779",
+  "kind": "text",
+  "ar": "تذاكر وأنشطة للعائلة",
+  "pages": [
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/",
+   "activities/zoo/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "0182045256",
+  "kind": "text",
+  "ar": "الموقع: فلوريا",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f50ecae85f",
+  "kind": "text",
+  "ar": "مدة الزيارة: ساعتان إلى ثلاث ساعات",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "9dee14f976",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: تذاكر أكواريوم إسطنبول في فلوريا.",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5f0c8e3c8d",
+  "kind": "text",
+  "ar": "فلوريا، الجانب الأوروبي من إسطنبول",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c8f35181b7",
+  "kind": "text",
+  "ar": "مدة الزيارة",
+  "pages": [
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/",
+   "activities/zoo/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "15a8dbb379",
+  "kind": "text",
+  "ar": "ساعتان إلى ثلاث ساعات",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c97feef7cc",
+  "kind": "text",
+  "ar": "العائلات والأطفال، صيفاً وشتاءً",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ef24064a56",
+  "kind": "text",
+  "ar": "حسب سعر التذكرة الحالي، نرسله لك مكتوباً",
+  "pages": [
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/",
+   "activities/zoo/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "ee3042e68e",
+  "kind": "text",
+  "ar": "الزيارة مسار واحد مسقوف يمر بك على بحار العالم، من البحر الأسود إلى المحيط الهادئ، مع نفق زجاجي تسبح الأسماك فوقه، وقسم للغابة المطيرة.",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0ce40be09a",
+  "kind": "text",
+  "ar": "المكان مغلق ومكيّف، فهو خيار جيد للأيام الماطرة أو الحارة. وبجواره مركز تسوق ومطاعم على البحر لإكمال اليوم.",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f20a459f13",
+  "kind": "text",
+  "ar": "تذاكر الدخول للكبار والأطفال حسب العدد.",
+  "pages": [
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/",
+   "activities/zoo/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "ffbd9bfcc9",
+  "kind": "text",
+  "ar": "سيارة خاصة من الفندق والعودة عند الطلب.",
+  "pages": [
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "6c48c0ebc0",
+  "kind": "text",
+  "ar": "إمكانية جمع الزيارة مع محطة أخرى في اليوم نفسه.",
+  "pages": [
+   "activities/istanbul-aquarium/",
+   "activities/theme-parks/",
+   "activities/zoo/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "c0eff4cadc",
+  "kind": "text",
+  "ar": "أسعار التذاكر وفئات أعمار الأطفال تحددها إدارة الأكواريوم وتتغير، ونرسل لك السعر الحالي قبل الحجز.",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4a2dc3ef17",
+  "kind": "text",
+  "ar": "عطلة نهاية الأسبوع والعطل المدرسية أكثر ازدحاماً. الصباح في وسط الأسبوع أهدأ.",
+  "pages": [
+   "activities/istanbul-aquarium/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "663f3b98dc",
+  "kind": "text",
+  "ar": "تذاكر فيالاند (إسفانبول) ومدن الألعاب في إسطنبول | أويا",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "1b403a93a7",
+  "kind": "attr",
+  "ar": "تذاكر مدينة الألعاب إسفانبول، المعروفة سابقاً باسم فيالاند، في إسطنبول: ألعاب للكبار والأطفال ومركز تسوق. نرتب التذاكر والتوصيل من الفندق.",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "2bffde6f6a",
+  "kind": "json",
+  "ar": "تذاكر فيالاند (إسفانبول) ومدن الألعاب في إسطنبول",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "fbcd1fea7a",
+  "kind": "json",
+  "ar": "إسفانبول، المعروفة عند كثيرين باسمها القديم «فيالاند»، أشهر مدينة ألعاب في إسطنبول. نرتب لك التذاكر، ومعها سيارة خاصة من الفندق إن رغبت.",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "d3285909c6",
+  "kind": "json",
+  "ar": "هل فيالاند وإسفانبول مكان واحد؟",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "4d66013f77",
+  "kind": "json",
+  "ar": "نعم، هي المدينة نفسها. افتُتحت باسم فيالاند ثم تغيّر اسمها إلى إسفانبول، وما زال كثيرون يسمّونها بالاسم القديم.",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "912716f5d4",
+  "kind": "json",
+  "ar": "هل تناسب الأطفال الصغار؟",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "94f784171d",
+  "kind": "json",
+  "ar": "نعم، فيها ألعاب مخصصة للصغار، لكن بعض الألعاب السريعة لها حد أدنى للطول.",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "9aba0f3eb9",
+  "kind": "json",
+  "ar": "هل تعمل مدينة الألعاب في الشتاء؟",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "eda827a40e",
+  "kind": "json",
+  "ar": "مواعيد العمل تتغير حسب الموسم والطقس، وقد تغلق في بعض أيام الشتاء. نتأكد لك من الموعد قبل الحجز.",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "9cc5c6621d",
+  "kind": "text",
+  "ar": "الموقع: أيوب سلطان",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "7bf23e9a31",
+  "kind": "text",
+  "ar": "مدة الزيارة: نصف يوم إلى يوم كامل",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e4dc95c59e",
+  "kind": "text",
+  "ar": "تناسب: العائلات والشباب والأطفال",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3e6670b79c",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: تذاكر فيالاند (إسفانبول) ومدن الألعاب في إسطنبول.",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d48a9bcbde",
+  "kind": "text",
+  "ar": "أيوب سلطان، الجانب الأوروبي من إسطنبول",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "bc5a69ebe4",
+  "kind": "text",
+  "ar": "نصف يوم إلى يوم كامل",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e79267b351",
+  "kind": "text",
+  "ar": "العائلات والشباب والأطفال",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "173b10951f",
+  "kind": "text",
+  "ar": "المدينة فيها ألعاب سريعة للكبار وألعاب هادئة للصغار، وبجوارها مركز تسوق ومطاعم. يكفيها نصف يوم لمن يريد الألعاب الأساسية، ويوم كامل لمن يريد تجربة كل شيء.",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f736b414e8",
+  "kind": "text",
+  "ar": "وإن كان فندقك بعيداً عنها، نقترح لك مدينة ألعاب أو مركز ترفيه مغلقاً أقرب إليك.",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e61f8f72df",
+  "kind": "text",
+  "ar": "بعض الألعاب لها حد أدنى للطول، وقد تتوقف ألعاب للصيانة أو عند المطر والرياح.",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2bb61cf2ff",
+  "kind": "text",
+  "ar": "مواعيد العمل وأسعار التذاكر تحددها إدارة المدينة وتتغير حسب الموسم، ونرسل لك الحالي منها قبل الحجز.",
+  "pages": [
+   "activities/theme-parks/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8653be892e",
+  "kind": "text",
+  "ar": "تذاكر حديقة الحيوانات قرب إسطنبول مع التوصيل | أويا",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "f4fcc203d1",
+  "kind": "attr",
+  "ar": "تذاكر حديقة حيوانات ونباتات فاروق يالتشين في داريجا قرب إسطنبول، مع سيارة خاصة من الفندق. يوم ممتع للأطفال والعائلة. احجز عبر واتساب.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "905dd70d3b",
+  "kind": "json",
+  "ar": "تذاكر حديقة الحيوانات قرب إسطنبول",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "bf70c51b85",
+  "kind": "json",
+  "ar": "أقرب حديقة حيوانات كبيرة إلى إسطنبول هي حديقة فاروق يالتشين للحيوانات والنباتات في داريجا، شرق المدينة. نرتب لك التذاكر مع سيارة خاصة تأخذك وتعود بك.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "fa3816eefa",
+  "kind": "json",
+  "ar": "هل توجد حديقة حيوانات داخل إسطنبول؟",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "aaf4b350fb",
+  "kind": "json",
+  "ar": "أكبر حديقة قريبة هي حديقة فاروق يالتشين في داريجا، على بعد نحو ساعة شرق المدينة. وداخل إسطنبول توجد أحواض أسماك وحدائق صغيرة للأطفال.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "41b20cd464",
+  "kind": "json",
+  "ar": "كم تستغرق زيارة حديقة الحيوانات؟",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "129852dad9",
+  "kind": "json",
+  "ar": "ثلاث إلى أربع ساعات داخل الحديقة، ومع الطريق تصبح الرحلة أكثر من نصف يوم.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "3baa6d2c01",
+  "kind": "json",
+  "ar": "هل يمكن جمعها مع جولة أخرى؟",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "c10210cffe",
+  "kind": "json",
+  "ar": "نعم، يمكن جمعها مع جولة إزميت وكارتبه أو مع محطة على الجانب الآسيوي في اليوم نفسه.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "711cecf260",
+  "kind": "text",
+  "ar": "الموقع: داريجا",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "bc96e3940a",
+  "kind": "text",
+  "ar": "الطريق: حوالي ساعة من الجانب الآسيوي",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "08ab4f446a",
+  "kind": "text",
+  "ar": "مدة الزيارة: ثلاث إلى أربع ساعات",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "49d32ffd8b",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: تذاكر حديقة الحيوانات قرب إسطنبول.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "83a398d248",
+  "kind": "text",
+  "ar": "داريجا (كوجالي)، شرق إسطنبول",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0aa1b79f6a",
+  "kind": "text",
+  "ar": "الطريق",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "192f891e99",
+  "kind": "text",
+  "ar": "حوالي ساعة من الجانب الآسيوي، وأكثر من الأوروبي",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e521fe2194",
+  "kind": "text",
+  "ar": "ثلاث إلى أربع ساعات",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "279efef19c",
+  "kind": "text",
+  "ar": "الحديقة تجمع الحيوانات مع حديقة نباتية واسعة، والتجول فيها مشياً في الهواء الطلق. لذلك أجمل أوقاتها الربيع والخريف والأيام الصافية.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c688393b5e",
+  "kind": "text",
+  "ar": "لأنها خارج إسطنبول، السيارة الخاصة هي الأريح للعائلات. ويمكن جمعها في اليوم نفسه مع جولة إزميت وكارتبه.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "41e768011c",
+  "kind": "text",
+  "ar": "سيارة خاصة من الفندق والعودة.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5581ec059e",
+  "kind": "text",
+  "ar": "أسعار التذاكر ومواعيد العمل تحددها إدارة الحديقة وتتغير حسب الموسم، ونرسل لك الحالي منها قبل الحجز.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "54036f22e8",
+  "kind": "text",
+  "ar": "الزيارة مشي في الهواء الطلق، فاختر حذاءً مريحاً وتابع حالة الطقس.",
+  "pages": [
+   "activities/zoo/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0847c5b732",
+  "kind": "text",
+  "ar": "الإقامة السياحية في تركيا: الأوراق والخطوات | أويا",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "a7101253ed",
+  "kind": "attr",
+  "ar": "الإقامة السياحية في تركيا لمختلف الجنسيات: نراجع حالتك ونجهّز الملف ونقدّم الطلب الإلكتروني ونحجز الموعد. القرار لإدارة الهجرة التركية وحدها.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "3f810a82fc",
+  "kind": "json",
+  "ar": "الإقامة السياحية هي إذن إقامة قصير الأمد تمنحه رئاسة إدارة الهجرة التركية لمن يريد البقاء في تركيا مدة أطول من مدة التأشيرة أو الإعفاء. نساعدك في تجهيز الملف والتقديم، والقرار للإدارة وحدها.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "efeb43ffd9",
+  "kind": "json",
+  "ar": "هل تمنح الإقامة السياحية حق العمل؟",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "c46a748285",
+  "kind": "json",
+  "ar": "لا. الإقامة السياحية لا تسمح بالعمل في تركيا، والعمل يحتاج إذن عمل مستقلاً.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "9d727255bc",
+  "kind": "json",
+  "ar": "كم مدة الإقامة السياحية؟",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "eedeabed53",
+  "kind": "json",
+  "ar": "تحددها إدارة الهجرة لكل طلب حسب الجنسية والملف، وقد تكون أقل من المدة التي طلبتها.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "1f02349454",
+  "kind": "json",
+  "ar": "هل يمكن تجديد الإقامة السياحية؟",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "41950d87d2",
+  "kind": "json",
+  "ar": "يُقدَّم طلب التمديد قبل انتهاء الإقامة، وقبوله يخضع لتقدير إدارة الهجرة وشروطها السارية وقت التقديم. نراجع حالتك ونخبرك بفرصك بصراحة.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "6613a14bf1",
+  "kind": "json",
+  "ar": "هل تضمنون الحصول على الإقامة؟",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "4c68de06ee",
+  "kind": "json",
+  "ar": "لا أحد يستطيع ضمان ذلك، فالقرار لإدارة الهجرة وحدها. ما نضمنه ملف كامل ومرتب ومتابعة جادة.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "414ad8ac4f",
+  "kind": "text",
+  "ar": "الإقامة السياحية في تركيا: تجهيز الملف والمتابعة",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "07fcfd5804",
+  "kind": "text",
+  "ar": "الجهة المانحة: رئاسة إدارة الهجرة التركية",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "9bec6ffa7e",
+  "kind": "text",
+  "ar": "طريقة التقديم: طلب إلكتروني عبر نظام e-İkamet",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d7c51479ea",
+  "kind": "text",
+  "ar": "المدة: تحددها إدارة الهجرة لكل طلب",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "50aa065ac0",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: الإقامة السياحية في تركيا.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d2a1638936",
+  "kind": "text",
+  "ar": "الجهة المانحة",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "7fc9182403",
+  "kind": "text",
+  "ar": "رئاسة إدارة الهجرة التركية",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "96738e0c51",
+  "kind": "text",
+  "ar": "طريقة التقديم",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ea7ef9f795",
+  "kind": "text",
+  "ar": "طلب إلكتروني عبر نظام e-İkamet، ثم موعد في مديرية الهجرة",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "af9f2ea7b5",
+  "kind": "text",
+  "ar": "تحددها إدارة الهجرة لكل طلب",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "68794d15e3",
+  "kind": "text",
+  "ar": "أتعاب الخدمة والرسوم الرسمية، في عرض مكتوب",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "27a0aa3ae1",
+  "kind": "text",
+  "ar": "تُقدَّم طلبات الإقامة إلكترونياً عبر نظام e-İkamet التابع لإدارة الهجرة، وينتهي الطلب بموعد في مديرية الهجرة بالولاية التي تسكن فيها، تسلّم فيه أوراقك الأصلية.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4336f01ade",
+  "kind": "text",
+  "ar": "أكثر أسباب التأخير والرفض هي نواقص الملف: عنوان لا يُقبل تسجيله، أو تأمين لا يغطي المدة المطلوبة، أو جواز تنتهي صلاحيته قريباً. لذلك نراجع حالتك أولاً ونخبرك بصراحة بما ينقصك قبل أن تدفع أي رسوم.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "9d8544c235",
+  "kind": "text",
+  "ar": "مراجعة حالتك وأوراقك قبل البدء.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4360e47b50",
+  "kind": "text",
+  "ar": "تعبئة الطلب الإلكتروني وحجز الموعد.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d05d67711b",
+  "kind": "text",
+  "ar": "قائمة واضحة بالأوراق المطلوبة لحالتك.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "67e429522d",
+  "kind": "text",
+  "ar": "المساعدة في التأمين الصحي المناسب لمدة الإقامة.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "10b63c9f76",
+  "kind": "text",
+  "ar": "متابعة الطلب وإبلاغك بأي طلب إضافي من الإدارة.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "30146e8ab0",
+  "kind": "text",
+  "ar": "الأوراق",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "31ee3ad874",
+  "kind": "text",
+  "ar": "الأوراق المطلوبة عادةً",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a00396f9e9",
+  "kind": "text",
+  "ar": "جواز السفر",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "7b4d86ec29",
+  "kind": "text",
+  "ar": "ساري المفعول، ويُشترط أن تزيد صلاحيته 60 يوماً على مدة الإقامة المطلوبة.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b663156d0e",
+  "kind": "text",
+  "ar": "صور بيومترية",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "cde7ffdf23",
+  "kind": "text",
+  "ar": "أربع صور حديثة بخلفية بيضاء.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8d66b5f3b5",
+  "kind": "text",
+  "ar": "تأمين صحي",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b904e52598",
+  "kind": "text",
+  "ar": "ساري في تركيا ويغطي مدة الإقامة المطلوبة.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b5f959a6a0",
+  "kind": "text",
+  "ar": "إثبات العنوان",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1c6fe18e8a",
+  "kind": "text",
+  "ar": "عقد إيجار موثّق أو سند ملكية، في حي يُقبل فيه تسجيل الأجانب.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "571d842f53",
+  "kind": "text",
+  "ar": "إثبات الدخل",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8d8ff6cde1",
+  "kind": "text",
+  "ar": "بيان بالقدرة المالية خلال مدة الإقامة، وقد تطلب الإدارة كشف حساب.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "325ef15ab0",
+  "kind": "text",
+  "ar": "رسم الإقامة ورسم البطاقة حسب التعرفة السنوية، وتُدفع للدولة.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "08667ac760",
+  "kind": "text",
+  "ar": "مراجعة الحالة",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2ce674c556",
+  "kind": "text",
+  "ar": "أرسل جنسيتك وتاريخ دخولك ونوع تأشيرتك، ونخبرك بما يلزمك.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "30c921dde4",
+  "kind": "text",
+  "ar": "تجهيز الأوراق",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "417f916bb0",
+  "kind": "text",
+  "ar": "العنوان والتأمين والصور وباقي الأوراق حسب حالتك.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6234996434",
+  "kind": "text",
+  "ar": "الطلب والموعد",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ff6dc53812",
+  "kind": "text",
+  "ar": "نملأ الطلب الإلكتروني ونحجز لك موعداً في مديرية الهجرة.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8aa3eef1f5",
+  "kind": "text",
+  "ar": "المتابعة",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8c1bf09014",
+  "kind": "text",
+  "ar": "تحضر الموعد بأوراقك الأصلية، ونتابع معك حتى صدور القرار.",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "167f0dfd0d",
+  "kind": "text",
+  "ar": "القائمة النهائية للأوراق هي ما يظهره نظام e-İkamet لحالتك عند التقديم، وقد تطلب المديرية أوراقاً إضافية.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "aadcc89f42",
+  "kind": "text",
+  "ar": "قدّم طلبك قبل انتهاء مدة تأشيرتك أو إعفائك، فالتأخر قد يعرّضك لغرامة أو منع دخول.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "264052b84a",
+  "kind": "text",
+  "ar": "تغلق إدارة الهجرة بعض الأحياء أمام تسجيل إقامات جديدة للأجانب. تأكد من العنوان معنا قبل توقيع عقد الإيجار.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d2d73cd304",
+  "kind": "text",
+  "ar": "الرسوم الرسمية لا تُسترد عند الرفض.",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c5bf00ad28",
+  "kind": "text",
+  "ar": "القرار النهائي للجهة الرسمية وحدها. دورنا تجهيز الملف والمتابعة، ولا نَعِد بالقبول ولا بمدة محددة.",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/kimlik-to-residence/",
+   "residency/egypt-security-approval/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "0e648e0621",
+  "kind": "text",
+  "ar": "أرسل صور وثائقك إلى رقمنا الرسمي فقط، ونستخدمها لطلبك وحده.",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/kimlik-to-residence/",
+   "residency/egypt-security-approval/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "326dc24c01",
+  "kind": "text",
+  "ar": "اسألنا عن حالتك",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/kimlik-to-residence/",
+   "residency/egypt-security-approval/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "e95051ffba",
+  "kind": "attr",
+  "ar": "اكتب تفاصيل حالتك باختصار",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/kimlik-to-residence/",
+   "residency/egypt-security-approval/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "7e916ea1ce",
+  "kind": "text",
+  "ar": "عندك سؤال عن حالتك؟",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/kimlik-to-residence/",
+   "residency/egypt-security-approval/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "7e0ad956d1",
+  "kind": "text",
+  "ar": "أرسل لنا تفاصيلك، ونجيبك بصراحة بما يلزمك قبل أي دفع.",
+  "pages": [
+   "residency/tourist-residence-permit/",
+   "residency/kimlik-to-residence/",
+   "residency/egypt-security-approval/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "90af895eef",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: الإقامة السياحية في تركيا",
+  "pages": [
+   "residency/tourist-residence-permit/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "13a5bd251d",
+  "kind": "text",
+  "ar": "تحويل الكملك إلى إقامة سياحية للسوريين في تركيا | أويا",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "cd0cb13ba3",
+  "kind": "attr",
+  "ar": "للسوريين حاملي بطاقة الحماية المؤقتة (الكملك): نراجع حالتك ونجهّز ملف الانتقال إلى إقامة سياحية ونتابع الطلب. القرار لإدارة الهجرة التركية وحدها.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "5c46c8bc8d",
+  "kind": "json",
+  "ar": "تحويل الكملك إلى إقامة سياحية",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "21b73b5ad4",
+  "kind": "json",
+  "ar": "إن كنت سورياً تحمل بطاقة الحماية المؤقتة (الكملك) وتفكر في الانتقال إلى إقامة سياحية، نراجع حالتك أولاً ونخبرك بصراحة هل ملفك قابل للتقديم اليوم، ثم نجهّزه معك ونتابعه.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "fca0e65d64",
+  "kind": "json",
+  "ar": "هل يستطيع كل حامل كملك التحويل إلى إقامة؟",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "44b5ef1b29",
+  "kind": "json",
+  "ar": "لا. الأمر يتوقف على شروط إدارة الهجرة السارية وقت التقديم وعلى تفاصيل حالتك، مثل جواز السفر وطريقة الدخول والولاية. نراجع حالتك ونجيبك قبل أي دفع.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "1bf94ad814",
+  "kind": "json",
+  "ar": "هل أبقى على الحماية المؤقتة بعد الحصول على الإقامة؟",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "98eb8601d1",
+  "kind": "json",
+  "ar": "عادةً لا. الانتقال إلى الإقامة ينهي قيد الحماية المؤقتة وما يرتبط به من خدمات. تأكد من ذلك في مديرية الهجرة قبل أن تقدّم.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "4e38f90369",
+  "kind": "json",
+  "ar": "هل يمكن العودة إلى الكملك إن رُفض التمديد لاحقاً؟",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "ba153c3299",
+  "kind": "json",
+  "ar": "لا يوجد ما يضمن ذلك. لهذا ننصحك بدراسة القرار جيداً قبل التقديم.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "590390a188",
+  "kind": "json",
+  "ar": "هل تضمنون القبول؟",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "6d2cb123d9",
+  "kind": "json",
+  "ar": "لا أحد يستطيع ضمان ذلك، فالقرار لإدارة الهجرة وحدها. دورنا مراجعة صادقة لحالتك، وملف كامل، ومتابعة.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "99b04c62c6",
+  "kind": "text",
+  "ar": "للسوريين حاملي الحماية المؤقتة",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4be01b694b",
+  "kind": "text",
+  "ar": "تحويل الكملك إلى إقامة سياحية: للسوريين حاملي الحماية المؤقتة",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "7a19552e7b",
+  "kind": "text",
+  "ar": "لمن: السوريون المسجلون تحت الحماية المؤقتة في تركيا",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1a9d3aed10",
+  "kind": "text",
+  "ar": "الجهة المختصة: رئاسة إدارة الهجرة التركية ومديرياتها في الولايات",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8cd1811a51",
+  "kind": "text",
+  "ar": "نوع الإقامة: إقامة قصيرة الأمد لغرض السياحة",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2de742ed38",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: تحويل الكملك إلى إقامة سياحية.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8504250125",
+  "kind": "text",
+  "ar": "لمن",
+  "pages": [
+   "residency/kimlik-to-residence/",
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "0672e41021",
+  "kind": "text",
+  "ar": "السوريون المسجلون تحت الحماية المؤقتة في تركيا",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8c89c7117a",
+  "kind": "text",
+  "ar": "الجهة المختصة",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "7a1b137374",
+  "kind": "text",
+  "ar": "رئاسة إدارة الهجرة التركية ومديرياتها في الولايات",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4f94613e04",
+  "kind": "text",
+  "ar": "نوع الإقامة",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "33612a0553",
+  "kind": "text",
+  "ar": "إقامة قصيرة الأمد لغرض السياحة",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "71f0c43ddd",
+  "kind": "text",
+  "ar": "شروط الانتقال من الحماية المؤقتة إلى الإقامة تحددها إدارة الهجرة التركية، وتتغير بقراراتها، وقد يختلف تطبيقها من ولاية لأخرى. لذلك لا نعتمد على ما يُتداول، ونسأل عن حالتك بعينها قبل أي خطوة.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "7fe66b2d0d",
+  "kind": "text",
+  "ar": "وهذا قرار مهم لا رجعة سهلة فيه: الحصول على الإقامة يعني عادةً إنهاء قيد الحماية المؤقتة وما يرتبط به من خدمات، مثل العلاج المجاني. تأكد أنك تعرف ما ستكسبه وما ستتركه قبل أن تقدّم.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "102b08e33e",
+  "kind": "text",
+  "ar": "مراجعة حالتك: الولاية، وتاريخ التسجيل، وجواز السفر، وطريقة الدخول.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2b69106bb5",
+  "kind": "text",
+  "ar": "إخبارك بصراحة هل ملفك قابل للتقديم وفق الشروط السارية.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "72561b8bcd",
+  "kind": "text",
+  "ar": "تجهيز أوراق الإقامة السياحية: العنوان والتأمين والصور والطلب.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a1377ed6e1",
+  "kind": "text",
+  "ar": "حجز الموعد ومتابعة الطلب حتى صدور القرار.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2b23d86f9b",
+  "kind": "text",
+  "ar": "قبل أن تقرر",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f4339f1c26",
+  "kind": "text",
+  "ar": "ما الذي يتغير بعد الإقامة؟",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "56b19270f9",
+  "kind": "text",
+  "ar": "جواز سفر ساري",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "dbc59b0e1b",
+  "kind": "text",
+  "ar": "الإقامة تُطلب بجواز سفر ساري المفعول، وهذا أول ما نتحقق منه.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d708f3677a",
+  "kind": "text",
+  "ar": "التأمين الصحي",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c3e0e7476e",
+  "kind": "text",
+  "ar": "يصبح التأمين الصحي الخاص على حسابك، ولا يبقى العلاج ضمن الحماية المؤقتة.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a0b235cf01",
+  "kind": "text",
+  "ar": "تجديد دوري",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3853534691",
+  "kind": "text",
+  "ar": "الإقامة لها مدة وتحتاج تمديداً، وقبول التمديد يخضع لتقدير الإدارة.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "aa2a11ed25",
+  "kind": "text",
+  "ar": "السفر",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d6bbfe2e11",
+  "kind": "text",
+  "ar": "حامل الإقامة يسافر ويعود ضمن مدة إقامته وفق قواعد الدخول والخروج المعمول بها.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e0cf3f7d74",
+  "kind": "text",
+  "ar": "أرسل تفاصيل حالتك",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "55e7740e9e",
+  "kind": "text",
+  "ar": "الولاية المسجل فيها، وصلاحية جوازك، وهل دخلت تركيا بختم رسمي.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1531353aa9",
+  "kind": "text",
+  "ar": "نراجع ونجيبك بصراحة",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1ba862df9a",
+  "kind": "text",
+  "ar": "هل التقديم ممكن الآن، وما الأوراق والتكلفة، وما المخاطر.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1a6195a91e",
+  "kind": "text",
+  "ar": "العنوان والتأمين والصور والطلب الإلكتروني والموعد.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "48e9d4157a",
+  "kind": "text",
+  "ar": "الموعد والمتابعة",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "03500f70da",
+  "kind": "text",
+  "ar": "لا تُلغِ قيد الحماية المؤقتة ولا توقّع على أي ورقة قبل أن تتأكد من أن طلب الإقامة مقبول من حيث المبدأ في مديرية ولايتك.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a32b5adf0a",
+  "kind": "text",
+  "ar": "رفض طلب الإقامة وارد، والرسوم الرسمية لا تُسترد.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6bf19a9281",
+  "kind": "text",
+  "ar": "هذه الصفحة معلومات عامة وليست استشارة قانونية. للحالات المعقدة ننصحك بمراجعة محامٍ مختص بقانون الأجانب.",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e6c8981b08",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: تحويل الكملك إلى إقامة",
+  "pages": [
+   "residency/kimlik-to-residence/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8675314e6e",
+  "kind": "text",
+  "ar": "الموافقة الأمنية لدخول مصر: الأوراق والخطوات | أويا",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "8c1d2e18c3",
+  "kind": "attr",
+  "ar": "الموافقة الأمنية لدخول مصر للجنسيات التي تُطلب منها: نتحقق هل تحتاجها، ونجهّز الطلب ونتابعه، مع حجز الطيران والفندق. القرار للجهات المصرية وحدها.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "739e57d58a",
+  "kind": "json",
+  "ar": "الموافقة الأمنية لدخول مصر",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "445a65f267",
+  "kind": "json",
+  "ar": "تطلب مصر من مسافري بعض الجنسيات موافقة أمنية مسبقة قبل السفر إليها. نتحقق أولاً هل تحتاجها في حالتك، ثم نجهّز الطلب ونتابعه، ونرتب لك الطيران والفندق بعد صدورها.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "821655db81",
+  "kind": "json",
+  "ar": "من يحتاج موافقة أمنية لدخول مصر؟",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "ab028484e2",
+  "kind": "json",
+  "ar": "مسافرو جنسيات محددة تضع الجهات المصرية قائمتها وتغيّرها، وقد تختلف الشروط حسب العمر وبلد الإقامة. أرسل لنا جنسيتك وتفاصيلك ونتحقق لك.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "dcc9d34d19",
+  "kind": "json",
+  "ar": "كم تستغرق الموافقة الأمنية؟",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "2bfcfe2647",
+  "kind": "json",
+  "ar": "المدة تختلف من طلب لآخر ولا يمكن الجزم بها. نخبرك بالمدة المتوقعة عند التقديم، وننصحك بالبدء قبل موعد السفر بوقت كافٍ.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "040bac1460",
+  "kind": "json",
+  "ar": "هل الموافقة الأمنية هي التأشيرة؟",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "f1720afb41",
+  "kind": "json",
+  "ar": "لا. الموافقة إذن مسبق، وبعض الجنسيات تحتاج معها تأشيرة دخول. نوضّح لك ما يلزمك حسب جنسيتك.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "a6ee7f3d4b",
+  "kind": "json",
+  "ar": "هل تضمنون صدور الموافقة؟",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "766cf950f7",
+  "kind": "json",
+  "ar": "لا أحد يستطيع ضمان ذلك، فالقرار للجهات المصرية وحدها. دورنا تقديم طلب كامل ومتابعته.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "9f15aefe05",
+  "kind": "text",
+  "ar": "الموافقة الأمنية لدخول مصر: تجهيز الطلب والمتابعة",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "58aebb4c4f",
+  "kind": "text",
+  "ar": "لمن: الجنسيات التي تشترط لها مصر موافقة مسبقة",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0c7894a7fd",
+  "kind": "text",
+  "ar": "الجهة المانحة: الجهات المصرية المختصة",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c480f60e02",
+  "kind": "text",
+  "ar": "المدة: تختلف من طلب لآخر",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "053c15f95c",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: الموافقة الأمنية لدخول مصر.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "572142f97f",
+  "kind": "text",
+  "ar": "الجنسيات التي تشترط لها مصر موافقة مسبقة",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "b306d0a62a",
+  "kind": "text",
+  "ar": "الجهات المصرية المختصة",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "de66e8505d",
+  "kind": "text",
+  "ar": "تختلف من طلب لآخر، ولا يمكن الجزم بها",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0e3ecff07c",
+  "kind": "text",
+  "ar": "يُحدد حسب الحالة، في عرض مكتوب",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "319c313756",
+  "kind": "text",
+  "ar": "قائمة الجنسيات المطلوب منها موافقة أمنية تحددها الجهات المصرية، وتتغير، وقد تختلف الشروط حسب العمر وبلد الإقامة وغرض الزيارة. لذلك نبدأ بالتحقق من حالتك أنت، لا من قائمة عامة.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "97cf81af91",
+  "kind": "text",
+  "ar": "الموافقة الأمنية ليست تذكرة ولا حجزاً. هي إذن مسبق، وقد تحتاج معه تأشيرة دخول حسب جنسيتك. نشرح لك ما يلزمك بالضبط قبل أن تبدأ.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "521784ca34",
+  "kind": "text",
+  "ar": "التحقق هل تحتاج الموافقة في حالتك.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "04caa470ed",
+  "kind": "text",
+  "ar": "قائمة واضحة بالأوراق المطلوبة.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "85a031fbb5",
+  "kind": "text",
+  "ar": "تقديم الطلب ومتابعته حتى صدور القرار.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5e487a8313",
+  "kind": "text",
+  "ar": "حجز الطيران والفندق والاستقبال بعد صدور الموافقة، إن رغبت.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "162f3d8130",
+  "kind": "text",
+  "ar": "ما نحتاجه منك عادةً",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "0271a176dc",
+  "kind": "text",
+  "ar": "صورة جواز السفر",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "d35f41ad7f",
+  "kind": "text",
+  "ar": "واضحة وملونة، بصلاحية كافية لا تقل عن ستة أشهر.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a905710344",
+  "kind": "text",
+  "ar": "صورة الإقامة",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f07dd38a61",
+  "kind": "text",
+  "ar": "إقامتك في تركيا أو في بلد إقامتك الحالي، إن وُجدت.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "6ef32f7012",
+  "kind": "text",
+  "ar": "صورة شخصية",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8030124e69",
+  "kind": "text",
+  "ar": "حديثة بخلفية بيضاء.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "36db97f653",
+  "kind": "text",
+  "ar": "تفاصيل الرحلة",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4de909fd7c",
+  "kind": "text",
+  "ar": "الموعد التقريبي للسفر وغرض الزيارة ومدتها.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "73e3b56247",
+  "kind": "text",
+  "ar": "أرسل جنسيتك وتفاصيلك",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a0074b37d9",
+  "kind": "text",
+  "ar": "العمر وبلد الإقامة وغرض السفر، ونتحقق هل تلزمك الموافقة.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1431dedb19",
+  "kind": "text",
+  "ar": "الأوراق والتكلفة والمدة المتوقعة دون وعود.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8160f3dbdb",
+  "kind": "text",
+  "ar": "نقدّم الطلب",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3b077d7cda",
+  "kind": "text",
+  "ar": "ونتابعه، ونبلغك بأي طلب إضافي.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "8f4e83a8b5",
+  "kind": "text",
+  "ar": "بعد صدور الموافقة",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "15052316d2",
+  "kind": "text",
+  "ar": "نرسلها لك، ونحجز لك الطيران والفندق إن أردت.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "a1a9ae9b84",
+  "kind": "text",
+  "ar": "لا تحجز تذكرة غير قابلة للاسترداد قبل صدور الموافقة.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c347cba8c9",
+  "kind": "text",
+  "ar": "للموافقة مدة صلاحية، فانتبه لتاريخها عند تحديد موعد السفر.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3c52a4c2c3",
+  "kind": "text",
+  "ar": "تحقق دائماً من شروط الدخول الحالية لدى السفارة أو القنصلية المصرية.",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4f156e2378",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن: الموافقة الأمنية لمصر",
+  "pages": [
+   "residency/egypt-security-approval/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "07535b7f2b",
+  "kind": "text",
+  "ar": "أنشطة وتذاكر في إسطنبول: يخوت وسهرات وأماكن ترفيه | أويا",
+  "pages": [
+   "activities/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "55c609d3c9",
+  "kind": "attr",
+  "ar": "يخت خاص في البوسفور، سهرة عشاء بحرية، وتذاكر الأكواريوم ومدن الألعاب وحديقة الحيوانات في إسطنبول، مع التوصيل من الفندق. احجز عبر واتساب.",
+  "pages": [
+   "activities/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "e7ffe5bf06",
+  "kind": "text",
+  "ar": "أنشطة وتذاكر في إسطنبول",
+  "pages": [
+   "activities/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "9fde76bc91",
+  "kind": "text",
+  "ar": "يخت خاص أو سهرة في البوسفور، وتذاكر الأماكن الترفيهية للعائلة. نرتب الحجز والتوصيل من الفندق، ونرسل لك السعر مكتوباً قبل أي دفع.",
+  "pages": [
+   "activities/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "aa870596d5",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن الأنشطة والتذاكر في إسطنبول.",
+  "pages": [
+   "activities/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "f997a8b1df",
+  "kind": "text",
+  "ar": "اسألنا عبر واتساب",
+  "pages": [
+   "activities/",
+   "residency/",
+   "faq/",
+   "404.html"
+  ],
+  "n": 4
+ },
+ {
+  "id": "320c4dd76d",
+  "kind": "text",
+  "ar": "يخت خاص بالساعة في البوسفور: للعائلة، لعيد ميلاد أو لطلب زواج.",
+  "pages": [
+   "activities/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "c0f154881d",
+  "kind": "text",
+  "ar": "سهرة على سفينة في البوسفور: عشاء وعروض وأضواء الجسور ليلاً.",
+  "pages": [
+   "activities/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3c5454da83",
+  "kind": "text",
+  "ar": "تذاكر أكواريوم إسطنبول في فلوريا، مع التوصيل من الفندق عند الطلب.",
+  "pages": [
+   "activities/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ecbb33df8b",
+  "kind": "text",
+  "ar": "تذاكر مدينة ألعاب إسفانبول (فيالاند سابقاً) ومدن الألعاب في إسطنبول.",
+  "pages": [
+   "activities/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "eeb66f1dd2",
+  "kind": "text",
+  "ar": "تذاكر حديقة حيوانات فاروق يالتشين في داريجا، مع سيارة خاصة من إسطنبول.",
+  "pages": [
+   "activities/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "f1d448dffe",
+  "kind": "text",
+  "ar": "خدمات قريبة",
+  "pages": [
+   "activities/",
+   "residency/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "04c8b63504",
+  "kind": "text",
+  "ar": "قد يهمك أيضاً",
+  "pages": [
+   "activities/",
+   "residency/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "bc1520e997",
+  "kind": "text",
+  "ar": "الإقامة في تركيا والموافقات: إقامة سياحية وكملك | أويا",
+  "pages": [
+   "residency/"
+  ],
+  "n": 5
+ },
+ {
+  "id": "920926e594",
+  "kind": "attr",
+  "ar": "الإقامة السياحية في تركيا، تحويل الكملك إلى إقامة للسوريين، والموافقة الأمنية لدخول مصر: نراجع حالتك ونجهّز الملف ونتابعه. القرار للجهة الرسمية وحدها.",
+  "pages": [
+   "residency/"
+  ],
+  "n": 4
+ },
+ {
+  "id": "ef42857db9",
+  "kind": "text",
+  "ar": "إقامات وموافقات: تجهيز الملف والمتابعة",
+  "pages": [
+   "residency/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2c2029e176",
+  "kind": "text",
+  "ar": "نراجع حالتك أولاً ونخبرك بصراحة بما يلزمك، ثم نجهّز الملف ونتابعه. القرار النهائي للجهة الرسمية وحدها، ولا نَعِد بالقبول.",
+  "pages": [
+   "residency/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "5f8655b579",
+  "kind": "message",
+  "ar": "مرحباً أويا، أرغب بالاستفسار عن الإقامات والموافقات.",
+  "pages": [
+   "residency/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "2c5050f945",
+  "kind": "text",
+  "ar": "تجهيز ملف الإقامة السياحية القصيرة في تركيا، والطلب الإلكتروني وحجز الموعد.",
+  "pages": [
+   "residency/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "95420bcd93",
+  "kind": "text",
+  "ar": "للسوريين حاملي بطاقة الحماية المؤقتة: مراجعة الحالة وتجهيز ملف الانتقال إلى إقامة سياحية.",
+  "pages": [
+   "residency/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "62d90b7cb6",
+  "kind": "text",
+  "ar": "للجنسيات التي تطلب منها مصر موافقة أمنية مسبقة: تجهيز الطلب ومتابعته.",
+  "pages": [
+   "residency/"
   ],
   "n": 1
  },
@@ -69107,16 +74858,6 @@
   "ar": "مرحباً أويا، لدي سؤال.",
   "pages": [
    "faq/"
-  ],
-  "n": 2
- },
- {
-  "id": "f997a8b1df",
-  "kind": "text",
-  "ar": "اسألنا عبر واتساب",
-  "pages": [
-   "faq/",
-   "404.html"
   ],
   "n": 2
  },

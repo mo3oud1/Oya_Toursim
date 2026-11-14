@@ -36,6 +36,36 @@ function megaHotels(data) {
   </a>
 </div>`;
 }
+// "Tours & activities" menu: private day trips, Bosphorus and tickets, cars and transfers
+function megaTours(data) {
+  const of = (g) => (data.services || []).filter((x) => x.group === g);
+  const li = (href, label, icon) => `<li><a href="{{root}}${href}">${icon ? ic(icon) : ""}<span>${label}</span></a></li>`;
+  return `
+<div class="mega mega--more mega--tours" role="region" aria-label="جولات وأنشطة">
+  <div>
+    <h4>جولات يومية خاصة</h4>
+    <ul class="cols-2" style="display:grid">
+      ${of("trips").map((x) => li(x.path, esc(x.navLabel), x.icon)).join("")}
+      <li><a href="{{root}}day-trips/"><b>كل الجولات اليومية</b></a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>بوسفور وتذاكر</h4>
+    <ul>
+      ${of("activities").map((x) => li(x.path, esc(x.navLabel), x.icon)).join("")}
+      <li><a href="{{root}}activities/"><b>كل الأنشطة والتذاكر</b></a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>سيارات وتنقلات</h4>
+    <ul>
+      ${li("transfers/", "استقبال وتوديع المطار", "plane")}
+      ${li("private-driver/", "سائق خاص باليوم", "car")}
+      ${li("day-trips/", "جولة 10 ساعات بسائق", "clock")}
+    </ul>
+  </div>
+</div>`;
+}
 // "More" menu: everything that is not hotels, cabins or flights, in four clear groups
 function megaMore(data) {
   const g = (k) => (data.visas || []).filter((v) => v.group === k);
@@ -48,8 +78,6 @@ function megaMore(data) {
       ${li("turkey-tours/", "السياحة في تركيا", "map")}
       ${li("packages/", "البرامج السياحية", "route")}
       ${li("world-tours/", "رحلات خارج تركيا", "globe")}
-      ${li("day-trips/", "جولات يومية", "compass")}
-      ${li("transfers/", "استقبال المطار والتنقلات", "car")}
     </ul>
   </div>
   <div>
@@ -59,6 +87,7 @@ function megaMore(data) {
       ${li("saudi-visa/", "تأشيرات السعودية", "mosque")}
       ${li("gcc-visas/", "تأشيرات الخليج", "passport")}
       ${li("visas/", "تأشيرات دولية", "globe")}
+      ${li("residency/", "إقامات وموافقات", "doc")}
     </ul>
   </div>
   <div>
@@ -91,11 +120,11 @@ function langMenu(page, L) {
 }
 
 function header(page, data, L) {
-  const primary = ["hotels", "cabins", "flights", "matches"];
+  const primary = ["hotels", "cabins", "flights", "matches", "tours"];
   const items = nav.map((n) => {
     const active = page.nav === n.key || (n.key === "more" && !primary.includes(page.nav) && page.nav !== "home");
     if (n.mega) {
-      return `<li class="has-mega${active ? " is-active" : ""}${n.icon ? " nav-main" : " nav-more"}"><button class="nav-trigger" type="button" aria-expanded="false">${n.icon ? ic(n.icon, "nav-ico") : ""}<span>${n.label}</span>${ic("chevron")}</button>${n.mega === "hotels" ? megaHotels(data) : megaMore(data)}</li>`;
+      return `<li class="has-mega${active ? " is-active" : ""}${n.icon ? " nav-main" : " nav-more"}"><button class="nav-trigger" type="button" aria-expanded="false">${n.icon ? ic(n.icon, "nav-ico") : ""}<span>${n.label}</span>${ic("chevron")}</button>${n.mega === "hotels" ? megaHotels(data) : n.mega === "tours" ? megaTours(data) : megaMore(data)}</li>`;
     }
     return `<li class="nav-main"><a href="{{root}}${n.href}"${active ? ' aria-current="page"' : ""}>${n.icon ? ic(n.icon, "nav-ico") : ""}<span>${n.label}</span></a></li>`;
   }).join("");
@@ -141,6 +170,11 @@ function drawer(page, data, L) {
           <li><a href="{{root}}saudi-visa/"><b>تأشيرات السعودية</b></a></li>${g("saudi").map((v) => `<li><a href="{{root}}saudi-visa/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
           <li><a href="{{root}}gcc-visas/"><b>تأشيرات الخليج</b></a></li>${g("gcc").map((v) => `<li><a href="{{root}}gcc-visas/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
           <li><a href="{{root}}visas/"><b>تأشيرات دولية</b></a></li>${g("intl").map((v) => `<li><a href="{{root}}visas/${v.slug}/">${esc(v.name)}</a></li>`).join("")}
+          <li><a href="{{root}}residency/"><b>إقامات وموافقات</b></a></li>${(data.services || []).filter((x) => x.group === "residency").map((x) => `<li><a href="{{root}}${x.path}">${esc(x.navLabel)}</a></li>`).join("")}
+        </ul></details></li>
+        <li><details><summary>جولات وأنشطة ${ic("chevron")}</summary><ul>
+          <li><a href="{{root}}day-trips/"><b>كل الجولات اليومية</b></a></li>${(data.services || []).filter((x) => x.group === "trips").map((x) => `<li><a href="{{root}}${x.path}">${esc(x.navLabel)}</a></li>`).join("")}
+          <li><a href="{{root}}activities/"><b>كل الأنشطة والتذاكر</b></a></li>${(data.services || []).filter((x) => x.group === "activities").map((x) => `<li><a href="{{root}}${x.path}">${esc(x.navLabel)}</a></li>`).join("")}
         </ul></details></li>
         ${(data.extras || []).length ? `<li><details><summary>خدمات وعروض ${ic("chevron")}</summary><ul>${data.extras.map((x) => `<li><a href="{{root}}${x.path}">${esc(x.navLabel || x.h1.split(":")[0])}</a></li>`).join("")}<li><a href="{{root}}offers/">كل العروض الموسمية</a></li></ul></details></li>` : ""}
         ${link("blog/", "المدونة", "blog")}
@@ -176,7 +210,7 @@ function footer(data, page) {
         </div>
       </div>
       <div><h3>خدماتنا</h3><ul>
-        <li><a href="{{root}}flights/">تذاكر طيران</a></li><li><a href="{{root}}hotels/">فنادق ومنتجعات</a></li><li><a href="{{root}}turkey-tours/">السياحة في تركيا</a></li><li><a href="{{root}}world-tours/">السياحة خارج تركيا</a></li><li><a href="{{root}}packages/">البرامج السياحية</a></li><li><a href="{{root}}matches/">تذاكر المباريات</a></li><li><a href="{{root}}matches/spanish-super-cup-2027/">كأس السوبر الإسباني 2027</a></li>${(data.extras || []).map((x) => `<li><a href="{{root}}${x.path}">${esc(x.navLabel || x.h1.split(":")[0])}</a></li>`).join("")}<li><a href="{{root}}offers/">العروض الموسمية</a></li>
+        <li><a href="{{root}}flights/">تذاكر طيران</a></li><li><a href="{{root}}hotels/">فنادق ومنتجعات</a></li><li><a href="{{root}}turkey-tours/">السياحة في تركيا</a></li><li><a href="{{root}}world-tours/">السياحة خارج تركيا</a></li><li><a href="{{root}}packages/">البرامج السياحية</a></li><li><a href="{{root}}matches/">تذاكر المباريات</a></li><li><a href="{{root}}matches/spanish-super-cup-2027/">كأس السوبر الإسباني 2027</a></li>${(data.extras || []).map((x) => `<li><a href="{{root}}${x.path}">${esc(x.navLabel || x.h1.split(":")[0])}</a></li>`).join("")}<li><a href="{{root}}activities/">أنشطة وتذاكر</a></li><li><a href="{{root}}residency/">إقامات وموافقات</a></li><li><a href="{{root}}offers/">العروض الموسمية</a></li>
       </ul></div>
       <div><h3>وجهات تركيا</h3><ul>${ds.map((d) => `<li><a href="{{root}}turkey-tours/${d.slug}/">${esc(d.name)}</a></li>`).join("")}</ul></div>
       <div><h3>التأشيرات</h3><ul>

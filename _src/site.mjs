@@ -40,6 +40,7 @@ export const nav = [
   { key: "cabins", label: "أكواخ وبنغلات", href: "cabins/", icon: "cabin" },
   { key: "flights", label: "تذاكر طيران", href: "flights/", icon: "takeoff" },
   { key: "matches", label: "تذاكر المباريات", href: "matches/", icon: "ticket" },
+  { key: "tours", label: "جولات", icon: "compass", mega: "tours" },
   { key: "more", label: "المزيد", mega: "more" },
 ];
 

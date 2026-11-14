@@ -175,11 +175,27 @@ export function driverForm() {
 </form>`;
 }
 
-export function dayTripForm(items = []) {
+// one request form for a group of named services (activities and tickets, residency and approvals)
+export function serviceForm({ service = "", options = [], docs = false } = {}) {
+  return `
+<form novalidate data-wa data-intro="مرحباً أويا للسياحة، أرغب بالاستفسار عن خدمة:">
+  <div class="form-grid">
+    ${field({ label: "الخدمة", name: "service", type: "select", required: true, placeholder: "اختر الخدمة", options, value: service })}
+    ${docs ? field({ label: "الجنسية", name: "nationality", placeholder: "مثال: سوري، عراقي، تركي…", required: true }) : field({ label: "التاريخ", name: "date", type: "date", required: true })}
+    ${docs ? field({ label: "بلد الإقامة الحالية", name: "residence", placeholder: "مثال: تركيا (إقامة سياحية)", optional: true }) : field({ label: "مكان الإقامة", name: "hotel", placeholder: "اسم الفندق أو المنطقة", optional: true })}
+    ${field({ label: "عدد الأشخاص", name: "pax", type: "select", options: ["1", "2", "3", "4", "5", "أكثر من 5"], value: docs ? "1" : "2" })}
+    ${field({ label: "ملاحظات", name: "notes", type: "textarea", wide: true, placeholder: docs ? "اكتب تفاصيل حالتك باختصار" : "مثال: معنا أطفال صغار، نحتاج توصيلاً من الفندق" })}
+  </div>
+  ${docs ? `<p class="form-hint">${ic("lock")}<span>أرسل صور وثائقك إلى رقمنا الرسمي فقط: <span class="ltr">${site.phoneDisplay}</span>، ونستخدمها لطلبك وحده.</span></p>` : ""}
+  ${actions()}
+</form>`;
+}
+
+export function dayTripForm(items = [], value = "") {
   return `
 <form novalidate data-wa data-intro="مرحباً أويا للسياحة، أرغب بحجز جولة يومية:">
   <div class="form-grid">
-    ${field({ label: "الجولة", name: "trip", type: "select", required: true, placeholder: "اختر الجولة", fid: "trip-select", options: [...new Set(items.map((i) => i.from))].map((g) => ({ group: `من ${g}`, items: items.filter((i) => i.from === g).map((i) => i.name) })) })}
+    ${field({ label: "الجولة", name: "trip", type: "select", required: true, placeholder: "اختر الجولة", fid: "trip-select", value, options: [...new Set(items.map((i) => i.from))].map((g) => ({ group: `من ${g}`, items: items.filter((i) => i.from === g).map((i) => i.name) })) })}
     ${field({ label: "التاريخ", name: "date", type: "date", required: true })}
     ${field({ label: "المشاركون", name: "pax", type: "select", options: ["شخصان", "عائلة (3–5)", "6–7 أشخاص", "مجموعة أكبر"], value: "شخصان" })}
     ${field({ label: "مكان الإقامة", name: "hotel", placeholder: "اسم الفندق أو المنطقة", optional: true })}

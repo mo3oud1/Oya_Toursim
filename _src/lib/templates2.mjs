@@ -3,7 +3,7 @@ import { hotelsSection, HOTEL_CITIES } from "./catalog.mjs";
 import { site } from "../site.mjs";
 import { heroPhoto } from "../content/hero-photos.mjs";
 import { factIcon, esc, strip, ic, ar, media, photoStrip, toneFor, pageHero, sectionHead, faqBlock, ctaBand, packageCard, waBtn, waUrl } from "./ui.mjs";
-import { hotelForm, tourForm, transferForm, driverForm, dayTripForm, umrahForm } from "./forms.mjs";
+import { hotelForm, tourForm, transferForm, driverForm, dayTripForm, umrahForm, serviceForm } from "./forms.mjs";
 import { readFirst } from "./templates.mjs";
 import { cabinsSection } from "../pages/cabins.mjs";
 import * as S from "./schema.mjs";
@@ -88,13 +88,19 @@ const FORMS = {
 export function extraPage(s, data) {
   const path = s.path;
   const isOffer = s.kind === "offer";
-  const crumbs = isOffer ? [{ name: "الرئيسية", path: "" }, { name: "العروض الموسمية", path: "offers/" }, { name: s.h1.split(":")[0], path }] : [{ name: "الرئيسية", path: "" }, { name: s.h1.split(":")[0], path }];
-  const page = { path, nav: isOffer ? "offers" : "turkey", crumbs, title: s.seo.title, description: s.seo.description, primaryImage: S.imageUrl(s.img) };
+  const crumbs = isOffer ? [{ name: "الرئيسية", path: "" }, { name: "العروض الموسمية", path: "offers/" }, { name: s.h1.split(":")[0], path }] : s.parent ? [{ name: "الرئيسية", path: "" }, s.parent, { name: s.navLabel, path }] : [{ name: "الرئيسية", path: "" }, { name: s.h1.split(":")[0], path }];
+  // the other pages of the same section (day trips, activities, residency)
+  const group = (g) => (data.services || []).filter((x) => x.group === g);
+  const siblings = s.group ? group(s.group).filter((x) => x.slug !== s.slug) : [];
+  const form = s.form === "trip" ? dayTripForm(group("trips").map((x) => ({ from: "إسطنبول", name: x.navLabel })), s.navLabel)
+    : s.form === "service" ? serviceForm({ service: s.navLabel, options: group(s.group).map((x) => x.navLabel), docs: s.group === "residency" })
+    : (FORMS[s.slug] || (() => tourForm()))(s);
+  const page = { path, nav: isOffer ? "offers" : s.group === "residency" ? "visas" : "tours", crumbs, title: s.seo.title, description: s.seo.description, primaryImage: S.imageUrl(s.img) };
   const suggested = (s.suggested || []).map((x) => data.packages.find((p) => p.slug === x)).filter(Boolean);
   page.body = `
 ${pageHero({ crumbs, eyebrow: s.eyebrow || (isOffer ? "عرض موسمي" : "خدمة"), title: s.h1, lead: s.intro, icon: s.icon || "car", img: s.img, prompt: s.imgPrompt, alt: s.navLabel || s.h1, page: path,
     chips: (s.facts || []).slice(0, 3).map((f) => ({ icon: "check-circle", text: `${f.k}: ${strip(f.v).split(/[،(]/)[0]}` })),
-    actions: `<a class="btn" href="#book">${ic(isOffer ? "calendar" : "send")}<span>${s.slug === "ramadan-umrah-2027" ? "سجّل اهتمامك" : "احجز الآن"}</span></a>${waBtn(`مرحباً أويا، أرغب بالاستفسار عن: ${s.h1.split(":")[0]}.`, "واتساب", "btn btn--glass")}` })}
+    actions: `<a class="btn" href="#book">${ic(isOffer ? "calendar" : "send")}<span>${s.slug === "ramadan-umrah-2027" ? "سجّل اهتمامك" : s.group === "residency" ? "أرسل طلبك" : "احجز الآن"}</span></a>${waBtn(`مرحباً أويا، أرغب بالاستفسار عن: ${s.h1.split(":")[0]}.`, "واتساب", "btn btn--glass")}` })}
 <section class="section section--tight"><div class="container">${kv(s.facts)}</div></section>
 <section class="section" style="padding-top:0">
   <div class="container split">
@@ -103,24 +109,63 @@ ${pageHero({ crumbs, eyebrow: s.eyebrow || (isOffer ? "عرض موسمي" : "خ�
   </div>
 </section>
 ${photoStrip(s.gallery, { eyebrow: "الحرمان الشريفان", title: "مكة المكرمة والمدينة المنورة", page: path })}
-${s.options && s.options.length ? `<section class="section section--white"><div class="container">${sectionHead({ eyebrow: "الخيارات", title: isOffer ? "ماذا نرتّب لك؟" : "اختر ما يناسبك" })}<div class="grid grid-3" data-stagger>${s.options.map((o) => `<div class="svc" data-reveal><span class="ico">${ic(o.icon || "sparkles")}</span><h3>${o.name}</h3><p>${o.text}</p></div>`).join("")}</div></div></section>` : ""}
+${s.options && s.options.length ? `<section class="section section--white"><div class="container">${sectionHead(s.optHead || { eyebrow: "الخيارات", title: isOffer ? "ماذا نرتّب لك؟" : "اختر ما يناسبك" })}<div class="grid grid-3" data-stagger>${s.options.map((o) => `<div class="svc" data-reveal><span class="ico">${ic(o.icon || "sparkles")}</span><h3>${o.name}</h3><p>${o.text}</p></div>`).join("")}</div></div></section>` : ""}
 ${s.items && s.items.length ? `<section class="section"><div class="container">${sectionHead({ eyebrow: "الجولات", title: "اختر جولتك اليومية", lead: "مدد الجولات تقريبية وتشمل التنقل بسيارة خاصة مع سائق يتحدث العربية." })}<div class="grid grid-3" data-stagger>${s.items.map((t) => `<article class="vcard" data-reveal><span class="chip" style="align-self:flex-start">${ic("pin")}من ${esc(t.from)} • ${esc(t.duration)}</span><h3>${esc(t.name)}</h3><p>${t.text}</p><div class="facts">${(t.stops || []).slice(0, 5).map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div><a class="link-arrow" href="#book" data-prefill="trip-select" data-prefill-value="${esc(t.name)}">احجز هذه الجولة ${ic("arrow")}</a></article>`).join("")}</div></div></section>` : ""}
+${s.slug === "day-trips" && group("trips").length ? `<section class="section section--white"><div class="container">${sectionHead({ eyebrow: "جولات خاصة بسائق", title: "جولات لها صفحة مفصّلة", lead: "جولة خاصة مدتها نحو 10 ساعات بسيارة وسائق يتحدث العربية أو الإنجليزية، ولغات أخرى عند الطلب." })}${serviceCards(group("trips"))}</div></section>` : ""}
 ${suggested.length ? `<section class="section"><div class="container">${sectionHead({ eyebrow: "برامج مقترحة", title: "برامج تناسب هذا الموسم" })}<div class="grid grid-3" data-stagger>${suggested.map((p) => packageCard(p, path)).join("")}</div></div></section>` : ""}
 ${s.steps && s.steps.length ? `<section class="section section--white"><div class="container">${sectionHead({ eyebrow: "كيف تعمل", title: "خطوات بسيطة", center: true })}${steps(s.steps)}</div></section>` : ""}
 ${s.checklist && s.checklist.length ? `<section class="section section--sky"><div class="container">${sectionHead({ eyebrow: "قائمة التحضير", title: s.slug === "ramadan-umrah-2027" ? "جدول التحضير لعمرة رمضان" : "قائمة الحجز المبكر" })}<ul class="docs">${s.checklist.map((x) => `<li>${ic("check-circle")}<span>${x}</span></li>`).join("")}</ul></div></section>` : ""}
 ${s.notes && s.notes.length ? `<section class="section section--tight"><div class="container stack">${s.notes.map((n) => `<div class="note note--warn" data-reveal>${ic("alert")}<span>${n}</span></div>`).join("")}</div></section>` : ""}
 <section class="section section--white" id="book">
   <div class="container split">
-    <div data-reveal>${sectionHead({ eyebrow: s.slug === "ramadan-umrah-2027" ? "تسجيل اهتمام" : "احجز الآن", title: s.slug === "ramadan-umrah-2027" ? "سجّل اهتمامك بعمرة رمضان" : "أرسل طلبك", lead: "املأ النموذج وسيفتح واتساب برسالة جاهزة، ويصلك عرض مكتوب قبل أي دفع." })}</div>
-    <div class="form-card" data-reveal="zoom">${(FORMS[s.slug] || (() => tourForm()))(s)}</div>
+    <div data-reveal>${sectionHead({ eyebrow: s.slug === "ramadan-umrah-2027" ? "تسجيل اهتمام" : s.group === "residency" ? "اسألنا عن حالتك" : "احجز الآن", title: s.slug === "ramadan-umrah-2027" ? "سجّل اهتمامك بعمرة رمضان" : "أرسل طلبك", lead: "املأ النموذج وسيفتح واتساب برسالة جاهزة، ويصلك عرض مكتوب قبل أي دفع." })}</div>
+    <div class="form-card" data-reveal="zoom">${form}</div>
   </div>
 </section>
 ${faqBlock(s.faq, { title: "أسئلة شائعة" })}
-${readFirst([s.slug === "ramadan-umrah-2027" ? "saudi" : s.slug === "day-trips" ? "istanbul" : "family"], data, path)}
-${ctaBand({})}`;
+${siblings.length ? `<section class="section section--tight"><div class="container">${sectionHead({ eyebrow: s.parent.name, title: "خدمات أخرى قد تهمك" })}<div class="contact-tiles">${siblings.map((o) => `<a class="ctile" href="{{root}}${o.path}"><span class="ico">${ic(o.icon || "compass")}</span><div><b>${esc(o.navLabel)}</b></div></a>`).join("")}</div></div></section>` : ""}
+${s.group === "residency" ? "" : readFirst([s.slug === "ramadan-umrah-2027" ? "saudi" : s.slug === "day-trips" || s.group ? "istanbul" : "family"], data, path)}
+${s.group === "residency" ? ctaBand({ title: "عندك سؤال عن حالتك؟", lead: "أرسل لنا تفاصيلك، ونجيبك بصراحة بما يلزمك قبل أي دفع.", wa: `مرحباً أويا، أرغب بالاستفسار عن: ${s.navLabel}` }) : ctaBand({})}`;
   const extra = [S.serviceNode(page, { name: s.h1.split(":")[0], type: isOffer ? "Travel offer" : "Travel service", description: strip(s.intro), areaServed: "TR" }), S.faqNode(page, s.faq)];
   if (s.items && s.items.length) extra.push({ "@type": "ItemList", "@id": `${site.url}/${path}#trips`, itemListElement: s.items.map((t, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "TouristTrip", name: t.name, description: strip(t.text), provider: { "@id": `${site.url}/#org` } } })) });
   page.schemaGraph = graph(page, extra);
+  return page;
+}
+
+// cards linking to the pages of one section
+const serviceCards = (list) => `<div class="grid grid-3" data-stagger>${list.map((o) => `<article class="vcard" data-reveal><span class="ico ico--orange">${ic(o.icon || "compass")}</span><h3><a class="cover" href="{{root}}${o.path}">${esc(o.navLabel)}</a></h3><p>${o.card}</p><span class="link-arrow">التفاصيل ${ic("arrow")}</span></article>`).join("")}</div>`;
+
+// section pages: activities and tickets, residency and approvals
+const HUBS = {
+  activities: {
+    path: "activities/", nav: "tours", icon: "sailboat", name: "أنشطة وتذاكر",
+    title: "أنشطة وتذاكر في إسطنبول: يخوت وسهرات وأماكن ترفيه | أويا",
+    description: "يخت خاص في البوسفور، سهرة عشاء بحرية، وتذاكر الأكواريوم ومدن الألعاب وحديقة الحيوانات في إسطنبول، مع التوصيل من الفندق. احجز عبر واتساب.",
+    h1: "أنشطة وتذاكر في إسطنبول",
+    lead: "يخت خاص أو سهرة في البوسفور، وتذاكر الأماكن الترفيهية للعائلة. نرتب الحجز والتوصيل من الفندق، ونرسل لك السعر مكتوباً قبل أي دفع.",
+    wa: "مرحباً أويا، أرغب بالاستفسار عن الأنشطة والتذاكر في إسطنبول.",
+    more: [{ path: "day-trips/", name: "جولات يومية", icon: "compass" }, { path: "private-driver/", name: "سائق خاص", icon: "car" }, { path: "transfers/", name: "استقبال المطار", icon: "plane" }],
+  },
+  residency: {
+    path: "residency/", nav: "visas", icon: "doc", name: "إقامات وموافقات",
+    title: "الإقامة في تركيا والموافقات: إقامة سياحية وكملك | أويا",
+    description: "الإقامة السياحية في تركيا، تحويل الكملك إلى إقامة للسوريين، والموافقة الأمنية لدخول مصر: نراجع حالتك ونجهّز الملف ونتابعه. القرار للجهة الرسمية وحدها.",
+    h1: "إقامات وموافقات: تجهيز الملف والمتابعة",
+    lead: "نراجع حالتك أولاً ونخبرك بصراحة بما يلزمك، ثم نجهّز الملف ونتابعه. القرار النهائي للجهة الرسمية وحدها، ولا نَعِد بالقبول.",
+    wa: "مرحباً أويا، أرغب بالاستفسار عن الإقامات والموافقات.",
+    more: [{ path: "turkey-visa/", name: "تأشيرة تركيا للعرب", icon: "passport" }, { path: "saudi-visa/", name: "تأشيرات السعودية", icon: "mosque" }, { path: "gcc-visas/", name: "تأشيرات الخليج", icon: "passport" }],
+  },
+};
+export function serviceHub(key, data) {
+  const h = HUBS[key], list = (data.services || []).filter((x) => x.group === key);
+  const crumbs = [{ name: "الرئيسية", path: "" }, { name: h.name, path: h.path }];
+  const page = { path: h.path, nav: h.nav, crumbs, title: h.title, description: h.description };
+  page.body = `
+${pageHero({ crumbs, eyebrow: h.name, title: h.h1, lead: h.lead, icon: h.icon, page: h.path, actions: waBtn(h.wa, "اسألنا عبر واتساب", "btn btn--wa") })}
+<section class="section"><div class="container">${serviceCards(list)}</div></section>
+<section class="section section--tight"><div class="container">${sectionHead({ eyebrow: "خدمات قريبة", title: "قد يهمك أيضاً" })}<div class="contact-tiles">${h.more.map((o) => `<a class="ctile" href="{{root}}${o.path}"><span class="ico">${ic(o.icon)}</span><div><b>${o.name}</b></div></a>`).join("")}</div></div></section>
+${ctaBand({ wa: h.wa })}`;
+  page.schemaGraph = graph(page, [S.itemListNode(page, list.map((o) => ({ path: o.path, name: o.navLabel })))], "CollectionPage");
   return page;
 }
 
