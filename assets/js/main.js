@@ -131,9 +131,9 @@
     tabs.forEach(function (t, i) {
       t.addEventListener("click", function () { select(t); });
       t.addEventListener("keydown", function (e) {
-        var k = e.key, n = null;
-        if (k === "ArrowLeft") n = tabs[(i + 1) % tabs.length];
-        if (k === "ArrowRight") n = tabs[(i - 1 + tabs.length) % tabs.length];
+        var k = e.key, n = null, rtl = d.documentElement.dir === "rtl"; // "next" follows the reading direction
+        if (k === (rtl ? "ArrowLeft" : "ArrowRight")) n = tabs[(i + 1) % tabs.length];
+        if (k === (rtl ? "ArrowRight" : "ArrowLeft")) n = tabs[(i - 1 + tabs.length) % tabs.length];
         if (n) { e.preventDefault(); select(n, true); }
       });
     });
@@ -296,7 +296,7 @@
     mail && mail.addEventListener("click", function () {
       if (!validate(form)) return;
       var subj = form.getAttribute("data-intro") || T("استفسار من الموقع");
-      w.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subj.replace(/[:،]+\s*$/, "")) + "&body=" + encodeURIComponent(message(form));
+      w.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subj.replace(/[:،,!]+\s*$/, "")) + "&body=" + encodeURIComponent(message(form));
     });
   });
 

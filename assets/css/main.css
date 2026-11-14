@@ -1367,11 +1367,13 @@ h3,h4{line-height:1.42}
 [dir="ltr"] .rail-ctrl .i{transform:scaleX(-1)}
 @media(max-width:640px){[dir="ltr"] .booker .field select{padding-left:.95em;padding-right:34px;background-position:right 10px center}}
 
-/* photo heroes: the photos keep the subject on the left, so the text column stays on the calm right side
-   (left-aligned inside it) instead of mirroring the photo */
+/* photo heroes in left-to-right languages: the photos keep their subject on the left (made for Arabic), so the
+   photo is mirrored and the text reads from the left edge like the rest of the page. Photos of the holy sites
+   (.is-composed) are never mirrored: there the text column keeps the calm right side. */
 @media(min-width:901px){
-  [dir="ltr"] .page-hero.has-photo{--scrim-dir:270deg}
-  [dir="ltr"] .page-hero.has-photo>.container{padding-inline-start:max(0px,calc(100% - 660px))}
+  [dir="ltr"] .page-hero.has-photo:not(.is-composed) .page-hero__bg:not(:has(img[src*="umrah"],img[src*="makkah"],img[src*="madinah"],img[src*="kaaba"])){transform:scaleX(-1)}
+  [dir="ltr"] .page-hero.is-composed{--scrim-dir:270deg}
+  [dir="ltr"] .page-hero.is-composed>.container{padding-inline-start:max(0px,calc(100% - 660px))}
 }
 [dir="ltr"] .page-hero.is-composed .page-hero__bg img{inset-inline-end:auto;left:0}
 .nf__langs{display:flex;flex-direction:column;gap:6px;margin-top:28px;font-size:.92rem}

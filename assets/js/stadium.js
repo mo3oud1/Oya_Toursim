@@ -17,6 +17,44 @@ if (root) {
     root.classList.add("is-loading"); init().catch(() => { root.classList.remove("is-loading"); root.classList.add("is-failed", "no-3d"); });
   };
   if (startBtn) startBtn.addEventListener("click", start);
+
+  // ---------- lite mode: the category list, match tabs and ticket count work without the 3D model
+  // (before it loads on phones, and on devices without WebGL). Once the model is ready it takes over.
+  const TL = (s, a) => { try { const t = JSON.parse((document.getElementById("oya-t") || {}).textContent || "{}"); s = t[s] || s; } catch (e) {} return a ? s.replace(/\{(\d)\}/g, (m, i) => a[i]) : s; };
+  const NUM_LOC0 = { ru: "ru-RU", tr: "tr-TR", pt: "pt-BR" }[document.documentElement.lang] || "en-US";
+  const lite = { idx: 0, cat: null, qty: 1, pendingCat: null, pendingTab: null };
+  const litePanel = root.querySelector(".stadium-info");
+  const is3D = () => root.classList.contains("is-ready");
+  const litePrice = (k) => { const p = cfg.matches[lite.idx].prices || {}; return typeof p[k] === "number" && p[k] > 0 ? p[k] : null; };
+  const liteMoney = (v) => (v ? `${v.toLocaleString(NUM_LOC0)}${cfg.currency}` : TL("عند الطلب"));
+  function liteDraw() {
+    root.querySelectorAll(".stadium-legend button").forEach((b) => { b.querySelector(".lg-price").textContent = liteMoney(litePrice(b.dataset.cat)); b.setAttribute("aria-pressed", b.dataset.cat === lite.cat ? "true" : "false"); });
+    const n = root.querySelector(".si-n"); if (n) n.textContent = lite.qty;
+    if (!lite.cat || !litePanel) return;
+    const c = cfg.categories[lite.cat], m = cfg.matches[lite.idx], v = litePrice(lite.cat);
+    litePanel.querySelector(".si-dot").style.background = c.color;
+    litePanel.querySelector(".si-cat").textContent = c.label;
+    litePanel.querySelector(".si-where").textContent = m.venue;
+    litePanel.querySelector(".si-desc").textContent = c.desc;
+    litePanel.querySelector(".si-price").textContent = liteMoney(v);
+    const tot = litePanel.querySelector(".si-total"); if (tot) tot.textContent = liteMoney(v ? v * lite.qty : null);
+    litePanel.querySelector(".si-wa").href = `https://wa.me/${cfg.wa}?text=${encodeURIComponent(TL("مرحباً أويا، أرغب بتذاكر {0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027. عدد التذاكر: {4} — الإجمالي التقديري: {5}.", [c.label, m.venue, m.stage, m.teams, lite.qty, liteMoney(v ? v * lite.qty : null)]))}`;
+    litePanel.classList.add("is-on");
+  }
+  root.querySelectorAll(".stadium-legend button").forEach((b) => b.addEventListener("click", () => {
+    if (is3D()) return;
+    lite.cat = b.dataset.cat; liteDraw();
+    if (!started && coarse) { lite.pendingCat = b.dataset.cat; }
+  }));
+  root.querySelectorAll(".stadium-tab").forEach((t, i) => t.addEventListener("click", () => {
+    if (is3D()) return;
+    lite.idx = i;
+    root.querySelectorAll(".stadium-tab").forEach((x) => x.setAttribute("aria-selected", x === t ? "true" : "false"));
+    const ven = root.querySelector(".stadium-venue"); if (ven) ven.textContent = `${cfg.matches[i].venue} • ${cfg.matches[i].capacity}`;
+    lite.pendingTab = i; liteDraw();
+  }));
+  root.querySelectorAll(".qty__b").forEach((b) => b.addEventListener("click", () => { if (is3D()) return; lite.qty = Math.min(10, Math.max(1, lite.qty + Number(b.dataset.q))); liteDraw(); }));
+  if (window.oyaPrices) window.oyaPrices.then((db) => { const sc = db && db.superCup && db.superCup.matches; if (!sc || is3D()) return; cfg.matches.forEach((m) => { if (sc[m.id]) m.prices = sc[m.id]; }); if (db.currency && db.currency.symbol) cfg.currency = db.currency.symbol; liteDraw(); });
   if (!coarse) {
     const io = new IntersectionObserver((e) => { if (e[0].isIntersecting) { io.disconnect(); start(); } }, { rootMargin: "200px" });
     io.observe(root);
@@ -493,6 +531,9 @@ if (root) {
     resize(); updateCam(); kick();
     canvas.tabIndex = -1;
     root.classList.remove("is-loading"); root.classList.add("is-ready");
+    // carry over what the visitor already chose in lite mode
+    qty = lite.qty; if (lite.idx && tabs[lite.idx]) tabs[lite.idx].click();
+    if (lite.cat) { const lb = root.querySelector(`.stadium-legend button[data-cat="${lite.cat}"]`); if (lb) lb.click(); } else refreshTotal();
     if (!reduce) setTimeout(() => wave(0), 1800);
     window.__oyaStadium = { enterSeat: (cat) => enterSeat(pickables.find((p) => p.userData.cat === cat && p.userData.center) || pickables.find((p) => p.userData.cat === cat)), wave }; // used by tests
   }

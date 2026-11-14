@@ -45,7 +45,7 @@
     }).join("");
     var msg = T("مرحباً أويا، استخدمت مكتشف الرحلات وهذه اختياراتي:") + "\n" +
       Object.keys(labels).map(function (k) { return "• " + labels[k]; }).join("\n") +
-      "\n" + T("البرامج المقترحة: {0}", [list.map(function (x) { return x.p.t; }).join(SEP)]);
+      "\n" + T("البرامج المقترحة: {0}", ["\n• " + list.map(function (x) { return x.p.t; }).join("\n• ")]);
     sec.querySelector(".finder__wa").href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
   }
   sec.addEventListener("click", function (e) {
