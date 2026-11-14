@@ -1,6 +1,13 @@
 (function () {
   "use strict";
   if (window.top !== window.self) { document.documentElement.hidden = true; return; } // never inside another site's frame
+  // numbers can be typed with Arabic digits (١٥٠) or separators (1,200): turned into 150 / 1200 as you type
+  document.addEventListener("input", function (e) {
+    var el = e.target; if (!el.matches || !el.matches('input[inputmode="numeric"]')) return;
+    var v = el.value.replace(/[٠-٩]/g, function (d) { return d.charCodeAt(0) - 0x660; }).replace(/[۰-۹]/g, function (d) { return d.charCodeAt(0) - 0x6F0; }).replace(/[,،٬.\s]/g, "");
+    if (v !== el.value) el.value = v;
+    el.setCustomValidity(v && !/^\d+$/.test(v) ? "اكتب الرقم فقط" : ""); el.classList.toggle("nan", !!v && !/^\d+$/.test(v));
+  }, true);
   var OWNER = "mo3oud1", REPO = "Oya_Toursim", BRANCH = "main";
   var API = "https://api.github.com/repos/" + OWNER + "/" + REPO + "/contents/";
   var CATS = [["vip", "#F4B740", "منتصف المدرج الرئيسي"], ["cat1", "#ED5404", "المدرجات الطولية"], ["cat2", "#4F8BC9", "الزوايا وأطراف المدرجات"], ["cat3", "#2A9D8F", "خلف المرميين"]];
@@ -75,7 +82,7 @@
 
   /* ---------- render ---------- */
   function money(val, key) {
-    return '<div class="money"><input type="number" inputmode="numeric" min="0" step="1" data-key="' + key + '" value="' + (typeof val === "number" ? val : "") + '" placeholder="عند الطلب" aria-label="السعر"><span>' + esc(sym()) + "</span></div>";
+    return '<div class="money"><input type="text" inputmode="numeric" min="0" step="1" data-key="' + key + '" value="' + (typeof val === "number" ? val : "") + '" placeholder="عند الطلب" aria-label="السعر"><span>' + esc(sym()) + "</span></div>";
   }
   function render() {
     $("#loading").hidden = true; $("#content").hidden = false;
@@ -154,7 +161,7 @@
     ["en", "ru", "tr", "pt"].forEach(function (l) { $("#cNote_" + l).value = (ed.i18n && ed.i18n[l] && ed.i18n[l].note) || ""; });
     $(".sym", $("#editor")).textContent = sym();
     $$("#cFeats input").forEach(function (x) { x.checked = (ed.features || []).indexOf(x.value) > -1; });
-    $("#edErr").textContent = ""; drawPhotos();
+    $("#edErr").textContent = ""; drawPhotos(); edDirty = false;
     $("#editor").hidden = false; $("#cName").focus();
   }
   function drawPhotos() {
@@ -204,8 +211,10 @@
     if (b.dataset.del != null) { var c = F.cabins.db.cabins[+b.dataset.del]; if (confirm("حذف «" + c.name + "»؟ سيختفي من الموقع بعد الحفظ.")) { F.cabins.db.cabins.splice(+b.dataset.del, 1); renderCabs(); update(); } }
   });
   function closeEditor() { $("#editor").hidden = true; ed = null; }
-  $("#edCancel").addEventListener("click", closeEditor);
-  $("#editor").addEventListener("keydown", function (e) { if (e.key === "Escape") closeEditor(); });
+  var edDirty = false; $("#editor").addEventListener("input", function () { edDirty = true; }); $("#editor").addEventListener("change", function () { edDirty = true; });
+  var cancelEditor = function () { if (edDirty && !confirm("إغلاق دون حفظ التعديلات على هذا الكوخ؟")) return; closeEditor(); };
+  $("#edCancel").addEventListener("click", cancelEditor);
+  $("#editor").addEventListener("keydown", function (e) { if (e.key === "Escape") cancelEditor(); });
   $("#edOk").addEventListener("click", function () {
     var name = $("#cName").value.trim(), pr = $("#cPrice").value.trim();
     if (!name) { $("#edErr").textContent = "اكتب اسم الكوخ."; $("#cName").focus(); return; }
@@ -277,15 +286,15 @@
     },
     flights: {
       label: "وجهة طيران", icon: "✈",
-      fresh: function () { return { id: "r" + Date.now().toString(36), from: "IST", to: "RUH", mins: 240, price: null, active: true }; },
+      fresh: function () { return { id: "r" + Date.now().toString(36), from: "IST", to: "", mins: 0, price: null, active: true }; },
       fields: [
         { k: "from", t: "select", label: "من", opts: AIRPORTS },
-        { k: "to", t: "select", label: "إلى", opts: AIRPORTS },
+        { k: "to", t: "select", label: "إلى", opts: [["", "اختر الوجهة"]].concat(AIRPORTS) },
         { k: "mins", t: "dur", label: "مدة الرحلة المباشرة تقريباً" },
         { k: "price", t: "money", label: "السعر يبدأ من (اختياري)" },
         { k: "active", t: "check", label: "ظاهر على الموقع", wide: true }
       ],
-      check: function (o) { return o.from === o.to ? "اختر مدينتين مختلفتين." : ""; },
+      check: function (o) { return !o.to ? "اختر مدينة الوصول." : o.from === o.to ? "اختر مدينتين مختلفتين." : !o.mins ? "اكتب مدة الرحلة." : gList("flights").some(function (r, i) { return i !== gi && r.from === o.from && r.to === o.to; }) ? "هذه الوجهة موجودة في القائمة." : ""; },
       row: function (r) { return { ico: "✈", h: (apName[r.from] || r.from) + " ← " + (apName[r.to] || r.to), p: ["المدة: " + durTxt(r.mins), typeof r.price === "number" && r.price > 0 ? "من " + r.price + " " + sym() : ""].filter(Boolean).join(" • ") }; }
     }
   };
@@ -322,18 +331,18 @@
     });
   }
   function gShowLang(l) {
-    gLang = l;
+    gLang = l; $("#gEditor").classList.toggle("lang-other", l !== "ar");
     trFields().forEach(function (f) { var el = $("#g_" + f.k); if (el) { el.value = gVal(f, l) || ""; el.dir = dirOf(l); } });
-    $("#gLangNote").textContent = l === "ar" ? "اكتب النصوص بالعربية أولاً، ثم افتح كل لغة واكتب ترجمتها (أو استخدم زر الترجمة التلقائية)." : "نسخة " + LNAME[l] + ": تظهر في موقع " + LNAME[l] + ". الخانة الفارغة تُعرض بالإنجليزية.";
+    $("#gLangNote").textContent = l === "ar" ? "اكتب النصوص بالعربية أولاً، ثم افتح كل لغة واكتب ترجمتها (أو استخدم زر الترجمة التلقائية)." : "نسخة " + LNAME[l] + ": تظهر في موقع " + LNAME[l] + "." + (l === "en" ? " اترك الخانة فارغة لتظهر النسخة العربية مكانها." : " اترك الخانة فارغة لتظهر النسخة الإنجليزية مكانها.") + " الخانات الباهتة مشتركة بين كل اللغات.";
     langBar($("#gLangs"), l, function (x) { return x === "ar" ? !!go.title || !!go.name : !!((go.i18n || {})[x] && Object.keys(go.i18n[x]).length); }, function (x) { if (x === gLang) return; gStash(); gShowLang(x); });
   }
   function fieldHtml(f, v) {
-    var id = "g_" + f.k, w = f.wide ? ' class="wide"' : "", lbl = '<label for="' + id + '">' + esc(f.label) + "</label>", dir = f.ltr ? ' dir="ltr"' : "";
+    var id = "g_" + f.k, w = (f.wide ? ' class="wide"' : "") + (f.tr ? " data-tr" : ""), lbl = '<label for="' + id + '">' + esc(f.label) + "</label>", dir = f.ltr ? ' dir="ltr"' : "";
     if (f.t === "text") return "<div" + w + ">" + lbl + '<input type="text" id="' + id + '"' + dir + ' value="' + esc(v || "") + '" placeholder="' + esc(f.ph || "") + '"></div>';
     if (f.t === "area") return "<div" + w + ">" + lbl + '<textarea id="' + id + '"' + dir + ' maxlength="' + (f.max || 400) + '">' + esc(v || "") + "</textarea></div>";
     if (f.t === "select") return "<div" + w + ">" + lbl + '<select id="' + id + '">' + f.opts.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (String(v == null ? "" : v) === o[0] ? " selected" : "") + ">" + esc(o[1]) + "</option>"; }).join("") + "</select></div>";
-    if (f.t === "money") return "<div" + w + ">" + lbl + '<div class="money" style="width:100%"><input type="number" id="' + id + '" min="0" step="1" inputmode="numeric" value="' + (typeof v === "number" ? v : "") + '" placeholder="' + esc(f.ph || "اختياري") + '"><span>' + esc(sym()) + "</span></div></div>";
-    if (f.t === "dur") return "<div" + w + ">" + lbl + '<div class="dur"><input type="number" id="' + id + '_h" min="0" max="20" value="' + Math.floor((v || 0) / 60) + '" inputmode="numeric" aria-label="ساعات"> ساعة <input type="number" id="' + id + '_m" min="0" max="59" step="5" value="' + ((v || 0) % 60) + '" inputmode="numeric" aria-label="دقائق"> دقيقة</div></div>';
+    if (f.t === "money") return "<div" + w + ">" + lbl + '<div class="money" style="width:100%"><input type="text" inputmode="numeric" id="' + id + '" min="0" step="1" inputmode="numeric" value="' + (typeof v === "number" ? v : "") + '" placeholder="' + esc(f.ph || "اختياري") + '"><span>' + esc(sym()) + "</span></div></div>";
+    if (f.t === "dur") return "<div" + w + ">" + lbl + '<div class="dur"><input type="text" inputmode="numeric" id="' + id + '_h" min="0" max="20" value="' + Math.floor((v || 0) / 60) + '" inputmode="numeric" aria-label="ساعات"> ساعة <input type="text" inputmode="numeric" id="' + id + '_m" min="0" max="59" step="5" value="' + ((v || 0) % 60) + '" inputmode="numeric" aria-label="دقائق"> دقيقة</div></div>';
     if (f.t === "check") return "<div" + w + '><label class="chk" style="margin:0"><input type="checkbox" id="' + id + '"' + (v ? " checked" : "") + "> " + esc(f.label) + "</label></div>";
     if (f.t === "checks") return "<div" + w + "><label>" + esc(f.label) + '</label><div class="feats" id="' + id + '">' + f.opts.map(function (o) { return '<label><input type="checkbox" value="' + o[0] + '"' + ((v || []).indexOf(o[0]) > -1 ? " checked" : "") + "> " + esc(o[1]) + "</label>"; }).join("") + "</div></div>";
     if (f.t === "photo" || f.t === "photos") return "<div" + w + "><label>" + esc(f.label) + '</label><div class="photos" id="' + id + '" data-folder="' + f.folder + '" data-multi="' + (f.t === "photos" ? 1 : 0) + '"></div></div>';
@@ -355,7 +364,7 @@
     // older entries kept English in titleEn / tagEn / textEn: move them to the English version
     ["title", "tag", "text"].forEach(function (f) { if (go[f + "En"]) { go.i18n = go.i18n || {}; go.i18n.en = go.i18n.en || {}; if (!go.i18n.en[f]) go.i18n.en[f] = go[f + "En"]; delete go[f + "En"]; } });
     var hasTr = trFields().length > 0; $("#gLangs").hidden = !hasTr; $("#gLangNote").hidden = !hasTr; $("#gAi").hidden = !hasTr; gLang = "ar"; if (hasTr) gShowLang("ar");
-    $("#gErr").textContent = ""; $("#gEditor").hidden = false;
+    $("#gErr").textContent = ""; $("#gEditor").hidden = false; gDirty = false;
     var first = $("#gFields input,#gFields select"); if (first) first.focus();
   }
   var photoField = function (box) { return SPEC[gk].fields.filter(function (f) { return "g_" + f.k === box.id; })[0]; };
@@ -394,8 +403,10 @@
     img.src = url;
   }
   function closeGen() { $("#gEditor").hidden = true; go = null; }
-  $("#gCancel").addEventListener("click", closeGen);
-  $("#gEditor").addEventListener("keydown", function (e) { if (e.key === "Escape") closeGen(); });
+  var gDirty = false; $("#gEditor").addEventListener("input", function () { gDirty = true; }); $("#gEditor").addEventListener("change", function () { gDirty = true; });
+  var cancelGen = function () { if (gDirty && !confirm("إغلاق دون حفظ التعديلات؟")) return; closeGen(); };
+  $("#gCancel").addEventListener("click", cancelGen);
+  $("#gEditor").addEventListener("keydown", function (e) { if (e.key === "Escape") cancelGen(); });
   $("#gOk").addEventListener("click", function () {
     gStash();
     var S = SPEC[gk], o = go, before = gi < 0 ? null : gList(gk)[gi], err = "";
@@ -558,7 +569,7 @@
     if (bLang !== "ar" && !v.title && !wordsOf(v.body)) delete bp.i18n[bLang];
   }
   function showLang(l) {
-    bLang = l; var v = langOf(bp, l), d = dirOf(l);
+    bLang = l; var v = langOf(bp, l), d = dirOf(l); $("#bEditor").classList.toggle("lang-other", l !== "ar");
     $("#bTitle").value = v.title || ""; rte.innerHTML = toEditor(v.body); showImgs();
     $("#bSeo").value = v.seoTitle || ""; $("#bDesc").value = v.description || ""; $("#bEx").value = v.excerpt || ""; $("#bCoverAlt").value = v.coverAlt || ""; $("#bKey").value = v.keyword || "";
     bp._faq = clone(v.faq || []); drawFaq();
@@ -576,7 +587,7 @@
     $$('input[name="bStatus"]').forEach(function (x) { x.checked = x.value === (bp.status || "draft"); });
     $("#bWhen").value = bp.publishAt || istNow(); $("#bSlug").value = bp.slug || "";
     var cat = $("#bCat"); if (![].some.call(cat.options, function (o) { return o.value === bp.category; })) cat.add(new Option(bp.category, bp.category)); cat.value = bp.category;
-    drawCover(); $("#bErr").textContent = ""; aiState();
+    drawCover(); $("#bErr").textContent = ""; $("#bErrTop").textContent = ""; aiState();
     $("#bEditor").hidden = false; document.body.style.overflow = "hidden"; $("#bEditor").scrollTop = 0;
     showLang("ar"); $("#bTitle").focus();
   }
@@ -716,7 +727,8 @@
       else if (o.words < 120) err = "النص العربي قصير جداً للنشر. أكمل كتابته أو احفظه كمسودة.";
       else { var half = LANGS.slice(1).filter(function (l) { var v = langOf(o, l[0]); return !!v.title !== !!wordsOf(v.body); }); if (half.length) err = "نسخة " + LNAME[half[0][0]] + " ناقصة: اكتب لها العنوان والنص معاً، أو امسح ما كتبته فيها."; }
     }
-    if (err) { $("#bErr").textContent = err; return; }
+    $("#bErrTop").textContent = err;
+    if (err) { $("#bErr").textContent = err; toast(err, "bad"); return; }
     if (o.cover === "uploading") o.cover = "";
     if (bi < 0) F.blog.db.posts.unshift(o); else F.blog.db.posts[bi] = o;
     closePost(); renderBlog(); update();
@@ -810,14 +822,20 @@
     $("#count").firstChild.nodeValue = parts.length ? parts.join(" + ") + " — غير محفوظة" : "لا توجد تغييرات";
     markChanged();
   }
-  $("#undo").addEventListener("click", function () { F.prices.db = clone(F.prices.orig); F.cabins.db = clone(F.cabins.orig); GEN.forEach(function (k) { F[k].db = clone(F[k].orig); }); db = F.prices.db; render(); });
+  $("#undo").addEventListener("click", function () {
+    if (!confirm("سيتم حذف كل التعديلات غير المحفوظة في جميع الأقسام. متابعة؟")) return; F.prices.db = clone(F.prices.orig); F.cabins.db = clone(F.cabins.orig); GEN.forEach(function (k) { F[k].db = clone(F[k].orig); }); db = F.prices.db; render(); });
   window.addEventListener("beforeunload", function (e) { if (dirtyCount()) { e.preventDefault(); e.returnValue = ""; } });
 
   function put(k, msg) {
     var f = F[k], body = { message: msg, content: b64enc(JSON.stringify(f.db, null, 2) + "\n"), branch: BRANCH };
     if (f.sha) body.sha = f.sha;
-    return gh("PUT", f.path, body).then(function (r) {
-      if (!r.ok) throw r.status;
+    var send = function () { return gh("PUT", f.path, body); };
+    return send().then(function (r) {
+      if (r.status !== 409 && r.status !== 422) return r;
+      // the file changed since it was opened (another tab/device): take its new version id and try once more
+      return gh("GET", f.path).then(function (g) { return g.ok ? g.json() : null; }).then(function (g) { if (!g) return r; body.sha = g.sha; return send(); });
+    }).then(function (r) {
+      if (!r.ok) throw { st: r.status, k: k };
       return r.json().then(function (j) { f.sha = j.content.sha; f.orig = clone(f.db); });
     });
   }
@@ -830,10 +848,11 @@
     chain.then(function () {
       btn.disabled = false; btn.textContent = "حفظ التغييرات";
       $("#upd").textContent = "آخر تحديث للأسعار: " + (db.updated || "—"); update(); renderCabs(); GEN.forEach(renderGen); renderBlog();
-      toast("تم الحفظ ✓ — تظهر التغييرات على الموقع خلال 2–5 دقائق.", "ok");
+      toast("تم الحفظ ✓ — تظهر التغييرات على الموقع خلال 2–5 دقائق (والمقالات المجدولة في موعدها).", "ok");
     }).catch(function (st) {
       btn.disabled = false; btn.textContent = "حفظ التغييرات"; update();
-      toast(typeof st === "number" ? why(st) : "تعذّر الاتصال. حاول مرة أخرى.", "bad");
+      var SEC = { prices: "الأسعار", cabins: "الأكواخ", events: "المباريات", hotels: "الفنادق", flights: "الطيران", blog: "المدونة" };
+      toast(st && st.k ? "لم يُحفظ قسم «" + SEC[st.k] + "»: " + why(st.st) + " (ما حُفظ قبله وصل للموقع، والباقي ما زال هنا — اضغط حفظ من جديد)" : typeof st === "number" ? why(st) : "تعذّر الاتصال. حاول مرة أخرى.", "bad");
     });
   });
 

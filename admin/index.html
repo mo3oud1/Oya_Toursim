@@ -113,6 +113,7 @@ main{padding:28px 0 140px}
 .dur{display:flex;gap:8px;align-items:center}.dur input{width:90px}
 /* blog editor */
 .beditor{place-items:start center}
+.editor{grid-template-columns:minmax(0,1fr)}
 .editor.beditor .card{width:min(100%,1180px);max-height:none;padding:0;overflow:visible}
 .bhead{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:10px;padding:14px 20px;background:#fff;border-radius:22px 22px 0 0;border-bottom:1px solid var(--line)}
 .bhead h2{margin:0;font-size:1.15rem}.bhead .sp{flex:1}
@@ -161,6 +162,19 @@ main{padding:28px 0 140px}
 .langbar button i{font-style:normal;color:var(--ok)}.langbar button.on i{color:#9BE3B9}
 .lchips{display:flex;gap:4px;margin-top:4px!important}.lchips span{font-size:.7rem;font-weight:700;padding:.05em .45em;border-radius:6px;background:#F3F1EC;color:#A7A096}.lchips span.on{background:#E8F6EE;color:var(--ok)}
 details.ml{background:#FBFAF7;border-radius:14px;padding:10px 14px}details.ml summary{cursor:pointer;font-weight:600;color:var(--navy)}
+.err.bherr{margin:0;font-size:.85rem;max-width:45%;line-height:1.4;min-height:0}
+.err.bherr:empty{display:none}
+.shared{font-family:var(--ff);font-weight:500;font-size:.72rem;color:var(--muted);margin-inline-start:.4em}
+.lang-other .f2>div:not([data-tr]),.lang-other .bbox:first-child,.lang-other .bcover{opacity:.5}
+.lang-other .f2>div:not([data-tr]):focus-within{opacity:1}
+input.nan{border-color:var(--bad)!important;background:#FFF4F2}
+.ph .x{width:36px;height:36px;font-size:1rem}.ph .first{padding:.4em .8em;font-size:.78rem}
+@media(max-width:700px){
+  .edfoot{position:sticky;bottom:-22px;background:#fff;margin:18px -22px -22px;padding:12px 22px;box-shadow:0 -8px 20px -14px rgba(6,20,40,.4)}
+  .bgrid{display:flex;flex-direction:column;padding:14px}.bgrid>*,.bside>*{min-width:0}.bside{display:contents}.bside>.bbox:first-child{order:-1}.bmain{order:0}.bside>.bbox{order:1}
+  .rte-bar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;top:60px}.rte-bar button,.rte-img{white-space:nowrap}
+  .bhead{flex-wrap:wrap}.err.bherr{order:5;max-width:100%;flex-basis:100%}
+}
 .ph1{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 .btn--danger{background:#fff;color:var(--bad);box-shadow:inset 0 0 0 1.5px #F2C7C2}
 .editor{position:fixed;inset:0;z-index:40;background:rgba(6,20,40,.55);display:grid;place-items:center;padding:16px;overflow:auto}
@@ -243,13 +257,13 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 
       <section class="panel" data-panel="ev">
         <div class="tools"><button class="btn" type="button" data-add="events">＋ إضافة بطولة أو مباراة</button><a class="link ext" href="../matches/" target="_blank" rel="noopener">صفحة تذاكر المباريات</a></div>
-        <div class="hint">ⓘ<span>كل بطاقة هنا تظهر في صفحة «تذاكر المباريات». البطاقة المرتبطة بصفحة (مثل كأس السوبر) تفتح صفحتها، والباقي يفتح طلباً على واتساب. رتّبها بالأسهم ▲▼. الاسم بالإنجليزية يظهر في اللغات الأخرى.</span></div>
+        <div class="hint">ⓘ<span>كل بطاقة هنا تظهر في صفحة «تذاكر المباريات». البطاقة المرتبطة بصفحة (مثل كأس السوبر) تفتح صفحتها، والباقي يفتح طلباً على واتساب. رتّبها بالأسهم ▲▼. اكتب النصوص بالعربية ثم بباقي اللغات من شريط اللغات داخل النافذة.</span></div>
         <div class="cabs" data-list="events"></div>
       </section>
 
       <section class="panel" data-panel="ho" hidden>
         <div class="tools"><button class="btn" type="button" data-add="hotels">＋ إضافة فندق</button><a class="link ext" href="../hotels/" target="_blank" rel="noopener">صفحة الفنادق</a></div>
-        <div class="hint">ⓘ<span>كل فندق تضيفه يظهر في صفحة «فنادق ومنتجعات» تحت «فنادق مختارة» وفي صفحة فنادق مدينته. أضف فقط الفنادق التي تتعامل معها، بصورها الحقيقية. اسم الفندق يظهر كما هو بكل اللغات، أما الوصف والمنطقة فبالعربية فقط.</span></div>
+        <div class="hint">ⓘ<span>كل فندق تضيفه يظهر في صفحة «فنادق ومنتجعات» تحت «فنادق مختارة» وفي صفحة فنادق مدينته. أضف فقط الفنادق التي تتعامل معها، بصورها الحقيقية. اسم الفندق يظهر كما هو بكل اللغات، والمنطقة والوصف تكتبهما لكل لغة من شريط اللغات.</span></div>
         <div class="cabs" data-list="hotels"></div>
       </section>
 
@@ -261,7 +275,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 
       <section class="panel" data-panel="bl" hidden>
         <div class="tools"><button class="btn" type="button" id="addPost">＋ مقال جديد</button><a class="link ext" href="../blog/" target="_blank" rel="noopener">المدونة على الموقع</a></div>
-        <div class="hint">ⓘ<span>اكتب المقال وأضف صوره، واختر «نشر» مع موعد النشر: يظهر في المدونة كصفحة كاملة تقرؤها محركات البحث (عنوان ووصف وبيانات منظمة وخريطة الموقع) خلال دقائق من الحفظ، أو في موعده إن كان مجدولاً (خلال ساعة من الموعد). «مسودة» لا تظهر على الموقع. المقالات المكتوبة هنا تظهر في النسخة العربية.</span></div>
+        <div class="hint">ⓘ<span>اكتب المقال وأضف صوره، واختر «نشر» مع موعد النشر: يظهر في المدونة كصفحة كاملة تقرؤها محركات البحث (عنوان ووصف وبيانات منظمة وخريطة الموقع) خلال دقائق من الحفظ، أو في موعده إن كان مجدولاً (خلال ساعة من الموعد). «مسودة» لا تظهر على الموقع. اكتب المقال بالعربية، ثم بأي لغة أخرى من شريط اللغات: كل لغة تكتبها تصبح صفحة في موقع تلك اللغة.</span></div>
         <div class="cabs" id="posts"></div>
       </section>
 
@@ -284,14 +298,15 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
           <button class="btn" type="button" id="addCab">＋ إضافة كوخ</button>
           <a class="link ext" href="../cabins/" target="_blank" rel="noopener">صفحة الأكواخ على الموقع</a>
         </div>
-        <div class="hint">ⓘ<span>كل كوخ تضيفه يظهر في صفحة «أكواخ وبنغلات» وفي صفحة فنادق مدينته (سبانجا أو طرابزون وأوزنجول). استخدم صوراً حقيقية للكوخ نفسه. الوصف المكتوب يظهر في النسخة العربية فقط، أما المواصفات فتظهر بكل اللغات.</span></div>
+        <div class="hint">ⓘ<span>كل كوخ تضيفه يظهر في صفحة «أكواخ وبنغلات» وفي صفحة فنادق مدينته (سبانجا أو طرابزون وأوزنجول). استخدم صوراً حقيقية للكوخ نفسه. المواصفات تظهر مترجمة بكل اللغات، والوصف تكتبه بالعربية ثم بباقي اللغات من «الوصف بلغات الموقع الأخرى».</span></div>
         <div class="cabs" id="cabs"></div>
       </section>
 
       <section class="panel" data-panel="st" hidden>
         <div class="card settings">
           <div><label for="curr">العملة المعروضة</label>
-            <select id="curr"><option value="USD|$">دولار أمريكي ($)</option><option value="EUR|€">يورو (€)</option><option value="TRY|₺">ليرة تركية (₺)</option></select></div>
+            <select id="curr" aria-describedby="currNote"><option value="USD|$">دولار أمريكي ($)</option><option value="EUR|€">يورو (€)</option><option value="TRY|₺">ليرة تركية (₺)</option></select>
+            <p id="currNote" style="margin:.4em 0 0;color:var(--muted);font-size:.85rem">تغيير العملة يغيّر الرمز فقط ولا يحوّل الأرقام — عدّل الأسعار بعدها.</p></div>
           <div><label for="aiProv">المساعد الذكي (اختياري): الترجمة وتحسين النصوص</label>
             <select id="aiProv"><option value="openai">ChatGPT (OpenAI)</option><option value="gemini">Gemini (Google)</option></select></div>
           <div><label for="aiKey">مفتاح API</label>
@@ -308,7 +323,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
   <div class="bar" id="bar" role="region" aria-label="حفظ التغييرات">
     <div class="wrap">
       <div class="count" id="count">لا توجد تغييرات<small>التغييرات تظهر على الموقع خلال دقائق من الحفظ</small></div>
-      <button class="btn btn--ghost" type="button" id="undo">تراجع</button>
+      <button class="btn btn--ghost" type="button" id="undo">إلغاء كل التغييرات</button>
       <button class="btn" type="button" id="save">حفظ التغييرات</button>
     </div>
   </div>
@@ -321,9 +336,9 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     <div class="f2">
       <div class="wide"><label for="cName">اسم الكوخ (كما يظهر للزبون)</label><input type="text" id="cName" placeholder="مثال: Sapanca Lake Bungalow"></div>
       <div><label for="cArea">المنطقة</label><select id="cArea"></select></div>
-      <div><label for="cPrice">سعر الليلة</label><div class="money" style="width:100%"><input type="number" id="cPrice" min="0" step="1" inputmode="numeric" placeholder="حسب الموسم"><span class="sym">$</span></div></div>
-      <div><label for="cRooms">غرف النوم</label><input type="number" id="cRooms" min="1" max="20" step="1" value="1" inputmode="numeric"></div>
-      <div><label for="cGuests">أقصى عدد للأشخاص</label><input type="number" id="cGuests" min="1" max="40" step="1" value="2" inputmode="numeric"></div>
+      <div><label for="cPrice">سعر الليلة</label><div class="money" style="width:100%"><input type="text" inputmode="numeric" id="cPrice" min="0" step="1" inputmode="numeric" placeholder="حسب الموسم"><span class="sym">$</span></div></div>
+      <div><label for="cRooms">غرف النوم</label><input type="text" inputmode="numeric" id="cRooms" min="1" max="20" step="1" value="1" inputmode="numeric"></div>
+      <div><label for="cGuests">أقصى عدد للأشخاص</label><input type="text" inputmode="numeric" id="cGuests" min="1" max="40" step="1" value="2" inputmode="numeric"></div>
       <div class="wide"><label>المواصفات</label><div class="feats" id="cFeats"></div></div>
       <div class="wide"><label for="cNote">وصف قصير بالعربية (اختياري)</label><textarea id="cNote" maxlength="240" placeholder="مثال: على بُعد 5 دقائق من بحيرة سبانجا، مع جاكوزي داخلي ومدفأة حطب."></textarea></div>
       <div class="wide"><details class="ml"><summary>الوصف بلغات الموقع الأخرى</summary>
@@ -351,9 +366,9 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
   <div class="card">
     <h2 id="gTitle">إضافة</h2>
     <div class="langbar" id="gLangs"></div>
-    <p class="bnote" id="gLangNote" style="margin:0 0 10px"></p>
+    <p class="bnote" id="gLangNote" style="margin:0 0 6px"></p>
+    <button class="btn btn--ghost sbtn" type="button" id="gAi" hidden style="margin:0 0 12px">✦ ترجم تلقائياً الخانات الفارغة في كل اللغات</button>
     <div class="f2" id="gFields"></div>
-    <button class="btn btn--ghost sbtn" type="button" id="gAi" hidden style="margin-top:12px">✦ ترجم تلقائياً الخانات الفارغة في كل اللغات</button>
     <div class="err" id="gErr" role="alert"></div>
     <div class="edfoot">
       <button class="btn btn--ghost" type="button" id="gCancel">إلغاء</button>
@@ -364,7 +379,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 <!-- blog editor -->
 <div class="editor beditor" id="bEditor" hidden role="dialog" aria-modal="true" aria-labelledby="bHead">
   <div class="card">
-    <div class="bhead"><h2 id="bHead">مقال جديد</h2><span class="sp"></span><button class="btn btn--ghost sbtn" type="button" id="bCancel">إغلاق</button><button class="btn sbtn" type="button" id="bOk">حفظ المقال</button></div>
+    <div class="bhead"><h2 id="bHead">مقال جديد</h2><span class="sp"></span><span class="err bherr" id="bErrTop" role="alert"></span><button class="btn btn--ghost sbtn" type="button" id="bCancel">إغلاق</button><button class="btn sbtn" type="button" id="bOk">حفظ المقال</button></div>
     <div class="bgrid">
       <div class="bmain">
         <div class="langbar" id="bLangs"></div>
@@ -393,7 +408,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
       </div>
       <aside class="bside">
         <section class="bbox">
-          <h3>النشر</h3>
+          <h3>النشر <small class="shared">لكل اللغات</small></h3>
           <div class="seg2" role="radiogroup" aria-label="حالة المقال"><label><input type="radio" name="bStatus" value="draft" checked> مسودة</label><label><input type="radio" name="bStatus" value="publish"> نشر</label></div>
           <label for="bWhen">موعد النشر (بتوقيت إسطنبول)</label>
           <input type="datetime-local" id="bWhen">
@@ -402,7 +417,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
           <select id="bCat"><option>دليل السفر</option><option>برامج سياحية</option><option>تأشيرات</option><option>مباريات</option><option>شهر العسل</option><option>فنادق وأكواخ</option><option>عروض وأخبار</option></select>
         </section>
         <section class="bbox">
-          <h3>صورة الغلاف</h3>
+          <h3>صورة الغلاف <small class="shared">الصورة لكل اللغات، والوصف لكل لغة</small></h3>
           <div class="bcover" id="bCover"></div>
           <label for="bCoverAlt">وصف الصورة (لمحركات البحث)</label>
           <input type="text" id="bCoverAlt" placeholder="مثال: بحيرة أوزنجول وسط الضباب">
@@ -410,7 +425,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
         <section class="bbox">
           <h3>محركات البحث</h3>
           <label for="bKey">الكلمة المفتاحية</label><input type="text" id="bKey" placeholder="مثال: أوزنجول في الشتاء">
-          <label for="bSlug">رابط المقال (بالإنجليزية)</label><div class="slug"><span dir="ltr">/blog/</span><input type="text" id="bSlug" dir="ltr" placeholder="uzungol-winter-guide"></div>
+          <label for="bSlug">رابط المقال (بالإنجليزية — واحد لكل اللغات)</label><div class="slug"><span dir="ltr">/blog/</span><input type="text" id="bSlug" dir="ltr" placeholder="uzungol-winter-guide"></div>
           <label for="bSeo">عنوان Google (اختياري)</label><input type="text" id="bSeo" maxlength="70"><p class="bnote" id="bSeoN"></p>
           <label for="bDesc">الوصف في Google</label><textarea id="bDesc" maxlength="170" rows="3"></textarea><p class="bnote" id="bDescN"></p>
           <label for="bEx">مقتطف يظهر في بطاقة المقال (اختياري)</label><textarea id="bEx" maxlength="260" rows="3"></textarea>
@@ -432,6 +447,6 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="app.js?v=20261114b"></script>
+<script src="app.js?v=20261114c"></script>
 </body>
 </html>
