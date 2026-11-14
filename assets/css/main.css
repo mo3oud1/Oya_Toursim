@@ -58,6 +58,7 @@
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 16px);interpolate-size:allow-keywords}
 body{margin:0;font-family:var(--ff-body);font-size:1.0625rem;line-height:1.85;color:var(--ink);background:var(--sand);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
 img,svg,video{display:block;max-width:100%}
+[hidden]{display:none!important}
 /* an icon at the start of a sentence stays on the sentence's line */
 p.center>.i:first-child,p.muted>.i:first-child{display:inline-block;vertical-align:-.25em;margin-inline-end:.2em}
 img{height:auto}

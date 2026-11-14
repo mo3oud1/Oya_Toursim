@@ -420,13 +420,13 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     if (e.target.id !== "cFiles") return;
     [].slice.call(e.target.files || []).slice(0, 12).forEach(upload);
   });
-  // resize in the browser (longest side 1600px) and upload straight to the site's files
+  // resize in the browser (longest side 1000px — cards are shown at ~400px) and upload straight to the site's files
   function upload(file) {
     var tmp = "uploading:" + Math.random().toString(36).slice(2);
     var url = URL.createObjectURL(file); localImg[tmp] = url; ed.photos.push(tmp); drawPhotos();
     var img = new Image();
     img.onload = function () {
-      var s = Math.min(1, 1600 / Math.max(img.width, img.height)), c = document.createElement("canvas");
+      var s = Math.min(1, 1000 / Math.max(img.width, img.height)), c = document.createElement("canvas");
       c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
       c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
       var useWebp = c.toDataURL("image/webp").indexOf("data:image/webp") === 0;
@@ -439,7 +439,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
             localImg[path] = url; if (i > -1) ed.photos[i] = path; drawPhotos();
           });
         }).catch(function () { var i = ed.photos.indexOf(tmp); if (i > -1) ed.photos.splice(i, 1); drawPhotos(); toast("لم تُرفع الصورة. حاول مرة أخرى.", "bad"); });
-      }, useWebp ? "image/webp" : "image/jpeg", 0.84);
+      }, useWebp ? "image/webp" : "image/jpeg", 0.8);
     };
     img.onerror = function () { var i = ed.photos.indexOf(tmp); if (i > -1) ed.photos.splice(i, 1); drawPhotos(); toast("هذا الملف ليس صورة.", "bad"); };
     img.src = url;
