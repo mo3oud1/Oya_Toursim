@@ -13,6 +13,8 @@ function ogFor(page) {
 }
 
 const abs = (p) => `${site.url}/${p}`;
+// languages a page exists in: all, Arabic only (noLocale), or the ones listed in page.langs (articles from the panel)
+export const pageLocales = (page) => (page.noLocale ? [site.locales[0]] : page.langs ? site.locales.filter((l) => page.langs.includes(l.code)) : site.locales);
 
 // "Hotels" menu: hotels by city, cabins, family hotels — with a cabins card
 function megaHotels(data) {
@@ -84,7 +86,7 @@ function langMenu(page, L) {
   return `
     <div class="lang" data-lang>
       <button class="lang__btn" type="button" aria-expanded="false" aria-haspopup="true" aria-label="اللغة">${ic("globe")}<span translate="no">${L.short}</span>${ic("chevron")}</button>
-      <ul class="lang__menu">${site.locales.map((l) => `<li><a href="{{site}}${l.prefix}${page.path}" hreflang="${l.code}" lang="${l.code}" translate="no"${l.code === L.code ? ' aria-current="true"' : ""}>${l.name}</a></li>`).join("")}</ul>
+      <ul class="lang__menu">${pageLocales(page).map((l) => `<li><a href="{{site}}${l.prefix}${page.path}" hreflang="${l.code}" lang="${l.code}" translate="no"${l.code === L.code ? ' aria-current="true"' : ""}>${l.name}</a></li>`).join("")}</ul>
     </div>`;
 }
 
@@ -148,7 +150,7 @@ function drawer(page, data, L) {
       </ul>
     </div>
     <div class="drawer__foot">
-      ${page.noLocale ? "" : `<nav class="drawer__langs" aria-label="اللغة">${ic("globe")}${site.locales.map((l) => `<a href="{{site}}${l.prefix}${page.path}" hreflang="${l.code}" lang="${l.code}" translate="no"${l.code === L.code ? ' aria-current="true"' : ""}>${l.name}</a>`).join("")}</nav>`}
+      ${pageLocales(page).length < 2 ? "" : `<nav class="drawer__langs" aria-label="اللغة">${ic("globe")}${pageLocales(page).map((l) => `<a href="{{site}}${l.prefix}${page.path}" hreflang="${l.code}" lang="${l.code}" translate="no"${l.code === L.code ? ' aria-current="true"' : ""}>${l.name}</a>`).join("")}</nav>`}
       <a class="btn btn--wa btn--block" href="${waUrl("مرحباً أويا للسياحة، أرغب بالاستفسار.")}" target="_blank" rel="noopener">${ic("whatsapp")}<span>تواصل عبر واتساب</span></a>
       <a class="btn btn--ghost btn--block" href="tel:${site.phoneIntl}">${ic("phone")}<span class="ltr">${site.phoneDisplay}</span></a>
     </div>
@@ -242,7 +244,7 @@ export function renderPage(page, data, assetsVer, lang = "ar") {
     });
   }
   // hreflang: the same page in every language (pages marked noLocale exist in Arabic only)
-  const alts = Object.fromEntries((page.noLocale ? [site.locales[0]] : site.locales).map((l) => [l.code, abs(l.prefix + page.path)]));
+  const alts = Object.fromEntries(pageLocales(page).map((l) => [l.code, abs(l.prefix + page.path)]));
   const fonts = L.code === "ar" ? ["alexandria-arabic", "readex-arabic"] : L.code === "ru" ? ["readex-latin", "manrope-cyrillic"] : ["alexandria-latin", "readex-latin"];
   return `<!doctype html>
 <html lang="${L.code}" dir="${L.dir}" data-wa="${site.whatsapp}" data-email="${site.email}">
@@ -263,7 +265,7 @@ ${Object.entries(alts).map(([code, href]) => `<link rel="alternate" hreflang="${
 <meta property="og:type" content="${page.ogType || "website"}">
 <meta property="og:site_name" content="${L.code === "ar" ? `${site.name} | ${site.nameEn}` : site.nameEn}">
 <meta property="og:locale" content="${L.og}">
-${page.noLocale ? "" : site.locales.filter((l) => l.code !== L.code).map((l) => `<meta property="og:locale:alternate" content="${l.og}">`).join("\n")}
+${pageLocales(page).filter((l) => l.code !== L.code).map((l) => `<meta property="og:locale:alternate" content="${l.og}">`).join("\n")}
 <meta property="og:title" content="${esc(page.ogTitle || title)}">
 <meta property="og:description" content="${esc(page.description)}">
 <meta property="og:url" content="${url}">

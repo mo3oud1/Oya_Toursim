@@ -270,7 +270,7 @@ export function blogHub(data) {
     description: "مقالات عملية عن السياحة في تركيا والعالم: البرامج، التكاليف، أفضل الأوقات، الفنادق والتأشيرات وتذاكر المباريات. اقرأ وخطط لرحلتك القادمة." };
   page.body = `
 ${pageHero({ crumbs, ...heroPhoto("hero-blog"), eyebrow: "المدونة", title: "مدونة أويا للسفر والسياحة", lead: "أدلة عملية مكتوبة بخبرة محلية من إسطنبول: متى تسافر، كم تكلف الرحلة، ماذا تزور، وكيف تجهز تأشيرتك.", icon: "doc", page: path })}
-<section class="section"><div class="container"><div class="grid grid-3" data-stagger>${[...(data.ownerPosts || []).map((p) => postCard(p, path).replace('<article class="card post-card"', '<article class="card post-card" data-ar-only')), ...data.posts.map((p) => postCard(p, path))].join("")}</div></div></section>
+<section class="section"><div class="container"><div class="grid grid-3" data-stagger>${[...(data.ownerPosts || []).map((p) => postCard(p, path).replace('<article class="card post-card"', `<article class="card post-card" data-langs="${p.langs.join(" ")}"`)), ...data.posts.map((p) => postCard(p, path))].join("")}</div></div></section>
 ${ctaBand({})}`;
   page.schemaGraph = g(page, [S.itemListNode(page, data.posts.map((p) => ({ path: `blog/${p.slug}/`, name: p.title })))]);
   return page;

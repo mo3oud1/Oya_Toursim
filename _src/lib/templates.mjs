@@ -361,7 +361,7 @@ export function postPage(p, data) {
   const sameCat = data.posts.filter((x) => x.slug !== p.slug && x.category === p.category);
   const byTopic = relatedPosts(Object.keys(POST_MAP).filter((k) => (POST_MAP[k] || []).includes(p.slug)), data, p.slug);
   const others = [...new Map([...sameCat, ...byTopic, ...data.posts.filter((x) => x.slug !== p.slug)].map((x) => [x.slug, x])).values()].slice(0, 3);
-  const date = new Date(p.date).toLocaleDateString("ar-EG-u-nu-latn", { year: "numeric", month: "long", day: "numeric" });
+  const date = p.dateText || new Date(p.date).toLocaleDateString("ar-EG-u-nu-latn", { year: "numeric", month: "long", day: "numeric" });
   page.body = `
 ${pageHero({ crumbs, eyebrow: esc(p.category || "دليل السفر"), title: p.h1 || p.title, lead: p.excerpt, icon: p.icon || "doc", img: p.img, prompt: p.imgPrompt, alt: p.title, page: path, cls: "page-hero--article",
     chips: [{ icon: "calendar", text: `<time datetime="${p.date}">${date}</time>` }, { icon: "clock", text: readAr(p.readMins || 6) }, { icon: "user", text: "فريق أويا للسياحة" }] })}

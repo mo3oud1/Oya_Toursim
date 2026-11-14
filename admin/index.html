@@ -152,6 +152,13 @@ main{padding:28px 0 140px}
 .ai details textarea{margin:8px 0}
 .ai.busy{opacity:.7;pointer-events:none}
 @media(max-width:900px){.bgrid{grid-template-columns:1fr}.rte-bar{top:62px}}
+.langbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 6px}
+.langbar .lb-l{font-size:.85rem;color:var(--muted);font-weight:600;margin-inline-end:4px}
+.langbar button{border:0;border-radius:999px;padding:.35em .9em;font:inherit;font-size:.86rem;font-weight:600;background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer}
+.langbar button.on{background:var(--navy);color:#fff;box-shadow:none}
+.langbar button i{font-style:normal;color:var(--ok)}.langbar button.on i{color:#9BE3B9}
+.lchips{display:flex;gap:4px;margin-top:4px!important}.lchips span{font-size:.7rem;font-weight:700;padding:.05em .45em;border-radius:6px;background:#F3F1EC;color:#A7A096}.lchips span.on{background:#E8F6EE;color:var(--ok)}
+details.ml{background:#FBFAF7;border-radius:14px;padding:10px 14px}details.ml summary{cursor:pointer;font-weight:600;color:var(--navy)}
 .ph1{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 .btn--danger{background:#fff;color:var(--bad);box-shadow:inset 0 0 0 1.5px #F2C7C2}
 .editor{position:fixed;inset:0;z-index:40;background:rgba(6,20,40,.55);display:grid;place-items:center;padding:16px;overflow:auto}
@@ -283,9 +290,13 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
         <div class="card settings">
           <div><label for="curr">العملة المعروضة</label>
             <select id="curr"><option value="USD|$">دولار أمريكي ($)</option><option value="EUR|€">يورو (€)</option><option value="TRY|₺">ليرة تركية (₺)</option></select></div>
-          <div><label for="aiKey">مفتاح Claude API للمساعد الذكي في المدونة (اختياري)</label>
-            <input type="password" id="aiKey" dir="ltr" autocomplete="off" spellcheck="false" placeholder="sk-ant-…">
-            <p style="margin:.4em 0 0;color:var(--muted);font-size:.85rem">يُحفظ على هذا الجهاز فقط ولا يُرسل إلا إلى Claude عند ضغط أزرار المساعد. تحصل عليه من platform.claude.com ← API keys، وتُحتسب تكلفة الاستخدام على حسابك هناك.</p></div>
+          <div><label for="aiProv">المساعد الذكي (اختياري): الترجمة وتحسين النصوص</label>
+            <select id="aiProv"><option value="openai">ChatGPT (OpenAI)</option><option value="gemini">Gemini (Google)</option></select></div>
+          <div><label for="aiKey">مفتاح API</label>
+            <input type="password" id="aiKey" dir="ltr" autocomplete="off" spellcheck="false" placeholder="sk-… / AIza…">
+            <p style="margin:.4em 0 0;color:var(--muted);font-size:.85rem" id="aiHint"></p></div>
+          <div><label for="aiModel">النموذج (اتركه فارغاً للافتراضي)</label><input type="text" id="aiModel" dir="ltr" autocomplete="off" spellcheck="false"></div>
+          <div><button class="btn btn--ghost" type="button" id="aiTest">جرّب الاتصال</button></div>
           <div class="hint" style="margin:0">ⓘ<span>كل تعديل تحفظه يُسجَّل باسمك وتاريخه، ويمكن الرجوع إليه من <a id="hist" href="#" target="_blank" rel="noopener">سجل التعديلات</a>.</span></div>
         </div>
       </section>
@@ -312,7 +323,16 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
       <div><label for="cRooms">غرف النوم</label><input type="number" id="cRooms" min="1" max="20" step="1" value="1" inputmode="numeric"></div>
       <div><label for="cGuests">أقصى عدد للأشخاص</label><input type="number" id="cGuests" min="1" max="40" step="1" value="2" inputmode="numeric"></div>
       <div class="wide"><label>المواصفات</label><div class="feats" id="cFeats"></div></div>
-      <div class="wide"><label for="cNote">وصف قصير (اختياري، يظهر بالعربية فقط)</label><textarea id="cNote" maxlength="240" placeholder="مثال: على بُعد 5 دقائق من بحيرة سبانجا، مع جاكوزي داخلي ومدفأة حطب."></textarea></div>
+      <div class="wide"><label for="cNote">وصف قصير بالعربية (اختياري)</label><textarea id="cNote" maxlength="240" placeholder="مثال: على بُعد 5 دقائق من بحيرة سبانجا، مع جاكوزي داخلي ومدفأة حطب."></textarea></div>
+      <div class="wide"><details class="ml"><summary>الوصف بلغات الموقع الأخرى</summary>
+        <div class="f2" style="margin-top:10px">
+          <div><label for="cNote_en">English</label><textarea id="cNote_en" dir="ltr" maxlength="300"></textarea></div>
+          <div><label for="cNote_ru">Русский</label><textarea id="cNote_ru" dir="ltr" maxlength="300"></textarea></div>
+          <div><label for="cNote_tr">Türkçe</label><textarea id="cNote_tr" dir="ltr" maxlength="300"></textarea></div>
+          <div><label for="cNote_pt">Português</label><textarea id="cNote_pt" dir="ltr" maxlength="300"></textarea></div>
+        </div>
+        <button class="btn btn--ghost sbtn" type="button" id="cAi" style="margin-top:8px">✦ ترجم الوصف العربي تلقائياً (للخانات الفارغة)</button>
+      </details></div>
       <div class="wide"><label>الصور (الأولى هي صورة الغلاف)</label><div class="photos" id="cPhotos"></div></div>
       <div class="wide"><label for="cRef">ملاحظة داخلية (لا تظهر على صفحات الموقع، لكنها محفوظة في ملف عام — لا تكتب فيها أسراراً)</label><textarea id="cRef" maxlength="600" placeholder="مثال: رقم المالك، العمولة المتفق عليها، تقييم Google…"></textarea></div>
       <div class="wide"><label class="chk" style="margin:0"><input type="checkbox" id="cActive" checked> ظاهر على الموقع</label></div>
@@ -328,7 +348,10 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
 <div class="editor" id="gEditor" hidden role="dialog" aria-modal="true" aria-labelledby="gTitle">
   <div class="card">
     <h2 id="gTitle">إضافة</h2>
+    <div class="langbar" id="gLangs"></div>
+    <p class="bnote" id="gLangNote" style="margin:0 0 10px"></p>
     <div class="f2" id="gFields"></div>
+    <button class="btn btn--ghost sbtn" type="button" id="gAi" hidden style="margin-top:12px">✦ ترجم تلقائياً الخانات الفارغة في كل اللغات</button>
     <div class="err" id="gErr" role="alert"></div>
     <div class="edfoot">
       <button class="btn btn--ghost" type="button" id="gCancel">إلغاء</button>
@@ -342,6 +365,8 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     <div class="bhead"><h2 id="bHead">مقال جديد</h2><span class="sp"></span><button class="btn btn--ghost sbtn" type="button" id="bCancel">إغلاق</button><button class="btn sbtn" type="button" id="bOk">حفظ المقال</button></div>
     <div class="bgrid">
       <div class="bmain">
+        <div class="langbar" id="bLangs"></div>
+        <p class="bnote" id="bLangNote" style="margin:0 0 8px"></p>
         <input type="text" id="bTitle" class="btitle" placeholder="عنوان المقال" aria-label="عنوان المقال" maxlength="120">
         <div class="rte-bar" role="toolbar" aria-label="تنسيق النص">
           <button type="button" data-cmd="h2" title="عنوان رئيسي داخل المقال">عنوان</button>
@@ -356,9 +381,10 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
           <button type="button" data-cmd="clear" title="إزالة التنسيق">إزالة التنسيق</button>
         </div>
         <div class="rte" id="bBody" contenteditable="true" dir="rtl" aria-label="نص المقال" data-ph="اكتب مقالك هنا… استخدم «عنوان» لتقسيم المقال إلى أقسام، وأضف الصور من زر «صورة»."></div>
+        <button class="btn btn--ghost sbtn" type="button" id="bCopyAr" hidden style="margin-top:8px">انسخ النص العربي مع الصور هنا لأترجمه</button>
         <p class="bcount" id="bCount">0 كلمة</p>
         <div class="bfaq">
-          <h3>أسئلة شائعة في آخر المقال (تظهر في نتائج Google)</h3>
+          <h3>أسئلة شائعة في آخر المقال (تظهر في نتائج Google — لكل لغة أسئلتها)</h3>
           <div id="bFaq"></div>
           <button class="btn btn--ghost sbtn" type="button" id="bFaqAdd">＋ سؤال</button>
         </div>
@@ -389,8 +415,9 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
           <div class="seo" id="bSeoCheck"></div>
         </section>
         <section class="bbox ai">
-          <h3>✦ المساعد الذكي (Claude)</h3>
+          <h3>✦ المساعد الذكي</h3>
           <p class="bnote" id="aiState"></p>
+          <button class="btn btn--ghost sbtn" type="button" data-ai="translate">ترجم المقال إلى كل اللغات (من العربية)</button>
           <button class="btn btn--ghost sbtn" type="button" data-ai="polish">حسّن السرد وسلاسة المقال</button>
           <button class="btn btn--ghost sbtn" type="button" data-ai="seo">اقترح العنوان والوصف والرابط والأسئلة</button>
           <details><summary>اكتب مسودة من نقاطي</summary><textarea id="aiNotes" rows="5" placeholder="اكتب أفكارك ومعلوماتك كنقاط: المكان، أفضل وقت، ماذا يفعل الزائر، نصائح… (يكتب المساعد من معلوماتك فقط)"></textarea><button class="btn btn--ghost sbtn" type="button" data-ai="draft">اكتب المسودة</button></details>
@@ -556,6 +583,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     $("#edTitle").textContent = i < 0 ? "كوخ جديد" : "تعديل الكوخ";
     $("#cName").value = ed.name; $("#cArea").value = ed.area; $("#cRooms").value = ed.rooms || ""; $("#cGuests").value = ed.guests || ""; $("#cRef").value = ed.ref || "";
     $("#cPrice").value = typeof ed.price === "number" ? ed.price : ""; $("#cNote").value = ed.note || ""; $("#cActive").checked = ed.active !== false;
+    ["en", "ru", "tr", "pt"].forEach(function (l) { $("#cNote_" + l).value = (ed.i18n && ed.i18n[l] && ed.i18n[l].note) || ""; });
     $(".sym", $("#editor")).textContent = sym();
     $$("#cFeats input").forEach(function (x) { x.checked = (ed.features || []).indexOf(x.value) > -1; });
     $("#edErr").textContent = ""; drawPhotos();
@@ -621,6 +649,8 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     ed.price = pr === "" ? null : Math.max(0, Math.round(+pr)) || null;
     ed.features = $$("#cFeats input:checked").map(function (x) { return x.value; });
     ed.note = $("#cNote").value.trim(); ed.active = $("#cActive").checked;
+    ["en", "ru", "tr", "pt"].forEach(function (l) { var v = $("#cNote_" + l).value.trim(); ed.i18n = ed.i18n || {}; if (v) { ed.i18n[l] = ed.i18n[l] || {}; ed.i18n[l].note = v; } else if (ed.i18n[l]) delete ed.i18n[l].note; if (ed.i18n[l] && !Object.keys(ed.i18n[l]).length) delete ed.i18n[l]; });
+    if (ed.i18n && !Object.keys(ed.i18n).length) delete ed.i18n;
     if (edIdx < 0) F.cabins.db.cabins.unshift(ed); else F.cabins.db.cabins[edIdx] = ed;
     closeEditor(); renderCabs(); update();
     toast("تمت إضافة التعديل — اضغط «حفظ التغييرات» لنشره على الموقع.");
@@ -644,14 +674,11 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
   var SPEC = {
     events: {
       label: "بطولة أو مباراة", icon: "⚽",
-      fresh: function () { return { id: "e" + Date.now().toString(36), title: "", titleEn: "", tag: "", tagEn: "", text: "", textEn: "", link: "", photo: "", icon: "ball", priceFrom: null, featured: false, active: true }; },
+      fresh: function () { return { id: "e" + Date.now().toString(36), title: "", tag: "", text: "", link: "", photo: "", icon: "ball", priceFrom: null, featured: false, active: true, i18n: {} }; },
       fields: [
-        { k: "title", t: "text", label: "الاسم بالعربية", req: true, wide: true, ph: "مثال: ديربي إسطنبول: غلطة سراي × فنربخشة" },
-        { k: "titleEn", t: "text", label: "الاسم بالإنجليزية (لصفحات اللغات الأخرى)", ltr: true, wide: true, ph: "Istanbul derby: Galatasaray × Fenerbahçe" },
-        { k: "tag", t: "text", label: "سطر قصير: المكان والتاريخ", ph: "مثال: إسطنبول • 15 مارس 2027" },
-        { k: "tagEn", t: "text", label: "السطر القصير بالإنجليزية", ltr: true, ph: "Istanbul • 15 March 2027" },
-        { k: "text", t: "area", label: "وصف قصير بالعربية", wide: true, max: 220 },
-        { k: "textEn", t: "area", label: "الوصف بالإنجليزية", wide: true, ltr: true, max: 260 },
+        { k: "title", t: "text", label: "الاسم", req: true, wide: true, tr: true, ph: "مثال: ديربي إسطنبول: غلطة سراي × فنربخشة" },
+        { k: "tag", t: "text", label: "سطر قصير: المكان والتاريخ", tr: true, ph: "مثال: إسطنبول • 15 مارس 2027" },
+        { k: "text", t: "area", label: "وصف قصير", wide: true, tr: true, max: 260 },
         { k: "link", t: "select", label: "عند الضغط على البطاقة", opts: [["", "يفتح طلباً على واتساب"], ["matches/spanish-super-cup-2027/", "يفتح صفحة كأس السوبر الإسباني 2027"]] },
         { k: "priceFrom", t: "money", label: "السعر يبدأ من (اختياري)" },
         { k: "icon", t: "select", label: "الأيقونة (إن لم توجد صورة)", opts: [["ball", "كرة"], ["trophy", "كأس"], ["stadium", "ملعب"], ["globe", "العالم"]] },
@@ -670,9 +697,9 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
         { k: "kind", t: "select", label: "النوع", opts: HKIND },
         { k: "stars", t: "select", label: "النجوم", opts: [["5", "5 نجوم"], ["4", "4 نجوم"], ["3", "3 نجوم"], ["0", "بدون تصنيف"]], num: true },
         { k: "price", t: "money", label: "سعر الليلة (اختياري)", ph: "حسب الموسم" },
-        { k: "area", t: "text", label: "المنطقة (بالعربية، اختياري)", ph: "مثال: بشكتاش — على البوسفور" },
+        { k: "area", t: "text", label: "المنطقة (اختياري)", tr: true, ph: "مثال: بشكتاش — على البوسفور" },
         { k: "features", t: "checks", label: "المواصفات", opts: HFEAT, wide: true },
-        { k: "note", t: "area", label: "وصف قصير (اختياري، يظهر بالعربية فقط)", wide: true, max: 240 },
+        { k: "note", t: "area", label: "وصف قصير (اختياري)", wide: true, tr: true, max: 260 },
         { k: "photos", t: "photos", label: "الصور (الأولى هي صورة الغلاف)", folder: "assets/img/hotels/", wide: true },
         { k: "ref", t: "area", label: "ملاحظة داخلية (لا تظهر على صفحات الموقع، لكنها محفوظة في ملف عام — لا تكتب فيها أسراراً)", wide: true, max: 600 },
         { k: "active", t: "check", label: "ظاهر على الموقع", wide: true }
@@ -715,7 +742,23 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     if (b.hasAttribute("data-up")) { i = +b.getAttribute("data-up"); if (i > 0) { list.splice(i - 1, 0, list.splice(i, 1)[0]); renderGen(k); update(); } }
     if (b.hasAttribute("data-down")) { i = +b.getAttribute("data-down"); if (i < list.length - 1) { list.splice(i + 1, 0, list.splice(i, 1)[0]); renderGen(k); update(); } }
   });
-  var gk = null, gi = -1, go = null;
+  var gk = null, gi = -1, go = null, gLang = "ar";
+  var trFields = function () { return SPEC[gk].fields.filter(function (f) { return f.tr; }); };
+  var gVal = function (f, l) { return l === "ar" ? go[f.k] : ((go.i18n || {})[l] || {})[f.k]; };
+  function gStash() {
+    if (!go) return;
+    trFields().forEach(function (f) {
+      var el = $("#g_" + f.k); if (!el) return; var v = el.value.trim();
+      if (gLang === "ar") go[f.k] = v;
+      else { go.i18n = go.i18n || {}; go.i18n[gLang] = go.i18n[gLang] || {}; if (v) go.i18n[gLang][f.k] = v; else delete go.i18n[gLang][f.k]; if (!Object.keys(go.i18n[gLang]).length) delete go.i18n[gLang]; }
+    });
+  }
+  function gShowLang(l) {
+    gLang = l;
+    trFields().forEach(function (f) { var el = $("#g_" + f.k); if (el) { el.value = gVal(f, l) || ""; el.dir = dirOf(l); } });
+    $("#gLangNote").textContent = l === "ar" ? "اكتب النصوص بالعربية أولاً، ثم افتح كل لغة واكتب ترجمتها (أو استخدم زر الترجمة التلقائية)." : "نسخة " + LNAME[l] + ": تظهر في موقع " + LNAME[l] + ". الخانة الفارغة تُعرض بالإنجليزية.";
+    langBar($("#gLangs"), l, function (x) { return x === "ar" ? !!go.title || !!go.name : !!((go.i18n || {})[x] && Object.keys(go.i18n[x]).length); }, function (x) { if (x === gLang) return; gStash(); gShowLang(x); });
+  }
   function fieldHtml(f, v) {
     var id = "g_" + f.k, w = f.wide ? ' class="wide"' : "", lbl = '<label for="' + id + '">' + esc(f.label) + "</label>", dir = f.ltr ? ' dir="ltr"' : "";
     if (f.t === "text") return "<div" + w + ">" + lbl + '<input type="text" id="' + id + '"' + dir + ' value="' + esc(v || "") + '" placeholder="' + esc(f.ph || "") + '"></div>';
@@ -741,6 +784,9 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     $("#gTitle").textContent = (i < 0 ? "إضافة " : "تعديل ") + SPEC[k].label;
     $("#gFields").innerHTML = SPEC[k].fields.map(function (f) { return fieldHtml(f, f.t === "photos" ? null : go[f.k]); }).join("");
     SPEC[k].fields.forEach(function (f) { if (f.t === "photo" || f.t === "photos") { if (f.t === "photos" && !Array.isArray(go[f.k])) go[f.k] = []; gPhotos(f); } });
+    // older entries kept English in titleEn / tagEn / textEn: move them to the English version
+    ["title", "tag", "text"].forEach(function (f) { if (go[f + "En"]) { go.i18n = go.i18n || {}; go.i18n.en = go.i18n.en || {}; if (!go.i18n.en[f]) go.i18n.en[f] = go[f + "En"]; delete go[f + "En"]; } });
+    var hasTr = trFields().length > 0; $("#gLangs").hidden = !hasTr; $("#gLangNote").hidden = !hasTr; $("#gAi").hidden = !hasTr; gLang = "ar"; if (hasTr) gShowLang("ar");
     $("#gErr").textContent = ""; $("#gEditor").hidden = false;
     var first = $("#gFields input,#gFields select"); if (first) first.focus();
   }
@@ -783,9 +829,11 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
   $("#gCancel").addEventListener("click", closeGen);
   $("#gEditor").addEventListener("keydown", function (e) { if (e.key === "Escape") closeGen(); });
   $("#gOk").addEventListener("click", function () {
+    gStash();
     var S = SPEC[gk], o = go, before = gi < 0 ? null : gList(gk)[gi], err = "";
     S.fields.forEach(function (f) {
       var el = $("#g_" + f.k);
+      if (f.tr) { if (f.req && !o[f.k] && !err) { err = "اكتب: " + f.label + " بالعربية"; gShowLang("ar"); } return; }
       if (f.t === "text" || f.t === "area") o[f.k] = el.value.trim();
       if (f.t === "select") o[f.k] = f.num ? +el.value : el.value;
       if (f.t === "money") { var v = el.value.trim(); o[f.k] = v === "" ? null : Math.max(0, Math.round(+v)) || null; }
@@ -797,21 +845,76 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     if (!err && S.fields.some(function (f) { return (f.t === "photo" && String(o[f.k] || "").indexOf("uploading:") === 0) || (f.t === "photos" && o[f.k].some(function (p) { return p.indexOf("uploading:") === 0; })); })) err = "انتظر حتى ينتهي رفع الصور.";
     if (!err && S.check) err = S.check(o);
     if (err) { $("#gErr").textContent = err; return; }
-    // Arabic or English wording changed → older translations of this entry are out of date
-    if (before && before.i18n && ["title", "text", "tag", "titleEn", "textEn", "tagEn"].some(function (f) { return before[f] !== o[f]; })) delete o.i18n;
+    if (o.i18n && !Object.keys(o.i18n).length) delete o.i18n;
     if (gk === "events" && o.featured) gList(gk).forEach(function (x) { if (x !== before) x.featured = false; });
     if (gi < 0) gList(gk).unshift(o); else gList(gk)[gi] = o;
     var k = gk; closeGen(); renderGen(k); update();
     toast("تمت إضافة التعديل — اضغط «حفظ التغييرات» لنشره على الموقع.");
   });
 
-  /* ---------- blog: write, photos, schedule, SEO check, writing assistant ---------- */
+  /* ---------- languages + writing assistant (ChatGPT or Gemini, the owner's own key) ---------- */
+  var LANGS = [["ar", "العربية", "ع"], ["en", "English", "EN"], ["ru", "Русский", "RU"], ["tr", "Türkçe", "TR"], ["pt", "Português", "PT"]];
+  var LNAME = { ar: "العربية", en: "الإنجليزية", ru: "الروسية", tr: "التركية", pt: "البرتغالية (البرازيل)" };
+  var AIP = { openai: { name: "ChatGPT", model: "gpt-5-mini", keyUrl: "platform.openai.com/api-keys" }, gemini: { name: "Gemini", model: "gemini-2.5-flash", keyUrl: "aistudio.google.com/apikey" } };
+  function aiCfg() { try { return JSON.parse(localStorage.getItem("oya-ai2") || "{}"); } catch (e) { return {}; } }
+  function aiSave(c) { try { localStorage.setItem("oya-ai2", JSON.stringify(c)); } catch (e) {} }
+  var aiProv = function () { return aiCfg().provider || "openai"; };
+  var aiReady = function () { var c = aiCfg(); return !!(c.keys && c.keys[aiProv()]); };
+  // settings
+  (function () {
+    var pv = $("#aiProv"), ky = $("#aiKey"), md = $("#aiModel"), hint = $("#aiHint"); if (!pv) return;
+    function show() { var c = aiCfg(), p = pv.value; ky.value = (c.keys && c.keys[p]) || ""; md.value = (c.models && c.models[p]) || ""; md.placeholder = AIP[p].model; hint.textContent = "تحصل على المفتاح من " + AIP[p].keyUrl + " — يُحفظ على هذا الجهاز فقط، ولا يُرسل إلا إلى " + AIP[p].name + " عند ضغط أزرار المساعد. التكلفة تُحتسب على حسابك هناك حسب الاستعمال."; }
+    pv.value = aiProv(); show();
+    pv.addEventListener("change", function () { var c = aiCfg(); c.provider = pv.value; aiSave(c); show(); });
+    ky.addEventListener("change", function () { var c = aiCfg(); c.keys = c.keys || {}; c.keys[pv.value] = ky.value.trim(); aiSave(c); toast(ky.value.trim() ? "تم حفظ المفتاح على هذا الجهاز." : "تم حذف المفتاح من هذا الجهاز.", "ok"); });
+    md.addEventListener("change", function () { var c = aiCfg(); c.models = c.models || {}; c.models[pv.value] = md.value.trim(); aiSave(c); });
+    $("#aiTest").addEventListener("click", function () {
+      var b = this; b.disabled = true; b.textContent = "جارٍ التجربة…";
+      ai("Reply with JSON only.", "قل: جاهز", { type: "object", properties: { ok: { type: "string" } }, required: ["ok"], additionalProperties: false })
+        .then(function () { toast("الاتصال يعمل ✓ — المساعد جاهز.", "ok"); }).catch(function (e) { toast(aiErr(e), "bad"); })
+        .then(function () { b.disabled = false; b.textContent = "جرّب الاتصال"; });
+    });
+  })();
+  var AI_RULES = "You are a professional travel-content editor for OYA Tourism (أويا للسياحة), a travel agency in Istanbul serving Arab travellers: hotels, cabins, flights, tours, visas and match tickets. Strict rules: never invent facts, prices, dates, numbers, names, reviews, guarantees or licence claims — use only what you are given. Keep every number, date, name, link (href) and image (src, alt) exactly. Never promise a guaranteed booking: OYA helps with bookings and confirms availability in writing. In HTML use only: p, h2, h3, strong, em, ul, ol, li, blockquote, a (href), figure, img (src, alt), figcaption. No h1, no styles. The brand is «أويا للسياحة» in Arabic and «OYA Tourism» in other languages.";
+  function noAddl(x) { if (Array.isArray(x)) return x.map(noAddl); if (x && typeof x === "object") { var o = {}; Object.keys(x).forEach(function (k) { if (k !== "additionalProperties") o[k] = noAddl(x[k]); }); return o; } return x; }
+  function ai(system, task, schema) {
+    var c = aiCfg(), p = aiProv(), key = c.keys && c.keys[p], model = (c.models && c.models[p]) || AIP[p].model;
+    if (!key) return Promise.reject("nokey");
+    var done = function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw { st: r.status, msg: j.error && j.error.message }; return j; }); };
+    if (p === "openai") return fetch("https://api.openai.com/v1/chat/completions", { method: "POST", headers: { "content-type": "application/json", authorization: "Bearer " + key },
+      body: JSON.stringify({ model: model, messages: [{ role: "system", content: system }, { role: "user", content: task }], response_format: { type: "json_schema", json_schema: { name: "result", strict: true, schema: schema } } }) })
+      .then(done).then(function (j) { var m = j.choices && j.choices[0]; if (!m) throw {}; if (m.message && m.message.refusal) throw { msg: "اعتذر المساعد عن هذا الطلب." }; if (m.finish_reason === "length") throw { msg: "النص طويل جداً على المساعد في طلب واحد." }; return JSON.parse(m.message.content); });
+    return fetch("https://generativelanguage.googleapis.com/v1beta/models/" + encodeURIComponent(model) + ":generateContent?key=" + encodeURIComponent(key), { method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ systemInstruction: { parts: [{ text: system }] }, contents: [{ role: "user", parts: [{ text: task }] }], generationConfig: { responseMimeType: "application/json", responseSchema: noAddl(schema) } }) })
+      .then(done).then(function (j) { var cd = j.candidates && j.candidates[0], t = cd && cd.content && (cd.content.parts || []).map(function (x) { return x.text || ""; }).join(""); if (!t) throw { msg: cd && cd.finishReason === "MAX_TOKENS" ? "النص طويل جداً على المساعد في طلب واحد." : "لم يرجع المساعد نتيجة. حاول مرة أخرى." }; return JSON.parse(t); });
+  }
+  var aiErr = function (e) { if (e === "nokey") return "أضف مفتاح المساعد (ChatGPT أو Gemini) من تبويب «الإعدادات» أولاً."; if (e && (e.st === 401 || e.st === 403 || e.st === 400 && /key/i.test(e.msg || ""))) return "مفتاح المساعد غير صحيح أو لا يملك صلاحية."; if (e && e.st === 404) return "اسم النموذج غير موجود — صحّحه في «الإعدادات» أو اتركه فارغاً."; if (e && e.st === 429) return "تجاوزت حدّ الاستخدام أو رصيد الحساب لدى مزوّد المساعد. حاول لاحقاً."; if (e && e.st >= 500) return "خدمة المساعد مزدحمة الآن، حاول بعد قليل."; return (e && e.msg) || "تعذّر الاتصال بالمساعد. تحقّق من الإنترنت وحاول مرة أخرى."; };
+  // translate a set of Arabic texts into one language (plain strings, or HTML for keys listed in html)
+  function aiTranslate(texts, lang, html) {
+    var keys = Object.keys(texts).filter(function (k) { return texts[k] && (typeof texts[k] === "string" ? texts[k].trim() : texts[k].length); });
+    if (!keys.length) return Promise.resolve({});
+    var props = {}; keys.forEach(function (k) { props[k] = Array.isArray(texts[k]) ? { type: "array", items: { type: "object", properties: { q: { type: "string" }, a: { type: "string" } }, required: ["q", "a"], additionalProperties: false } } : { type: "string" }; });
+    var src = {}; keys.forEach(function (k) { src[k] = texts[k]; });
+    return ai(AI_RULES, "Translate the values of this JSON from Arabic into natural, fluent " + { en: "English (US)", ru: "Russian", tr: "Turkish", pt: "Brazilian Portuguese" }[lang] + " for a travel website, for readers searching on Google in that language. Keep the same keys. " + (html && html.length ? "The keys " + html.join(", ") + " contain HTML: translate the text only and keep every tag, href, src and the image order exactly (translate alt text and figcaption). " : "") + "Keep numbers, prices, dates and proper names; transliterate Turkish place names the usual way for that language. Arrows: Arabic ← becomes →.\n\n" + JSON.stringify(src),
+      { type: "object", properties: props, required: keys, additionalProperties: false });
+  }
+  // language switcher for an editor: draw(langBox, current, filled) → buttons; ✓ marks languages that have text
+  function langBar(box, cur, filled, onPick) {
+    box.innerHTML = '<span class="lb-l">لغة النص:</span>' + LANGS.map(function (l) { return '<button type="button" data-l="' + l[0] + '" class="' + (l[0] === cur ? "on" : "") + '"' + (l[0] !== "ar" ? ' lang="' + l[0] + '"' : "") + ">" + l[1] + (filled(l[0]) ? ' <i aria-label="مكتمل">✓</i>' : "") + "</button>"; }).join("");
+    box.onclick = function (e) { var b = e.target.closest("button[data-l]"); if (b) onPick(b.dataset.l); };
+  }
+  var dirOf = function (l) { return l === "ar" ? "rtl" : "ltr"; };
+
+  /* ---------- blog: write in every language, photos, schedule, SEO check ---------- */
   F.blog = { path: "data/blog.json", list: "posts" }; GEN.push("blog");
   var takenSlugs = []; // built-in articles (from the sitemap) — the panel cannot reuse their links
   fetch("../sitemap.xml", { cache: "no-store" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (x) { var m, re = /oyatourism\.com\/blog\/([a-z0-9-]+)\//g; while ((m = re.exec(x))) if (takenSlugs.indexOf(m[1]) < 0) takenSlugs.push(m[1]); }).catch(function () {});
   var istNow = function () { var p = {}; new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + "-" + p.month + "-" + p.day + "T" + (p.hour === "24" ? "00" : p.hour) + ":" + p.minute; };
   var whenMs = function (w) { return w ? new Date(w + ":00+03:00").getTime() : 0; };
   var fmtWhen = function (w) { return w ? w.replace("T", " — ") : ""; };
+  var BF = ["title", "body", "seoTitle", "description", "excerpt", "coverAlt", "keyword", "faq"]; // fields written per language
+  var langOf = function (p, l) { return l === "ar" ? p : ((p.i18n || {})[l] || {}); };
+  var hasLang = function (p, l) { var v = langOf(p, l); return !!(v.title && String(v.body || "").replace(/<[^>]+>/g, "").trim()); };
   function postState(p) {
     if (p.status !== "publish") return ["مسودة", "off"];
     if (whenMs(p.publishAt) > Date.now()) return ["مجدول: " + fmtWhen(p.publishAt), "sch"];
@@ -823,7 +926,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
       var st = postState(p), th = p.cover ? (localImg["photos/" + p.cover] || "../assets/img/photos/" + p.cover + "-640.webp") : "";
       return '<div class="cabrow">' + (th ? '<img class="th" src="' + esc(th) + '" alt="">' : '<span class="th ico" aria-hidden="true">✎</span>') +
         "<div><h3>" + esc(p.title || "بدون عنوان") + '<span class="pill' + (st[1] === "off" ? " off" : "") + '"' + (st[1] === "sch" ? ' style="background:#FFF3DC;color:#8A4B00"' : "") + ">" + esc(st[0]) + "</span></h3><p>" +
-        esc([p.category, (p.words || 0) + " كلمة", p.slug ? "/blog/" + p.slug + "/" : ""].filter(Boolean).join(" • ")) + "</p></div>" +
+        esc([p.category, (p.words || 0) + " كلمة", p.slug ? "/blog/" + p.slug + "/" : ""].filter(Boolean).join(" • ")) + '</p><p class="lchips">' + LANGS.map(function (l) { return '<span class="' + (hasLang(p, l[0]) ? "on" : "") + '">' + l[2] + "</span>"; }).join("") + "</p></div>" +
         '<div class="acts">' + (st[0] === "منشور" && p.slug ? '<a class="btn btn--ghost sbtn" href="../blog/' + esc(p.slug) + '/" target="_blank" rel="noopener">عرض</a>' : "") +
         '<button class="btn btn--ghost sbtn" type="button" data-pedit="' + i + '">تعديل</button><button class="btn btn--danger sbtn" type="button" data-pdel="' + i + '">حذف</button></div></div>';
     }).join("") : '<div class="card empty">لا توجد مقالات بعد. اضغط «مقال جديد» لكتابة أول مقال.</div>';
@@ -831,13 +934,14 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
   $("#posts").addEventListener("click", function (e) {
     var b = e.target.closest("button"); if (!b) return;
     if (b.dataset.pedit != null) openPost(+b.dataset.pedit);
-    if (b.dataset.pdel != null) { var p = F.blog.db.posts[+b.dataset.pdel]; if (confirm("حذف المقال «" + (p.title || "") + "»؟ تختفي صفحته من الموقع بعد الحفظ.")) { F.blog.db.posts.splice(+b.dataset.pdel, 1); renderBlog(); update(); } }
+    if (b.dataset.pdel != null) { var p = F.blog.db.posts[+b.dataset.pdel]; if (confirm("حذف المقال «" + (p.title || "") + "»؟ تختفي صفحاته من الموقع بعد الحفظ.")) { F.blog.db.posts.splice(+b.dataset.pdel, 1); renderBlog(); update(); } }
   });
   $("#addPost").addEventListener("click", function () { openPost(-1); });
 
-  var bi = -1, bp = null, aiUndo = null, rte = $("#bBody");
+  var bi = -1, bp = null, bLang = "ar", aiUndo = null, rte = $("#bBody");
   // stored body uses site paths (assets/…); the editor shows them from the admin folder (../assets/…)
   var toEditor = function (h) { return String(h || "").replace(/src="assets\//g, 'src="../assets/'); };
+  function showImgs() { $$("img", rte).forEach(function (im) { var p = (im.getAttribute("src") || "").replace(/^\.\.\//, ""); if (localImg[p]) { im.setAttribute("data-p", p); im.src = localImg[p]; } }); }
   function fromEditor() {
     var c = rte.cloneNode(true);
     $$("img", c).forEach(function (im) { var p = im.getAttribute("data-p"); if (p) im.setAttribute("src", p); im.removeAttribute("data-p"); im.removeAttribute("style"); });
@@ -855,30 +959,49 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     return c.innerHTML.replace(/src="\.\.\/assets\//g, 'src="assets/').replace(/&nbsp;/g, " ").trim();
   }
   var wordsOf = function (h) { return String(h || "").replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length; };
+  // the per-language fields live in the form while that language is open; stash() writes them back
+  function stash() {
+    if (!bp) return; syncFaq();
+    var v = bLang === "ar" ? bp : ((bp.i18n = bp.i18n || {})[bLang] = bp.i18n[bLang] || {});
+    v.title = $("#bTitle").value.trim(); v.body = fromEditor(); v.seoTitle = $("#bSeo").value.trim(); v.description = $("#bDesc").value.trim(); v.excerpt = $("#bEx").value.trim();
+    v.coverAlt = $("#bCoverAlt").value.trim(); v.keyword = $("#bKey").value.trim(); v.faq = (bp._faq || []).filter(function (f) { return f.q || f.a; });
+    if (bLang !== "ar" && !v.title && !wordsOf(v.body)) delete bp.i18n[bLang];
+  }
+  function showLang(l) {
+    bLang = l; var v = langOf(bp, l), d = dirOf(l);
+    $("#bTitle").value = v.title || ""; rte.innerHTML = toEditor(v.body); showImgs();
+    $("#bSeo").value = v.seoTitle || ""; $("#bDesc").value = v.description || ""; $("#bEx").value = v.excerpt || ""; $("#bCoverAlt").value = v.coverAlt || ""; $("#bKey").value = v.keyword || "";
+    bp._faq = clone(v.faq || []); drawFaq();
+    ["#bTitle", "#bSeo", "#bDesc", "#bEx", "#bCoverAlt", "#bKey"].forEach(function (s) { $(s).dir = d; }); rte.dir = d; $("#bFaq").dir = d;
+    $("#bCopyAr").hidden = l === "ar" || !!wordsOf(v.body) || !wordsOf(bp.body);
+    $("#bLangNote").textContent = l === "ar" ? "العربية هي النسخة الأساسية للمقال (مطلوبة للنشر)." : "نسخة " + LNAME[l] + ": تظهر في موقع " + LNAME[l] + " عندما تكتب لها عنواناً ونصاً. اتركها فارغة إن لم تكن جاهزة.";
+    drawLangs(); check();
+  }
+  function drawLangs() { langBar($("#bLangs"), bLang, function (l) { if (l === bLang) return !!($("#bTitle").value.trim() && wordsOf(fromEditor())); return hasLang(bp, l); }, function (l) { if (l === bLang) return; stash(); showLang(l); }); }
   function openPost(i) {
     bi = i; aiUndo = null; $("#aiUndo").hidden = true;
-    bp = i < 0 ? { id: "p" + Date.now().toString(36), title: "", slug: "", body: "", category: "دليل السفر", keyword: "", seoTitle: "", description: "", excerpt: "", cover: "", coverAlt: "", faq: [], status: "draft", publishAt: istNow(), created: today() } : clone(F.blog.db.posts[i]);
+    bp = i < 0 ? { id: "p" + Date.now().toString(36), title: "", slug: "", body: "", category: "دليل السفر", keyword: "", seoTitle: "", description: "", excerpt: "", cover: "", coverAlt: "", faq: [], i18n: {}, status: "draft", publishAt: istNow(), created: today() } : clone(F.blog.db.posts[i]);
     $("#bHead").textContent = i < 0 ? "مقال جديد" : "تعديل المقال";
-    $("#bTitle").value = bp.title; rte.innerHTML = toEditor(bp.body);
     try { document.execCommand("defaultParagraphSeparator", false, "p"); } catch (e) {}
-    $$("img", rte).forEach(function (im) { var p = (im.getAttribute("src") || "").replace(/^\.\.\//, ""); if (localImg[p]) { im.setAttribute("data-p", p); im.src = localImg[p]; } });
     $$('input[name="bStatus"]').forEach(function (x) { x.checked = x.value === (bp.status || "draft"); });
-    $("#bWhen").value = bp.publishAt || istNow();
+    $("#bWhen").value = bp.publishAt || istNow(); $("#bSlug").value = bp.slug || "";
     var cat = $("#bCat"); if (![].some.call(cat.options, function (o) { return o.value === bp.category; })) cat.add(new Option(bp.category, bp.category)); cat.value = bp.category;
-    $("#bCoverAlt").value = bp.coverAlt || ""; $("#bKey").value = bp.keyword || ""; $("#bSlug").value = bp.slug || ""; $("#bSeo").value = bp.seoTitle || ""; $("#bDesc").value = bp.description || ""; $("#bEx").value = bp.excerpt || "";
-    drawFaq(); drawCover(); $("#bErr").textContent = ""; aiState();
-    $("#bEditor").hidden = false; document.body.style.overflow = "hidden"; $("#bEditor").scrollTop = 0; $("#bTitle").focus(); check();
+    drawCover(); $("#bErr").textContent = ""; aiState();
+    $("#bEditor").hidden = false; document.body.style.overflow = "hidden"; $("#bEditor").scrollTop = 0;
+    showLang("ar"); $("#bTitle").focus();
   }
   function closePost() { $("#bEditor").hidden = true; document.body.style.overflow = ""; bp = null; }
   $("#bCancel").addEventListener("click", function () { if (bp && JSON.stringify(collect(true)) !== JSON.stringify(bi < 0 ? null : F.blog.db.posts[bi]) && !confirm("إغلاق دون حفظ التعديلات على هذا المقال؟")) return; closePost(); });
-  // FAQ rows
+  $("#bCopyAr").addEventListener("click", function () { rte.innerHTML = toEditor(bp.body); showImgs(); this.hidden = true; rte.focus(); check(); toast("نُسخ النص العربي مع الصور — اكتب الترجمة مكانه."); });
+  // FAQ rows (for the open language)
   function drawFaq() {
-    $("#bFaq").innerHTML = (bp.faq || []).map(function (f, i) { return '<div class="faqrow"><div><input type="text" data-fq="' + i + '" value="' + esc(f.q) + '" placeholder="السؤال"><textarea data-fa="' + i + '" placeholder="الجواب">' + esc(f.a) + '</textarea></div><button class="btn btn--danger sbtn" type="button" data-frm="' + i + '" aria-label="حذف السؤال">✕</button></div>'; }).join("");
+    $("#bFaq").innerHTML = (bp._faq || []).map(function (f, i) { return '<div class="faqrow"><div><input type="text" data-fq="' + i + '" value="' + esc(f.q) + '" placeholder="' + (bLang === "ar" ? "السؤال" : "Question") + '"><textarea data-fa="' + i + '" placeholder="' + (bLang === "ar" ? "الجواب" : "Answer") + '">' + esc(f.a) + '</textarea></div><button class="btn btn--danger sbtn" type="button" data-frm="' + i + '" aria-label="حذف السؤال">✕</button></div>'; }).join("");
+    $$("#bFaq input, #bFaq textarea").forEach(function (x) { x.dir = dirOf(bLang); });
   }
-  $("#bFaqAdd").addEventListener("click", function () { syncFaq(); bp.faq.push({ q: "", a: "" }); drawFaq(); });
-  $("#bFaq").addEventListener("click", function (e) { var b = e.target.closest("[data-frm]"); if (b) { syncFaq(); bp.faq.splice(+b.dataset.frm, 1); drawFaq(); check(); } });
-  function syncFaq() { bp.faq = (bp.faq || []).map(function (f, i) { var q = $('[data-fq="' + i + '"]'), a = $('[data-fa="' + i + '"]'); return { q: q ? q.value.trim() : f.q, a: a ? a.value.trim() : f.a }; }); }
-  // cover: full size + 1024 + 640 WebP in assets/img/photos (the site's responsive images) and a 1200×630 share image
+  $("#bFaqAdd").addEventListener("click", function () { syncFaq(); bp._faq.push({ q: "", a: "" }); drawFaq(); });
+  $("#bFaq").addEventListener("click", function (e) { var b = e.target.closest("[data-frm]"); if (b) { syncFaq(); bp._faq.splice(+b.dataset.frm, 1); drawFaq(); check(); } });
+  function syncFaq() { bp._faq = (bp._faq || []).map(function (f, i) { var q = $('[data-fq="' + i + '"]'), a = $('[data-fa="' + i + '"]'); return { q: q ? q.value.trim() : f.q, a: a ? a.value.trim() : f.a }; }); }
+  // cover (shared by every language): full size + 1024 + 640 WebP in assets/img/photos and a 1200×630 share image
   function drawCover() {
     var k = bp.cover, src = k ? (localImg["photos/" + k] || "../assets/img/photos/" + k + "-640.webp") : "";
     $("#bCover").innerHTML = k ? '<div class="ph' + (k.indexOf("uploading") === 0 ? " up" : "") + '"><img src="' + esc(src) + '" alt=""><button class="x" type="button" id="bCoverX" aria-label="حذف الصورة">✕</button></div>' : '<label class="addph">＋ صورة الغلاف<input type="file" accept="image/*" id="bCoverF"></label>';
@@ -899,7 +1022,7 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     if (!webpOK) { toast("هذا المتصفح لا يدعم حفظ الصور بصيغة WebP. استخدم Chrome أو Edge أو Firefox.", "bad"); return; }
     var post = bp, key = "ob-" + post.id + "-" + Date.now().toString(36); post.cover = "uploading"; drawCover();
     loadImg(file).then(function (x) {
-      var im = x[0], u = x[1], msg = "صورة غلاف مقال: " + ($("#bTitle").value.trim() || post.id);
+      var im = x[0], u = x[1], msg = "صورة غلاف مقال: " + (post.title || $("#bTitle").value.trim() || post.id);
       localImg["photos/" + key] = u;
       return Promise.all([resized(im, 1536, 0, false, "image/webp", 0.82), resized(im, 1024, 0, false, "image/webp", 0.8), resized(im, 640, 0, false, "image/webp", 0.78), resized(im, 1200, 630, true, "image/jpeg", 0.84)])
         .then(function (b) { return putFile("assets/img/photos/" + key + ".webp", b[0], msg).then(function () { return Promise.all([putFile("assets/img/photos/" + key + "-1024.webp", b[1], msg), putFile("assets/img/photos/" + key + "-640.webp", b[2], msg), putFile("assets/img/og/" + key + ".jpg", b[3], msg)]); }); })
@@ -919,9 +1042,9 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
       localImg[path] = x[1];
       restoreRange();
       document.execCommand("insertHTML", false, '<figure><img src="' + x[1] + '" data-p="' + path + '" data-up="1" alt="' + esc(alt) + '">' + (alt ? "<figcaption>" + esc(alt) + "</figcaption>" : "") + "</figure><p><br></p>");
-      return resized(x[0], 1400, 0, false, "image/webp", 0.8).then(function (b) { return putFile(path, b, "صورة في مقال: " + ($("#bTitle").value.trim() || post.id)); })
+      return resized(x[0], 1400, 0, false, "image/webp", 0.8).then(function (b) { return putFile(path, b, "صورة في مقال: " + (post.title || post.id)); })
         .then(function () { $$('img[data-p="' + path + '"]', rte).forEach(function (im) { im.removeAttribute("data-up"); }); check(); });
-    }).catch(function (st) { $$('img[data-p="' + path + '"]', rte).forEach(function (im) { var f = im.closest("figure"); (f || im).remove(); }); toast(st === "img" ? "هذا الملف ليس صورة." : "لم تُرفع الصورة: " + (typeof st === "number" ? why(st) : "حاول مرة أخرى."), "bad"); });
+    }).catch(function (st) { $$('img[data-p="' + path + '"]', rte).forEach(function (im) { var f = im.closest("figure"); (f || im).parentNode.removeChild(f || im); }); toast(st === "img" ? "هذا الملف ليس صورة." : "لم تُرفع الصورة: " + (typeof st === "number" ? why(st) : "حاول مرة أخرى."), "bad"); });
   });
   // toolbar
   $(".rte-bar").addEventListener("mousedown", function (e) { if (e.target.closest("button")) e.preventDefault(); });
@@ -946,59 +1069,62 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
   $$('input[name="bStatus"]').forEach(function (x) { x.addEventListener("change", check); });
   $("#bFaq").addEventListener("input", check);
 
-  /* live SEO check (no AI needed) */
   function collect(soft) {
-    if (!bp) return null; syncFaq();
-    var o = clone(bp);
-    o.title = $("#bTitle").value.trim(); o.body = fromEditor(); o.words = wordsOf(o.body);
+    if (!bp) return null; stash();
+    var o = clone(bp); delete o._faq;
+    o.words = wordsOf(o.body);
     o.status = ($('input[name="bStatus"]:checked') || {}).value || "draft"; o.publishAt = $("#bWhen").value || istNow();
-    o.category = $("#bCat").value; o.coverAlt = $("#bCoverAlt").value.trim(); o.keyword = $("#bKey").value.trim();
-    o.slug = $("#bSlug").value.trim().toLowerCase(); o.seoTitle = $("#bSeo").value.trim(); o.description = $("#bDesc").value.trim(); o.excerpt = $("#bEx").value.trim();
-    o.faq = (bp.faq || []).filter(function (f) { return f.q || f.a; });
+    o.category = $("#bCat").value; o.slug = $("#bSlug").value.trim().toLowerCase();
+    if (o.i18n && !Object.keys(o.i18n).length) delete o.i18n;
     if (!soft) o.updated = today();
     return o;
   }
+  /* live SEO check for the open language (no assistant needed) */
   function check() {
-    if (!bp) return; var o = collect(true), k = o.keyword, body = o.body, txt = body.replace(/<[^>]+>/g, " "), firstP = (/<p>([\s\S]*?)<\/p>/.exec(body) || [, ""])[1];
+    if (!bp) return; syncFaq();
+    var title = $("#bTitle").value.trim(), body = fromEditor(), k = $("#bKey").value.trim(), seoT = $("#bSeo").value.trim() || title, desc = $("#bDesc").value.trim(), alt = $("#bCoverAlt").value.trim();
+    var words = wordsOf(body), firstP = (/<p>([\s\S]*?)<\/p>/.exec(body) || [, ""])[1], slug = $("#bSlug").value.trim().toLowerCase(), faq = (bp._faq || []).filter(function (f) { return f.q && f.a; });
     var h2 = (body.match(/<h2/g) || []).length, imgs = body.match(/<img[^>]*>/g) || [], noAlt = imgs.filter(function (x) { return !/alt="[^"]+"/.test(x); }).length;
-    var seoT = o.seoTitle || o.title, has = function (s) { return k && s && s.indexOf(k) > -1; };
+    var has = function (s) { return k && s && s.toLowerCase().indexOf(k.toLowerCase()) > -1; };
     var internal = /href="(https?:\/\/(www\.)?oyatourism\.com\/|\.\.\/|\/)/.test(body);
-    var slugOk = /^[a-z0-9]+(-[a-z0-9]+)*$/.test(o.slug) && o.slug.length >= 3 && o.slug.length <= 80, slugFree = takenSlugs.indexOf(o.slug) < 0 && !F.blog.db.posts.some(function (p, i) { return i !== bi && p.slug === o.slug; });
+    var slugOk = /^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug) && slug.length >= 3 && slug.length <= 80, slugFree = takenSlugs.indexOf(slug) < 0 && !F.blog.db.posts.some(function (p, i) { return i !== bi && p.slug === slug; });
     var rows = [
       [seoT.length >= 20 && seoT.length <= 65, "عنوان Google بين 20 و65 حرفاً (الآن " + seoT.length + ")"],
-      [o.description.length >= 110 && o.description.length <= 165, "الوصف بين 110 و165 حرفاً (الآن " + o.description.length + ")"],
-      [slugOk && slugFree, !o.slug ? "اكتب رابطاً بالإنجليزية" : !slugOk ? "الرابط بأحرف إنجليزية صغيرة وأرقام وشرطات فقط" : !slugFree ? "هذا الرابط مستخدم لمقال آخر" : "الرابط صالح"],
-      [!!k, "اختر كلمة مفتاحية يبحث عنها الزبون"],
+      [desc.length >= 110 && desc.length <= 165, "الوصف بين 110 و165 حرفاً (الآن " + desc.length + ")"],
+      [slugOk && slugFree, !slug ? "اكتب رابطاً بالإنجليزية" : !slugOk ? "الرابط بأحرف إنجليزية صغيرة وأرقام وشرطات فقط" : !slugFree ? "هذا الرابط مستخدم لمقال آخر" : "الرابط صالح (واحد لكل اللغات)"],
+      [!!k, "اختر كلمة مفتاحية يبحث عنها الزبون بهذه اللغة"],
       [has(seoT), "الكلمة المفتاحية في العنوان"],
-      [has(o.description), "الكلمة المفتاحية في الوصف"],
+      [has(desc), "الكلمة المفتاحية في الوصف"],
       [has(firstP), "الكلمة المفتاحية في الفقرة الأولى"],
-      [k && (body.match(/<h2[^>]*>[\s\S]*?<\/h2>/g) || []).some(function (h) { return h.indexOf(k) > -1; }), "الكلمة المفتاحية في أحد العناوين"],
-      [o.words >= 600, "طول المقال 600 كلمة أو أكثر (الآن " + o.words + ")"],
+      [k && (body.match(/<h2[^>]*>[\s\S]*?<\/h2>/g) || []).some(function (h) { return has(h); }), "الكلمة المفتاحية في أحد العناوين"],
+      [words >= 600, "طول المقال 600 كلمة أو أكثر (الآن " + words + ")"],
       [h2 >= 2, "عنوانان أو أكثر داخل المقال (الآن " + h2 + ")"],
-      [!!o.cover && o.cover !== "uploading" && !!o.coverAlt, "صورة غلاف مع وصفها"],
+      [!!bp.cover && bp.cover !== "uploading" && !!alt, "صورة غلاف مع وصفها بهذه اللغة"],
       [imgs.length > 0 && !noAlt, imgs.length ? (noAlt ? noAlt + " صورة بدون وصف" : "كل الصور لها وصف") : "أضف صورة واحدة على الأقل داخل المقال"],
       [internal, "رابط واحد على الأقل لصفحة من موقعنا (فندق، برنامج، تأشيرة…)"],
-      [o.faq.filter(function (f) { return f.q && f.a; }).length >= 2, "سؤالان شائعان أو أكثر في آخر المقال"]
+      [faq.length >= 2, "سؤالان شائعان أو أكثر في آخر المقال"]
     ];
     var ok = rows.filter(function (r) { return r[0]; }).length, pct = Math.round(ok / rows.length * 100), col = pct >= 80 ? "var(--ok)" : pct >= 50 ? "#D98E04" : "var(--bad)";
-    $("#bSeoCheck").innerHTML = '<div class="bar"><i style="width:' + pct + "%;background:" + col + '"></i></div><b style="color:' + col + '">جاهزية المقال لمحركات البحث: ' + pct + "%</b>" + rows.map(function (r) { return '<p class="' + (r[0] ? "y" : "n") + '">' + (r[0] ? "✓" : "○") + " <span>" + esc(r[1]) + "</span></p>"; }).join("");
-    $("#bCount").textContent = o.words + " كلمة • " + Math.max(1, Math.round(o.words / 200)) + " دقائق قراءة";
-    $("#bSeoN").textContent = (o.seoTitle ? o.seoTitle.length + " حرفاً" : "فارغ = يُستخدم عنوان المقال");
-    $("#bDescN").textContent = o.description.length + " / 160 حرفاً"; $("#bDescN").className = "bnote " + (o.description.length >= 110 && o.description.length <= 165 ? "ok" : "bad");
-    var w = $("#bWhenNote");
-    if (o.status !== "publish") { w.textContent = "مسودة: لا تظهر على الموقع."; w.className = "bnote"; }
-    else if (whenMs(o.publishAt) > Date.now() + 60000) { w.textContent = "مجدول: يُنشر تلقائياً في " + fmtWhen(o.publishAt) + " (خلال ساعة من الموعد)."; w.className = "bnote ok"; }
+    $("#bSeoCheck").innerHTML = '<div class="bar"><i style="width:' + pct + "%;background:" + col + '"></i></div><b style="color:' + col + '">جاهزية نسخة ' + LNAME[bLang] + " لمحركات البحث: " + pct + "%</b>" + rows.map(function (r) { return '<p class="' + (r[0] ? "y" : "n") + '">' + (r[0] ? "✓" : "○") + " <span>" + esc(r[1]) + "</span></p>"; }).join("");
+    $("#bCount").textContent = words + " كلمة • " + Math.max(1, Math.round(words / 200)) + " دقائق قراءة";
+    $("#bSeoN").textContent = ($("#bSeo").value.trim() ? $("#bSeo").value.trim().length + " حرفاً" : "فارغ = يُستخدم عنوان المقال");
+    $("#bDescN").textContent = desc.length + " / 160 حرفاً"; $("#bDescN").className = "bnote " + (desc.length >= 110 && desc.length <= 165 ? "ok" : "bad");
+    var st = ($('input[name="bStatus"]:checked') || {}).value, w = $("#bWhenNote"), when = $("#bWhen").value;
+    if (st !== "publish") { w.textContent = "مسودة: لا تظهر على الموقع."; w.className = "bnote"; }
+    else if (whenMs(when) > Date.now() + 60000) { w.textContent = "مجدول: يُنشر تلقائياً في " + fmtWhen(when) + " (خلال ساعة من الموعد)."; w.className = "bnote ok"; }
     else { w.textContent = "يُنشر بعد الحفظ خلال دقائق."; w.className = "bnote ok"; }
+    var lb = $("#bLangs .on i"); if (!!(title && words) !== !!lb) drawLangs();
   }
   $("#bOk").addEventListener("click", function () {
     var o = collect(false), err = "";
-    if (!o.title) err = "اكتب عنوان المقال.";
+    if (!o.title) err = "اكتب عنوان المقال بالعربية.";
     else if (/data-up="1"/.test(rte.innerHTML) || o.cover === "uploading") err = "انتظر حتى ينتهي رفع الصور.";
     else if (o.status === "publish") {
       if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(o.slug) || o.slug.length < 3) err = "قبل النشر اكتب رابط المقال بالإنجليزية (مثل uzungol-winter-guide)، أو احفظه كمسودة.";
       else if (takenSlugs.indexOf(o.slug) > -1 || F.blog.db.posts.some(function (p, i) { return i !== bi && p.slug === o.slug; })) err = "هذا الرابط مستخدم لمقال آخر. اختر رابطاً مختلفاً.";
-      else if (!o.description) err = "قبل النشر اكتب وصف Google للمقال.";
-      else if (o.words < 120) err = "المقال قصير جداً للنشر. أكمل كتابته أو احفظه كمسودة.";
+      else if (!o.description) err = "قبل النشر اكتب وصف Google للمقال بالعربية.";
+      else if (o.words < 120) err = "النص العربي قصير جداً للنشر. أكمل كتابته أو احفظه كمسودة.";
+      else { var half = LANGS.slice(1).filter(function (l) { var v = langOf(o, l[0]); return !!v.title !== !!wordsOf(v.body); }); if (half.length) err = "نسخة " + LNAME[half[0][0]] + " ناقصة: اكتب لها العنوان والنص معاً، أو امسح ما كتبته فيها."; }
     }
     if (err) { $("#bErr").textContent = err; return; }
     if (o.cover === "uploading") o.cover = "";
@@ -1007,54 +1133,68 @@ textarea{width:100%;min-height:90px;padding:.7em .9em;border:1.5px solid var(--l
     toast("تم حفظ المقال في القائمة — اضغط «حفظ التغييرات» لنشره على الموقع.");
   });
 
-  /* writing assistant: the owner's own Claude API key, called straight from this page (no server of ours) */
-  var aiKey = function () { try { return localStorage.getItem("oya-ai") || ""; } catch (e) { return ""; } };
-  var keyIn = $("#aiKey"); if (keyIn) { keyIn.value = aiKey(); keyIn.addEventListener("change", function () { try { if (keyIn.value.trim()) localStorage.setItem("oya-ai", keyIn.value.trim()); else localStorage.removeItem("oya-ai"); } catch (e) {} toast(keyIn.value.trim() ? "تم حفظ مفتاح المساعد على هذا الجهاز." : "تم حذف مفتاح المساعد من هذا الجهاز.", "ok"); }); }
-  function aiState() { $("#aiState").textContent = aiKey() ? "يقرأ المساعد مقالك ويعيد صياغته أو يقترح، وأنت تراجع قبل الحفظ. لا يضيف أسعاراً أو معلومات من عنده." : "لتفعيله أضف مفتاح Claude API من تبويب «الإعدادات»."; }
-  var BRAND = "أنت محرر محتوى سياحي عربي محترف لموقع «أويا للسياحة» (OYA Tourism)، وكالة سفر في إسطنبول تخدم الزبائن العرب: فنادق، أكواخ، طيران، برامج سياحية، تأشيرات، وتذاكر مباريات. اكتب بالعربية الفصحى المعاصرة السهلة، بنبرة دافئة وواثقة وعملية. قواعد صارمة: لا تخترع معلومات أو أسعاراً أو تواريخ أو أرقاماً أو أسماء أو تقييمات أو ضمانات أو ادعاءات ترخيص؛ استخدم فقط ما يقدمه المستخدم. احتفظ بكل رقم وتاريخ واسم ورابط وصورة كما هي. لا تَعِد بحجز مضمون؛ أويا تساعد في الحجز وتؤكد التوفر كتابةً. الوسوم المسموحة في HTML فقط: p, h2, h3, strong, em, ul, ol, li, blockquote, a (href), figure, img (src, alt), figcaption. لا تستخدم h1 ولا أنماط CSS.";
-  function claude(task, schema) {
-    var key = aiKey(); if (!key) return Promise.reject("nokey");
-    var body = { model: "claude-opus-5-5", max_tokens: 16000, system: BRAND, output_config: { effort: "medium", format: { type: "json_schema", schema: schema } }, fallbacks: "default", messages: [{ role: "user", content: task }] };
-    return fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2026-10-21", "anthropic-beta": "server-side-fallback-2026-07-01", "anthropic-dangerous-direct-browser-access": "true" }, body: JSON.stringify(body) })
-      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw { st: r.status, msg: j.error && j.error.message }; return j; }); })
-      .then(function (j) {
-        if (j.stop_reason === "refusal") throw { msg: "اعتذر المساعد عن هذا الطلب. عدّل النص وحاول مرة أخرى." };
-        if (j.stop_reason === "max_tokens") throw { msg: "المقال طويل جداً على المساعد في طلب واحد. جرّب على جزء منه." };
-        var t = (j.content || []).filter(function (b) { return b.type === "text"; }).map(function (b) { return b.text; }).join("");
-        return JSON.parse(t);
-      });
-  }
-  var aiErr = function (e) { if (e === "nokey") return "أضف مفتاح Claude API من تبويب «الإعدادات» أولاً."; if (e && e.st === 401) return "مفتاح Claude API غير صحيح."; if (e && e.st === 429) return "المساعد مشغول الآن، حاول بعد دقيقة."; if (e && e.st === 529) return "خدمة Claude مزدحمة الآن، حاول بعد قليل."; return (e && e.msg) || "تعذّر الاتصال بالمساعد. تحقّق من الإنترنت وحاول مرة أخرى."; };
+  /* assistant tools in the article editor */
+  function aiState() { $("#aiState").textContent = aiReady() ? "المساعد: " + AIP[aiProv()].name + " — يعمل على اللغة المفتوحة، وأنت تراجع قبل الحفظ. لا يضيف أسعاراً أو معلومات من عنده." : "لتفعيله اختر ChatGPT أو Gemini وأضف المفتاح من تبويب «الإعدادات»."; }
   $(".bbox.ai").addEventListener("click", function (e) {
     var b = e.target.closest("[data-ai]"); if (!b || !bp) return;
-    var box = this, kind = b.dataset.ai, o = collect(true), label = b.textContent;
-    if (kind !== "draft" && o.words < 40) { toast("اكتب المقال أولاً (أو استخدم «اكتب مسودة من نقاطي»).", "bad"); return; }
+    var box = this, kind = b.dataset.ai, label = b.textContent; stash();
+    var v = langOf(bp, bLang), words = wordsOf(v.body), LN = { ar: "Arabic (Modern Standard, warm and practical)", en: "English", ru: "Russian", tr: "Turkish", pt: "Brazilian Portuguese" }[bLang];
+    if ((kind === "polish" || kind === "seo") && words < 40) { toast("اكتب المقال أولاً (أو استخدم «اكتب مسودة من نقاطي»).", "bad"); return; }
     if (kind === "draft" && !$("#aiNotes").value.trim()) { toast("اكتب نقاطك ومعلوماتك أولاً.", "bad"); return; }
+    if (kind === "translate" && !hasLang(bp, "ar")) { toast("اكتب العنوان والنص العربي أولاً، ثم ترجمه.", "bad"); return; }
+    if (kind === "translate" && LANGS.slice(1).some(function (l) { return hasLang(bp, l[0]); }) && !confirm("ستُستبدل الترجمات الموجودة بترجمة جديدة من النص العربي. متابعة؟")) return;
+    var undo = { i18n: clone(bp.i18n || {}), ar: {}, lang: bLang }; BF.forEach(function (f) { undo.ar[f] = clone(bp[f]); });
     var job;
-    if (kind === "polish") job = claude("أعد صياغة المقال التالي ليصبح سلساً وممتعاً في السرد ومريحاً للقراءة على الجوال: فقرات قصيرة (2–4 جمل)، انتقالات طبيعية بين الأقسام، مقدمة تشد القارئ وخاتمة تدعوه بلطف للتواصل مع أويا. حافظ على كل المعلومات والأرقام والروابط والصور ووصفها، وعلى العناوين (h2/h3) مع تحسين صياغتها، واستخدم الكلمة المفتاحية «" + o.keyword + "» بشكل طبيعي في المقدمة وفي عنوان واحد على الأقل دون حشو. لا تحذف أي معلومة ولا تضف معلومة جديدة.\n\nالعنوان: " + o.title + "\n\nالمقال (HTML):\n" + o.body,
-      { type: "object", properties: { html: { type: "string", description: "المقال المحسّن بصيغة HTML بالوسوم المسموحة فقط" } }, required: ["html"], additionalProperties: false });
-    if (kind === "draft") job = claude("اكتب مسودة مقال لمدونة أويا للسياحة بعنوان: «" + (o.title || "") + "»" + (o.keyword ? " والكلمة المفتاحية: «" + o.keyword + "»" : "") + ". استخدم فقط المعلومات في النقاط التالية، ورتّبها في مقدمة ثم أقسام بعناوين h2 (وh3 عند الحاجة) ثم خاتمة تدعو للتواصل مع أويا. حيث تنقص معلومة مهمة (سعر، تاريخ، مدة…) لا تخترعها، بل اكتب مكانها [أضف: …] ليكملها صاحب الموقع.\n\nالنقاط:\n" + $("#aiNotes").value.trim(),
-      { type: "object", properties: { html: { type: "string" }, title: { type: "string", description: "عنوان مقترح إن لم يوجد عنوان" } }, required: ["html", "title"], additionalProperties: false });
-    if (kind === "seo") job = claude("اقرأ المقال التالي واقترح عناصر الظهور في محركات البحث بالعربية، من محتوى المقال فقط:\n- seoTitle: عنوان Google جذاب بين 40 و60 حرفاً يتضمن الكلمة المفتاحية في أوله إن أمكن.\n- description: وصف بين 130 و160 حرفاً يلخص فائدة المقال ويدعو للقراءة.\n- slug: رابط قصير بالإنجليزية بأحرف صغيرة وشرطات (3–6 كلمات).\n- keyword: أفضل كلمة مفتاحية عربية يبحث بها الزبون (استخدم الحالية إن كانت جيدة).\n- excerpt: مقتطف من جملتين لبطاقة المقال.\n- faq: 3 أسئلة يسألها الزبائن فعلاً، وأجوبتها مأخوذة من المقال فقط.\n\nالعنوان: " + o.title + "\nالكلمة المفتاحية الحالية: " + (o.keyword || "—") + "\n\nالمقال:\n" + o.body.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 30000),
+    if (kind === "polish") job = ai(AI_RULES, "Rewrite this travel article in " + LN + " so it reads smoothly and pleasantly on a phone: short paragraphs (2–4 sentences), natural transitions, an opening that draws the reader in and a closing that gently invites them to contact OYA. Keep every piece of information, number, link and image, and keep the h2/h3 structure (you may improve the wording). Use the keyword «" + (v.keyword || "") + "» naturally in the opening and in one heading, without stuffing. Do not remove or add information.\n\nTitle: " + v.title + "\n\nArticle (HTML):\n" + v.body,
+      { type: "object", properties: { html: { type: "string" } }, required: ["html"], additionalProperties: false });
+    if (kind === "draft") job = ai(AI_RULES, "Write a draft article in " + LN + " for the OYA Tourism blog" + (v.title ? " titled «" + v.title + "»" : "") + (v.keyword ? ", keyword «" + v.keyword + "»" : "") + ". Use only the information in the notes below; organise it into an introduction, sections with h2 (h3 when needed) and a closing that invites readers to contact OYA. Where an important detail is missing (price, date, duration…), do not invent it: write [ADD: …] for the owner to fill in.\n\nNotes:\n" + $("#aiNotes").value.trim(),
+      { type: "object", properties: { html: { type: "string" }, title: { type: "string" } }, required: ["html", "title"], additionalProperties: false });
+    if (kind === "seo") job = ai(AI_RULES, "Read this article and suggest, in " + LN + " and only from its content: seoTitle (40–60 characters, keyword near the start), description (130–160 characters), slug (short, English, lowercase words with hyphens, 3–6 words), keyword (the best search phrase in " + LN + "), excerpt (two sentences for the article card), faq (3 questions customers really ask, answered only from the article).\n\nTitle: " + v.title + "\nCurrent keyword: " + (v.keyword || "—") + "\n\nArticle:\n" + v.body.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 30000),
       { type: "object", properties: { seoTitle: { type: "string" }, description: { type: "string" }, slug: { type: "string" }, keyword: { type: "string" }, excerpt: { type: "string" }, faq: { type: "array", items: { type: "object", properties: { q: { type: "string" }, a: { type: "string" } }, required: ["q", "a"], additionalProperties: false } } }, required: ["seoTitle", "description", "slug", "keyword", "excerpt", "faq"], additionalProperties: false });
-    box.classList.add("busy"); b.textContent = "⏳ يعمل المساعد… (قد يأخذ دقيقة)";
+    if (kind === "translate") {
+      var src = {}; BF.forEach(function (f) { src[f] = bp[f]; }); src.body = bp.body;
+      var n = 0; b.textContent = "⏳ جارٍ الترجمة… 0 / 4";
+      job = Promise.all(["en", "ru", "tr", "pt"].map(function (l) { return aiTranslate(src, l, ["body"]).then(function (r) { n++; b.textContent = "⏳ جارٍ الترجمة… " + n + " / 4"; return [l, r]; }); }));
+    }
+    box.classList.add("busy"); if (kind !== "translate") b.textContent = "⏳ يعمل المساعد… (قد يأخذ دقيقة)";
     job.then(function (r) {
-      if (!bp) return;
-      aiUndo = { body: fromEditor(), seo: { k: $("#bKey").value, s: $("#bSlug").value, t: $("#bSeo").value, d: $("#bDesc").value, e: $("#bEx").value, faq: clone(bp.faq), title: $("#bTitle").value } };
-      if (r.html) { rte.innerHTML = toEditor(r.html); $$("img", rte).forEach(function (im) { var p = (im.getAttribute("src") || "").replace(/^\.\.\//, ""); if (localImg[p]) { im.setAttribute("data-p", p); im.src = localImg[p]; } }); }
-      if (kind === "draft" && !$("#bTitle").value.trim() && r.title) $("#bTitle").value = r.title;
-      if (kind === "seo") {
-        $("#bSeo").value = r.seoTitle || ""; $("#bDesc").value = r.description || ""; $("#bEx").value = r.excerpt || ""; if (!$("#bKey").value.trim()) $("#bKey").value = r.keyword || ""; else if (r.keyword && r.keyword !== $("#bKey").value.trim()) toast("اقترح المساعد كلمة مفتاحية: «" + r.keyword + "» — غيّرها بنفسك إن أعجبتك.");
-        var sl = String(r.slug || "").toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, ""); if (!$("#bSlug").value.trim() || bp.status !== "publish") $("#bSlug").value = sl;
-        if (Array.isArray(r.faq) && r.faq.length) { syncFaq(); bp.faq = bp.faq.filter(function (f) { return f.q && f.a; }).concat(r.faq); drawFaq(); }
+      if (!bp) return; aiUndo = undo;
+      if (kind === "translate") { bp.i18n = bp.i18n || {}; r.forEach(function (x) { var t = x[1]; bp.i18n[x[0]] = { title: t.title || "", body: t.body || "", seoTitle: t.seoTitle || "", description: t.description || "", excerpt: t.excerpt || "", coverAlt: t.coverAlt || "", keyword: t.keyword || "", faq: t.faq || [] }; }); showLang(bLang); toast("تمت الترجمة إلى الإنجليزية والروسية والتركية والبرتغالية ✓ — افتح كل لغة وراجعها قبل الحفظ.", "ok"); }
+      else {
+        if (r.html) { rte.innerHTML = toEditor(r.html); showImgs(); }
+        if (kind === "draft" && !$("#bTitle").value.trim() && r.title) $("#bTitle").value = r.title;
+        if (kind === "seo") {
+          $("#bSeo").value = r.seoTitle || ""; $("#bDesc").value = r.description || ""; $("#bEx").value = r.excerpt || "";
+          if (!$("#bKey").value.trim()) $("#bKey").value = r.keyword || ""; else if (r.keyword && r.keyword !== $("#bKey").value.trim()) toast("اقترح المساعد كلمة مفتاحية: «" + r.keyword + "» — غيّرها بنفسك إن أعجبتك.");
+          var sl = String(r.slug || "").toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, ""); if (!$("#bSlug").value.trim() && sl) $("#bSlug").value = sl;
+          if (Array.isArray(r.faq) && r.faq.length) { syncFaq(); bp._faq = bp._faq.filter(function (f) { return f.q && f.a; }).concat(r.faq); drawFaq(); }
+        }
+        check(); toast("جاهز ✓ — راجع النص قبل الحفظ.", "ok");
       }
-      $("#aiUndo").hidden = false; check(); toast("جاهز ✓ — راجع النص قبل الحفظ.", "ok");
+      $("#aiUndo").hidden = false;
     }).catch(function (e) { toast(aiErr(e), "bad"); }).then(function () { box.classList.remove("busy"); b.textContent = label; });
   });
   $("#aiUndo").addEventListener("click", function () {
-    if (!aiUndo || !bp) return; var u = aiUndo.seo;
-    rte.innerHTML = toEditor(aiUndo.body); $("#bKey").value = u.k; $("#bSlug").value = u.s; $("#bSeo").value = u.t; $("#bDesc").value = u.d; $("#bEx").value = u.e; $("#bTitle").value = u.title; bp.faq = u.faq; drawFaq();
-    aiUndo = null; $("#aiUndo").hidden = true; check();
+    if (!aiUndo || !bp) return; var u = aiUndo;
+    BF.forEach(function (f) { bp[f] = u.ar[f]; }); bp.i18n = u.i18n; aiUndo = null; $("#aiUndo").hidden = true; showLang(u.lang);
+  });
+
+  /* assistant: translate the generic editor's texts and the cabin description */
+  $("#gAi").addEventListener("click", function () {
+    var b = this, label = b.textContent; gStash();
+    var src = {}; trFields().forEach(function (f) { if (go[f.k]) src[f.k] = go[f.k]; });
+    if (!Object.keys(src).length) { toast("اكتب النصوص بالعربية أولاً.", "bad"); return; }
+    b.disabled = true; b.textContent = "⏳ جارٍ الترجمة…";
+    Promise.all(["en", "ru", "tr", "pt"].map(function (l) { return aiTranslate(src, l).then(function (r) { return [l, r]; }); }))
+      .then(function (rs) { go.i18n = go.i18n || {}; rs.forEach(function (x) { var cur = go.i18n[x[0]] = go.i18n[x[0]] || {}; Object.keys(x[1]).forEach(function (k) { if (!cur[k]) cur[k] = x[1][k]; }); }); gShowLang(gLang); toast("تمت الترجمة ✓ — راجع كل لغة قبل الحفظ.", "ok"); })
+      .catch(function (e) { toast(aiErr(e), "bad"); }).then(function () { b.disabled = false; b.textContent = label; });
+  });
+  $("#cAi").addEventListener("click", function () {
+    var b = this, label = b.textContent, ar = $("#cNote").value.trim();
+    if (!ar) { toast("اكتب الوصف بالعربية أولاً.", "bad"); return; }
+    b.disabled = true; b.textContent = "⏳ جارٍ الترجمة…";
+    Promise.all(["en", "ru", "tr", "pt"].filter(function (l) { return !$("#cNote_" + l).value.trim(); }).map(function (l) { return aiTranslate({ note: ar }, l).then(function (r) { $("#cNote_" + l).value = r.note || ""; }); }))
+      .then(function () { toast("تمت الترجمة ✓ — راجعها قبل الحفظ.", "ok"); }).catch(function (e) { toast(aiErr(e), "bad"); }).then(function () { b.disabled = false; b.textContent = label; });
   });
 
   /* ---------- changes + save ---------- */

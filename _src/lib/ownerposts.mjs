@@ -57,27 +57,49 @@ export function sanitize(html) {
 }
 
 /* ---------- published articles as post objects for the blog templates ---------- */
+export const LANGS = ["en", "ru", "tr", "pt"];
+const LOCALE = { ar: "ar-EG-u-nu-latn", en: "en-US", ru: "ru-RU", tr: "tr-TR", pt: "pt-BR" };
+const BRAND = { ar: "أويا", en: "OYA", ru: "OYA", tr: "OYA", pt: "OYA" };
+// one language version of an article: Arabic from the main fields, the others from p.i18n[lang]
+function version(p, lang) {
+  const v = lang === "ar" ? p : (p.i18n && p.i18n[lang]) || {};
+  const title = String(v.title || "").trim(), rawBody = String(v.body || "");
+  if (!title || !rawBody.trim()) return null;
+  const body = sanitize(rawBody);
+  const date = (p.publishAt || p.created || new Date().toISOString()).slice(0, 10);
+  const seoTitle = String(v.seoTitle || title).trim();
+  const desc = String(v.description || v.excerpt || "").trim();
+  return {
+    owner: true, lang, slug: p.slug, title, h1: title,
+    seo: { title: seoTitle.length > 60 ? seoTitle : `${seoTitle} | ${BRAND[lang]}`, description: desc.slice(0, 165) },
+    excerpt: String(v.excerpt || v.description || "").trim(), date, updated: (p.updated || date).slice(0, 10),
+    dateText: new Date(date).toLocaleDateString(LOCALE[lang], { year: "numeric", month: "long", day: "numeric" }),
+    readMins: Math.max(2, Math.round(words(body) / 200)), category: p.category || "دليل السفر", icon: "doc",
+    img: p.cover && photoExists(p.cover) ? p.cover : null, imgAlt: String(v.coverAlt || p.coverAlt || title).trim(),
+    body, faq: (v.faq || []).filter((f) => f && f.q && f.a).map((f) => ({ q: String(f.q).trim(), a: String(f.a).trim() })), related: [],
+  };
+}
+// published articles (Arabic version, with .tr = the other languages that have a title and a text)
 export function ownerPosts(now = new Date()) {
   let db = { posts: [] };
   try { db = JSON.parse(fs.readFileSync(FILE, "utf8")); } catch {}
   const list = Array.isArray(db.posts) ? db.posts : [];
   return list
-    .filter((p) => p && p.status === "publish" && /^[a-z0-9-]{3,90}$/.test(p.slug || "") && p.title && p.body && (!p.publishAt || istanbulTime(p.publishAt) <= now))
+    .filter((p) => p && p.status === "publish" && /^[a-z0-9-]{3,90}$/.test(p.slug || "") && (!p.publishAt || istanbulTime(p.publishAt) <= now))
     .map((p) => {
-      const body = sanitize(p.body);
-      const date = (p.publishAt || p.created || new Date().toISOString()).slice(0, 10);
-      const title = p.title.trim();
-      const seoTitle = (p.seoTitle || title).trim();
-      return {
-        owner: true, slug: p.slug, title, h1: title,
-        seo: { title: seoTitle.length > 60 ? seoTitle : `${seoTitle} | أويا`, description: (p.description || p.excerpt || "").trim().slice(0, 165) },
-        excerpt: (p.excerpt || p.description || "").trim(), date, updated: (p.updated || date).slice(0, 10),
-        readMins: Math.max(2, Math.round(words(body) / 200)), category: p.category || "دليل السفر", icon: "doc",
-        img: p.cover && photoExists(p.cover) ? p.cover : null, imgAlt: p.coverAlt || title,
-        body, faq: (p.faq || []).filter((f) => f && f.q && f.a).map((f) => ({ q: f.q.trim(), a: f.a.trim() })), related: [],
-      };
+      const a = version(p, "ar"); if (!a) return null;
+      a.tr = Object.fromEntries(LANGS.map((l) => [l, version(p, l)]).filter(([, v]) => v));
+      a.langs = ["ar", ...Object.keys(a.tr)];
+      return a;
     })
+    .filter(Boolean)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+// translations the panel provides for text that appears on translated pages (blog cards): Arabic → language
+export function ownerPostDict(posts, lang, idOf) {
+  const d = {};
+  for (const p of posts) { const v = p.tr[lang]; if (!v) continue; d[idOf(p.title)] = v.title; if (p.excerpt) d[idOf(p.excerpt)] = v.excerpt || v.seo.description || v.title; if (p.imgAlt) d[idOf(p.imgAlt)] = v.imgAlt; }
+  return d;
 }
 
 // remove the pages of articles that were deleted, unpublished or renamed since the last build

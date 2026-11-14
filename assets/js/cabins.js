@@ -20,6 +20,8 @@
     breakfast: T("فطور"), wifi: T("إنترنت"), parking: T("موقف سيارات"), family: T("مناسب للعائلات"), couples: T("مناسب للأزواج")
   };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  // the description in this language (written in the panel), or English; never Arabic on a translated page
+  var note = function (c) { if (isAr) return c.note || ""; var i = c.i18n || {}; return (i[document.documentElement.lang] && i[document.documentElement.lang].note) || (i.en && i.en.note) || ""; };
   var num = function (n) { return Number(n).toLocaleString({ ru: "ru-RU", tr: "tr-TR", pt: "pt-BR" }[document.documentElement.lang] || "en-US"); };
 
   function card(c, cur) {
@@ -36,7 +38,7 @@
       '<div class="cab__body"><h3 translate="no">' + esc(c.name) + "</h3>" +
       '<p class="cab__specs"><span>' + T("غرف النوم: {0}", [c.rooms || 1]) + "</span><span>" + T("الأشخاص: حتى {0}", [c.guests || 2]) + "</span></p>" +
       (feats.length ? '<ul class="cab__feats">' + feats.map(function (f) { return "<li>" + esc(FEAT[f]) + "</li>"; }).join("") + "</ul>" : "") +
-      (isAr && c.note ? '<p class="cab__note">' + esc(c.note) + "</p>" : "") +
+      (note(c) ? '<p class="cab__note">' + esc(note(c)) + "</p>" : "") +
       '<div class="cab__foot"><div class="price"><small>' + (price ? T("لليلة الواحدة") : T("السعر")) + "</small><b" + (price ? "" : ' class="price__ask"') + ">" +
       (price ? num(c.price) + '<span class="cur">' + esc(cur) + "</span>" : esc(T("حسب الموسم — اطلب عرضك"))) + "</b></div>" +
       '<a class="btn btn--wa btn--sm" href="https://wa.me/' + WA + "?text=" + encodeURIComponent(msg) + '" target="_blank" rel="noopener">' + esc(T("احجز")) + "</a></div>" +

@@ -19,7 +19,9 @@
   var icon = function (n) { var u = document.querySelector("use[href*='icons.svg#']"); var base = u ? u.getAttribute("href").split("#")[0] : root + "assets/img/icons.svg"; return '<svg class="i" aria-hidden="true" focusable="false"><use href="' + base + "#" + n + '"/></svg>'; };
   var sig = function (list, keys) { var h = 0, s = JSON.stringify(list.map(function (x) { return keys.map(function (k) { return x[k] == null ? null : x[k]; }); })); for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return String(h >>> 0); };
   // owner text: Arabic, English, and (for older entries) other languages; falls back to English then Arabic
-  var txt = function (o, f) { if (isAr) return o[f] || ""; var i = o.i18n && o.i18n[lang] && o.i18n[lang][f]; return i || o[f + "En"] || o[f] || ""; };
+  // tr: this language's own wording (or English), never Arabic on a translated page; txt: falls back to Arabic
+  var tr = function (o, f) { if (isAr) return o[f] || ""; var i = o.i18n || {}; return (i[lang] && i[lang][f]) || (i.en && i.en[f]) || o[f + "En"] || ""; };
+  var txt = function (o, f) { return tr(o, f) || o[f] || ""; };
   var reveal = function (box) { if (window.__oyaReveal) window.__oyaReveal(box); else [].slice.call(box.querySelectorAll("[data-reveal]")).forEach(function (x) { x.classList.add("is-in"); }); };
   function get(file) {
     var ctl = window.AbortController ? new AbortController() : null; if (ctl) setTimeout(function () { ctl.abort(); }, 8000);
@@ -28,7 +30,7 @@
   }
 
   /* ---------- events ---------- */
-  var EKEYS = ["id", "title", "titleEn", "tag", "tagEn", "text", "textEn", "link", "photo", "icon", "priceFrom", "featured", "active"];
+  var EKEYS = ["id", "title", "tag", "text", "link", "photo", "icon", "priceFrom", "featured", "active", "i18n"];
   if (ev) get("events.json").then(function (db) {
     var all = db && Array.isArray(db.events) ? db.events : null; if (!all || sig(all, EKEYS) === ev.getAttribute("data-sig")) return;
     ev.innerHTML = all.filter(function (e) { return e && e.active !== false && e.title; }).map(function (e) {
@@ -90,9 +92,9 @@
       (photos.length > 1 ? '<button type="button" class="cab__nav cab__l" aria-label="' + esc(T("صورة أخرى")) + '">‹</button><button type="button" class="cab__nav cab__r" aria-label="' + esc(T("صورة أخرى")) + '">›</button><span class="cab__n">1 / ' + photos.length + "</span>" : "") +
       '<span class="cab__area">' + esc(city) + "</span></div>" +
       '<div class="cab__body"><h3 translate="no">' + esc(h.name) + "</h3>" +
-      '<p class="cab__specs"><span>' + esc(KIND[h.kind] || KIND.hotel) + "</span>" + stars + (isAr && h.area ? "<span>" + esc(h.area) + "</span>" : "") + "</p>" +
+      '<p class="cab__specs"><span>' + esc(KIND[h.kind] || KIND.hotel) + "</span>" + stars + (tr(h, "area") ? "<span>" + esc(tr(h, "area")) + "</span>" : "") + "</p>" +
       (feats.length ? '<ul class="cab__feats">' + feats.map(function (f) { return "<li>" + esc(HFEAT[f]) + "</li>"; }).join("") + "</ul>" : "") +
-      (isAr && h.note ? '<p class="cab__note">' + esc(h.note) + "</p>" : "") +
+      (tr(h, "note") ? '<p class="cab__note">' + esc(tr(h, "note")) + "</p>" : "") +
       '<div class="cab__foot"><div class="price"><small>' + (price ? T("لليلة الواحدة") : T("السعر")) + "</small><b" + (price ? "" : ' class="price__ask"') + ">" +
       (price ? num(h.price) + '<span class="cur">' + esc(cur) + "</span>" : esc(T("حسب الموسم — اطلب عرضك"))) + "</b></div>" +
       '<a class="btn btn--wa btn--sm" href="' + esc(wa(msg)) + '" target="_blank" rel="noopener">' + esc(T("احجز")) + "</a></div></div></article>";

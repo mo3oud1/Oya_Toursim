@@ -4,11 +4,8 @@
     {
       "id": "super-cup-2027",
       "title": "كأس السوبر الإسباني 2027",
-      "titleEn": "Spanish Super Cup 2027",
       "tag": "إسطنبول • 2–6 فبراير 2027",
-      "tagEn": "Istanbul • February 2–6, 2027",
       "text": "برشلونة، ريال مدريد، أتلتيكو مدريد وريال سوسيداد على أرض إسطنبول. اختر مباراتك ومقعدك على مجسم الملعب.",
-      "textEn": "Barcelona, Real Madrid, Atlético de Madrid and Real Sociedad in Istanbul. Choose your match and your seat on the stadium model.",
       "link": "matches/spanish-super-cup-2027/",
       "photo": "assets/img/stadium-poster.webp",
       "icon": "trophy",
@@ -16,6 +13,11 @@
       "featured": true,
       "active": true,
       "i18n": {
+        "en": {
+          "title": "Spanish Super Cup 2027",
+          "tag": "Istanbul • February 2–6, 2027",
+          "text": "Barcelona, Real Madrid, Atlético de Madrid and Real Sociedad in Istanbul. Choose your match and your seat on the stadium model."
+        },
         "ru": {
           "title": "Суперкубок Испании 2027",
           "tag": "Стамбул • 2–6 февраля 2027 г.",
@@ -36,11 +38,8 @@
     {
       "id": "istanbul-derbies",
       "title": "ديربيات إسطنبول",
-      "titleEn": "Istanbul derbies",
       "tag": "حسب الجدول",
-      "tagEn": "Per the schedule",
       "text": "أجواء لا تُنسى في مباريات غلطة سراي وفنربخشة وبشكتاش ضمن الدوري التركي.",
-      "textEn": "An unforgettable atmosphere at Galatasaray, Fenerbahçe and Beşiktaş matches in the Turkish league.",
       "link": "",
       "photo": "",
       "icon": "stadium",
@@ -48,6 +47,11 @@
       "featured": false,
       "active": true,
       "i18n": {
+        "en": {
+          "title": "Istanbul derbies",
+          "tag": "Per the schedule",
+          "text": "An unforgettable atmosphere at Galatasaray, Fenerbahçe and Beşiktaş matches in the Turkish league."
+        },
         "ru": {
           "title": "Стамбульские дерби",
           "tag": "По расписанию",
@@ -68,11 +72,8 @@
     {
       "id": "european-nights",
       "title": "الليالي الأوروبية في إسطنبول",
-      "titleEn": "European nights in Istanbul",
       "tag": "حسب القرعة",
-      "tagEn": "Per the draw",
       "text": "مباريات الأندية التركية في البطولات الأوروبية على ملاعب إسطنبول.",
-      "textEn": "Turkish clubs' matches in European competitions at Istanbul stadiums.",
       "link": "",
       "photo": "",
       "icon": "ball",
@@ -80,6 +81,11 @@
       "featured": false,
       "active": true,
       "i18n": {
+        "en": {
+          "title": "European nights in Istanbul",
+          "tag": "Per the draw",
+          "text": "Turkish clubs' matches in European competitions at Istanbul stadiums."
+        },
         "ru": {
           "title": "Европейские вечера в Стамбуле",
           "tag": "По итогам жеребьёвки",
@@ -100,11 +106,8 @@
     {
       "id": "world-matches",
       "title": "مباريات حول العالم",
-      "titleEn": "Matches around the world",
       "tag": "حسب الطلب",
-      "tagEn": "On request",
       "text": "نساعدك في تذاكر مباريات كبرى في أوروبا والخليج مع الطيران والفندق.",
-      "textEn": "We help you with tickets to major matches in Europe and the Gulf, together with flights and hotel.",
       "link": "",
       "photo": "",
       "icon": "globe",
@@ -112,6 +115,11 @@
       "featured": false,
       "active": true,
       "i18n": {
+        "en": {
+          "title": "Matches around the world",
+          "tag": "On request",
+          "text": "We help you with tickets to major matches in Europe and the Gulf, together with flights and hotel."
+        },
         "ru": {
           "title": "Матчи по всему миру",
           "tag": "По запросу",

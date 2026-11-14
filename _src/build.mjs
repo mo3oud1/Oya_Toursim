@@ -5,10 +5,11 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { site } from "./site.mjs";
-import { ROOT_DIR, imageRegistry, photoExists } from "./lib/ui.mjs";
-import { renderPage } from "./lib/layout.mjs";
+import { readAr, ROOT_DIR, imageRegistry, photoExists } from "./lib/ui.mjs";
+import { pageLocales, renderPage } from "./lib/layout.mjs";
 import { destinationPage, packagePage, visaPage, postPage } from "./lib/templates.mjs";
-import { ownerPosts, pruneOwnerPages } from "./lib/ownerposts.mjs";
+import { ownerPosts, pruneOwnerPages, ownerPostDict } from "./lib/ownerposts.mjs";
+import { eventsDict } from "./lib/catalog.mjs";
 import { homePage } from "./pages/home.mjs";
 import { flightsPage, hotelsPage } from "./pages/services.mjs";
 import { turkeyHub, worldHub, packagesHub, visaHub, blogHub } from "./pages/hubs.mjs";
@@ -17,7 +18,7 @@ import { aboutPage, contactPage, faqPage, privacyPage, termsPage, notFoundPage }
 import { hotelCityPage, extraPage, offersHub } from "./lib/templates2.mjs";
 import { turkeyVisaPage } from "./pages/turkey-visa.mjs";
 import { cabinsPage } from "./pages/cabins.mjs";
-import { Translator, hasAr } from "./lib/i18n.mjs";
+import { Translator, hasAr, idOf } from "./lib/i18n.mjs";
 
 const load = async (f) => {
   const p = path.join(ROOT_DIR, "_src/content", f);
@@ -81,7 +82,7 @@ const pages = [
   superCupPage(data),
   blogHub(data),
   ...data.posts.map((p) => postPage(p, data)),
-  ...data.ownerPosts.map((p) => ({ ...postPage(p, data), noLocale: true })),
+  ...data.ownerPosts.map((p) => { const pg = postPage(p, data); pg.langs = p.langs; pg.perLang = Object.fromEntries(Object.entries(p.tr).map(([l, q]) => [l, { ...postPage(q, data), langs: p.langs }])); return pg; }),
   ...data.hotels.map((h) => hotelCityPage(h, data)),
   ...data.extras.map((x) => extraPage(x, data)),
   ...(data.extras.length ? [offersHub(data)] : []),
@@ -134,6 +135,11 @@ const ldHook = (L) => (obj) => {
   walk(obj);
 };
 const translators = Object.fromEntries(OTHERS.map((L) => [L.code, new Translator(L.code, readJson(path.join(I18N_DIR, `${L.code}.json`), {}), { ldHook: ldHook(L) })]));
+// texts the owner wrote in each language in the panel (events, blog cards) join that language's dictionary
+// reading time of any length (articles from the panel can be short or long): fill the ones not translated yet
+const READ = { en: "{0} min read", ru: "{0} мин чтения", tr: "{0} dk okuma", pt: "{0} min de leitura" };
+for (const L of OTHERS) for (let n = 1; n <= 60; n++) { const id = idOf(readAr(n)); if (!translators[L.code].dict[id]) translators[L.code].dict[id] = READ[L.code].replace("{0}", n); }
+for (const L of OTHERS) Object.assign(translators[L.code].dict, eventsDict(L.code, translators[L.code].dict, idOf), ownerPostDict(data.ownerPosts, L.code, idOf));
 
 // shared HTML clean-up (before translation, so generated labels such as table captions are translated too)
 const post = (html) => enhanceTables(html.replace(/\n\s*\n+/g, "\n").replace(/<(details|li)([^>]*?) data-reveal(="[a-z]+")?/g, "<$1$2"));
@@ -151,7 +157,8 @@ for (const L of OTHERS) fs.rmSync(path.join(ROOT_DIR, L.prefix), { recursive: tr
 
 pruneOwnerPages(data.ownerPosts);
 // cards of Arabic-only articles (written in the panel) are left out of the other languages
-const stripArOnly = (html) => html.replace(/<article class="card post-card" data-ar-only[\s\S]*?<\/article>/g, "");
+// cards of panel articles that have no version in this language are left out
+const stripArOnly = (html, code) => html.replace(/<article class="card post-card" data-langs="([a-z ]+)"[\s\S]*?<\/article>/g, (m, l) => (l.split(" ").includes(code) ? m : ""));
 const written = [];
 const titles = new Map();
 for (const page of pages) {
@@ -167,11 +174,12 @@ for (const page of pages) {
   if (page.description.length > 165) console.warn(`! long description (${page.description.length}): ${page.path}`);
   if (page.noLocale || page.absoluteRoot) continue;
   for (const L of OTHERS) {
+    if (page.langs && !page.langs.includes(L.code)) continue;
     const t = translators[L.code];
     t.page = page.path;
     const p = L.prefix + page.path;
     const d = p.split("/").filter(Boolean).length;
-    const html = localNumbers(t.html(post(stripArOnly(renderPage(page, data, ver, L.code)))), L.code);
+    const html = localNumbers(t.html(post(stripArOnly(renderPage((page.perLang && page.perLang[L.code]) || page, data, ver, L.code), L.code))), L.code);
     written.push({ page, lang: L, path: p, out: write(p, fixRoots(html, "../".repeat(d), d > 1 ? "../".repeat(d - 1) : "./")) });
   }
 }
@@ -190,7 +198,7 @@ const prio = (p) => (p === "" ? "1.0" : /^(hotels|flights|turkey-tours|saudi-vis
 const pagePhotos = (body) => [...new Set([...String(body || "").matchAll(/assets\/img\/photos\/([\w-]+?)(?:-640|-1024)?\.webp/g)].map((m) => m[1]))].slice(0, 12);
 const urls = written.filter((w) => !w.page.noindex).map((w) => {
   const imgs = pagePhotos(w.page.body).map((k) => `<image:image><image:loc>${site.url}/assets/img/photos/${k}.webp</image:loc></image:image>`).join("");
-  const alts = w.page.noLocale ? "" : site.locales.map((l) => `<xhtml:link rel="alternate" hreflang="${l.code}" href="${site.url}/${l.prefix}${w.page.path}"/>`).join("") + `<xhtml:link rel="alternate" hreflang="x-default" href="${site.url}/${w.page.path}"/>`;
+  const alts = pageLocales(w.page).length < 2 ? "" : pageLocales(w.page).map((l) => `<xhtml:link rel="alternate" hreflang="${l.code}" href="${site.url}/${l.prefix}${w.page.path}"/>`).join("") + `<xhtml:link rel="alternate" hreflang="x-default" href="${site.url}/${w.page.path}"/>`;
   return `  <url><loc>${site.url}/${w.path}</loc><priority>${prio(w.page.path)}</priority>${alts}${imgs}</url>`;
 });
 fs.writeFileSync(path.join(ROOT_DIR, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join("\n")}\n</urlset>\n`);

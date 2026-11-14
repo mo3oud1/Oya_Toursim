@@ -38,7 +38,17 @@ export function flightRoutes() {
 }
 
 /* ---------- events (tournaments / matches) ---------- */
-const EKEYS = ["id", "title", "titleEn", "tag", "tagEn", "text", "textEn", "link", "photo", "icon", "priceFrom", "featured", "active"];
+const EKEYS = ["id", "title", "tag", "text", "link", "photo", "icon", "priceFrom", "featured", "active", "i18n"];
+// the owner's own wording per language (i18n.en / .ru / .tr / .pt) → that language's dictionary for the build
+export function eventsDict(lang, dict, idOf) {
+  const d = {}, msg = dict[idOf("مرحباً أويا، أرغب بحضور: {0}.")];
+  for (const e of readJson("events.json", "events")) {
+    const i = e.i18n || {}, pick = (f) => (i[lang] && i[lang][f]) || (i.en && i.en[f]) || "";
+    for (const f of ["title", "tag", "text"]) if (e[f] && pick(f)) d[idOf(e[f])] = pick(f);
+    if (e.title && pick("title") && msg) d[idOf(`مرحباً أويا، أرغب بحضور: ${e.title}.`)] = msg.replace("{0}", pick("title"));
+  }
+  return d;
+}
 export function eventsGrid() {
   const all = readJson("events.json", "events");
   const list = all.filter((e) => e && e.active !== false && e.title);
