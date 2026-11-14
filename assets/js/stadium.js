@@ -1,3 +1,9 @@
+// run heavy set-up once scrolling has paused and the browser is idle (keeps scrolling smooth)
+const whenCalm = (fn) => {
+  const idle = window.requestIdleCallback ? (f) => window.requestIdleCallback(f, { timeout: 2000 }) : (f) => setTimeout(f, 1);
+  let t = 0; const wait = () => { clearTimeout(t); t = setTimeout(() => { removeEventListener("scroll", wait); idle(fn); }, 280); };
+  addEventListener("scroll", wait, { passive: true }); wait();
+};
 /* OYA — immersive 3D stadium & seating categories (three.js, MIT)
    Illustrative model: two-tier bowl, roof, floodlit pitch, a seated crowd tinted by ticket category,
    "see it from your seat" camera, Mexican wave, camera flashes, scrolling LED boards, big screens and an
@@ -77,7 +83,7 @@ if (root) {
     start();
   }));
   if (!coarse) {
-    const io = new IntersectionObserver((e) => { if (e[0].isIntersecting) { io.disconnect(); start(); } }, { rootMargin: "200px" });
+    const io = new IntersectionObserver((e) => { if (e[0].isIntersecting) { io.disconnect(); whenCalm(start); } }, { rootMargin: "200px" });
     io.observe(root);
   }
 

@@ -126,16 +126,13 @@
   $$("[data-tabs]").forEach(function (wrap) {
     var tabs = $$("[role=tab]", wrap);
     function select(tab, focus) {
-      var h0 = wrap.offsetHeight;
       tabs.forEach(function (t) {
         var on = t === tab;
         t.setAttribute("aria-selected", on ? "true" : "false");
         t.tabIndex = on ? 0 : -1;
         var p = d.getElementById(t.getAttribute("aria-controls"));
-        if (p) { p.hidden = !on; if (on) { p.classList.remove("is-in"); void p.offsetWidth; p.classList.add("is-in"); } }
+        if (p) { p.hidden = !on; if (on && !reduce) { if (p.animate) p.animate([{ opacity: 0, transform: "translateY(8px)" }, { opacity: 1, transform: "none" }], { duration: 380, easing: "cubic-bezier(.22,1,.36,1)" }); } }
       });
-      var h1 = wrap.offsetHeight;
-      if (!reduce && h0 && h0 !== h1 && wrap.animate) wrap.animate([{ height: h0 + "px", overflow: "hidden" }, { height: h1 + "px", overflow: "hidden" }], { duration: 300, easing: "cubic-bezier(.22,1,.36,1)" });
       if (focus) tab.focus();
     }
     tabs.forEach(function (t, i) {

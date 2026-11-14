@@ -705,7 +705,7 @@ body.no-scroll{overflow:hidden}
 /* Reduced motion */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
-  .js [data-reveal],.js [data-reveal] :is(h1,h2,.lead,.media img,.svc__bg img,.evt__media img),.js .section-head[data-reveal] .eyebrow::before{opacity:1;transform:none;filter:none}
+  .js [data-reveal],.js [data-reveal] :is(h1,h2,.lead,.media img,.svc__bg img,.evt__media img),.js .section-head[data-reveal] .eyebrow::before{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
   .split-line>span{transform:none}
   .fade-in{opacity:1}
   .hero__flight{display:none}
@@ -861,7 +861,7 @@ body.no-scroll{overflow:hidden}
 }
 
 /* Safety net: if main.js fails to run, never leave content hidden */
-.reveal-all [data-reveal]{opacity:1!important;transform:none!important}
+.reveal-all :is([data-reveal],[data-reveal] :is(h1,h2,.lead,.media img,.svc__bg img,.evt__media img),.section-head[data-reveal] .eyebrow::before){opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
 
 /* =========================================================
    Intentional placeholders: region tone + typographic cover + contrail
@@ -1252,7 +1252,7 @@ h3,h4{line-height:1.42}
 
 /* printing / save as PDF: content is visible, chrome is not */
 @media print{
-  [data-reveal],.fade-in,.split-line>span{opacity:1!important;transform:none!important;animation:none!important}
+  [data-reveal],[data-reveal] :is(h1,h2,.lead,.media img,.svc__bg img,.evt__media img),.section-head[data-reveal] .eyebrow::before,.fade-in,.split-line>span{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
   .skip,.drawer,.to-top,.fab-wa,.mbar,.hero__ctrl,.hero__flight,.stadium,.globe-stage{display:none!important}
   .page-hero,.hero{min-height:0!important;padding:0 0 12px!important;color:#000!important;background:none!important}
   .page-hero::before,.hero--photo::before,.page-hero__bg,.hero__slides{display:none!important}

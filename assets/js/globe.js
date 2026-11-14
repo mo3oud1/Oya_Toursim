@@ -1,3 +1,9 @@
+// run heavy set-up once scrolling has paused and the browser is idle (keeps scrolling smooth)
+const whenCalm = (fn) => {
+  const idle = window.requestIdleCallback ? (f) => window.requestIdleCallback(f, { timeout: 2000 }) : (f) => setTimeout(f, 1);
+  let t = 0; const wait = () => { clearTimeout(t); t = setTimeout(() => { removeEventListener("scroll", wait); idle(fn); }, 280); };
+  addEventListener("scroll", wait, { passive: true }); wait();
+};
 /* OYA — realistic interactive Earth (three.js, MIT; NASA Blue Marble / Black Marble imagery, public domain).
    Day side, city lights on the night side, sun glint on the oceans, clouds, atmosphere,
    and animated flight routes from Istanbul. Lazy: loads only near the viewport, renders only while
@@ -36,7 +42,7 @@ if (section) {
   }));
   chips.forEach((c) => c.addEventListener("click", () => select(c.dataset.id, true)));
 
-  const io = new IntersectionObserver((en) => { if (en[0].isIntersecting) { io.disconnect(); init(); } }, { rootMargin: "300px" });
+  const io = new IntersectionObserver((en) => { if (en[0].isIntersecting) { io.disconnect(); whenCalm(init); } }, { rootMargin: "300px" });
   io.observe(section);
 
   async function init() {
