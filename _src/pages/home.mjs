@@ -39,7 +39,7 @@ export function homePage(data) {
   // Each scene fills the screen, and on wide screens an arched window shows it again with a link to the service.
   // `-p` files are upright crops: the arched window, and the background on phones. The first scene is the LCP image.
   const SLIDES = [
-    { img: "home-istanbul", loc: "أورتاكوي، إسطنبول", title: "جولات إسطنبول اليومية", href: "day-trips/", fx: "40% 50%" },
+    { img: "home-bosphorus-night", loc: "جسر البوسفور، إسطنبول", title: "سهرة البوسفور", href: "activities/bosphorus-dinner-cruise/", fx: "45% 50%" },
     { img: "home-yacht", loc: "جولة بحرية خاصة", title: "يخت خاص في البوسفور", href: "activities/private-yacht/", fx: "40% 60%" },
     { img: "home-cabin", loc: "سبانجا، تركيا", title: "أكواخ وبنغلات بمسبح خاص", href: "cabins/", fx: "50% 60%" },
     { img: "home-cappadocia", loc: "كابادوكيا، تركيا", title: "برامج كابادوكيا", href: "turkey-tours/cappadocia/", fx: "45% 45%" },

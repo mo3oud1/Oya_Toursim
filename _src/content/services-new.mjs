@@ -236,7 +236,7 @@ export default [
     slug: "istanbul-european-side",
     navLabel: "جولة إسطنبول الأوروبية",
     icon: "mosque",
-    img: "dest-istanbul",
+    img: "home-istanbul", // a real photograph of Ortaköy and the Bosphorus bridge (licensed)
     card: "آيا صوفيا والجامع الأزرق وتوبكابي، البازار الكبير، غلطة وتقسيم وأورتاكوي.",
     seo: { title: "جولة إسطنبول الأوروبية بسائق خاص: 10 ساعات | أويا", description: "جولة خاصة في الجانب الأوروبي من إسطنبول مدتها نحو 10 ساعات: آيا صوفيا والجامع الأزرق وتوبكابي والبازار الكبير وغلطة وأورتاكوي، بسائق يتحدث العربية." },
     h1: "جولة إسطنبول الأوروبية: 10 ساعات بسيارة خاصة وسائق",
