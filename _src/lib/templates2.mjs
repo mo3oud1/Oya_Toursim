@@ -163,7 +163,7 @@ export function serviceHub(key, data) {
   const crumbs = [{ name: "الرئيسية", path: "" }, { name: h.name, path: h.path }];
   const page = { path: h.path, nav: h.nav, crumbs, title: h.title, description: h.description };
   page.body = `
-${pageHero({ crumbs, eyebrow: h.name, title: h.h1, lead: h.lead, icon: h.icon, img: h.img, alt: h.name, page: h.path, actions: waBtn(h.wa, "اسألنا عبر واتساب", "btn btn--wa") })}
+${pageHero({ crumbs, eyebrow: h.name, title: h.h1, lead: h.lead, icon: h.icon, img: (data.pagePhotos || {})[h.path] || h.img, alt: h.name, page: h.path, actions: waBtn(h.wa, "اسألنا عبر واتساب", "btn btn--wa") })}
 <section class="section"><div class="container">${serviceCards(list)}</div></section>
 <section class="section section--tight"><div class="container">${sectionHead({ eyebrow: "خدمات قريبة", title: "قد يهمك أيضاً" })}<div class="contact-tiles">${h.more.map((o) => `<a class="ctile" href="{{root}}${o.path}"><span class="ico">${ic(o.icon)}</span><div><b>${o.name}</b></div></a>`).join("")}</div></div></section>
 ${ctaBand({ wa: h.wa })}`;

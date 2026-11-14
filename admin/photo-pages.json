@@ -1,0 +1,163 @@
+[
+ {
+  "path": "activities/",
+  "name": "قسم: أنشطة وتذاكر",
+  "group": "أنشطة وتذاكر",
+  "img": "home-yacht",
+  "custom": false
+ },
+ {
+  "path": "residency/",
+  "name": "قسم: إقامات وموافقات",
+  "group": "إقامات وموافقات",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "day-trips/sapanca-masukiye/",
+  "name": "رحلة سبانجا ومعشوقية",
+  "group": "جولات يومية",
+  "img": "home-cabin",
+  "custom": false
+ },
+ {
+  "path": "day-trips/bursa/",
+  "name": "رحلة بورصا",
+  "group": "جولات يومية",
+  "img": "dest-bursa",
+  "custom": false
+ },
+ {
+  "path": "day-trips/princes-islands/",
+  "name": "جزر الأميرات",
+  "group": "جولات يومية",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "day-trips/sile-agva/",
+  "name": "رحلة شيلا وأغوا",
+  "group": "جولات يومية",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "day-trips/yalova/",
+  "name": "رحلة يلوا",
+  "group": "جولات يومية",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "day-trips/izmit-kartepe/",
+  "name": "رحلة إزميت وكارتبه",
+  "group": "جولات يومية",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "day-trips/istanbul-european-side/",
+  "name": "جولة إسطنبول الأوروبية",
+  "group": "جولات يومية",
+  "img": "home-istanbul",
+  "custom": false
+ },
+ {
+  "path": "day-trips/istanbul-asian-side/",
+  "name": "جولة إسطنبول الآسيوية",
+  "group": "جولات يومية",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "activities/private-yacht/",
+  "name": "يخت خاص في البوسفور",
+  "group": "أنشطة وتذاكر",
+  "img": "home-yacht",
+  "custom": false
+ },
+ {
+  "path": "activities/bosphorus-dinner-cruise/",
+  "name": "سهرة البوسفور",
+  "group": "أنشطة وتذاكر",
+  "img": "home-bosphorus-night",
+  "custom": false
+ },
+ {
+  "path": "activities/istanbul-aquarium/",
+  "name": "تذاكر الأكواريوم",
+  "group": "أنشطة وتذاكر",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "activities/theme-parks/",
+  "name": "تذاكر مدن الألعاب",
+  "group": "أنشطة وتذاكر",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "activities/zoo/",
+  "name": "تذاكر حديقة الحيوانات",
+  "group": "أنشطة وتذاكر",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "residency/tourist-residence-permit/",
+  "name": "الإقامة السياحية في تركيا",
+  "group": "إقامات وموافقات",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "residency/kimlik-to-residence/",
+  "name": "تحويل الكملك إلى إقامة",
+  "group": "إقامات وموافقات",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "residency/egypt-security-approval/",
+  "name": "الموافقة الأمنية لمصر",
+  "group": "إقامات وموافقات",
+  "img": "",
+  "custom": false
+ },
+ {
+  "path": "transfers/",
+  "name": "استقبال المطار",
+  "group": "خدمات وعروض",
+  "img": "home-transfer",
+  "custom": false
+ },
+ {
+  "path": "private-driver/",
+  "name": "سائق خاص",
+  "group": "خدمات وعروض",
+  "img": "svc-private-driver",
+  "custom": false
+ },
+ {
+  "path": "day-trips/",
+  "name": "جولات يومية",
+  "group": "خدمات وعروض",
+  "img": "svc-day-trips",
+  "custom": false
+ },
+ {
+  "path": "offers/eid-al-fitr-2027/",
+  "name": "عروض عيد الفطر 2027",
+  "group": "خدمات وعروض",
+  "img": "svc-eid-al-fitr-2027",
+  "custom": false
+ },
+ {
+  "path": "offers/ramadan-umrah-2027/",
+  "name": "عمرة رمضان 2027",
+  "group": "خدمات وعروض",
+  "img": "svc-ramadan-umrah-2027",
+  "custom": false
+ }
+]

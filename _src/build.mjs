@@ -40,6 +40,25 @@ const data = {
 // used by a built-in article is ignored so the panel can never replace or delete one
 data.ownerPosts = ownerPosts().filter((p) => !data.posts.some((x) => x.slug === p.slug));
 
+// page photographs uploaded from /admin/ (data/photos.json): { pages: { "<page path>": "pg-…" } }.
+// A key is used only when it has the expected shape and its file exists; otherwise the page keeps its own photo.
+{
+  let up = {};
+  try { up = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "data/photos.json"), "utf8")).pages || {}; } catch {}
+  data.pagePhotos = {};
+  for (const [p, k] of Object.entries(up && typeof up === "object" ? up : {})) if (typeof k === "string" && /^pg-[a-z0-9-]{3,90}$/.test(k) && photoExists(k)) data.pagePhotos[p] = k;
+  for (const x of [...data.services, ...data.extras]) if (data.pagePhotos[x.path]) x.img = data.pagePhotos[x.path];
+  // the list the panel shows: every page whose photo can be changed, with the photo it has now
+  const GROUP = { trips: "جولات يومية", activities: "أنشطة وتذاكر", residency: "إقامات وموافقات" };
+  const rows = [
+    { path: "activities/", name: "قسم: أنشطة وتذاكر", group: GROUP.activities, img: data.pagePhotos["activities/"] || "home-yacht" },
+    { path: "residency/", name: "قسم: إقامات وموافقات", group: GROUP.residency, img: data.pagePhotos["residency/"] || "" },
+    ...data.services.map((x) => ({ path: x.path, name: x.navLabel, group: GROUP[x.group], img: x.img && photoExists(x.img) ? x.img : "" })),
+    ...data.extras.map((x) => ({ path: x.path, name: x.navLabel || x.h1.split(":")[0], group: "خدمات وعروض", img: x.img && photoExists(x.img) ? x.img : "" })),
+  ].map((r) => ({ ...r, custom: !!data.pagePhotos[r.path] }));
+  fs.writeFileSync(path.join(ROOT_DIR, "admin/photo-pages.json"), JSON.stringify(rows, null, 1) + "\n");
+}
+
 // prices database (data/prices.json, edited from /admin/): package "from" prices; new packages are added with null
 const PRICES_FILE = path.join(ROOT_DIR, "data/prices.json");
 {
