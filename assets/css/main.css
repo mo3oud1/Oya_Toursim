@@ -1715,3 +1715,35 @@ h3,h4{line-height:1.42}
 .sc-prices summary{cursor:pointer;padding:12px 0;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:.5em}
 .sc-prices summary .i{width:20px;height:20px;color:var(--orange-btn)}
 .evt a.cover::after{content:"";position:absolute;inset:0;z-index:1}
+/* header between 1024 and 1360px: four items + More must fit with the language pill and WhatsApp (icons hidden, tighter items, WhatsApp as an icon) */
+@media(min-width:1024px) and (max-width:1359.98px){
+  .site-header .container{gap:12px}
+  .nav .nav-ico{display:none}
+  .nav>ul{gap:0}
+  .nav .nav-main>a,.nav .nav-main>.nav-trigger,.nav .nav-more>.nav-trigger{padding:.5em .62em;font-size:.93rem}
+  .nav .nav-more{margin-inline-start:2px;padding-inline-start:4px}
+  .header-cta{gap:6px}
+  .header-cta .btn{width:44px;padding:0;justify-content:center}
+  .header-cta .btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .site-header .lang__btn{padding-inline:.6em}
+  .site-header .brand img{width:132px;height:auto}
+}
+
+/* council round: stadium on phones, honest price note, events grid, tap targets */
+.si-legal{display:flex;gap:.45em;align-items:flex-start;margin:4px 0 0;font-size:.78rem;line-height:1.6;color:#9FB6CF}
+.si-legal .i{width:15px;height:15px;flex:none;margin-top:.25em}
+.si-next{margin-top:2px}
+.stadium-on .to-top{opacity:0;pointer-events:none}
+@media(max-width:640px){
+  .stadium-seatpick{bottom:62px;padding:6px 10px;gap:2px}
+  .stadium-seatpick .sp-head{display:none}
+  .stadium-seatpick label{font-size:.76rem;column-gap:6px}
+  .stadium-seatpick label small{display:none}
+  .stadium-seatlabel{white-space:normal;line-height:1.45;border-radius:12px;max-width:calc(100% - 20px);text-align:center;font-size:.76rem;top:58px}
+  .stadium-sheet{padding:8px 10px;gap:6px;font-size:.85rem}
+}
+.evt-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.evt__media{background:radial-gradient(120% 90% at 85% 0%,rgba(237,84,4,.28),transparent 55%),linear-gradient(150deg,var(--navy-800),var(--navy))}
+.evt__art{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 100'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.12' stroke-width='1.2'%3E%3Crect x='6' y='6' width='148' height='88' rx='3'/%3E%3Cline x1='80' y1='6' x2='80' y2='94'/%3E%3Ccircle cx='80' cy='50' r='13'/%3E%3Crect x='6' y='30' width='20' height='40'/%3E%3Crect x='134' y='30' width='20' height='40'/%3E%3C/g%3E%3C/svg%3E") center/88% auto no-repeat}
+@media(max-width:699px){.evt:not(.evt--featured) .evt__media{aspect-ratio:16/7}.evt__art .i{width:44px;height:44px}}
+.crumbs a{display:inline-block;padding:.4em 0}

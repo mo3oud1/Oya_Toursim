@@ -7250,7 +7250,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 11
+  "n": 10
  },
  {
   "id": "f7f66e8147",
@@ -9438,36 +9438,6 @@
   "n": 1
  },
  {
-  "id": "6b9090f41a",
-  "kind": "text",
-  "ar": "احصل على عروض الفنادق",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "463d2ec28c",
-  "kind": "text",
-  "ar": "أرسل الوجهة والتواريخ ونرسل لك خيارات مختارة بالصور والأسعار.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "87a6edd7cc",
-  "kind": "attr",
-  "ar": "مثال: إطلالة على البوسفور وقريب من تقسيم، مع إفطار",
-  "pages": [
-   "hotels/",
-   "hotels/istanbul/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
-  ],
-  "n": 7
- },
- {
   "id": "51be599f8c",
   "kind": "text",
   "ar": "حسب الوجهة",
@@ -9667,6 +9637,36 @@
    "hotels/family-friendly/"
   ],
   "n": 3
+ },
+ {
+  "id": "6b9090f41a",
+  "kind": "text",
+  "ar": "احصل على عروض الفنادق",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "463d2ec28c",
+  "kind": "text",
+  "ar": "أرسل الوجهة والتواريخ ونرسل لك خيارات مختارة بالصور والأسعار.",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "87a6edd7cc",
+  "kind": "attr",
+  "ar": "مثال: إطلالة على البوسفور وقريب من تقسيم، مع إفطار",
+  "pages": [
+   "hotels/",
+   "hotels/istanbul/",
+   "hotels/trabzon/",
+   "hotels/uzungol/"
+  ],
+  "n": 7
  },
  {
   "id": "ffb3af27cb",
@@ -46547,9 +46547,9 @@
   "n": 4
  },
  {
-  "id": "235dd6e7ac",
+  "id": "46c15af6a4",
   "kind": "text",
-  "ar": "الفئة A+",
+  "ar": "الفئة A+‎",
   "pages": [
    "matches/",
    "matches/spanish-super-cup-2027/"
@@ -46950,9 +46950,9 @@
   "n": 1
  },
  {
-  "id": "c4712079d3",
+  "id": "36408bd1e3",
   "kind": "text",
-  "ar": "اختر مباراتك ومقعدك",
+  "ar": "اختر مباراتك وفئة مقعدك",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -47141,9 +47141,9 @@
   "n": 1
  },
  {
-  "id": "4e73a02cd1",
+  "id": "b061dd1d22",
   "kind": "attr",
-  "ar": "جدول: المباراة، الفئة C، الفئة B، الفئة A، الفئة A+",
+  "ar": "جدول: المباراة، الفئة C، الفئة B، الفئة A، الفئة A+‎",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -47350,6 +47350,15 @@
   "n": 1
  },
  {
+  "id": "786d8db075",
+  "kind": "text",
+  "ar": "اطلب",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
   "id": "c5b7cb2000",
   "kind": "attr",
   "ar": "تكبير",
@@ -47513,9 +47522,9 @@
   "n": 1
  },
  {
-  "id": "dca3d94dc3",
+  "id": "d001cd5ad7",
   "kind": "text",
-  "ar": "السعر للتذكرة: <g1>—</g1>",
+  "ar": "السعر التقديري للتذكرة: <g1>—</g1>",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],
@@ -47567,9 +47576,27 @@
   "n": 1
  },
  {
-  "id": "69fb9f7eb4",
+  "id": "8a657794f6",
   "kind": "text",
-  "ar": "احجز هذه الفئة",
+  "ar": "اطلب هذه الفئة عبر واتساب",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "30cd87597d",
+  "kind": "text",
+  "ar": "أكمل طلبك في النموذج",
+  "pages": [
+   "matches/spanish-super-cup-2027/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "3650548e44",
+  "kind": "text",
+  "ar": "السعر الرسمي للتذكرة + رسوم خدمة معلنة. لا نبيع التذاكر: نساعدك في شرائها باسمك من القناة الرسمية وحسب التوفر.",
   "pages": [
    "matches/spanish-super-cup-2027/"
   ],

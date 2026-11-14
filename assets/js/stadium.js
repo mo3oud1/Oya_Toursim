@@ -408,7 +408,7 @@ if (root) {
       const m4 = new THREE.Matrix4().makeScale(0, 0, 0);
       for (let i = 0; i < crowd.n; i++) {
         const dx = crowd.pos[i * 3] - p.x, dy = crowd.pos[i * 3 + 1] - (p.y - 1.32), dz = crowd.pos[i * 3 + 2] - p.z;
-        if (dx * dx + dz * dz < 3.2 && dy < 0.3 && dy > -1.0) {
+        if (dx * dx + dz * dz < 7.5 && dy < 0.3 && dy > -1.6) {
           const mb = new THREE.Matrix4(), mh = new THREE.Matrix4(); crowd.body.getMatrixAt(i, mb); crowd.head.getMatrixAt(i, mh); hiddenSeats.push([i, mb, mh]);
           crowd.body.setMatrixAt(i, m4); crowd.head.setMatrixAt(i, m4);
         }
@@ -638,7 +638,7 @@ if (root) {
     let onScreen = true, visible = true, raf = 0, last = performance.now(), skip = false;
     const soundOn = () => audio && soundBtn.getAttribute("aria-pressed") === "true";
     const sync = () => { visible = onScreen && !document.hidden; if (soundOn()) { visible ? audio.on() : audio.off(true); } kick(); };
-    new IntersectionObserver((e) => { onScreen = e[0].isIntersecting; sync(); }, { threshold: 0.05 }).observe(stage);
+    new IntersectionObserver((e) => { onScreen = e[0].isIntersecting; document.documentElement.classList.toggle("stadium-on", onScreen); sync(); }, { threshold: 0.05 }).observe(stage);
     document.addEventListener("visibilitychange", sync);
     function frame(now) {
       raf = 0; if (!visible) return;

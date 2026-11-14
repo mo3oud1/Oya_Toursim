@@ -26,7 +26,7 @@ const CURRENCY = { symbol: "$", code: "USD" };
 // prices come from data/prices.json (edited from /admin/); labels A+ / A / B / C follow the owner's price list
 const PRICE_DB = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, "data/prices.json"), "utf8"));
 const dbPrices = (id) => { const r = PRICE_DB.superCup?.matches?.[id] || {}; const o = {}; for (const k of ["cat3", "cat2", "cat1", "vip"]) o[k] = typeof r[k] === "number" && r[k] > 0 ? r[k] : null; return o; };
-const CATS = [["cat3", "الفئة C"], ["cat2", "الفئة B"], ["cat1", "الفئة A"], ["vip", "الفئة A+"]];
+const CATS = [["cat3", "الفئة C"], ["cat2", "الفئة B"], ["cat1", "الفئة A"], ["vip", "الفئة A+\u200E"]];
 export const scMatches = [
   { id: "sf1", stage: "نصف النهائي الأول", date: "2027-02-02", dateAr: "الثلاثاء 2 فبراير 2027 • 22:00", home: "fcb", away: "atm", start: "2027-02-02T22:00:00+03:00", venue: "Chobani Stadyumu (Fenerbahçe Şükrü Saracoğlu), Kadıköy", venueAr: "ملعب شكري سراج أوغلو (Chobani) — كاديكوي", form: "نصف النهائي: برشلونة × أتلتيكو مدريد (2 فبراير)",
     prices: dbPrices("sf1") },
@@ -143,7 +143,7 @@ const tiers = (ctx = "كأس السوبر الإسباني 2027") => `
 
 // ---- 3D stadium & seating categories (illustrative) ----
 const SEATS = {
-  vip: { label: "الفئة A+", color: "#F4B740", desc: "منتصف المدرج الرئيسي قرب خط منتصف الملعب: أفضل زاوية لمتابعة المباراة." },
+  vip: { label: "الفئة A+\u200E", color: "#F4B740", desc: "منتصف المدرج الرئيسي قرب خط منتصف الملعب: أفضل زاوية لمتابعة المباراة." },
   cat1: { label: "الفئة A", color: "#ED5404", desc: "المدرجات الطولية على جانبي الملعب: رؤية جانبية كاملة لكل اللعب." },
   cat2: { label: "الفئة B", color: "#4F8BC9", desc: "الزوايا وأطراف المدرجات الجانبية: رؤية متوازنة للملعب وسعر أقل." },
   cat3: { label: "الفئة C", color: "#2A9D8F", desc: "المدرجات خلف المرميين: أجواء الجماهير الأكثر حماساً وأقل سعر." },
@@ -182,7 +182,7 @@ function stadiumSection({ step = false } = {}) {
           <p class="stadium-hint">${ic("refresh")}<span>اسحب للتدوير</span><span class="hint-more"> • اضغط على مدرج أو على الخريطة ثم «شاهد من مقعدك»</span></p>
           <div class="stadium-sheet" aria-live="polite">
             <p><span class="ss-dot"></span><b class="ss-cat"></b><span class="ss-where"></span></p>
-            <div class="ss-actions"><button type="button" class="btn btn--sm ss-seat">${ic("eye")}<span>شاهد من مقعدك</span></button><a class="btn btn--wa btn--sm ss-wa" href="#book" target="_blank" rel="noopener">${ic("whatsapp")}<span>احجز</span></a><button type="button" class="ss-close" aria-label="إغلاق">${ic("x")}</button></div>
+            <div class="ss-actions"><button type="button" class="btn btn--sm ss-seat">${ic("eye")}<span>شاهد من مقعدك</span></button><a class="btn btn--wa btn--sm ss-wa" href="#book" target="_blank" rel="noopener">${ic("whatsapp")}<span>اطلب</span></a><button type="button" class="ss-close" aria-label="إغلاق">${ic("x")}</button></div>
           </div>
           <div class="stadium-fx">
             <button type="button" data-zoom="in" aria-label="تكبير">${ic("plus")}</button>
@@ -207,11 +207,13 @@ function stadiumSection({ step = false } = {}) {
             <p class="si-head"><span class="si-dot"></span><b class="si-cat">اختر مدرجاً</b></p>
             <p class="si-where">اضغط على أي جزء من المدرجات أو على فئة من القائمة، ثم شاهد المباراة من مكانك.</p>
             <p class="si-desc"></p>
-            <p class="si-price-row">السعر للتذكرة: <b class="si-price">—</b></p>
+            <p class="si-price-row">السعر التقديري للتذكرة: <b class="si-price">—</b></p>
             <div class="si-qty si-price-row"><span>عدد التذاكر</span><div class="qty"><button type="button" class="qty__b" data-q="-1" aria-label="تذكرة أقل">−</button><output class="si-n" aria-live="polite">1</output><button type="button" class="qty__b" data-q="1" aria-label="تذكرة أكثر">+</button></div></div>
             <p class="si-total-row si-price-row">الإجمالي التقديري: <b class="si-total">—</b></p>
             <button type="button" class="btn btn--block si-seat">${ic("eye")}<span>شاهد الملعب من مقعدك</span></button>
-            <a class="btn btn--wa btn--block si-wa" href="#book" target="_blank" rel="noopener">${ic("whatsapp")}<span>احجز هذه الفئة</span></a>
+            <a class="btn btn--wa btn--block si-wa" href="#book" target="_blank" rel="noopener">${ic("whatsapp")}<span>اطلب هذه الفئة عبر واتساب</span></a>
+            <a class="btn btn--ghost btn--block si-next" href="#book">${ic("send")}<span>أكمل طلبك في النموذج</span></a>
+            <p class="si-legal">${ic("info")}<span>السعر الرسمي للتذكرة + رسوم خدمة معلنة. لا نبيع التذاكر: نساعدك في شرائها باسمك من القناة الرسمية وحسب التوفر.</span></p>
           </div>
           <p class="stadium-note">${ic("info")} تمثيل توضيحي لتوزيع الفئات؛ المخطط النهائي للمقاعد تحدده الجهة المنظمة لكل ملعب.</p>
         </aside>
@@ -373,7 +375,7 @@ export function superCupPage(data) {
   ];
   page.body = `
 ${pageHero({ crumbs, ...heroPhoto("hero-super-cup"), eyebrow: `${ic("trophy")} إسطنبول • 2–6 فبراير 2027`, title: "تذاكر كأس السوبر الإسباني 2027 في إسطنبول", lead: "الكلاسيكو المحتمل في النهائي، ونجوم الليغا على أرض إسطنبول. احجز باقة إقامة المشجع مع أويا للسياحة، ونساعدك في الحصول على تذكرتك الرسمية باسمك وحسب التوفر — من قلب المدينة المستضيفة.", icon: "trophy", page: path,
-    actions: `<a class="btn" href="#pick">${ic("stadium")}<span>اختر مباراتك ومقعدك</span></a>${waBtn("مرحباً أويا، أرغب بباقة حضور كأس السوبر الإسباني 2027 في إسطنبول.", "واتساب", "btn btn--glass")}`,
+    actions: `<a class="btn" href="#pick">${ic("stadium")}<span>اختر مباراتك وفئة مقعدك</span></a>${waBtn("مرحباً أويا، أرغب بباقة حضور كأس السوبر الإسباني 2027 في إسطنبول.", "واتساب", "btn btn--glass")}`,
     extra: `<div class="mt-2" style="max-width:560px">${countdown()}</div>` })}
 
 <section class="section section--tight tsteps-sec">

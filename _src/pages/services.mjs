@@ -114,15 +114,17 @@ export function hotelsPage(data) {
 ${pageHero({ crumbs, ...heroPhoto("hero-hotels"), eyebrow: `${ic("star")} الخدمة الأكثر طلباً`, title: "حجز فنادق ومنتجعات في تركيا للعائلات والأزواج", lead: "من فنادق البوسفور الفاخرة إلى فلل سبانجا بمسابحها الخاصة وأكواخ أوزنجول — نختار لك الإقامة المناسبة ونتحقق من كل تفصيل قبل أن تصل.", icon: "hotel", page: path,
     chips: [{ icon: "check-circle", text: "تأكيد حجز مكتوب" }, { icon: "headset", text: "متابعة مع الفندق بالعربية" }, { icon: "heart", text: "خيارات لشهر العسل والعائلات" }] })}
 
-<section class="section section--tight" id="book" style="margin-top:-56px;position:relative;z-index:3">
-  <div class="container"><div class="form-card" data-reveal="zoom"><div class="form-head"><span class="ico ico--orange">${ic("bed")}</span><div><h2 class="h-l mb-0" style="font-size:1.4rem">احصل على عروض الفنادق</h2><p class="muted mb-0" style="font-size:.95rem">أرسل الوجهة والتواريخ ونرسل لك خيارات مختارة بالصور والأسعار.</p></div></div>${hotelForm()}</div></div>
-</section>
+
 
 <section class="section">
   <div class="container">
     ${sectionHead({ eyebrow: "حسب الوجهة", title: "فنادق في أجمل مدن تركيا" })}
     <div class="grid grid-3 hcities" data-stagger>${(data.hotels || []).map((h) => `<a class="dest" href="{{root}}hotels/${h.slug}/" data-reveal>${media({ img: h.img, prompt: h.imgPrompt, alt: h.h1, ratio: "", page: path, tone: h.destination ? toneFor(h.destination) : "gulf" })}<div class="dest__body"><h3>${h.slug === "family-friendly" ? "فنادق محافظة" : "فنادق " + esc(h.city)}</h3><span class="en">${esc(h.cityEn)}</span>${areas[h.slug] ? `<ul class="dest__areas">${areas[h.slug].map((x) => `<li>${ic("pin")}${x}</li>`).join("")}</ul>` : ""}<p>${esc(h.intro)}</p></div></a>`).join("")}</div>
   </div>
+</section>
+
+<section class="section section--tight" id="book">
+  <div class="container"><div class="form-card" data-reveal="zoom"><div class="form-head"><span class="ico ico--orange">${ic("bed")}</span><div><h2 class="h-l mb-0" style="font-size:1.4rem">احصل على عروض الفنادق</h2><p class="muted mb-0" style="font-size:.95rem">أرسل الوجهة والتواريخ ونرسل لك خيارات مختارة بالصور والأسعار.</p></div></div>${hotelForm()}</div></div>
 </section>
 
 ${hotelsSection()}
