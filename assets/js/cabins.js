@@ -30,8 +30,8 @@
     var msg = T("مرحباً أويا، أرغب بحجز «{0}» ({1}). التواريخ وعدد الأشخاص:", [c.name, area[0]]);
     var feats = (c.features || []).filter(function (f) { return FEAT[f]; }).slice(0, 6);
     return '<article class="cab" data-reveal>' +
-      '<div class="cab__media">' + (photos.length ? photos.map(function (p, i) {
-        return '<img src="' + esc(root + p) + '" alt="' + esc(c.name + " — " + area[0]) + '" loading="lazy" decoding="async"' + (i ? " hidden" : "") + ">";
+      '<div class="cab__media"' + (photos.length > 1 ? ' tabindex="0" role="group" aria-roledescription="carousel" aria-label="' + esc(T("صورة أخرى")) + '"' : "") + '>' + (photos.length ? photos.map(function (p, i) {
+        return '<img ' + (i ? 'data-src="' : 'src="') + esc(root + p) + '" alt="' + esc(c.name + " — " + area[0]) + '" loading="lazy" decoding="async">';
       }).join("") : '<span class="cab__noimg" aria-hidden="true"></span>') +
       (photos.length > 1 ? '<button type="button" class="cab__nav cab__l" aria-label="' + esc(T("صورة أخرى")) + '">‹</button><button type="button" class="cab__nav cab__r" aria-label="' + esc(T("صورة أخرى")) + '">›</button><span class="cab__n">1 / ' + photos.length + "</span>" : "") +
       '<span class="cab__area">' + esc(area[0]) + "</span></div>" +
@@ -69,7 +69,7 @@
       if (empty) empty.hidden = list.length > 0;
       if (count) count.textContent = list.length ? T("عدد الأكواخ: {0}", [list.length]) : "";
       var sec = b.closest("[data-cab-sec]"); if (sec) sec.hidden = !list.length;
-      [].slice.call(grid.querySelectorAll(".cab")).forEach(gallery);
+      [].slice.call(grid.querySelectorAll(".cab")).forEach(window.__oyaGallery || gallery);
       if (window.__oyaReveal) window.__oyaReveal(grid);
       else [].slice.call(grid.querySelectorAll("[data-reveal]")).forEach(function (x) { x.classList.add("is-in"); });
     }

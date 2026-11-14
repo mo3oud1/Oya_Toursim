@@ -418,6 +418,10 @@
     if (im && !im.complete) { im.addEventListener("load", go, { once: true }); setTimeout(go, 1500); } else go();
   }
   dots.forEach(function (d, n) { d.addEventListener("click", function () { if (n !== i) show(n); else schedule(); }); });
+  // swipe the hero photos on phones (a clear sideways move; vertical moves keep scrolling)
+  var sx = null, sy = 0, hrtl = getComputedStyle(h).direction === "rtl";
+  h.addEventListener("touchstart", function (e) { if (e.target.closest("a,button,input,select,textarea")) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  h.addEventListener("touchend", function (e) { if (sx === null) return; var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy; sx = null; if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(i + ((dx < 0) !== hrtl ? 1 : -1)); }, { passive: true });
   function setPaused(p) {
     paused = p; h.classList.toggle("is-paused", p);
     btn.setAttribute("aria-pressed", p ? "true" : "false");
@@ -445,4 +449,47 @@
       h.addEventListener("pointerleave", function () { mx = 0; my = 0; if (!raf) raf = requestAnimationFrame(ease); });
     }
   }
+})();
+
+/* Photo galleries on cabin and hotel cards: smooth crossfade with a soft slide in the direction of travel,
+   swipe on phones, arrow keys, the next photo fetched ahead (only the first photo loads with the page). */
+(function () {
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.__oyaGallery = function (card) {
+    var media = card.querySelector(".cab__media"); if (!media || media.__g) return; media.__g = 1;
+    var imgs = [].slice.call(media.querySelectorAll("img")); if (imgs.length < 2) return;
+    var i = 0, busy = false, n = card.querySelector(".cab__n");
+    var rtl = getComputedStyle(card).direction === "rtl";
+    var load = function (im) { if (im && im.dataset.src) { im.src = im.dataset.src; im.removeAttribute("data-src"); } return im; };
+    var ready = function (im) { return im.complete && im.naturalWidth ? Promise.resolve() : new Promise(function (r) { im.addEventListener("load", r, { once: true }); im.addEventListener("error", r, { once: true }); setTimeout(r, 2500); }); };
+    imgs[0].classList.add("is-on");
+    function go(d) {
+      if (busy) return; busy = true;
+      var from = imgs[i], k = (i + d + imgs.length) % imgs.length, to = load(imgs[k]);
+      load(imgs[(k + d + imgs.length) % imgs.length]); // fetch the one after next ahead of time
+      media.classList.add("is-busy");
+      ready(to).then(function () {
+        var dir = (d > 0 ? 1 : -1) * (rtl ? -1 : 1); // the new photo comes from the side you are moving towards
+        to.style.setProperty("--gx", (dir * 7) + "%"); from.style.setProperty("--gx", (-dir * 7) + "%");
+        to.classList.remove("is-out"); to.classList.add("is-in");
+        void to.offsetWidth; // start from the "in" position
+        from.classList.remove("is-on"); from.classList.add("is-out");
+        to.classList.remove("is-in"); to.classList.add("is-on");
+        i = k; if (n) n.textContent = (i + 1) + " / " + imgs.length;
+        setTimeout(function () { from.classList.remove("is-out"); busy = false; media.classList.remove("is-busy"); }, reduce ? 50 : 760);
+      });
+    }
+    var l = card.querySelector(".cab__l"), r = card.querySelector(".cab__r");
+    // the left arrow moves forward in Arabic, back in the other languages
+    if (l) l.addEventListener("click", function () { go(rtl ? 1 : -1); });
+    if (r) r.addEventListener("click", function () { go(rtl ? -1 : 1); });
+    media.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") { e.preventDefault(); go(rtl ? 1 : -1); } if (e.key === "ArrowRight") { e.preventDefault(); go(rtl ? -1 : 1); } });
+    // swipe: a clear sideways move changes the photo; vertical moves keep scrolling the page
+    var x0 = null, y0 = 0;
+    media.addEventListener("pointerdown", function (e) { if (e.pointerType === "mouse" || e.target.closest("button")) return; x0 = e.clientX; y0 = e.clientY; });
+    media.addEventListener("pointerup", function (e) { if (x0 === null) return; var dx = e.clientX - x0, dy = e.clientY - y0; x0 = null; if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.4) go((dx < 0) !== rtl ? 1 : -1); });
+    media.addEventListener("pointercancel", function () { x0 = null; });
+    // hovering the card on a computer quietly fetches the second photo
+    card.addEventListener("pointerenter", function () { load(imgs[1]); }, { once: true });
+  };
 })();

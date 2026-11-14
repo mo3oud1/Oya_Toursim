@@ -90,8 +90,8 @@
     var nst = Math.max(0, Math.min(5, parseInt(h.stars, 10) || 0)), stars = nst > 0 ? '<span class="cab__stars" aria-label="' + esc(T("{0} نجوم", [nst])) + '">' + new Array(nst + 1).join("★") + "</span>" : "";
     var feats = (h.features || []).filter(function (f) { return HFEAT[f]; }).slice(0, 6);
     var msg = T("مرحباً أويا، أرغب بحجز فندق «{0}» ({1}). التواريخ وعدد الأشخاص:", [h.name, city]);
-    return '<article class="cab" data-reveal><div class="cab__media">' + (photos.length ? photos.map(function (p, i) {
-      return '<img src="' + esc(root + p) + '" alt="' + esc(h.name + " — " + city) + '" loading="lazy" decoding="async"' + (i ? " hidden" : "") + ">";
+    return '<article class="cab" data-reveal><div class="cab__media"' + (photos.length > 1 ? ' tabindex="0" role="group" aria-roledescription="carousel" aria-label="' + esc(T("صورة أخرى")) + '"' : "") + '>' + (photos.length ? photos.map(function (p, i) {
+      return '<img ' + (i ? 'data-src="' : 'src="') + esc(root + p) + '" alt="' + esc(h.name + " — " + city) + '" loading="lazy" decoding="async">';
     }).join("") : '<span class="cab__noimg" aria-hidden="true"></span>') +
       (photos.length > 1 ? '<button type="button" class="cab__nav cab__l" aria-label="' + esc(T("صورة أخرى")) + '">‹</button><button type="button" class="cab__nav cab__r" aria-label="' + esc(T("صورة أخرى")) + '">›</button><span class="cab__n">1 / ' + photos.length + "</span>" : "") +
       '<span class="cab__area">' + esc(city) + "</span></div>" +
@@ -118,7 +118,7 @@
       var list = all.filter(function (h) { return !city || h.city === city; }); if (limit) list = list.slice(0, limit);
       grid.innerHTML = list.map(function (h) { return hotelCard(h, cur); }).join("");
       var sec = b.closest("[data-hotels-sec]"); if (sec) sec.hidden = !list.length;
-      [].slice.call(grid.querySelectorAll(".cab")).forEach(gallery); reveal(grid);
+      [].slice.call(grid.querySelectorAll(".cab")).forEach(window.__oyaGallery || gallery); reveal(grid);
     });
   });
 })();
