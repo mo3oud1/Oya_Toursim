@@ -3,6 +3,7 @@ import { heroPhoto } from "../content/hero-photos.mjs";
 import { ic, esc, media, photoImg, toneFor, sectionHead, faqBlock, ctaBand, pageHero, waBtn, waUrl, featureItem, destCard } from "../lib/ui.mjs";
 import { flightForm, hotelForm, cityList } from "../lib/forms.mjs";
 import * as S from "../lib/schema.mjs";
+import { cabinsBlock } from "./cabins.mjs";
 
 const g = (page, extra) => [S.orgNode(), S.websiteNode(), S.webPageNode(page), S.breadcrumbNode(page), ...extra].filter(Boolean);
 
@@ -93,26 +94,21 @@ export function hotelsPage(data) {
   const page = { path, nav: "hotels", crumbs,
     title: "حجز فنادق ومنتجعات في تركيا للعائلات والأزواج | أويا",
     description: "فنادق إسطنبول وطرابزون وأوزنجول وسبانجا وأنطاليا: منتجعات، شقق فندقية، شاليهات وفلل بمسبح خاص للعائلات وشهر العسل. أرسل تواريخك واحصل على عرضك." };
+  // Five stay types only: chalets have their own cabins section, conservative hotels have their own city card
   const types = [
     { icon: "star", t: "فنادق 4 و5 نجوم", img: "hotels-istanbul", d: "في أفضل المواقع: تقسيم، نيشانتاشي، البوسفور والسلطان أحمد — مع إطلالات مميزة.", tone: "svc--dark", cls: "b-hero" },
     { icon: "sun", t: "منتجعات شاملة كل شيء", img: "hotels-antalya", d: "منتجعات أنطاليا وبودروم للعائلات مع مسابح وأنشطة للأطفال.", cls: "b-3" },
     { icon: "users", t: "شقق فندقية للعائلات", img: "hero-hotels", d: "مساحات واسعة ومطابخ وغرف متعددة — مثالية للإقامات الطويلة.", cls: "b-3" },
     { icon: "heart", t: "فلل بمسبح خاص", img: "hotels-trabzon", d: "خصوصية تامة في سبانجا وطرابزون وبورصة للعائلات وشهر العسل.", cls: "b-3" },
-    { icon: "mountain", t: "شاليهات وبنغلات الطبيعة", img: "hotels-sapanca", d: "أكواخ خشبية بين الغابات والبحيرات في سبانجا وأوزنجول ومعشوقية.", cls: "b-3" },
-    { icon: "balloon", t: "فنادق الكهوف", img: "hero-turkey", d: "تجربة فريدة في كابادوكيا مع إطلالة على المناطيد عند الشروق.", cls: "b-4" },
-    { icon: "shield", t: "فنادق محافظة", img: "hotels-family-friendly", d: "خيارات تراعي خصوصية العائلات، مع مسابح أو أقسام منفصلة حسب الطلب.", cls: "b-4" },
-    { icon: "plane", t: "فنادق قرب المطار", img: "svc-airport-transfer", d: "لرحلات الترانزيت والوصول المتأخر أو المغادرة المبكرة.", cls: "b-4" },
+    { icon: "balloon", t: "فنادق الكهوف", img: "hero-turkey", d: "تجربة فريدة في كابادوكيا مع إطلالة على المناطيد عند الشروق.", cls: "b-3" },
   ];
-  const areas = [
-    ["إسطنبول", "تقسيم وشيشلي ونيشانتاشي", "التسوق والمطاعم والأمسيات الهادئة وسهولة المواصلات — الأكثر طلباً للعائلات."],
-    ["إسطنبول", "السلطان أحمد والفاتح", "قرب المعالم التاريخية: آيا صوفيا، الجامع الأزرق والبازار الكبير."],
-    ["إسطنبول", "البوسفور (بشكتاش وأورتاكوي)", "فنادق فاخرة بإطلالات بحرية ساحرة — مثالية لشهر العسل."],
-    ["طرابزون", "وسط المدينة وميدان", "قريبة من المطار والأسواق، ونقطة انطلاق مثالية للجولات اليومية."],
-    ["طرابزون", "أوزنجول والمرتفعات", "أكواخ وفنادق مطلة على البحيرة والغابات وسط الضباب."],
-    ["سبانجا", "حول البحيرة ومعشوقية", "بنغلات وفلل بمسابح خاصة وسط الطبيعة على بعد ساعتين من إسطنبول."],
-    ["بورصة", "المركز وأولوداغ", "فنادق المدينة ومنتجعات التزلج على جبل أولوداغ شتاءً."],
-    ["أنطاليا", "لارا، بيليك، كيمير وألانيا", "منتجعات شاملة كل شيء على البحر المتوسط للعائلات."],
-  ];
+  // Best areas shown on each city card (same wording as the old area table, so translations carry over)
+  const areas = {
+    istanbul: ["تقسيم وشيشلي ونيشانتاشي", "السلطان أحمد والفاتح", "البوسفور (بشكتاش وأورتاكوي)"],
+    trabzon: ["وسط المدينة وميدان"],
+    sapanca: ["حول البحيرة ومعشوقية"],
+    antalya: ["لارا، بيليك، كيمير وألانيا"],
+  };
   const faq = [
     { q: "ما أفضل منطقة للسكن في إسطنبول للعائلات العربية؟", a: "تقسيم وشيشلي من أكثر المناطق طلباً لقربها من التسوق والمطاعم والمواصلات، والسلطان أحمد مناسبة لمن يركز على المعالم التاريخية، بينما تمنحك فنادق البوسفور أجواء هادئة وإطلالات مميزة. نرشح لك الأنسب حسب برنامجك." },
     { q: "هل توجد فنادق محافظة أو مناسبة للعائلات في تركيا؟", a: "نعم، تتوفر فنادق ومنتجعات تراعي خصوصية العائلات، بعضها بمسابح منفصلة أو فلل بمسابح خاصة، خصوصاً في أنطاليا وسبانجا وطرابزون. أخبرنا بمتطلباتك ونختار لك ما يناسبها." },
@@ -131,6 +127,20 @@ ${pageHero({ crumbs, ...heroPhoto("hero-hotels"), eyebrow: `${ic("star")} الخ
 
 <section class="section">
   <div class="container">
+    ${sectionHead({ eyebrow: "حسب الوجهة", title: "فنادق في أجمل مدن تركيا" })}
+    <div class="grid grid-3 hcities" data-stagger>${(data.hotels || []).map((h) => `<a class="dest" href="{{root}}hotels/${h.slug}/" data-reveal>${media({ img: h.img, prompt: h.imgPrompt, alt: h.h1, ratio: "", page: path, tone: h.destination ? toneFor(h.destination) : "gulf" })}<div class="dest__body"><h3>${h.slug === "family-friendly" ? "فنادق محافظة" : "فنادق " + esc(h.city)}</h3><span class="en">${esc(h.cityEn)}</span>${areas[h.slug] ? `<ul class="dest__areas">${areas[h.slug].map((x) => `<li>${ic("pin")}${x}</li>`).join("")}</ul>` : ""}<p>${esc(h.intro)}</p></div></a>`).join("")}</div>
+  </div>
+</section>
+
+<section class="section section--white cab-sec" data-cab-sec hidden>
+  <div class="container">
+    ${sectionHead({ eyebrow: `${ic("cabin")} أكواخ وبنغلات`, title: "كوخ خشبي بين الغابات… بصور حقيقية", lead: "أكواخ نتعامل معها مباشرة في سبانجا وطرابزون: جاكوزي ومدفأة ومسبح وإطلالة. اختر كوخك ونؤكد لك التوفر كتابةً.", row: true, after: `<a class="btn btn--ghost" href="{{root}}cabins/">كل الأكواخ ${ic("arrow", "i-flip")}</a>` })}
+    ${cabinsBlock({ limit: 3, filters: false })}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
     ${sectionHead({ eyebrow: "أنواع الإقامة", title: "إقامة تناسب حكايتك", lead: "سواء كانت رحلة عائلية طويلة أو شهر عسل أو رحلة عمل — لدينا الخيار المناسب." })}
     <div class="bento" data-stagger>
       ${types.map((t) => `<div class="svc svc--photo ${t.cls || ""}" data-reveal><div class="svc__bg" aria-hidden="true">${photoImg(t.img, { alt: "", sizes: (t.cls || "").includes("b-hero") ? "(max-width: 1040px) 92vw, 620px" : "(max-width: 1040px) 46vw, 320px", max: 1024 })}</div><span class="ico">${ic(t.icon)}</span><h3>${t.t}</h3><p>${t.d}</p><a class="link-arrow" href="${waUrl(`مرحباً أويا، أرغب بعروض: ${t.t}.`)}" target="_blank" rel="noopener" style="position:relative;z-index:3">اطلب عروضاً ${ic("arrow")}</a></div>`).join("")}
@@ -138,34 +148,15 @@ ${pageHero({ crumbs, ...heroPhoto("hero-hotels"), eyebrow: `${ic("star")} الخ
   </div>
 </section>
 
-<section class="section section--white">
-  <div class="container">
-    ${sectionHead({ eyebrow: "دليل المناطق", title: "أين تقيم في تركيا؟", lead: "اختيار المنطقة لا يقل أهمية عن اختيار الفندق. هذا دليلنا المختصر لأشهر المناطق." })}
-    <div class="table-wrap" data-reveal><table class="table">
-      <thead><tr><th>المدينة</th><th>المنطقة</th><th>تناسب من؟</th></tr></thead>
-      <tbody>${areas.map(([c, a, d]) => `<tr><td><strong>${c}</strong></td><td>${a}</td><td>${d}</td></tr>`).join("")}</tbody>
-    </table></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container" data-rail>
-    ${sectionHead({ eyebrow: "حسب الوجهة", title: "فنادق في أجمل مدن تركيا", row: true, after: `<div class="rail-ctrl"><button type="button" data-rail-prev aria-label="السابق">${ic("chev-right")}</button><button type="button" data-rail-next aria-label="التالي">${ic("chev-left")}</button></div>` })}
-    <div class="rail">${(data.hotels && data.hotels.length ? data.hotels : []).map((h) => `<a class="dest" href="{{root}}hotels/${h.slug}/" data-reveal>${media({ img: h.img, prompt: h.imgPrompt, alt: h.h1, ratio: "", page: path, tone: h.destination ? toneFor(h.destination) : "gulf" })}<div class="dest__body"><h3>${h.slug === "family-friendly" ? "فنادق محافظة" : "فنادق " + esc(h.city)}</h3><span class="en">${esc(h.cityEn)}</span><p>${esc(h.intro)}</p></div></a>`).join("") || data.destinations.map((d) => destCard(d, path)).join("")}</div>
-  </div>
-</section>
-
 <section class="section section--navy on-dark">
   <div class="container">
     ${sectionHead({ eyebrow: "لماذا تحجز فندقك مع أويا؟", title: "أكثر من مجرد حجز", center: true })}
-    <div class="features" data-stagger>
+    <div class="features features--4" data-stagger>
       ${[
         { icon: "search", title: "نختار ولا نكدّس", text: "نرسل لك خيارات قليلة مختارة بعناية بدلاً من مئات النتائج المربكة." },
         { icon: "check-circle", title: "نتحقق من التفاصيل", text: "الإطلالة، نوع الأسرّة، الإفطار، المسبح، وسياسة الأطفال — قبل التأكيد." },
         { icon: "doc", title: "تأكيد مكتوب", text: "تصلك تفاصيل الحجز وسياسة الإلغاء بوضوح قبل الدفع." },
         { icon: "headset", title: "نحل المشكلات", text: "إذا طرأ أي أمر في الفندق نتواصل معهم نيابةً عنك وبلغتهم." },
-        { icon: "car", title: "نربط كل شيء", text: "استقبال المطار والتنقلات والجولات مرتبطة بموقع فندقك." },
-        { icon: "globe", title: "داخل تركيا وخارجها", text: "مكة والمدينة، دبي، جورجيا، أذربيجان، ماليزيا وغيرها." },
       ].map((f) => featureItem({ ...f, tone: "ico--glass" })).join("")}
     </div>
   </div>

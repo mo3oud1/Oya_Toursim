@@ -340,7 +340,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 275
+  "n": 276
  },
  {
   "id": "3d7a22f631",
@@ -724,7 +724,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 263
+  "n": 260
  },
  {
   "id": "41d1c5a5d5",
@@ -736,7 +736,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 222
+  "n": 221
  },
  {
   "id": "62140011f1",
@@ -748,7 +748,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 222
+  "n": 223
  },
  {
   "id": "27d9d4af03",
@@ -760,7 +760,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 207
+  "n": 206
  },
  {
   "id": "83371ac8d3",
@@ -784,7 +784,7 @@
    "hotels/",
    "cabins/"
   ],
-  "n": 243
+  "n": 242
  },
  {
   "id": "e5ad3eb4f1",
@@ -1809,11 +1809,10 @@
   "ar": "المنطقة",
   "pages": [
    "",
-   "hotels/",
    "blog/istanbul-itinerary-5-days/",
    "blog/spanish-super-cup-2027-istanbul-guide/"
   ],
-  "n": 5
+  "n": 4
  },
  {
   "id": "b4be008218",
@@ -1878,11 +1877,11 @@
   "ar": "جاكوزي",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 6
+  "n": 7
  },
  {
   "id": "7863febc94",
@@ -1890,11 +1889,11 @@
   "ar": "مسبح مدفأ",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 6
+  "n": 7
  },
  {
   "id": "3551f208a3",
@@ -1902,11 +1901,11 @@
   "ar": "مدفأة حطب",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 6
+  "n": 7
  },
  {
   "id": "61bee76469",
@@ -4072,18 +4071,20 @@
   "kind": "text",
   "ar": "كوخ خشبي بين الغابات… بصور حقيقية",
   "pages": [
-   ""
+   "",
+   "hotels/"
   ],
-  "n": 1
+  "n": 2
  },
  {
   "id": "75375d799d",
   "kind": "text",
   "ar": "أكواخ نتعامل معها مباشرة في سبانجا وطرابزون: جاكوزي ومدفأة ومسبح وإطلالة. اختر كوخك ونؤكد لك التوفر كتابةً.",
   "pages": [
-   ""
+   "",
+   "hotels/"
   ],
-  "n": 1
+  "n": 2
  },
  {
   "id": "891b500aa0",
@@ -4091,11 +4092,11 @@
   "ar": "كل الأكواخ",
   "pages": [
    "",
+   "hotels/",
    "hotels/trabzon/",
-   "hotels/uzungol/",
-   "hotels/sapanca/"
+   "hotels/uzungol/"
   ],
-  "n": 4
+  "n": 5
  },
  {
   "id": "c1f8bcf24e",
@@ -4103,11 +4104,11 @@
   "ar": "نضيف الأكواخ المتاحة قريباً",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "3f1d3b183f",
@@ -4115,11 +4116,11 @@
   "ar": "أخبرنا بالمنطقة والتواريخ وعدد الأشخاص، ونرسل لك صوراً وأسعار أكواخ متاحة فعلاً.",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "4b8f8bf80f",
@@ -4127,11 +4128,11 @@
   "ar": "مرحباً أويا، أبحث عن كوخ أو بنغل للإقامة.",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 7
+  "n": 8
  },
  {
   "id": "aa2aa2e877",
@@ -4139,11 +4140,11 @@
   "ar": "اطلب خيارات عبر واتساب",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "b7ea6ccd37",
@@ -4151,11 +4152,11 @@
   "ar": "لعرض الأكواخ فعّل JavaScript، أو راسلنا على واتساب لنرسل لك الخيارات.",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "038f035d4c",
@@ -5794,11 +5795,11 @@
   "ar": "السابق",
   "pages": [
    "",
-   "hotels/",
    "turkey-tours/istanbul/",
-   "turkey-tours/trabzon/"
+   "turkey-tours/trabzon/",
+   "turkey-tours/uzungol/"
   ],
-  "n": 10
+  "n": 9
  },
  {
   "id": "2fa619787b",
@@ -5806,11 +5807,11 @@
   "ar": "التالي",
   "pages": [
    "",
-   "hotels/",
    "turkey-tours/istanbul/",
-   "turkey-tours/trabzon/"
+   "turkey-tours/trabzon/",
+   "turkey-tours/uzungol/"
   ],
-  "n": 10
+  "n": 9
  },
  {
   "id": "31c13a4c0b",
@@ -7015,11 +7016,11 @@
   "ar": "معشوقية",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 6
+  "n": 7
  },
  {
   "id": "154ed81db6",
@@ -7027,11 +7028,11 @@
   "ar": "كارتبه",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 6
+  "n": 7
  },
  {
   "id": "efc5803b7b",
@@ -7039,11 +7040,11 @@
   "ar": "أيدر",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "packages/trabzon-uzungol-7-days/",
-   "packages/black-sea-10-days/"
+   "packages/trabzon-uzungol-7-days/"
   ],
-  "n": 8
+  "n": 9
  },
  {
   "id": "0c0a17f5a9",
@@ -7051,11 +7052,11 @@
   "ar": "مسبح خاص",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "3be4e4dc4a",
@@ -7063,11 +7064,11 @@
   "ar": "إطلالة على البحيرة",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "aace8caf79",
@@ -7075,11 +7076,11 @@
   "ar": "إطلالة جبلية",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "18bda6e3b9",
@@ -7087,11 +7088,11 @@
   "ar": "بين الغابات",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "f6f8c88dd0",
@@ -7099,11 +7100,11 @@
   "ar": "حديقة خاصة",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "65baa9cacf",
@@ -7111,11 +7112,11 @@
   "ar": "منطقة شواء",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "fb116ac31c",
@@ -7123,11 +7124,11 @@
   "ar": "مطبخ مجهّز",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "3215fc08a5",
@@ -7135,11 +7136,11 @@
   "ar": "فطور",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "0daf322cd3",
@@ -7147,11 +7148,11 @@
   "ar": "إنترنت",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "961b7303ee",
@@ -7159,11 +7160,11 @@
   "ar": "موقف سيارات",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "0cfd53abc8",
@@ -7171,11 +7172,11 @@
   "ar": "مناسب للعائلات",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "f007c6d86c",
@@ -7183,11 +7184,11 @@
   "ar": "مناسب للأزواج",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "9c69ff89fb",
@@ -7195,11 +7196,11 @@
   "ar": "مرحباً أويا، أرغب بحجز «{0}» ({1}). التواريخ وعدد الأشخاص:",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "1d34bae7b6",
@@ -7207,11 +7208,11 @@
   "ar": "صورة أخرى",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "cde42511f5",
@@ -7219,11 +7220,11 @@
   "ar": "غرف النوم: {0}",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "4a1e02ebf2",
@@ -7231,11 +7232,11 @@
   "ar": "الأشخاص: حتى {0}",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "d556e3ca0b",
@@ -7243,11 +7244,11 @@
   "ar": "لليلة الواحدة",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "44a912a484",
@@ -7255,11 +7256,11 @@
   "ar": "احجز",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "matches/",
-   "matches/spanish-super-cup-2027/"
+   "matches/"
   ],
-  "n": 12
+  "n": 13
  },
  {
   "id": "f7f66e8147",
@@ -7267,11 +7268,11 @@
   "ar": "عدد الأكواخ: {0}",
   "pages": [
    "",
+   "hotels/",
    "cabins/",
-   "hotels/trabzon/",
-   "hotels/uzungol/"
+   "hotels/trabzon/"
   ],
-  "n": 5
+  "n": 6
  },
  {
   "id": "c81920b856",
@@ -8601,6 +8602,207 @@
   "n": 7
  },
  {
+  "id": "51be599f8c",
+  "kind": "text",
+  "ar": "حسب الوجهة",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "1d98ee2662",
+  "kind": "text",
+  "ar": "فنادق في أجمل مدن تركيا",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "e26008cd13",
+  "kind": "attr",
+  "ar": "فنادق إسطنبول: أفضل مناطق السكن للعائلات والأزواج",
+  "pages": [
+   "hotels/",
+   "hotels/istanbul/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "328ba91e1a",
+  "kind": "text",
+  "ar": "تقسيم وشيشلي ونيشانتاشي",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "2a763d0b3f",
+  "kind": "text",
+  "ar": "السلطان أحمد والفاتح",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "4833c20f39",
+  "kind": "text",
+  "ar": "البوسفور (بشكتاش وأورتاكوي)",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "cac197c403",
+  "kind": "text",
+  "ar": "في إسطنبول تختار المنطقة أولاً ثم الفندق، فالمدينة واسعة والزحام فيها حقيقي. هنا نلخّص لك مناطق السكن وأنواع الإقامة وما يجب التأكد منه قبل الحجز.",
+  "pages": [
+   "hotels/",
+   "hotels/istanbul/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "5388d80f5f",
+  "kind": "attr",
+  "ar": "فنادق طرابزون: دليل السكن بين البحر والجبال",
+  "pages": [
+   "hotels/",
+   "hotels/trabzon/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "8dc79786b3",
+  "kind": "text",
+  "ar": "وسط المدينة وميدان",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "cea1d98965",
+  "kind": "text",
+  "ar": "طرابزون قاعدة رحلات الشمال التركي، ومنها تنطلق إلى أوزنجول وأيدر والهضاب الخضراء. ومكان سكنك فيها يحدّد كم ساعة ستقضيها في الطريق كل يوم.",
+  "pages": [
+   "hotels/",
+   "hotels/trabzon/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "2f2e47ba21",
+  "kind": "attr",
+  "ar": "فنادق أوزنجول وأكواخها: دليل السكن بجانب البحيرة",
+  "pages": [
+   "hotels/",
+   "hotels/uzungol/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "7c251e156e",
+  "kind": "text",
+  "ar": "أوزنجول قرية جبلية صغيرة حول بحيرة هادئة، والمبيت فيها ليلة أو ليلتين يمنحك أجمل ساعاتها: الصباح الباكر والمساء بعد مغادرة زوار اليوم الواحد.",
+  "pages": [
+   "hotels/",
+   "hotels/uzungol/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "430a276307",
+  "kind": "attr",
+  "ar": "بنغلات سبانجا وفنادقها: دليل الإقامة بجانب البحيرة",
+  "pages": [
+   "hotels/",
+   "hotels/sapanca/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "400d5638bb",
+  "kind": "text",
+  "ar": "حول البحيرة ومعشوقية",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "ac03f85f5f",
+  "kind": "text",
+  "ar": "سبانجا أقرب وجهة طبيعية إلى إسطنبول، وأشهر ما فيها البنغلات الخاصة بمسبح أو جاكوزي بين الأشجار. ليلة أو ليلتان هنا تكفيان لاستراحة هادئة وسط برنامج المدينة.",
+  "pages": [
+   "hotels/",
+   "hotels/sapanca/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "0ea5d0f43f",
+  "kind": "attr",
+  "ar": "منتجعات أنطاليا شامل كل شيء: دليل العائلات لاختيار المنطقة",
+  "pages": [
+   "hotels/",
+   "hotels/antalya/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "a344bd06fb",
+  "kind": "text",
+  "ar": "لارا، بيليك، كيمير وألانيا",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "80a6c6a62e",
+  "kind": "text",
+  "ar": "أنطاليا عاصمة المنتجعات على الساحل التركي، ونظام شامل كل شيء هو الأكثر انتشاراً فيها. المهم أن تختار المنطقة المناسبة وتفهم ما يشمله النظام فعلاً قبل الحجز.",
+  "pages": [
+   "hotels/",
+   "hotels/antalya/"
+  ],
+  "n": 3
+ },
+ {
+  "id": "26ad12f6b4",
+  "kind": "attr",
+  "ar": "فنادق محافظة ومناسبة للعائلات في تركيا",
+  "pages": [
+   "hotels/",
+   "hotels/family-friendly/"
+  ],
+  "n": 2
+ },
+ {
+  "id": "1446fb47ff",
+  "kind": "text",
+  "ar": "فنادق محافظة",
+  "pages": [
+   "hotels/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "dc444239e6",
+  "kind": "text",
+  "ar": "إن كانت أولويتك بيئة عائلية بلا كحول، أو مسبحاً منفصلاً للنساء، أو فيلا بمسبح خاص بعيداً عن الأنظار، فهذه الخيارات موجودة في تركيا لكنها تحتاج إلى بحث دقيق. هنا نوضّح أين تجدها وكيف تتأكد منها قبل الحجز.",
+  "pages": [
+   "hotels/",
+   "hotels/family-friendly/"
+  ],
+  "n": 3
+ },
+ {
   "id": "825aaa7b06",
   "kind": "text",
   "ar": "أنواع الإقامة",
@@ -8664,7 +8866,7 @@
   "pages": [
    "hotels/"
   ],
-  "n": 8
+  "n": 5
  },
  {
   "id": "e9aeda7638",
@@ -8749,33 +8951,6 @@
   "n": 1
  },
  {
-  "id": "33a9b77e34",
-  "kind": "text",
-  "ar": "شاليهات وبنغلات الطبيعة",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "58df844005",
-  "kind": "text",
-  "ar": "أكواخ خشبية بين الغابات والبحيرات في سبانجا وأوزنجول ومعشوقية.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "2f45bdcc26",
-  "kind": "message",
-  "ar": "مرحباً أويا، أرغب بعروض: شاليهات وبنغلات الطبيعة.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
   "id": "d573dea348",
   "kind": "text",
   "ar": "فنادق الكهوف",
@@ -8802,400 +8977,6 @@
    "hotels/"
   ],
   "n": 1
- },
- {
-  "id": "1446fb47ff",
-  "kind": "text",
-  "ar": "فنادق محافظة",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 2
- },
- {
-  "id": "f630d6ac65",
-  "kind": "text",
-  "ar": "خيارات تراعي خصوصية العائلات، مع مسابح أو أقسام منفصلة حسب الطلب.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "47df933177",
-  "kind": "message",
-  "ar": "مرحباً أويا، أرغب بعروض: فنادق محافظة.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "e64d1c932f",
-  "kind": "text",
-  "ar": "فنادق قرب المطار",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "a57f20a1c8",
-  "kind": "text",
-  "ar": "لرحلات الترانزيت والوصول المتأخر أو المغادرة المبكرة.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "9b899f8a9e",
-  "kind": "message",
-  "ar": "مرحباً أويا، أرغب بعروض: فنادق قرب المطار.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "bb78752309",
-  "kind": "text",
-  "ar": "دليل المناطق",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "f043268fd2",
-  "kind": "text",
-  "ar": "أين تقيم في تركيا؟",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "da4daba519",
-  "kind": "text",
-  "ar": "اختيار المنطقة لا يقل أهمية عن اختيار الفندق. هذا دليلنا المختصر لأشهر المناطق.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "23412f2e96",
-  "kind": "attr",
-  "ar": "جدول: المدينة، المنطقة، تناسب من؟",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "75124a0090",
-  "kind": "text",
-  "ar": "المدينة",
-  "pages": [
-   "hotels/",
-   "packages/istanbul-5-days/",
-   "packages/turkey-7-days/",
-   "packages/istanbul-bursa-7-days/"
-  ],
-  "n": 34
- },
- {
-  "id": "557b31ccc3",
-  "kind": "text",
-  "ar": "تناسب من؟",
-  "pages": [
-   "hotels/",
-   "blog/spanish-super-cup-2027-istanbul-guide/"
-  ],
-  "n": 2
- },
- {
-  "id": "328ba91e1a",
-  "kind": "text",
-  "ar": "تقسيم وشيشلي ونيشانتاشي",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "ba3221f76b",
-  "kind": "text",
-  "ar": "التسوق والمطاعم والأمسيات الهادئة وسهولة المواصلات — الأكثر طلباً للعائلات.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "2a763d0b3f",
-  "kind": "text",
-  "ar": "السلطان أحمد والفاتح",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "82bfd93ada",
-  "kind": "text",
-  "ar": "قرب المعالم التاريخية: آيا صوفيا، الجامع الأزرق والبازار الكبير.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "4833c20f39",
-  "kind": "text",
-  "ar": "البوسفور (بشكتاش وأورتاكوي)",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "ac7115bc3b",
-  "kind": "text",
-  "ar": "فنادق فاخرة بإطلالات بحرية ساحرة — مثالية لشهر العسل.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "8dc79786b3",
-  "kind": "text",
-  "ar": "وسط المدينة وميدان",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "0292c06e22",
-  "kind": "text",
-  "ar": "قريبة من المطار والأسواق، ونقطة انطلاق مثالية للجولات اليومية.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "f5abb351ea",
-  "kind": "text",
-  "ar": "أوزنجول والمرتفعات",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "1ffe920193",
-  "kind": "text",
-  "ar": "أكواخ وفنادق مطلة على البحيرة والغابات وسط الضباب.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "400d5638bb",
-  "kind": "text",
-  "ar": "حول البحيرة ومعشوقية",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "f8c5346500",
-  "kind": "text",
-  "ar": "بنغلات وفلل بمسابح خاصة وسط الطبيعة على بعد ساعتين من إسطنبول.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "85820f7e63",
-  "kind": "text",
-  "ar": "المركز وأولوداغ",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "f803c16db8",
-  "kind": "text",
-  "ar": "فنادق المدينة ومنتجعات التزلج على جبل أولوداغ شتاءً.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "a344bd06fb",
-  "kind": "text",
-  "ar": "لارا، بيليك، كيمير وألانيا",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "f736de465a",
-  "kind": "text",
-  "ar": "منتجعات شاملة كل شيء على البحر المتوسط للعائلات.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "51be599f8c",
-  "kind": "text",
-  "ar": "حسب الوجهة",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "1d98ee2662",
-  "kind": "text",
-  "ar": "فنادق في أجمل مدن تركيا",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "e26008cd13",
-  "kind": "attr",
-  "ar": "فنادق إسطنبول: أفضل مناطق السكن للعائلات والأزواج",
-  "pages": [
-   "hotels/",
-   "hotels/istanbul/"
-  ],
-  "n": 2
- },
- {
-  "id": "cac197c403",
-  "kind": "text",
-  "ar": "في إسطنبول تختار المنطقة أولاً ثم الفندق، فالمدينة واسعة والزحام فيها حقيقي. هنا نلخّص لك مناطق السكن وأنواع الإقامة وما يجب التأكد منه قبل الحجز.",
-  "pages": [
-   "hotels/",
-   "hotels/istanbul/"
-  ],
-  "n": 3
- },
- {
-  "id": "5388d80f5f",
-  "kind": "attr",
-  "ar": "فنادق طرابزون: دليل السكن بين البحر والجبال",
-  "pages": [
-   "hotels/",
-   "hotels/trabzon/"
-  ],
-  "n": 2
- },
- {
-  "id": "cea1d98965",
-  "kind": "text",
-  "ar": "طرابزون قاعدة رحلات الشمال التركي، ومنها تنطلق إلى أوزنجول وأيدر والهضاب الخضراء. ومكان سكنك فيها يحدّد كم ساعة ستقضيها في الطريق كل يوم.",
-  "pages": [
-   "hotels/",
-   "hotels/trabzon/"
-  ],
-  "n": 3
- },
- {
-  "id": "2f2e47ba21",
-  "kind": "attr",
-  "ar": "فنادق أوزنجول وأكواخها: دليل السكن بجانب البحيرة",
-  "pages": [
-   "hotels/",
-   "hotels/uzungol/"
-  ],
-  "n": 2
- },
- {
-  "id": "7c251e156e",
-  "kind": "text",
-  "ar": "أوزنجول قرية جبلية صغيرة حول بحيرة هادئة، والمبيت فيها ليلة أو ليلتين يمنحك أجمل ساعاتها: الصباح الباكر والمساء بعد مغادرة زوار اليوم الواحد.",
-  "pages": [
-   "hotels/",
-   "hotels/uzungol/"
-  ],
-  "n": 3
- },
- {
-  "id": "430a276307",
-  "kind": "attr",
-  "ar": "بنغلات سبانجا وفنادقها: دليل الإقامة بجانب البحيرة",
-  "pages": [
-   "hotels/",
-   "hotels/sapanca/"
-  ],
-  "n": 2
- },
- {
-  "id": "ac03f85f5f",
-  "kind": "text",
-  "ar": "سبانجا أقرب وجهة طبيعية إلى إسطنبول، وأشهر ما فيها البنغلات الخاصة بمسبح أو جاكوزي بين الأشجار. ليلة أو ليلتان هنا تكفيان لاستراحة هادئة وسط برنامج المدينة.",
-  "pages": [
-   "hotels/",
-   "hotels/sapanca/"
-  ],
-  "n": 3
- },
- {
-  "id": "0ea5d0f43f",
-  "kind": "attr",
-  "ar": "منتجعات أنطاليا شامل كل شيء: دليل العائلات لاختيار المنطقة",
-  "pages": [
-   "hotels/",
-   "hotels/antalya/"
-  ],
-  "n": 2
- },
- {
-  "id": "80a6c6a62e",
-  "kind": "text",
-  "ar": "أنطاليا عاصمة المنتجعات على الساحل التركي، ونظام شامل كل شيء هو الأكثر انتشاراً فيها. المهم أن تختار المنطقة المناسبة وتفهم ما يشمله النظام فعلاً قبل الحجز.",
-  "pages": [
-   "hotels/",
-   "hotels/antalya/"
-  ],
-  "n": 3
- },
- {
-  "id": "26ad12f6b4",
-  "kind": "attr",
-  "ar": "فنادق محافظة ومناسبة للعائلات في تركيا",
-  "pages": [
-   "hotels/",
-   "hotels/family-friendly/"
-  ],
-  "n": 2
- },
- {
-  "id": "dc444239e6",
-  "kind": "text",
-  "ar": "إن كانت أولويتك بيئة عائلية بلا كحول، أو مسبحاً منفصلاً للنساء، أو فيلا بمسبح خاص بعيداً عن الأنظار، فهذه الخيارات موجودة في تركيا لكنها تحتاج إلى بحث دقيق. هنا نوضّح أين تجدها وكيف تتأكد منها قبل الحجز.",
-  "pages": [
-   "hotels/",
-   "hotels/family-friendly/"
-  ],
-  "n": 3
  },
  {
   "id": "e5742af012",
@@ -9282,42 +9063,6 @@
   "id": "4ca4aca7be",
   "kind": "text",
   "ar": "إذا طرأ أي أمر في الفندق نتواصل معهم نيابةً عنك وبلغتهم.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "c372b4ad42",
-  "kind": "text",
-  "ar": "نربط كل شيء",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "7f4aa30e0c",
-  "kind": "text",
-  "ar": "استقبال المطار والتنقلات والجولات مرتبطة بموقع فندقك.",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "b68224bba6",
-  "kind": "text",
-  "ar": "داخل تركيا وخارجها",
-  "pages": [
-   "hotels/"
-  ],
-  "n": 1
- },
- {
-  "id": "a04b7fed53",
-  "kind": "text",
-  "ar": "مكة والمدينة، دبي، جورجيا، أذربيجان، ماليزيا وغيرها.",
   "pages": [
    "hotels/"
   ],
@@ -18129,6 +17874,18 @@
    "packages/istanbul-sapanca-bursa-8-days/"
   ],
   "n": 22
+ },
+ {
+  "id": "75124a0090",
+  "kind": "text",
+  "ar": "المدينة",
+  "pages": [
+   "packages/istanbul-5-days/",
+   "packages/turkey-7-days/",
+   "packages/istanbul-bursa-7-days/",
+   "packages/istanbul-sapanca-bursa-8-days/"
+  ],
+  "n": 33
  },
  {
   "id": "1b0b21d8b4",
@@ -56388,6 +56145,15 @@
   "id": "768b2ed4e2",
   "kind": "text",
   "ar": "لماذا تناسب المشجع؟",
+  "pages": [
+   "blog/spanish-super-cup-2027-istanbul-guide/"
+  ],
+  "n": 1
+ },
+ {
+  "id": "557b31ccc3",
+  "kind": "text",
+  "ar": "تناسب من؟",
   "pages": [
    "blog/spanish-super-cup-2027-istanbul-guide/"
   ],

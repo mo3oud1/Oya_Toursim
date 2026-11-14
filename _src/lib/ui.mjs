@@ -201,13 +201,14 @@ export function destCard(d, page, { count } = {}) {
   <div class="dest__body"><h3>${esc(d.name)}</h3><span class="en">${esc(d.nameEn)}</span><p>${d.tagline || ""}</p></div>
 </a>`;
 }
+import { FLAG, flag } from "./flags.mjs";
 // The circle says what the card is about: the visa TYPE for Saudi visas (all share one country),
 // the country code for country visas.
 const VISA_TYPE_ICON = { tourist: "camera", umrah: "mosque", "family-visit": "family", "personal-visit": "users", business: "suitcase", transit: "takeoff", "gcc-residents": "passport" };
 export function visaCard(v, base, page) {
   const mark = v.group === "saudi"
     ? `<span class="stamp stamp--ico">${ic(VISA_TYPE_ICON[v.slug] || v.icon || "passport")}</span>`
-    : `<span class="stamp stamp--orange">${esc(v.stamp)}</span>`;
+    : FLAG[v.stamp] ? `<span class="stamp stamp--flag">${flag(v.stamp)}</span>` : `<span class="stamp stamp--orange">${esc(v.stamp)}</span>`;
   return `
 <article class="vcard" data-reveal>
   <div style="display:flex;align-items:center;gap:14px">${mark}<h3><a class="cover" href="{{root}}${base}${v.slug}/">${esc(v.name)}</a></h3></div>

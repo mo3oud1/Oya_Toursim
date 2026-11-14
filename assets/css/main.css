@@ -1639,3 +1639,19 @@ h3,h4{line-height:1.42}
 .mega--more h4{white-space:nowrap}
 .mega--more li>a{white-space:normal;line-height:1.35}
 .drawer__body .drawer__tile{display:flex;flex-direction:column;align-items:center;justify-content:center}
+/* cabins card in the hotels menu: keep its photo on hover (the generic .mega a:hover painted it light) */
+.mega a.mega-feature--cabins,.mega a.mega-feature--cabins:hover{background:linear-gradient(160deg,rgba(6,20,40,.2),rgba(6,20,40,.85)),url("../img/photos/hotels-sapanca-640.webp") center/cover!important;color:#fff!important;padding:20px}
+.mega a.mega-feature--cabins:hover{background:linear-gradient(160deg,rgba(6,20,40,.35),rgba(6,20,40,.92)),url("../img/photos/hotels-sapanca-640.webp") center/cover!important}
+.mega a.mega-feature--cabins:hover .mega-feature__go{background:var(--orange-btn)}
+/* round flags in the visa circles */
+.stamp--flag{transform:none;border:0;width:58px;height:58px;overflow:hidden;box-shadow:0 0 0 3px #fff,0 0 0 4px rgba(15,42,46,.08),0 8px 18px rgba(6,20,40,.14);transition:transform .35s var(--ease)}
+.stamp--flag .flag{width:100%;height:100%;display:block}
+.vcard:hover .stamp--flag{transform:rotate(-8deg) scale(1.06)}
+@media (prefers-reduced-motion:reduce){.vcard:hover .stamp--flag{transform:none}}
+/* hotels page: city cards as a grid with their best areas */
+.hcities .dest{aspect-ratio:4/3.4;min-height:300px}
+.dest__areas{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.dest__areas li{display:inline-flex;align-items:center;gap:.35em;font-size:.8rem;line-height:1.3;padding:.35em .7em;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff}
+.dest__areas .i{width:1em;height:1em;color:var(--orange-300);flex:none}
+@media(min-width:1040px){.features--4{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:699px){.hcities .dest{aspect-ratio:auto;min-height:260px}}
