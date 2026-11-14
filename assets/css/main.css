@@ -651,10 +651,24 @@ body.no-scroll{overflow:hidden}
 .footer-big{font-family:var(--ff-display);font-weight:800;font-size:clamp(3rem,12vw,10rem);line-height:.9;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08);white-space:nowrap;margin-top:32px;user-select:none;text-align:center}
 
 /* Floating WhatsApp + mobile bar */
-.fab-wa{position:fixed;left:20px;bottom:20px;z-index:90;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);transition:transform .35s var(--ease)}
-.fab-wa::before{content:"";position:absolute;inset:0;border-radius:50%;background:#25D366;z-index:-1;animation:ring 2.4s var(--ease) 1.5s 3}
-.fab-wa:hover{transform:scale(1.08)}
-.fab-wa .i{width:32px;height:32px}
+/* WhatsApp button: a green pill that opens to its label on hover; a soft halo and a small nod of the icon every few seconds */
+.fab-wa{position:fixed;left:20px;bottom:20px;z-index:90;display:flex;align-items:center;height:60px;border-radius:999px;background:#0E7A41;color:#fff;text-decoration:none;box-shadow:0 14px 34px -12px rgba(14,122,65,.75);transition:box-shadow .35s var(--ease),transform .35s var(--ease);animation:waIn .8s var(--ease) 1s both}
+.fab-wa:hover,.fab-wa:focus-visible{transform:translateY(-2px);box-shadow:0 20px 40px -14px rgba(14,122,65,.85)}
+.fab-wa:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.fab-wa__ico{position:relative;flex:none;display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:linear-gradient(145deg,#3BE887,#1FB866 55%,#12964F);box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
+.fab-wa__ico .i{width:30px;height:30px;transform-origin:50% 62%;animation:waNod 7s var(--ease) 3.2s infinite}
+.fab-wa__ico::before,.fab-wa__ico::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;opacity:0;pointer-events:none;animation:waHalo 7s var(--ease) 3.2s infinite}
+.fab-wa__ico::after{animation-delay:3.65s}
+.fab-wa__txt{max-width:0;overflow:hidden;white-space:nowrap;font-weight:700;font-size:.95rem;opacity:0;transition:max-width .5s var(--ease),opacity .3s var(--ease),padding .5s var(--ease)}
+.fab-wa:hover .fab-wa__txt,.fab-wa:focus-visible .fab-wa__txt{max-width:240px;opacity:1;padding-inline:20px 12px}
+.fab-wa:hover .fab-wa__ico::before,.fab-wa:hover .fab-wa__ico::after,.fab-wa:hover .fab-wa__ico .i{animation-play-state:paused}
+.fab-wa__tip{position:absolute;bottom:calc(100% + 14px);left:0;padding:.6em 1em;border-radius:16px 16px 16px 4px;background:#fff;color:var(--navy);font-weight:600;font-size:.9rem;white-space:nowrap;box-shadow:var(--sh-2);opacity:0;visibility:hidden;transform:translate3d(0,8px,0) scale(.96);transform-origin:0 100%;transition:opacity .45s var(--ease),transform .45s var(--ease),visibility 0s .45s;pointer-events:none}
+.fab-wa.is-tip .fab-wa__tip{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+[dir="ltr"] .fab-wa__tip{left:auto;right:0;border-radius:16px 16px 4px 16px;transform-origin:100% 100%}
+@keyframes waIn{from{opacity:0;transform:translate3d(0,14px,0) scale(.7)}to{opacity:1;transform:none}}
+@keyframes waHalo{0%{opacity:0;transform:scale(1)}6%{opacity:.55}34%{opacity:0;transform:scale(1.7)}100%{opacity:0;transform:scale(1.7)}}
+@keyframes waNod{0%,16%,100%{transform:none}4%{transform:rotate(-12deg)}8%{transform:rotate(9deg)}12%{transform:rotate(-5deg)}}
+@media (prefers-reduced-motion:reduce){.fab-wa,.fab-wa__ico .i,.fab-wa__ico::before,.fab-wa__ico::after{animation:none}.fab-wa__txt,.fab-wa__tip{transition:none}}
 @keyframes ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.7);opacity:0}}
 .mbar{position:fixed;inset:auto 0 0 0;z-index:95;display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(14px);box-shadow:0 -8px 30px -12px rgba(10,31,58,.25)}
 .mbar a{display:flex;align-items:center;justify-content:center;gap:.45em;min-height:46px;border-radius:14px;font-weight:600;font-size:.95rem;background:var(--sky-100);color:var(--navy)}

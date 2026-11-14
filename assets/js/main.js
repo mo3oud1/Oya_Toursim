@@ -548,3 +548,15 @@ document.addEventListener("click", function (e) {
   }, { rootMargin: "-35% 0px -55% 0px" });
   Object.keys(map).forEach(function (id) { io.observe(document.getElementById(id)); });
 })();
+
+/* WhatsApp button: a short greeting above it, once per visit, a few seconds after the page opens. */
+(function () {
+  var f = document.querySelector(".fab-wa"); if (!f || !f.querySelector(".fab-wa__tip")) return;
+  try { if (sessionStorage.getItem("oya-wa-tip")) return; } catch (e) {}
+  setTimeout(function () {
+    if (getComputedStyle(f).display === "none" || document.hidden) return;
+    f.classList.add("is-tip"); try { sessionStorage.setItem("oya-wa-tip", "1"); } catch (e) {}
+    var off = function () { f.classList.remove("is-tip"); };
+    setTimeout(off, 7000); f.addEventListener("pointerenter", off, { once: true }); addEventListener("scroll", off, { once: true, passive: true });
+  }, 4500);
+})();

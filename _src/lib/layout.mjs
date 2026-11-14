@@ -232,7 +232,7 @@ function footer(data, page) {
     <span class="footer-note">الصور في الموقع توضيحية، ومعلومات التأشيرات عامة ونؤكدها لك وقت التقديم.</span></div>
   </div>
 </footer>
-<a class="fab-wa" href="${waUrl("مرحباً أويا للسياحة، أرغب بالاستفسار.")}" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">${ic("whatsapp")}</a>
+<a class="fab-wa" href="${waUrl("مرحباً أويا للسياحة، أرغب بالاستفسار.")}" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب"><span class="fab-wa__txt" aria-hidden="true">تواصل عبر واتساب</span><span class="fab-wa__ico">${ic("whatsapp")}</span><span class="fab-wa__tip" aria-hidden="true">أهلاً بك! كيف نساعدك؟</span></a>
 <button class="to-top" type="button" aria-label="العودة للأعلى">${ic("arrow-up")}</button>
 <nav class="mbar" aria-label="تواصل سريع">
   <a href="tel:${site.phoneIntl}">${ic("phone")}اتصال</a>
