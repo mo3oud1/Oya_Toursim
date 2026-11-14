@@ -163,7 +163,8 @@
 
   /* ---------- Live prices (data/prices.json, edited from /admin/) ----------
      The page is built with the prices of its build; this refreshes them so edits show without a rebuild. */
-  var fmtN = function (n) { return Number(n).toLocaleString("en-US"); };
+  var NUM_LOC = { ru: "ru-RU", tr: "tr-TR", pt: "pt-BR" }[d.documentElement.lang] || "en-US"; // 1,065 · 1 065 · 1.065
+  var fmtN = function (n) { return Number(n).toLocaleString(NUM_LOC); };
   var priceOk = function (v) { return typeof v === "number" && v > 0; };
   var pMeta = $('meta[name="oya-prices"]');
   if (pMeta && $("[data-pkg-price], [data-sc-min], [data-sc-p], [data-stadium], [data-sc-form]")) {

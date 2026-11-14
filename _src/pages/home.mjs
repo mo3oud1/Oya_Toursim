@@ -128,7 +128,7 @@ ${globeSection(data)}
       ${sectionHead({ eyebrow: "لماذا أويا؟", title: "لأن رحلتك تستحق من يهتم بتفاصيلها", lead: "نحن لا نبيعك حجزاً فقط؛ نرافقك من فكرة الرحلة حتى العودة، بخدمة شخصية وشفافية كاملة." })}
       <div class="stats" data-stagger>
         <div class="stat" data-reveal><b><span data-count="${counts.dest}">${ar(counts.dest)}</span></b><span>وجهات داخل تركيا</span></div>
-        <div class="stat" data-reveal><b><span data-count="${counts.tr + counts.world}">${ar(counts.tr + counts.world)}</span><span class="plus">+</span></b><span>برنامجاً سياحياً جاهزاً</span></div>
+        <div class="stat" data-reveal><b><span data-count="${counts.tr + counts.world}">${ar(counts.tr + counts.world)}</span></b><span>برنامجاً سياحياً جاهزاً</span></div>
         <div class="stat" data-reveal><b><span data-count="${counts.visas}">${ar(counts.visas)}</span></b><span>نوعاً من التأشيرات نساعدك فيها</span></div>
         <div class="stat" data-reveal><b><span data-count="${counts.world}">${ar(counts.world)}</span></b><span>دول خارج تركيا</span></div>
       </div>

@@ -20,12 +20,12 @@
     breakfast: T("فطور"), wifi: T("إنترنت"), parking: T("موقف سيارات"), family: T("مناسب للعائلات"), couples: T("مناسب للأزواج")
   };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
-  var num = function (n) { return Number(n).toLocaleString("en-US"); };
+  var num = function (n) { return Number(n).toLocaleString({ ru: "ru-RU", tr: "tr-TR", pt: "pt-BR" }[document.documentElement.lang] || "en-US"); };
 
   function card(c, cur) {
     var area = AREAS[c.area] || [c.area || "", ""], photos = (c.photos || []).filter(Boolean);
     var price = typeof c.price === "number" && c.price > 0;
-    var msg = T("مرحباً أويا، أرغب بحجز «{0}» في {1}. التواريخ وعدد الأشخاص:", [c.name, area[0]]);
+    var msg = T("مرحباً أويا، أرغب بحجز «{0}» ({1}). التواريخ وعدد الأشخاص:", [c.name, area[0]]);
     var feats = (c.features || []).filter(function (f) { return FEAT[f]; }).slice(0, 6);
     return '<article class="cab" data-reveal>' +
       '<div class="cab__media">' + (photos.length ? photos.map(function (p, i) {

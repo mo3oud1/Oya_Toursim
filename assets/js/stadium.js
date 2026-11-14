@@ -321,21 +321,22 @@ if (root) {
       const hit = ray.intersectObjects(pickables, false)[0];
       return hit ? hit.object : null;
     }
+    const NUM_LOC = { ru: "ru-RU", tr: "tr-TR", pt: "pt-BR" }[document.documentElement.lang] || "en-US";
     const priceNum = (k) => { const p = cfg.matches[matchIdx].prices || {}; return typeof p[k] === "number" && p[k] > 0 ? p[k] : null; };
-    const priceOf = (k) => { const v = priceNum(k); return v ? `${v.toLocaleString("en-US")} ${cfg.currency}` : T("عند الطلب"); };
+    const priceOf = (k) => { const v = priceNum(k); return v ? `${v.toLocaleString(NUM_LOC)} ${cfg.currency}` : T("عند الطلب"); };
     // number of tickets + estimated total in the info panel
     let qty = 1, lastPick = null;
     const qOut = root.querySelector(".si-n"), totalEl = root.querySelector(".si-total");
     function waHref(m) {
       const k = m.userData.cat, c = CAT[k], match = cfg.matches[matchIdx], v = priceNum(k);
-      const total = v ? `${(v * qty).toLocaleString("en-US")} ${cfg.currency}` : T("عند الطلب");
-      return `https://wa.me/${cfg.wa}?text=${encodeURIComponent(T("مرحباً أويا، أرغب بـ{0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027. عدد التذاكر: {4} — الإجمالي التقديري: {5}.", [c.label, m.userData.info, match.stage, match.teams, qty, total]))}`;
+      const total = v ? `${(v * qty).toLocaleString(NUM_LOC)} ${cfg.currency}` : T("عند الطلب");
+      return `https://wa.me/${cfg.wa}?text=${encodeURIComponent(T("مرحباً أويا، أرغب بتذاكر {0} ({1}) — {2}: {3}، كأس السوبر الإسباني 2027. عدد التذاكر: {4} — الإجمالي التقديري: {5}.", [c.label, m.userData.info, match.stage, match.teams, qty, total]))}`;
     }
     function refreshTotal() {
       if (qOut) qOut.textContent = qty;
       if (!lastPick) return;
       const v = priceNum(lastPick.userData.cat);
-      if (totalEl) totalEl.textContent = v ? `${(v * qty).toLocaleString("en-US")} ${cfg.currency}` : T("عند الطلب");
+      if (totalEl) totalEl.textContent = v ? `${(v * qty).toLocaleString(NUM_LOC)} ${cfg.currency}` : T("عند الطلب");
       panel.querySelector(".si-wa").href = waHref(lastPick);
       if (sheet) sheet.querySelector(".ss-wa").href = panel.querySelector(".si-wa").href;
     }

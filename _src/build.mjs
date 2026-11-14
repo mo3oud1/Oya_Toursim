@@ -100,7 +100,7 @@ function enhanceTables(html) {
     let body = inner.replace(/<th(?=[\s>])(?![^>]*scope=)/g, '<th scope="col"');
     if (wide) body = body.replace(/<tbody>([\s\S]*?)<\/tbody>/, (tb, rows) => "<tbody>" + rows.replace(/<tr>([\s\S]*?)<\/tr>/g, (tr, cells) => { let i = 0; return "<tr>" + cells.replace(/<td(?=[\s>])(?![^>]*data-label)/g, () => `<td data-label="${(heads[i++] || "").replace(/"/g, "&quot;")}"`) + "</tr>"; }) + "</tbody>");
     const cls = /class="/.test(attrs) ? attrs.replace(/class="([^"]*)"/, (c, v) => `class="${/\btable\b/.test(v) ? v : v + " table"}${wide ? " table--stack" : ""}"`) : `${attrs} class="table${wide ? " table--stack" : ""}"`;
-    const label = heads.filter(Boolean).slice(0, 3).join("، ") || "جدول";
+    const label = heads.filter(Boolean).slice(0, 5).join("، ") || "جدول";
     return `<div class="table-wrap" tabindex="0" role="region" aria-label="جدول: ${label.replace(/"/g, "&quot;")}"><table${cls}>${body}</table></div>`;
   });
 }
@@ -131,6 +131,9 @@ const translators = Object.fromEntries(OTHERS.map((L) => [L.code, new Translator
 
 // shared HTML clean-up (before translation, so generated labels such as table captions are translated too)
 const post = (html) => enhanceTables(html.replace(/\n\s*\n+/g, "\n").replace(/<(details|li)([^>]*?) data-reveal(="[a-z]+")?/g, "<$1$2"));
+// prices are written 1,065 in Arabic/English; Russian uses 1 065, Turkish and Portuguese 1.065 (a comma is the decimal mark there)
+const SEP = { ru: "\u00a0", tr: ".", pt: "." };
+const localNumbers = (html, code) => (SEP[code] ? html.replace(/(<b[^>]*>|<span class="lg-price">|<b class="pt">)(\d{1,3}(?:,\d{3})+)(?=\s*(?:<span class="cur">|\$|€|₺))/g, (m, tag, n) => tag + n.replace(/,/g, SEP[code])) : html);
 // {{root}} = this language's home, {{site}} = the site root (shared files: assets, icons, sitemap)
 const fixRoots = (html, siteRoot, pageRoot) => html
   .replace(/\{\{root\}\}(assets\/|favicon|apple-touch-icon|site\.webmanifest|sitemap\.xml)/g, siteRoot + "$1")
@@ -159,7 +162,7 @@ for (const page of pages) {
     t.page = page.path;
     const p = L.prefix + page.path;
     const d = p.split("/").filter(Boolean).length;
-    const html = t.html(post(renderPage(page, data, ver, L.code)));
+    const html = localNumbers(t.html(post(renderPage(page, data, ver, L.code))), L.code);
     written.push({ page, lang: L, path: p, out: write(p, fixRoots(html, "../".repeat(d), d > 1 ? "../".repeat(d - 1) : "./")) });
   }
 }
